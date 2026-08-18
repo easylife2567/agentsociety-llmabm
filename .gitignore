@@ -1,11 +1,2 @@
-.env
-.claude/*
-.claude/skills/
-.claude/settings.local.json
-!.claude/settings.json
-.codex/*
-.codex/skills/
-# Python cache files in custom/
-custom/**/__pycache__/
-custom/**/*.pyc
-custom/**/.pytest_cache/
+__pycache__/
+*.pyc
