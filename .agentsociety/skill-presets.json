@@ -1,0 +1,55 @@
+{
+  "active": "default",
+  "presets": {
+    "default": {
+      "agentsociety-analysis": {
+        "source": "bundled",
+        "version": "v1.0.0"
+      },
+      "agentsociety-create-agent": {
+        "source": "bundled",
+        "version": "v1.0.0"
+      },
+      "agentsociety-create-dataset": {
+        "source": "bundled",
+        "version": "v1.0.0"
+      },
+      "agentsociety-create-env-module": {
+        "source": "bundled",
+        "version": "v1.0.0"
+      },
+      "agentsociety-experiment-config": {
+        "source": "bundled",
+        "version": "v1.0.0"
+      },
+      "agentsociety-hypothesis": {
+        "source": "bundled",
+        "version": "v1.0.0"
+      },
+      "agentsociety-literature-search": {
+        "source": "bundled",
+        "version": "v1.0.0"
+      },
+      "agentsociety-paper-review": {
+        "source": "bundled",
+        "version": "v1.0.0"
+      },
+      "agentsociety-research-pipeline": {
+        "source": "bundled",
+        "version": "v1.0.0"
+      },
+      "agentsociety-run-experiment": {
+        "source": "bundled",
+        "version": "v1.0.0"
+      },
+      "agentsociety-scan-modules": {
+        "source": "bundled",
+        "version": "v1.0.0"
+      },
+      "agentsociety-use-dataset": {
+        "source": "bundled",
+        "version": "v1.0.0"
+      }
+    }
+  }
+}

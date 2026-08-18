@@ -1,0 +1,1318 @@
+ID: B12
+DOI: 10.1145/3485447.3512102
+中文译名: TikTok个性化因素的实证调查
+英文原题: An Empirical Investigation of Personalization Factors on TikTok
+原文件: 文献全文/正文/B12_2022_TikTok个性化因素的实证调查__An Empirical Investigation of Personalization Factors on TikTok.pdf
+源URL: https://arxiv.org/pdf/2201.12271
+提取说明: 仅为机械文本提取，页码标记依原PDF；不代表已完成论证核验。
+
+
+===== PAGE 1 =====
+
+An Empirical Investigation of Personalization Factors on TikTok
+Maximilian Boeker
+University of Zurich
+Switzerland
+Technical University of Munich
+Germany
+boekermax@gmail.com
+Aleksandra Urman
+University of Zurich
+Switzerland
+urman@ifi.uzh.ch
+ABSTRACT
+TikTok currently is the fastest growing social media platform with
+over 1 billion active monthly users of which the majority is from
+generation Z. Arguably, its most important success driver is its
+recommendation system. Despite the importance of TikTok’s algo-
+rithm to the platform’s success and content distribution, little work
+has been done on the empirical analysis of the algorithm. Our work
+lays the foundation to fill this research gap. Using a sock-puppet
+audit methodology with a custom algorithm developed by us, we
+tested and analysed the effect of the language and location used to
+access TikTok, follow- and like-feature, as well as how the recom-
+mended content changes as a user watches certain posts longer than
+others. We provide evidence that all the tested factors influence
+the content recommended to TikTok users. Further, we identified
+that the follow-feature has the strongest influence, followed by the
+like-feature and video view rate. We also discuss the implications
+of our findings in the context of the formation of filter bubbles on
+TikTok and the proliferation of problematic content.
+CCS CONCEPTS
+• Information systems →Personalization; Collaborative fil-
+tering; World Wide Web.
+KEYWORDS
+TikTok, algorithm audit, recommender systems, personalization,
+social media
+1
+INTRODUCTION
+In September 2016, ByteDance, a Chinese IT company, has launched
+a short video-sharing platform Douyin. While Douyin is only avail-
+able in Mainland China, a similar application, called TikTok, was
+rolled out by ByteDance a year later in other countries [49]. TikTok
+users can upload short videos with a variety of settings and filters,
+search for videos based on hashtags, content or featured background
+sounds, or explore the videos on their "For You" page - a feed of
+videos recommended to users based on their activity. As of Septem-
+ber 2021 TikTok welcomed 1 billion active users every month and
+was the most downloaded application of 2020 [11, 14, 26, 50] with
+more than 1 billion video views recorded daily in the same year
+[5, 37]. On average, people use TikTok’s mobile application for 52
+minutes and open it from 38 to 55 times a day [5, 26]. TikTok thus
+has by now become a major competitor for other social media and
+video platforms such as Instagram and YouTube, prompting them
+to attempt emulating TikTok’s success by implementing similar
+features (e.g., Instagram Reels or YouTube Shorts - short videos
+with recommender system-based distribution).
+TikTok is different from other major social media platforms such
+as Facebook or Instagram in one key aspect: its content distribution
+approach is purely algorithmic-driven, unlike other social media
+platforms where relationships between users play an important
+role in content distribution [3, 9, 15, 30]. Tiktok’s success is largely
+attributed to its recommendation algorithm behind the selection
+of videos on the "For You" page [57]. The proliferation of folk
+theories about the innerworkings of TikTok’s algorithm among its
+users[30], and the appearance of several media articles and blog
+posts attempting to describe how the algorithm works (e.g., [23, 47])
+highlight public attention to TikTok’s recommendation system (RS).
+In part, this is driven by the curiosity of users and the public and
+by the willingness of content creators to figure out how to achieve
+popularity on TikTok. Beyond that, interest in TikTok’s algorithm
+is warranted by societal concerns such as the formation of filter
+bubbles and facilitation of addiction to the platform, especially
+among younger people as the majority of TikTok’s users is between
+10 and 29 years old [10, 26].
+Despite TikTok’s rapid growth in popularity and, consequently,
+its potentially high impact in political, social and cultural realms,
+both in part facilitated by its RS, the exact innerworkings of Tik-
+Tok’s RS remain a "black box" [22, 57]. Several studies have high-
+lighted the importance of examining this algorithm [7, 22] through
+algorithm auditing - the investigation of functionality and impact
+of an algorithm [36]. While some research contributes to this goal
+[12, 30, 57] and there are several media articles discussing the al-
+gorithm [32, 47, 53], many gaps remain. This is especially the case
+with user-centric examination of TikTok’s RS - i.e., the examination
+of how user actions affect recommendations of the algorithm. The
+only analysis going in this direction has been published by the
+Wall Street Journal [27], and despite yielding interesting results it
+was limited in scope and not strictly scientific. We aim to address
+the existing research gap with a user-centric audit of TikTok’s
+algorithm.
+We make two main contributions. First, we develop and describe
+a methodology for conducting user-centric algorithm auditing of
+TikTok’s RS. Second, we examine the way in which different user
+actions influence TikTok’s recommendations within users’ "For
+You" feeds, and discuss the implications of our findings. Of course,
+there is a great variety of different user actions and characteristics
+that can influence the highly complex RS. In our analysis we focus
+on a number of those we see as most explicit: user location; user
+language settings; liking actions; following actions; video watching
+actions. Our analysis is thus not exhaustive and is rather a first
+step towards examining TikTok’s RS. Additionally, the platform
+periodically introduces changes to the algorithm, thus any findings
+we have may be only accurate for a small time window. However,
+arXiv:2201.12271v1  [cs.HC]  28 Jan 2022
+
+
+===== PAGE 2 =====
+
+Boeker & Urman
+our methodology can be applied at different periods in time to
+trace the changes in the RS, and is applicable for the examination
+of platforms with features similar to TikTok’s "For You" feed (e.g.,
+YouTube Shorts or Instagram Reels).
+2
+RELATED WORK
+2.1
+Auditing Recommendation Systems
+Due to the widespread application of recommendation algorithms,
+RS can have a serious impact on how humans receive information
+and ultimately perceive the world [2, 7, 46]. At the same time, "even
+those who train these systems cannot offer detailed or complete
+explanations about them or the neural networks they utilized"
+[3]. We therefore need scientific audits that shed light into the
+functionality of RS [38, 48]. As highlighted in a recent systematic
+literature review of algorithm audits [7], such studies can uncover
+problematic behaviors of RS and personalization algorithms such as
+the perpetuation of various biases [6], construction of filter bubbles
+[22, 43], personalization and randomization effects that can lead to
+users’ unequal access to critical information [18, 28, 31], and price
+steering[19] 1.
+There are different methodological approaches to algorithm au-
+diting. According to [46], these are: (1) code audits, (2) noninvasive
+user audits, (3) scraping audits, (4) sock-puppet audits, and (5) col-
+laborative audits. Our study falls into the fourth category as we
+mimic user behaviour via programmatic means, thus conducting
+what Sandvig et al. [46] refer to as a "classic" audit and following in
+the footsteps of other studies that examined how user characteris-
+tics and actions affect information distribution on online platforms
+[16–18].
+2.2
+TikTok-focused research
+So far research on TikTok has been conducted along two main
+lines: with the focus on TikTok users and their behavior, and with
+the focus on TikTok as a platform, including some analysis of its
+algorithm. The research that falls into the first category has, for
+example, examined the relationships between grandchildren and
+grandparents on TikTok in relation to COVID-19 [40], analyzed
+political communication on TikTok [8, 34] and the ways news
+organizations adapt their narratives to TikTok format [52]. In the
+context of our study, however, the work that focuses on TikTok as
+a platform with an emphasis on its RS is more relevant.
+One study has examined TikTok users’ assumptions about the
+recommendation algorithm [30] and found "that it is quite common
+for TikTok users to evaluate app activity in order to estimate the
+behavior of the algorithm" as well as that content creators attribute
+the popularity (or lack of it) of their videos to TikTok’s RS, and
+not to the video content. This study identified three main user as-
+sumptions about what influences the recommendation algorithm
+of TikTok on the content supply side: video engagement, posting
+time, and adding and piling up hashtags [30] and then, through
+an empirical analysis, confirmed that video engagement and post-
+ing time lead to a higher chance of the algorithm recommending
+a video. A few studies also described certain technical aspects of
+TikTok’s algorithm. For instance, it has been outlined that once a
+1For a detailed literature review of algorithm audits see [7].
+new video is uploaded to TikTok, the system assigns descriptive
+tags to it based on computer vision analyses, mentioned hashtags,
+the post description, sound and embedded texts [12, 47, 53]. After-
+wards, RS maps the tags to the user groups that match these tags,
+so that the recommendation algorithm can evaluate the next video
+to recommend from a reduced pool of videos [12]. Similarly, Zhao
+[57] concluded that ByteDance systematically categorizes a large
+number of content to better fit the user interests. Together with this
+method, ByteDance utilizes user’s interest, identity, and behavior
+characteristics to describe a user and assign categories, creators,
+and specific labels to them [57]. Further, Zhao states that TikTok
+solves the matching problem of an RS in two steps. Namely, through
+recommendation recalling which retrieves a candidate list of items
+that meet user preferences and recommendation ranking which
+ranks the candidate list based on user preferences, item character-
+istics, and context [57]. Similar to Catherine Wang’s theory about
+the TikTok recommendation algorithm [53], Zhao hypothesizes
+that TikTok uses the method of partitioned data buckets to launch
+new content [57]. In order to properly distribute a video, TikTok as-
+signs newly uploaded videos to a small relatively responsive group
+of users (small bucket). Once the video received reasonable feed-
+back measured by likes, views, shares, and comments surpassing
+a certain threshold it will be distributed to next level bucket with
+different users (medium bucket). This process will be repeated until
+a video no longer passes the threshold or lands in the "master"
+bucket to be distributed to the entire TikTok user community [57].
+In contrast to the studies above that focus on the technical as-
+pects of TikTok’s RS innerworkings or on the possible factors that
+can increase the likelihood that a video will be recommended to a
+large pool of users, we examine the way users’2 actions and charac-
+teristics affect the distribution of content on their "For You" feeds.
+Hence our analysis is centered on the content demand side rather
+than supply side. While the latter has been examined by the studies
+mentioned above, the demand side has so far been a subject of only
+few journalistic [27] but not scientific investigations.
+We examine a variety of user actions and characteristics that
+may influence the recommendation algorithm, as noted in the Intro-
+duction. Based on the background information provided by TikTok
+itself regarding its RS [41] as well as on personalization-related
+research in general (e.g., [18, 28, 44]), we outline several hypotheses
+regarding the influence of surveyed personalization factors (user
+language, locations, liking action, following action, video view rate)
+on the users’ feeds. These can be summarized as follows:
+(1) If one user in a pair of identical users interacts with its "For
+You" feed in a certain way while its twin user only scrolls
+through its feed, the feeds of both users will diverge.
+(2) Such divergence of the two users’ feeds will increase over-
+time.
+(3) Certain personalization factors have a greater impact on the
+recommendation system of TikTok than others.
+(4) As a user interacts with specific posts in a certain way (e.g.,
+likes them or watches them longer), that user will be served
+more posts that are similar to the ones it interacted with.
+(5) As one of the two users interacts with its feed in a certain
+way, the engagement rate of the posts recommended to that
+2By users here and below we mean TikTok content consumers, not content creators.
+
+
+===== PAGE 3 =====
+
+An Empirical Investigation of Personalization Factors on TikTok
+user will decrease, i.e. the number of views, likes, shares,
+comments of recommended posts will become smaller as the
+user will be served more "niche" content tailored to the user’s
+inferred interests rather than generally popular content.
+(6) Language and Location specific: Depending on the location
+and language a user uses to access TikTok, the user will be
+served different content.
+3
+METHODOLOGY
+In this section we outline the general setup of the sock-puppet
+auditing experiments we conducted to assess the influence of dif-
+ferent personalization factors on TikTok that was applicable to all
+experimental setups, regardless of the specific factors analyzed. Dis-
+tinct factor-specific characteristics of the experimental setups are
+mentioned in the next section separately for each personalization
+factor-related experimental group. Same applies to the description
+of the analytical strategy.
+3.1
+Data Collection
+In order to empirically test the influence of different factors on
+the recommendation algorithm of TikTok, we needed to create
+a fully controlled environment so we can isolate all the external
+personalization factors except the one we are testing in any given
+experimental setup [18]. Virtual agent-based auditing (or "sock-
+puppet" auditing [46]) is an appropriate methodology for creating
+such an environment while mimicking realistic user behaviour to
+assess the effects of different personalization factors [17, 51]. Thus,
+we created a custom web-based bot (virtual agent with scripted
+actions) that is able to log in to TikTok, scroll through the posts of
+its "For You" feed and interact with them, e.g. like a post. Similar
+to Hussein and Juneja [25], our program ran the ChromeDriver
+in incognito mode to establish a clean environment by removing
+any noise resulting from tracked cookies or browsing history that
+may originate from the machine on which the bot program was
+executed. The source code can be accessed on GitHub 3.
+The scripted actions of the bot were executed as follows: first
+the program initialized a Selenium Chrome Driver session4 with
+browser language set to English per default (depending on the test
+scenario, we adjusted the language; see details in Table 1), navigated
+to the TikTok website (https://www.tiktok.com), logged in as a
+specific user (login verification step was completed manually; we
+describe how user accounts were created below), and handled a set
+of banners to assure an error-free interaction with the user’s "For
+You" feed; then it scrolled through a pre-specified number of posts
+and executed actions such as following or liking (as scripted for a
+specific experiment and "run" (execution round) of the program);
+while scrolling through the "For You" feed, the bot retrieved the
+posts’ metadata from the website’s source code and extracted more
+data from the request responses. In the testing rounds ahead of the
+deployment of the bots we established that every time TikTok’s
+website was accessed it automatically preloaded about 30 posts
+to be displayed on the "For You" feed. Hereafter we refer to such
+groups of 30 posts as batches. As soon as the pre-specified number
+3https://github.com/mboeke/TikTok-Personalization-Investigation
+4In order to obscure the automated interaction of our bot program we followed the
+suggestions of Louis Klimek’s article [29].
+of batches5 was scrolled through, the bot paused the last video
+and terminated the ChromeDriver session once all requested data
+was temporally stored to avoid unintentional interaction with the
+TikTok’s feed. Afterwards all the data was stored in a PostgreSQL
+database hosted on Heroku. During our experiment we operated
+five local machines, four ran Windows 10 Pro and one macOS; as
+two users that were compared with each other (see below) always
+ran from the same local machine, the between-machine differences
+had no potential effect on our results. All machines were connected
+to the remote database.
+For each run of the bot, we scripted a set of specifications which
+defined the characteristics of each run, e.g. web-browser language,
+test user, number of batches to scroll through etc. According to Yi,
+Raghavan, and Leggetter [56], web services can identify a user’s
+location through their IP address. We therefore have assigned a
+dedicated proxy with a specific IP address to every test user due
+to three reasons: (1) every test shall be performed at a certain
+location, (2) to obscure the automated interaction, and (3) to link a
+specific IP address to a specific test user. We utilized proxies from
+WebShare 6 and acquired phone numbers from Twilio7 to setup
+user accounts. We utilized user phone numbers instead of email-
+addresses as those would require a completion step on the mobile
+application. Similarly to [18, 20, 25], every test user was manually
+created using its dedicated proxy and incognito mode to reduce
+the influence of any external factors. Every machine executed one
+program run at a time which consisted of two bot programs being
+executed in parallel.
+As noted in the Introduction, we aimed to establish the influence
+of several user actions and characteristics on TikTok’s RS and thus
+the personalization on the platform’s "For You" feed. We focus
+on the influence of the most explicit actions and characteristics
+(tested factors): following a content creator, liking a post, watching
+a post longer, and the language and location settings. To assess their
+influence on TikTok’s RS, we conducted several experiments using
+the bot program as outlined above. We describe the experiments
+related to each of the tested factors below.
+3.2
+Experiment Overview
+We created one experimental group with different experimental
+scenarios for every tested factor. For every scenario we have per-
+formed about 20 different runs which mainly consisted of two users
+(bots) executing scripted actions on one local machine in parallel.
+One of the two was the active and the other the control user. The
+active user performed a certain action, e.g. liking a post, while the
+control user only scrolled through the same number of batches as
+its twin user, looking at each post the same amount of seconds. We
+thus followed an approach similar to Hannak et al. [18] and Feuz,
+Fuller, and Stalder [16] by creating a second (control) user, that is
+identical to the active user except one specific characteristic/action
+- one of the tested personalization factors, - in order to measure the
+difference of the users’ feeds by comparing the meta-data of the
+posts that both saw. If the posts on the feeds vary and do so more
+than we would expect due to inherent random noise (see [18]), the
+53 by default for all experiments, though for some 5 batches were collected, as noted
+below and in Table 1.
+6www.webshare.io
+7www.twilio.com
+
+
+===== PAGE 4 =====
+
+Boeker & Urman
+difference can be attributed to the personalization of the recommen-
+dation algorithm of TikTok triggered by the tested factor. Every test
+scenario was executed twice a day, although the execution order
+varied, until all 20 test runs were completed.
+3.3
+Data Analysis
+In order to analyse the results of our experiment we used four
+different analysis approaches.
+First, we analyzed the difference between the feeds of two users
+by utilizing the Jaccard Index to measure the overlaps between
+posts, hashtags, content creators, and sounds between that each
+of the users encountered on their feed. Similar to previous work
+on measuring personalization online [18, 51], this approach allows
+us to identify to which degree the user feeds differ with respect
+to different metrics and attribute their variation to the influential
+factor being tested. Additionally, we compute the change trend in
+the discrepancies by fitting the obtained data to a linear polynomial
+regression.
+Second, we analyze the number of likes, views, comments, and
+shares of a post. As noted by [30], one can evaluate a post’s popular-
+ity on TikTok based on these metrics. We therefore examine these
+attributes to evaluate the popularity of individual TikTok posts rec-
+ommended to the bot users, and also trace how average popularity
+of posts recommended to a user changes overtime (i.e., we expect
+that with time due to personalization the posts recommended to
+a user should become more tailored to their interests thus more
+"niche" and less popular on the platform as a whole).
+Third, TikTok itself [42] as well as [13, 57] mention the impor-
+tance of hashtags to the platform implying that content classifica-
+tion and distribution is heavily based on hashtags. We analyzed the
+reappearance hashtags as well as sounds and content creators on a
+given user’s "For You" feed overtime to investigate whether TikTok
+picked up that user’s interests as proxied by these post properties.
+Additionally, we cleaned the data before the analysis by removing
+overly common hashtags, e.g. "#fyp" (shortcut of the "For You" page)
+as those mentioned too frequently would obscure the real similarity
+- or absence of it - between different posts.
+Fourth, we analyzed the similarity of two posts by analyzing the
+semantics of those posts’ hashtags using a Skip-Gram model [35].
+3.4
+Ethical considerations
+TikTok’s Terms of Service (ToS) explicitly prohibit content scraping
+for commercial purposes [1]. As our audit is done for academic pur-
+poses only, without any commercial applications, we do not violate
+TikTok’s ToS. Our bots have interacted with the platform as well as
+with the content creators (e.g., by liking/following them). However,
+as we used only few agents, we did not cause any disruption to
+the service and had only marginal, non-intrusive and completely
+harmless interactions with the content creators. Our research quali-
+fied as exempt from the ethical review of the University of Zurich’s
+OEC Human Subjects Committee according to the official checklist.
+4
+EXPERIMENTS
+All experiments were conducted between late June 2021 and mid-
+August 2021. In total, there were 39 successfully completed8 exper-
+imental scenarios during which we collected the data on 30’436
+different posts, 34’905 distinct hashtags, 21’278 different content
+creators, and 20’302 distinct sounds. In the sections to come we
+elaborate on the most significant findings for brevity reasons. We
+list all relevant details including the ID of each experimental sce-
+nario and corresponding bot users IDs in Supplementary Material
+in Table 1.
+4.1
+Controlling Against Noise
+As introduced in section 2.1, when auditing algorithms one needs
+to identify potential sources of noise to assure any differences
+observed between users in experimental scenarios are due to per-
+sonalization, and not inherent "noise" or randomization. In this
+section, we elaborate on the potential sources of noise and how we
+addressed them.
+Accessing TikTok from different locations may result in different
+content being recommended. We control for this personalization by
+assigning dedicated IP addresses located within the same country
+and obtained from the same proxy provider for every pair of test
+users. As the device settings can be another influence to TikTok’s
+RS, every machine uses the same ChromeDriver version and a proxy
+dedicated to a specific user to access TikTok.
+TikTok points out that their "[...] recommendation system works
+to intersperse diverse types of content along with those you already
+know you love". They specifically state that they will "interrupt
+repetitive patterns" to address the problem of the filter bubble [42].
+We need to control for this type of noise - the difference between
+two feeds that is triggered by the aforementioned design choices
+and inherent randomization and not the tested factor. In order to
+account for it and other potential sources of noise in the analysis,
+we created 11 experimental control scenarios, where none of the
+two users interacts with its feed in any way in order to measure
+the "default" levels of two users’ "For You" feed divergence. To
+increase the robustness of our observations, we slightly varied
+the conditions of the control scenarios: some of our test scenarios
+collected five instead of three batches, or collected data from the
+first few posts of a feed while others did not. Our results reveal
+that there is no clear correlation between the level of users’ feed
+divergence and collecting and not collecting the first few posts
+or collecting three vs five batches of posts. Thus, we treat these
+different settings as equivalent. Nonetheless, when accounting for
+noise in the analysis of experimental results for different tested
+factors (see below), we compared the observations for each tested
+factor scenario only with the observations of a control scenario fully
+corresponding to it (e.g., in terms of the number of batches of data
+collected). Using the data collected from the control scenarios, we
+computed a "noise value" (the level of divergence of two users’ feeds
+when the users are identical and do not interact with their feeds
+in any specific way) for the number of different posts, hashtags,
+8Beyond those 39 there were several runs we excluded from the analysis due to
+technical issues-related errors in the execution that could affect the results (e.g., when
+a bot got "stuck" on one post "watching" it for a long time which could affect the
+behaviour of the RS in undesirable ways). Such failed runs are listed together with
+successful runs in the overview Table 1 for reference but their IDs are marked in red.
+
+
+===== PAGE 5 =====
+
+An Empirical Investigation of Personalization Factors on TikTok
+content creators, and sounds by averaging over differences across all
+test runs and scenarios. The percentage of different posts, content
+creators, hashtags, and sounds was 66.17%, 66.05%, 58.62%, and
+64.47% for all scenarios collecting five batches. For scenarios that
+collected three batches these percentages corresponded to 69.74%,
+68.15%, 59.63%, and 68.05%.
+For brevity reasons here we present detailed results from only
+one of the 11 control scenarios (scenario ID 7), it however is similar
+to other control scenarios. Figure 1 shows strong fluctuations of
+the difference between the users’ feeds, the most dominant being
+between test runs ID 2302 and 2534. We identified such drops in
+all test scenarios and figured that they regularly occur around the
+end of a week or weekend. Since TikTok continuously improves
+their recommendation algorithm [42], we believe that these drops
+must be related to software releases. We therefore accounted for
+these (presumed) software updates by averaging the values right
+before and after the drops to lift the graph as shown in figure 2. In
+figure 7 we observe that there are huge fluctuations in the levels of
+popularity (as proxied by likes and views) and engagement (proxied
+by shares and comments) of posts recommended by the RS. TikTok’s
+algorithm seems to prioritize popular posts in the beginning, which
+is likely done to provoke a user feedback and thus overcome the
+cold-start problem. We averaged over the slopes of the trend lines of
+every difference analysis approach in order to compare the control
+and test scenarios. The corresponding values are provided in the
+Supplementary Material B. Hypothetically, if a tested factor indeed
+influences the recommendation algorithm, then the resulting feed
+should show stronger differences in its content than the ones of
+our control scenarios.
+4.2
+Language and Location
+Setup. In order to show the influence of a language of the TikTok
+website and location from which the user accesses the service we
+created four different experimental scenarios (see Table 1 for the
+specifications). For each of those the bot only collected data, no test
+user performed any action on its feed. However, bot users in each
+pair were either running from different locations (manipulated via
+proxies) or had different language settings (set up via their TikTok
+profiles). Comparing the number of overlapping posts between user
+pairs that belonged to the same scenario we were able to identify
+the impact of a language and location. Scenario 12 and 13 contained
+two test user pairs each, one accessing TikTok from the US and
+the other from Canada, both in English. Unfortunately, however
+scenario 13 was excluded due to faulty bot behavior as noted in
+Table 1. Scenario 14 again consisted of two user pairs, one located
+in the US using English, the other in Germany with language set
+to German. For one user of each pair we switched the locations
+to Germany and the US back and forth to test if the RS "reacts" to
+the changes in the location immediately. In scenario 15 we focused
+on the influence of the language settings only. The experiment
+included four test user pairs. All accessed TikTok from the US, but
+each pair with one of the four languages: English, German, Spanish,
+and French. We decided to execute this experiment in the US as its
+population is reasonably large and according to Ryan [45] apart
+from English, Spanish, German, French belong to the four major
+languages spoken in that country.
+Results. The heat maps in Figures 3, 4, and 5 visualize the av-
+eraged overlapping posts of each user of each corresponding test
+scenario across all test runs. Note that the negative values result
+from accounting for the overlapping noise of 35.38%. All three
+charts 3, 4, and 5 show that different locations have a strong impact
+on the posts shown by TikTok. For example, on the heat map in
+Fig. 3 both users 97_US_en and 98_US_en have a higher average of
+overlapping posts than the users 97_US_en and 99_CA_en. Figure
+4 shows the same phenomenon even though the users switch their
+location in the meantime. This also implies that language does not
+influence the RS as strong as the location does. The heat map in
+Fig. 5 indicates that accessing TikTok using the same language set-
+ting does not always result in the highest overlap (e.g. comparing
+all users with 109_US_de). We learn that a user accessing TikTok
+from the US is likely to see more content in English than any other
+language regardless of the language settings, which makes sense as
+English is the country’s official and most dominant language. This
+is the case for all examined languages except French - the feeds
+of users with French set as default language are more similar to
+each other than to users with other language settings. It seems as if
+TikTok interprets French to be more different to English, Spanish,
+and German than those three languages to each other.
+4.3
+Like-Feature
+Setup. As one of TikTok’s influential factors, the like-feature could
+be interpreted as a proxy to understand user preferences, similar
+to a user rating [42, 58]. We created 11 different test scenarios
+incorporating different approaches of selecting the posts to like:
+randomly, based on user personas defined by set of hashtags9, and
+those that matched specific content creators or sounds. With regards
+to the persona-based selection, we followed the approach of [16] to
+artificially create user interests based on a set of values, in our case
+using hashtags as a proxy to determine whether a video matches
+these pre-specified interests of a user or not. If at least one hashtag
+of the currently displayed post would matched the pre-defined set
+of hashtags corresponding to user interests, the user would like
+the post. The above referenced Table 1 specifies which scenario
+followed what kind of post-picking-approach.
+Results. Overall, our analysis reveals that differences of feeds for
+scenarios that collected only three batches increase stronger than
+for the control scenarios. This, however, does not occur for scenarios
+that collected five batches, potentially indicating that the RS adapts
+the feed of a user trying to "infer" their interests even in the absence
+of any user actions, and this effect gets stronger the longer a user
+remains idle. Still, overall across all like scenarios (regardless of how
+the liking actions were specified), the users’ feeds diverged stronger
+than in the control scenarios (as depicted in Table 2). That being
+said, the feeds in the scenarios for which active users were defined
+by only very few common hashtags did not diverge very much. We
+propose to run additional tests in future work with more specific,
+niche hashtags to investigate their feed change. Again we focus
+on scenario 21 as an example and omit details of the remaining
+9For example, the set of hashtags of user 145 of scenario 39 is the following: ["football",
+"food", "euro2020", "movie", "foodtiktok", "gaming", "film", "tiktokfood", "gta5", "gta",
+"minecraft", "marvel", "cat", "dog", "pet", "dogsoftiktok", "catsoftiktok", "cute", "puppy",
+"dogs", "cats", "animals", "petsoftiktok", "kitten"]. All of these hashtags correspond to
+very popular interests, same was true for all persona scenarios.
+
+
+===== PAGE 6 =====
+
+Boeker & Urman
+Figure 1: Difference of feeds per test run for test scenario
+7 before accounting for drops.
+Figure 2: Difference of feeds per test run for test scenario
+7 after accounting for drops.
+Figure 3: Results of test scenario 12.
+Figure 4: Results of test scenario 14.
+Figure 5: Results of test scenario 15.
+scenarios for brevity reasons. The analysis of the feed difference
+and post metrics for scenario 21 reveal that the feeds become more
+different, show less popular posts in terms of likes and vies, and
+thus, imply that more personalized posts are fed to the active users
+than its twin control user. Similarly, the hashtag similarity analysis
+of scenario 21 reveals that the feed of user 123 becomes similar
+faster than that of control user 124. Also, the test scenarios where
+active users liked only certain content creators (scenarios 23 &
+24) or sounds (25 & 26) showed a higher increase in differences
+compared to the appropriate control scenarios. The analysis of
+reappearing content creators or sounds for these scenarios also
+show that the content creators or sounds for which a post was liked
+reappeared more often than others.
+We conclude that liking posts does influence the recommenda-
+tion algorithm of TikTok. However, we figured that an arbitrary
+selection of posts to like does not have as strong an effect as persona-
+based picking, or based on a specific set of content creators or
+sounds.
+4.4
+Follow-Feature
+Setup. We created six different test scenarios to test the follow-
+feature. For each one of them one of the user pairs followed only
+one random content creator every other test run. Again we had to
+exclude the scenario 29 as the bot got stuck.
+Results. Our overall difference analysis as well as the hashtag
+similarity analysis let us conclude that following a certain content
+creator undoubtedly influences the recommendation algorithm (de-
+tails in Table 3). Figure 6 related to scenario 28 further underpins
+this finding by displaying a greater variance of content creators for
+the control user 50 than the active user 49. Interestingly, three out
+of four content creators most frequently encountered by user 49
+are not followed by this user. We suggest this might be due to their
+similarity to the creators followed by user 49 coupled by overall
+popularity (but not the latter alone as otherwise we would expect
+them to pop up in the control user’s feed with similar frequency).
+However, our hashtag similarity analysis of scenario 28 shown in
+figure 8 again illustrates a strong influence of the follow-feature
+as the posts of the active user’s feed become similar to each other
+faster than those in the feed of the control user (21% > 18%).
+4.5
+Video View Rate
+Setup. With YouTube’s design change in its recommendation algo-
+rithm that introduced accounting for the percentage a user watched
+a video, the overall watch time on the platform started rising by
+50% a year for the next three years [39]. Google calls this metric
+
+
+===== PAGE 7 =====
+
+An Empirical Investigation of Personalization Factors on TikTok
+Figure 6: Distribution of content creators across all test runs
+for scenario 28.
+the "video viewership" which measures the percentage that was
+watched of a certain video [21]. Given the importance of the fea-
+ture on YouTube, we hypothesized it might also be relevant for the
+TikTok’s RS system and set out to test this. We adjusted the "video
+viewership" metric as describe by Google to our purposes and call
+it the video view rate (VVR). We created ten different experimental
+scenarios to examine the influence of the VVR on TikTok’s rec-
+ommender system. The set of experimental scenarios was equally
+split into five that randomly picked posts and the other five based
+on a user persona. For both groups of test scenarios the share of
+video length that the bot users "watched" was varied between 25%
+and 400% (400% = watching a video four times), the details for each
+scenario are listed in Supplementary Material Table 1.
+Results. Our analysis depicted in Table 4 reveals that the feed
+difference of the persona scenarios (those that "selected" videos to
+watch longer based on pre-specified sets of hashtags) increases sig-
+nificantly stronger than for other VVR scenarios allowing us to con-
+clude that the TikTok recommendation algorithm reacts stronger
+to the VVR differences based on specific user profiles (the more
+niche the better) than on user profiles that randomly pick posts.
+Our results from the like-feature test scenarios align with these
+findings. Contrary to our assumptions, the feeds of scenario 33
+with the active user watching only 25% of certain posts increase
+stronger in their difference than for scenario 35 with the active user
+watching 75% (averaged difference 0.85% > 0.56%). We observe the
+same with scenario 38 (active user watching 50%) and 40 (active
+user watching 100%). One explanation might be that TikTok RS
+"assumes" users decide within the first 25% (or 50% respectively) of
+the video duration whether they like the video or not. The remain-
+ing time is thus no longer relevant. Another reason may be that
+the feeds of scenario 33 just happened to be slightly more different
+from the beginning, and therefore, changed faster. Or the feed of
+user 77 may be more volatile than of user 81 as user 77 watches
+only 25% resulting in TikTok serving many different videos. Yet
+another explanation may be that watching 75% instead of 25% sends
+a stronger negative feedback. Looking at the hashtag semantics of
+the feeds for both scenarios reveals that the similarity of the feed
+from user 81 (slope: 10.92%) increases a lot faster than for user 77
+(slope: 7.79%). Likewise, the hashtag similarity for user 91 (slope:
+16.03%) grows quicker than for user 87 (slope: 7.98%). An additional
+indicator of personalization within the VVR tests that involve user
+personas is the number of posts that were watched longer as well as
+the time a bot needed to complete a test run. Our analysis revealed
+that user 91 watches increasingly more posts for an extended time
+frame with an average duration of 33.73 minutes than user 87 with
+an average duration of only 27.78 minutes.
+Even though the feed difference analysis appears to increase
+stronger for users who watch less of a post, our findings allow
+us to conclude that not only watching a video longer than others
+influences the recommendations of TikTok’s algorithm, but also
+the longer one watches the stronger it influences the algorithm.
+4.6
+Concluding Results
+In this section we summarize the findings with respect to the previ-
+ously introduced hypotheses. For the majority of all experimental
+non-control scenarios, the feeds become more different and con-
+tinue to do so as the active user continues interacting with its feed
+(hypothesis 1 and 2). Furthermore, our data reveals that certain fac-
+tors influence the recommendation algorithm of TikTok stronger
+than others. The order of the most influential factor to the least
+among those that were tested is the following: (1) following specific
+content creators, (2) watching certain videos for a longer period of
+time, and finally (3) liking specific posts. Interestingly, the influence
+of the video view rate is only marginally higher than the one of
+the like-feature. The number of performed and fully completed test
+scenarios as well as the number of collected batches may be one
+of the reasons. Another one may be the approaches to picking a
+post to interact with: on the one hand random picking of posts,
+which was identified as not a strong influential factor, and on the
+other persona-based picking, where the user were defined by very
+common and similar hashtags. The fact that watching a post for a
+longer period of time has a greater effect on TikTok’s recommen-
+dation algorithm than liking it aligns with TikTok’s blog post [42].
+However, we can not confirm the findings of the WSJ investigation
+[27] as our data shows that following specific content creators in-
+fluences the "For You" feed stronger than all the other tested factors.
+Elaborating on hypothesis four (increased within-feed similarity of
+content served to an active user) is not as straightforward. Overall,
+the follow feature scenarios indicate that the RS of TikTok indeed
+serves to the active user more posts of the content creators the user
+followed. The same is true for like feature where the user liked posts
+of certain content creators and/or with certain sounds. However,
+we do not identify a clear pattern for post attributes reappearing
+more often than others for the like- and VVR- tests where users
+
+
+===== PAGE 8 =====
+
+Boeker & Urman
+picked posts randomly or based on predefined sets of hashtags. The
+first observation may again be due to the arbitrary selection. The
+second might be because of the hashtags that defined the personas
+are very popular and, thus, appear equally often for the active and
+corresponding control user. We plan on addressing this issue in
+future work by running tests with personas being defined by more
+specific, niche hashtags. However, the similarity analysis of the
+feeds reveals that in most cases the posts in the feeds of active
+users became similar faster than in the feeds of control users. We
+therefore consider hypothesis four to be true as well. Considering
+the averaged slopes of the combined post metrics, the feeds of ac-
+tive users do not always decrease faster than for the control user.
+We therefore reject hypothesis 5. Even though TikTok serves more
+personalized content it still recommends posts with very high num-
+bers of views, likes, shares, and comments. Section 4.2 revealed that
+both language and location effect the TikTok posts recommended
+to a user (hypothesis 6).
+5
+DISCUSSION
+In the past decade algorithmic personalization has become ubiqui-
+tous on social media platforms, heavily affecting the distribution
+of information there. The recommendation algorithm behind Tik-
+Tok’s "For You" page is arguably one of the major factors behind
+the platform’s success [57]. Given the popularity of the platform
+[5, 37], the fact that its largely used by younger users who might
+be more vulnerable in the face of problematic content [54], as well
+as the central role TikTok’s RS plays in the content distribution, it
+is important to assess how user behaviour affects one’s "For You"
+page. We took the first step in this direction. In this section we
+outline the implications of our findings as well as the directions for
+future work.
+Our analysis revealed that following action has the largest in-
+fluence on the content served to the users among the examined
+factors. This is important since following is a conscious action, as
+contrasted for example to mere video viewing which could happen
+by accident or be affected by unconscious predispositions. One
+can watch something without necessarily liking what they see,
+especially in the case of disturbing or problematic content. Hence,
+according to our results users have some control over their feed
+through explicit actions. At the same time, we find that video view
+rate has a similar level of importance to the RS as liking action.
+This can be problematic: while likes can be easily undone and users
+unfollowed, one can not "unwatch" a video, thus the influence of
+VVR on the algorithm severely limits the users’ control over their
+data and the behaviour of the algorithm. Given the proliferation of
+extremist content on the platform and TikTok’s insofar insufficient
+measures to limit the spread of problematic content [54] as well as
+the high degree of randomization in the videos served to a user as
+identified by us, one can be potentially driven into filter bubbles
+filled with harmful and radicalizing content by simply lingering
+over problematic videos for a little bit too long. To alleviate this, we,
+similarly to [54, 57], suggest that TikTok should do more to filter
+out problematic content. Additionally, the platform could provide
+users with more options to control what appears in their feeds. For
+example, TikTok could add a list of inferred user interests avail-
+able for control and adjustments to the user itself. TikTok already
+enables its users to update their video interests via settings, but
+only within few superficial categories. We suggest to provide a con-
+sistently updated list of inferred user interests using very detailed
+content categories based on which the user can always identify
+which interests the TikTok RS inferred from their interaction with
+the app. The user should also be able to adjust the list. According
+to [36] and [48], such an overview would seriously increase the
+degree of transparency and, thus, would benefit not only the user,
+but also TikTok.
+The impressive accuracy of TikTok’s recommender system (RS)
+mentioned by the literature (e.g. [4, 12, 30, 57]), could be used
+to effectively communicate important messages such as those on
+COVID-19 countermeasures [10], or place appropriate advertise-
+ments. However, such tools can also be easily misused for political
+manipulation [55], [34], [24] or distributing hate speech [54]. This
+can be exacerbated by the closed-loop relationship between users’
+addiction to the platform and algorithmic optimization [57] or filter
+bubbles. Our hashtag similarity analysis and the analysis of loca-
+tion and language-based differences imply the existence of such
+filter bubbles both at the level of individual interests but also at a
+macrolevel related to one’s location. The findings of WSJ’s inves-
+tigation [27] also lend evidence to the formation of filter bubbles
+on TikTok. We therefore propose to countermeasure the creation
+of filter bubbles not only with recommendation novelty, but also
+by providing more serendipitous recommendations as this leads
+to higher perceived preference fit and enjoyment while serving
+the ultimate goal of increasing the diversity of the recommended
+content [33].
+6
+CONCLUSION
+With this work, we aim to contribute to the increase in transparency
+of how the distribution of content on TikTok is influenced by users’
+actions or characteristics by identifying the influence of certain
+factors. We have implemented a sock-puppet auditing technique
+to interact with the web-version of TikTok mimicking a human
+user, while collecting data of every post that was encountered.
+Through this approach we were able to test and analyse the affect
+of the language and location used to access TikTok, follow- and like-
+feature, as well as how the recommended content changes as a user
+watches certain posts longer than others. Our results revealed that
+all tested factors have an effect on the way TikTok’s RS recommends
+content to its users. We have also shown that the follow-feature
+influences the recommendation algorithm the strongest, followed
+by the video view rate and like feature; besides, we found that the
+location is a stronger influential factor than the language that is
+used to access TikTok. Of course, this analysis is not exhaustive
+and includes only the most explicit factors, while the algorithm
+without a doubt can be influenced by many other aspects such as,
+for instance, users’ commenting or sharing actions. Nonetheless,
+with this work we hope to lay the foundation for future research on
+TikTok’s RS that could examine other factors that can influence the
+algorithm as well as analyze the connection between the RS and
+the potential for the formation of filter bubbles and the distribution
+of problematic content on the platform in greater detail.
+
+
+===== PAGE 9 =====
+
+An Empirical Investigation of Personalization Factors on TikTok
+7
+ACKNOWLEDGEMENTS
+We thank Prof. Dr. Anikó Hannák for helpful feedback and sug-
+gestions on this manuscript. We also thank the Social Computing
+Group of the University of Zurich for providing the resources nec-
+essary to conduct the study. Further, we are grateful to Jan Scholich
+for his advice on the data analysis implementation.
+REFERENCES
+[1] 2020. Terms of Service | TikTok.
+https://www.tiktok.com/legal/terms-of-
+service?lang=en#terms-eea
+[2] Gediminas Adomavicius, Jesse Bockstedt, Shawn P Curley, Jingjing Zhang, and
+Sam Ransbotham. 2019. The hidden side effects of recommendation systems.
+MIT Sloan Management Review 60, 2 (2019), 1.
+[3] Oscar Alvarado, Hendrik Heuer, Vero Vanden Abeele, Andreas Breiter, and Ka-
+trien Verbert. 2020. Middle-Aged Video Consumers’ Beliefs About Algorithmic
+Recommendations on YouTube. Proceedings of the ACM on Human-Computer
+Interaction 4, CSCW2 (2020), 1–24.
+[4] Katie Anderson. 2020. Getting acquainted with social networks and apps: it
+is time to talk about TikTok. Library Hi Tech News ahead-of-print (02 2020).
+https://doi.org/10.1108/LHTN-01-2020-0001
+[5] Salman Aslam. 2021. TikTok by the Numbers: Stats, Demographics & Fun Facts.
+https://www.omnicoreagency.com/tiktok-statistics/
+[6] Ricardo Baeza-Yates. 2020.
+Bias in Search and Recommender Systems. In
+Fourteenth ACM Conference on Recommender Systems (Virtual Event, Brazil)
+(RecSys ’20). Association for Computing Machinery, New York, NY, USA, 2.
+https://doi.org/10.1145/3383313.3418435
+[7] Jack Bandy. 2021. Problematic Machine Behavior: A Systematic Literature Review
+of Algorithm Audits. Proceedings of the ACM on Human-Computer Interaction 5,
+CSCW1 (2021), 1–34.
+[8] Jack Bandy and Nicholas Diakopoulos. 2020.
+# TulsaFlop: A Case Study
+of Algorithmically-Influenced Collective Action on TikTok.
+arXiv preprint
+arXiv:2012.07716 (2020).
+[9] Jack Bandy and Nicholas Diakopoulos. 2021. More Accounts, Fewer Links: How
+Algorithmic Curation Impacts Media Exposure in Twitter Timelines. Proceedings
+of the ACM on Human-Computer Interaction 5, CSCW1 (2021), 1–28.
+[10] Corey H Basch, Grace C Hillyer, and Christie Jaime. 2020. COVID-19 on TikTok:
+harnessing an emerging social media platform to convey important public health
+messages. International journal of adolescent medicine and health (2020).
+[11] BBC. 2021. TikTok named as the most downloaded app of 2020. https://www.bbc.
+com/news/business-58155103
+[12] Zhuang Chen, Qian He, Zhifei Mao, Hwei-Ming Chung, and Sabita Maharjan.
+2019. A study on the characteristics of douyin short videos and implications for
+edge caching. In Proceedings of the ACM Turing Celebration Conference-China.
+1–6.
+[13] Patricio Domingues, Ruben Nogueira, José Carlos Francisco, and Miguel Frade.
+2020. Post-Mortem Digital Forensic Artifacts of TikTok Android App. In Proceed-
+ings of the 15th International Conference on Availability, Reliability and Security
+(Virtual Event, Ireland) (ARES ’20). Association for Computing Machinery, New
+York, NY, USA, Article 42, 8 pages. https://doi.org/10.1145/3407023.3409203
+[14] Douyin. 2019. Douyin Official Data Report.
+https://static1.squarespace.com/
+static/5ac136ed12b13f7c187bdf21/t/5e13ba8db3528b5c1d4fada0/1578351246398/
+douyin+data+report.pdf
+[15] Facebook. [n. d.]. How News Feed Works.
+https://www.facebook.com/help/
+1155510281178725/?helpref=hc_fnav
+[16] Martin Feuz, Matthew Fuller, and Felix Stalder. 2011. Personal Web searching in
+the age of semantic capitalism: Diagnosing the mechanisms of personalisation.
+First Monday 16, 2 (Feb. 2011). https://doi.org/10.5210/fm.v16i2.3344
+[17] Mario Haim, Andreas Graefe, and Hans-Bernd Brosius. 2018. Burst of the Filter
+Bubble? Digital Journalism 6, 3 (2018), 330–343. https://doi.org/10.1080/21670811.
+2017.1338145 arXiv:https://doi.org/10.1080/21670811.2017.1338145
+[18] Aniko Hannak, Piotr Sapiezynski, Arash Molavi Kakhki, Balachander Krish-
+namurthy, David Lazer, Alan Mislove, and Christo Wilson. 2013. Measuring
+Personalization of Web Search. In Proceedings of the 22nd International Conference
+on World Wide Web (Rio de Janeiro, Brazil) (WWW ’13). Association for Comput-
+ing Machinery, New York, NY, USA, 527–538. https://doi.org/10.1145/2488388.
+2488435
+[19] Aniko Hannak, Gary Soeller, David Lazer, Alan Mislove, and Christo Wilson.
+2014. Measuring price discrimination and steering on e-commerce web sites. In
+Proceedings of the 2014 conference on internet measurement conference. 305–318.
+[20] Aniko Hannak, Gary Soeller, David Lazer, Alan Mislove, and Christo Wilson.
+2014. Measuring Price Discrimination and Steering on E-Commerce Web Sites. In
+Proceedings of the 2014 Conference on Internet Measurement Conference (Vancouver,
+BC, Canada) (IMC ’14). Association for Computing Machinery, New York, NY,
+USA, 305–318. https://doi.org/10.1145/2663716.2663744
+[21] YouTube Help. [n. d.]. About video ad metrics and reporting.
+https://support.
+google.com/youtube/answer/2375431?hl=en
+[22] Hendrik Heuer. 2020. Users & Machine Learning-Based Curation Systems. Ph. D.
+Dissertation. Universität Bremen.
+[23] Jeff Horowitz and Deepa Seetharaman. 2020. Facebook Executives Shut Down
+Efforts to Make the Site Less Divisive. https://www.wsj.com/articles/facebook-
+knows-it-encourages-division-top-executives-nixed-solutions-11590507499
+[24] Philip N Howard and Bence Kollanyi. 2016. Bots,# strongerin, and# brexit:
+Computational propaganda during the uk-eu referendum. Available at SSRN
+2798311 (2016).
+[25] Eslam Hussein, Prerna Juneja, and Tanushree Mitra. 2020.
+Measuring Mis-
+information in Video Search Platforms: An Audit Study on YouTube.
+Proc.
+ACM Hum.-Comput. Interact. 4, CSCW1, Article 048 (May 2020), 27 pages.
+https://doi.org/10.1145/3392854
+[26] Mansoor Iqbal. 2021. TikTok Revenue and Usage Statistics (2021). https://www.
+businessofapps.com/data/tik-tok-statistics/
+[27] Wall Street Journal. 2021. Investigation: How TikTok’s Algorithm Figures Out
+Your Deepest Desires. https://www.wsj.com/video/series/inside-tiktoks-highly-
+secretive-algorithm/investigation-how-tiktok-algorithm-figures-out-your-
+deepest-desires/6C0C2040-FF25-4827-8528-2BD6612E3796
+[28] Chloe Kliman-Silver, Aniko Hannak, David Lazer, Christo Wilson, and Alan
+Mislove. 2015. Location, location, location: The impact of geolocation on web
+search personalization. In Proceedings of the 2015 internet measurement conference.
+121–127.
+[29] Louis Klimek. 2021. 12 Ways to hide your Bot Automation from Detection | How to
+make Selenium undetectable and stealth.
+https://piprogramming.org/articles/
+How-to-make-Selenium-undetectable-and-stealth--7-Ways-to-hide-your-
+Bot-Automation-from-Detection-0000000017.html
+[30] Daniel Klug, Yiluo Qin, Morgan Evans, and Geoff Kaufman. 2021. Trick and Please.
+A Mixed-Method Study On User Assumptions About the TikTok Algorithm. In
+13th ACM Web Science Conference 2021. 84–92.
+[31] Mykola Makhortykh, Aleksandra Urman, and Ulloa Roberto. 2020. How search
+engines disseminate information about COVID-19 and why they should do better.
+The Harvard Kennedy School (HKS) Misinformation Review 1 (2020).
+[32] Louise Matsakis. 2020.
+TikTok Finally Explains How the ‘For You’ Algo-
+rithm Works.
+https://www.wired.com/story/tiktok-finally-explains-for-you-
+algorithm-works/
+[33] Christian Matt, Alexander Benlian, Thomas Hess, and Christian Weiß. 2014.
+Escaping from the filter bubble? The effects of novelty and serendipity on users’
+evaluations of online recommendations. (2014).
+[34] Juan Carlos Medina Serrano, Orestis Papakyriakopoulos, and Simon Hegelich.
+2020. Dancing to the Partisan Beat: A First Analysis of Political Communication
+on TikTok. In 12th ACM Conference on Web Science (Southampton, United King-
+dom) (WebSci ’20). Association for Computing Machinery, New York, NY, USA,
+257–266. https://doi.org/10.1145/3394231.3397916
+[35] Tomas Mikolov, Kai Chen, Greg Corrado, and Jeffrey Dean. 2013. Efficient
+estimation of word representations in vector space. arXiv preprint arXiv:1301.3781
+(2013).
+[36] Brent Mittelstadt. 2016. Automation, algorithms, and politics| Auditing for trans-
+parency in content personalization systems. International Journal of Communi-
+cation 10 (2016), 12.
+[37] Maryam Mohsin. 2021. 10 TIKTOK STATISTICS THAT YOU NEED TO KNOW IN
+2021 [INFOGRAPHIC]. https://www.oberlo.com/blog/tiktok-statistics
+[38] Philip M Napoli. 2018. What Social Media Platforms Can Learn from Audience
+Measurement: Lessons in the Self-Regulation of’Black Boxes’. TPRC.
+[39] Casey Newton. 2017.
+How YouTube Perfected The Feed.
+https:
+//www.theverge.com/2017/8/30/16222850/youtube-google-brain-algorithm-
+video-recommendation-personalized-feed
+[40] Marije Nouwen and Mathilde Hermine Christine Marie Ghislaine Duflos. 2021.
+TikTok as a Data Gathering Space: The Case of Grandchildren and Grandparents
+during the COVID-19 Pandemic. In Interaction Design and Children (Athens,
+Greece) (IDC ’21). Association for Computing Machinery, New York, NY, USA,
+498–502. https://doi.org/10.1145/3459990.3465201
+[41] TikTok Blog Post. 2020.
+How TikTok recommends videos #ForYou.
+https:
+//newsroom.tiktok.com/en-us/how-tiktok-recommends-videos-for-you
+[42] TikTok Blog Post. 2020. TikTok by the Numbers: Stats, Demographics & Fun Facts.
+https://newsroom.tiktok.com/en-us/how-tiktok-recommends-videos-for-you
+[43] Manoel Horta Ribeiro, Raphael Ottoni, Robert West, Virgílio AF Almeida, and
+Wagner Meira Jr. 2020. Auditing radicalization pathways on YouTube. In Proceed-
+ings of the 2020 conference on fairness, accountability, and transparency. 131–141.
+[44] Francesco Ricci, Lior Rokach, and Bracha Shapira. 2011. Introduction to rec-
+ommender systems handbook. In Recommender systems handbook. Springer,
+1–35.
+[45] Camille L Ryan. 2013. Language use in the United States: 2011. (2013).
+[46] Christian Sandvig, Kevin Hamilton, Karrie Karahalios, and Cedric Langbort. 2014.
+Auditing algorithms: Research methods for detecting discrimination on internet
+platforms. Data and discrimination: converting critical concerns into productive
+inquiry 22 (2014), 4349–4357.
+
+
+===== PAGE 10 =====
+
+Boeker & Urman
+[47] Kyla Scanlon. 2020. The App That Knows You Better than You Know Yourself: An
+Analysis of the TikTok Algorithm. https://chatbotslife.com/the-app-that-knows-
+you-better-than-you-know-yourself-an-analysis-of-the-tiktok-algorithm-
+be12eefaab5a
+[48] Rashmi Sinha and Kirsten Swearingen. 2002. The role of transparency in rec-
+ommender systems. In CHI’02 extended abstracts on Human factors in computing
+systems. 830–831.
+[49] Li Sun, Haoqi Zhang, Songyang Zhang, and Jiebo Luo. 2020. Content-based
+Analysis of the Cultural Differences between TikTok and Douyin. In 2020 IEEE
+International Conference on Big Data (Big Data). 4779–4786. https://doi.org/10.
+1109/BigData50022.2020.9378032
+[50] TikTok. 2021. Thanks a billion! https://newsroom.tiktok.com/en-us/1-billion-
+people-on-tiktok
+[51] Aleksandra Urman, Mykola Makhortykh, and Roberto Ulloa. 2021. The Matter
+of Chance: Auditing Web Search Results Related to the 2020 US Presidential
+Primary Elections Across Six Search Engines. Social science computer review
+(2021), 08944393211006863.
+[52] Jorge Vázquez-Herrero, María-Cruz Negreira-Rey, and Xosé López-García. 2020.
+Let’s dance the news! How the news media are adapting to the logic of TikTok.
+Journalism (2020), 1464884920969092.
+[53] Catherine Wang. 2020. Why TikTok made its user so obsessive? The AI Algorithm
+that got you hooked. https://towardsdatascience.com/why-tiktok-made-its-user-
+so-obsessive-the-ai-algorithm-that-got-you-hooked-7895bb1ab423
+[54] Gabriel Weimann and Natalie Masri. 2020. Research note: spreading hate on
+TikTok. Studies in Conflict & Terrorism (2020), 1–14.
+[55] Samuel C Woolley. 2016. Automating power: Social bot interference in global
+politics. First Monday (2016).
+[56] Xing Yi, Hema Raghavan, and Chris Leggetter. 2009. Discovering Users’ Specific
+Geo Intention in Web Search. In Proceedings of the 18th International Conference
+on World Wide Web (Madrid, Spain) (WWW ’09). Association for Computing Ma-
+chinery, New York, NY, USA, 481–490. https://doi.org/10.1145/1526709.1526774
+[57] Zhengwei Zhao. 2021. Analysis on the “Douyin (Tiktok) Mania” Phenomenon
+Based on Recommendation Algorithms. In E3S Web of Conferences, Vol. 235. EDP
+Sciences, 03029.
+[58] Xujuan Zhou, Yue Xu, Yuefeng Li, Audun Josang, and Clive Cox. 2012. The
+state-of-the-art in personalized recommender systems for social networking.
+Artificial Intelligence Review 37, 2 (2012), 119–132.
+
+
+===== PAGE 11 =====
+
+An Empirical Investigation of Personalization Factors on TikTok
+A
+EXPERIMENTAL SCENARIO DETAILS
+Table 1: Different experimental groups and their individual scenarios: controlling against noise, language and location, like
+feature, follow feature, video view rate feature. The yellow highlighted users are the active users and red highlighted scenarios
+correspond to the failed ones.
+Test Scenario ID
+User IDs
+Test Details
+1
+72, 73
+Control: collecting 5 batches, collecting_data_for_first_posts = True
+2
+74, 75
+Control: collecting 5 batches
+3
+93, 94
+Control: collecting 5 batches, collecting_data_for_first_posts = True
+4
+95, 96
+Control: collecting 5 batches
+5
+125, 126
+Control : collecting_data_for_first_posts = True
+6
+137, 138
+Control
+7
+139, 140
+Control: collecting_data_for_first_posts = True
+8
+141, 142
+Control
+9
+143, 144
+Control
+10
+147, 148
+Control: reuse_cookies = True
+11
+149, 150
+Control: reuse_cookies = True
+12
+97, 98, 99, 100
+Language = English; Location = United States and Canada
+13
+101, 102, 105, 106
+Language = English; Location = United States and Canada
+14
+103, 104, 107, 108
+Language = English and German; Location = United States and Germany
+15
+109, 110, 129, 132, 130,
+133, 131, 134
+Language = German, English, Spanish, French; Location = United States
+16
+45 , 46
+Randomly liking 6 posts in batch 2, 3, 4, collecting 5 batches
+17
+59 , 60
+Randomly liking 6 posts in batch 2, 3, 4, collecting 5 batches
+18
+61 , 62
+Liking posts based on the user’s persona defined by hashtags, collecting 5 batches
+19
+63 , 64
+Liking posts based on the user’s persona defined by hashtags, collecting 5 batches
+20
+70 , 71
+Liking posts based on the user’s persona defined by hashtags, collecting 5 batches
+21
+123 , 124
+Liking posts based on the user’s persona defined by hashtags
+22
+159 , 160
+Liking posts based on the user’s persona defined by hashtags, reuse_cookies = True
+23
+113 , 114
+Liking posts of specific content creators
+24
+135 , 136
+Liking posts of specific content creators
+25
+115 , 116
+Liking posts with specific sound
+26
+117 , 118
+Liking posts with specific sound
+27
+47 , 48
+Follow a random content creator
+28
+49 , 50
+Follow a random content creator
+29
+51 , 52
+Follow a random content creator
+30
+53 , 54
+Follow a random content creator
+31
+153 , 154
+Follow a random content creator, reuse_cookies = True
+32
+155 , 156
+Follow a random content creator, reuse_cookies = True
+33
+77 , 78
+VVR: watching 10 random posts for 25% of their entire length
+34
+79 , 80
+VVR: watching 10 random posts for 50% of their entire length
+35
+81 , 82
+VVR: watching 10 random posts for 75% of their entire length
+36
+83 , 84
+VVR: watching 10 random posts for 100% of their entire length
+37
+85 , 86
+VVR: watching 10 random posts for 200% of their entire length
+38
+87 , 88
+VVR: watching posts matching user persona for 50% of their entire length
+39
+145 , 146
+VVR: watching posts matching user persona for 75% of their entire length
+40
+91 , 92
+VVR: watching posts matching user persona for 100% of their entire length
+41
+151 , 152
+VVR: watching posts matching user persona for 400% of their entire length,
+reusing_cookies = true
+42
+157 , 158
+VVR: watching posts matching user persona for 400% of their entire length,
+reusing_cookies = true, time_to_look_at_post_normal = 0.5
+
+
+===== PAGE 12 =====
+
+Boeker & Urman
+B
+DIFFERENCE ANALYSIS RESULTS
+Table 2: Overview of average analysis metrics comparing control and like test scenarios.
+Avg. Trend Line Slopes
+Control Scenarios
+Like Test Scenarios
+3 Batches
+5 Batches
+All
+3 Batches
+5 Batches
+All
+Diff. Posts
+0.42%
+1.01%
+0.59%
+0.82%
+0.88%
+0.92%
+Diff. Hashtags
+0.28%
+0.98%
+0.65%
+0.36%
+0.77%
+0.65%
+Diff. Content Creator
+0.23%
+0.8%
+0.73%
+0.72%
+0.73%
+0.73%
+Diff. Sounts
+0.4%
+0.54%
+0.53%
+0.78%
+0.82%
+0.87%
+Table 3: Overview of average analysis metrics comparing control and follow test scenarios.
+Avg. Trend Line Slopes
+Control Scenarios
+Follow Test Scenarios
+3 Batches
+All
+3 Batches
+All
+Diff. Posts
+0.42%
+0.59%
+2.03%
+1.59%
+Diff. Hashtags
+0.28%
+0.65%
+1.79%
+1.46%
+Diff. Content Creator
+0.23%
+0.42%
+1.73%
+1.3%
+Diff. Sounds
+0.4%
+0.53%
+1.89%
+1.53%
+Table 4: Overview of average analysis metrics comparing control and VVR test scenarios.
+Avg. Trend Line Slopes
+Control Scenarios
+VVR Test Scenarios
+3 Batches
+All
+3 Batches
+All
+Random
+Persona
+Diff. Posts
+0.42%
+0.59%
+0.75%
+0.98%
+0.67%
+0.95%
+Diff. Hashtags
+0.28%
+0.65%
+0.62%
+0.82%
+0.59%
+0.69%
+Diff. Content Creator
+0.23%
+0.42%
+0.51%
+0.63%
+0.41%
+0.75%
+Diff. Sounds
+0.4%
+0.53%
+0.64%
+0.84%
+0.58%
+0.81%
+C
+ADDITIONAL FIGURES
+Figure 7: Post metrics (Likes-Shares-Comments-Views)
+changes for test scenario 7.
+Figure 8: Hashtag similarity within feed of each user per
+test run for scenario 28.

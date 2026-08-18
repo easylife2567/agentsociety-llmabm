@@ -1,0 +1,1161 @@
+ID: A12
+DOI: 10.1017/mem.2024.18
+中文译名: 社会记忆如何在社交媒体上运作：一个方法论框架
+英文原题: How social memory works on social media: A methodological framework
+原文件: 文献全文/正文/A12_2024_社会记忆如何在社交媒体上运作：一个方法论框架__How social memory works on social media A methodological framework.pdf
+源URL: https://www.cambridge.org/core/services/aop-cambridge-core/content/view/57CC8FE3831C79B935FD63C6FC25DD44/S2635023824000183a.pdf/div-class-title-how-social-memory-works-on-social-media-a-methodological-framework-div.pdf
+提取说明: 仅为机械文本提取，页码标记依原PDF；不代表已完成论证核验。
+
+
+===== PAGE 1 =====
+
+RESEARCH ARTICLE
+How social memory works on social media: A
+methodological framework
+Anat Ben-David1
+, Oren Meyers2
+and Motti Neiger3
+1Department of Sociology, Political Science and Communication, The Open University of Israel, 1
+University Road, P.O. Box 808, Ra’anana 43107, Israel, 2Department of Communication, University of
+Haifa, Haifa, Israel and 3School of Communication, Bar-Ilan University, Ramat Gan, Israel
+Corresponding author: Anat Ben-David; Email: anatbd@openu.ac.il
+(Received 10 December 2023; revised 25 June 2024; accepted 22 July 2024)
+Abstract
+Social media challenge several established concepts of memory research. In particular, the day-to-
+day mundane discourse of social media blur the essential distinction between commemorative and
+non-commemorative memory. We address these challenges by presenting a methodological frame-
+work that explores the dynamics of social memory on various social media. Our method combines
+top-down data mining with a bottom-up analysis tailored to each platform. We demonstrate the
+application of our approach by studying how the Holocaust is remembered in different corpora,
+including a dataset of 5.3 million Facebook posts and comments collected between 2015 and 2017
+and a 5 million Tweets and Retweets dataset collected in 2021. We first identify the mnemonic
+agents initiating the discussion of the memory of the Holocaust and those responding to it.
+Second, we compare the macro-rhythms of Holocaust discourse on the two platforms, identifying
+peaks and mundane discussions that extend beyond commemorative occasions. Third, we identify
+distinctive language and cultural norms specific to the memorialization of the Holocaust on each
+platform. We conceptualize these dynamics as ‘Mnemonic Markers’ and discuss them as potential
+pathways for memory researchers who wish to explore the unique memory dynamics afforded by
+social media.
+Keywords: collective memory; social media; Holocaust; computational methods; cross-platform
+analysis
+Introduction
+The rise of digital media has reshaped the interrelations between media and memory due
+to the unique characteristics of digital media, such as their immediacy, global reach, con-
+vergence logic, reliance on user-generated content, and the data traces that they leave
+(Birkner and Donk 2020; Hajek et al. 2016; Tirosh 2018). Consequently, the intersection
+between social media and collective recollecting has challenged several veteran assump-
+tions regarding how collective memories are shaped, disseminated, and interpreted
+(Hoskins 2017).
+Maurice Halbwachs famously suggested that collective recollecting is ‘a reconstruction
+of the past that adapts the image of ancient facts to the beliefs and spiritual needs of the
+© The Author(s), 2024. Published by Cambridge University Press. This is an Open Access article, distributed under the terms of
+the Creative Commons Attribution licence (http://creativecommons.org/licenses/by/4.0/), which permits unrestricted re-use,
+distribution and reproduction, provided the original article is properly cited.
+Memory, Mind & Media (2024), 3, e20, 1–23
+doi:10.1017/mem.2024.18
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 2 =====
+
+present’ (1980, 7). This constant shift between past and present is manifested in two cor-
+responding components of memory work: at one end of the spectrum are intended com-
+memorations that aspire to charge past events with current meanings through public
+mnemonic devices, such as monuments, historical museums, and rituals. At the opposite
+end of the spectrum, the non-commemorative presence of phenomena such as textual
+markers, laws, and individuals realizes the past’s enduring presence within the present
+(Schudson 1997, 2014).
+This essential distinction, which echoes the logic of legacy media, has been challenged
+by the rise of social media, which blurs the distinctions between commemorative and
+non-commemorative memory and between institutional and non-institutional mnemonic
+agents. Hence, social media memory discourse lumps together multitudes of mnemonic
+agents in a continuous and often seemingly context-lacking conversation (Frosh 2018;
+Lundrigan 2020; Pfanzelter 2017).
+Given the challenges posed by the rise of social media memory, we propose a methodo-
+logical framework designed to explore the spaces, dynamics, and characteristics of both
+commemorative and non-commemorative social media mnemonic discourses. Our
+approach complements existing conceptual models, such as Laužikas et al.’s (2023)
+ontology-based framework for studying heritage, memory, and identity on social net-
+working sites. While these models offer valuable formal representations, our framework
+differs in focus and objectives.
+Instead of a conceptual model or ontology, we propose a platform studies-inspired
+workflow for critically examining collective memory work on social media. Our approach
+emphasizes the often underrepresented role of platforms in these processes.
+By identifying ‘Mnemonic Markers’, we explore the dynamic interplay between plat-
+form affordances and memory practices, capturing the fluid and contextual nature of
+social media memory work that static ontological structures may struggle to represent.
+Platform studies scholarship argues for studying digital platforms as key objects of ana-
+lysis in their own right rather than solely focusing on the contents or users of platforms
+(Gillespie 2010; Helmond 2015). Instead of mere intermediaries, such studies view plat-
+forms as curated digital environments that shape and govern the activities and interac-
+tions within them. A central concept in this regard is affordances – the perceived
+possibilities for action that a platform’s technical architecture, features, algorithms,
+data flows, and business models enable or constrain for different stakeholders (Bucher
+and Helmond 2018). Platform studies, therefore, explore these socio-technical affordances
+as contextually embedded dynamics that orchestrate particular forms of relation-making
+on platforms (van Dijck et al. 2018).
+Our exploration of digital Mnemonic Markers conjoins platform studies with collective
+memory scholarship by applying key concepts and analytical approaches from the former
+to investigate distinct mnemonic dynamics investigated by the latter. In so doing, we
+adopt Bucher and Helmond’s (2018) platform-sensitive approach for studying affordances
+as the multidirectional possibilities for action, interaction, and meaning-making emerging
+from social media platforms’ socio-technical assemblage. Bucher and Helmond distinguish
+between low-level affordances rooted in a medium‘s materiality/features and high-level
+affordances constituting inherent capabilities that shape user engagement: high-level
+affordances are exemplified by boyd’s (2011) work on how social networking sites
+shape networked publics through persistence, replicability, scalability, and searchability.
+Low-level affordances are illustrated by Postigo’s (2016) analysis of YouTube features
+shaping probable uses and meanings while serving business interests.
+Our suggested methodological framework combines these two levels. While investigat-
+ing platforms’ low-level affordances’ entanglement with mnemonic discourse, our goal is
+to identify the high-level affordances or communicative practices, tying social media and
+2
+Anat Ben‐David et al.
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 3 =====
+
+memory work – the collective processes through which memories are constructed, shared,
+and negotiated on, by, and through social media platforms.
+We developed this framework within the specific context of the construction of the
+memory of the Holocaust. In the field of media memory studies, the investigation of
+the shaping of the memory of the Holocaust bears unique significance, as the extreme
+nature of the Holocaust illuminates the limitations and capabilities of the media in
+their representation of difficult pasts (Meyers et al. 2014). Hence, scholars who explore
+the dilemmas involved in Holocaust remembrance on social media encounter a uniquely
+charged intersection between new technological advances and the fundamental questions
+that have defined and, at times, haunted the field of memory studies since its inception.
+Research on the shaping of the recollection of the Holocaust tends to focus on the roles
+of institutional or commercial mnemonic agents within commemorative contexts (Walden
+2022a; Young 1993). Correspondingly, scarce scholarly attention has been dedicated to
+how the memory of the Holocaust is shaped within non-commemorative contexts; that
+is, instances in which the Holocaust is mentioned in routine social discourse while addres-
+sing current issues (Neiger et al. 2011; Steir-Livny 2022). To address this gap, our frame-
+work aims to identify the dynamics, actors, terminology, and contexts in which social
+media users talk about the Holocaust purposefully and directly, but also when they are
+(supposedly) not ‘talking about the Holocaust’.
+After presenting our methodological approach, we explore its implementation through
+three analyses illustrating its potential for studying social media memory across platforms
+and languages. Through the analysis of these findings, we identified three overarching
+‘Mnemonic Markers’ – directionality, temporality, and vernacular – as high-level affordances
+uniquely characterizing how memories are constructed, shared, and negotiated on social
+media. We conclude by discussing how these markers can direct future research into
+social media memory work.
+Paradoxes of social media as memory machines
+Social groups construct their images of the world by constantly shaping versions of the
+past. This constant (re)construction process requires mediation sites, which are provided
+mainly by the media in modern societies. Social media play a paradoxical role as memory
+media: they simultaneously enhance and hinder memory construction and actively shape
+what will be remembered (and forgotten), how memories are defined, when memory
+work and remembering take place, and who is remembering. Social media offer indivi-
+duals a means to store, share, and revisit personal experiences; at the same time, they
+shape the accessibility and prominence of individual memories through their specific
+affordances (Henig and Ebbrecht-Hartmann 2022; Manca 2021).
+Jacobsen and Beer (2021) view social media as automated memory machines that
+ultimately redefine ‘the notion of what a memory is and how the concept of memories
+might be defined’ (p. 6). They further argue that compared to the act of ‘digging’,
+which Walter Benjamin used to describe the type of memory work in which an individual
+actively excavates her own past, social media algorithms are ‘resurfacing’ memory based
+on a logic that is opaque to social media users.
+The logic underlying such algorithmic-induced personal recollection curates and dis-
+plays specific memories and defines what is worthy of being remembered. As a ‘third
+space’, social media blur the boundaries between private and public conversations
+(Bruns and Highfield 2016). Consequently, social media also blur the boundaries between
+private (personal) memories and public (collective) memories (van Dijck 2012): personal
+memories resurface as content ready to be shared with others; at the same time, user-
+generated content that is explicitly commemorative and aimed at engaging in collective
+Memory, Mind & Media
+3
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 4 =====
+
+remembering is mediated through personalization algorithms that prioritize certain
+memories over others, based on factors such as engagement metrics, user demographics,
+or advertising interests. Furthermore, the contextual environment in which memories are
+posted and interacted with on social media can influence their encoding by social media
+users. Hence, for instance, features such as Twitter’s ‘trending topics’ or the shifting
+prominence of current events can shape which memories are granted public visibility
+and attract engagement.
+Another paradoxical aspect of social media platforms as memory machines concerns
+their ephemerality. Social media platforms capture and store every user activity. This trace-
+ability could potentially preserve a thorough digital archive of both individual and collective
+experiences. Yet, there is no assurance of long-term accessibility or preservation. Although
+they act as comprehensive archives, social media platforms often restrict access to these
+records and set terms for retrieving historical data as memories (Ben-David 2020).
+Holocaust remembrance on social media
+Collective recollecting is ultimately a form of storytelling (Schudson 1992); thus, the com-
+plexities of social media Holocaust remembrance could best be explored by addressing
+three narrative dilemmas:
+The solemn-trivial axis – how can the Holocaust be narrated? The fact that the Holocaust is
+such an ultimate moral crisis led to the development of conventions demanding that its
+narration be accurate and solemn, and frame the Holocaust as a unique historical event.
+Such conventions contradict the premises of the operation of the mass media, especially
+mass commercial media. The digital age further challenges these conventions, as digital
+storytelling tends to be standardized and concise: social media storytelling does not facili-
+tate a nuanced discussion of the collective trauma and its ramifications; moreover, while
+the Holocaust is, supposedly above all disputes, social media discourse tends to entice
+polarization and selective exposure (Messing and Westwood 2014). Finally, the realities
+of the Holocaust starkly contradict commercial mass media narrative patterns, as they
+strive for a ‘happy end’ and social media’s everyday flow of posts and stories emphasizing
+the ‘good life’ (Gerlitz and Helmond 2013).
+The proximate-remote axis – who has the authority to narrate the Holocaust? Questions
+of narrative authority are foundational for collective memory research. Since the end
+of WW2, the testimonies of Holocaust survivors have become a definitive marker of
+Holocaust remembrance (Shandler 2017). However, through time, the Holocaust has
+also been narrated by various mnemonic agents who did not personally experience the
+Holocaust. The rise of digital platforms and the prevalence of social media have increased
+the abilities of various, at times unexpected, mnemonic agents to narrate the Holocaust
+(Meyers et al. 2014). Such processes could, potentially foster ‘memory democratization’;
+at the same time, the proliferation of new digital voices, narrating the memory of the
+Holocaust could challenge the morals promoted by institutional mnemonic agents
+(Tirosh and Mikel-Arieli 2023).
+The linear-interactive axis – who are the intended audiences of Holocaust narratives, and what
+are the audiences’ roles in the narration process? Mass legacy media mostly embrace unidir-
+ectional modes of communication: audiences are ‘heard’, if ever, only through rating data.
+New online environments have challenged this imbalance, blurring the distinctions
+between media producers and audiences (Jenkins 2004). Power differences do not dimin-
+ish with the shift from offline to online media; still, communication scholars have to con-
+sider the ways in which the velocity of digital communication and the ease of creating and
+sharing information (John 2022) shape the contours of current digital Holocaust
+commemoration.
+4
+Anat Ben‐David et al.
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 5 =====
+
+Moreover, media technologies’ evolving affordances expand audience participation in
+Holocaust memorization. While Landsberg (2004) defined ‘prosthetic memory’ as memory
+based on mediated experiences through cultural artifacts, Walden (2022b) argues that cur-
+rent immersive digital technologies enable users to critically participate in Holocaust
+memory production.
+Designing a framework for the exploration of memory discourse on social media
+In what follows we propose a methodological framework tailored for memory researchers
+to address the challenges posed by social media-based memory practices. Our approach is
+primarily informed by the Digital Methods approach to web research, which focuses on the
+materiality and dynamics of digital media and data (Rogers 2013). This approach highlights
+the digital grounding of contemporary social and cultural phenomena, advocating for the
+analysis of online platforms and digital objects on their own terms – terms that are native
+to the medium and cannot be fully addressed by traditional social scientific methods.
+Recognizing that not all memory scholars are versed in Digital Methods, we introduce
+key principles of this approach and detail our specific framework for studying memory
+work on social media.
+Issue mapping
+As a methodological approach that fosters interdisciplinary collaboration and perspectives,
+some of the theoretical principles guiding the Digital Methods approach rely on actor–net-
+work theory (ANT), which assigns equal agency to human and non-human actors, operating
+in complex socio-technical networks (Latour 1992). Latour’s ANT proposed describing these
+networks without researchers pre-imposing their preconceptions, instead tracing the unfold-
+ing relationships between actants (Latour 2005). The ANT concept ‘controversy mapping’
+refers to the practice of tracing and visualizing the network of actors, associations, and dis-
+putes that emerge around a particular socio-technical issue or topic (Marres and Moats 2015;
+Venturini 2012). Researchers engaging in controversy mapping closely observe and explore
+the different human and non-human actors involved in the controversy, and the competing
+claims and perspectives they mobilize (Venturini et al. 2019).
+Through the theoretical development of controversy mapping coupled with public
+digital tools, Marres and Rogers (2005) developed digital methods for demarcating, visu-
+alizing, and analyzing networks around socio-technical debates. Studies applying Digital
+Methods map, collect, and analyze web content, data, and interactions originating within
+digital platforms and infrastructures, including social media posts, hyperlinks, search
+engine results, and digital trackers (Rogers 2013).
+This ‘issue mapping’ method studies the assemblages created by the web’s content,
+individuals/organizations, and ordering devices around specific topics (Rogers 2013b).
+Issue networks are traced by ‘following the actors’ – collecting web data around a topic
+organized by various devices, then studying ties between actors and digital objects
+using network analysis, visualizing co-occurrence of keywords, and other methods for tra-
+cing the evolving issue ‘ecology’ (Sánchez-Querubín and Rogers 2018).
+Platform-specific and cross-platform research
+Digital Methods researchers aspire to study the web using medium-specific methods cap-
+turing each medium’s unique dynamics (Rogers 2013). Researchers tailor data collection
+methods and analytical tools to capture features, architectures, and infrastructures of spe-
+cific platforms like Google Search, Twitter, Wikipedia, or Reddit. By focusing on a single
+platform, they develop a deep understanding of how its technological affordances,
+Memory, Mind & Media
+5
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 6 =====
+
+algorithms, and cultural conventions influence digital content and data production, circu-
+lation, and interpretation (Bucher and Helmond 2018).
+However, focusing on a single platform can isolate larger actor-networks into silos and
+overlook inter-platform dynamics. Recent advancements in Digital Methods have intro-
+duced tools for studying phenomena across platforms (Rogers 2017b), examining the
+movement of content, users, or data between them. Additionally, cross-platform analyses
+reveal how different platform configurations shape unique publics or issues, highlighting
+techno-cultural biases and platform-specific vernaculars (Pearce et al. 2020).
+Query design
+Tracking actors’ vernacular language and claims is key in issue mapping. Digital Methods
+researchers strive to gather comprehensive data on an issue network, capturing all rele-
+vant vernacular without imposing specific keywords (Marres and Rogers 2005; Rogers and
+Ben-David 2010). This involves ‘query design’ – crafting and refining search queries and
+data collection strategies mindful of potential biases, platform specificities, and cultural
+practices (Ben-David 2019; Rogers 2017a; Rogers and Ben-David 2010). Through iterative
+testing, researchers ensure the inclusion of all pertinent language, terms, and claims,
+sometimes evolving keywords into complex queries to yield precise results for their
+research questions.
+Digital Methods for memory studies researchers: a methodological framework
+Our approach for identifying and studying unique aspects of social media memory builds
+on the principles of issue mapping, platform specificity, cross-platform analysis, and
+query design. We adapt ‘issue mapping’ toward ‘collective memory mapping’, aiming to
+demarcate mnemonic assemblages of an event or topic, and map the broad actor-
+networks of memory agents, content, cultural practices, and vernacular within and across
+platforms.
+We suggest that the dynamics of collective memory and controversy analysis share
+foundational assumptions, making issue mapping suitable for studying digital mnemonic
+practices. Firstly, shaping collective memory is a dynamic and socially constructed pro-
+cess, involving ongoing negotiations over past interpretations (Zelizer 1995). Secondly,
+controversy is integral to these dynamics, with groups shaping collective memories in
+service of their collective goals (Wertsch and Roediger III, 2008). Lastly, collective memory
+emerges from the interplay between various mnemonic agents – individuals, communi-
+ties, and material technologies – leading to multiple, often contested versions of memory
+(Shahzad 2012).
+Our proposed methodological framework consists of two phases. The first, ‘Top-Down
+Issue Demarcation’, involves systematic data collection to locate discussions about collect-
+ive pasts across social media platforms. This phase mirrors the issue mapping processes
+discussed above and includes query design – a method of creating a comprehensive list of
+search phrases to locate discussions about recollection topics on platforms. These queries
+are then used to gather data from social media platforms through manual searching, using
+application programming interface (API) services or web scraping, each carrying specific
+technical and ethical considerations (Ben-David 2020; Freelon 2018). After data collection,
+researchers proceed to initial data exploration, employing various methods to identify
+emerging patterns, potential research questions, or discursive foci. This may involve net-
+work visualizations, mapping associations between search phrases and frequently used
+social media accounts to pinpoint mnemonic focuses and participating agents.
+The bottom-up phase complements this exploration process by delving into the
+retrieved dataset to uncover each platform’s cultures of use (Rogers 2017b). Whereas
+6
+Anat Ben‐David et al.
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 7 =====
+
+the top-down phase addresses the ‘where’, ‘when’, and ‘by whom’, the bottom-up phase
+explores ‘how’ social media memory functions in practice. Researchers investigate the
+interplay between platform-specific features and user behaviors to discern patterns in
+mnemonic discourse and vernacular. This analysis may involve using natural language
+processing tools to study how different mnemonic agents (like institutional accounts,
+influencers, everyday users, or avatars) engage with and evoke memories of the past.
+Questions of ‘how’ social media memory works are sensitive to language and cultural
+vernacular, and thus call for additional qualitative analysis of the data. In the case of the
+study of the shaping of Holocaust memory, we are particularly interested in identifying
+when people invoke the memory of the Holocaust when they are ‘not talking about the
+Holocaust’, or in some cases, when they are not (culturally and socially) supposed to be
+talking about the Holocaust. And so, if the exploratory analysis of the first phase is con-
+cerned with understanding the temporal and networked distribution of search queries
+designed by the researchers for issue discovery, this phase locates vernacular language,
+discursive foci, and clusters of actors that emerge around the search phrases. Such periph-
+eral discourse helps unravel vernacular language and platforms’ culture of use that
+emerge from the data beyond the initial query list.
+The bottom-up analysis concentrates on how specific technological features of plat-
+forms, like the distinction between Facebook posts and comments, or Twitter’s Replies,
+Quotes, and Retweets, shape memory work on social media. For instance, researchers
+might explore whether terms from main posts also appear consistently in comments,
+or how hashtags help form mnemonic communities on Twitter. This phase invites both
+computational studies and detailed qualitative examinations of emerging discursive pat-
+terns (Neiger et al. 2023).
+Our methodological approach is both platform-agnostic and platform-specific: the top-
+down issue demarcation provides guidelines for identifying online discourse about the
+Holocaust across platforms. Simultaneously, the bottom-up analysis considers how platform-
+specific features shape the formation or reconfiguration of mnemonic agents and discourse
+related to the Holocaust (Bucher and Helmond 2018). This dual focus, spanning across plat-
+forms and closely examining platform-specific dynamics, enables a comprehensive under-
+standing of social media-based collective recollection of the Holocaust (see Table 1).
+Following the outlining of the two-phase structure of our methodological framework,
+we aim to provide a practical guide for researchers interested in investigating specific
+topics or events using this approach (see Figure 1). We demonstrate the application of
+the framework through the case study of studying Holocaust social memory work on
+Facebook and Twitter.
+Top-down social media discourse demarcation
+Source selection
+Our query design process started by identifying six online English and Hebrew sources,
+each representing a distinct ‘mnemonic genre’. In English, we chose the United States
+Holocaust Memorial Museum (USHMM) website, the New York Times website, and the
+English Wikipedia entry on the Holocaust. In Hebrew, our selections included the Yad
+Vashem website, Israel’s official Holocaust commemoration authority; the leading online
+news website Ynet; and the Hebrew Wikipedia entry on the Holocaust. We consider the
+USHMM and Yad Vashem websites as platforms for institutional commemorative discourse,
+carefully narrating the historical event. The contents from the New York Times and Ynet
+reflect a professional-journalistic editorial approach, anchoring the past within the pre-
+sent. Wikipedia entries in both languages represent crowdsourced, born-digital discourse.
+Memory, Mind & Media
+7
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 8 =====
+
+Text mining
+To compile a list of search phrases from these six sources, we employed Python to scrape
+texts, adjusting the extraction method to suit each source’s unique characteristics. We
+retrieved the entire Hebrew Wikipedia entry on the Holocaust (7,929 words) using the
+Wikipedia API extracts prop (Zesch et al. 2007). Using Scrapyd (n.d.), we crawled all
+items published under the tags ‘Holocaust’ and ‘The Holocaust’ on Ynet between
+February 2008 and March 2020 (478 items), scraping metadata and text from each article’s
+ld + json object. Similarly, we accessed all articles under the header ‘Chapters in the
+History of the Holocaust’ on Yad Vashem’s website (7,027 words), extracting text from
+the HTML body. We employed the same method to extract data from the English
+Holocaust Wikipedia page (13,178 words) and scraped the USHMM website (712,516
+words) as we did for Yad Vashem’s site. For the New York Times corpus, we utilized the
+news organization’s API to extract all items under the categories ‘The Holocaust’ and
+‘The Nazi-Era’ published between 2009 and October 2022 (1,934 items).
+Data processing
+Data processing involved summarizing texts by identifying frequent bigrams – consecu-
+tive word pairs highlighting key concepts (Oberbichler and Pfanzelter 2021). We prepro-
+cessed data through tokenization and lemmatization. For Hebrew, we used the Hebrew
+Tokenizer Python Library (Tsarfaty et al. 2019) and NLTK for bigram frequencies. For
+English, we employed SpaCy for tokenization and lemmatization, and NLTK for bigram cal-
+culation (Bird 2006).
+Subsequently, we manually evaluated the resulting bigram lists, assessing their rele-
+vance as potential queries. Five research team members (including the three authors)
+qualitatively assessed whether each of the top 20% most frequent bigrams could serve
+as a relevant query for retrieving Holocaust-related discourse. A bigram was selected as
+a query term if at least three coders found it relevant. This process yielded 74 Hebrew
+bigrams and 84 English bigrams.
+Query design
+In the next phase, we transformed the selected bigrams in each language into queries –
+adding, for example, all the necessary conjugations for capturing the phrases in all their
+morphological forms. In cases where the bigram alone was not definitively and exclusively
+identified as related to the Holocaust or might lead to ambiguous search results, we
+anchored the context by adding the word ‘Holocaust’ to the search phrase. For example,
+Table 1. Top-down demarcation and bottom-up analysis of discourse on social media: questions, method, and
+platform specificity.
+Top-down demarcation
+Bottom-up analysis
+Questions
+Where is discourse taking place?
+When, by whom, and in which contexts
+is this discourse invoked?
+Method
+Systematic query design
+Data mining through search or API
+Network analyses
+NLP tools
+Temporal analysis
+Platform
+specificity
+Platform-agnostic: the same search list can
+be used across platforms
+Platform-specific: illuminating platform
+cultural dynamics
+8
+Anat Ben‐David et al.
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 9 =====
+
+while the bigram ‘Adolf Eichmann’ clearly indicates a reference to the Holocaust, the
+bigram ‘Six Million’ may capture other mentions of the number, unrelated to the number
+of Jews murdered during the Holocaust. Hence, in that case, we anchored the bigram by
+modifying the query to [‘Six Million’ AND ‘Holocaust’].
+As previously noted, the process of query design involves a reflexive and iterative
+evaluation of the selected starting points for data mining. We therefore sought to identify
+the similarities and differences in the English and Hebrew lists, reflecting cultural distinc-
+tions despite identical methods. Hence, for instance, terms such as ‘concentration camp’,
+Figure 1. A flowchart outlining the steps of the methodological framework.
+Memory, Mind & Media
+9
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 10 =====
+
+or names of perpetrators such as Adolf Eichmann appear in both the English and the
+Hebrew lists. In contrast, the bigrams that appear only in the Hebrew list reflect some
+of the unique characteristics of Israeli Holocaust commemoration culture: ‘like lambs to
+the slaughter’ (a two-word phrase in Hebrew) is a derogatory term that was originally
+used during Israel’s first decades to critique the supposed passive compliance of Jewish
+victims
+during
+the
+Holocaust.
+Correspondingly,
+the
+English
+list
+features
+American-centered terms and institutions such as the USC-based Shoah Foundation
+(see Figure 2).
+Mining social media data
+Below, we illustrate two instances of utilizing the query lists to mine data from Facebook
+and Twitter, conducted before the research API access was deprecated.1
+In the first instance, we explored an existing dataset of Facebook posts and comments
+initially collected for another purpose. In 2015, a custom server-side tool was developed to
+extract data from Facebook’s Graph API (Ben-David and Soffer 2019). This tool enabled
+researchers to select a public Facebook page and a time range for analysis. Automated
+extraction was performed daily, gathering all posts and comments made by Israeli parlia-
+ment members (MKs) who maintained a Facebook page during the period. A total of 47k
+posts and 5.3M comments on the posts were collected between March 2015 and March
+2017. We employed the Hebrew Holocaust query list to explore the database, obtaining
+separate results for posts and comments. Results files were organized by query, and a
+metadata file summarizing all queries was created.
+In the second instance, we turned to Twitter to establish a real-time data collection
+process for Holocaust-related content. The Twitter API was utilized to collect all
+Figure 2. Unique and shared bigrams in the English and Hebrew query lists.
+1 Social media platforms have recently mounted restrictions on data access for researchers, presenting signifi-
+cant risks to the field of social media research. However, we posit that these challenges do not impact the essence
+of a methodological approach for identifying memory work on social media. Despite API restrictions, alternative
+methods such as web scraping remain viable (Freelon 2018). Additionally, the newly implemented Section 40 of
+the Digital Services Act (DSA) provides a legal framework for systematic data requests from very large online
+platforms (VLOPs), ensuring continued research access.
+10
+Anat Ben‐David et al.
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 11 =====
+
+Tweets, Retweets, and Quote Tweets mentioning at least one of the queries in either
+Hebrew or English. Data collection was conducted daily between 14 December 2020 and
+24 June 2021. Over 5 million items in English and just over 49,000 items in Hebrew
+were collected (see Table 2). Hashtags used in each language were further extracted
+from each dataset (English: 61,201 hashtags, 1.1% of all Tweets; Hebrew: 158 hashtags,
+0.32% of all Tweets). These datasets offer diverse perspectives on Holocaust mnemonic
+practices on social media: the Facebook dataset emphasizes localized aspects within
+a predetermined sphere of political discourse, while the Twitter dataset facilitates cross-
+platform comparison of the Israeli-Hebrew context alongside wider international
+contexts, enabling cross-cultural analyses. Three examples of analyses using the retrieved
+data are outlined below.
+Bottom-up analyses: platform-specific, cross-platform, and cross-cultural
+I: Holocaust memory in Israeli Facebook political discourse
+This dataset, a digital chronicle of parliament’s 2015–2017 term documenting MKs’ posts
+and public comments, was not purposefully collected for studying mnemonic practices.
+Yet, the systematic collection enabled investigating Holocaust discourse within various
+political discursive contexts. During these years, MKs mostly posted about parliamentary
+work, reacted to public issues, wrote holiday greetings, etc. Such an archive serves as a
+good starting point for understanding social media mnemonic practices, allowing discov-
+ery of ‘when people are talking about the Holocaust when they are not (socially and cul-
+turally) supposed to be talking about the Holocaust’. We therefore asked: when and how is
+the Holocaust memory evoked, and by whom in this specific case? Such analysis allowed
+excavating a cultural-specific (Israel) and platform-specific (Facebook) vernacular by iden-
+tifying discourse surrounding our searched keywords. Moreover, taking Facebook’s affor-
+dances into account, we considered its distinction between page posts and user
+comments. Such architectural division allows further exploring dynamics shaping
+Holocaust discourse on Facebook; for instance: which Holocaust invocations are initiated
+by politicians (and then discussed in comments), and which are brought up in comments
+when posts did not mention the traumatic historical event?
+Co-occurrence analysis, temporal distribution, and qualitative analysis
+We calculated a co-occurrence table comparing each query’s prevalence alongside others.
+We examined each term’s frequency over time – during public commemorations (e.g.
+International Holocaust Remembrance Day) and routine days. Finally, we extracted
+terms used in post texts (by politicians) or comments (by users). Overall, the data displays
+a skewed distribution of search phrases and co-occurrences. The most frequent (Hebrew)
+bigrams were ‘Adolf Hitler’ and ‘Holocaust Day’ (an abbreviation for Israel’s Memorial Day
+for the Holocaust and the Heroism, hereinafter MDHH), followed by ‘Holocaust Denial’,
+‘Racism/Racist’, and ‘Nazi Germany’. The least used were ‘Holocaust and Revival’,
+‘Holocaust Commemoration’, and ‘Chelmno Extermination Camp’ (see Figure 3).
+Findings show Israeli politicians’ Holocaust discourse on Facebook is primarily com-
+memorative (Schudson 1997), focusing on commemorative events and main perpetrators.
+Specific historical events (e.g. ‘Operation Reinhard’), people (Anne Frank), or places
+(Vilnius Ghetto) are rarely mentioned. In contrast, in the comments section, the
+Holocaust is continuously brought up by users, in contexts that are unrelated to the poli-
+ticians’ posts, or to events or the commemoration of the Holocaust (see Figure 4). Hence
+for instance on 16 October 2015, MK Ayelet Shaked (Jewish Home party), Israel’s Interior
+Minister at the time posted a text addressing the legal status of family members of
+Memory, Mind & Media
+11
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 12 =====
+
+convicted Palestinian terrorists. One of the commentators replied: ‘A judge/police officer
+who harasses a person for [smoking] weed is Eichmann, hiding behind the law will not
+help. In Nazi Germany there was also a [rule of] law, he is Eichmann Satan … ’
+Moreover, unlike politicians’ official, somber rhetoric and tone, the public’s Holocaust
+discourse is markedly mundane, at times humoristic and ironic. An illuminating example
+is the different ways and contexts politicians and commentators mention Josef Mengele,
+the Auschwitz physician who selected victims for the gas chambers and performed deadly
+experiments on humans. Parliamentarians mentioned Mengele only five times through-
+out the studied period, all in a commemorative context – four mentions on Israel’s
+MDHH. For instance, the following text was posted by MK Eli Ben-Dahan (Jewish Home)
+on 5 May 2016:
+Ephraim Reichenberg, who suffered from Mengele’s experiments and a relative of my
+wife, lit a [memorial] torch last night [at the official MDHH commemoration cere-
+mony], and told his moving story … Ephraim’s story symbolizes the ability of
+Holocaust survivors to survive an inferno and still be happy, start a family and
+build a state.
+In contrast, in the comments space, the term ‘Mengele’ was invoked throughout the year
+(998 comments by 95 users). Most mentions appeared as insults and hate speech
+Table 2. Data collected from Twitter: mentions of Holocaust-related queries.
+Language
+No. of tweets
+No. of users
+No. of quote tweets
+English
+5,180,416
+2,033,907
+586,320
+Hebrew
+49,364
+13,979
+3,027
+Figure 3. Top bigrams associated with Holocaust discourse in the Facebook dataset.
+12
+Anat Ben‐David et al.
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 13 =====
+
+expressed in heated arguments that have no direct connection to the Holocaust and its
+commemoration. Hence for instance on 1 February 2017, MK Isaac Herzog (Labor) posted
+a text addressing the evacuation of Amona, an unauthorized West Bank settlement, during
+which Jewish settlers clashed with Israeli security forces. One of the commentators to
+Herzog’s post wrote: ‘80% of the people want to put the leftists in a concentration
+camp. I volunteer to be Mengele and crack open your twisted leftist brain.’ Another com-
+mentator to Herzog’s post addressed the assumed responsibility of Israel’s Supreme Court
+justices to the evacuation:
+They [the judges] are worse than the haters of Israel … They have no part in the peo-
+ple of Israel, nor in the land of Israel. God willing and with God’s help, all those who
+took part in the evacuation will be shot on a missile straight to an enemy country,
+and there they will be experimented on like Mengele did in the Holocaust. Amen.
+This pattern repeats itself in the discourse found around the most occurring queries.
+Terms such as ‘Gestapo’ and ‘Hitler’ are rarely used by politicians, but proliferate in
+the comments space as a discursive means to attack real or imagined rivals. The hateful
+speech that invokes the term is so extreme that one user intervened to calm down the
+debate by grounding the severity of the comparison to its historical origin: ‘As the son
+of a Holocaust survivor … who is a “Mengele twin,” it is very sad that such a comparison
+is made, and anyone who says otherwise here does not understand that there is no humor
+in these things. I am ashamed and offended.’ Put differently, in the comments space, the
+Holocaust becomes a battering ram for attacking people holding opposing opinions. Such
+vernacular is a clear indication of abusive memory work (Neiger et al. 2023).
+Other platform-specific temporal dynamics are evident in the delay between politi-
+cians’ posts and Holocaust-related comments. Despite Facebook’s circulation of recent
+content (Ben-David and Soffer 2019; Kaun and Stiernstedt 2014; Rieder et al. 2015), our
+dataset shows Holocaust-related comments average a 10 h 41 min delay. This temporal
+distance suggests these mentions follow bottom-up discursive patterns unrelated to
+post contents.
+Figure 4. The temporal distribution of Holocaust-related posts (red) and comments (blue) in the Facebook dataset.
+Memory, Mind & Media
+13
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 14 =====
+
+This illustration unveils Israeli cultural mnemonic practices and the difference between
+politicians, who only address the Holocaust memory in awe-inspiring commemorative
+contexts, and Israeli Facebook users, who continuously call out real and imagined rivals
+derogatorily by comparing them to Nazi Germany figures and events. Arguably, such
+stark, diametric distinction is also shaped by Facebook’s architecture creating separate
+discursive spaces for posts and comments.
+II: A cross-cultural analysis of English and Hebrew tweets and hashtags on Twitter
+As mentioned, on the second occasion, we queried Twitter using the same query lists used
+for probing the Facebook dataset, collecting data over a period of 6 months. Unlike the
+Facebook dataset, which was exclusively in Hebrew, we queried Twitter using both the
+Hebrew and English lists to facilitate the examination of cross-cultural differences
+(Sheldon et al. 2017) between English and Hebrew Holocaust-related discourses.
+Findings
+Given the dataset size differences, our analysis focuses on identifying patterns in each lan-
+guage space, highlighting similarities and differences. First, we examined the top query
+distributions: both language spaces exhibit long-tail distributions, with the top Hebrew
+bigrams being conjugations of ‘The Holocaust’ (14,222, 28.8%), ‘Adolf Hitler’ (12,543,
+25.4%), and the Israeli term ‘Holocaust Day’ (8,470, 17.5%). In English, the discrepancy
+was far more drastic, with ‘Adolf Hitler’ comprising roughly 51% (2,660,390) and ‘concen-
+tration camp’ only 5.7% (see Figure 5).
+The shared bigrams across languages indicate iconized commemoration vocabulary.
+Several appear in both top rankings, but with considerable proportional variation:
+while ‘The Holocaust’ ranks top in Hebrew, it is ranked 16th in English (39,223, 0.75%).
+Other differing weights include ‘Six Million’ and ‘Concentration Camp’. Some bigrams
+in the English top 20 like Oskar Schindler and Anne Frank do not appear in the
+Hebrew top 20 bigrams, while Adolf Eichmann and Heinrich Himmler are frequent in
+Hebrew but not English. Such findings require further qualitative, culturally anchored
+exploration.
+Next, we shifted attention to Twitter hashtags, a platform-specific affordance exem-
+plifying mnemonic framing processes: Hashtagging anchors the past within the present
+and vice versa, allowing users to present past events as analogies and reasons for
+unfolding processes (Edy 1999); it fosters rapid generation of ‘loose’ online memory
+communities, constantly reshaping users’ understanding of the past’s interrelations
+with the present.
+An initial top 10 hashtag exploration in the Hebrew and English datasets reveals strik-
+ing differences (Table 3). The English top hashtags are commemorative and somber:
+acknowledging remembrance dates (#HolocaustMemorialDay), extermination camps
+(#Auschwitz), and moral lessons (#NeverAgain). The only exception to this commemora-
+tive tendency is #TigrayGenocide, conjoining Holocaust memory and recent Tigray War
+crimes – a non-commemorative mnemonic framing.
+Four
+leading
+Hebrew
+hashtags
+(#HolocaustDay,
+#WeRemember,
+#Kristallnach,
+#HolocaustRemebranceDay) frame Holocaust remembrance within commemorative con-
+texts. In contrast, 6 of the top 10 Hebrew hashtags reflect current Israeli social issues,
+such as #GoAway, which ties Holocaust memory to protests demanding the removal of
+Prime Minister Benjamin Netanyahu. Critiques within #GoAway tweets highlighted and
+mocked Netanyahu’s self-promotion during his 2021 MDHH Yad Vashem speech.
+Similarly, #AshkenaziHatred hashtags connect Holocaust memory to tensions between
+Israeli Jews of European (Ashkenazi) descent and Israeli Jews of Middle Eastern descent.
+14
+Anat Ben‐David et al.
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 15 =====
+
+The hashtag #Processes reflects complex interactions between Israeli politics and
+Holocaust memory, referring to a 2016 speech by Major General Yair Golan. In this speech,
+Golan likened troubling trends in Israeli society to historical processes in 20th-century
+Europe, sparking intense debate about the appropriateness of such comparisons. Some
+tweets under #Processes directly engaged with Golan’s speech, debating its validity; in
+another case, the police decision to investigate PM Netanyahu was Retweeted under
+the hashtag #Processes with the added comment: ‘looks like the Gestapo has taken control
+over the country’.
+Furthermore, several leading Hebrew hashtags provide a meta-mnemonic framing of
+Holocaust memory, critiquing or joking about the norms of Holocaust discourse in
+Israel. For example, the top hashtag #sorry is often used preemptively in social media
+apologies for inappropriate Holocaust references: one #sorry tweet explained that the
+only legitimate use of the Holocaust by way of comparison is in reference to ‘bad
+Figure 5. Top bigrams in the Hebrew and English Twitter datasets.
+Table 3. Top 10 hashtags in English and in Hebrew.
+English hashtags
+Count
+Hebrew hashtags
+Count
+None
+5,195,711
+None
+50,851
+#Auschwitz
+19,167
+#Sorry
+24
+#Holocaust
+9,165
+#Processes
+23
+#HolocaustMemorialDay
+6,908
+#HolocaustDay
+19
+#HolocaustRemembranceDay
+6,551
+#AshkenaziHatred
+18
+#WeRemember
+6,230
+#WeRemember
+18
+#RememberOne
+4,068
+#HolocaustRemembranceDay
+16
+#Hitler
+3,958
+#Kristallnacht
+14
+#NeverAgain
+2,682
+#GoAway
+13
+#TigrayGenocide
+2,472
+#Holocaust_Day_Israel_2021
+13
+Memory, Mind & Media
+15
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 16 =====
+
+university courses’. Another #sorry tweet alluded to the television reality show ‘Survivor’
+and asked: ‘A Holocaust survivor is the person who was not eliminated by the Ghetto
+council?’
+III: The temporal dynamics of social media memory work: rhythms and triggers of Holocaust
+discourse on Twitter
+As mentioned, our framework aimed to discern when people indirectly discuss the
+Holocaust. This effort entailed the analysis of temporal discursive patterns in social
+media. In our study of the Facebook dataset, we noted differences between politicians,
+who posted about the Holocaust mainly on commemorative dates, and commenters,
+who consistently mentioned it throughout the year. We extend this analysis to Twitter
+to examine if similar patterns exist. Such investigations reveal the cycles, rhythms, and
+peaks of mnemonic discourse, highlighting the dynamics of memory work online.
+These dynamics help pinpoint areas of contention and controversy, crucial in shaping col-
+lective memory.
+Previous research argued that platforms are rhythmic media, with algorithms and
+ordering practices shaping social interactions. For example, newsfeeds typically have a
+limited lifecycle, where content is promoted by algorithms for a brief period (up to
+24 h) before becoming static (Carmi 2020). In this study, we explore cycles of
+Holocaust-related discourse on Twitter by identifying and characterizing events that trig-
+ger discursive explosions (Foucault 1978, 17), as seen in spikes of Holocaust-related
+bigrams mentioned on the platform.
+To this end, we used the English Twitter dataset and calculated the distribution of
+timestamps over time. We identified discursive bursts of heightened discussions related
+to the Holocaust, explored their contents, and identified the circumstances that triggered
+such bursts. We therefore ask: What events trigger the discussion of Holocaust-related
+themes on Twitter? How long do such discursive bursts last? And what characterizes
+the shift between Holocaust-related discursive peaks and day-to-day Holocaust-related
+discourse?
+As evident from Figure 6, the volume of daily Holocaust-related Tweets, Retweets, and
+Quote Tweets throughout the studied period is 26,130. However, the standard deviation of
+the daily temporal distribution is high (14,994), due to several spikes of intensive discus-
+sions that occurred throughout the studied period. The late-January and early April spikes
+occurred around commemorative occasions – the International Holocaust Remembrance
+Day and the Israeli MDHH. The remaining discursive bursts, however, were triggered by
+current violent occurrences: The early January spike co-occurred with the January 6,
+US Capitol attack and the May spike co-occurred with a violent clash between Israel
+and Hamas-controlled Gaza. During both periods, users brought up the Holocaust as a
+metaphor, analogy, and yardstick used to explain and contextualize current acts of vio-
+lence. For example, on January 8, users repeatedly described US Capitol insurrectionists
+as Holocaust Deniers. One user replied to a tweet that expressed support for Trump:
+‘You know, at least when the crimes of the Holocaust became clear, the Germans had
+the good sense to deny that they were Nazis.’ On that same day, another user tweeted:
+‘I can’t believe the rioters in the capitol yesterday. Poor defenseless politicians […] had
+to hide much like jews hiding from the nazis.’
+On May 2021, after violence erupted between Israel and Gaza, pro-Palestinian Twitter
+users expressed anger at Israel by bringing up the Holocaust: ‘#Zionists are doing to
+#Palestinians, What #nazis did to #Jews at a slower pace. If the eye of the world wasn’t
+on them they would apply the final solution at the same speed. Much like #Chin to
+16
+Anat Ben‐David et al.
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 17 =====
+
+#Yughurs.\n#FreePalestine’. At the same time, supporters of Israel justified its actions by
+alluding to the 1940s collaboration between Palestinian leader Haj Amin al-Husseini and
+the Nazis. One user replied to US Congresswoman Ilhan Omar:
+I’m a Jew. I’m indigenous to the land of Israel. If the Palestinians didn’t want the
+European Jews to emigrate from Europe, they probably shouldn’t have collaborated
+with the Nazis to drive them from there, and the other Arab countries shouldn’t
+have ethnically cleansed them.
+Controversial statements by public figures also triggered discursive bursts. On 11
+February, Disney fired Star Wars actress Gina Carano for comparing being conservative
+to being Jewish in Nazi Germany. The dataset reflects this controversy: many users con-
+demned Carano’s comparison (#fireginacarano), while others debated if her firing exem-
+plified ‘cancel culture’. Hence for example, on 11 February, Mark Cernovich, a popular
+right-wing social media conspiracy theorist tweeted: ‘the blacklisting of gina carano is
+proof that the left: *checks notes* doesn’t like comparing being a conservative to the
+holocaust’. Other comments adopted a more cynical approach; hence, for instance, on
+13 February, comedian Jeremy Kaplowitz tweeted: ‘what’s going on with gina carano
+basically proves her point because jews in the holocaust *also* weren’t able to star in
+The Mandalorian’.
+Finally, an examination of the breakdown of temporal trends per bigram reveals a
+familiar pattern (see Figure 7): some bigrams, and especially ‘Adolf Hitler’, were men-
+tioned in items throughout the studied period, regardless of commemorative dates or
+triggering online media bursts. By contrast, the volume of items containing other
+bigrams, such as names of concentration camps (Auschwitz-Birkenau) or iconic figures
+Figure 6. The temporal distribution of Tweets in the English Twitter dataset.
+Memory, Mind & Media
+17
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 18 =====
+
+(Anne Frank), tended to peak only around commemorative dates. Such patterns help us
+identify new ‘Mnemonic Markers’ (see below) characterizing how social memory works
+on social media.
+Discussion
+This article aims to provide a comprehensive methodological framework to facilitate the
+study of memory work across social media platforms. By merging platform-agnostic and
+platform-specific elements, this framework can enhance discussions on how collective
+memory is constructed on social media. Researchers can utilize a top-down issue mapping
+process to create queries for various collective memory events or topics, then employ
+bottom-up analyses to explore how these topics are debated, contested, and evolve
+over time, along with the unique mnemonic vernacular that arises from user practices
+and platform affordances. It is important to note that the bottom-up analyses are not
+exhaustive. Once the top-down approach has demarcated a mnemonic space on social
+media, various computational, qualitative, and quantitative methods can be employed
+to address different research questions.
+More generally, the proposed framework aims to locate those overarching high-level
+affordances, or mnemonic dynamics that social media afford (Bucher and Helmond
+2018), which we find necessary to advance digital memory studies. The scholarly under-
+standing of what collective memory is and how collective memory is shaped directs
+researchers at several fundamental questions concerning agency (who is socially permit-
+ted, or encouraged to speak about the past? Who has the resources to do so?), platform
+(how do the characteristics and affordances of venues or platforms influence the ways
+in which the past is narrated?) and context (when is the past discussed? Why then?).
+The implementation of our methodological framework helps address these fundamental
+questions within the realm of social media by illuminating three high-level affordances
+Figure 7. The temporal distribution of bigrams in the English Twitter dataset.
+18
+Anat Ben‐David et al.
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 19 =====
+
+of social media memory work, which we term Mnemonic Markers: Directionality, Temporality,
+and Vernacular.
+Directionality refers to the discursive dynamics unfolding between those who initiate a
+mnemonic discourse, and those reacting to it. A key affordance of many social media plat-
+forms is the separation between the primary content (e.g. a post, video, article) and the
+comments section below it. This architecture creates a dialectic space where content is
+distinctly separated from the discourse around it (Ben-David and Soffer 2019). We suggest
+that this distinction constitutes a fundamental element in shaping social media memory.
+Our findings show institutional mnemonic agents address Holocaust memory on social
+media in primary content spaces and directly related contexts. In contrast, ‘lay’ agents
+address the Holocaust in varied contexts and for diverse purposes in both primary con-
+tent and comment spaces.
+The mnemonic discourse within comment spaces distinctly differs from that in main
+content areas, where references to the Holocaust often emerge detached from the pri-
+mary content. This difference in directionality – who starts the conversation, where,
+and in what context, and who responds – helps identify non-commemorative memory
+spaces where Holocaust discourse might not be anticipated.
+Directionality as a high-level affordance aids researchers in understanding the complex
+dynamics of initiation and response, as well as the interactions between different commu-
+nicative agents. This insight encourages social media memory researchers to further
+explore the complex relationships and interactions among memory agents of varying sta-
+tuses and their proximity to the remembered event.
+Temporality refers to the various temporal dynamics characterizing social media mem-
+ory work: peaks, cycles, rhythms, and pauses. Our findings illustrate the importance of
+examining the dynamics of social memory work as they evolve over time, and not as
+merely a snapshot frozen in time. Further, examining the temporal dynamics of social
+media memory work corresponds with one of the fundamental distinctions foregrounding
+the study of collective memory, distinguishing between commemorative and non-
+commemorative memory. Our explorations of various social media datasets revealed
+the simultaneous existence of a ‘baseline’ presence of continuous social media
+Holocaust-related discourse alongside mnemonic bursts that occur on either commemora-
+tive (official memorial days) or non-commemorative (political violence) occasions. And
+so, the unique affordances of social media offer collective memory scholars the opportun-
+ity to expand and challenge the assumed commemorative/non-commemorative binary
+division.
+Vernacular: The third suggested Mnemonic Marker grows out of the identification of
+shared and distinct vocabularies used to verbalize the memory of the Holocaust. The pro-
+cess of devising our research framework followed by its implementation illuminated the
+coexistence of shared (across languages and platforms) lexical spheres alongside the
+development of unique mnemonic vernaculars, used within specific language spaces, by
+specific communities on specific online platforms. Such mnemonic vernaculars offer
+unique opportunities to study the meeting point between cultural and historical con-
+sciousness and technological affordances.
+The
+Holocaust
+permeates
+multiple
+contexts
+beyond
+explicit
+commemoration.
+Directionality, temporality, and vernacular act as Mnemonic Markers assisting researchers
+in exploring the constant stream of social media discourse, where the logic of issue map-
+ping (Marres and Rogers 2005) intertwines with processes shaping collective memory.
+These Markers establish connections between content, each platform’s distinctive charac-
+teristics (Marres and Moats 2015), and cultural/social factors. Directionality is crucial for
+comprehending power dynamics and bottom-up memory-shaping processes undermining
+traditional gatekeepers (Shahzad 2012). Vernacular illuminates fluctuations in framings,
+Memory, Mind & Media
+19
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 20 =====
+
+forms of reference, and the ‘uselessness’, exploitation, or secularization of memory work.
+Temporality grasps dynamics stimulating memory work beyond constant frequencies.
+Despite its value for memory researchers, our framework has notable limitations.
+Primarily, our top-down/bottom-up approach focuses on lexical analysis and overlooks
+the rich multi-modal context of social media, limiting our ability to detect and analyze
+non-verbal Holocaust references prevalent on visual platforms like TikTok or Instagram
+(Henig and Ebbrecht-Hartmann 2022). Additionally, our current framework does not cap-
+ture vernacular using coded language designed to evade content moderation policies,
+such as when users propagate Holocaust denial or anti-Semitic sentiments (Magu et al.
+2017).
+Analyzing large-scale datasets can de-contextualize dynamic, localized conversations
+experienced individually and mediated by personalized algorithms. While our method
+enables deeper exploration of social media memory, it does not fully contextualize
+each Holocaust discussion. Our qualitative analysis helps recontextualize conversations,
+but studying static datasets overlooks temporal dynamics and algorithmic personalization
+influences (Jacobsen and Beer 2021).
+Future research could further explore and confirm the usefulness of the Mnemonic
+Markers of directionality, temporality, and vernacular in analyzing other collective memory
+phenomena. These markers also pave the way for new comparative studies in social media
+memory research, such as investigating whether similar directional and temporal patterns
+occur across different topics, cultures, and platforms, or comparing unique mnemonic plat-
+form vernaculars across languages and geographies. Given the continuous evolution of social
+media, it is crucial to regularly reassess the methodological and conceptual frameworks we
+employ to understand social memory dynamics on these platforms.
+Data availability statement. The data that support the findings of this study are available from Facebook and
+Twitter. Restrictions apply to the availability of these data, which were used under licence for this study.
+Anonymized data are available from the authors upon request.
+Acknowledgements. We gratefully acknowledge the financial support provided by grant 3-16510 from the
+Israeli Ministry of Science, Technology and Space, and grant 1670/23 from the Israel Science Foundation,
+which made this research possible. Our sincere appreciation goes to Vered Silber-Varod and Dan Bareket for
+their invaluable research assistance. We would also like to express our heartfelt thanks to the anonymous
+reviewers who provided insightful comments on a previous version of this article.
+Funding statement. This work was supported by the Israel Ministry of Innovation, Science and Technology
+under Grant 3-16510.
+Competing interests. The authors declare none.
+References
+Ben-David A (2019) 2014 not found: A cross-platform approach to retrospective web archiving. Internet Histories
+3(3–4), 316–342. https://doi.org/10.1080/24701475.2019.1654290.
+Ben-David A (2020) Counter-archiving Facebook. European Journal of Communication 35(3), 249–264. https://doi.
+org/10.1177/0267323120922069.
+Ben-David A and Soffer O (2019) User comments across platforms and journalistic genres. Information,
+Communication & Society 22(12), 1810–1829. https://doi.org/10.1080/1369118X.2018.1468919.
+Bird S (2006) NLTK: The natural language toolkit. In Proceedings of the COLING/ACL Interactive Presentation Sessions,
+69–72. http://dx.doi.org/10.3115/1225403.1225421.
+Birkner T and Donk A (2020) Collective memory and social media: Fostering a new historical consciousness in
+the digital age? Memory Studies 13(4), 367–383. https://doi.org/10.1177/1750698017750012.
+boyd d (2011) Social network sites as networked publics: Affordances, dynamics, and implications. In
+Papacharissi Z (ed), A Networked Self: Identity, Community, and Culture on Social Network Sites. New York:
+Routledge, 39–58.
+20
+Anat Ben‐David et al.
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 21 =====
+
+Bruns A and Highfield T (2016) Is Habermas on Twitter? Social media and the public sphere. In Enli G, Bruns A,
+Larsson AO, Skogerbo E and Christensen C (eds), The Routledge Companion to Social Media and Politics. New York:
+Routledge, 56–73. https://doi.org/10.4324/9781315716299.
+Bucher T and Helmond A (2018) The affordances of social media platforms. In Burgess J, Marwick A and Poell T
+(eds), The SAGE Handbook of Social Media. London: Sage Publications, 233–253.
+Carmi E (2020) Rhythmedia: A study of Facebook immune system. Theory, Culture & Society 37(5), 119–138. https://
+doi.org/10.1177/0263276420917466.
+Edy JA (1999) Journalistic uses of collective memory. Journal of Communication 49, 71–85. https://doi.org/10.1111/
+j.1460-2466.1999.tb02794.x.
+Foucault M (1978) The History of Sexuality: Volume 1. New York: Pantheon Books.
+Freelon D (2018) Computational research in the post-API age. Political Communication 35(4), 665–668.
+Frosh P (2018) The mouse, the screen and the Holocaust witness: Interface aesthetics and moral response. New
+Media & Society 20(1), 351–368. https://doi.org/10.1177/1461444816663480.
+Gerlitz C and Helmond A (2013) The like economy: Social buttons and the data-intensive web. New Media &
+Society 15(8), 1348–1365. https://doi.org/10.1177/1461444812472322.
+Gillespie T (2010) The politics of ‘platforms’. New Media & Society 12(3), 347–364.
+Hajek A, Lohmeier C and Pentzold C (2016) Memory in a Mediated World: Remembrance and Reconstruction.
+Basingstoke: Palgrave Macmillan.
+Halbwachs M (1980) The Collective Memory. New York: Harper Colophon Books.
+Helmond A (2015) The platformization of the web: Making web data platform ready. Social Media + Society 1(2),
+2056305115603080.
+Henig L and Ebbrecht-Hartmann T (2022) Witnessing Eva Stories: Media witnessing and self-inscription in
+social media memory. New Media & Society 24, 202–226.
+Hoskins A (2017) Memory of the multitude: The end of collective memory. In Hoskins A (ed.), Digital Memory
+Studies: Media Pasts in Transition. New York: Routledge, 85–109.
+Jacobsen B and Beer D (2021) Social Media and the Automatic Production of Memory: Classification, Ranking and the
+Sorting of the Past, 1st edn. Bristol: Bristol University Press. https://doi.org/10.2307/j.ctv1k03sgq.
+Jenkins H (2004) The cultural logic of media convergence. International Journal of Cultural Studies 7(1), 33–43.
+https://doi.org/10.1177/1367877904040603.
+John N (2022) Sharing and social media: The decline of a keyword? New Media & Society 26(4), 1891–1908. https://
+doi.org/10.1177/14614448221078603.
+Kaun A and Stiernstedt F (2014) Facebook time: Technological and institutional affordances for media memor-
+ies. New Media & Society 16(7), 1154–1168.
+Landsberg A (2004) Prosthetic Memory: The Transformation of American Remembrance in the Age of Mass Culture.
+New York: Columbia University Press.
+Latour B (1992) Where are the missing masses? The sociology of a few mundane artifacts. In Bijker WE and Law J
+(eds), Shaping Technology/Building Society: Studies in Sociotechnical Change. Cambridge, MA: The MIT Press,
+225–258.
+Latour B (2005) Reassembling the Social: An Introduction to Actor-Network Theory. Oxford: Oxford University Press.
+Laužikas R, Kelpšienė I and Dallas C (2023) An ontology of semiotic activity and epistemic figuration of heri-
+tage, memory and identity practices on social network sites. Sage Open 13(3). https://doi.org/10.1177/
+21582440231187367.
+Lundrigan M (2020) #Holocaust #Auschwitz: Performing Holocaust memory on social media. In Gigliotti S and
+Earl H (eds), A Companion to the Holocaust. Hoboken, NJ: Wiley Blackwell, 639–655.
+Magu R, Joshi K and Luo J (2017) Detecting the hate code on social media. Proceedings of the International AAAI
+Conference on Web and Social Media 11(1), 608–611. https://doi.org/10.1609/icwsm.v11i1.14921.
+Manca S (2021) Digital memory in the post-witness era: How Holocaust museums use social media as new mem-
+ory ecologies. Information 12, 1–17.
+Marres N and Rogers R (2005) Recipe for tracing the fate of issues and their publics on the Web. In Latour B and
+Weibel P (eds), Making Things Public: Atmospheres of Democracy. Cambridge, MA: MIT Press, 922–935.
+Marres N and Moats D (2015) Mapping controversies with social media: The case for symmetry. Social Media +
+Society 1(2), 2056305115604176.
+Messing S and Westwood SJ (2014) Selective exposure in the age of social media: Endorsements Trump partisan
+source affiliation when selecting news online. Communication Research 41(8), 1042–1063. https://doi.org/10.
+1177/0093650212466406.
+Meyers O, Zandberg E and Neiger M (2014) Communicating Awe: Media Memory and Holocaust Commemoration.
+London: Palgrave McMillan.
+Memory, Mind & Media
+21
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 22 =====
+
+Neiger M, Meyers O and Zandberg E (2011) On media memory – Editors’ introduction. In Neiger M, Meyers O
+and Zandberg E (eds), On Media Memory: Collective Memory in a New Media Age. London: Palgrave McMillan, 1–26.
+Neiger M, Meyers O and Ben-David A (2023) Tweeting the Holocaust: Social media discourse between reverence,
+exploitation, and simulacra. Journal of Communication 73(3), 222–234.
+Oberbichler S and Pfanzelter E (2021) Topic-specific corpus building: A step towards a representative news-
+paper corpus on the topic of return migration using text mining methods. Journal of Digital History 1(1), 74–98.
+Pearce W, Özkula SM, Greene AK, Teeling L, Bansard JS, Omena JJ and Rabello ET (2020) Visual cross-platform
+analysis: Digital methods to research social media images. Information, Communication & Society 23(2), 161–180.
+Pfanzelter E (2017) Performing the Holocaust on social networks—Digitality, transcultural memory, and new
+forms of narrating. Kultura Popularna 51(1), 136–151.
+Postigo H (2016) The socio-technical architecture of digital labor: Converting play into YouTube money. New
+Media & Society 18(2), 332–349.
+Rieder B, Abdulla R, Poell T, Woltering R and Zack L (2015) Data critique and analytical opportunities for very
+large Facebook pages: Lessons learned from exploring “We are all Khaled Said”. Big Data & Society 2(2),
+2053951715614980.
+Rogers R (2013) Digital Methods. Cambridge, MA: MIT Press.
+Rogers R (2013b) Mapping public Web space with the Issuecrawler. In Reber B and Brossaud C (eds), Digital
+Cognitive Technologies: Epistemology and the Knowledge Economy. London, Hoboken, NJ: John Wiley & Sons, 89–99.
+Rogers R (2017a) Foundations of digital methods: Query design. In Schäfer MT and van Es K (eds), The Datafied
+Society: Studying Culture Through Data. Amsterdam: Amsterdam University Press, 75–94.
+Rogers R (2017b) Digital methods for cross-platform analysis. In Burgess J, Marwick A and Poell T (eds), The SAGE
+Handbook of Social Media. London: Sage Publications, 91–110.
+Rogers R and Ben-David A (2010) Coming to terms: A conflict analysis of the usage, in official and unofficial
+sources, of ‘security fence’, ‘apartheid wall’, and other terms for the structure between Israel and the
+Palestinian territories. Media, War & Conflict 3(2), 202–229. https://doi.org/10.1177/1750635210363924.
+Sánchez-Querubín N and Rogers R (2018) Connected routes: Migration studies with digital devices and plat-
+forms. Social Media + Society 4(1), 2056305118764427.
+Schudson M (1992) Watergate in American Memory: How We Remember, Forget, and Reconstruct the Past. New York:
+Basic Books.
+Schudson M (1997) Lives, laws, and language: Commemorative versus non-commemorative forms of effective
+public memory. The Communication Review 2, 3–17.
+Schudson M (2014) Journalism as a vehicle of non-commemorative cultural memory. In Zelizer B and
+Tenenboim-Weinblatt K (eds), Journalism and Memory. London: Palgrave Macmillan, 85–96.
+Scrapyd (n.d.) https://scrapyd.readthedocs.io/en/stable/
+Shahzad F (2012) Collective memories: A complex construction. Memory Studies 5(4), 378–391.
+Shandler J (2017) Holocaust Memory in the Digital Age. Redwood City: Stanford University Press.
+Sheldon P, Rauschnabel PA, Antony MG and Car S (2017) A cross-cultural comparison of Croatian and
+American social network sites: Exploring cultural differences in motives for Instagram use. Computers in
+Human Behavior 75, 643–651. https://doi.org/10.1016/j.chb.2017.06.009.
+Steir-Livny L (2022) Traumatic past in the present: COVID-19 and Holocaust memory in Israeli media, digital
+media, and social media. Media, Culture & Society 44, 464–478.
+Tirosh N (2018) Inakba, mobile media and society’s memory. Mobile Media & Communication 6, 350–366. https://
+doi.org/10.1177/2050157918758130.
+Tirosh N and Mikel-Arieli R (2023) What we talk about when we talk about digital Holocaust memory: A sys-
+tematic analysis of research published in academic journals, 2010–2022. The Communication Review 26, 151–170.
+Tsarfaty R, Seker A, Sadde S and Klein S (2019) What’s wrong with Hebrew NLP? And how to make it right. In
+Proceedings of the Conference on Empirical Methods in Natural Language, 259–264. http://dx.doi.org/10.18653/v1/
+D19-3044.
+Van Dijck J (2012) Facebook as a tool for producing sociality and connectivity. Television & New Media 13(2),
+160–176. https://doi.org/10.1177/1527476411415291.
+Van Dijck J, Poell T and De Waal M (2018) The Platform Society: Public Values in a Connective World. New York:
+Oxford University Press.
+Venturini T (2012) Building on faults: How to represent controversies with digital methods. Public Understanding
+of Science 21(7), 796–812.
+Venturini T, Munk AK and Jacomy M (2019) Actor-network versus network analysis versus digital networks:
+Are we talking about the same networks? In Vertesi J and Ribes D (eds), Digital STS: A Field Guide for
+Science & Technology Studies. Princeton and Oxford: Princeton University, 510–524.
+22
+Anat Ben‐David et al.
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press
+
+
+===== PAGE 23 =====
+
+Walden VG (2022a) The memorial museum in the digital age. In Walden VG (ed), The Memorial Museum in the
+Digital Age. Falmer: REFRAME Books, 21–53.
+Walden VG (2022b) What is ‘virtual Holocaust memory’? Memory Studies 15, 621–633.
+Wertsch JV and Roediger III HL (2008) Collective memory: Conceptual foundations and theoretical approaches.
+Memory 16(3), 318–326.
+Young JE (1993) The Texture of Memory: Holocaust Memorials and Meaning. New Haven: Yale University Press.
+Zelizer B (1995) Reading the past against the grain: The shape of memory studies. Critical Studies in Mass
+Communication 12, 214–239.
+Zesch T, Gurevych I and Mühlhäuser M (2007). Analyzing and accessing Wikipedia as a lexical-semantic
+resource. In Data Structures for Linguistic Resources and Applications. Tübingen: Gunter Narr, 197–205.
+Anat Ben-David is an Associate Professor of Communication at the Department of Sociology, Political Science
+and Communication, The Open University of Israel. Her research focuses on the politics and history of digital
+media.
+Oren Meyers is an Associate Professor in the Department of Communication, University of Haifa. His research
+interests focus on journalistic practices and values, collective memory, and popular culture.
+Motti Neiger is the Head of the MA Program in Political Communication at the School of Communication at
+Bar-Ilan University. Among his scholarly interests are mediated collective memory and journalism studies in
+the digital age.
+Cite this article: Ben-David A, Meyers O and Neiger M (2024). How social memory works on social media: A
+methodological framework. Memory, Mind & Media 3, e20, 1–23. https://doi.org/10.1017/mem.2024.18
+Memory, Mind & Media
+23
+https://doi.org/10.1017/mem.2024.18 Published online by Cambridge University Press

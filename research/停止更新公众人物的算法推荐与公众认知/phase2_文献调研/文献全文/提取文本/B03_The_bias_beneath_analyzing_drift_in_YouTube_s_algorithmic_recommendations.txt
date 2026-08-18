@@ -1,0 +1,3222 @@
+ID: B03
+DOI: 10.1007/s13278-024-01343-5
+中文译名: 偏差之下：分析YouTube算法推荐中的漂移
+英文原题: The bias beneath: analyzing drift in YouTube’s algorithmic recommendations
+原文件: 文献全文/正文/B03_2024_偏差之下：分析YouTube算法推荐中的漂移__The bias beneath analyzing drift in YouTube’s algorithmic recommendations.pdf
+源URL: https://link.springer.com/content/pdf/10.1007/s13278-024-01343-5.pdf
+提取说明: 仅为机械文本提取，页码标记依原PDF；不代表已完成论证核验。
+
+
+===== PAGE 1 =====
+
+Vol.:(0123456789)
+Social Network Analysis and Mining (2024) 14:171 
+https://doi.org/10.1007/s13278-024-01343-5
+ORIGINAL ARTICLE
+The bias beneath: analyzing drift in YouTube’s algorithmic 
+recommendations
+Mert Can Cakmak1 · Nitin Agarwal1 · Remi Oni1
+Received: 25 April 2024 / Revised: 24 June 2024 / Accepted: 18 August 2024 / Published online: 24 August 2024 
+© The Author(s) 2024
+Abstract
+In today’s digital world, understanding how YouTube’s recommendation systems guide what we watch is crucial. This study 
+dives into these systems, revealing how they influence the content we see over time. We found that YouTube’s algorithms 
+tend to push content in certain directions, affecting the variety and type of videos recommended to viewers. To uncover 
+these patterns, we used a mixed methods approach to analyze videos recommended by YouTube. We looked at the emotions 
+conveyed in videos, the moral messages they might carry, and whether they contained harmful content. Our research also 
+involved statistical analysis to detect biases in how these videos are recommended and network analysis to see how certain 
+videos become more influential than others. Our findings show that YouTube’s algorithms can lead to a narrowing of the 
+content landscape, limiting the diversity of what gets recommended. This has important implications for how information is 
+spread and consumed online, suggesting a need for more transparency and fairness in how these algorithms work. In sum-
+mary, this paper highlights the need for a more inclusive approach to how digital platforms recommend content. By better 
+understanding the impact of YouTube’s algorithms, we can work towards creating a digital space that offers a wider range 
+of perspectives and voices, affording fairness, and enriching everyone’s online experience.
+Keywords  Algorithmic bias · Recommendation systems · YouTube · Drift · Emotion · Content
+1  Introduction
+In an age where information floods our digital landscapes, 
+recommendation systems emerge as essential beacons, lead-
+ing users simply and effectively through the vast ocean of 
+data. These systems, elegantly designed to analyze and pre-
+dict user preferences, have revolutionized how content is 
+consumed online. At their core, recommendation systems 
+are sophisticated algorithms that look through vast datasets 
+to present users with choices customized to their histori-
+cal interactions, preferences, and behaviors. This personal-
+ized approach not only enhances user experience but also 
+significantly impacts cultural and political narratives by 
+influencing what is watched, read, and discussed across the 
+globe. A typical example of this influence is YouTube’s rec-
+ommendation algorithm, which has become a pivotal force 
+in shaping viewing habits among billions of users world-
+wide. Such algorithms have the power to subtly direct the 
+flow of information, underscoring the importance of under-
+standing their underlying mechanisms and the implications 
+of their widespread adoption. The evolution of recommen-
+dation systems, as detailed in Burke et al. (2011), Lü et al. 
+(2012), spans a trajectory from simple collaborative filter-
+ing techniques (where recommendations are made based on 
+the preferences of similar users) to complex, multi-faceted 
+approaches that incorporate a variety of artificial intelli-
+gence methodologies. This progression reflects a deepening 
+sophistication in how digital platforms engage with users, 
+ensuring that the content they encounter resonates with their 
+individual tastes and preferences. However, the immense 
+influence wielded by these seemingly impartial systems also 
+brings to the forefront the need for a critical examination 
+of how digital content is curated and the potential conse-
+quences of its reach.
+ *	 Mert Can Cakmak 
+	
+mccakmak@ualr.edu
+	
+Nitin Agarwal 
+	
+nxagarwal@ualr.edu
+	
+Remi Oni 
+	
+roni@ualr.edu
+1	
+COSMOS Research Center, University of Arkansas, 
+Little Rock, AR, USA
+
+
+===== PAGE 2 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 2 of 42
+At the core of platforms like YouTube, recommender 
+systems stand as technological wonders, adept at predict-
+ing and shaping our preferences. They search through 
+vast content, aligning choices with our past interactions 
+to enhance our experience. These systems, by prioritizing 
+content they predict will be of interest, significantly shape 
+our digital diets, potentially narrowing our exposure to 
+a homogenized set of perspectives. However, these algo-
+rithms, for all their sophistication, are not without their 
+biases, which can skew content diversity and fairness 
+in information distribution, raising concerns about echo 
+chambers, filter bubbles, and the significant influence on 
+public discourse (Polatidis and Georgiadis 2013). Recent 
+studies have underscored the need to understand and miti-
+gate biases in recommender systems, including but not 
+limited to selection bias, position bias, exposure bias, and 
+popularity bias. Not addressing these inherent biases could 
+lead to serious issues, such as a disparity between offline 
+evaluation and online metrics, negatively affecting user 
+satisfaction and trust in the recommendation service (Chen 
+et al. 2020).
+Building on the understanding of recommender systems’ 
+impact on user experience and the potential biases inher-
+ent in such systems, this study aims to delve deeper into 
+the specific dynamics at play within YouTube’s ecosystem. 
+YouTube, as a leading platform for video content, offers a 
+fertile ground for examining how recommender algorithms 
+shape the content landscape and user interactions over time. 
+Accordingly, this research seeks to address the following 
+pivotal questions:
+•	 RQ1: In what ways do YouTube’s recommendation algo-
+rithms influence drift within content over time?
+•	 RQ2: How do YouTube’s algorithms affect content 
+diversity, narrative visibility, fairness of information dis-
+tribution, user engagement, and echo chamber formation?
+This study embarks on a critical examination of YouTube’s 
+recommendation algorithm, specifically its role in driv-
+ing narrative drift within the digital content ecosystem 
+over time. Narrative drift, defined as the gradual changes 
+in themes, topics, and perspectives within recommended 
+content, significantly influences the diversity and depth of 
+information accessible to users, thereby shaping their infor-
+mational landscape.
+Our investigation employs a multidimensional analytical 
+framework, blending statistical evaluations with advanced 
+analyses of emotion and moral sentiment, among other 
+methodologies, to dissect the complex dynamics of You-
+Tube’s content recommendation system. This comprehensive 
+approach blends quantitative data analysis with qualitative 
+insights, offering a detailed exploration of how algorithms 
+impact user engagement and content evolution.
+Structured as follows, the paper aims to provide a coher-
+ent narrative: Sect. 3 introduces the narratives under study 
+and offers an overview of related domains, setting the stage 
+for the methodologies applied. Section 4 details our data col-
+lection processes and analytical methods. Section 5 presents 
+our findings on narrative drift, supplemented by detailed 
+graphical analyses. Finally, Sect. 6 summarizes our study’s 
+key insights.
+The goal of this research extends beyond merely map-
+ping narrative drift; it seeks to delve into the implications 
+of algorithmic content curation on content diversity and the 
+fair distribution of information across the digital landscape. 
+By scrutinizing YouTube’s recommendation algorithm and 
+identifying potential biases, this study contributes to the 
+ongoing dialogue on digital media consumption, govern-
+ance, and its societal impact.
+In doing so, we challenge the current state of digital con-
+tent recommendation, envisioning a path toward more trans-
+parent, equitable, and diverse digital ecosystems. Through 
+this exploration of YouTube’s recommendation system, we 
+aim to shed light on the nuances of algorithmic governance, 
+fostering a richer and more inclusive digital commons for 
+all.
+2  Background
+In this section, we delve into the intricate web of geopo-
+litical issues that shape our world, exploring conflicts and 
+disputes that not only have regional implications but also 
+resonate on the global stage. From the deep-rooted tensions 
+in China’s Xinjiang province to the strategic complexities of 
+the South China Sea dispute, and the nuanced use of histori-
+cal narratives, such as the story of Cheng Ho, in modern-day 
+diplomacy, these offer insightful analyses into some of the 
+most pressing and contentious geopolitical challenges of our 
+times.
+2.1  China‑Uyghur conflict
+The Xinjiang conflict, deeply rooted in complex historical, 
+cultural, and political factors, has emerged as a significant 
+issue in global discourse. Central to this conflict is the dif-
+ficult situation faced by the Uyghur Muslim minority in Chi-
+na’s Xinjiang province, an area filled with ethnic tensions 
+and controversial government actions. Research highlights 
+the cultural and linguistic aspects of the conflict, focusing 
+on the Uyghur identity and language policy, underscoring 
+how identity plays a crucial role in the ongoing tensions 
+(Dwyer 2005). Another study examines the conflict through 
+the lens of majority-minority dynamics within China, pro-
+viding insights into the socio-political factors that have 
+contributed to the escalation of tensions (Hasmath 2019). 
+
+
+===== PAGE 3 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 3 of 42 
+171
+Further analysis explores the broader implications of the 
+conflict, particularly China’s national policies and their 
+impact on the Uyghur population, offering a critical view of 
+the government’s approach to handling ethnic diversity and 
+disagreement (Israeli 2010). This is complemented by dis-
+cussions on the involvement of international organizations 
+like Amnesty International in addressing the discrimination 
+and conflict faced by Uyghurs, highlighting the period from 
+2018 to 2022 and the international community’s response 
+(Al-Asad and Zarkachi 2023). Additionally, studies on 
+Uyghur Muslim ethnic separatism clarify the complexities 
+of ethnic identity and the desire for self-governance within 
+Xinjiang, illustrating the intricate relationship between eth-
+nic identity, political aspirations, and the broader conflict 
+narrative (Davis 2008). These scholarly perspectives paint a 
+multifaceted picture of the Xinjiang conflict, demonstrating 
+its multi-dimensional nature that includes cultural, political, 
+and international elements.
+2.2  South China sea dispute
+The South China Sea dispute represents a complex inter-
+section of geopolitical, economic, and legal challenges, 
+crucial for understanding contemporary international rela-
+tions. This region, pivotal for global maritime trade, sees an 
+estimated one-third of the world’s shipping pass through its 
+waters, highlighting its significance in international com-
+merce. The area is not only a key maritime route but also 
+possesses considerable untapped natural resources, includ-
+ing substantial oil and gas reserves, making it an economi-
+cally strategic zone. Central to this dispute is the People’s 
+Republic of China (PRC)’s assertive attitude, as explored in 
+Chubb (2020). China’s strategy includes extensive island-
+building and militarization, particularly within the Paracel 
+and Spratly Islands, reshaping the region’s geopolitical land-
+scape. These efforts involve constructing artificial islands 
+and establishing military bases, actions that have signifi-
+cantly altered regional dynamics and heightened tensions 
+among neighboring states. The complexity of the South 
+China Sea dispute extends beyond its strategic maritime 
+routes, as detailed in Fravel (2011). The promise of rich 
+undersea resources, including significant reserves of oil and 
+natural gas, plays a pivotal role in fueling the conflicting 
+territorial claims. This economic potential, closely mixed 
+with layers of historical claims and national pride, adds to 
+the complexity of the situation. The legal dimension of the 
+dispute gained importance following the 2016 decision by 
+the Permanent Court of Arbitration, which challenged Chi-
+na’s extensive “nine-dash line" territorial claim, deeming 
+it inconsistent with international law (Macaraig and Fen-
+ton 2021). Although China has rejected the ruling, it intro-
+duced an important legal aspect to the dispute, emphasizing 
+the role of international law in maritime territorial rights. 
+China’s activities in the South China Sea, including land rec-
+lamation and militarization, have implications far beyond the 
+immediate region, raising significant concerns regarding the 
+principles of freedom of navigation and overflight in crucial 
+international waters. The South China Sea dispute, with its 
+intricate blend of geopolitical significance, economic inter-
+ests, and legal complexities, stands as a testament to the 
+challenges facing the international order in the 21st century.
+2.3  Cheng Ho propaganda
+In the context of current international politics and strate-
+gies, the story of Cheng Ho, also known as Zheng He, has 
+gained new significance, especially in how it’s used in the 
+propaganda of the Chinese Communist Party (CCP). His-
+torically recognized as a celebrated Chinese naval admiral 
+of the early 15th century, Zheng He is renowned for his 
+extensive maritime voyages across Southeast Asia, India, 
+and the Middle East, as detailed in Wade (2005), Fin-
+lay (2008). These expeditions are traditionally viewed as 
+exploratory and diplomatic in nature, emphasizing peaceful 
+engagement and trade. However, in recent times, the CCP 
+has strategically repurposed Zheng He’s legacy, as discussed 
+in Dotson (2011), to serve its contemporary political and 
+strategic agendas. This recontextualization of Zheng He’s 
+historical image is particularly evident in the narrative that 
+portrays him as a figure who not only spread Islam and reli-
+gious tolerance but also as a symbol of China’s peaceful rise 
+and kindness. This portrayal aligns with the CCP’s broader 
+objective of countering international criticism regarding its 
+treatment of the Uyghur Muslim population, as well as bol-
+stering its geopolitical influence, especially in relation to 
+the South China Sea conflict. By recasting Zheng He as a 
+compassionate gift-giver and a peaceful diplomat, the nar-
+rative serves to project an image of China as a historically 
+tolerant and inclusive nation. Furthermore, the manipulation 
+of Zheng He’s story is intricately linked with China’s “Mari-
+time Silk Road" initiative, aiming to expand its economic 
+and strategic influence across Asia, Africa, and Europe. 
+The narrative serves as a tool to foster regional support for 
+China’s ambitious project, presenting it as a continuation of 
+a peaceful and cooperative maritime tradition. This tactic 
+of referencing historical events is a sophisticated approach 
+to engage in international relations, strengthen credibility 
+within China, and improve its global position. The Cheng 
+Ho propaganda is a testament to the power of historical nar-
+ratives in serving current political objectives, where the past 
+is actively reinterpreted to shape the present and future.
+2.4  Significance of selected geopolitical topics
+We have chosen these geopolitical topics due to their inher-
+ent controversy and their significant impact on international 
+
+
+===== PAGE 4 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 4 of 42
+relations and public opinion. The selected topics include 
+two anti-China perspectives: the China-Uyghur conflict and 
+the South China Sea dispute, and one pro-China narrative, 
+the story of Cheng Ho. This balanced selection allows us to 
+examine issues where bias might be particularly evident due 
+to their polarizing nature.
+These geopolitical issues are highly relevant in current 
+global discourse and receive significant media coverage, 
+making them ideal for analyzing recommendation bias on 
+platforms like YouTube. The controversies surrounding 
+these topics often result in strong opinions and divided 
+audiences, providing a fertile ground for studying how rec-
+ommendation systems present content in response to user 
+interactions. By examining these topics, we aim to uncover 
+potential biases in YouTube’s recommendation algorithms 
+that might influence the direction of content suggestions.
+Additionally, these topics encompass a range of cultural, 
+political, and historical elements, providing a comprehen-
+sive framework for studying the complexity of bias in rec-
+ommendation systems. This selection allows us to assess 
+whether YouTube’s algorithms exhibit any tendencies in the 
+progression of recommended content starting from these 
+contentious geopolitical issues. Understanding these tenden-
+cies is crucial for recognizing the broader implications of 
+algorithmic bias in shaping public opinion and the potential 
+consequences for international relations and social harmony.
+3  Literature review
+This literature review systematically explores a wide range 
+of scholarly work on the multifaceted nature of biases in 
+digital spaces, algorithmic influences in recommendation 
+systems, and the psychological and ethical dimensions of 
+online content interaction.
+3.1  Recommendation bias
+This section delves into the intricate web of biases inherent 
+in recommendation algorithms, examining their profound 
+implications on information consumption, user behavior, and 
+societal discourse across various digital platforms.
+The author in Stinson (2022) explores biases inher-
+ent in collaborative filtering algorithms, used extensively 
+in recommendation and search systems. Highlighting the 
+cold-start problem, popularity bias, over-specialization, 
+and homogenization, the author argues these statistical 
+biases can marginalize already marginalized groups. This 
+insight is crucial for the broader discourse on algorithmic 
+fairness, stressing the importance of addressing both data 
+and algorithmic mechanisms to mitigate biases and ensure 
+more equitable outcomes in digital recommendation envi-
+ronments. Building on this foundational understanding of 
+recommendation biases, the comprehensive survey by Chen 
+et al. (2023) meticulously explores the multifaceted nature 
+of biases in recommendation algorithms. They provide a 
+deeper dive into each of the seven identified biases: selec-
+tion, exposure, conformity, position, inductive, popularity, 
+and unfairness; their research inspects various strategies for 
+mitigating such biases. Among the debiasing techniques, the 
+survey discusses the effectiveness of tendency score adjust-
+ments, adversarial learning, and other methods in enhancing 
+the fairness and diversity of recommendations. By elaborat-
+ing on the challenges and solutions associated with each bias 
+type, the survey enriches the discourse on creating equitable 
+and inclusive recommender systems, aligning closely with 
+the thematic concerns of recommendation bias in our study.
+Similarly, the researchers in Zhan et al. (2022) present a 
+novel approach to address the duration bias in video watch-
+time prediction models. By employing a causal graph and 
+backdoor adjustment, the study innovatively separates 
+the intrinsic effect of video duration on watch-time from 
+its biased impact on video exposure. This methodology 
+allows for more accurate and fair recommendations by 
+mitigating the undue preference for longer videos, which 
+has been shown to skew platform engagement metrics and 
+user experience. Through extensive offline evaluations and 
+live experiments on the Kuaishou platform, the researchers 
+demonstrate the effectiveness of this approach in enhanc-
+ing watch-time prediction accuracy and, consequently, 
+video consumption, further emphasizing the importance of 
+addressing biases in recommendation systems.
+The researchers in Haroon et al. (2022) conduct a com-
+prehensive audit of YouTube’s recommendation system 
+to assess ideological biases and potential radicalization 
+through recommendations. They employ a novel method-
+ology using “sock puppets" to mimic user behavior across 
+different ideological spectrums. The findings reveal You-
+Tube’s tendency to guide users, particularly those leaning 
+right, towards increasingly radical content. Additionally, the 
+study proposes a bottom-up intervention strategy aimed at 
+mitigating these biases, demonstrating its effectiveness in 
+diversifying recommendations. This research adds critical 
+insights into the ongoing debate on social media’s role in 
+ideological bias and radicalization, highlighting the complex 
+challenges faced by digital platforms in ensuring fair and 
+balanced content distribution.
+The study by Nechushtai et al. (2023) investigates 
+the effect of algorithmic recommendation systems on 
+the diversity of news exposure across major digital plat-
+forms, presenting a comprehensive analysis that compares 
+the extent of homogenization in news recommendations. 
+It emphasizes the tendency of these platforms to favor 
+nationally oriented news sources over local or regional 
+ones, highlighting concerns regarding the centraliza-
+tion of information, the potential reduction in exposure 
+
+
+===== PAGE 5 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 5 of 42 
+171
+diversity, and the implications for public discourse. The 
+study employs a crowd-sourced audit methodology to 
+assess the recommendations made by Google, Google 
+News, Facebook, YouTube, and Twitter to a diverse set 
+of users in the United States, examining the interplay 
+between user characteristics and algorithmic sorting in 
+shaping news consumption patterns. This analysis under-
+scores the subtle impacts of YouTube’s recommendation 
+algorithms on content diversity and user perception, illu-
+minating a complex picture of algorithmic bias.
+Recent studies, including Cakmak et  al. (2024b), 
+Okeke et al. (2023), Cakmak et al. (2024a), Gurung et al. 
+(2024) and Onyepunuka et al. (2023), further contrib-
+ute to the understanding of YouTube’s recommendation 
+algorithm’s complexities. These analyses reveal trends 
+towards positive emotions, reduced focus on moral dilem-
+mas, systematic content filtration, and shifts in thematic 
+and emotional engagement, which highlight the algo-
+rithms’ influence on shaping viewers’ feelings, beliefs, 
+and public discourse dynamics. Specifically, Onyepu-
+nuka et al. (2023) explores the Cheng Ho narrative to 
+assess topic and emotion drift, finding that YouTube’s 
+recommendations tend to deviate towards content sub-
+tly introducing pro-China topics, which target specific 
+demographics. These findings emphasize the algorithm’s 
+capacity to shift discussion points and influence audience 
+perception, adding depth to the landscape of recommen-
+dation biases.
+Exploring the nuances of bias and misinformation 
+propagation within digital ecosystems, scholarly inves-
+tigations such as Kirdemir et al. (2021a), Kirdemir and 
+Agarwal (2022), Kirdemir et al. (2021b), Cakmak et al. 
+(2024a), Cakmak and Agarwal (2024b), Poudel et al. 
+(2024),  and Srba et al. (2023) unveil the inherent struc-
+tural preferences and the algorithm’s role in fostering 
+content homogeneity, tightly knit content communities, 
+and polarized content spheres. These studies underscore 
+the critical need for transparent, accountable algorithmic 
+practices and the development of debiasing interventions 
+to cultivate a more diverse and accurate digital informa-
+tion landscape, thereby reinforcing the pivotal themes dis-
+cussed in the aforementioned research on recommendation 
+biases.
+3.2  Behavioral dynamics in social media
+The emotional, moral, and toxic behavioral dynamics of 
+social media are foundational to user engagement and the 
+development of effective recommender systems. Recog-
+nizing and interpreting these dynamics is critical for cre-
+ating algorithms that resonate with user preferences and 
+enhance their online experiences.
+3.2.1  Emotions in social media
+The emotional dynamics of social media significantly influ-
+ence user engagement and content dissemination. Recogniz-
+ing and interpreting emotional expressions in user-generated 
+content is crucial for creating algorithms that enhance user 
+experiences. Research highlights the importance of accu-
+rately identifying emotions to prevent the spread of misin-
+formation and counteract online radicalization (Kušen et al. 
+2017). Studies delve into the role of emotions in shaping 
+user influence and engagement, advocating for emotionally 
+intelligent recommendation systems that capture the essence 
+of user-generated content and ensure emotionally engaging 
+recommendations (Chung and Zeng 2020; Panger 2017). 
+Further research explores the impact of visual and auditory 
+cues on user emotional responses, emphasizing the potential 
+for leveraging these elements to enhance recommendation 
+accuracy and appeal (Cakmak et al. 2024c; Yousefi et al. 
+2024a). Multimodal emotion analysis, combining textual 
+and auditory data through deep learning, improves emotion 
+detection accuracy and underscores the development of more 
+emotionally intelligent recommendation systems, aligning 
+recommendations more closely with user emotions (Banjo 
+et al. 2022).
+3.2.2  Morality in social media
+Understanding how moral considerations intersect with 
+social media dynamics is imperative for addressing biases 
+in digital spaces. Research highlights the significant impact 
+of social media on moral reasoning, judgments, and behav-
+iors, emphasizing the need for theoretical contributions to 
+understanding morality on these platforms (Neumann and 
+Rhodes 2024). Studies delve into the effects of moral outrage 
+on political polarization, showing how social media magni-
+fies aggression and withdrawal from political conversations 
+(Carpenter et al. 2020). The interplay between social media 
+and morality can amplify both negative (e.g., outrage, inter-
+group conflict) and positive (e.g., social support, prosocial-
+ity) aspects of morality (Van Bavel et al. 2024). The design 
+and algorithmic preferences of social media platforms sig-
+nificantly shape the spread of moral narratives, embedding 
+moral biases within the algorithms responsible for content 
+recommendations. This highlights the importance of incor-
+porating moral values into recommender systems to create 
+a balanced and less biased digital environment (Mbila-Uma 
+et al. 2023).
+3.2.3  Toxic behavior in social media
+Toxic content on social media presents a significant chal-
+lenge for the development of unbiased recommendation 
+algorithms. Studies utilizing Reddit data reveal how toxic 
+
+
+===== PAGE 6 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 6 of 42
+content impacts communities and biases algorithmic deci-
+sions by amplifying negative discourse (Yousefi et al. 
+2024b). Research on the contagious nature of toxic tweets 
+underscores the urgency for algorithms to understand how 
+harmful content multiplies (Yousefi et al. 2023). Compari-
+sons of toxicity levels across different platforms suggest that 
+distinct strategies may be needed to curb bias (DiCicco et al. 
+2020; Noor et al. 2023). Recent studies extend our under-
+standing of the toxicity landscape by examining its role in 
+amplifying public health debates and affecting polarization 
+in the wake of feminist protests (Pascual-Ferrá et al. 2021; 
+Estrada et al. 2022). These insights emphasize the neces-
+sity for recommendation algorithms to account for toxicity 
+dynamics to refine algorithms, promote healthier discourse, 
+and mitigate biases, ultimately fostering constructive public 
+engagement.
+In conclusion, a comprehensive understanding of the 
+emotional, moral, and toxic behavioral dynamics in social 
+media is essential for developing recommendation systems 
+that can effectively manage biases, enhance user engage-
+ment, and promote a healthier online environment.
+3.3  Topic modeling in social media
+Understanding the importance of topic content in social 
+media is pivotal for enhancing recommender systems and 
+ensuring their fairness and relevance. The dynamism of 
+social media platforms, such as Sina Weibo, underscores 
+the necessity to analyze and comprehend the thematic shifts 
+in user-generated content. By examining the distribution of 
+hot topics and their correlations across different platforms, 
+researchers can gain insights into user interests and behav-
+iors, which are crucial for developing more accurate and 
+unbiased recommender systems (Yu et al. 2014). This anal-
+ysis not only helps in identifying trending topics but also 
+in understanding the broader social context in which these 
+discussions occur.
+Moreover, the application of advanced topic modeling 
+techniques to social media content enables the discovery of 
+underlying topic facets and their evolution over time. Such 
+methodologies are instrumental in capturing the rich tap-
+estry of online discourse, facilitating a deeper understand-
+ing of the thematic structures within vast datasets (Rohani 
+et al. 2016). This knowledge is invaluable for recommender 
+systems, as it allows for the refinement of content curation 
+algorithms to better match user preferences and mitigate the 
+risk of reinforcing echo chambers.
+The significance of topic analysis extends beyond bare 
+content filtering and recommendation. It plays a critical 
+role in identifying shifts in public sentiment and emerging 
+trends, thereby enabling decision support systems to adapt 
+to changing user needs and preferences (Li et al. 2023). Fur-
+thermore, the study of changes in social media content over 
+time provides marketers and content creators with insights 
+into the effectiveness of their strategies and the changing 
+interests of their audience, as evidenced by research in mar-
+keting science by Zhong and Schweidel (2020).
+In conclusion, topic content on social media emerges as 
+a critical element requiring meticulous analysis for identi-
+fying and mitigating bias within recommender systems. Its 
+influence on recommendation algorithms underscores the 
+necessity for careful examination to ensure the integrity and 
+fairness of these systems.
+3.4  Social network analysis
+Social Network Analysis (SNA) has emerged as a vital tool 
+for analyzing the complicated web of interactions within 
+social media platforms, offering profound insights into the 
+diffusion of information and the identification of influential 
+actors within these networks, as described in Harrigan et al. 
+(2021). By mapping out the relationships and flows between 
+users, SNA facilitates a deeper understanding of how infor-
+mation spreads through these digital landscapes, highlight-
+ing the individuals who wield disproportionate influence 
+over these processes. Influencers, identified through their 
+central positions within the network, play a critical role in 
+shaping audience attitudes and facilitating the spread of 
+information, thus acting as gatekeepers in the dissemina-
+tion of content (Khanam et al. 2023). The study by Shaik 
+et al. (2024) further elucidates the role of multimedia in 
+amplifying these dynamics, underscoring the potential of 
+multimedia content to engage and mobilize communities 
+through social networks.
+The significance of influencers extends beyond mere pop-
+ularity, as their strategic position within the network grants 
+them the ability to affect the flow and reach of information 
+significantly. This influence is not uniform but varies based 
+on the network’s structure and the nature of the connec-
+tions. Research describes distinct types of influencers, such 
+as disseminators, engagers, and leaders, each playing unique 
+roles in information spread (del Fresno García et al. 2024). 
+These distinctions underscore the ways in which influence 
+manifests within social networks, shaping how information 
+is shared and received.
+In the context of recommender systems, understanding 
+the dynamics of social networks and the role of influencers 
+is paramount. These systems, designed to select and rec-
+ommend content to users based on various algorithms, can 
+significantly benefit from including insights derived from 
+SNA. By recognizing and leveraging the influence of key 
+actors, recommender systems can enhance their effective-
+ness, ensuring that the content reaches a broader audience 
+and resonates more deeply with users (Aïmeur et al. 2023). 
+Moreover, the inclusion of social network insights can help 
+
+
+===== PAGE 7 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 7 of 42 
+171
+mitigate the challenges of filter bubbles and echo chambers, 
+promoting a more diverse and engaging content landscape.
+Incorporating SNA into the examination and refinement 
+of recommender systems on social media platforms presents 
+a strategic approach to mitigating bias and enriching the con-
+tent landscape. By meticulously identifying and deciphering 
+the roles of influencers within these digital networks, plat-
+forms have the opportunity to recalibrate their algorithms 
+to leverage these pivotal actors effectively. This strategy not 
+only amplifies the diversity and relevance of recommenda-
+tions but also addresses underlying biases by ensuring a 
+broader, more inclusive representation of perspectives and 
+content. As highlighted by Alp et al. (2022), analyzing social 
+media discussions around critical health issues like COVID-
+19 and vaccines can offer invaluable insights into public 
+sentiment, further enriching the dataset for recommender 
+systems. Consequently, this integration fosters a digital 
+ecosystem that is not only more interconnected and vibrant 
+but also fairer and more transparent. Through such tailored 
+algorithmic adjustments, social media platforms can excel 
+conventional limitations, offering users a richer, more bal-
+anced and unbiased content experience.
+Recent studies by Bhattacharya et al. (2024a) highlight 
+the critical role of network analysis in uncovering biases 
+within social networks. The authors used computational 
+methods to analyze identity formation in political protests, 
+showing how social networks can coalesce into cohesive 
+movements and revealing potential biases in these networks. 
+Additionally, Bhattacharya et al. (2024b) examined the 
+socio-technical factors behind modern social movements, 
+emphasizing how network analysis can identify biases and 
+better understand the interplay between solidarity and col-
+lective action in digital environments.
+3.5  User engagement effect on recommendation 
+systems
+In the realm of digital platforms, recommender systems 
+serve as the keystone for navigating the vast array of con-
+tent available to users, aiming to enhance user engagement 
+by tailoring recommendations to individual preferences. 
+However, the attempt to personalize user experiences and 
+maximize engagement does not come without its challenges, 
+particularly in terms of recommendation bias and its impact 
+on the visibility of diversified content. This understanding of 
+recommender systems functionality underscores the critical 
+balance between user engagement and the equitable repre-
+sentation of content.
+The research of Maslowska et al. (2022) emphasizes 
+the pivotal role of recommender systems in fostering user 
+engagement, suggesting that the design and operational 
+variations of recommender systems significantly influence 
+users’ long-term interactions with platforms. While accuracy 
+in predicting user preferences is traditionally valued, their 
+work suggests a broader scope for evaluating recommender 
+systems effectiveness, highlighting the importance of under-
+standing user engagement dynamics in depth.
+Complementing this perspective, Ping et  al. (2024) 
+investigates the effects of diversity, novelty, and serendip-
+ity on user engagement and reveals the intricate relation-
+ship between recommender systems design choices and the 
+potential for bias. Their findings illuminate how an overem-
+phasis on popular or trending content could inadvertently 
+marginalize less conventional, yet potentially engaging, con-
+tent. This phenomenon, often referred to as the popularity 
+bias, underlines the critical trade-offs recommender systems 
+designers face between optimizing for user engagement and 
+ensuring a diverse content ecosystem.
+Moreover, the study by Zhao et al. (2018) on the differ-
+ential impacts of explicit versus implicit feedback on user 
+engagement and satisfaction offers insights into the mecha-
+nisms through which recommender systems might amplify 
+or mitigate biases. By highlighting the intricate ways in 
+which user feedback is included into recommender systems, 
+their research underscores the potential for recommender 
+systems to either perpetuate or challenge existing biases, 
+depending on the design and implementation choices made.
+Additionally, research by Shajari et al. (2024a, 2024b) 
+explores anomalous engagement and commenter behavior on 
+YouTube, providing valuable insights into how engagement 
+metrics can be manipulated and the implications this has for 
+recommender systems. Adeliyi et al. (2024) further inves-
+tigate inorganic user engagement, emphasizing the impact 
+of automated and semi-automated activities on the integrity 
+of user engagement metrics. Their findings highlight the 
+importance of implementing robust mechanisms to detect 
+and address such behaviors to maintain the integrity of user 
+engagement metrics.
+Addressing these complexities, it becomes evident that 
+the larger goal of recommender systems to enhance user 
+engagement must be critically examined through the lens of 
+recommendation bias. The challenge lies not only in design-
+ing recommender systems that are expert at capturing and 
+sustaining user interest but also in ensuring that these sys-
+tems promote a balanced and inclusive representation of 
+content.
+3.6  Statistical evaluation in recommender systems
+The advancement of recommender systems has underscored 
+the vital need for robust statistical evaluation frameworks. 
+As these systems increasingly influence user experiences 
+across various digital platforms, the need for their effective-
+ness and fairness cannot be overstated. Statistical evalua-
+tion methodologies provide a foundation for understanding, 
+improving, and benchmarking recommender systems. The 
+
+
+===== PAGE 8 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 8 of 42
+integration of Information Retrieval (IR) metrics into recom-
+mender system evaluation has emerged as a pivotal area of 
+study, aiming to bridge the gap between predicted user pref-
+erences and actual user satisfaction (Shani and Gunawardana 
+2011). However, this adaptation is not without challenges, as 
+noted in Bellogín et al. (2017), who highlighted the inherent 
+statistical biases, such as sparsity and popularity biases, that 
+could distort evaluation outcomes and obstruct the compa-
+rability of recommender systems.
+In the realm of evaluating recommender systems, tradi-
+tional error-based metrics have shown limitations, prompt-
+ing a shift towards more user-centric evaluation criteria 
+(Knijnenburg and Willemsen 2015). This shift has been 
+influential in capturing the multifaceted nature of user pref-
+erences and the complex dynamics of recommendation pro-
+cesses. The work by Shani and Gunawardana (2011) further 
+elaborates on the intricacies of applying IR methodologies 
+to recommender systems, emphasizing the need for a sys-
+tematic approach to address these challenges.
+The evaluation of recommender systems has also brought 
+to light the significance of addressing and mitigating biases 
+inherent in recommendation algorithms. These biases, if 
+unchecked, can skew the recommendation process, poten-
+tially leading to a reinforcement of existing user preferences 
+and hindering the discovery of diverse content (Herlocker 
+et al. 2004).
+Furthermore, the exploration of statistical robustness in 
+the evaluation of stream-based recommender systems by 
+Vinagre et al. (2019) adds an additional layer of complex-
+ity, necessitating the development of dynamic evaluation 
+metrics that can adapt to the evolving nature of user inter-
+actions with content. This dynamic evaluation underscores 
+the importance of time aspects in the assessment of recom-
+mender systems, highlighting the need for metrics that can 
+capture the transient preferences of users and the fluidity of 
+content relevance.
+In conclusion, the literature underscores the paramount 
+importance of statistical measurements in the evaluation of 
+recommender systems. As these systems continue to evolve 
+and play a crucial role in shaping digital experiences, the 
+development and refinement of statistical evaluation meth-
+odologies will remain a critical area of research. This 
+endeavor not only aids in benchmarking the performance 
+of recommender systems but also in ensuring their fairness, 
+transparency, and adaptability to the diverse and changing 
+needs of users.
+4  Methodology
+Our methodology outlines the structured approach we adopt 
+to investigate the intricate dynamics of recommendation 
+algorithms, combining data collection, analysis, and theo-
+retical examination to unveil the underlying biases within 
+digital platforms.
+4.1  Data collection
+In this section, we detail the rigorous methodology employed 
+for gathering and processing data, setting the foundation for 
+our comprehensive analysis of the narratives explored in 
+this study.
+4.1.1  Narrative keywords
+To initiate data collection as outlined in Sect. 2, we con-
+ducted a series of workshops with subject matter experts. 
+These sessions were instrumental in generating a list of rel-
+evant keywords associated with the three narratives. Subse-
+quently, these keywords were utilized to facilitate the search 
+for related videos on YouTube. 
+1.	 China-Uyghur Conflict: in our research on the China-
+Uyghur conflict, the carefully chosen keywords reflect 
+the critical themes identified in our literature review. 
+These keywords are detailed in Table 1. The keywords 
+Table 1   China-Uyghur conflict related keywords
+Keywords
+Penindasan/oppression + Uighur/Uyghur, Kejam/cruel + Uighur/Uyghur, Saudara muslim/
+muslim brother + Uighur/Uyghur, Kalifah/capliph + Uighur/Uyghur, Khilafah/caliphate +
+Uighur/Uyghur, “China is Terrorist”, “Stop Genocide”, “Save Muslim Uyghur”, “Get Out China”,
+“I Love Muslim Uyghur”,“peduli Uyghur” /“Care Uyghur”, “bebaskan muslim uyghur dari
+penindasan china” / “free uyghur muslims from china’s oppression”, “do’a kan saudaramu”
+Pray for Muslim Uyghur, Hizbul Tahrir /HTI+Uighur/ Uyghur, Front Pembela Islam/FPI/
+Islamic Defenders Front + Uighur/Uyghur, Nahdlatul Ulama + Uighur/Uyghur, Muhammadiyah
++ Uighur/Uyghur, Hebibulla Tohti + Indonesia, Mohammed Salih Hajim + Indonesia,
+Yusuf Martak + Uighur/Uyghur, Slamet Ma’arif + Uighur/Uyghur, Xiao Qian + Uighur/Uyghur,
+Pendidikan/education+Uighur/Uyghur.
+
+
+===== PAGE 9 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 9 of 42 
+171
+include human rights abuses, cultural and religious 
+identities, and the international response to the con-
+flict. Terms like “Oppression”, “Muslim Uyghur”, and 
+“Stop Genocide” are used to capture the mistreatment 
+of the Uyghur population, their cultural and religious 
+significance, and the global reaction to these issues. By 
+incorporating specific organizations and notable figures, 
+our data collection becomes comprehensive, ensuring 
+our study accurately represents the complexities and the 
+proved realities of the China-Uyghur conflict.
+2.	 South China Sea Dispute: as shown in Table 2, our 
+selected keywords for the South China Sea dispute 
+study encapsulate the conflict’s key aspects: legal rulings 
+(“Permanent Court", “Arbitration", “UNCLOS"), geopo-
+litical tensions (“China + Philippines", “sovereignty"), 
+and economic interests (“economic cooperation", “natu-
+ral resources"). These terms are essential to examine the 
+intricate blend of legal, political, and economic factors 
+in the dispute, particularly focusing on China’s territo-
+rial claims and the responses of neighboring states like 
+the Philippines. The keywords enable a comprehensive 
+analysis, aligning with the diverse perspectives and com-
+plexities discussed in our literature review.
+3.	 As outlined in Table 3, our study utilized specific key-
+words to investigate Cheng Ho’s (Zheng He) maritime 
+expeditions and their modern reinterpretation by the 
+Chinese Communist Party (CCP). “Cheng Ho", “Zheng 
+He", and related terms explore his historical significance 
+and cultural impact. Keywords linking to the Uighur 
+region and figures like “Gavin Menzies" connect his 
+legacy with contemporary geopolitical narratives and 
+popular theories. This selection facilitates a comprehen-
+sive examination of Zheng He’s historical role and his 
+portrayal in current political strategies, aligning with our 
+research focus.
+These keywords, as presented in their respective tables, 
+play a pivotal role in uncovering the complex themes and 
+narratives at the heart of our study. This approach not only 
+structures our in-depth analysis but also contains a blend 
+of English and non-English terms. This bilingual approach 
+accounts for the original content of videos and their broader 
+dissemination in English, ensuring a comprehensive under-
+standing of the subject matter from multiple linguistic per-
+spectives. It’s important to note that the unbalanced count of 
+keywords between topics does not detract from our study’s 
+validity. Each topic is unique, encompassing a varied range 
+of terms. Moreover, we selected an equal number of initial 
+seed videos for each topic, a methodological choice that will 
+be elaborated upon in the upcoming section.
+4.1.2  Recommendation depth collection
+To accurately measure bias in YouTube’s recommendations, 
+we needed to collect the videos recommended by YouTube. 
+Our methodology mirrors the approach used by the authors 
+in Onyepunuka et al. (2023). Initially, we selected seed vid-
+eos using the keywords mentioned in Sect. 4.1.1. These seed 
+Table 2   South China sea dispute related keywords
+Keywords
+“Permanent Court" + Arbitration + South China Sea, China + Philippines + “South China Sea"
++ sovereignty, “South China Sea" + UNCLOS + 2016 ruling, Philippines + “West Philippine Sea"
++ China + sovereignty, China + “nine-dash line" + historical claims, South China Sea + maritime
+“ justice" + international law, China + Philippines + “economic cooperation" + trade, Philippines
++ “Scarborough Shoal" + territorial dispute, “West Philippine Sea" + environmental concerns
++ coral reefs, China + “Maritime Silk Road" + regional influence, South China Sea + ASEAN +
+regional stability, Philippines + China + “mutual benefit" + diplomacy, China + “artificial
+islands" + military presence, South China Sea + “international arbitration" + dispute resolution,
+China + Philippines + “joint exploration" + resources.
+Table 3   Chengh Ho propoganda related keywords
+Keywords
+Cheng Ho, Zheng He, Sam Po Kong, Sam Poo Kong, Daerah Otonom Uighur Singkiang,
+Singkiang, Hatta + 1957, Novi Basuki, Sam Po Bo, Cheng Ho/“Zheng He" + laksamana + damai,
+Sam Po Kong + Islam + Indonesia, 1421 Saat China Menemukan Dunia + “Gavin Menzies",
+Gavin Menzies, Cheng Ho/“Zheng He" “Columbus".
+
+
+===== PAGE 10 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 10 of 42
+videos were manually chosen based on their relevance to 
+the subject.
+For the collection of recommended videos, we employed 
+Selenium, a widely-used open-source library for web scrap-
+ing. Selenium utilizes the WebDriver protocol to control 
+web browsers, such as Chrome in our case. We individu-
+ally opened each seed video in the browser and scraped the 
+videos recommended by YouTube, typically displayed in 
+the right-hand corner of the screen. These recommended 
+videos are related to the current video being viewed. After 
+completing the collection at each recommendation depth, 
+the newly gathered videos served as the starting point for 
+the subsequent depth. This process helped us to construct a 
+recommendation network. Ultimately, we achieved four new 
+depths of recommendations. The number of videos and their 
+corresponding depths are presented in Table 4.
+We initially selected 40 seed videos for each narra-
+tive. After each depth, there was a variation in the count 
+of recommended videos. This variation is attributable to 
+YouTube’s algorithm, which factors in aspects such as con-
+tent metadata, viewer engagement, video length, ongoing 
+algorithmic adjustments, content availability, and current 
+trends. Throughout the video collection process, we ensured 
+an unbiased approach by not logging into any YouTube 
+account. Each browsing session started afresh with cleared 
+cookies to eliminate any influence of user history on the 
+data.
+4.1.3  Attribute retrieval
+In this research, we analyzed various video attributes includ-
+ing the title, description, transcription, comments, views, 
+and likes. For all attributes except transcription, we utilized 
+the YouTube Data API v3. This API facilitates the retrieval 
+of feeds related to videos, among other functionalities.
+For transcriptions, we adopted a different approach, as 
+detailed in Cakmak et al. (2023), Cakmak and Agarwal 
+(2024). In these studies, the authors developed a method to 
+efficiently collect video transcripts from YouTube. This pro-
+cess primarily involved the use of the YouTube Transcript 
+API (Depoix 2023), which extracts transcripts from You-
+Tube videos. For videos without available transcripts, we 
+used the OpenAI Whisper model by Radford et al. (2023), 
+which applies speech generation algorithms, to create the 
+necessary transcriptions. This method effectively stream-
+lined the transcription collection process, demonstrating 
+the practical use of advanced computational techniques in 
+extracting data from online multimedia sources.
+Additionally, due to geo-specific issues encountered dur-
+ing our data collection, we dealt with non-English data. To 
+enhance the understanding and accuracy of the models we 
+used, we translated the data into English. This was achieved 
+using the Googletrans Library in Python, a free and unlim-
+ited library that implements the Google Translate API. The 
+library leverages the Google Translate Ajax API for func-
+tions such as language detection and translation.
+4.2  Emotion assessment
+The bias inherent in recommended video content can be 
+effectively analyzed through the lens of emotional shifts. 
+Emotions significantly influence our interaction with media, 
+shaping our reactions, responses, and engagement levels. In 
+the realm of recommended videos, a complex relationship 
+exists between the emotional tone of the content and the 
+viewer’s current emotional state. This interaction can result 
+in a skewed selection of recommendations, as algorithms 
+might favor content that evokes emotions leading to higher 
+engagement from viewers. This tendency can create a cycle 
+where viewers are continually presented with content that 
+provokes specific emotional responses, potentially result-
+ing in a more engaged but less diverse viewing experience. 
+Understanding this mechanism is key in identifying and 
+addressing bias in video recommendations, highlighting 
+the subtle ways in which emotional targeting can influence 
+viewing habits and content exposure.
+To quantify these emotional shifts in video recommenda-
+tions, our approach involved analyzing the emotions in each 
+video using a transformer model, a tool at the forefront of 
+advancements in natural language processing. Renowned for 
+their ability to contextually interpret language, models like 
+BERT, GPT, and RoBERTa (Devlin et al. 2019; Radford and 
+Narasimhan 2018; Brown et al. 2020; Liu et al. 2019) are 
+particularly adept at accurate emotion analysis.
+Our research utilized RoBERTa and its more efficient 
+variant, DistilRoBERTa. We selected the model (Hartmann 
+Table 4   Narrative’s video counts
+Narrative
+Depth
+Video count
+China-Uyghur conflict
+0
+40
+1
+250
+2
+1004
+3
+2380
+4
+5952
+South China sea dispute
+0
+40
+1
+279
+2
+1001
+3
+2470
+4
+6102
+Chengh Ho propoganda
+0
+40
+1
+381
+2
+1221
+3
+2928
+4
+6866
+
+
+===== PAGE 11 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 11 of 42 
+171
+2022) from Hugging Face, a refined version of DistilRoB-
+ERTa, which has been meticulously trained on diverse data-
+sets to identify a range of emotions: anger, disgust, fear, joy, 
+neutral, sadness, and surprise.
+Employing this model enabled us to conduct a thorough 
+analysis of the emotional content in video titles, descrip-
+tions, transcriptions, and user comments. This methodology 
+yielded valuable insights into the nature of emotional con-
+tent within these videos and its impact on audience engage-
+ment. Such findings are integral to deepening our under-
+standing of emotional biases in video recommendations and 
+developing strategies to mitigate their effects.
+4.3  Moral foundation assessment
+In our exploration of the biases present in video recom-
+mendations, we acknowledge that alongside emotions, the 
+subtle yet powerful influence of moral values plays a crucial 
+role in steering viewer choices. These values, which form 
+the backbone of personal ethics and decision-making, are 
+instrumental in shaping how audiences perceive and inter-
+act with video content. Our study, therefore, delves into the 
+realm of morality in recommended videos, aiming to unravel 
+how these ethical dimensions influence viewer behavior and 
+content preferences.
+To investigate moral values in video content, we 
+employed the extended Moral Foundations Dictionary 
+(eMFD), a sophisticated tool designed for extracting moral 
+content from textual data (Hopp et al. 2021). The eMFD 
+represents a significant advancement in moral analysis, lev-
+eraging the input of a large and diverse group of human 
+annotators to capture a wide range of moral intuitions. This 
+methodology contrasts with previous approaches, which 
+often relied on a small group of experts and resulted in a 
+more constrained interpretation of morality.
+For this study, we have used the eMFD as a quantita-
+tive tool and did not engage in its construction process. The 
+eMFD’s construction involved a detailed annotation process 
+that profoundly enhanced our analysis of moral content in 
+video recommendations. In this process, each word in the 
+eMFD is assigned continuously weighted vectors, reflect-
+ing its likelihood of association with five core moral foun-
+dations: Care/Harm, Fairness/Cheating, Loyalty/Betrayal, 
+Authority/Subversion, and Sanctity/Degradation. Addition-
+ally, a key aspect of our methodology is the eMFD’s capabil-
+ity to evaluate the moral connotations of each word based on 
+its alignment with vice or virtue characteristics. This dual 
+approach, considering both the moral foundations and the 
+vice-virtue spectrum, allows for a nuanced assessment of the 
+moral undertones in video content. By examining how words 
+align with these ethical dimensions, we gain a detailed view 
+of how moral values are conveyed, offering insights into 
+their potential impact on viewer behavior and preferences.
+The methodology employed by the eMFD does not utilize 
+probability distributions to analyze or interpret text. Instead, 
+the approach is fundamentally frequency-based and categor-
+ical. When applied to a body of text, the eMFD quantifies 
+the presence of moral language by counting the occurrences 
+of words and phrases associated with each of the five moral 
+foundations. This process results in a set of metrics that 
+reflect the extent to which each moral foundation is rep-
+resented in the text. The output is thus a direct measure of 
+moral rhetoric, expressed through the frequency of specific 
+lexicon usage across the identified moral dimensions. This 
+direct and categorical assessment of moral content allows 
+for a clear understanding of how moral values are embedded 
+and communicated in video content, enhancing our ability to 
+analyze the ethical implications of video recommendations.
+Furthermore, the eMFD incorporates sentiment analysis 
+through the Valence Aware Dictionary and sEntiment Rea-
+soner (VADER), providing an additional layer of depth to 
+the moral language assessment. This combination allows for 
+a sophisticated examination of the moral and ethical themes 
+within the video content, considering not just the presence 
+of moral language but also the context and sentiment sur-
+rounding it.
+By applying the eMFD to our analysis of recommended 
+videos, we aim to explore the moral dimensions in video 
+titles, descriptions, transcriptions, and user comments. This 
+approach helps us assess narratives and character portrayals, 
+uncovering the moral and ethical implications embedded in 
+these aspects. Understanding how moral values are repre-
+sented across these video attributes will provide insights into 
+their influence on viewer engagement and preferences, offer-
+ing a more comprehensive view of moral biases in video 
+recommendations.
+4.4  Toxicity assessment
+In exploring the biases in video recommendations, the meas-
+urement of toxicity is as crucial as the assessment of emotion 
+and moral values. Toxicity, which encompasses rude, dis-
+respectful, or unreasonable content, is a key factor that can 
+significantly influence people’s choices and interactions with 
+online content. Its importance lies in its potential impact on 
+the viewer’s experience and decision-making process. Just 
+like emotional and moral content, toxic elements in videos 
+can subtly shape preferences and behaviors, which in turn 
+may affect the functioning of recommendation algorithms. 
+Therefore, incorporating toxicity as a measure in our analy-
+sis is essential to gain a comprehensive understanding of the 
+various factors that contribute to recommendation biases and 
+their implications on user engagement and content consump-
+tion patterns.
+To methodologically assess toxicity in video content, we 
+employed the Detoxify model (Hanu 2020). Detoxify is a 
+
+
+===== PAGE 12 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 12 of 42
+state-of-the-art machine learning model designed to detect 
+and quantify various forms of toxic behavior in textual 
+content. Among the variants of Detoxify, we specifically 
+chose the “unbiased" model, which is designed to minimize 
+biases that often accompany toxicity detection, such as those 
+related to gender, race, or specific ideologies. This model’s 
+architecture is based on a transformer-based framework, lev-
+eraging the power of models like BERT for context-sensitive 
+analysis. It has been trained on a large dataset comprising 
+diverse and challenging text samples, allowing it to accu-
+rately identify and score a range of toxic behaviors, includ-
+ing insults, threats, and hate speech.
+Our use of the unbiased Detoxify model involved analyz-
+ing textual elements of videos such as titles, descriptions, 
+transcriptions, and user comments. By applying this model, 
+we were able to generate toxicity scores for each video ele-
+ment, giving us a quantifiable measure of the toxic content 
+present in the recommended videos. This approach allowed 
+us to systematically evaluate the prevalence and severity 
+of toxic content in video recommendations and to under-
+stand how such content could influence viewer behavior and 
+preferences.
+4.5  Topic analysis
+Understanding the biases in video recommendations requires 
+an analysis of the topics presented in these videos. The topic 
+or theme of a video is a crucial element that can influence 
+the recommendation algorithm. If certain topics are con-
+sistently recommended while others are neglected, this can 
+indicate a bias in the algorithm. This bias may arise because 
+viewers tend to watch certain topics more frequently or 
+engage more deeply with them, prompting the algorithm to 
+favor these topics in its recommendations. Such a trend can 
+lead to a homogenization of content, where diverse or less 
+popular topics are underrepresented. This aspect of topic 
+analysis is essential in understanding how content diversity 
+is maintained or limited by recommendation systems and 
+its impact on viewer exposure to a broad range of subjects.
+To conduct a comprehensive topic analysis, we employed 
+a BERTopic model (Grootendorst 2022), a sophisticated 
+machine learning tool designed for topic classification and 
+extraction. The fine-tuned version of this model, referenced 
+in Grootendorst (2023), is pre-trained on approximately 
+1,000,000 Wikipedia pages, covering a broad spectrum of 
+knowledge. It is capable of identifying 2,377 distinct top-
+ics, providing us with a robust framework for analyzing the 
+thematic content of videos. The BERTopic model operates 
+using a transformer-based architecture, similar to BERT, 
+which excels in understanding and categorizing complex 
+textual data. This capability allows for precise and nuanced 
+topic detection, essential for accurately assessing the range 
+and diversity of topics in video content.
+Our methodology involved applying the BERTopic model 
+to various textual elements of videos, such as titles, descrip-
+tions, transcriptions, and comments. By doing so, we could 
+systematically categorize videos into specific topics and 
+analyze the distribution of these topics within the recom-
+mended videos. This approach enabled us to observe pat-
+terns and trends in topic representation, offering insights 
+into how certain topics are either prioritized or overlooked 
+by the recommendation algorithm.
+4.6  Network analysis
+Network analysis offers a powerful perspective for unrave-
+ling the often hidden biases within video recommendation 
+systems. This approach goes beyond surface-level obser-
+vations, diving into the complex web of connections that 
+define how videos are interlinked and recommended. By 
+mapping these networks, we can expose subtle patterns and 
+relationships, illuminating how certain videos gain nota-
+bility or become marginalized within the recommendation 
+ecosystem.
+Our focus on network analysis derives from a desire 
+to decode the intricacies of YouTube’s recommendation 
+algorithm, as detailed in Sect. 4.1.2. Here, we examine the 
+structure of the recommendation network, which is com-
+posed of parent videos and their associated recommended 
+(child) videos. This network representation is key to under-
+standing how certain content gains traction and influences 
+viewer choices, potentially leading to biases in what is rec-
+ommended to users.
+Central to our network analysis is the application of 
+Eigenvector Centrality (EC), as shown in Eq. 1. This metric 
+is insightful because it evaluates both the number and the 
+quality of connections a video has. In the equation, EC(v) 
+represents the centrality of a video v . The term 휆 is the larg-
+est eigenvalue of the adjacency matrix A , which normalizes 
+the centrality values. The adjacency matrix A itself reflects 
+the connection strengths between videos, where Auv indi-
+cates the strength between video v and its neighbor u . The 
+sum ∑
+u∈N(v) takes into account all neighboring videos u of 
+v . Essentially, a video with high eigenvector centrality, as 
+calculated by this formula, is one that is recommended by 
+other influential videos. This indicates a form of indirect 
+influence that can significantly shape viewer consumption 
+patterns, highlighting videos that are important due to their 
+strong connections to other significant videos.
+Our analysis, conducted with the aid of Gephi software 
+(Bastian et al. 2009) identified videos that serve as pivotal 
+nodes within the recommendation network. These influential 
+(1)
+EC(v) = 1
+휆
+∑
+u∈N(v)
+AuvEC(u)
+
+
+===== PAGE 13 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 13 of 42 
+171
+videos can be seen as key influencers or trend starters, guid-
+ing the direction of video recommendations based on how 
+viewers interact with them. By examining these key influ-
+encers, we aimed to discern whether and how they contrib-
+ute to perpetuating certain biases within the recommenda-
+tion algorithm.
+We also used modularity values in the network analy-
+sis. Modularity values are important because they help to 
+identify those nodes (individuals, entities) that are central 
+or influential within their respective communities or mod-
+ules. By focusing on nodes with high modularity values, one 
+can target influencers who are not just broadly connected 
+across the entire network but also pivotal within their spe-
+cific communities. This approach enhances the effectiveness 
+of strategies that rely on these influencer nodes for informa-
+tion dissemination, ensuring that efforts are concentrated 
+on individuals who can mobilize or impact their immediate 
+community significantly.
+We also incorporated modularity values into our net-
+work analysis to refine the identification of influential nodes 
+within their respective communities or modules. High mod-
+ularity values signify nodes that are not only broadly con-
+nected but also hold pivotal positions within specific com-
+munities, enhancing the targeted strategies for information 
+dissemination. This consideration ensures that efforts are 
+concentrated on individuals who can significantly impact 
+their immediate community.
+The modularity Q of a network, particularly utilizing the 
+Louvain method, is defined by the formula shown in Eq. 2.
+In this formula Aij represents the adjacency matrix ele-
+ment, ki and kj are the degrees of nodes i and j , m is the 
+total weight of all edges, and 훿(ci, cj) is the Kronecker delta 
+function; the Kronecker delta is 1 if nodes i and j are in 
+the same community and 0 otherwise. This formula aids in 
+identifying nodes that are central within their communities, 
+thereby highlighting the influencers who play a critical role 
+in the dissemination of content within specific segments of 
+the network.
+4.7  Examination of engagement metrics
+The analysis of engagement metrics plays a pivotal role in 
+understanding biases in video recommendation systems. 
+Engagement metrics, such as views, likes, and comment 
+counts, serve as indicators of a video’s popularity and 
+audience interaction. These metrics can be instrumental in 
+revealing whether recommendation algorithms dispropor-
+tionately favor more popular content, potentially leading to 
+a bias in recommendations.
+(2)
+Q = 1
+2m
+∑
+i,j
+[
+Aij −
+kikj
+2m
+]
+훿(ci, cj)
+Our examination focused on the hypothesis that recommen-
+dation algorithms might be inclined to suggest videos with 
+higher engagement metrics as users explore content more 
+deeply. This potential bias could manifest in a cycle where 
+already popular videos gain further visibility, overshadowing 
+less-viewed content regardless of its relevance or quality. To 
+investigate this, we considered a video popular based on the 
+high view counts, substantial likes, and a significant number 
+of comments.
+In our methodology, we tracked the engagement metrics of 
+videos across various recommendation depths. This approach 
+allowed us to analyze patterns in how the recommendation 
+algorithm prioritizes content based on viewer engagement. 
+If we observe a trend where videos with higher engagement 
+consistently appear in recommendations, it could indicate an 
+algorithmic preference for popular content.
+This analysis is crucial in understanding how engagement 
+metrics could skew the diversity of recommended content. A 
+bias towards highly engaged videos might limit the exposure of 
+newer or relevant content, potentially narrowing the spectrum 
+of ideas and perspectives presented to viewers. By examining 
+engagement metrics, we aim to uncover and understand these 
+potential biases, contributing to a more comprehensive under-
+standing of the factors influencing content recommendations 
+on digital platforms.
+4.8  Statistical measurement
+Our analysis utilizes statistical methods to validate the pres-
+ence and extent of biases within YouTube’s recommendation 
+system, as outlined in Sect. 4. Through quantitative evaluation, 
+we assess the significance of deviations in content distribution 
+and engagement metrics from expected norms. This approach 
+ensures a robust understanding of recommendation biases, 
+supporting our findings with concrete evidence of how these 
+biases may affect content visibility and user interaction pat-
+terns across the platform.
+4.8.1  Drift significance
+A key component of our statistical analysis is the evaluation 
+of drift significance, particularly how content distribution 
+changes across recommendation depths. For this purpose, we 
+utilized the Chi-Square test (Pearson 1900), a robust statisti-
+cal method for examining the relationship between categorical 
+variables. This test compares the observed frequency of cat-
+egories at different recommendation depths against expected 
+frequencies, assuming no underlying bias, as detailed in Eq. 3.
+(3)
+휒2 =
+∑(Oi −Ei)2
+Ei
+
+
+===== PAGE 14 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 14 of 42
+In this context, Oi represents the observed frequency of 
+each category within the recommendation depths, while 
+Ei denotes the expected frequency, calculated based on 
+the assumption of uniform distribution across depths. The 
+expected frequencies are derived using the formula shown 
+in Eq. 4. This calculation helps us to establish a baseline 
+against which to measure the extent of deviation (or drift) 
+from expected content distribution patterns. In our case, the 
+rows were the categorical values, and the columns were the 
+recommendation depths. This setup allows for a detailed 
+analysis of how content categories distribute across different 
+levels of recommendation, providing insights into the rec-
+ommendation algorithm’s behavior and its potential biases.
+We set a distinct significance level of 0.05 to ascertain the 
+threshold for rejecting the null hypothesis, which posits that 
+“there is no drift in the distribution of the categorical vari-
+ables between the different recommendation depths." The 
+degrees of freedom, crucial for understanding the distribu-
+tion’s variance, are calculated as shown in Eq. 5.
+The p-value, which is the area under the Chi-Square distri-
+bution curve to the right of the observed 휒2 statistic for the 
+calculated degrees of freedom, indicates the probability of 
+observing a result as extreme as, or more extreme than, what 
+was actually found, assuming the null hypothesis is true. If 
+the p-value is small (less than the significance level), then 
+we reject the null hypothesis and conclude that there is evi-
+dence of drift in the distribution of the categories between 
+the depths. Conversely, a larger p-value suggests that the 
+observed differences could have occurred by random chance, 
+leading us to fail to reject the null hypothesis, indicating no 
+significant drift or difference between the depths.
+As we mention, the calculation of the p-value requires 
+integrating the Chi-Square probability density function 
+(PDF) from the observed 휒2 value to infinity, which is not 
+typically done by hand. Instead, one would use statistical 
+tables designed for this purpose, but due to the limited val-
+ues that can be retrieved from the Chi-Square distribution 
+table, we have used a statistical software, a Python mod-
+ule which uses the “chi2_contingency" function from the 
+“scipy.stats" package. This module uses an approximation 
+method to calculate the p-value for large Chi-Square statis-
+tics. For very large Chi-Square statistics, the p-value may 
+be approximated to 0.0 due to limitations in floating-point 
+arithmetic and computational precision. This approxima-
+tion is reasonable because such large Chi-Square statistics 
+indicate a very strong deviation from the null hypothesis, 
+(4)
+E = (Row Total) × (Column Total)
+Grand Total
+(5)
+dof = (Number of rows −1) × (Number of columns −1)
+making it highly unlikely to observe such extreme results 
+under the assumption of independence.
+Through this statistical framework, we aim to provide a 
+concrete measure of bias, offering a more definitive under-
+standing of how recommendation algorithms might skew 
+content distribution. This methodological rigor enhances the 
+credibility of our findings, facilitating a deeper exploration 
+into the mechanics of bias within YouTube’s recommenda-
+tion system.
+4.8.2  Inequality quantification
+In examining biases within YouTube’s content recommenda-
+tion algorithms, analyzing disparities in engagement metrics 
+reveals critical insights. This method allows us to inspect 
+how viewer interactions are distributed among recom-
+mended videos, shedding light on potential inequalities that 
+may affect content visibility and the overall user experience.
+The Atkinson Index (Atkinson et al. 1970), a measure 
+initially developed to assess income inequality within popu-
+lations, provides a useful framework for examining dispari-
+ties in content engagement on YouTube. This index quanti-
+fies the extent to which individual data points (in our case, 
+engagement metrics such as likes, comments, and views) 
+diverge from a perfectly equal distribution. The Atkinson 
+Index is defined as shown in Eq. 6.
+A(휖) represents the Atkinson Index, with 휖 being a parameter 
+that determines the sensitivity of the measure to changes in 
+different parts of the distribution. A higher value of 휖 indi-
+cates a greater sensitivity to inequalities at the lower end of 
+the distribution. n is the number of videos considered in a 
+particular depth of recommendation. pi is the proportion of 
+total engagement (likes, views, or comments) that the i-th 
+video receives relative to the total engagement of all videos 
+in the dataset.
+In our analysis, we adopted an 휖 value of 0.5 to balance 
+the measure’s sensitivity to inequalities at both the lower and 
+upper ends of the engagement spectrum. The choice of 휖 is 
+significant because it allows for the adjustment of the index’s 
+focus, with higher values prioritizing the lower end of the 
+distribution. As 휖 approaches infinity, the Atkinson Index 
+nears 1, reflecting an increasing emphasis on disparities at 
+the lower end of the engagement spectrum.
+By applying the Atkinson Index to the engagement met-
+rics of recommended videos, we aim to quantify the level of 
+inequality present within each recommendation depth. This 
+analysis allows us to assess whether the YouTube recom-
+mendation algorithm exhibits a bias towards videos with 
+(6)
+A(휖) = 1 −
+(
+1
+n
+n
+∑
+i=1
+p1−휖
+i
+)
+1
+1−휖
+
+
+===== PAGE 15 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 15 of 42 
+171
+significantly higher engagement metrics, potentially margin-
+alizing content with lower but still substantial engagement 
+levels.
+Evaluating engagement inequality with the Atkinson 
+Index sheds light on the dynamics of content recommen-
+dation and visibility on YouTube. It helps identify if the 
+recommendation system perpetuates a concentration of 
+attention on a small subset of highly popular videos, thereby 
+reinforcing existing visibility and engagement disparities. 
+Such insights are crucial for understanding the broader 
+implications of algorithmic recommendation practices on 
+content diversity and user exposure.
+4.8.3  Understanding gaussian distributions and statistical 
+measures
+In the study of complex datasets, whether examining pat-
+terns in digital narratives or analyzing trends in social data, 
+the application of statistical measures provides a founda-
+tional framework for both describing and understanding 
+variability within the data. Central to this framework is the 
+concept of the Gaussian distribution, often referred to as 
+the normal distribution, which is a fundamental statistical 
+distribution pattern observed in many natural phenomena 
+and datasets.
+The Gaussian distribution is characterized by its symmet-
+ric, bell-shaped curve, where the majority of observations 
+cluster around a central value (the mean), decreasing in fre-
+quency as they diverge towards the extremes. This distribu-
+tion is mathematically defined by its mean 휇 and standard 
+deviation 휎 , where the following is true:
+•	 The mean 휇 represents the average value of the dataset, 
+providing a central point around which the data is dis-
+tributed.
+•	 The standard deviation 휎 quantifies the dispersion or vari-
+ability of the dataset, indicating how spread out the data 
+points are from the mean.
+Formally, the Gaussian distribution can be expressed 
+through its probability density function (PDF) as shown in 
+Eq. 7:
+Within the context of Gaussian distributions, the concepts of 
+mean + std ( 휇 + 휎 ) and mean + 2std ( 휇 + 2휎 ) serve as cru-
+cial analytical thresholds. These measures are instrumental 
+in understanding the distribution of data:
+•	 Mean + std ( 휇 + 휎 ): Approximately 68% of the data in 
+a Gaussian distribution falls within one standard devia-
+(7)
+f(x휇, 휎) =
+1
+휎
+√
+2휋
+e−(x−휇)2
+2휎2
+tion of the mean. This range identifies the most common 
+variance from the average, encapsulating the bulk of data 
+points in a typical distribution.
+•	 Mean + 2std ( 휇 + 2휎 ): Expanding the range to two 
+standard deviations from the mean encompasses approxi-
+mately 95% of the data. This broader threshold is critical 
+for identifying outliers, which are the data points that lie 
+beyond the typical range of variation. These outliers can 
+signify extreme cases or occurrences that deviate signifi-
+cantly from the norm.
+The application of these statistical measures and thresholds 
+provides a powerful lens for analyzing and interpreting data. 
+In real-world scenarios, understanding the distribution of 
+data within these thresholds enables researchers to do the 
+following:
+•	 Identify patterns and trends that are central to the dataset
+•	 Detect outliers or anomalies that may warrant further 
+investigation
+•	 Make informed decisions based on the statistical behav-
+ior of the data
+Employing these statistical concepts allows for a nuanced 
+analysis that goes beyond mere averages, offering insights 
+into the variability and extremities of the data. This approach 
+is invaluable across a spectrum of fields, from social sci-
+ences to natural phenomena, enabling a deeper comprehen-
+sion of the underlying patterns and behaviors within com-
+plex datasets.
+5  Results
+In this section, we delve into our findings, unraveling the 
+dynamics of narrative drift across various dimensions, 
+including influencer nodes, engagement metrics, and other 
+pivotal elements that underscore the algorithmic influence 
+on content dissemination and reception.
+5.1  Emotion drift
+In our comprehensive analysis, as detailed in Sect. 4.2, we 
+embarked on an investigation to discern the presence of emo-
+tion drift across various narratives, alongside their respec-
+tive attributes as elaborated in Sect. 4.1.3. This inquiry was 
+established on the hypothesis that emotional tones could 
+significantly shift across the depth of recommendations, a 
+phenomenon we aimed to quantify and understand within 
+the context of digital discourse.
+Our findings, illustrated in Fig. 1, particularly spotlight 
+the China-Uyghur Conflict as a case study. Initial expecta-
+tions, based on the narrative’s nature discussed in Sect. 2.1, 
+
+
+===== PAGE 16 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 16 of 42
+suggested predominantly negative emotions. However, the 
+data revealed notable emotion drifts, especially noticeable in 
+the attributes of titles and descriptions (Fig. 1a and b). These 
+attributes exhibited a remarkable increase in neutrality and 
+emergence of joy, with a simultaneous decrease in negative 
+emotions such as anger and fear.
+Conversely, the transcriptions and comments associ-
+ated with the videos exhibited less variation. This could be 
+attributed to the extended length of transcripts, which tends 
+towards neutrality, and the varied nature of comments. Spe-
+cifically, Fig. 1c demonstrated an increase in neutral expres-
+sions and a decrease in disgust, whereas Fig. 1d showcased 
+an uptick in joy and a trace of surprise. Collectively, these 
+findings underscore a general decline in negative sentiment 
+across the recommendation depth, signaling a notable emo-
+tion drift within the context of the China-Uyghur Conflict 
+narrative.
+For the narrative concerning the South China Sea Dis-
+pute, our examination was rooted in expectations of initially 
+negative emotions, as outlined in Sect. 2.2. This narrative, 
+similar to the China-Uyghur conflict, demonstrated a decline 
+in negative sentiments, with a discernible decrease in anger 
+as shown in Fig. 2. Intriguingly, the descriptions, as captured 
+in Fig. 2b, unveiled an initial spike in fear at the outset of 
+recommendations. Yet, this was followed by a notable reduc-
+tion in fear levels later on. These observations collectively 
+highlight a broader trend towards diminished negative senti-
+ments, underscoring an emotion drift within the discourse 
+of the South China Sea Dispute.
+For the Cheng Ho narrative, expectations were set for 
+initially positive emotions, as outlined in Sect. 2.3. True to 
+prediction, this narrative began with a higher combination of 
+neutrality and joy compared to others. As depicted in Fig. 3, 
+these levels largely remained consistent across recommen-
+dation depths. Notably, Fig. 3b shows a minor increase in 
+fear, yet the overall emotional distribution maintained its 
+positivity. Thus, the Cheng Ho narrative exhibited minimal 
+emotion drift, with emotional levels showing negligible fluc-
+tuation, distinguishing it from the variability observed in 
+other narratives.
+In summarizing the emotion analysis across different 
+narratives, our investigation revealed a subtle spectrum of 
+emotion drift. Narratives characterized by negative or con-
+tentious themes exhibited notable shifts towards less nega-
+tive emotional expressions across recommendation depths, 
+indicating a dynamic emotional response to changing con-
+tent. Conversely, narratives with inherently positive themes 
+demonstrated stability in their emotional tone, with minimal 
+shifts observed.
+The analysis revealed significant shifts in the emotional 
+tone of narratives, particularly from initially negative to 
+increasingly neutral and positive emotions. This shift can 
+be attributed to YouTube’s recommendation algorithm, 
+which may prioritize content fostering longer engagement 
+and positive user experiences. As users engage with con-
+tent, the algorithm adjusts to suggest videos that are less 
+emotionally charged and more balanced in tone. This trend 
+highlights the dynamic nature of YouTube’s recommenda-
+tion system and its potential impact on user perceptions and 
+behavior. Understanding these shifts is crucial for develop-
+ing strategies to enhance the quality and impact of online 
+content recommendations, promoting constructive dialogue 
+and reducing polarization.
+To meticulously assess the presence and statistical sig-
+nificance of emotion drift across narratives, we utilized the 
+Chi-Square method as outlined in Sect. 4.8.1. With seven 
+emotion categories across five depths, our analysis yielded 
+24 degrees of freedom, derived from the formula in Eq. 5.
+The p-values obtained for the emotion drift, as detailed in 
+Table 5, were below the strict significance threshold of 0.05 
+for both the China-Uyghur Conflict and the South China 
+Sea Dispute narratives. This indicates a significant devia-
+tion from the null hypothesis, affirming the presence of an 
+emotion drift among the depths. Conversely, the Cheng Ho 
+Propaganda narrative exhibited p-values near the thresh-
+old but below it, except in one instance where the value 
+was higher, in contrast to the extremely low values (almost 
+zero) observed in other narratives. This suggests a presence 
+of drift, though in a weaker form compared to other narra-
+tives. Finally, given that the sample size for comments is 
+approximately 100 times larger than that for the other ele-
+ments, it inherently possesses a higher sensitivity to detect 
+changes. This increased sensitivity is reflected in the larger 
+Chi-Square statistics observed for comments.
+5.2  Morality drift
+In our comprehensive analysis of morality drift within digi-
+tal narratives, we delve into the evolution of moral values 
+Table 5   p-values for emotion drift
+Narrative
+Attribute
+Chi-Square statistic p-value
+China-Uyghur 
+Conflict
+Title
+137.52
+6.62E−18
+Description
+120.25
+8.77E−15
+Transcription 281.27
+9.69E−46
+Comment
+53094.71
+0
+South China Sea 
+Dispute
+Title
+94.83
+2.26E−10
+Description
+127.16
+5.05E−16
+Transcription 67.72
+4.82E−06
+Comment
+57753.59
+0
+Cheng Ho Propa-
+ganda
+Title
+40.89
+0.02
+Description
+47.17
+3.19E−03
+Transcription 25.56
+0.38
+Comment
+14592.75
+0
+
+
+===== PAGE 17 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 17 of 42 
+171
+across various narratives, examining how these values fluc-
+tuate through the recommendation depth of video content. 
+This undertaking, detailed in Sect. 4.3, involves assessing 
+the prevalence of moral virtues and vices, captured through 
+mean scores at the sentence level, to measure the moral tone 
+spreading different layers of digital discourse.
+Our investigation into the China-Uyghur Conflict antici-
+pated a dominance of negative moral values. The findings, as 
+illustrated in Figs. 4 and 5, reveal an initial decline in vices 
+such as harm, which was the highest one initially, as well 
+as cheating, betrayal, subversion, and degradation, with a 
+trend towards stabilization in deeper recommendation levels. 
+Conversely, virtue scores, especially loyalty as highlighted 
+in Fig. 5a–d, generally exhibit an increase or remain stable, 
+underscoring a shift towards more positive moral values in 
+the narrative discourse. In summary, for the China-Uyghur 
+Conflict specifically, our analysis revealed a marked decrease 
+in negative moral values (vices) and an increase or stabiliza-
+tion in positive moral values (virtues), notably loyalty.
+In analyzing the South China Sea Dispute, subtle shifts 
+in moral values were observed. Vice values, indicated in 
+Fig. 6, showed minor variations; increases in degradation 
+and harm were noted in titles in Fig. 6a, while a slight 
+overall decrease in vices, except for degradation, was 
+Fig. 1   Emotion distribution across all attributes of the China-Uyghur conflict
+
+
+===== PAGE 18 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 18 of 42
+seen in descriptions in Fig. 6b. Transcriptions in Fig. 6c 
+revealed a slight rise in harm and degradation, with other 
+values remaining steady. Comments in Fig. 6d initially 
+increased in vices at depth one, but subsequently all vice 
+values declined.
+Virtue values presented more fluctuation, particularly 
+in titles in Fig. 7a, where three virtues increased and two 
+decreased, with sanctity experiencing the most significant 
+change. In descriptions in Fig. 7b, we observed an initial 
+decrease and then an increase later on. Transcriptions in 
+Fig. 7c showed virtue levels to be relatively stable. Lastly, 
+in Fig. 7d we noticed an increase in all virtues for comments.
+In summarizing the moral dynamics within the South 
+China Sea Dispute, it becomes evident that the shifts in 
+moral values across various depths of recommendations pre-
+sent a complex pattern, lacking a straightforward trajectory.
+In the analysis of the Cheng Ho Propaganda, the moral 
+landscape presented diverse shifts. Vice values, referenced 
+in Fig. 8, depicted an uptick in harm across titles as shown 
+in Fig. 8a, alongside minor increases in other vices. Descrip-
+tions and transcriptions, in Fig. 8b and c, demonstrated slight 
+decreases in some values, while others remained unchanged. 
+Comments, as per Fig. 8d, showed a mix of stability and 
+slight increases in certain vices.
+Fig. 2   Emotion distribution across all attributes of the South China sea dispute
+
+
+===== PAGE 19 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 19 of 42 
+171
+Virtue values, detailed in Fig. 9, varied across the board, 
+with transcriptions in Fig. 9c experiencing more uniform 
+changes, contrasting with the significant fluctuations in other 
+attributes, both in terms of increases and decreases.
+In the examination of narratives surrounding the China-
+Uyghur Conflict, South China Sea Dispute, and Cheng 
+Ho Propaganda, our investigation into the phenomenon 
+of morality drift reveals a multifaceted spectrum of moral 
+values that vary significantly across different levels of 
+analysis. Through rigorous sentence-level evaluation, this 
+analysis uncovers a dynamic shift accompanied by marked 
+fluctuations in virtues and vices. Some narratives illustrate 
+a discernible movement towards the stabilization of virtues 
+or a reduction in vices, whereas others display complex pat-
+terns that go against a linear progression. These observations 
+collectively highlight the relationship between the dissemi-
+nation of digital content and the changing moral perspectives 
+of audiences.
+Building upon this foundation, our subsequent analysis, 
+detailed in Sect. 4.8.1, delves into the statistical significance 
+of morality drift. We calculated the p-values and chose the 
+maximum value as the moral value for that sentence. In this 
+way, we have calculated the count for the Chi-Square evalua-
+tion. Therefore, these moral values are not count distribution 
+Fig. 3   Emotion distribution across all attributes of the Cheng Ho propaganda
+
+
+===== PAGE 20 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 20 of 42
+values; they are mean scores of each word in a sentence 
+across the entire dataset, as shown in Figs. 4, 5, 6, 7, 8, and 
+9. The empirical evidence, as shown in Table 6, character-
+ized by p-values consistently falling below the threshold 
+of 0.05, clearly confirms the presence of significant shifts 
+in moral content across the majority of cases examined. In 
+some instances, the degree of drift is profoundly marked, 
+with p-values approaching zero or, in certain cases, rounding 
+to zero. This quantitative validation reinforces the notion of 
+an ongoing evolution in moral values, further illustrating the 
+complex interplay between content exposure and the evolu-
+tion of moral perception within the digital era.
+5.3  Toxicity drift
+In our refined analysis of toxicity shifts within digital nar-
+ratives, we leveraged the toxicity measurement framework 
+as outlined in Sect. 4.4. This approach emphasizes not only 
+the evaluation of average toxicity levels but also a rigorous 
+examination of extreme toxicity instances, employing the 
+mean + 2std metric. As detailed in Sect. 4.8.3, this met-
+ric, grounded in the principles of Gaussian distributions, 
+effectively highlights data points that significantly deviate 
+from the norm, serving as a crucial threshold for identifying 
+highly toxic content.
+For our toxicity analysis, we primarily focused on average 
+toxicity values, which constituted a single variable. Recog-
+nizing that the Chi-Square test is unsuitable for such cases, 
+we instead applied Gaussian distribution principles to iden-
+tify and scrutinize outliers, particularly those representing 
+high toxicity levels, thus providing a clearer understanding 
+of underlying trends.
+This methodology facilitates a complex understanding 
+of toxicity across different digital platforms, enabling us to 
+distinguish between prevalent toxicity trends and the emer-
+gence of content that escalates from being merely unpleasant 
+to unequivocally harmful. By applying the mean + 2std 
+threshold, we can precisely identify and analyze instances 
+of extreme toxicity, thereby illuminating the dynamics of 
+toxicity within digital narratives at various levels of content 
+recommendation.
+In the context of our analysis on the narrative surround-
+ing the China-Uyghur conflict, initial findings revealed an 
+intriguing pattern: the mean toxicity levels were notably low 
+from the starting point. More interestingly, a specific trend 
+was observed at the initial depth of content recommenda-
+tion, where mean toxicity demonstrated a marked reduction, 
+hinting at the narrative that was becoming progressively less 
+inflammatory over time. This trend of low mean toxicity 
+levels not only persisted but also stabilized, maintaining a 
+low profile across the entirety of our observation period.
+Upon delving into the high toxicity levels, distinct fluc-
+tuations across different content aspects became appar-
+ent. For instance, the toxicity levels within narrative titles, 
+as illustrated in Fig. 10a, initially decreased, only to rise 
+again, reflecting a fluctuating pattern of toxicity over time. 
+Conversely, the narrative descriptions, shown in Fig. 10b, 
+experienced an initial uptick in toxicity levels, which sub-
+sequently decreased, indicating a shift towards modera-
+tion after an initial period of heightened toxicity. The most 
+pronounced decline in high toxicity levels was observed in 
+transcription content, as detailed in Fig. 10c, suggesting a 
+significant reduction in the toxicity of this content segment. 
+On the other hand, user-generated comments, as seen in 
+Fig. 10d, experienced a slight increase in toxicity.
+Despite these variable trends in instances of high toxic-
+ity, the narrative experienced a decrease in aggregate tox-
+icity levels. This observation suggests a gradual improve-
+ment in the content recommendation algorithms of digital 
+platforms, steering the narrative towards a more moderated 
+and less extreme discourse on the China-Uyghur conflict. 
+Such a trend is indicative of an evolving digital ecosystem 
+Table 6   p-values for morality 
+drift
+In the table abbreviations were used. CS → Chi-Square, P → p-value
+Narrative
+Attribute
+CS.Virtue
+CS.Vice
+P.Virtue
+P.Vice
+China-Uyghur conflict
+Title
+59.20
+50.86
+7.13E−07
+1.67E−05
+Description
+54.11
+34.82
+4.98E−06
+4.21E−03
+Transcription
+41.69
+32.75
+4.40E−04
+7.98E−03
+Comment
+26032.50
+12216.79
+0
+0
+South China sea dispute
+Title
+76.79
+29.72
+6.28E−10
+1.95E−02
+Description
+77.66
+50.71
+4.38E−10
+1.76E−05
+Transcription
+18.26
+44.67
+0.31
+1.56E−04
+Comment
+15582.92
+4838.80
+0
+0
+Cheng Ho propaganda
+Title
+73.21
+43.43
+2.71E−09
+2.41E−04
+Description
+49.33
+58.84
+2.92E−05
+8.19E−07
+Transcription
+13.04
+35.07
+0.67
+3.89E−03
+Comment
+3575.38
+4301.91
+0
+0
+
+
+===== PAGE 21 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 21 of 42 
+171
+that is becoming increasingly adept at managing and miti-
+gating the spread of toxic content, contributing to a more 
+controlled and constructive online discourse.
+In our comprehensive analysis of the South China Sea 
+Dispute narrative, we observed an initial trend where mean 
+toxicity levels were notably low and stable, closely paral-
+leling the findings from the China-Uyghur Conflict. These 
+levels were so minimal that they nearly approached zero, a 
+trend clearly depicted in Fig. 11. This consistency under-
+scores a baseline of low toxicity across different narratives 
+within our dataset.
+Remarkably, at the initial recommendation depth (depth 
+0), our analysis identified no instances of highly toxic con-
+tent within titles, descriptions, and transcriptions. These 
+content attributes uniformly failed to cross the high toxicity 
+threshold, as delineated in Fig. 11a–c.
+However, the narrative complexity increased beyond 
+depth 0, where we began to observe the emergence of high 
+toxicity content. Specifically, Fig. 11a revealed a progres-
+sive increase in toxicity levels with each subsequent depth, 
+although this trend plateaued at depth 4, indicating a stabili-
+zation in the toxicity of narrative titles. Conversely, Fig. 11b 
+Fig. 4   Moral vices distribution across all attributes of the China-Uyghur conflict
+
+
+===== PAGE 22 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 22 of 42
+showcased an initial spike in toxicity at depth 1, followed by 
+a significant reduction at depth 2, with only a slight recov-
+ery thereafter. A somewhat parallel trend was observed in 
+Fig. 11c, mirroring the behavior of descriptions but with 
+a less pronounced decrease at depth 2, followed by a mild 
+increase in toxicity levels.
+The most notable finding was within the user comments, 
+as captured in Fig. 11d, where high toxicity levels peaked, 
+nearing 0.9. This intensity was consistently maintained 
+across different depths, suggesting an area of concentrated 
+toxicity within the narrative. Despite this, the overall mean 
+toxicity distribution remained largely unaffected across all 
+attributes, illustrating a dynamic that mirrors the previously 
+analyzed China-Uyghur Conflict narrative. This observation 
+points to a nuanced understanding of narrative engagement, 
+where, despite the presence of highly toxic comments, the 
+aggregate toxicity level across the narrative’s content did 
+not exhibit a significant shift, maintaining a low and stable 
+mean toxicity level.
+In the exploration of the Cheng Ho Propaganda narrative, 
+our analysis found a pattern consistent with other narratives 
+regarding initial mean toxicity levels: predominantly low, 
+with occasional spikes in high toxicity instances, as illus-
+trated in Fig. 12. The titles showed an immediate increase 
+in high toxicity levels in Fig. 12a, followed by subsequent 
+fluctuations. This variability suggests a dynamic narrative 
+Fig. 5   Moral virtues distribution across all attributes of the China-Uyghur conflict
+
+
+===== PAGE 23 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 23 of 42 
+171
+engagement from the outset. Meanwhile, descriptions 
+depicted a different pattern, with a notable decrease in 
+high toxicity at depth 1, before increasing again as shown 
+in Fig. 12b. This oscillation in toxicity levels indicates a 
+nuanced content landscape that evolves with user interac-
+tion depth.
+Contrastingly, transcriptions did not exhibit high toxicity 
+at the surface level (depth 0), as shown in Fig. 12c; however, 
+an increase was observed as users engaged more deeply, 
+eventually stabilizing. Comments, on the other hand, dem-
+onstrated a gradual increase in high toxicity levels with each 
+deeper engagement level in Fig. 12d, hinting at a compound-
+ing effect of user interactions on toxicity.
+Our findings suggest that as users navigate through deeper 
+layers of recommendations, the likelihood of encountering 
+highly toxic content subtly increases. Nonetheless, it appears 
+that content recommendation algorithms are designed with 
+a cautious balance in mind, aiming to maintain overall low 
+toxicity levels. This approach suggests a potential sys-
+temic bias towards creating a safer, more welcoming digital 
+environment at the cost of possibly filtering out a broader 
+spectrum of voices. Such a strategy underscores the inher-
+ent challenge platforms face in curating content: they must 
+navigate the fine line between reducing exposure to poten-
+tially harmful content and preserving a space favorable to 
+free expression and diverse viewpoints. This balancing act 
+Fig. 6   Moral vices distribution across all attributes of the South China sea dispute
+
+
+===== PAGE 24 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 24 of 42
+reflects the complexities of managing digital narratives, aim-
+ing to ensure user safety while fostering an inclusive and 
+neutral platform.
+5.4  Topic drift
+To examine the evolution of topics within the narratives, 
+we employed BERTopic, as detailed in Sect. 4.5. Given the 
+model’s extensive topic generation, we focused on the three 
+most prevalent topics for each depth level, enabling us to 
+track topic transitions effectively. This approach allowed us 
+to identify a range from a minimum of three to a maximum 
+of fifteen topics by the conclusion of depth 4, dependent on 
+the degree of topic overlap and shift.
+For the analysis of topic drifts, it’s important to note 
+that at each depth level, both the count and labels of top-
+ics change; for instance, depth a might have x topics, while 
+depth b might have y different topics. Given this variability, 
+the Chi-Square test, which requires a fixed distribution for 
+accurate calculations, was not applicable in our case.
+In the case of the China-Uyghur conflict, Fig. 13 reveals 
+a significant initial emphasis on the topic of “genocide" 
+(topic_id 384), characterized by keywords such as “geno-
+cide, detainees, persecution, internment, holocaust". This is 
+Fig. 7   Moral virtues distribution across all attributes of the South China sea dispute
+
+
+===== PAGE 25 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 25 of 42 
+171
+visually represented in blue, being a part of a large portion 
+of the dialogue at depth 0.
+Across various attributes, we observed a rapid decrease 
+in the prevalence of the genocide topic in the initial depths, 
+eventually vanishing in the latter stages. At the same time, 
+new topics emerged, notably those related to soccer, as 
+shown in Fig. 13a, as well as themes involving actresses 
+and singers, depicted in Fig. 13b, folklore, highlighted in 
+Fig. 13c, and songs, detailed in Fig. 13d by depth 4. This 
+dramatic shift in thematic focus underscores a significant 
+topic drift within the discourse surrounding the China-
+Uyghur Conflict.
+For the South China Sea Dispute narrative, our analysis 
+using BERTopic identified an initial focus on political ele-
+ments, specifically the topic of “candidate" illustrated by 
+keywords such as “candidacy, candidate, candidates, presi-
+dential, presidency" at depth 0. This focus was evident in 
+titles, descriptions, and transcriptions as portrayed in Fig. 14. 
+Early discussions also highlighted environmental concerns, 
+with “reefs" and “corals" mentioned as at risk from Chinese 
+operations as illustrated in Fig. 14a, alongside “harbour" 
+and “naval" topics, indicating initial sea-related discussions. 
+As the narrative progressed, these topics gave way to more 
+militaristic themes, such as “warships" and “missiles" which 
+Fig. 8   Moral vices distribution across all attributes of the Chengh Ho propaganda
+
+
+===== PAGE 26 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 26 of 42
+maintained a connection to the sea and potential conflicts. 
+Interestingly, the comments diverged, introducing unrelated 
+topics like films, authors, and singers by depth 4 as shown 
+in Fig. 14d, illustrating a topic shift. However, except for 
+comments, the emerging topics remained aligned with the 
+narrative’s core themes, indicating a focused yet evolving 
+discourse.
+In the Cheng Ho narrative, the initial dominant top-
+ics were associated with keywords like “yang, yin, ritu-
+als, religions, shamanism" as illustrated in Fig. 15. This 
+suggests Zheng He’s voyages were not just exploratory 
+but also aimed at fostering harmony and spiritual unity 
+through engagement with various religious practices and 
+shamanistic rituals. Throughout the narrative, the topics 
+remained relevant to these original themes. By depth 4, 
+discussions evolved to include cultural expressions such 
+as festivals, celebrations, dance, and folklore. However, 
+the comments section, as depicted in Fig. 15d, showcased 
+a mix of related and unrelated discussions. This narrative, 
+akin to the South China Sea Dispute, experienced a the-
+matic evolution where initial and later topics, despite their 
+differences, were interconnected. The comments, however, 
+displayed a broader spectrum of topics by the end, indicat-
+ing a diversification of discussion themes.
+Fig. 9   Moral virtues distribution across all attributes of the Chengh Ho propaganda
+
+
+===== PAGE 27 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 27 of 42 
+171
+5.5  Influencer nodes
+As detailed in Sect. 4.6, we employed Gephi software for 
+network visualization and identification of influencer nodes. 
+To isolate influential entities, we computed modularity val-
+ues and eigenvector centrality. Modularity values helped 
+us to dismiss insignificant communities due to their mini-
+mal size and relevance. Furthermore, nodes demonstrating 
+higher eigenvector centrality were indicative of their influen-
+tial capacity, as represented by their enlarged node sizes. For 
+each network depth, beginning from depth 1, we pinpointed 
+the top 5 influencer nodes. This initial depth was chosen 
+deliberately to concentrate on nodes that apply a direct 
+impact on the network’s foundational layer, thereby playing 
+a pivotal role in the dissemination of information or behav-
+iors. Unlike previous approaches that utilized BERTopic for 
+topic identification, we choose manual inspection of video 
+titles. Our decision to focus on titles, rather than other ele-
+ments, was strategic. While we acknowledge the importance 
+of various factors in content engagement, titles are often the 
+decisive factor for viewers when navigating through recom-
+mendation networks. This approach allowed us to focus on 
+influencer videos effectively, understanding their pivotal role 
+in guiding viewer choices across the network depths.
+Fig. 10   Toxicity distribution across all attributes of the China-Uyghur conflict
+
+
+===== PAGE 28 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 28 of 42
+In exploring the China-Uyghur conflict narrative through 
+YouTube’s recommendation network, we uncover the sub-
+tle role of influencer nodes across varying depths. This is 
+illustrated in both Table 7 and Fig. 16. Initially, viewers are 
+presented with a diverse array of videos, from a Hebrew 
+alphabet tutorial to an analysis of Taiwan-China military 
+drills, illustrating the broad and wide-ranging gateway into 
+the network. This initial diversity sets the stage for a journey 
+through thematic shifts and content divergence.
+As the viewer explores further, the network skillfully 
+shifts attention, presenting videos on topics like alternative 
+medicine discussions and financial questions. Although 
+these topics are not directly connected to the central theme 
+of geopolitics, they showcase how the algorithm plays a role 
+in expanding the range of the conversation. These topics, 
+despite diverging from the initial narrative, hold high eigen-
+vector centrality scores, indicating their significant influence 
+within the network’s structure.
+By the third depth, a thematic centralization occurs 
+around specific sub-themes such as legal critiques and finan-
+cial scrutiny, further demonstrating the algorithm’s capacity 
+to narrow or expand the viewer’s focus. This stage reflects a 
+complex balance between engaging with the core narrative 
+and exploring peripheral topics.
+Fig. 11   Toxicity distribution across all attributes of the South China sea dispute
+
+
+===== PAGE 29 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 29 of 42 
+171
+At the final analyzed depth, the narrative journey expands 
+dramatically, introducing a wide range of topics from U.S. 
+political scandals to space telescope discoveries. This broad-
+ening into unrelated areas showcases the influencer nodes’ 
+pivotal role in shaping content pathways, revealing the 
+algorithm’s potential to simultaneously narrow and broaden 
+viewer exposure to diverse content.
+The South China Sea dispute narrative within YouTube’s 
+recommendation network presented in Table 8 and Fig. 17 
+offers a concise example of how influencer nodes shape 
+content pathways, starting from a surprising entry point: a 
+blizzard warning in San Diego with the highest eigenvector 
+score at the first depth. This initial weather-related video, 
+seemingly unrelated to geopolitical themes, underscores the 
+algorithm’s capacity to introduce diverse topics, potentially 
+affecting the subsequent recommendation chain.
+As the narrative progresses to the second depth, the focus 
+shifts to global issues and environmental concerns, reflecting 
+a broader exploration of themes such as new social orders 
+and nuclear disarmament. The significant presence of vid-
+eos on environmental protection and global governance 
+illustrates the network’s influence in steering the audience 
+towards a complex understanding of the interplay between 
+geopolitical conflicts and broader global challenges.
+Fig. 12   Toxicity distribution across all attributes of the Chengh Ho propaganda
+
+
+===== PAGE 30 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 30 of 42
+By the third depth, the narrative focuses on regional cri-
+ses, highlighted by detailed coverage of weather-related dis-
+asters across California. This focus on immediate, tangible 
+events suggests an algorithmic response to viewer interest, 
+demonstrating the dynamic nature of content recommenda-
+tions, which can swiftly pivot from global discussions back 
+to localized concerns.
+The final depth returns to strategic and speculative 
+themes, with a notable focus on U.S. naval preparation 
+against China, technological advancements, and global 
+demographic issues. The appearance of a strategic military 
+video as the influencer at this depth signifies a full-circle 
+return to geopolitical considerations, although within a much 
+broader context that includes scientific discovery and future 
+technological impacts.
+For the Cheng Ho narrative, the YouTube recommenda-
+tion network depicted in Table 9 and Fig. 18 demonstrates 
+a focused exploration of Cheng Ho’s historical legacy, with 
+less drift in content across the initial depths, highlighting the 
+algorithm’s ability to maintain thematic consistency.
+At the first depth, the narrative firmly centers around 
+Cheng Ho’s contributions and legacy, featuring videos on 
+his life, the Cheng Hoo Mosque, and his significance as 
+a Muslim admiral in Semarang. The highest eigenvector 
+Fig. 13   Topic distribution across all attributes of the China-Uyghur conflict
+
+
+===== PAGE 31 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 31 of 42 
+171
+score is assigned to a video directly related to Cheng Ho’s 
+legacy, indicating a strong thematic entry point into the 
+narrative. This depth is dedicated to immersing viewers in 
+the historical and cultural impacts of Cheng Ho, emphasiz-
+ing his historical significance and the spread of Islam in 
+Southeast Asia.
+Progressing to the second depth, the focus remains on 
+Cheng Ho, with videos exploring his mosque, the Sam 
+Poo Kong Temple, and his historical footprints in the 
+archipelago. The narrative continues to delve deeper into 
+Cheng Ho’s cultural and religious heritage, maintaining a 
+coherent and focused exploration of his enduring legacy.
+By the third depth, while there’s a slight broadening 
+of themes, including a live streaming from KOMPASTV, 
+the content largely stays on topic. The sustained interest in 
+Cheng Ho is evident with the reappearance of videos on his 
+expeditions and the introduction of a film about him, sug-
+gesting a diversification within the bounds of the Cheng Ho 
+narrative rather than a significant drift.
+It is only in the final depth that the narrative begins to 
+shift towards contemporary political and social issues, fea-
+turing videos on political commentary, suspicious finan-
+cial transactions, and controversies surrounding the KPK 
+Chairman. This late-stage drift indicates a departure from 
+Fig. 14   Topic distribution across all attributes of the South China sea dispute
+
+
+===== PAGE 32 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 32 of 42
+the historical and cultural focus of earlier depths, sug-
+gesting the algorithm’s inclination to eventually introduce 
+current socio-political discussions, possibly in response to 
+broader viewer engagement trends or the inherent dynam-
+ics of the recommendation algorithm.
+In conclusion, our findings reveal the sophisticated 
+mechanisms at play within YouTube’s recommenda-
+tion system, where influencer nodes through their stra-
+tegic position and thematic influence play a critical role 
+in either maintaining narrative focus or facilitating the-
+matic drift. This insight into the algorithm’s operation 
+not only illuminates the challenges in navigating digital 
+content landscapes but also underscores the importance 
+of understanding influencer nodes’ impact on public dis-
+course and perception.
+5.6  Engagement bias
+In accordance with the methodology outlined in Sect. 4.7, 
+we examined engagement metrics such as views, likes, and 
+comments across various levels of recommendation depth. 
+Utilizing box plots enabled us to illustrate not only the aver-
+age engagement but also the distribution’s range, median, 
+variance, and other statistical indicators.
+Our analysis, as detailed in the narratives highlighted 
+in Figs. 19, 20, and 21, revealed a consistent pattern of 
+Fig. 15   Topic distribution across all attributes of the Cheng Ho propaganda
+
+
+===== PAGE 33 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 33 of 42 
+171
+engagement metrics ranking in the order of views, likes, 
+and comments. Notably, there was a significant increase 
+in engagement at the initial recommendation depth, fol-
+lowed by minimal increases or stable engagement at sub-
+sequent depths. Furthermore, we observed an expansion in 
+the outlier boundaries, increasing by orders of magnitude 
+towards the final depths.
+These observations support our hypothesis that the rec-
+ommendation algorithm favors videos with higher engage-
+ment metrics, thus enhancing the visibility of content that 
+Table 7   Eigenvector centrality 
+scores of China-Uyghur conflict
+Depth
+Video_id
+Eigenvector score
+Topic
+Depth 1
+_UU6Fe7lqIo
+1
+Hebrew Alphabet Tutorial
+8_1KhMtThfw
+1
+Taiwan-China Military Drills
+yYzOpTMpEFA
+0.988461366
+Uighur Life in Kashgar
+uOqi1t3fr8I
+0.505769317
+Political Coalition Analysis
+xvQgB8WZLO8
+0.505769317
+Critique of Legal Authorities
+Depth 2
+VP91uPPopac
+1
+Alternative Medicine Debate
+bTbIdqiqY1k
+0.992598277
+Ida Dayak Phenomenon
+fXcYStb4vog
+0.784221947
+Finance Ministry Inquiry
+kNLP4jKa4Js
+0.68577843
+Financial Transaction Clarification
+rhSksgm9wPw
+0.68577843
+Government Financial Debate
+Depth 3
+xvQgB8WZLO8
+1
+Critique of Legal Authorities
+fXcYStb4vog
+0.902881886
+Finance Ministry Inquiry
+bTbIdqiqY1k
+0.802234684
+Ida Dayak Phenomenon
+VP91uPPopac
+0.648381231
+Alternative Medicine Debate
+rhSksgm9wPw
+0.519389915
+Government Financial Debate
+Depth 4
+xvQgB8WZLO8
+1
+Critique of Legal Authorities
+oJDctxlbRi8
+0.728916725
+U.S. Political Scandal
+dC1-qgR7YO0
+0.65759056
+Space Telescope Discoveries
+tq-t1fH0pew
+0.637589222
+KPK Chairman Controversy
+D-1OmpU5mkU
+0.582925712
+Legal Case Discussion
+Table 8   Eigenvector centrality 
+scores of South China sea 
+dispute
+Depth
+Video_id
+Eigenvector score
+Topic
+Depth 1
+djrYdRaYIv8
+1
+Blizzard Warning in San Diego
+yzGV07UPdt0
+0.470588235
+Russia-Ukraine Conflict Update
+f00V9MQBhg8
+0.460207612
+South China Sea Dispute
+7DbdBIuFrIE
+0.401384083
+U.S. Weapons in Saudi Arabia
+fsjvwQclGLo
+0.401384083
+Ocean Plastic Pollution Mystery
+Depth 2
+bzF6e5b3YjM
+1
+Exploring New Social Orders
+CgxgatA-q5s
+0.682711857
+Environmental Protection During Conflict
+FgcsvQgYXJs
+0.682711857
+Nuclear Disarmament Prospects
+2D9IWBVoCV0
+0.465419224
+UN Security Council’s Role
+0XHQ848-A9I
+0.317288143
+Conflict Situation Challenges
+Depth 3
+fKsedWFmzqs
+1
+Midwest Winter Power Outages
+xroWMc2JvdI
+0.961728089
+San Diego Storm Impacts
+-UheuxE5Uzo
+0.949092208
+Southern California Blizzard Alert
+hMbeHViVEz0
+0.65241115
+Snowstorm in Southern California
+842SQzfl2KY
+0.599697699
+Northern California Storm Updates
+Depth 4
+rEc5hsWNsCQ
+1
+U.S. Naval Preparedness vs. China
+uNdnlrkx-wg
+0.817077186
+Global Population Concerns
+EXYiUh6AKFw
+0.674533868
+Mars Rocks Discovery by Perseverance
+bHb_eG46v2c
+0.465612744
+Bill Gates on AI and Computing Future
+OuwS7oml22E
+0.436375935
+Factors Against China Invading Taiwan
+
+
+===== PAGE 34 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 34 of 42
+is already popular. This trend indicates an algorithmic bias 
+towards popular videos, potentially at the cost of less viewed 
+but equally relevant content.
+Further statistical analysis, using the method discussed 
+in Sect. 4.8.2, investigated the distribution of engagement 
+across depths for potential inequality. The results, as pre-
+sented in Table 10, show values nearing 1, indicating a 
+pronounced inequality in the distribution of videos across 
+depths based on likes, views, and comment counts. Addi-
+tionally, with each successive depth, the Atkinson index 
+increased, nearly reaching 1 by depth 4. This suggests that 
+with each recommendation cycle, the distribution of video 
+engagements becomes increasingly unequal, highlighting a 
+growing disparity in content visibility based on engagement 
+metrics.
+6  Conclusion and discussion
+In this study, we embarked on a comprehensive examination 
+of YouTube’s recommendation algorithm to understand its 
+impact on the narrative and diversity of content. Through a 
+methodical approach that included gathering extensive data, 
+analyzing emotions and morals conveyed in videos, assess-
+ing content toxicity, exploring topics, conducting network 
+analysis, and scrutinizing engagement metrics, we aimed to 
+uncover the subtle ways in which algorithmic suggestions 
+might shape the evolution of narratives and influence wider 
+discourse on a range of topics. Our investigation sought to 
+peel back the layers of YouTube’s algorithmic ecosystem to 
+reveal how it potentially directs narratives in specific direc-
+tions, thereby affecting the broader conversation spectrum.
+Our exploration of YouTube’s recommendation algorithm 
+revealed a complex and varied terrain of influence. Key find-
+ings include:
+•	 Emotion Drift: We observed a significant evolution in the 
+emotional tone of narratives, shifting from initially nega-
+tive to increasingly neutral and positive emotions. This 
+pattern was particularly pronounced in the discussions 
+surrounding the China-Uyghur Conflict and the South 
+China Sea Dispute. The significant shift from negative 
+to neutral and positive emotions, as supported by very 
+low p-values, indicates the algorithm’s strong influence 
+in modifying the narrative tone. Conversely, the Cheng 
+Ho narrative displayed remarkable stability, showing 
+minimal alterations, suggesting a resilience against the 
+algorithm’s tendency to modify emotional undertones.
+•	 Moral Values: Our examination of moral values within 
+the narratives uncovered a complex interplay of ethical 
+considerations. Specifically, we noted a trend towards 
+the promotion of uplifting moral values in the narrative 
+related to the China-Uyghur Conflict, implying an inten-
+tional curation by the algorithm. This shift towards more 
+positive moral tones highlights the algorithm’s potential 
+role in presenting sensitive topics more positively.
+•	 Content Toxicity: Our analysis revealed YouTube’s 
+proficiency in refining its recommendations to sustain 
+Table 9   Eigenvector centrality 
+scores of Cheng Ho propaganda
+Depth
+Video_id
+Eigenvector score
+Topic
+Depth 1
+rXVZRjrIoDQ
+1
+Cheng Ho’s Legacy
+5KEYXIPFza0
+0.649146076
+Cheng Ho’s Residence
+XUotoFPpxyI
+0.634041117
+Cheng Hoo Mosque Story
+0V_aG64Sa00
+0.634041117
+Maluku’s Islamic Kingdom
+-cTrUu0u3mg
+0.634041117
+Muslim Admiral in Semarang
+Depth 2
+2 G_z4k0km3Y
+1
+Mosque Legacy
+O0wOH0byhyY
+0.546669992
+Sam Poo Kong Temple
+JAaUrzYPsfA
+0.506958456
+Historical Footprint
+0V_aG64Sa00
+0.442105339
+Maluku’s Islamic Kingdom
+mm7bSZ0wKXI
+0.442105339
+Cheng Ho’s Tomb
+Depth 3
+CFaf9dTpuko
+1
+Expeditions and Islam
+4rmf-lk3ito
+0.985220434
+KOMPASTV Streaming
+rXVZRjrIoDQ
+0.953287972
+Cheng Ho’s Legacy
+qbuHTiz_JGE
+0.893047242
+Admiral Cheng Ho Film
+2 G_z4k0km3Y
+0.827946309
+Mosque Legacy
+Depth 4
+xvQgB8WZLO8
+1
+Political Commentary
+fXcYStb4vog
+0.929270165
+Suspicious Transactions
+tq-t1fH0pew
+0.869386162
+KPK Chairman Issue
+R1vtK4us2zY
+0.784978984
+Reports Against KPK Chair
+tYkXpJT_-aU
+0.784966954
+Ling Hok Bio Procession
+
+
+===== PAGE 35 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 35 of 42 
+171
+minimal toxicity levels. This effective moderation strat-
+egy ensures a healthier content ecosystem. However, 
+this selective filtering may also introduce biases, pri-
+oritizing certain narratives or viewpoints and subtly 
+influencing the diversity of discourse.
+•	 Topic Analysis: Significant thematic evolution was 
+observed within the China-Uyghur Conflict narrative, 
+aligning with our observations regarding emotional and 
+moral shifts. This suggests a broader algorithmic effort to 
+enrich and diversify the narrative landscape. In contrast, 
+Fig. 16   Network graphs of the China-Uyghur conflict
+
+
+===== PAGE 36 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 36 of 42
+the Cheng Ho narrative exhibited remarkable thematic 
+consistency, indicating the algorithm’s selective curation 
+strategy to maintain the integrity of specific historical or 
+cultural narratives.
+•	 Network Analysis: Our network analysis illuminated the 
+pivotal role of specific videos that act as influential nodes 
+within the recommendation ecosystem. These key influ-
+encer nodes, identifiable by high levels of engagement 
+or central themes, significantly shape the trajectory of 
+narrative flow, enhancing, altering, or inhibiting the dis-
+semination of narratives across YouTube.
+•	 Engagement Metrics: The algorithm’s bias towards pro-
+moting content with higher user interaction was evident, 
+highlighting its role in shaping the visibility and distribu-
+tion of content based on viewer engagement levels. This 
+preference influences the broader narrative discourse on 
+the platform.
+Collectively, our findings paint a detailed portrait of You-
+Tube’s recommendation algorithm as a powerful influencer 
+in the crafting and governance of narratives. By intricately 
+weaving together elements of emotional resonance, moral 
+context, content toxicity management, thematic direction, 
+network dynamics, and engagement focus, the algorithm posi-
+tions itself as a central figure in the construction of the digital 
+content ecosystem. It subtly steers user interactions and shapes 
+public conversation, underscoring its role as a critical determi-
+nant of the online narrative fabric. This complex coordination 
+Fig. 17   Network graphs of the South China sea dispute
+
+
+===== PAGE 37 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 37 of 42 
+171
+highlights the algorithm’s capacity to subtly navigate user 
+experience and influence the broader discourse.
+From our analysis we can conclude these generalized 
+takeaways:
+•	 The recommendation algorithm significantly shifts the 
+emotional tone of content, often from negative to more 
+neutral and positive tones, particularly in sensitive geo-
+political topics.
+Fig. 18   Network graphs of the Cheng Ho propaganda
+
+
+===== PAGE 38 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 38 of 42
+•	 There is a notable trend towards the promotion of posi-
+tive moral values in certain narratives, suggesting an 
+algorithmic bias towards more uplifting content.
+•	 The platform’s moderation strategies effectively minimize 
+content toxicity, though this selective filtering could intro-
+duce biases.
+•	 Thematic evolution within narratives indicates an effort by 
+the algorithm to diversify content, though certain narratives 
+are maintained with remarkable consistency.
+•	 Influential nodes within the recommendation network play 
+a pivotal role in shaping narrative flow and user engage-
+ment.
+Table 10   Atkinson values for 
+engagement statistics
+Narrative
+Attributes
+Depth 1
+Depth 2
+Depth 3
+Depth 4
+China-Uyghur Conflict
+Likes
+0.951
+0.970
+0.986
+0.993
+Views
+0.935
+0.970
+0.988
+0.994
+Comments
+0.941
+0.968
+0.985
+0.993
+South China Sea Dispute
+Likes
+0.952
+0.972
+0.985
+0.992
+Views
+0.952
+0.974
+0.986
+0.993
+Comments
+0.954
+0.973
+0.986
+0.992
+Cheng Ho Propaganda
+Likes
+0.953
+0.975
+0.988
+0.994
+Views
+0.952
+0.977
+0.990
+0.995
+Comments
+0.956
+0.977
+0.988
+0.994
+Fig. 19   China-Uyghur conflict 
+box plot representation for 
+engagement statistics
+Fig. 20   South China Sea dis-
+pute box plot representation for 
+engagement statistics
+
+
+===== PAGE 39 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 39 of 42 
+171
+•	 Engagement metrics reveal a preference for content with 
+higher user interaction, impacting content visibility and 
+distribution.
+The significance of our research reaches beyond mere aca-
+demic interest, providing vital perspectives on the content 
+moderation strategies and ethical frameworks within digital 
+platforms. This work enriches the ongoing dialogue concern-
+ing the need for algorithmic openness, equity, and the broader 
+societal consequences stemming from digital media practices. 
+By illuminating the intricate ways in which recommendation 
+algorithms affect content discoverability and audience interac-
+tion, our study advocates for a more profound exploration of 
+the moral aspects surrounding algorithmic control.
+In wrapping up, our investigation highlights the profound 
+influence of recommendation algorithms in crafting online 
+narratives and shaping user journeys. It encourages continued 
+academic exploration into the ethical and social implications 
+of algorithmic choices, calling for a future in which digital 
+platforms not only seek to engage but also to uphold values of 
+diversity, justice, and openness.
+7  Ethical considerations and positionality
+We recognize that our perspectives and backgrounds 
+influence our approach and interpretation of the data. As 
+researchers based in the United States, our views on geopo-
+litical issues may be shaped by our sociopolitical context. 
+While striving for objectivity, we acknowledge that com-
+plete neutrality is unattainable. Awareness of these potential 
+biases helps us critically evaluate our findings and present 
+a balanced analysis.
+Ethical considerations were paramount throughout our 
+study. We ensured that all data collected from YouTube were 
+publicly accessible and did not involve any personally identi-
+fiable information, thus complying with ethical standards for 
+data privacy. Although our study did not involve direct inter-
+action with human subjects, we adhered to ethical guidelines 
+for using publicly available data, ensuring transparency and 
+respect for user-generated content.
+We considered the potential impact of our findings on 
+public discourse and the digital ecosystem. By highlighting 
+biases in YouTube’s recommendation algorithms, our goal is 
+to contribute to more equitable and transparent digital plat-
+forms, promoting constructive dialogue and positive change 
+while being mindful of the ethical implications of our work.
+Acknowledgements  This research is funded in part by the U.S. 
+National Science Foundation (OIA-1946391, OIA-1920920, IIS-
+1636933, ACI-1429160, and IIS-1110868), U.S. Office of the 
+Under Secretary of Defense for Research and Engineering (FA9550-
+22-1-0332), U.S. Army Research Office (W911NF-20-1-0262, 
+W911NF-16-1-0189, W911NF-23-1-0011, W911NF-24-1-0078), 
+U.S. Office of Naval Research (N00014-10-1-0091, N00014-14-1-
+0489, N00014-15-P-1187, N00014-16-1-2016, N00014-16-1-2412, 
+N00014-17-1-2675, N00014-17-1-2605, N68335-19-C-0359, N00014-
+19-1-2336, N68335-20-C-0540, N00014-21-1-2121, N00014-21-1-
+2765, N00014-22-1-2318), U.S. Air Force Research Laboratory, U.S. 
+Defense Advanced Research Projects Agency (W31P4Q-17-C-0059), 
+Arkansas Research Alliance, the Jerry L. Maulden/Entergy Endow-
+ment at the University of Arkansas at Little Rock, and the Austral-
+ian Department of Defense Strategic Policy Grants Program (SPGP) 
+(award number: 2020-106-094). Any opinions, findings, conclusions, 
+or recommendations expressed in this material are those of the authors 
+and do not necessarily reflect the views of the funding organizations. 
+The researchers gratefully acknowledge the support.
+Author contributions  M.C.C. was responsible for writing the main text 
+of the manuscript, preparing all figures, and implementing the research 
+methods described therein. N.A. critically reviewed the manuscript at 
+Fig. 21   Cheng Ho propaganda 
+box plot representation for 
+engagement statistics
+
+
+===== PAGE 40 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 40 of 42
+each stage and provided substantial guidance on the research direction 
+and methodology. R.O. conducted the analysis of the statistical meas-
+urements as outlined in Sect. 4.8.
+Data availibility  No datasets were generated or analysed during the 
+current study.
+Declarations 
+Conflict of interest  The authors declare no Conflict of interest.
+Open Access  This article is licensed under a Creative Commons Attri-
+bution 4.0 International License, which permits use, sharing, adapta-
+tion, distribution and reproduction in any medium or format, as long 
+as you give appropriate credit to the original author(s) and the source, 
+provide a link to the Creative Commons licence, and indicate if changes 
+were made. The images or other third party material in this article are 
+included in the article’s Creative Commons licence, unless indicated 
+otherwise in a credit line to the material. If material is not included in 
+the article’s Creative Commons licence and your intended use is not 
+permitted by statutory regulation or exceeds the permitted use, you will 
+need to obtain permission directly from the copyright holder. To view a 
+copy of this licence, visit http://creativecommons.org/licenses/by/4.0/.
+References
+Adeliyi O, Solaiman I, Shajari S, et al (2024) Detecting and charac-
+terizing inorganic user engagement on Youtube. In: Workshop 
+Proceedings of the 18th international AAAI conference on web 
+and social media: CySoc 2024: 5th international workshop on 
+cyber social threats. AAAI, Palo Alto, California, https://​doi.​org/​
+10.​36190/​2024.​01
+Aïmeur E, Amri S, Brassard G (2023) Fake news, disinformation and 
+misinformation in social media: a review. Soc Netw Anal Min 
+13(1):30
+Al-Asad H, Zarkachi I (2023) The role of international amnesty in 
+China’s discrimination conflict against Uyghur Muslims in Xin-
+jiang 2018–2022. Mediasi: J Int Relat 6(2):23–31
+Alp E, Gergin B, Eraslan YA et al (2022) Covid-19 and vaccine tweet 
+analysis. Springer International Publishing, Cham, pp 213–229. 
+https://​doi.​org/​10.​1007/​978-3-​031-​08242-9_9
+Atkinson AB et al (1970) On the measurement of inequality. J Econ 
+Theory 2(3):244–263
+Banjo DS, Trimmingham C, Yousefi N, et al (2022) Multimodal char-
+acterization of emotion within multimedia space. In: Proceedings 
+of the international conference on computers and computation 
+(COMPUTE 2022)
+Bastian M, Heymann S, Jacomy M (2009) Gephi: an open source soft-
+ware for exploring and manipulating networks. In: Proceedings 
+of the international AAAI conference on web and social media, 
+pp 361–362
+Bellogín A, Castells P, Cantador I (2017) Statistical biases in infor-
+mation retrieval metrics for recommender systems. Inf Retr J 
+20:606–634
+Bhattacharya S, Spann B, Agarwal N (2024a) A computational 
+approach to analyze identity formation: A case study of brazil 
+insurrection. In: AMCIS 2024 Proceedings, https://​aisel.​aisnet.​
+org/​amcis​2024/​social_​comp/​social_​comput/​19
+Bhattacharya S, Spann B, Agarwal N (2024b) Solidarity to storming: 
+Assessing the socio-technical factors behind modern social move-
+ments. In: ECIS 2024 Proceedings, https://​aisel.​aisnet.​org/​ecis2​
+024/​track​24_​socia​lmedia/​track​24_​socia​lmedia/​17
+Brown T, Mann B, Ryder N et al (2020) Language models are few-shot 
+learners. Adv Neural Inf Process Syst 33:1877–1901
+Burke R, Felfernig A, Göker MH (2011) Recommender systems: an 
+overview. Ai Magazine 32(3):13–18
+Cakmak MC, Agarwal N (2024) High-speed transcript collection on 
+multimedia platforms: Advancing social media research through 
+parallel processing. In: 2024 IEEE International Parallel and 
+Distributed Processing Symposium Workshops (IPDPSW), p 
+857–860, https://​doi.​org/​10.​1109/​IPDPS​W63119.​2024.​00153
+Cakmak MC, Okeke O, Onyepunuka U, et al (2024a) Analyzing bias in 
+recommender systems: A comprehensive evaluation of youtube’s 
+recommendation algorithm. In: Proceedings of the 2023 IEEE/
+ACM international conference on advances in social networks 
+analysis and mining. Association for Computing Machinery, New 
+York, NY, USA, ASONAM ’23, p 753–760, https://​doi.​org/​10.​
+1145/​36250​07.​36273​00
+Cakmak MC, Okeke O, Onyepunuka U, et al (2024b) Investigating bias 
+in Youtube recommendations: Emotion, morality, and network 
+dynamics in China-Uyghur content. In: Cherifi H, Rocha LM, 
+Cherifi C, et al (eds) Complex Networks & Their Applications 
+XII. Springer Nature Switzerland, Cham, pp 351–362, https://​doi.​
+org/​10.​1007/​978-3-​031-​53468-3_​30
+Cakmak MC, Okeke O, Spann B, et al (2023) Adopting parallel pro-
+cessing for rapid generation of transcripts in multimedia-rich 
+online information environment. In: 2023 IEEE international 
+parallel and distributed processing symposium workshops 
+(IPDPSW), pp 832–837, https://​doi.​org/​10.​1109/​IPDPS​W59300.​
+2023.​00139
+Cakmak MC, Shaik M, Agarwal N (2024c) Emotion assessment of 
+youtube videos using color theory. In: Proceedings of the 2024 
+9th International Conference on Multimedia and Image Process-
+ing. Association for Computing Machinery, New York, NY, USA, 
+ICMIP ’24, p 6–14, https://​doi.​org/​10.​1145/​36650​26.​36650​28
+Cakmak MC, Agarwal N, Dagtas S, et al (2024a) Unveiling bias in 
+youtube shorts: Analyzing thumbnail recommendations and topic 
+dynamics. In: Proceedings of the 17th International Conference 
+on Social Computing, Behavioral-Cultural Modeling & Prediction 
+and Behavior Representation in Modeling and Simulation (SBP-
+BRiMS), accepted for presentation
+Cakmak MC, Agarwal N (2024b) Unpacking algorithmic bias in you-
+tube shorts by analyzing thumbnails. In: The 58th Hawaii Inter-
+national Conference on System Sciences (HICSS), accepted for 
+presentation
+Carpenter J, Brady W, Crockett M et al (2020) Political polarization 
+and moral outrage on social media. Conn L Rev 52:1107
+Chen J, Dong H, Wang X et al (2023) Bias and debias in recom-
+mender system: a survey and future directions. ACM Trans Inf 
+Syst 41(3):1–39
+Chen J, Dong H, Wang X, et al (2020) Bias and debias in recommender 
+system: a survey and future directions. corr abs/2010.03240 
+(2020). arXiv preprint arXiv:​2010.​03240
+Chubb A (2020) PRC assertiveness in the south China sea: measuring 
+continuity and change, 1970–2015. Int Secur 45(3):79–121
+Chung W, Zeng D (2020) Dissecting emotion and user influence in 
+social media communities: an interaction modeling approach. Inf 
+Manag 57(1):103108
+Davis EVW (2008) Uyghur Muslim ethnic separatism in Xinjiang, 
+China. Asian Affairs: Am Rev 35(1):15–30
+del Fresno García M, Daly AJ, Segado Sanchez-Cabezudo S (2024) 
+Identifying the new influences in the internet era: social media 
+and social network analysis. Evista Española de Investigaciones 
+Sociológicas 153:23–42. https://​doi.​org/​10.​5477/​cis/​reis.​153.​23
+Depoix J (2023) Youtube transcript API. https://​github.​com/​jdepo​ix/​
+youtu​be-​trans​cript-​api
+Devlin J, Chang M, Lee K, et al (2019) Pre-training of deep bidirec-
+tional transformers for language understanding in: Proceedings of 
+
+
+===== PAGE 41 =====
+
+Social Network Analysis and Mining (2024) 14:171	
+Page 41 of 42 
+171
+the 2019 conference of the north American chapter of the associa-
+tion for computational linguistics: Human language technologies, 
+volume 1 (long and short papers). Minneapolis, MN: Association 
+for Computational Linguistics pp 4171–86
+DiCicco K, Noor NB, Yousefi N, et al (2020) Toxicity and networks 
+of Covid-19 discourse communities: a tale of two social media 
+platforms. Proceedings https://​ceur-​ws.​org/​issn-​1613-​0073
+Dotson J (2011) The Confucian revival in the propaganda narratives 
+of the Chinese government. US-China Economic and Security 
+Review Commission
+Dwyer AM (2005) The Xinjiang conflict: Uyghur identity, language 
+policy, and political discourse. East-West Center Washington, 
+Washington, DC
+Estrada MS, Juarez Y, Piña-García CA (2022) Toxic social media: 
+affective polarization after feminist protests. Soc Media Soc. 
+https://​doi.​org/​10.​1177/​20563​05122​10983​43
+Finlay R (2008) The voyages of Zheng He: ideology, state power, and 
+maritime trade in Ming China. J Hist Soc 8(3):327–347
+Fravel MT (2011) China’s strategy in the south china sea. Contempo-
+rary Southeast Asia pp 292–319
+Grootendorst M (2022) Bertopic: Neural topic modeling with a class-
+based tf-idf procedure. arXiv preprint arXiv:​2203.​05794
+Grootendorst M (2023) Bertopic wikipedia. https://​huggi​ngface.​co/​
+Maart​enGr/​BERTo​pic_​Wikip​edia/
+Gurung MI, Bhuiyan MMI, Al-Taweel A, et al (2024) Decoding You-
+tube’s recommendation system: a comparative study of metadata 
+and GPT-4 extracted narratives. In: Companion Proceedings of 
+the ACM on Web Conference 2024. Association for Comput-
+ing Machinery, New York, NY, USA, WWW ’24, p 1468–1472, 
+https://​doi.​org/​10.​1145/​35893​35.​36519​13
+Hanu L (2020) Detoxify. https://​github.​com/​unita​ryai/​detox​ify
+Haroon M, Chhabra A, Liu X, et al (2022) Youtube, the great radical-
+izer? auditing and mitigating ideological biases in youtube recom-
+mendations. arXiv preprint arXiv:​2203.​10666
+Harrigan P, Daly TM, Coussement K et al (2021) Identifying influenc-
+ers on social media. Int J Inf Manage 56:102246
+Hartmann J (2022) Emotion english distilroberta-base. https://​huggi​
+ngface.​co/j-​hartm​ann/​emoti​on-​engli​sh-​disti​lrobe​rta-​base/
+Hasmath R (2019) What explains the rise of majority-minority tensions 
+and conflict in Xinjiang? Central Asian Surv 38(1):46–60
+Herlocker JL, Konstan JA, Terveen LG et al (2004) Evaluating col-
+laborative filtering recommender systems. ACM Trans Inf Syst 
+22(1):5–53
+Hopp FR, Fisher JT, Cornell D et al (2021) The extended moral foun-
+dations dictionary (EMFD): development and applications of a 
+crowd-sourced approach to extracting moral intuitions from text. 
+Behav Res Methods 53:232–246
+Israeli R (2010) China’s Uyghur problem. Isr J Foreign Affairs 
+4(1):89–101
+Khanam KZ, Srivastava G, Mago V (2023) The homophily princi-
+ple in social network analysis: a survey. Multimed Tools Appl 
+82(6):8811–8854
+Kirdemir B, Agarwal N (2022) Exploring bias and information bubbles 
+in Youtube’s video recommendation networks. In: Benito RM, 
+Cherifi C, Cherifi H et al (eds) Complex Networks & Their Appli-
+cations X. Springer International Publishing, Cham, pp 166–177
+Kirdemir B, Kready J, Mead E, et al (2021a) Examining video recom-
+mendation bias on Youtube. In: International workshop on algo-
+rithmic bias in search and recommendation, Springer, pp 106–116
+Kirdemir B, Kready J, Mead E, et al (2021b) Assessing bias in you-
+tube’s video recommendation algorithm in a cross-lingual and 
+cross-topical context. In: Social, Cultural, and Behavioral Mod-
+eling: 14th International Conference, SBP-BRiMS 2021, Virtual 
+Event, July 6–9, 2021, Proceedings 14, Springer, pp 71–80
+Knijnenburg BP, Willemsen MC (2015) Evaluating recommender sys-
+tems with user experiments. In: Recommender systems handbook. 
+Springer, p 309–352
+Kušen E, Cascavilla G, Figl K, et al (2017) Identifying emotions in 
+social media: comparison of word-emotion lexicons. In: 2017 5th 
+International Conference on Future Internet of Things and Cloud 
+Workshops (FiCloudW), IEEE, pp 132–137
+Li H, Qian Y, Jiang Y et al (2023) A novel label-based multimodal 
+topic model for social media analysis. Decis Support Syst 
+164:113863. https://​doi.​org/​10.​1016/j.​dss.​2022.​113863
+Liu Y, Ott M, Goyal N, et al (2019) Roberta: A robustly optimized bert 
+pretraining approach. arXiv preprint arXiv:​1907.​11692
+Lü L, Medo M, Yeung CH et al (2012) Recommender systems. Phys 
+Rep 519(1):1–49
+Macaraig CE, Fenton AJ (2021) Analyzing the causes and effects of 
+the south china sea dispute. J Territorial Marit Stud 8(2):42–58
+Maslowska E, Malthouse EC, Hollebeek LD (2022) The role of rec-
+ommender systems in fostering consumers’ long-term platform 
+engagement. J Serv Manag 33(4/5):721–732
+Mbila-Uma S, Umoga I, Alassad M et al (2023) Conducting morality 
+and emotion analysis on blog discourse. In: Takada H, Marutschke 
+DM, Alvarez C et al (eds) Collaboration Technologies and Social 
+Computing. Springer Nature Switzerland, Cham, pp 185–192
+Nechushtai E, Zamith R, Lewis SC (2023) More of the same? Homog-
+enization in news recommendations when users search on Google, 
+Youtube, Facebook, and twitter. Mass Communication and Soci-
+ety pp 1–27
+Neumann D, Rhodes N (2024) Morality in social media: a scoping 
+review. New Media Soc 26(2):1096–1126
+Noor NB, Yousefi N, Spann B, et al (2023) Comparing toxicity across 
+social media platforms for covid-19 discourse. In: The Proceed-
+ings of the Ninth international conference on human and social 
+analytics (HUSO 2023). Copyright (c) IARIA, 2023, Barcelona, 
+Spain, pp 21–26, https://​www.​think​mind.​org/​index.​php?​view=​
+artic​le&​artic​leid=​huso_​2023_1_​50_​80036
+Okeke O, Cakmak MC, Spann B, et al (2023) Examining Content and 
+Emotion Bias in YouTube’s Recommendation Algorithm. In: The 
+Proceedings of the Ninth International Conference on Human and 
+Social Analytics (HUSO 2023). Copyright (c) IARIA, 2023, Bar-
+celona, Spain, pp 15–20, https://​www.​think​mind.​org/​index.​php?​
+view=​artic​le&​artic​leid=​huso_​2023_1_​40_​80032
+Onyepunuka U, Alassad M, Nwana L et al (2023) Multilingual analy-
+sis of youtube’s recommendation system: Examining topic and 
+emotion drift in the ‘cheng ho’narrative. In: Sixth international 
+workshop on narrative extraction from texts (Text2Story 2023) 
+co-located with the 45th European conference on information 
+retrieval (ECIR 2023), Dublin, Ireland
+Panger GT (2017) Emotion in social media. University of California, 
+Berkeley
+Pascual-Ferrá P, Alperstein N, Barnett DJ et al (2021) Toxicity and 
+verbal aggression on social media: Polarized discourse on wearing 
+face masks during the Covid-19 pandemic. Big Data Soc. https://​
+doi.​org/​10.​1177/​20539​51721​10235​33
+Pearson K (1900) X. on the criterion that a given system of devia-
+tions from the probable in the case of a correlated system of vari-
+ables is such that it can be reasonably supposed to have arisen 
+from random sampling. Lond Edinb Dublin Philos Mag J Sci 
+50(302):157–175
+Ping Y, Li Y, Zhu J (2024) Beyond accuracy measures: the effect of 
+diversity, novelty and serendipity in recommender systems on user 
+engagement. Electronic Commerce Research pp 1–28
+Polatidis N, Georgiadis CK (2013) Recommender systems: the impor-
+tance of personalization in e-business environments. Int J E-Entre-
+preneurship Innov 4(4):32–46
+Poudel D, Cakmak MC, Agarwal N (2024) Beyond the click: How 
+youtube thumbnails shape user interaction and algorithmic 
+
+
+===== PAGE 42 =====
+
+	
+Social Network Analysis and Mining (2024) 14:171
+171 
+Page 42 of 42
+recommendations. In: The 16th International Conference on 
+Advances in Social Networks Analysis and Mining (ASONAM), 
+accepted for presentation
+Radford A, Kim JW, Xu T, et al (2023) Robust speech recognition 
+via large-scale weak supervision. In: International conference on 
+machine learning, PMLR, pp 28492–28518
+Radford A, Narasimhan K (2018) Improving language understanding 
+by generative pre-training. https://​api.​seman​ticsc​holar.​org/​Corpu​
+sID:​49313​245
+Rohani VA, Shayaa S, Babanejaddehaki G (2016) Topic modeling 
+for social media content: a practical approach. In: 2016 3rd 
+international conference on computer and information sciences 
+(ICCOINS), IEEE, pp 397–402
+Shaik M, Cakmak MC, Spann B, et al (2024) Characterizing multi-
+media adoption and its role on mobilization in social movements. 
+In: Bui TX (ed) 57th Hawaii International Conference on System 
+Sciences, HICSS 2024, Hilton Hawaiian Village Waikiki Beach 
+Resort, Hawaii, USA, January 3-6, 2024. ScholarSpace, pp 146–
+155, https://​hdl.​handle.​net/​10125/​106393
+Shajari S, Alassad M, Agarwal N (2024a) Characterizing suspicious 
+commenter behaviors. In: Proceedings of the 2023 IEEE/ACM 
+international conference on advances in social networks analysis 
+and mining. Association for Computing Machinery, New York, 
+NY, USA, ASONAM ’23, p 631–635, https://​doi.​org/​10.​1145/​
+36250​07.​36273​09, https://​doi.​org/​10.​1145/​36250​07.​36273​09
+Shajari S, Amure R, Agarwal N (2024b) Analyzing anomalous engage-
+ment and commenter behavior on youtube. In: AMCIS 2024 Pro-
+ceedings, https://​aisel.​aisnet.​org/​amcis​2024/​social_​comp/​social_​
+comput/6
+Shani G, Gunawardana A (2011) Evaluating recommendation systems. 
+Recommender systems handbook pp 257–297
+Srba I, Moro R, Tomlein M et al (2023) Auditing Youtube’s recommen-
+dation algorithm for misinformation filter bubbles. ACM Trans 
+Recomm Syst 1(1):1–33
+Stinson C (2022) Algorithms are not neutral: bias in collaborative fil-
+tering. AI Ethics 2(4):763–770
+Van Bavel JJ, Robertson CE, Del Rosario K et al (2024) Social media 
+and morality. Annu Rev Psychol 75:311–340
+Vinagre J, Jorge AM, Rocha C et al (2019) Statistically robust evalu-
+ation of stream-based recommender systems. IEEE Trans Knowl 
+Data Eng 33(7):2971–2982
+Wade G (2005) The Zheng He voyages: a reassessment. J Malaysian 
+Branch Royal Asiatic Soc. pp 37–58
+Yousefi N, Noor NB, Spann B et al (2024) Examining toxicity’s impact 
+on reddit conversations. In: Cherifi H, Rocha LM, Cherifi C et al 
+(eds) Complex Networks & Their Applications XII. Springer 
+Nature Switzerland, Cham, pp 401–411. https://​doi.​org/​10.​1007/​
+978-3-​031-​53503-1_​33
+Yousefi N, Cakmak MC, Agarwal N (2024a) Examining multimodel 
+emotion assess- ment and resonance with audience on youtube. 
+In: Proceedings of the 2024 9th International Conference on 
+Multimedia and Image Processing. Association for Computing 
+Machinery, New York, NY, USA, ICMIP ’24, p 85–93, https://​
+doi.​org/​10.​1145/​36650​26.​36650​39
+Yousefi N, Noor NB, Spann B, et al (2023) Towards developing a 
+measure to assess contagiousness of toxic tweets. In: Proceedings 
+of the international workshop on combating health misinforma-
+tion for social wellbeing (TrueHealth 2023) co-located with the 
+17th International Conference on Web and Social Media (ICWSM 
+2023)
+Yu Q, Weng W, Zhang K, et al (2014) Hot topic analysis and content 
+mining in social media. In: 2014 IEEE 33rd International per-
+formance computing and communications conference (IPCCC), 
+IEEE, p 1–8
+Zhan R, Pei C, Su Q, et al (2022) Deconfounding duration bias in 
+watch-time prediction for video recommendation. In: Proceedings 
+of the 28th ACM SIGKDD conference on knowledge discovery 
+and data mining, p 4472–4481
+Zhao Q, Harper FM, Adomavicius G, et al (2018) Explicit or implicit 
+feedback? engagement or satisfaction? a field experiment on 
+machine-learning-based recommender systems. In: Proceedings 
+of the 33rd Annual ACM symposium on applied computing, pp 
+1331–1340
+Zhong N, Schweidel DA (2020) Capturing changes in social media 
+content: a multiple latent changepoint topic model. Mark Sci 
+39(4):827–846
+Publisher's Note  Springer Nature remains neutral with regard to 
+jurisdictional claims in published maps and institutional affiliations.

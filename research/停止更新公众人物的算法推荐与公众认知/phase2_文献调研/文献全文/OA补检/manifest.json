@@ -1,0 +1,408 @@
+{
+  "version": 2,
+  "generated_at": "2026-08-17T08:16:56.383Z",
+  "request": {
+    "topic": "",
+    "title": "",
+    "dois": [
+      "10.1007/s11023-017-9445-2",
+      "10.5210/fm.v19i6.4998",
+      "10.1080/03906701.2021.1947951",
+      "10.1177/00302228251319834",
+      "10.1080/08838151.2012.705197",
+      "10.1007/s13278-024-01343-5",
+      "10.1093/joc/jqac047",
+      "10.1145/3491102.3517441",
+      "10.1145/3447535.3462512",
+      "10.1177/1461444818815684",
+      "10.1057/9781137029317_6",
+      "10.1080/10584609.2019.1686094",
+      "10.1037/xge0000098"
+    ],
+    "pdf_url": "",
+    "si_requested": false,
+    "language_override": "",
+    "route_override": "open_access",
+    "source_url": "",
+    "api_fallback_web": null,
+    "api_fallback_web_for": [],
+    "no_api_fallback_web_for": []
+  },
+  "summary": {
+    "total": 13,
+    "downloaded": 2,
+    "seconds": 57.7
+  },
+  "results": [
+    {
+      "doi": "10.1007/s11023-017-9445-2",
+      "title": "The Political Economy of Death in the Age of Information: A Critical Approach to the Digital Afterlife Industry",
+      "language": "en",
+      "publisher": "Springer Science and Business Media LLC",
+      "route": "open_access",
+      "route_reason": "article_level_oa",
+      "si_requested": false,
+      "status": "open_access_downloaded",
+      "provider": "open_access",
+      "accessMode": "open_access",
+      "oaEvidence": {
+        "source": "publisher_oa",
+        "url": "http://link.springer.com/content/pdf/10.1007/s11023-017-9445-2.pdf",
+        "format": "pdf",
+        "version": "publishedVersion",
+        "license": "http://creativecommons.org/licenses/by/4.0"
+      },
+      "ok": true,
+      "file": "research/停止更新公众人物的算法推荐与公众认知/phase2_文献调研/文献全文/OA补检/PDFs/The_Political_Economy_of_Death_in_the_Age_of_Information_A_Critical_Approach_to_the_Digital_Afterlife_Industry.pdf",
+      "bytes": 1131086,
+      "sha256": "b0e63e8d73fe14b7904fd5401975fc5906a007daf8cbebdb89e674539097e783",
+      "contentType": "application/pdf",
+      "format": "pdf",
+      "source": "http://link.springer.com/content/pdf/10.1007/s11023-017-9445-2.pdf",
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.5210/fm.v19i6.4998",
+      "title": "Death and the Internet: The implications of the digital afterlife",
+      "language": "",
+      "publisher": "University of Illinois Libraries",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "unknown",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": ""
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1080/03906701.2021.1947951",
+      "title": "‘#hellobrother needs to trend’: methodological reflections on the digital and emotional afterlife of mediated violence",
+      "language": "en",
+      "publisher": "Informa UK Limited",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "http://creativecommons.org/licenses/by/4.0/"
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1177/00302228251319834",
+      "title": "From Mourning to Healing: Continuing Bonds With Strangers in Chinese Social Media",
+      "language": "en",
+      "publisher": "SAGE Publications",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://journals.sagepub.com/page/policies/text-and-data-mining-license"
+      },
+      "oaAttempts": [
+        {
+          "source": "publisher_oa",
+          "url": "https://journals.sagepub.com/doi/pdf/10.1177/00302228251319834",
+          "status": "request_failed",
+          "reason": "fetch failed"
+        }
+      ]
+    },
+    {
+      "doi": "10.1080/08838151.2012.705197",
+      "title": "“There Isn't Wifi in Heaven!” Negotiating Visibility on Facebook Memorial Pages",
+      "language": "en",
+      "publisher": "Informa UK Limited",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "unknown",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": ""
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1007/s13278-024-01343-5",
+      "title": "The bias beneath: analyzing drift in YouTube’s algorithmic recommendations",
+      "language": "en",
+      "publisher": "Springer Science and Business Media LLC",
+      "route": "open_access",
+      "route_reason": "article_level_oa",
+      "si_requested": false,
+      "status": "open_access_downloaded",
+      "provider": "open_access",
+      "accessMode": "open_access",
+      "oaEvidence": {
+        "source": "publisher_oa",
+        "url": "https://link.springer.com/content/pdf/10.1007/s13278-024-01343-5.pdf",
+        "format": "pdf",
+        "version": "publishedVersion",
+        "license": "https://creativecommons.org/licenses/by/4.0"
+      },
+      "ok": true,
+      "file": "research/停止更新公众人物的算法推荐与公众认知/phase2_文献调研/文献全文/OA补检/PDFs/The_bias_beneath_analyzing_drift_in_YouTube’s_algorithmic_recommendations.pdf",
+      "bytes": 6729800,
+      "sha256": "77335e41e5779dff0338371ec4ea3eb5f4cb6c934f582bb0eb8d0741b7f9638f",
+      "contentType": "application/pdf",
+      "format": "pdf",
+      "source": "https://link.springer.com/content/pdf/10.1007/s13278-024-01343-5.pdf",
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1093/joc/jqac047",
+      "title": "Modeling news recommender systems’ conditional effects on selective exposure: evidence from two online experiments",
+      "language": "en",
+      "publisher": "Oxford University Press (OUP)",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "oaAttempts": [
+        {
+          "source": "publisher_oa",
+          "url": "https://academic.oup.com/joc/article-pdf/73/2/138/49678241/jqac047.pdf",
+          "status": "invalid_or_unavailable",
+          "http_status": 403,
+          "reason": "invalid content"
+        }
+      ]
+    },
+    {
+      "doi": "10.1145/3491102.3517441",
+      "title": "Toward User-Driven Algorithm Auditing: Investigating users’ strategies for uncovering harmful algorithmic behavior",
+      "language": "",
+      "publisher": "ACM",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "oaAttempts": [
+        {
+          "source": "publisher_oa",
+          "url": "https://dl.acm.org/doi/pdf/10.1145/3491102.3517441",
+          "status": "invalid_or_unavailable",
+          "http_status": 403,
+          "reason": "invalid content"
+        }
+      ]
+    },
+    {
+      "doi": "10.1145/3447535.3462512",
+      "title": "Trick and Please. A Mixed-Method Study On User Assumptions About the TikTok Algorithm",
+      "language": "",
+      "publisher": "ACM",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1177/1461444818815684",
+      "title": "Playing the visibility game: How digital influencers and algorithms negotiate influence on Instagram",
+      "language": "en",
+      "publisher": "SAGE Publications",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://journals.sagepub.com/page/policies/text-and-data-mining-license"
+      },
+      "oaAttempts": [
+        {
+          "source": "publisher_oa",
+          "url": "https://journals.sagepub.com/doi/pdf/10.1177/1461444818815684",
+          "status": "request_failed",
+          "reason": "fetch failed"
+        }
+      ]
+    },
+    {
+      "doi": "10.1057/9781137029317_6",
+      "title": "Entextualization and resemiotization as resources for identification in social media",
+      "language": "en",
+      "publisher": "Palgrave Macmillan UK",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "http://www.springer.com/tdm"
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1080/10584609.2019.1686094",
+      "title": "Disinformation by Design: The Use of Evidence Collages and Platform Filtering in a Media Manipulation Campaign",
+      "language": "en",
+      "publisher": "Informa UK Limited",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "http://creativecommons.org/licenses/by-nc/4.0/"
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1037/xge0000098",
+      "title": "Knowledge does not protect against illusory truth.",
+      "language": "en",
+      "publisher": "American Psychological Association (APA)",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "http://www.apa.org/pubs/journals/resources/open-access.aspx"
+      },
+      "oaAttempts": []
+    }
+  ]
+}

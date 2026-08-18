@@ -1,0 +1,841 @@
+ID: A11
+DOI: 10.1017/mem.2024.8
+中文译名: 算法生成的记忆：通过感知挹取实现自动纪念
+英文原题: Algorithmically generated memories: automated remembrance through appropriated perception
+原文件: 文献全文/正文/A11_2024_算法生成的记忆：通过感知挹取实现自动纪念__Algorithmically generated memories automated remembrance through appropriated perception.pdf
+源URL: https://www.cambridge.org/core/services/aop-cambridge-core/content/view/99142EF526EEF3FEBE6ACF9CC91B7502/S2635023824000080a.pdf/div-class-title-algorithmically-generated-memories-automated-remembrance-through-appropriated-perception-div.pdf
+提取说明: 仅为机械文本提取，页码标记依原PDF；不代表已完成论证核验。
+
+
+===== PAGE 1 =====
+
+RESEARCH ARTICLE
+Algorithmically generated memories: automated
+remembrance through appropriated perception
+Ellen Emilie Henriksen
+École Normale Supérieure – PSL, Chair in Geopolitics of Risk, Paris, France
+Email: ellen.e.henriksen@gmail.com
+Abstract
+This article is on algorithmically generated memories: data on past events that are stored and auto-
+matically ranked and classified by digital platforms, before they are presented to the user as mem-
+ories. By mobilising Henri Bergson’s philosophy, I centre my analysis on three of their aspects: the
+spatialisation and calculation of time in algorithmic systems, algorithmic remembrance, and algo-
+rithmic perception. I argue that algorithmically generated memories are a form of automated
+remembrance best understood as perception, and not recollection. Perception never captures the
+totality of our surroundings but is partial and the parts of the world we perceive are the parts
+that are of interest to us. When conscious beings perceive, our perception is always coupled with
+memory, which allows us to transcend the immediate needs of our body. I argue that algorithmic
+systems based on machine learning can perceive, but that they cannot remember. As such, their per-
+ception operates only in the present. The present they perceive in is characterised by immense
+amounts of data that are beyond human perceptive capabilities. I argue that perception relates to
+a capacity to act as an extended field of perception involves a greater power to act within what
+one perceives. As such, our memories are increasingly governed by a perception that operates in
+a present beyond human perceptual capacities, motivated by interests and needs that lie somewhat
+beyond interests of needs formulated by humans. Algorithmically generated memories are not only
+trying to remember for us, but they are also perceiving for us.
+Keywords: algorithmically generated memories; digital memories; time; Bergson; philosophy;
+digital technologies
+Introduction
+Through my phone, Google Photos notifies me that 2 years ago on this day I encountered
+a black and white cat on the streets of Paris. I also saw a tree hugging the pole of a fence.
+During my morning coffee, Facebook notifies me with a picture taken 6 years ago of me
+and a friend I later lost contact with jumping on a trampoline. As I am waiting for the bus,
+my phone buzzes to remind me that 14 years ago I finished high school in what seems like
+a former life.
+The relatively new memory-functions appearing on social media platforms are one of
+the many ways in which digital media resurrects ‘the faded and decaying past of old
+school friends, former lovers, and all that could and should have been forgotten’
+(Hoskins 2017, 1). In this article, I attempt to make sense of the specific form of resurrec-
+tion of the past these memory-functions mediate. I borrow JeongHyun Lee’s (2020)
+© The Author(s), 2024. Published by Cambridge University Press. This is an Open Access article, distributed under the terms of
+the Creative Commons Attribution licence (http://creativecommons.org/licenses/by/4.0/), which permits unrestricted re-use,
+distribution and reproduction, provided the original article is properly cited.
+Memory, Mind & Media (2024), 3, e11, 1–15
+doi:10.1017/mem.2024.8
+https://doi.org/10.1017/mem.2024.8 Published online by Cambridge University Press
+
+
+===== PAGE 2 =====
+
+terminology and refer to them as ‘algorithmically generated memories’: data on past
+events that are stored and automatically ranked and classified by digital platforms, before
+they are presented to the user as ‘memories’. This includes features such as Facebook
+Memories (Jacobsen and Beer 2021a), Apple’s ‘Memories’ (Jacobsen 2022a), the memory
+function on Google Photos (Lee 2020), and the newly launched ‘Advanced Stories’ feature
+on Facebook, which generates ‘stories’ – photos and videos that are visible on the user’s
+profile for 24 h – based on previous posts (Hutchinson 2023). The sophistication of these
+apps differs, as Apple, Google, and Facebook’s ‘Advanced Stories’ classify and rank photos
+according to themes – such as specific people, places, and activities – whereas Facebook’s
+‘Memories’ generate both photos and text, and centres on content published ‘around this
+date’ in previous years (Konrad 2017). They all subject content to artificial intelligence (AI)
+vision that allows recognition of people, places, objects, activity, and mood, as well as sim-
+pler technologies such as rule-based filters that exclude screenshots and unfocused pho-
+tos as potential ‘memories’ (Shapira 2021). They also measure the engagement with
+algorithmically generated memories after they are presented to the user through shares,
+likes, and time spent engaging with the picture. Lee argues that these memories are not
+memories at all based on their cybernetic legacy: memory is reduced to a combination ‘of
+the data put in at the moment and of the records taken from past stored data’ (Lee 2020, 6)
+and a ‘technical synthesis of storage and recollection’ as memory implies ‘the processing
+of the recorded information for future behaviors’ (Lee 2020, 3). I, on the other hand, argue
+that they may well generate memories, but they are not memories made for you.
+Initially, this article was motivated by a sense of intrusion that arises whenever algor-
+ithmically generated memories impose themselves on my present. In an article on users’
+interactions with algorithmically generated memories, Jacobsen describes a common feel-
+ing of tension as users encounter these memories, a feeling marked by ‘an uncomfortable
+awareness of algorithms at work’ and ‘affective tensions of unpredictability’ (Jacobsen
+2022b, 13). Although I am not alone in feeling unease, other users report feeling joy
+when interacting with algorithmically generated memories, especially when the feature
+allows them to customise the memories shown, thus providing a ‘sense of agency with
+regards to how memories are classified, ranked and targeted’ (Jacobsen and Beer 2021b, 82).
+My own discomfort may therefore result from algorithmic failure and the so-called
+‘uncanny valley’: the disquiet from interacting with technologies that resemble humans
+but are not convincingly realistic. The technology, in this case an algorithm attempting
+to remember in a human way, reveals itself as technology, thus failing to produce the
+‘jogging happy memories’, as promised by Facebook (Reid 2019). But I believe there is
+more to my feeling of intrusion than algorithmic failure. I am intruded not only because
+the algorithm is prompting me to see specific parts of my past, but because the algorithm
+itself is seeing specific parts of my past: in telling me what to remember, the algorithm
+also sees me.
+Paglen (2016) delves into ‘the invisible visual culture’ of machine-images illegible to
+the human eye. There is a fundamental difference between analogously sharing a photo
+with your friends and sharing a photo on social media. A photo on Google, Apple,
+Facebook, Instagram, or Tiktok is immediately subject to machine vision dissecting it
+into data points that are legible to other machines, but not to humans. The machines,
+in this case a network of immensely powerful AI systems, reformulate content produced
+by us into machine-readable signals that are beyond our perceptual capacity. We encoun-
+ter algorithmically generated memories through vision: I see a picture of a tree embracing
+a fence. But that picture has already been re-packaged as a digital one, classified and
+ranked according to a series of identifiers created through machine vision and categorisa-
+tion of billions of pictures, before it is identified as a picture that will probably bring me
+joy. And as I am watching the picture, the duration of my gaze, whether I share it, or if I
+2
+Ellen Emilie Henriksen
+https://doi.org/10.1017/mem.2024.8 Published online by Cambridge University Press
+
+
+===== PAGE 3 =====
+
+delete it, are data to be extracted. The algorithmic systems generating my memory are
+perceptive, or as formulated by Paglen (2016): your pictures are looking at you.
+On algorithmic autonomy
+Algorithmically generated memories are at the same time digital memories and targeted
+content, and transformative of both. When Instagram prompts me to buy a black t-shirt, it
+does so based on clicks, likes, purchases and searches that I’ve done in the past: my past
+behaviour is mobilised to influence my present choices. Aradau and Blanke (2022) argue
+that algorithmic reason undoes the distinction between speech and action, as data on my
+behaviour become the ‘truth’ about who I am. My speech and conscious expressions are
+not the narratives that define me. Rather, acts that can be datafied are what render my
+‘truth’. Memories are central to how we perceive and understand the world, and how
+define and understand ourselves. When Google Photos prompts me to reminisce on
+cats I’ve met in Paris, it is an automated challenge to my auto-narration, as analysed
+by Jacobsen (2022a), generated by perceptive technologies that shift the epistemologies of
+self-knowledge. According to Henri Bergson, memory always informs (conscious) perception,
+and in challenging my memories, the algorithmically generated memory also challenges my
+perception, such as the way I view Paris, or how I perceive the beauty if cats.
+To capture their complexity, this article centres on three aspects of algorithmically
+generated memories: the spatialisation and calculation of time in algorithmic systems,
+algorithmic remembrance, and algorithmic perception. My point of departure is
+Bergson’s philosophy of time, memory, and perception. Central to my argument is that
+algorithms cannot remember because they cannot live in duration, but they can perceive.
+Whereas duration – time itself – is a qualitative multiplicity characterised by indivisible
+change, the time of algorithms is spatial, quantitative, and reduces change to the divisible.
+Algorithmically generated memories rupture our duration as they impede on our atten-
+tion to time as it passes, by invoking involuntary remembrance. They are not alone in
+evoking involuntary memory-work, but the scale and intimacy of their knowledge of
+our past, combined with the calculated rhythm of when pictures from our past are to
+be shown, make them different from other forms of involuntary memories. The gener-
+ation of algorithmically generated memories depends on machine-learning technologies,
+computer systems with the capacity to learn from and adapt to their surroundings with-
+out explicit instructions, and I argue that this makes them perceptive. They do not per-
+ceive as conscious beings perceive, but in a manner that lies closer to what Bergson
+describes as ‘pure perception’: the aggregation of images in the present, uninformed by
+the past. Bergson argues that perception prepares the ‘body’ – the one that perceives –
+for action. It is therefore related to the perceiver’s power to act. Consciousness and dur-
+ation, on the other hand, relate to indecision: to retain time, hesitate, and to perceive the
+world without immediately acting on it.
+Perception is to carve out static images of matter, it is always partial. What is per-
+ceived, which images are carved out, is motivated by the interests, and needs of the per-
+ceiver. When humans perceive, our memory pushes onto our present to inform our
+perception. As such, concrete perception – how we actually perceive – is somehow in
+the past. An algorithm cannot remember, it cannot actualise a virtual past to inform pre-
+sent perception, but only act on accumulated data that is materially stored in the present.
+Algorithmic perception is not a mere tool of human perception in the way that micro-
+scopes let us see bacteria and telescopes let us see the stars. Machine-learning algorithms,
+and AI technology in general, have a certain autonomy which is irreducible to the design
+by the original programmer, because they automate their own adaptation to an ever-
+changing world (Matzner 2019). Parisi (2019) conceptualises this autonomy as an
+Memory, Mind, and Media
+3
+https://doi.org/10.1017/mem.2024.8 Published online by Cambridge University Press
+
+
+===== PAGE 4 =====
+
+automation of automation, as the adaptive practice of machine-learning technologies
+allow them to generate new algorithmic rules. Hayles’ (2016, 2017) recognises that not
+all cognition is conscious, and that both humans and some machines are capable of non-
+conscious cognition. Consciousness, according to Hayles, includes primary consciousness,
+an awareness of self, shared by humans, many mammals, and aquatic species such as
+octopi. Additionally, secondary consciousness, shared by humans and (perhaps) a few pri-
+mates, is associated with ‘symbolic reasoning, abstract though, verbal language, mathem-
+atics, and so forth’ (Hayles 2017, 9). The autobiographical self is associated with higher
+consciousness, and is ‘reinforced through the verbal monologue that plays in our heads
+as we go about our daily business’ which is in turn ‘associated with the emergence of a
+self aware of itself as a self’ (Hayles 2017, 9). Cognition, however, which is shared by
+humans, animals, and some machines, involves a much faster processing of information
+than what consciousness is able of and the recognition of ‘patterns too complex and sub-
+tle for consciousness to discern, and drawing inferences that influence behavior and help
+to determine priorities’ (Hayles 2017, 10). Hayles argues that technologies such as AI,
+machine-learning algorithms and neural networks are nonconscious cognisers and can
+be transformative actors. Thus, what they do is irreducible to what a conscious mind
+intended for them to do (Hayles 2017). In Bergson, consciousness refers to the introduc-
+tion of a delay – hesitation and indecision – between an impression received and the
+mobilisation of a body (Bergson 1946). As such, consciousness is related to the ability
+to not act, to hesitate: to receive an impression through perception, without immediately
+translating it into action. Additionally, consciousness involves the capacity to be affected
+by the force of time, and to feel emotions in the presence of memories, and it is a question
+of mind rather than the brain (Bergson 1946, 2004; Lazzarato 2007). Hayles and Bergson
+both agree that action does not depend on consciousness, but whereas Hayles emphasises
+the role of processing information in nonconscious cognition, a Bergsonian approach
+allows for a greater emphasis on the capacity to act beyond consciousness.
+To argue that machine-learning algorithms are perceptive is not to argue that they are
+mere technological prolongations of human perception, or to argue that their perception
+is wholly autonomous from any human intent. But the interests and the capacity to act
+that inform algorithmic perception are irreducible to any human consciousness. The
+field of perception for an algorithmic system – the scale and granularity of big data – cor-
+relates with the power to act on that data, and both lie predominantly beyond human
+vision and conception. In the context of algorithmically generated memories, algorithmic
+perception implies that our memories are increasingly subjected to a perception that
+operates only in the present, and that the interests that inform algorithmic perception
+lie somewhat beyond interests or needs formulated by humans.
+On digital memories and Bergson
+Almost two decades ago, Jose Van Dijck asked how digital technologies affect acts of mem-
+ory. More pertinent to this article, she asked how digital technologies frame new ways of
+‘retrieving mediated records of time past’ (Van Dijck 2005, 313).
+There are obviously many ways to respond to both questions, as digital memory studies
+have shown, and any answer to these questions requires assumptions as to what a mem-
+ory is. In Digital Timescapes, Robert Kitchin writes that ‘memories are remembered pasts –
+the recollection of and engagement with past events, experiences, thoughts, viewpoints
+and emotions’ that are triggered by specific encounters with surroundings, and it differs
+from storage of information because ‘memory relates to the qualities of the information
+recorded and how it is experienced when encountered’ (Kitchin 2023, 58). Jacobsen and
+Beer refer to memories as something that ‘mediate those things that have been
+4
+Ellen Emilie Henriksen
+https://doi.org/10.1017/mem.2024.8 Published online by Cambridge University Press
+
+
+===== PAGE 5 =====
+
+experienced’ (Jacobsen and Beer 2021b, 2). By referencing to Walter Benjamin’s writings
+on memory, they describe memory as ‘an action’ of ‘digging’ for memory in one’s past: in
+fact, ‘it is this very process that defines a particular past moment as a memory’ (Jacobsen
+and Beer 2021b, 2). If we take Benjamin’s conceptualisation at face value, it would be dif-
+ficult to argue that algorithmically generated memories are memories at all. It is the algo-
+rithm, the platform, which sorts and ranks ‘your past’ in these memories. Removing the
+‘digging activity’ of a memory would therefore be a way of moving the past into the pre-
+sent through something else than a memory. However, as Kitchin notes above, a memory
+is also the engagement with the past: even if it is Google Photos that has ranked the pic-
+ture of a cat from 2 years ago as worthy of remembrance, I am also engaging in that
+remembrance with my own personal memory-images of that cat, of that day, and of
+that street. Google Photos has hierarchised my past in a way that is extensively out of
+my control, but some of the memory-images of my past are still mine to behold.
+Van Dijck’s notion of mediated memories implies that we remember both in and
+through media technologies (Van Dijck 2009). The mediation of memories happens in
+and through technologies that are produced and mediated by the ‘political economy of
+attention’ (Garde-Hansen and Schwartz 2017). This involves an acknowledgement of the
+social and shared nature of memories: that our recollection of and engagement with
+the past is never only a personal endeavour. The collective, or social aspect of memory
+has been recognised by memory studies long before the advent of digital media, amongst
+others by Maurice Halbwachs (Marcel 2007). Where Bergson’s philosophy of memory is
+centred on the memory-images in a person’s mind, and the way memory informs a per-
+son’s perception in the now, his contemporaries like Halbwachs and Pierre Janet empha-
+sised the social nature of remembering. Janet argued that the very definition of memory
+is social: memory is a narrative, or account [récit]; there is no memory if we do not have a
+narrative of a past to share with another – regardless of whether that narrative is actually
+shared or not (Janet 2006). From a sociological point of view, the digital memory economy
+fuelled by digital media is therefore monetising an already social practice, which perpe-
+tuates already existing inequalities in social remembrance (Pogačar 2017). In addition to
+being highly industrialised and complex, digital memory is a field of social production
+that is ‘both external and internal’: digital technologies record data from within our
+body through medical imaging, and they ‘capture and record data memories from far
+reaches of the universe and bring that knowledge to earth’ (Reading and Notley 2017,
+235). Memory, as an ‘egocentric yet deeply social’ activity (Hoskins 2016, 348), is therefore
+reaching further in, and further out, through digital technologies. Algorithmically gener-
+ated memories are one of the ways in which digital memory is reaching further in, and to
+capture this it is necessary to appreciate the intimate activity of remembering. The story
+we tell about a memory, the social negotiation of how the past should be actualised in the
+present, can never occur in a vacuous individual mind. However, the accumulated images
+from our body’s perception of matter through time are of an individual nature; although
+the past is organic, flexible, and negotiable, it is moved into the present as a memory by a
+consciousness. And it is this very intimacy that algorithmically generated memories tap
+into. To capture that process it is appropriate to start with a theory of memory which
+supposes the mind as the mediator of memory.
+In a broad sense, this paper is centred on the last of Van Dijck’s questions mentioned
+above: how digital technologies frame new ways of retrieving mediated records of time
+past. Bergson has previously been mobilised to analyse transformations to memory insti-
+gated by digital media. Ernst (2017) and Van Dijck (2009) both refer to Bergson to argue
+that memory always forms part of the present and the active nature of remembrance, as
+‘the present dictates memories of the past: memory always has one foot in the present
+and another in the future’ (Van Dijck 2009, 160–161). As I will discuss below, the present
+Memory, Mind, and Media
+5
+https://doi.org/10.1017/mem.2024.8 Published online by Cambridge University Press
+
+
+===== PAGE 6 =====
+
+too always has one foot in the past. In his analysis of biobanks as an exteriorisation of
+memories of life, Clarizio (2022) uses Bergson to emphasise how memory pertains to
+life – that it is the living that remembers, and not the inorganic. However, memory
+can also be exteriorised through intelligence, and materialised as technology. In the con-
+text of biobanks this duality is actualised as memories of life, beyond the individual that is
+living, are materialised in technology. Amoore and Piotukh (2015) refer specifically to
+Bergson’s notion of perception as the authors analyse the way in which machine-learning
+algorithms perceive the world within which they move, to adapt to said world. They argue
+that algorithms are ‘organs of perception’ that quantify the world and see only parts of
+objects that are of immediate interest. Parikka (2017) engages with Bergson’s philosophy
+to a lesser extent, as he does not engage with Bergson directly, but references Maurizio
+Lazzarato’s (2007) in-depth analysis of Bergson’s duration [la durée]1, and the way in which
+time is what prevents everything from happening at once. Lazzarato analyses video and
+information technology as machines that crystallize time. He views videos as correspond-
+ing to Bergson’s notion of perception in order to ‘pose the only reasonable question that
+can be addressed to these new technologies: to what degree of power [puissance], to what
+capacity to act, do they correspond?’ (Lazzarato 2007, 93, emphasis in original) Bergson
+views perception as directly linked to a capacity to act, and memory and time as inevit-
+ably linked to a capacity to feel. My analysis differs from Amoore and Piotukh’s references
+to the machine-learning algorithm as an ‘organ of perception’ because I argue that
+machine-learning algorithms, as autonomously adapting to a changing environment,
+are perceivers, and not mere prolongations of human perceivers. Rather, I agree with
+Lazzarato’s observations that machine perception – in his analysis a video machine –
+‘has something of pure perception about it’ (Lazzarato 2007, 98) and Hayle’s assertion
+that the speed of algorithmic cognition – in her analysis of High-Frequency Trading –
+introduces ‘a temporal gap between human and technical cognition that creates a
+realm of autonomy for technical agency’ (Hayles 2017, 142; see also Beer 2017).
+Combined with the aforementioned scale of algorithmic perception, machine-learning
+algorithms should be conceptualised as perceivers, rather than mere organs of perception.
+On duration and the time of algorithms
+I had forgotten my friend pictured with me on a trampoline. We had never been close, and
+our estrangement had been undramatic. We had simply shared a shallow bond for a breath
+of time, which had disintegrated into nothingness without either of us paying too much
+attention. When Facebook nudges me to reminisce about this specific moment lost to the
+past, it is part of the ‘programmed sociability’ of social media (Bucher 2018). My former
+friend and I are still ‘friends’ on Facebook, and ‘friendship’ is at the heart of Facebook’s
+business model. Of course, the Facebook version of ‘friend’ has little to do with what
+we otherwise think of as friendship, but is a category created to drive interaction, asso-
+ciation, participation, and time spent on the platform (Bucher 2018). But there is more
+at stake here than a computational ambition to create friendships from collected sets
+of zeros and ones. There is also a tension arising from time being fractured. The past is
+too sharply cut off from the present as the I in the picture is not me, it is another,
+and the past shown is not my own. Before I habitually picked up my phone, the durational
+1 The translation to English of certain key concepts of Bergson’s philosophy is the source of both confusion
+and conflict. Even though several of his books were translated during his lifetime and authorised by him, their
+English translation sometimes fails to capture the original French meaning. I have, therefore, decided to include
+the French term in brackets when introducing his key terms. See Tomlinson and Habberiam (1991) for a short
+discussion on the translation of Bergson’s work to English.
+6
+Ellen Emilie Henriksen
+https://doi.org/10.1017/mem.2024.8 Published online by Cambridge University Press
+
+
+===== PAGE 7 =====
+
+me was drinking my morning coffee in the present, whilst travelling between memories of
+the past, thoughts of the day, plans for the future and the fluid moment of the present:
+the process of caffeination here and now.
+Bergson introduces the concept of duration in his doctoral thesis, the English title of
+which is Time and Free Will, an essay on the immediate data of consciousness in 1889. Duration
+is not the quantitative time measured by clocks, but a ‘heterogenous multiplicity’: flowing,
+fluid, and rhythmic, and accessible through intuition. Duration cannot be measured in
+seconds and minutes, where each moment is gone as the next one arrives. The length
+of a moment is fluid, and it is a question of attentiveness to a period of duration.
+Duration concerns ‘the happening of time as it passes’ (Guerlac 2021, 45, emphasis in ori-
+ginal). To describe duration, Bergson often turns to the image of music, to rhythm, to cap-
+ture the qualitative nature of time as opposed to the quantitative nature of space. When
+we listen to a piece of music, we do not listen to each individual note, but we ‘perceive
+them in one another’, so that ‘if we interrupt the rhythm by dwelling longer than is
+right on one note of the tune, it is not the exaggerated length, which will warn us of
+our mistake, but the qualitative change thereby caused in the whole of the musical phrase’
+(Bergson 2001, 101). Duration ‘knits past, present, and future together’ as the musical
+phrase ‘both flows through time and holds time, bonding the first notes … to the last in
+an unusual structure in which unity and multiplicity overlap’ (Guerlac 2021, 47). In a lec-
+ture on the soul and the body, given in Paris in April 1912, Bergson writes that ‘our whole
+psychical existence is something just like this single sentence, continued since the first
+awakening of consciousness, interspersed with commas, but never broken by full stops.
+And consequently I believe that our whole past still exists’ (Bergson 1920). Duration –
+the happening of time as it passes – is therefore a question of attention in a literal
+sense, as the division between present and past is relative to ‘the extent of the field
+which our attention to life can embrace. The ‘present’ occupies exactly as much space
+as this effort’ (Bergson 1946, 127). Just as history becomes history when it does not
+have any ‘direct interest to the politics of the day and can be neglected without the affairs
+of the country being affected by it’ (Bergson 1946, 127), our present becomes our past
+when our immediate attention to duration is broken.
+The past doesn’t cease to exist as a new present arrives but goes on to exist in a virtual
+state. Whereas the present is actual [actuelle]2 and real, the past is virtual. Bergson refers
+to the virtual past of everything that has ever been as ‘pure memory’ [mémoire pure]
+which we may actualise in the present through remembrance. Our attention to life is condi-
+tioned by memories, but if incohesive, memories impede ourattentivenessto the present, and
+the past demands privilege over the actual life of now. To be attentive to the present is not
+about forgetting one’s former states, ‘it is enough that, in recalling these states, it does not
+set them alongside its actual state … but forms the past and the present states into an organic
+whole’ (Bergson 2001, 100). Pure duration, to exist fully in time, is the form assumed by ‘our
+conscious states … when our ego lets itself live, when it refrains from separating its present
+state from its former states’ (Bergson 2001, 100, emphasis in original). As illustrated by
+Sinclair (2020), we do not understand a work of music by recollecting the previous note as
+the current one is being played. Rather, we experience the whole melody as one continuous
+flow of time which is not delegated to the past until the rhythm has stopped. To act as our
+whole being, as our whole duration as one, is for Bergson the highest degree of freedom.
+But memories are often incohesive and rupture our attention to life – this is not unique
+to algorithmically generated memories. Any part of our surroundings has the potential to
+2 Bergson uses ‘actual’ in contrast to the ‘virtual’ ontological status of the past. The choice of the word ‘actual’
+to describe the material realness of the present is more intuitive in French than in English. Whereas the English
+meaning of ‘actual’ lies closer to ‘real’ or ‘in fact’, in French, ‘actuelle’ means ‘current’ or ‘existing’.
+Memory, Mind, and Media
+7
+https://doi.org/10.1017/mem.2024.8 Published online by Cambridge University Press
+
+
+===== PAGE 8 =====
+
+trigger a memory disrupting our morning routine and Bergson acknowledges that many
+memories are involuntary, and that always being attentive to life is unattainable. I may
+detach myself from my present and rupture my attentiveness to duration, if I smelled
+the perfume of someone missed, or heard a tune I had forgotten that exists. And had
+the former friend jumping on the trampoline been someone dear to me, I may even
+have reminisced in gratifying nostalgia, as many social media users do. But somehow, tar-
+geted content generated by digitally stored personal data and information seems qualita-
+tively different from familiar perfume worn casually by a stranger. One obvious reason for
+that is that the pictures generated by these media are directed towards me. A stranger
+wearing a certain perfume is not doing so to evoke specific memory-work in me – to
+deliberately rupture my attentiveness to duration would require them to possess detailed
+knowledge of my past and to mobilise this knowledge would be rather manipulative. An
+algorithmically generated memory has a purpose. Its aim is to give me a pleasant feeling
+and make me spend more time on the platform; my memory-work is manipulated in a
+quest for revenue (Reid 2019). But to be targeted by algorithmically generated content
+is not unique to algorithmically generated memories. The very temporality of social
+media, the rhetoric of how the world is formulated on the interface I behold is already
+composed for my eyes, or more specifically an assumption of who the one who sees is
+(Bucher 2020; Jacobsen 2022b). And this assumed I – the data double composed by all
+traces I have left online coupled with assumptions on what someone ‘like me’ ‘is like’
+(Lury and Day 2019) – has its own ‘rhythm’ (Carmi 2020) which operates in tandem
+with my own duration and my own becoming. But my data double does not become –
+it is not a conscious being and it feels nothing at all in its encounter with an algorithmi-
+cally generated memory – it has no attentiveness to time as it passes that can be ruptured:
+it is an emotionless, spatialised shadow of my conscious being, whose development is tar-
+geted, in an attempt to target me, by algorithmically generated memories.
+It is the ‘universal becoming’ and the assertion that ‘reality is becoming’ (Bergson 1946,
+131) that came to form part of the metaphysical background for cybernetics. Halpern
+argues that Wiener (1948) chose to refer to Bergson specifically in Cybernetics because
+Bergson’s attempt to ‘produce forms of thought that did not remain static and always
+combined the memory of an event with its future’ (Halpern 2014, 52) gave Wiener the
+‘tools for creating systems that were self-referential and in which the temporal frames
+of recording the past and producing the future became compressed’ (Halpern 2014, 53).
+The cybernetic, and computational, view on machine memory as the storage and categor-
+isation of information to inform future action is similar to Bergson’s insistence on the past
+never ceasing to exist, but pushing onto our present which is always directed towards the
+future. However, cybernetic, computational, and algorithmic time is always a spatial one,
+as pointed out by Amoore and Piotukh (2015). AI, for instance, cuts up time in ‘time slices’,
+during which variables can be ‘measured’ as the world is viewed as a series of snapshots
+(Russell et al. 2010, 567). Although the length of the time slices varies, they always serve
+to cut up continuous change, such as the slice of time I let a picture of a cat cover the
+screen of my phone, during which my actual gaze moves from the picture’s background,
+to cat, and to inwards reflection as I conjure my own memory-images. In algorithmic rea-
+son, becoming is always divisible, dividing up change, and algorithmically generated
+memories are generated in time slices, crystallising time (Lazzarato 2007).
+On how the past survives in the present
+It is afternoon and I am trying to recall what I need to get from the supermarket. Google
+Photos notifies me with a composed selection of images taken at twilight titled ‘The
+golden hour’. One of the photos is taken as I am eating apples next to a bonfire. Next
+8
+Ellen Emilie Henriksen
+https://doi.org/10.1017/mem.2024.8 Published online by Cambridge University Press
+
+
+===== PAGE 9 =====
+
+to me is my partner at the time trying to devour a melted marshmallow without com-
+promising their elegant disposition. I notice a former colleague I had never liked; I had
+forgotten they had been there. It is cloudy, although I had always imagined the evening
+sky to be clear. The shopping list I had been drawing up in my mind only minutes earlier
+has disappeared, as I feel sadness in hearing laughter long gone and a bonfire that stopped
+burning almost a decade ago.
+As I have already discussed, the past represented in this photograph is not gone but
+goes on to exist in a virtual state. It is this virtual state that Bergson refers to as ‘pure
+memory’, but it is perhaps more accurately described as ‘pure past’ (Sinclair 2020).
+Pure memory is not a conservationist argument claiming that memory is merely the accu-
+mulation of all that has happened. Rather, it is a metaphysical argument as to the ‘past-
+ness’ of a memory-image. When all that is real and actual is the present, a memory-image
+too is in the present, just as any imagination with no relationship to something that has
+happened is in the present. To distinguish a memory-image from an imagination, some-
+thing about the memory must give it its ‘pastness’, which cannot be anything found in the
+present such as a data centre, diary, or the brain. As such, it is hard to capture by language
+as we cannot ask where it goes, because the framework of space is misplaced: it is virtual
+and not material, it does not go any‘where’. But data on my behaviour, on the time and
+place the photo was taken, are all material and stored ‘somewhere’ in the cloud, in the
+present. The data stored in big data is therefore only a specific form of knowledge of the
+past, limited to knowing only the past that can be datafied.
+Bergson describes the activity of remembering as how the past survives in the present
+(Bergson 2004). He argues that although we remember more than we seem to think, we
+cannot capture pure memory in its totality. Rather, the parts of pure memory that survive
+in the present depend on the present whence it is conjured. It is an activity of the present
+which allows the past to take actual form but the form it takes will never be ‘accurate’, it
+will never be a complete reproduction of the past in all its complexity. Pure memory, for
+Bergson, is not the storage of everything that passes, which can then be replayed at will.
+Rather, pure memory is the predicament of remembrance: ‘there can be no pure act of
+remembering’ (Sinclair 2020, 100, emphasis in original).
+The complexity of our memory-images depends on our interests in the present situ-
+ation we remember in. When memories are mobilised to inform action, they are reduced
+in detail, and we recollect only what is useful for our actions in the present. When I am
+composing my shopping list, I am recalling my empty fridge to readily inform my action
+in the present, which is to write down which foods I am lacking. I am reducing the com-
+plexity of the image I have of my kitchen; of the dishes that should have been washed, and
+the boredom of my morning routine. When we move towards pure memory,
+memory-images retain more fully their details, as ‘we detach ourselves from our sensory
+and motor state to live in the life of dreams’ (Bergson 2004, 211). A memory is therefore
+necessarily organic and flexible as what past survives in the present depends on the pres-
+ence whence it is visited. This processual notion of memory, that it is a process of moving
+the past into the present, forms the basis of the cybernetic imagination of memory, as
+memory becomes a ‘temporal matter of processing the archive, instead of the spatial mat-
+ter of recording data in storage’ (Lee 2020, 5). As argued by Lee, the composition of photos
+presented by Google is an example of how ‘computer-memory is no longer read-only stor-
+age, but the successively generated archive … even though what appears on the screen
+seems permanent, link locations of information always change in every regeneration of
+the information’ (Lee 2020, 5). There are, however, nuances to that claim. Coeckelbergh
+(2021) points out that the very data points that are stored do not change in real-time
+as soon as they enter the data set: we can change the algorithm, but the data on the
+past is stored in data points, spatialised in an eternal present. But these data points are
+Memory, Mind, and Media
+9
+https://doi.org/10.1017/mem.2024.8 Published online by Cambridge University Press
+
+
+===== PAGE 10 =====
+
+illegible to us, or to use Paglen’s (2016) formulation – they are invisible to us – and the
+only way in which we can see them is through algorithms that evolve through time, show-
+ing us bits of our past when it is considered the ‘right-time’ (Bucher 2020; Jacobsen 2022b)
+to do so.
+Bergson is not always clear on how pure memory – the past – comes to be actualised in
+human remembrance. On one hand, memories push onto the present; they inform percep-
+tion even when I am not conjuring them. As such, perception is already memory, because
+in practice ‘we perceive only the past, the pure present being only the ungraspable pro-
+gress of the past gnawing into the future’ (Bergson 2004, 194). But on the other hand, he
+describes the past as impotent, until ‘consciousness … follows memory at work’ (Bergson
+2004, 171). Whereas the first formulation describes how perception is never without mem-
+ory, as ‘it is impregnated with memory-images which complete it as they interpret it’
+(Bergson 2004, 170), the latter accounts for the voluntary memory-work of letting parts
+of pure memory become actualised in the present. Sinclair argues that the notion of
+pure memory both pushing onto the present, and impotent until activated by memory-
+work lets us ‘understand involuntary memory as a function of memories that come
+back to us without us having sought them’ (Sinclair 2020, 105).
+The series of photographs taken at twilight, composed by Google Photos as a category
+of the past to be remembered, invoke involuntary memories in me. They rupture duration
+as I am not taking a voluntary leap into the dreamlike state of nostalgia, which ‘I may
+lengthen and shorten at will; I assign to it any duration that I please’ (Bergson 2004,
+91). The fluid present of my morning coffee is ruptured by spatialised knowledge on
+my past, as I involuntarily actualise memories of a past deemed valuable by algorithmic
+systems owned by Google Inc. However, as I engage with the algorithmically generated
+memory, I am re-negotiating my memory-images, as their meteorological canvas and
+social composition are called into question. As such, my interaction with the algorithmi-
+cally generated memory is at both times involuntary and voluntary. My memory-images
+are triggered without me having sought them, but I consciously engage with them as they
+emerge in ‘an interactive and iterative process of interpretation and reinterpretation of
+an ‘imagined reconstruction’ of the past and [my] relationship to that past’ (Jacobsen
+and Beer 2021b, 64).
+As described by Lazzarato, duration is force, ‘and it acts like one because it produces
+the capacity to ‘feel’, to be affected’ (Lazzarato 2007, 95). A memory-image both informs
+my actions in the present – it implies a capacity to act – and it evokes emotions in me, it
+leaves me affected. An algorithm cannot remember, and duration lies beyond its grasp
+because it can act only in spatialised time. But it can act on my duration; it has capacity
+to make me feel, to be affected. And it can do so because it perceives without memory.
+And it can do so effectively, because its power to act is proportional to its perceptual hori-
+zon, and not its will or consciousness.
+On algorithmic perception
+Despite never having labelled any of the photos stored in the Google cloud, Google photo
+has managed to identify and categorise photos taken during ‘the golden hour’ and antici-
+pate that seeing these photos would affect me, and hopefully bring me joy. Such a categor-
+isation depends on the Google algorithm being able to distinguish sunlight from artificial
+lightening, just as it can distinguish cats from dogs, and smiles from frowns. The auto-
+matic generation of albums implies that ‘the algorithms can identify not only information
+about photos but also information in photos’ (Lee 2020, 8, emphasis in original).
+Algorithmic perception is not entirely autonomous from human needs and interests.
+The categories are usually created by human beings, and the algorithm has been trained,
+10
+Ellen Emilie Henriksen
+https://doi.org/10.1017/mem.2024.8 Published online by Cambridge University Press
+
+
+===== PAGE 11 =====
+
+usually with some supervision involved, on training sets consisting of photos taken by
+human beings. But subsequent perception happens without supervision, and what an
+algorithm can perceive is often beyond our sight. This is both because of the sheer
+scale of what is perceived, and because their perception follows a logic that seems
+alien to the human eye. Paglen (2016) writes that Facebook’s DeepFace algorithm,
+which was first deployed almost 10 years ago to identify faces, can achieve 97% accuracy
+at identifying individuals. That percentage is comparable to what a human can achieve,
+but ‘no human can recall the faces of billions of people’ (Paglen 2016). The Eigenface tech-
+nology, used in surveillance technologies, identifies the uniqueness of faces by subtracting
+all common features from a face, thus creating facial ‘fingerprints’ (Acar 2018; Paglen
+2016). Machine vision is developed to transcend human vision through its own set of per-
+ceptual rules, which are continuously being updated through the expansion of available
+training sets.
+The present, according to Bergson, the extended period of duration we refer as ‘now’, is
+actual and real. Although concrete perception is always informed by memory which
+pushes onto our present, pure perception is not virtual, but spatial. When we perceive
+an object, we perceive an aggregate of images. The word ‘image’ does not denote anything
+more mysterious than the impressions made on my sensory organs by my morning coffee.
+In arguing that matter is an aggregate of images, Bergson sought to undo the dualism of
+materialism and idealism: our perception of our surroundings is not independent of the
+objects we perceive, but it is limited and can never capture the totality of what we have in
+front of us (Bergson 2004). Our body too is an image, just as the external world is an
+aggregate of images. But our proper body is privileged compared to the others, because
+perception is informed by what the body that perceives finds useful; what is of interest to
+the body, and it does so to prime the body for action. I have already argued that machine-
+learning algorithms cannot be reduced to their original design: their automatic adapta-
+tion as they voyage through the actual world has a degree of independence from their
+original design. The perceptive machine-learning algorithm is therefore more than an
+‘organ of perception’, as argued by Amoore and Piotukh (2015), but lies closer to a
+‘body that perceives’, a perceiver.
+Perception is subjective and extracts from a given situation ‘that in it which is useful,
+and [stores] up the eventual reaction in the form of a motor habit, that may serve other
+situations of the same kind’ (Bergson 2004, 218), and it is this lag between perception and
+bodily action which is created by consciousness. In conscious perception, it is through the
+moment of hesitation and indecision that ‘the impression received, instead of expanding
+into more movements, spiritualises itself into consciousness’ (Bergson 2004, 100). In a cer-
+tain way, Bergson’s perception recasts how we commonly approach questions on agency
+and consciousness. In Bergson, consciousness is not directly related to action, but to the
+moment of hesitation which allows us to choose how to act. Consciousness is to be found
+in a time lag: in indecision, in inaction, the ability to receive an impression through per-
+ception without immediately acting on it. Pure perception is the perception of the world
+without duration, it is the perception of the world of only images, without any rhythm
+of duration, but human perception is never pure, but concrete. When conscious beings
+perceive, pure perception is always coupled with memory, which allows concrete percep-
+tion to perceive images in one another, fitting them into rhythms and continuous change
+(Bergson 1946, 2004), but in pure perception, duration is abolished and ‘the result will be
+an infinitely more divided, diluted duration’ (Lazzarato 2007, 94).
+The records of the past stored in the cloud were once records of the present: all pasts
+have at some point been present. When these records are perceived, they too are per-
+ceived in the present and do not let the past survive in the present. Rather, they reduce
+the past to actual and real data points that can be perceived in the present; they deny
+Memory, Mind, and Media
+11
+https://doi.org/10.1017/mem.2024.8 Published online by Cambridge University Press
+
+
+===== PAGE 12 =====
+
+the past its virtuality. Lazzarato writes that ‘technologies simulate corporeal perception in
+that they operate on the single plane of the present, like a mechanism that receives and
+returns movements’ (Lazzarato 2007, 110). But duration ‘is what hinders everything from
+being given at once. It retards, or rather it is retardation’ (Bergson 1946, 75). The speed
+between perception and movement is also central to Wiener’s moral and technical reflec-
+tions on automatic cognition, as he writes that machines ‘can and do transcend some of
+the limitations of their designers, and that in doing so they may be both effective and
+dangerous’ (Wiener 1960, 1355). A danger he identified was the speed at which machines
+can perform tasks, which means that human criticism of their performance risks always
+being too late (Wiener 1960). As mentioned above, Hayles (2016) too argues that the speed
+of machine cognition creates a time gap for machine agency. Duration, and consciousness,
+introduces a delay between impressions received and bodily reaction, which in turn
+retards power to act on the world. The power of algorithmic technologies lays in their
+lack of consciousness, in their abolishment of hesitation between perception and action.
+But as unconscious, a machine-learning algorithm’s adaptation to its surroundings is
+purely automatic. The direct translation of impressions received into bodily action is
+deterministic and devoid of choice. What makes the machine-learning algorithm change
+in ways that may seem unpredictable, is not the unpredictability of its reactions to input,
+but the unpredictability of what it perceives. It feeds off human hesitation, and as such
+also human consciousness. Its power to act lies in its lack of choice, and its power to
+adapt lies in our indecision.
+The present within which algorithms perceive is an extended one, as it is composed by
+data of an immense scale and granularity. Aradau and Blanke argue that algorithmic rea-
+son ‘promises to transcend the methodological and ontological distinctions between small
+and large, minuscule and massive, part and whole’ (Aradau and Blanke 2022, 23). When we
+perceive something distant, its capacity to act on us is virtual, and so is our capacity to act
+on it. But as the distance between us and what we perceive decreases, the ‘more virtual
+action tends to be transformed into real action’ (Lazzarato 2007, 100). In undoing the dis-
+tinctions between small and large, algorithmic reason also seeks so undo the distinction
+between distant and near: the immediate presence is ever more expansive. In the context
+of algorithmically generated memories, that means that knowledge of an event of my past
+lies close to the real and actual actions of immensely powerful AI systems, whilst distant
+and invisible to any conscious being trying to perceive the same data. This is not exclu-
+sively bad. It is presumptuous to assume that all that is forgotten should be forgotten, and
+there may be things in pure memory that I can only actualise through the help of algor-
+ithmically generated memories. But it does mean that my past does not primarily exist in
+a virtual state, that I access and leave at my own will, or that potently informs my present
+through my perception. It means that knowledge of my past persists in a spatialised and
+actual form, which is no more accessible to me than my pure memory, but whose legibil-
+ity is extensively determined by algorithmic perception. In a way, we can never perceive
+our past, but an algorithm can.
+Perception is a determination of the possible: we see what we can act on. That algorith-
+mic perception is motivated by more than human interests, also means that the actions
+that can be acted on are formulated by more than human capacities. When Facebook
+nudges me to remember a former friend, it is doing so because my former friend is on
+Facebook: we are Facebook friends, and our reconciliation is actionable on Facebook. In
+perceiving my past, algorithms are also appropriating the delineation of what can be
+acted on, in my life. Facebook was able to perceive that my former friend and I had pre-
+viously spent time together through organic content published on the platform. Facebook
+could also perceive that the former friend and I had not been a couple that broke up, and
+that neither of us was dead, because in both those cases it could be unpleasant for me to
+12
+Ellen Emilie Henriksen
+https://doi.org/10.1017/mem.2024.8 Published online by Cambridge University Press
+
+
+===== PAGE 13 =====
+
+be reminded of my memories of them. The person on the trampoline is not the only for-
+mer friend I could have reminisced on and potentially re-establish contact with. But if
+they are not on Facebook, in a photo, with me, and Facebook friends with me, that is
+not perceivable to a Facebook algorithm, because it is not actionable to Facebook. That
+may not significantly influence my life: I am still free to reminisce in my own
+memory-images, searching for friends I have lost contact with and choose whether I
+want to reach out to them or not. But no matter what I choose, the algorithm will
+feed off that choice, adapting its future behaviour based on whether I ignore the picture,
+share it, or delete it. I can also ignore the compilation of ‘The golden hour’ that Google has
+composed for me, or I can quickly skip from one picture to the next, delete some of them,
+delete all of it, or share the whole album with my friends. The choice is mine, but the
+delineation of available choices is created by Google, and it is generated in front of me
+faster than anything similar I could have achieved myself. And no matter what I choose,
+it will feed off that choice, adapt to it, and therefore encompass it in an ever-expanding
+present beyond my perception.
+Conclusion
+I have the freedom to turn off the notifications on my phone, and to limit the amount of
+photos I take and the photos I share. I may also choose to ignore algorithmically gener-
+ated memories and spend my days reminiscing in my own memory-images, free from
+buzzing notifications. But neither of those choices would stop the transformation of
+memory-practices brought on by digital media, and algorithmically generated memories
+plays an important part in contemporary memory-practices. On social media, algorithmi-
+cally generated memories are a way to salvage platforms from decreases in organic con-
+tent published by their users (King 2023), and for users they are a convenient way to
+generate attention without having to create new content (Hutchinson 2023; Worb
+2022). In this article, I have untangled the power that pertains to algorithmically gener-
+ated memories and argued that machine-learning algorithms should be understood as
+perceptive. When perception immediately leads to action, those actions are ‘determinate
+movements’, according to Bergson (Bergson 2004, 219). But in dreaming, which is the
+opposite to what I have described as nonconscious perception, perception ‘melts into an
+infinity of memories, all equally possible’ (Bergson 2004, 219). The lack of hesitation
+between perception and action which demarks the power of algorithmic perception, is
+also what delimits the possible in algorithmic reason. Because it is their nonconscious per-
+ception which allows them to perceive widely and act quickly. And it is their lack of hesi-
+tation which limits their – and subsequently some of our – imagination of what is possible.
+Data availability statement. No data.
+Acknowledgements. I would like to thank my anonymous reviewers for valuable comments.
+Funding statement. This work received no specific grant from any funding agency, commercial of
+not-for-profit sectors.
+Competing interests. There are no competing interests.
+References
+Acar N (2018) Eigenfaces: Recovering Humans from Ghosts. Available at: https://towardsdatascience.com/
+eigenfaces-recovering-humans-from-ghosts-17606c328184 (accessed 18 March 2024).
+Amoore L and Piotukh V (2015) Life beyond big data: governing with little analytics. Economy and Society 44(3),
+341–366. https://doi.org/10.1080/03085147.2015.1043793
+Memory, Mind, and Media
+13
+https://doi.org/10.1017/mem.2024.8 Published online by Cambridge University Press
+
+
+===== PAGE 14 =====
+
+Aradau C and Blanke T (2022) Algorithmic Reason: The New Government of Self and Other, 1st Edn. Oxford: Oxford
+University Press. https://doi.org/10.1093/oso/9780192859624.001.0001.
+Beer D (2017) The data analytics industry and the promises of real-time knowing: perpetuating and deploying a
+rationality of speed. Journal of Cultural Economy 10(1), 21–33.
+Bergson H (1920) Mind-Energy. Lectures and essays, Wildon Carr H (trans). New York: Henry Holt and company.
+Bergson H (1946) The Creative Mind. An Introduction to Metaphysics, Andison ML (trans). New York: Dover
+Publications, Inc.
+Bergson H (2001) Time and Free Will. An Essay on the Immediate Data of Consciousness. New York: Dover Publications, Inc.
+Bergson H (2004) Matter and Memory. New York: Dover Publications, Inc.
+Bucher T (2018) If…Then: Algorithmic Power and Politics. Oxford: Oxford University Press.
+Bucher T (2020) The right-time web: theorizing the kairologic of algorithmic media. New Media and Society 22(9),
+1699–1714.
+Carmi E (2020) Rhythmedia: a study of facebook immune system. Theory, Culture & Society 37(5), 119–138. https://
+doi.org/10.1177/0263276420917466
+Clarizio E (2022) Biobanks as exteriorized memories of life. Philosophy & Technology 35(1), 6. https://doi.org/10.
+1007/s13347-022-00504-8
+Coeckelbergh M (2021) Time machines: artificial intelligence, process, and narrative. Philosophy & Technology 34,
+1623–1628.
+Ernst W (2017) Tempor(e)alities and Archive-Textures of Media-Connected Memory. In Hoskins A (eds), Digital
+Memory Studies: Media Pasts in Transition. New York and London: Routledge.
+Garde-Hansen J and Schwartz G (2017) Iconomy of Memory. On remembering as digital, civic and corporate
+currency. In Hoskins A (eds), Digital Memory Studies. Media Pasts in Transition. London and New York:
+Routledge, Taylor & Francis Group, 156–172.
+Guerlac S (2021) Duration. A fluid concept. In Sinclair M and Wolf Y (eds), The Bergsonian Mind, 1st Edn. London:
+Routledge, 45–54. https://doi.org/10.4324/9780429020735-7.
+Halpern O (2014) Beautiful Data. A History of Vision and Reason since 1945. Durham & London: Duke University Press.
+Hayles NK (2016) Cognitive assemblages: technical agency and human interaction. Critical Inquiry 43(Autumn),
+32–55.
+Hayles NK (2017) Unthought: the Power of the Cognitive Nonconscious. Chicago (Ill.): University of Chicago press.
+Hoskins A (2016) Memory ecologies. Memory Studies 9(3), 348–357. https://doi.org/10.1177/1750698016645274
+Hoskins A (2017) The Restless Past. An introduction to digital memory and media. In Hoskins A (eds), Digital
+Memory Studies. Media Pasts in transition. New York and London: Routledge.
+Hutchinson A (2023) Facebook Tests AI Generated Stories Based on Your Previously Shared Images. Available at:
+https://www.socialmediatoday.com/news/Facebook-Tests-AI-Generated-Stories/647547/ (accessed 18 March
+2024).
+Jacobsen BN (2022a) Algorithms and the narration of past selves. Information, Communication & Society 25(8), 1082–
+1097.
+Jacobsen BN (2022b) When is the right time to remember? Social media memories, temporality and the kairo-
+logic. New Media & Society 0(0), 1–17. https://doi.org/10.1177/14614448221096768
+Jacobsen BN and Beer D (2021a) Quantified nostalgia: social media, metrics, and memory. Social Media + Society,
+1–9. https://doi.org/hDttOpsI://1d0o.i1.o1r7g/71/02.10157673/2005162301511020181800282822.
+Jacobsen BN and Beer D (2021b) Social Media and the Automatic Production of Memory. Classification, Ranking and the
+Sorting of the Past. Bristol: Bristol University Press.
+Janet P (2006) L’évolution de la mémoire et la notion du temps. Leçons au Collége de France 1927–1928. Paris: L’Harmattan.
+King S (2023) Instagram Is Testing New ‘Memories’ Prompt In Stories. Available at: https://www.socialmedia
+college.com/blog/instagram-is-testing-new-memories-prompt-in-stories/ (accessed 16 April 2023).
+Kitchin R (2023) Digital Timescapes. Technology, Temporality and Society. Cambridge: Polity Press.
+Konrad A (2017) Facebook memories: the research behind the products that connect you with your past.
+Available at: https://research.facebook.com/blog/2017/9/facebook-memories-the-research-behind-the-products-
+that-connect-you-with-your-past/ (accessed 18 March 2024).
+Lazzarato M (2007) Machines to crystallize time. Theory, Culture & Society 24(6), 93–122.
+Lee J (2020) Algorithmic uses of cybernetic memory: google photos and a genealogy of algorithmically generated
+‘memory’. Social Media + Society, 1–12. https://doi.org/DhttOpsI://1d0o.i1.o1r7g/71/02.10157673/200516230591
+72809678968.
+Lury C and Day S (2019) Algorithmic personalization as a mode of individuation. Theory, Culture & Society 36(2),
+17–37. https://doi.org/10.1177/0263276418818888
+Marcel J-C (2007) Mémoire, espace et connaissance chez Maurice Halbwachs. In Jaisson M and Baudelot C (eds),
+Maurice Halwbwachs, Sociologue Retrouvé. Paris: Presses de l’École Normale Supérieure, 103–126.
+14
+Ellen Emilie Henriksen
+https://doi.org/10.1017/mem.2024.8 Published online by Cambridge University Press
+
+
+===== PAGE 15 =====
+
+Matzner T (2019) The human is dead – long live the algorithm! human-algorithmic ensembles and liberal sub-
+jectivity. Theory, Culture & Society 36(2), 123–144. https://doi.org/10.1177/0263276418818877
+Paglen T (2016) Invisible Images (Your Pictures Are Looking at You). The New Inquiry. https://thenewinquiry.com/
+invisible-images-your-pictures-are-looking-at-you/ (accessed 1 April 2021).
+Parikka J (2017) The Underpinning Time. From digital memory to network microtemporality. In Hoskins A (eds),
+Digital Memory Studies: Media Pasts in Transition. New York and London: Routledge.
+Parisi L (2019) Critical computation: digital automata and general artificial thinking. Theory, Culture & Society 36
+(2), 89–121. https://doi.org/10.1177/0263276418818889
+Pogačar M (2017) Culture of the Past. Digital connectivity and dispotentiated futures. In Hoskins A (eds), Digital
+Memory Studies. Media Pasts in Transition. New York and London: Routledge.
+Reading A and Notley T (2017) Global Memory Capital. Theorizing digital memory economies. In Hoskins A
+(eds), Digital Memory Studies. Media Pasts in Transition. London and New York: Routledge, Taylor & Francis Group.
+Reid S (2019) Jogging happy memories. American Psychological Association 50(3). Available at: www.apa.org/
+monitor/2019/03/job-konrad (accessed 1 April 2021).
+Russell SJ, Norvig P and Davis E (2010) Artificial Intelligence: A Modern Approach, 3rd Edn. Upper Saddle River:
+Prentice Hall.
+Shapira T (2021) A snapshot of AI-powered reminiscing in Google Photos. Available at: https://medium.com/
+people-ai-research/a-snapshot-of-ai-powered-reminiscing-in-google-photos-5a05d2f2aa46 (accessed 18 March
+2024).
+Sinclair M (2020) Bergson. New York and London: Routledge.
+Tomlinson H and Habberiam B (1991) Introduction. In Tomlinson H and Habberiam B (trans), Deleuze G (eds),
+Bergsonism. New York: Zone Books, 7–10.
+Van Dijck J (2005) From shoebox to performative agent: the computer as personal memory machine. New Media &
+Society 7(3), 311–332.
+Van Dijck J (2009) Mediated memories as amalgamations of mind, matter and culture. In Zwijnenberg RP and van
+de Vall R (eds), The Body Within: Art, Medicine and Visualization: BRILL, 157–172. https://doi.org/10.1163/ej.
+9789004176218.i-228
+Wiener N (1948) Cybernetics. Or, Control and Communication in the Animal and the Machine, 2nd Edn. Cambridge,
+Massachusetts: The M.I.T. Press.
+Wiener N (1960) Some moral and technical consequences of automation. Science 131(3410), 1355–1358.
+Worb J (2022) Instagram Rolls Out ‘Convert to Reel’ Feature for Stories Highlights. (accessed 19 March 2024).
+Ellen Emilie Henriksen is a PhD researcher in philosophy at École Normale Supérieure-PSL and a collaborator at
+Chair in Geopolitics of Risk. Their main research interests include time, digital technologies, memories, Henri
+Bergson, and uncertainty.
+Cite this article: Henriksen EE (2024). Algorithmically generated memories: automated remembrance through
+appropriated perception. Memory, Mind & Media 3, e11, 1–15. https://doi.org/10.1017/mem.2024.8
+Memory, Mind, and Media
+15
+https://doi.org/10.1017/mem.2024.8 Published online by Cambridge University Press

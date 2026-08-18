@@ -1,0 +1,736 @@
+{
+  "version": 2,
+  "generated_at": "2026-08-17T08:19:37.206Z",
+  "request": {
+    "topic": "",
+    "title": "",
+    "dois": [
+      "10.1080/13614568.2014.983562",
+      "10.1177/14614448211035769",
+      "10.1177/0270467613516753",
+      "10.1007/978-3-030-11485-5_9",
+      "10.1515/9783110431575-015",
+      "10.1080/19392397.2013.872361",
+      "10.1177/00302228211014775",
+      "10.1177/08944393231225547",
+      "10.1145/3476046",
+      "10.1126/science.aaa1160",
+      "10.1145/2702123.2702556",
+      "10.1080/1369118X.2014.888458",
+      "10.1177/1461444810365313",
+      "10.1016/j.chb.2017.04.056",
+      "10.1080/15213269.2024.2405679",
+      "10.1037/h0025848",
+      "10.1016/S0022-5371(77)80012-1",
+      "10.1177/1088868309352251",
+      "10.1177/0963721419827854",
+      "10.1146/annurev-psych-010419-050807",
+      "10.1037/0033-2909.111.2.256",
+      "10.1111/j.1467-9280.2006.01750.x",
+      "10.1177/1948550619843930",
+      "10.1002/ijop.12019"
+    ],
+    "pdf_url": "",
+    "si_requested": false,
+    "language_override": "",
+    "route_override": "open_access",
+    "source_url": "",
+    "api_fallback_web": null,
+    "api_fallback_web_for": [],
+    "no_api_fallback_web_for": []
+  },
+  "summary": {
+    "total": 24,
+    "downloaded": 0,
+    "seconds": 128.1
+  },
+  "results": [
+    {
+      "doi": "10.1080/13614568.2014.983562",
+      "title": "Socially shared mourning: construction and consumption of collective memory",
+      "language": "en",
+      "publisher": "Informa UK Limited",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "unknown",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": ""
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1177/14614448211035769",
+      "title": "Conceptualizing social media sub-platforms: The case of mourning and memorialization practices on Facebook",
+      "language": "en",
+      "publisher": "SAGE Publications",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://journals.sagepub.com/page/policies/text-and-data-mining-license"
+      },
+      "oaAttempts": [
+        {
+          "source": "publisher_oa",
+          "url": "https://journals.sagepub.com/doi/pdf/10.1177/14614448211035769",
+          "status": "request_failed",
+          "reason": "fetch failed"
+        }
+      ]
+    },
+    {
+      "doi": "10.1177/0270467613516753",
+      "title": "Virtual Mourning and Memory Construction on Facebook",
+      "language": "en",
+      "publisher": "SAGE Publications",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://journals.sagepub.com/page/policies/text-and-data-mining-license"
+      },
+      "oaAttempts": [
+        {
+          "source": "publisher_oa",
+          "url": "https://journals.sagepub.com/doi/pdf/10.1177/0270467613516753",
+          "status": "request_failed",
+          "reason": "fetch failed"
+        }
+      ]
+    },
+    {
+      "doi": "10.1007/978-3-030-11485-5_9",
+      "title": "Digital Mourning Labor: Corporate Use of Dead Celebrities on Social Media",
+      "language": "en",
+      "publisher": "Springer International Publishing",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "http://www.springer.com/tdm"
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1515/9783110431575-015",
+      "title": "Digital Afterlife: Ex-Yugoslav Pop Culture Icons and Social Media",
+      "language": "",
+      "publisher": "De Gruyter",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "unknown",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": ""
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1080/19392397.2013.872361",
+      "title": "When a celebrity dies …Social identity, uses of social media, and the mourning process among fans: the case of Michael Jackson",
+      "language": "en",
+      "publisher": "Informa UK Limited",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "unknown",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": ""
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1177/00302228211014775",
+      "title": "Global Mediatized Death and Emotion: Parasocial Grieving—Mourning #stephenhawking on Twitter",
+      "language": "en",
+      "publisher": "SAGE Publications",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://journals.sagepub.com/page/policies/text-and-data-mining-license"
+      },
+      "oaAttempts": [
+        {
+          "source": "publisher_oa",
+          "url": "https://journals.sagepub.com/doi/pdf/10.1177/00302228211014775",
+          "status": "request_failed",
+          "reason": "fetch failed"
+        }
+      ]
+    },
+    {
+      "doi": "10.1177/08944393231225547",
+      "title": "How Algorithms Promote Self-Radicalization: Audit of TikTok’s Algorithm Using a Reverse Engineering Method",
+      "language": "en",
+      "publisher": "SAGE Publications",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://journals.sagepub.com/page/policies/text-and-data-mining-license"
+      },
+      "oaAttempts": [
+        {
+          "source": "publisher_oa",
+          "url": "https://journals.sagepub.com/doi/pdf/10.1177/08944393231225547",
+          "status": "request_failed",
+          "reason": "fetch failed"
+        }
+      ]
+    },
+    {
+      "doi": "10.1145/3476046",
+      "title": "Algorithmic Folk Theories and Identity: How TikTok Users Co-Produce Knowledge of Identity and Engage in Algorithmic Resistance",
+      "language": "en",
+      "publisher": "Association for Computing Machinery (ACM)",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://www.acm.org/publications/policies/copyright_policy#Background"
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1126/science.aaa1160",
+      "title": "Exposure to ideologically diverse news and opinion on Facebook",
+      "language": "en",
+      "publisher": "American Association for the Advancement of Science (AAAS)",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "unknown",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": ""
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1145/2702123.2702556",
+      "title": "\"I always assumed that I wasn't really that close to [her]\"",
+      "language": "",
+      "publisher": "ACM",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://www.acm.org/publications/policies/copyright_policy#Background"
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1080/1369118x.2014.888458",
+      "title": "Context collapse: theorizing context collusions and collisions",
+      "language": "en",
+      "publisher": "Informa UK Limited",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "unknown",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": ""
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1177/1461444810365313",
+      "title": "I tweet honestly, I tweet passionately: Twitter users, context collapse, and the imagined audience",
+      "language": "en",
+      "publisher": "SAGE Publications",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://journals.sagepub.com/page/policies/text-and-data-mining-license"
+      },
+      "oaAttempts": [
+        {
+          "source": "publisher_oa",
+          "url": "https://journals.sagepub.com/doi/pdf/10.1177/1461444810365313",
+          "status": "request_failed",
+          "reason": "fetch failed"
+        }
+      ]
+    },
+    {
+      "doi": "10.1016/j.chb.2017.04.056",
+      "title": "Online first impressions: Person perception in social media profiles",
+      "language": "en",
+      "publisher": "Elsevier BV",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://www.elsevier.com/tdm/userlicense/1.0/"
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1080/15213269.2024.2405679",
+      "title": "Emotional Expressions and First Impression Formation in Social Media Profiles",
+      "language": "en",
+      "publisher": "Informa UK Limited",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "unknown",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": ""
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1037/h0025848",
+      "title": "Attitudinal effects of mere exposure.",
+      "language": "en",
+      "publisher": "American Psychological Association (APA)",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "unknown",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": ""
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1016/s0022-5371(77)80012-1",
+      "title": "Frequency and the conference of referential validity",
+      "language": "en",
+      "publisher": "Elsevier BV",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://www.elsevier.com/tdm/userlicense/1.0/"
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1177/1088868309352251",
+      "title": "The Truth About the Truth: A Meta-Analytic Review of the Truth Effect",
+      "language": "en",
+      "publisher": "SAGE Publications",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://journals.sagepub.com/page/policies/text-and-data-mining-license"
+      },
+      "oaAttempts": [
+        {
+          "source": "publisher_oa",
+          "url": "https://journals.sagepub.com/doi/pdf/10.1177/1088868309352251",
+          "status": "request_failed",
+          "reason": "fetch failed"
+        }
+      ]
+    },
+    {
+      "doi": "10.1177/0963721419827854",
+      "title": "Truth by Repetition: Explanations and Implications",
+      "language": "en",
+      "publisher": "SAGE Publications",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "http://journals.sagepub.com/page/policies/text-and-data-mining-license"
+      },
+      "oaAttempts": [
+        {
+          "source": "publisher_oa",
+          "url": "http://journals.sagepub.com/doi/pdf/10.1177/0963721419827854",
+          "status": "request_failed",
+          "reason": "fetch failed"
+        }
+      ]
+    },
+    {
+      "doi": "10.1146/annurev-psych-010419-050807",
+      "title": "Judging Truth",
+      "language": "en",
+      "publisher": "Annual Reviews",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "unknown",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": ""
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1037/0033-2909.111.2.256",
+      "title": "Thin slices of expressive behavior as predictors of interpersonal consequences: A meta-analysis.",
+      "language": "en",
+      "publisher": "American Psychological Association (APA)",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "unknown",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": ""
+      },
+      "oaAttempts": []
+    },
+    {
+      "doi": "10.1111/j.1467-9280.2006.01750.x",
+      "title": "First Impressions",
+      "language": "en",
+      "publisher": "SAGE Publications",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://journals.sagepub.com/page/policies/text-and-data-mining-license"
+      },
+      "oaAttempts": [
+        {
+          "source": "publisher_oa",
+          "url": "https://journals.sagepub.com/doi/pdf/10.1111/j.1467-9280.2006.01750.x",
+          "status": "request_failed",
+          "reason": "fetch failed"
+        }
+      ]
+    },
+    {
+      "doi": "10.1177/1948550619843930",
+      "title": "Matters Order: The Role of Information Order on Implicit Impression Formation",
+      "language": "en",
+      "publisher": "SAGE Publications",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://journals.sagepub.com/page/policies/text-and-data-mining-license"
+      },
+      "oaAttempts": [
+        {
+          "source": "publisher_oa",
+          "url": "https://journals.sagepub.com/doi/pdf/10.1177/1948550619843930",
+          "status": "request_failed",
+          "reason": "fetch failed"
+        }
+      ]
+    },
+    {
+      "doi": "10.1002/ijop.12019",
+      "title": "Cultural differences in the primacy effect for person perception",
+      "language": "en",
+      "publisher": "Wiley",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "http://doi.wiley.com/10.1002/tdm_license_1.1"
+      },
+      "oaAttempts": []
+    }
+  ]
+}

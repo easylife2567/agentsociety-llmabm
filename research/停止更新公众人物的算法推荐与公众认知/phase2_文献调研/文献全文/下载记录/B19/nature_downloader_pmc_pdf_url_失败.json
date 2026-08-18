@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "generated_at": "2026-08-17T08:48:59.510Z",
+  "request": {
+    "topic": "",
+    "title": "Algorithmic amplification of politics on Twitter",
+    "dois": [],
+    "pdf_url": "https://europepmc.org/articles/PMC8740571/bin/pnas.202025334.pdf",
+    "si_requested": false,
+    "language_override": "",
+    "route_override": "",
+    "source_url": "",
+    "api_fallback_web": null,
+    "api_fallback_web_for": [],
+    "no_api_fallback_web_for": []
+  },
+  "summary": {
+    "total": 1,
+    "downloaded": 0,
+    "seconds": 1.7
+  },
+  "results": [
+    {
+      "title": "Algorithmic amplification of politics on Twitter",
+      "status": "failed_after_retry",
+      "url": "https://europepmc.org/articles/PMC8740571/bin/pnas.202025334.pdf",
+      "err": "TypeError: fetch failed",
+      "si_requested": false
+    }
+  ]
+}

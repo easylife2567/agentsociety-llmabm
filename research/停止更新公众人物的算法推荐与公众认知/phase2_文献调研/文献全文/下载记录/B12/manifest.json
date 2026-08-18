@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "generated_at": "2026-08-17T07:43:22.250Z",
+  "request": {
+    "topic": "",
+    "title": "An Empirical Investigation of Personalization Factors on TikTok",
+    "dois": [],
+    "pdf_url": "https://arxiv.org/pdf/2201.12271",
+    "si_requested": false,
+    "language_override": "",
+    "route_override": "",
+    "source_url": "",
+    "api_fallback_web": null,
+    "api_fallback_web_for": [],
+    "no_api_fallback_web_for": []
+  },
+  "summary": {
+    "total": 1,
+    "downloaded": 0,
+    "seconds": 60
+  },
+  "results": [
+    {
+      "title": "An Empirical Investigation of Personalization Factors on TikTok",
+      "status": "failed_after_retry",
+      "url": "https://arxiv.org/pdf/2201.12271",
+      "err": "TimeoutError: The operation was aborted due to timeout",
+      "si_requested": false
+    }
+  ]
+}

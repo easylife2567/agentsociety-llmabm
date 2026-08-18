@@ -1,0 +1,251 @@
+# B18｜短视频平台的回声室效应
+
+> 英文原题：*Echo chamber effects on short video platforms*  
+> DOI：10.1038/s41598-023-33370-1  
+> 精读状态：已根据本地保存正文、结构化原文抽取和已核验题录完成；本文档不代表用户本人已亲读。  
+> 证据等级：Level IV；学科适配综合评级 A。
+
+## 一、文献一句话定位
+
+core。提供抖音直接背景，也要求本项目将平台、议题和用户网络差异纳入模型。
+
+## 二、研究背景
+
+短视频平台常被统称为容易形成回声室，但不同平台、议题与用户网络可能呈现明显差异。
+
+## 三、核心问题
+
+抖音、TikTok和B站在社会、国际与娱乐议题的评论网络中是否存在选择性曝光和同质化意义上的回声室？
+
+## 四、理论基础与核心概念
+
+以回声室、选择性曝光和社会同质性为理论基础，通过评论互动网络操作化。
+
+## 五、研究方法
+
+对抖音、TikTok、B站三类平台的社会/国际/娱乐议题进行30天评论网络与选择性曝光/同质性分析。
+
+### 方法论解读
+
+- 识别能力只按原设计判定：实验/随机对照可支持相应因果命题；观察、访谈、民族志、网络路径或概念分析不被升格为排序因果证据。
+- 与当前课题的外部效度需另行判断：非抖音、非名人死后、非低熟悉度受众的设计，均不直接外推。
+
+## 六、主要发现
+
+评论网络中，抖音和B站显示显著回声室，TikTok不显著；平台与议题并非表现完全相同。
+
+### 可支持的命题边界
+
+本文直接支持的是上述特定研究对象、数据与结果变量之间的结论。除非原设计本身包含平台随机对照，否则不将其表述为‘推荐算法导致’；除非结果变量直接测量人物印象，否则不将其表述为‘受众形成了单一化印象’。
+
+## 七、创新点与核心价值
+
+在同一设计中跨抖音、TikTok、B站及多类议题比较，显示回声室不是短视频平台的普遍常数。
+
+## 八、局限性
+
+直接包含抖音和娱乐议题，但观察窗只有30天，且用评论网络作为回声室代理，不能把结果纯归于推荐。
+
+### 对局限的保守处理
+
+本节只采用作者明言的局限，或可由其样本、平台、时间窗口和设计直接判定的外推边界。未在原文或设计中找到根据的批评不写成作者自述。
+
+## 九、对当前研究的启示
+
+这是少数直接包含抖音与娱乐议题的文献，可借鉴跨平台/跨议题对照。但评论网络只覆盖发言用户，不等同于推荐曝光；30天窗口也难以回答长期死后记忆。
+
+### 可借鉴之处
+
+- 变量或指标：优先迁移本文已明确操作化的概念，但在中文抖音语境中重新做效度检验。
+- 设计：保留原文的对照逻辑、数据层级和时间维度，不只借用结论。
+- 边界：始终分开内容供给、推荐曝光、用户选择、再分发与受众印象。
+
+## 十、原文证据摘录（用于回查）
+
+> 以下保留英文原文，是对上述中文转述的核验层，不是额外的中文推论。摘录为定长节选，完整上下文请回到原正文。
+
+### 摘要
+
+[未自动定位；不代表原文无此部分]
+
+### 方法
+
+The framework of the methodology is shown in Fig. 1. The methodology 
+starts with the collection and analysis of short video information. Based on the collected raw data, the original 
+short video and the comment text, along with its commenting and @ users’ IDs, are retained through data 
+cleaning. In the second step, we give the operational definition of the EC. The EC is defined as a group of users 
+who are involved in commenting on at least two short videos on the same topic, while including users who were 
+@ by EC members in the same EC. To explore the key differences between the different ECs, we divide them 
+into three types according to their main sentiment tendencies: positive, negative and controversial, respectively. 
+We then measure the presence of an EC effect on short video platforms in terms of two critical features known 
+to ECs. In the third step, we compare the EC effect in terms of platform dimension and topic dimension in the 
+following four aspects: EC size, EC type, selective exposure and homophily, respectively. In the fourth step, we 
+investigate the impact of ECs on short video propagation. So we compare the lifetime of ECs across platforms 
+and topics. In the fifth step, we measure the difference between EC members and non-members from four 
+perspectives: user identity, spatial distribution, age, and commenting time. Finally, we explore the relationship 
+between users’ willingness to self-disclose and EC members. The detailed methodology and results are described 
+in “Data collection and preprocessing”-“The willingness to self-disclose of short video EC member” sections.
+Data collection and preprocessing. 
+“Short video” refers to video material that is less than 5 min long 
+and is disseminated through digital media ­outlets19. The boundary between producers and consumers of short 
+videos is blurred, the production cost is low, and the content is easy to ­consume20. Short video platforms have 
+steadily evolved from primarily entertainment platforms to new platforms with social network features that live 
+and grow with users as they continue to better ­themselves19. The proliferation of short video-sharing mobile apps 
+has led to new forms of information-sharing practices. Even the traditional social media platforms have been 
+influenced by these popular video-sharing mobile apps because some people are drawn away from watching the 
+news to watching short ­videos21–23.
+Given the diversity of online customers, we selected the following short video platforms for our study:
+Douyin (https://​www.​Douyin.​com/), a short video app for musical creativity incubated by ­ByteDance20,24. The 
+app was launched in 2016, is a short video community platform for all ages. Users can share their lives through 
+the platform, but also here to meet more friends, to understand a variety of strange and interesting ­things25–27.
+TikTok (https://​www.​TikTok.​com/) is the worldwide counterpart to the Chinese mobile short video app 
+Douyin. The digital structure of TikTok is similar to that of Douyin, but it serves to an entirely different group 
+of users and is governed by distinct forces. TikTok’s regionalization approach varies from that of previous social 
+media platforms in that its user base is global in nature, and its objective is to make its product adhere to the 
+various expectations, customs, and legislative frameworks of several ­nations20,28.
+
+[摘录达到长度上限；详见同编号《原文结构化抽取》及正文。]
+
+### 结果
+
+Descriptive statistics. 
+We used Python to crawl search results for three topics events on each platform. 
+The raw information collected was filtered through data cleaning to remove about 25% of invalid information 
+and information generated by paid internet trolls and bot accounts. The cleaned experimental data include 963 
+original short video informations, 391,676 comment texts, and 298,762 comment users and @user IDs. Then, the 
+963 original short videos were classified, and the top 30 videos with the highest number of comments under each 
+topic were retained as the event set under each topic according to their number of comment users. Each topic 
+corresponded to an interactive network formed by the commenting users of the 30 original short videos. The 
+final experimental data consisted 90 original short videos from the three platforms, 82,426 comment texts and 
+IDs of commenting users and @users. During the data-gathering procedure, we kept all target services’ terms 
+of service, and the obtained dataset was anonymized. Keyword clouds for the three topics are shown in Fig. 2.
+Network structure and EC effect performance comparison. 
+We used Python to compute the EC 
+network consisting of nodes and edges for each platform. In terms of the number of ECs, Table 2 shows that 
+the total number of ECs with two events under all topics across the three short video platforms (excluding the 
+control group) is 3682, approximately four times the number of ECs with three short videos, and significantly 
+fewer ECs with four and five events. Moreover, the number of members in ECs with two short videos is 34,564, 
+which is roughly seven times that of ECs with three events. The number of users participating in ECs with four or 
+five events is small and statistically insignificant. In order to prevent the data from being over-filtered, we finally 
+selected two short videos of the EC as our research subjects.
+(2)
+H = 1 −|S −O|
+|S + O|
+Figure 2.   Keyword clouds for the three topics. We maintained the top 30 short videos with the largest number 
+of comments under each topic as the set of events. Each topic corresponded to an interactive network formed 
+by the commenting users of the 30 original short videos. The figure shows 3 topic keyword word clouds, and the 
+size of the words is determined by the word frequency.
+Table 2.   Number of ECs (ECs) formed by different short videos (SVs) under different platforms.
+Platforms
+Number of ECs formed by different number of SVs
+Two SVs
+Three SVs
+Four SVs
+Five SVs
+ECs
+Users
+ECs
+Users
+ECs
+Users
+ECs
+Users
+Douyin
+1303
+17,892
+382
+1978
+30
+159
+3
+48
+TikTok
+1271
+8049
+233
+1515
+21
+145
+2
+35
+Blibili
+1108
+8623
+315
+940
+15
+93
+1
+11
+Total
+3682
+34,564
+930
+4433
+66
+397
+6
+94
+
+7
+Vol.:(0123456789)
+Scientific Reports | (2023) 13:6282 | 
+https://doi.org/10.1038/s41598-023-33370-1
+www.nature.com/scientificreports/
+EC effect performance from platform dimension.  We visualized the EC network using Gephi’s Force Atlas 2 
+layout algorithm. As shown in Fig. 3, a node represents an EC, and an edge represents a user involving two ECs. 
+The node size represents the number of EC members, and the color indicates the homogeneity level. When the 
+homophily is close to 1, the color of the node is close to light green, and when the homophily is close to 0, the 
+color of the node is close to dark green. The blue network diagram is a control group.
+Size of ECs Regarding the number of ECs, Douyin, TikTok and Bilibili are 1303, 1271 and 1108 respectively. 
+All three platforms have significantly more ECs than the control group.
+
+[摘录达到长度上限；详见同编号《原文结构化抽取》及正文。]
+
+### 讨论与结论
+
+The short video platforms are distinguished by content-based interactions that heavily rely on uniquely 
+personalised videos selected by the feed algorithm of the platforms. In socio-technical systems, algorithms are 
+typically imperceptible mechanisms that have the power to change how we interact with one another and even 
+push users into a polarized EC. This study systematically explored the EC effect in disseminating short videos 
+on different topics (social, international, and entertainment) on three platforms: Douyin, TikTok and Bilibili. 
+The study confirmed a significant EC effect in the commenting behavior of Douyin and Bilibili, but TikTok did 
+not perform significantly. By comparing the performance of the echo chamber effect on the different platforms 
+and topics, we conclude that the pattern of information dissemination within the EC is similar and independent 
+of platforms and topics. Moreover, EC members commonly display themselves in order to catch the attention of 
+their peers and that cultural differences can hinder the growth of ECs.
+Although the above results were obtained in this study, there are still some limitations. First, the data 
+collection period is limited to 30 days to control the effect of time variables. In future studies, we will consider 
+the relationship between the dissemination of information and ECs for longer periods. Second, the main users 
+of Douyin and Bilibili are concentrated in Asia, and the selected topic events also attract more attention and 
+discussion from Asian users. Therefore, we cannot risk making generalizations about ECs on short video 
+platforms. Third, unfortunately, since some short video platforms do not publicly release information on video 
+retweets and favorite users, we limit our current study to the dimension of comment networks. Previous studies 
+
+15
+Vol.:(0123456789)
+Scientific Reports | (2023) 13:6282 | 
+https://doi.org/10.1038/s41598-023-33370-1
+www.nature.com/scientificreports/
+have found that retweet networks have a stronger EC effect than comment networks. As data permissions 
+allow, future work will include extensively exploring the impacts of user interaction behaviors on EC effects, for 
+example, subscription behavior of users, across a broader range of short video platforms and topic events. Finally, 
+the data used in this study are in multiple national languages (predominantly Chinese), and future studies will 
+try to explore the laws of the existence of EC effect in multimodal language in order to draw general generalized 
+conclusions, which will be very meaningful research.
+Data availability
+The datasets used and/or analysed during the current study available from the corresponding author on 
+reasonable request.
+Received: 14 November 2022; Accepted: 12 April 2023
+
+### 限制
+
+[未自动定位；不代表原文无此部分]
+
+## 十一、题录与证据指针
+
+- APA 7：Gao, Y., Liu, F., & Gao, L. (2023). Echo chamber effects on short video platforms. Scientific Reports, 13, Article 6282. https://doi.org/10.1038/s41598-023-33370-1
+- 本地正文：`文献全文/正文/B18_2023_短视频平台的回声室效应__Echo chamber effects on short video platforms.pdf`
+- 源URL：https://www.nature.com/articles/s41598-023-33370-1.pdf
+- 原文抽取：`../原文结构化抽取/B18_原文抽取.md`
+- 转述原则：‘作者发现’只指原文直接报告；‘对当前研究的启示’是本项目的二次推论，两者不得混写。

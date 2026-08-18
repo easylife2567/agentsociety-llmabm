@@ -1,0 +1,2107 @@
+ID: B02
+DOI: 10.17645/mac.v9i4.4184
+中文译名: “接下来播什么？”：跨议题、跨时间调查YouTube算法推荐
+英文原题: What’s “Up Next”? Investigating Algorithmic Recommendations on YouTube Across Issues and Over Time
+原文件: 文献全文/正文/B02_2021_“接下来播什么？”：跨议题、跨时间调查YouTube算法推荐__What’s “Up Next” Investigating Algorithmic Recommendations on YouTube Across Issues and Over Time.pdf
+源URL: https://eprints.qut.edu.au/226319/1/MaC_9_4_What_s_Up_Next_Investigating_Algorithmic_Recommendations_on_YouTube_Across_Issues_and_Over_Time.pdf
+提取说明: 仅为机械文本提取，页码标记依原PDF；不代表已完成论证核验。
+
+
+===== PAGE 1 =====
+
+This may be the author’s version of a work that was submitted/accepted
+for publication in the following source:
+Matamoros Fernandez, Ariadna, Gray, Joanne, Bartolo, Louisa, Burgess,
+Jean, & Suzor, Nicolas
+(2021)
+What’s ’Up Next’?
+Investigating Algorithmic Recommendations on
+YouTube Across Issues and Over Time.
+Media and Communication, 9(4), pp. 234-249.
+This ﬁle was downloaded from: https://eprints.qut.edu.au/226319/
+© Ariadna Matamoros-Fernández, Joanne E. Gray, Louisa Bartolo,
+Jean Burgess, Nicolas Suzor.
+This work is covered by copyright. Unless the document is being made available under a
+Creative Commons Licence, you must assume that re-use is limited to personal use and
+that permission from the copyright owner must be obtained for all other uses. If the docu-
+ment is available under a Creative Commons License (or other speciﬁed license) then refer
+to the Licence for details of permitted re-use. It is a condition of access that users recog-
+nise and abide by the legal requirements associated with these rights. If you believe that
+this work infringes copyright please provide details by email to qut.copyright@qut.edu.au
+License: Creative Commons: Attribution 4.0
+Notice: Please note that this document may not be the Version of Record
+(i.e. published version) of the work. Author manuscript versions (as Sub-
+mitted for peer review or as Accepted for publication after peer review) can
+be identiﬁed by an absence of publisher branding and/or typeset appear-
+ance. If there is any doubt, please refer to the published source.
+https://doi.org/10.17645/mac.v9i4.4184
+
+
+===== PAGE 2 =====
+
+Media and Communication (ISSN: 2183–2439)
+2021, Volume 9, Issue 4, Pages 234–249
+https://doi.org/10.17645/mac.v9i4.4184
+Article
+What’s “Up Next”? Investigating Algorithmic Recommendations on
+YouTube Across Issues and Over Time
+Ariadna Matamoros‐Fernández 1,2,*, Joanne E. Gray 1,2, Louisa Bartolo 1,2, Jean Burgess 1,2, and Nicolas Suzor 1,3
+1 Digital Media Research Centre, Queensland University of Technology, Australia
+2 School of Communication, Queensland University of Technology, Australia;
+E‐Mails: ariadna.matamorosfernandez@qut.edu.au (A.M.‐F.), joanne.e.gray@qut.edu.au (J.E.G.),
+l.bartolo@qut.edu.au (L.B.), jean.burgess@qut.edu.au (J.B.)
+3 School of Law, Queensland University of Technology, Australia; E‐Mail: n.suzor@qut.edu.au
+* Corresponding author
+Submitted: 13 February 2021 | Accepted: 26 April 2021 | Published: 18 November 2021
+Abstract
+YouTube’s “up next” feature algorithmically selects, suggests, and displays videos to watch after the one that is currently
+playing. This feature has been criticized for limiting users’ exposure to a range of diverse media content and information
+sources; meanwhile, YouTube has reported that they have implemented various technical and policy changes to address
+these concerns. However, there is little publicly available data to support either the existing concerns or YouTube’s claims
+of having addressed them. Drawing on the idea of “platform observability,” this article combines computational and qual‐
+itative methods to investigate the types of content that the algorithms underpinning YouTube’s “up next” feature amplify
+over time, using three keyword search terms associated with sociocultural issues where concerns have been raised about
+YouTube’s role: “coronavirus,” “feminism,” and “beauty.” Over six weeks, we collected the videos (and their metadata,
+including channel IDs) that were highly ranked in the search results for each keyword, as well as the highly ranked rec‐
+ommendations associated with the videos. We repeated this exercise for three steps in the recommendation chain and
+then examined patterns in the recommended videos (and the channels that uploaded the videos) for each query and their
+variation over time. We found evidence of YouTube’s stated efforts to boost “authoritative” media outlets, but at the same
+time, misleading and controversial content continues to be recommended. We also found that while algorithmic recom‐
+mendations offer diversity in videos over time, there are clear “winners” at the channel level that are given a visibility boost
+in YouTube’s “up next” feature. However, these impacts are attenuated differently depending on the nature of the issue.
+Keywords
+algorithms; automation; content moderation; digital methods; platform governance; YouTube
+Issue
+This article is part of the issue “Algorithmic Systems in the Digital Society” edited by Sanne Kruikemeier (University of
+Amsterdam, The Netherlands), Sophie Boerman (University of Amsterdam, The Netherlands) and Nadine Bol (Tilburg
+University, The Netherlands).
+© 2021 by the authors; licensee Cogitatio (Lisbon, Portugal). This article is licensed under a Creative Commons Attribu‐
+tion 4.0 International License (CC BY).
+1. Introduction
+YouTube is a dominant platform for news consumption,
+self‐education, and opinion formation via video (Burgess
+& Green, 2018). A large proportion of YouTube con‐
+tent is suggested or automatically delivered to users
+via the platform’s automated recommendation systems
+(Solsman, 2018), which have been criticized for amplify‐
+ing misinformation, harmful content, and extreme views
+(Bergen, 2019; Roose, 2020). In particular, the plat‐
+form’s “up next” or “suggested videos” feature, which
+displays and automatically plays a sequence of videos
+following the one that is currently playing in the main
+window, has been criticized for leading people down
+Media and Communication, 2021, Volume 9, Issue 4, Pages 234–249
+234
+
+
+===== PAGE 3 =====
+
+recommendation chains (“rabbit holes”) of disturbing
+content (O’Callaghan et al., 2015), and contributing to
+political radicalization (Lewis, 2018).
+The recommender system behind YouTube’s “up
+next” feature has evolved over time and comprises mul‐
+tiple components including: the “related videos” algo‐
+rithm (in use in various iterations for more than a decade;
+see Davidson et al., 2010); personalized “recommended
+videos” related to the user’s watch history; and videos
+drawn from the same channel as the currently play‐
+ing video. It typically prioritizes those videos that have
+been recently uploaded which have a high number of
+views and long average watch times, and it considers
+the popularity of a video by including viewer satisfac‐
+tion measures such as likes and dislikes (Covington et al.,
+2016). Increasingly, the system relies on deep learning
+approaches to improve the “quality” of recommenda‐
+tions and to increase user engagement (Zhao et al., 2019).
+A central concern regarding YouTube’s “up next”
+feature is that, in service of the goal of increas‐
+ing “engagement,” it may tend to select videos that
+are highly evocative or provocative, including radical,
+alarmist, or otherwise extreme content (see for exam‐
+ple a study by Mozilla Foundation and UC Berkeley
+scholars—Faddoul et al., 2020). By way of responding
+to these concerns, in 2019, the company announced it
+had made three significant “improvements” to its rec‐
+ommendation systems. First, they were updated to pro‐
+mote more diverse content by suggesting videos from
+a wider range of topics to avoid suggesting “too many
+similar recommendations, like seeing endless cookie
+videos after watching just one recipe for snickerdoo‐
+dles” (The YouTube Team, 2019a). Second, changes were
+made so that “borderline content” would be demoted
+by the recommendation algorithms, so as to “reduce the
+spread of content that comes right up to [but does not
+cross] the line” of violating the platform’s community
+guidelines (The YouTube Team, 2019b). Third, changes
+were made to increase the amplification of “authorita‐
+tive voices” (The YouTube Team, 2019c), for example,
+for some breaking news events, YouTube’s algorithms
+will prioritize videos published by trusted news outlets
+(The YouTube Team, 2019c).
+In this article, we demonstrate a new method and
+generate new empirical evidence that contributes to
+public oversight of the operations of YouTube’s sug‐
+gested video feature, especially regarding potentially
+controversial sociocultural issues. We explore patterns
+in the recommendations made by YouTube’s suggested
+videos feature over time for keyword search terms con‐
+nected to sociocultural issues: “coronavirus,” “feminism,”
+and “beauty.” By studying the algorithmic amplification
+of content connected to these terms we are able to
+provide empirical evidence for evaluating the claims
+made by critics and the counterclaims made by YouTube
+about the role of its “up next” feature in the amplifica‐
+tion (or lack thereof) of problematic, authoritative, and
+diverse media content.
+2. Social Media Recommender Systems, Exposure
+Diversity, and Platform Observability
+Over the last decade, social media has emerged as impor‐
+tant elements of a “hybrid media system” (Chadwick,
+2017) that continues to reconfigure how information
+is created, distributed, and consumed. While there is
+technically more content available to audiences than
+ever before, in practice algorithms play a pivotal role in
+influencing users’ exposure to a range of diverse media
+content and information sources, which is an impor‐
+tant element of a media environment supportive of
+deliberative democracy (Glasser, 1984; Helberger, 2012;
+Horwitz, 2005; Napoli, 1999). Scholars and public com‐
+mentators have argued that platforms’ focus on maxi‐
+mizing “engagement” (giving users more of what they
+seem to want) can limit users’ exposure to different
+points of view (Pariser, 2011; Sunstein, 2001), which in
+turn may lead to the hardening of extreme views, and
+political radicalization (Helberger, 2019). However, the
+supporting evidence is mixed. While some studies indi‐
+cate that the algorithmic promotion of extremist and
+far‐right content can lead users through recommenda‐
+tion chains of increasingly extreme content (e.g., Mozilla
+Foundation, 2020; Ribeiro et al., 2020), others suggest
+that actors exploit recommender systems by creating
+content to fill “voids,” thereby gaining outsized atten‐
+tion for extreme content (Golebiewski & boyd, 2019,
+p. 29). Still others conclude that users encounter far‐right
+content mostly through their own searches, indicating
+a level of pre‐existing demand for extreme or radicaliz‐
+ing content, and that recommendation systems (includ‐
+ing search engines) play a subsidiary role in its delivery
+(see e.g., Ledwich & Zaitsev, 2020). A number of schol‐
+ars have suggested that excessive concern about algo‐
+rithmic recommendation and associated personalization
+limiting users’ exposure to diverse content may not be
+warranted (e.g., Haim et al., 2018; Möller et al., 2018),
+and more broadly, that additional work needs to be con‐
+ducted to conceptualize standards for “diversity” in cri‐
+tiques of recommender systems’ outputs (Loecherbach
+et al., 2020; Nechushtai & Lewis, 2019; Vrijenhoek et al.,
+2021). For example, questions of social diversity (i.e., the
+representation in both content and production of a range
+of class‐ and identity‐based communities) are increas‐
+ingly relevant to policy and practice, and platforms’ use
+of “diversity” without definition (e.g., Zhao et al., 2019)
+illustrates the limits of corporate attempts to provide
+transparency relating to complex sociocultural and pol‐
+icy issues.
+Despite these diverging views, there is consensus
+around two important aspects of platforms’ recom‐
+mender systems and how to hold them accountable.
+First, it is widely accepted that algorithms’ opacity
+(Diakopoulos & Koliska, 2017)—or what Pasquale (2015)
+calls the “black box” of algorithmic decision making—
+makes it difficult to curtail platform power, which
+has motivated a growing body of empirical research
+Media and Communication, 2021, Volume 9, Issue 4, Pages 234–249
+235
+
+
+===== PAGE 4 =====
+
+interested in studying algorithms from the outside.
+This includes methods such as “reverse engineering”
+(Diakopoulos, 2015), “scraping audits” (Sandvig et al.,
+2014), “everyday algorithm auditing” (Shen et al., 2021),
+small‐scale observation (Bucher, 2012), and systematic
+large‐scale observation (Rieder et al., 2018). Second,
+debates around how to hold the media accountable in
+general, and social media in particular, tend to focus on
+calls for greater transparency for regulatory inspection
+(Diakopoulos, 2016; Pasquale, 2015). However, the tech‐
+nical complexities of digital platforms pose unique chal‐
+lenges that complicate the effectiveness of transparency
+as a tool for generating knowledge about “what is hid‐
+den” (Ananny & Crawford, 2018; Rieder & Hofmann,
+2020, p. 5).
+“Observability” has been proposed as a path “to
+deal more systematically with the problem of studying
+complex algorithmic systems” (Rieder & Hofmann, 2020,
+p. 1). Whereas transparency invokes the idea of the algo‐
+rithm as a mathematical formula which, if revealed for
+oversight, could lead to a better understanding of plat‐
+forms’ roles in the realization of media diversity, for
+example, observability as a tool for better regulation rec‐
+ognizes platform algorithms as complex socio‐technical
+systems. The performance of platform algorithms that
+use deep learning models is influenced by multiple fac‐
+tors: developers’ design choices, built‐in randomness,
+business practices, content creators’ optimization tac‐
+tics, and audience viewing and engagement patterns.
+The idea of “algorithmic cultures” has been proposed
+to describe the variety of factors and agencies involved
+in generating algorithmic outcomes (McKelvey & Hunt,
+2019; Rieder et al., 2018; Seyfert & Roberge, 2016) and
+to tackle the difficult task of assessing the social impacts
+of platformization. Rieder and Hofmann (2020, p. 22)
+advocate for “regulating for observability.” They stress
+the need to observe platform behaviour over time and
+to institutionalize “processes of collective learning” to
+develop “the skills that are required to observe plat‐
+forms” (p. 24).
+This article aligns with the idea of “platform observ‐
+ability” and presents a method for observing and study‐
+ing YouTube’s recommendation “algorithmic cultures”
+over time. The following research questions inform our
+study: What kind of media does YouTube frequently
+recommend over time in relation to specific socio‐
+cultural topics? Are there patterns in these recommen‐
+dations that can help answer longstanding questions
+about media diversity? Are there patterns in these rec‐
+ommendations that can improve our understanding of
+how YouTube operationalizes “media authority” in rela‐
+tion to different sociocultural issues? Drawing on Rieder
+et al.’s (2018) method for studying “ranking cultures”
+on YouTube—which they define as “unfolding processes
+of hierarchization and modulation of visibility that call
+on users, content creators and a platform that inter‐
+venes and circumscribes in various ways” (p. 52)—we use
+a combination of computational and qualitative meth‐
+ods to investigate the different factors that converge
+in producing recommendations in the “up next” sec‐
+tion. We are attentive to the “moments of choice” that
+find their form in algorithmic operations (Rieder, 2017,
+p. 113); that is, since the platform can only show a limited
+number of videos in the “up next” interface (between 4
+and 60), there is a complex process of selection that fac‐
+tors a wide range of features to provide “more quality
+information to users” (YouTube, n.d.). These processes of
+selection rely on sophisticated deep learning approaches
+that learn from user feedback to assess the “quality”
+of content (e.g., popularity and “freshness” of videos;
+see Covington et al., 2016), refine for personalization,
+improve the diversity of recommendations (Zhao et al.,
+2019), raise “authoritative voices,” and demote “border‐
+line content” (The YouTube Team, 2019c).
+In this study, we were also interested in under‐
+standing how the platform’s cultures of use influence
+YouTube’s “up next” feature in practice and for differ‐
+ent topics. We paid attention to “platform vernaculars”:
+that is, the specific practices emerging from platforms’
+unique technical affordances and how users appropri‐
+ate them in practice (Gibbs et al., 2015). In the case of
+YouTube, examples of platform vernaculars are users’ tac‐
+tics to gain algorithmic visibility: from word choices in
+titles and thumbnails, to other optimization techniques
+such as being an active content creator and building a
+network on the platform via featuring and subscribing to
+other channels (Bishop, 2019). Following Rieder et al.’s
+(2018, p. 54) suggestion that YouTube’s ranking practices
+“cannot be easily detached from the specificities of con‐
+crete issues,” we also consider the role of “issue vernac‐
+ulars”, by which we mean the ways that platform ver‐
+naculars are articulated and given form in the context
+of specific social, cultural, and political issues. For exam‐
+ple, for topics such as Islam, highly active and contro‐
+versial Islamophobic “niche entrepreneurs” gain excep‐
+tional levels of visibility on YouTube (Rieder et al., 2018,
+p. 64). Our focus on platform and issue vernaculars com‐
+plements existing literature that has focused on platform
+design as a central requisite to facilitate or constrain
+exposure to media diversity (Helberger, 2011).
+Our aim in selecting the topics Covid‐19 (“coron‐
+avirus”), feminism (“feminism”), and beauty (“beauty”)
+was to focus on contemporary issues of public con‐
+cern that have been at the center of controversies on
+YouTube, and where YouTube recommendations poten‐
+tially play a role in shaping public perception and under‐
+standing of these topics. “Coronavirus” was selected
+due to the relevance of Covid‐19 as a news topic dur‐
+ing the time period studied, one beset by misinforma‐
+tion which therefore might trigger YouTube’s amplifica‐
+tion of “authoritative sources.” We selected “feminism”
+as a highly political and contentious issue on YouTube
+(Burgess & Matamoros‐Fernández, 2016; Siddiqui, 2008),
+which might therefore provide indications of content and
+perspectival diversity. In contrast, “beauty” was selected
+as a contested issue that is less frequently the subject of
+Media and Communication, 2021, Volume 9, Issue 4, Pages 234–249
+236
+
+
+===== PAGE 5 =====
+
+mainstream political discourse, and so could provide a
+comparison to topics more strongly associated with con‐
+troversial political issues.
+3. Methods
+The methods we use in this article provide the basis
+for a crucial intervention in the space between tech‐
+nology press speculation and folk theories about algo‐
+rithms on the one hand, and abstract critical theory
+on the other. To observe what the algorithms under‐
+pinning YouTube’s “up next” section “do,” we follow
+Rieder et al.’s (2018) approach to studying algorithmic
+outcomes through description instead of aiming at iden‐
+tifying “ ‘hard’ moments of causality” (p. 53). Along with
+Rieder et al. (2018), we are inspired by Savage’s (2009)
+idea of descriptive assemblage—“where processes of
+creativity, conceptual innovation, and observation can
+be used to mobilize novel insights” (p. 170)—and use it
+as a strategy to make sense of broader forms of agency
+involved in algorithmic power.
+Our method provides two main vantage points from
+which to study algorithmic cultures in general, and rec‐
+ommendations on YouTube specifically. First, we con‐
+sider time as a crucial aspect of “platform observabil‐
+ity” and hence examine YouTube’s “up next” feature
+over time to move away from the “snapshot logic”
+(Rieder & Hofmann, 2020, p. 7) underlying many stud‐
+ies on algorithmic accountability (see Airoldi et al., 2016;
+O’Callaghan et al., 2015; Ribeiro et al., 2020; Schmitt
+et al., 2018). Second, we study YouTube recommenda‐
+tions across different sociocultural topics because we
+consider that “good” recommendations can only be envi‐
+sioned and operationalized in relation to specific issue
+domains (Rieder, 2020, p. 334). A significant limitation in
+our study, however, is that we are unable to account for
+the effects of user preferences in how YouTube suggests
+what videos to watch next.
+3.1. Data Collection
+We designed two separate gatherers to collect the data
+for this research. Gatherer 1 used the “search: list” end‐
+point of the YouTube API to collect recommended videos
+and their rankings for each of our three keywords. We set
+the “order” parameter to “upload date,” which is one of
+the user‐facing search settings in YouTube’s website and
+mobile applications. Our rationale for selecting “upload
+date” as a ranking criterion responded to our interest in
+gathering videos from channels that were active in cre‐
+ating content during the period studied. We collected
+the 20 top results (globally) for each of our three queries
+from 7 March to 22 April 2020, once per day at approx‐
+imately the same time each day. Our cut‐off date repre‐
+sents the last date we were able to extract reliable data.
+During the study period, YouTube made changes to its
+API that prevented us from searching for newly uploaded
+videos in real‐time.
+Gatherer 2 was used to collect the recommendation
+chains (the sequence of suggested videos) that followed
+each of the videos gathered daily by Gatherer 1. Drawing
+on research suggesting that users pay more attention
+to items ranked at the top of lists (Jugovac & Jannach,
+2017), we collected the top five recommendations for
+each video, going three levels deep (see Figure 1). This
+yielded a daily collection of up to 3,100 recommended
+videos per query (the sum of related videos collected
+every day for step 1, step 2, and step 3), and a total
+collection of up to 145,700 recommended videos (up
+to 3,100 recommended videos per 47 days of data col‐
+lection). Gatherer 2 sent requests from an Australian‐
+based IP address, without any identifying cookies. This
+means that we did not collect “recommended for you”
+videos, but we were able to receive localized sugges‐
+tions in the “up next” feature. Our web‐interface scrap‐
+ing method likely explains why English‐language sources
+were so heavily present in our data and why Australian
+channels were recommended for queries.
+= related video
+= video matching
+our queries
+STEP 1
+STEP 2
+STEP 3
+Figure 1. A schematic overview of our scraping method.
+Media and Communication, 2021, Volume 9, Issue 4, Pages 234–249
+237
+
+
+===== PAGE 6 =====
+
+3.2. Data Analysis
+For the data analysis, we combined data visualizations
+and qualitative analysis to identify patterns in how
+YouTube preferences certain content in the “up next”
+feature. Using the RankFlow tool (Rieder, 2016), we cre‐
+ated flow diagrams that made changes in the top 10
+most recommended videos and channels observable for
+analysis. All channels and videos included in the rank‐
+flows were recommended at least twice per day. Our
+aim with this approach was to understand the video and
+channel “winners” for each query; that is, those videos
+and channels most recommended over time and across
+steps in the chain. The visual inspection presented in
+Figures 2, 3, and 4 helps to identify patterns and operates
+as a starting point for in‐depth investigation. The flow
+diagrams allow us to answer specific questions, such
+as whether certain unique channels are frequently rec‐
+ommended across days and steps. As seen in Figure 1,
+this is indeed the case (the flow diagrams exhibit a high
+number of blue/purple/red “waves” for the channel dia‐
+grams, which the RankFlow tool displays when it identi‐
+fies that a unique video or channel appears on different
+days over time).
+For the qualitative analysis, we looked for patterns
+in terms of media authority or popularity (proxies for
+quality), and we looked for patterns in perspectives that
+might give indications as to content diversity. To make
+sense of recommendation patterns for each of our top‐
+ics, we were also attentive to platform and issue ver‐
+naculars. We took similar approaches for both channels
+and videos, but a greater emphasis was placed on chan‐
+nels in order to assess how “authoritativeness” is oper‐
+ationalized by YouTube’s “up next” feature in relation to
+each of our queries. In our qualitative investigation, we
+also privileged patterns observed in step 1 of the rec‐
+ommendation chain. We considered those channels and
+videos surfaced in step 1 as the clear “winners” in terms
+of visibility—their position in the chain means they are
+most likely to be watched via autoplay or selected for
+play by a user.
+For channels, we focused on the top 20 most rec‐
+ommended media sources over time and across steps
+for each of our queries (see Tables 1, 3, and 5). Since
+YouTube mentions “authoritative voices” in its policies
+but does not define the term, we looked at channel
+subscriber count, relevancy of the channel topic in rela‐
+tion to our queries, and frequency of upload at the
+time of our data collection as proxies for “media author‐
+ity.” For example, we considered subscriber count as
+an indicator for professionalization (see Rieder et al.,
+2020) and, hence, a metric potentially linked to a chan‐
+nel’s authority, at least within YouTube’s attention econ‐
+omy. We drew on YouTube’s own “benefit levels” classi‐
+fication for channels to account for professionalization:
+“graphite” status (channels with less than 1,000 sub‐
+scribers) gives content creators access to basic tools;
+surpassing the threshold of 1,000 subscribers, “opal”
+status, gives channels access to monetization through
+advertisements; “bronze” status (>10,000 subscribers)
+allows channels to access professional production tools;
+and “silver and up” (>100,000 subscribers) gives con‐
+tent creators the ability to have their own YouTube
+partner manager and receive Creator Awards (YouTube
+Creators, n.d.). To break down the rather broad “silver
+and up” tier, we added “gold” (>1,000,000–<10,000,000
+subscribers) and “diamond” status (>100,000,000 sub‐
+scribers) to YouTube’s official channel classification sys‐
+tem. In terms of media diversity signals, we considered
+channels’ geographic regions and paid attention to ques‐
+tions of representation among the content creators most
+recommended for the “beauty” and “feminism” queries.
+For videos, we focused on the top five most recom‐
+mended videos over time and across steps for each of
+our queries (see Tables 2, 4, and 6) and we assessed
+their popularity, relevancy, and recency, through an ana‐
+lysis of their view counts, user engagement metrics, and
+upload dates, respectively. In terms of diversity of view‐
+points, for “coronavirus,” we focused on media frames
+(e.g., the use of militaristic language to describe the pan‐
+demic); for “feminism,” we paid attention to whether
+the most recommended videos had a feminist or an
+anti‐feminist stance; and for “beauty,” drawing on the
+work of Bishop (2018), we were interested in examining
+how gendered and commercial logics influenced the con‐
+tent recommended for this query.
+4. Findings
+4.1. General Patterns Observed
+Our visual analysis reveals two clear patterns in recom‐
+mendations in the “up next” section over time, across
+queries, and across steps in the recommendation chain:
+(a) there is a higher level of variation in recommended
+videos than in recommended channels, (b) there is
+always more variation in suggested content at step 1 than
+at steps 2 and 3 (see Figures 2, 3, and 4). For each of
+our queries, there are clear “winners” at the channel
+level (media source) that are given a visibility boost by
+YouTube’s recommendation algorithms—some channels
+are recommended repeatedly each day and consistently
+over time and down the chain (see Tables 2, 4, and 6).
+4.2. Coronavirus
+For “coronavirus,” the platform prioritizes US news
+media outlets in the “up next” section as “authoritative”
+media in relation to Covid‐19 (see Figure 2 and Table 1).
+Especially in step 1, while only 5.7% of videos (n = 16)
+were recommended on two or more days during the
+period studied, 49.4% of channels (n = 39) were rec‐
+ommended on more than one day. Mainstream news
+media channels falling within the “gold” or “diamond”
+tier dominate at each step, with NBC News the clear
+“winner” across the entire recommendation chain (see
+Media and Communication, 2021, Volume 9, Issue 4, Pages 234–249
+238
+
+
+===== PAGE 7 =====
+
+Figure 2. RankFlow visualization of “coronavirus” for the top 10 most frequently recommended channels at step 1, step 2,
+and step 3 (top), and for the top 10 most recommended videos at step 1, step 2, and step 3 (bottom). Notes: In the
+RankFlow charts, for all queries, columns represent days, and blocks individual videos or channels, ranked by number of
+recommendations, with the top‐ranking video or channel on top of the column; color (blue to red) and bar height both
+indicate the number of times a channel or video was recommended on a single day; blue, purple, and red “waves” are
+created when the tool identifies that a particular video or channel appears on multiple days, that is, the tool creates a flow
+to trace the recurrence of unique videos or channels over time; morphologies with many “waves” (see channel rank flows,
+step 3) indicate the presence of certain videos and channels recurrently recommended over time.
+Table 1). In terms of source diversity, US channels make
+up between 70% (n = 14) and 75% (n = 15) of the top
+20 channels at each step, while UK channels make up
+between 10% (n = 2) and 15% (n = 3). Fox News, which
+has played an important role in spreading Covid‐19 mis‐
+information (Li et al., 2020), does progressively better as
+we go down the chain: ranking 17th at step 1, 10th at
+step 2, and 7th at step 3, being recommended over 6, 8,
+and 17 days, respectively.
+The channels of health authorities such as the World
+Health Organization (WHO) and the Centers for Disease
+Control (CDC; both with “silver” status) were absent
+acrossallsteps.Thisisdespitethefactthaton2April2020,
+YouTube encouraged creators to base their coronavirus‐
+related material on information from “reputable sources”
+such as WHO and CDC (YouTube Help, 2020) and that the
+WHO’s channel was active over this time.
+Turning to content diversity, a handful of videos
+from mainstream news channels “win” repeatedly at
+each step. These videos had millions of views (as of
+February 2021 when the analysis was undertaken), were
+all uploaded during our period of study, and most had
+charged, if not sensationalist titles. For example, in
+step 1, the most frequently recommended video came
+from Channel 4 News, with the title Coronavirus Expert:
+‘War is an Appropriate Analogy’ (see Table 2). Although
+not featured in our “top five” list, a video uploaded by
+New Tang Dynasty—a problematic news channel pub‐
+lished under the Epoch Media Group and accused of
+spreading misinformation (Zadrozny & Collins, 2019)—
+was recommended 12 times over two days at step 1, rank‐
+ing sixth, with over 4 million views at the time of analy‐
+sis. This video featured an interview with the discredited
+scientist behind the infamous “Plandemic” video, Judy
+Mikovits (Shepherd, 2020), in which she raised questions
+about the origin of Covid‐19.
+4.3. Feminism
+For the keyword “feminism,” we found that mainstream
+news media (Fox News; Channel 4 News), entertainment
+(The Late Late Show with James Corden), and educa‐
+tional channels (TEDx Talks and TED) falling predomi‐
+nantly within the “silver,” “gold,” and “diamond” tiers,
+were the clear “winners” across steps (see Table 3).
+As Figure 3 shows, YouTube offers more variance in how
+it recommends videos than it does channels for “fem‐
+inism,” but the difference is less pronounced than for
+“coronavirus.” In step 1, only 11.9% of videos (n = 17)
+were recommended on two or more days during the
+period studied, whereas 23.8% of channels (n = 30) were
+recommended on more than one day.
+Media and Communication, 2021, Volume 9, Issue 4, Pages 234–249
+239
+
+
+===== PAGE 8 =====
+
+Table 1. Top 20 channels recommended for “coronavirus” at each step.
+Step 1
+R
+D
+Step 2
+R
+D
+Step 3
+R
+D
+NBC News*
+203
+32
+NBC News*
+547
+39
+NBC News*
+1030
+39
+Channel 4 News*
+104
+18
+MSNBC*
+234
+26
+MSNBC*
+402
+25
+MSNBC*
+89
+18
+Channel 4 News*
+226
+22
+60 Minutes Australia*
+299
+19
+BBC News*
+70
+20
+CNN♦
+149
+16
+Channel 4 News*
+296
+18
+TODAY*
+69
+15
+LastWeekTonight*
+118
+11
+CNN♦
+292
+21
+CNN♦
+62
+15
+60 Minutes Australia*
+112
+15
+LastWeekTonight*
+237
+11
+DW News*
+48
+12
+Global News*
+107
+14
+Fox News*
+212
+17
+60 Minutes Australia*
+41
+13
+BBC News*
+100
+13
+CNBC Television*
+180
+11
+LastWeekTonight*
+39
+8
+NewsNOW from FOX*
+95
+11
+The Daily Show with
+167
+11
+Trevor Noah*
+The Daily Show with
+33
+7
+Fox News*
+94
+11
+ABC News♦
+136
+10
+Trevor Noah*
+ABC News♦
+30
+9
+The Daily Show with
+92
+10
+BBC News*
+133
+12
+Trevor Noah*
+Global News*
+29
+10
+TODAY*
+91
+12
+Late Night with
+132
+11
+Seth Meyers*
+NewsNOW from FOX*
+28
+6
+DW News*
+84
+12
+Global News*
+128
+10
+Washington Post*
+27
+6
+CNBC Television*
+81
+10
+TODAY*
+118
+10
+The Late Show with
+22
+5
+Fox Business*
+65
+8
+NewsNOW from FOX*
+111
+9
+Stephen Colbert*
+The White House*
+22
+4
+CBS News*
+64
+9
+CBS News*
+110
+10
+Fox News*
+20
+6
+Late Night with
+59
+8
+The Late Show with
+104
+7
+Seth Meyers*
+Stephen Colbert*
+CBS News*
+20
+7
+TIME*
+51
+7
+CNBC*
+83
+6
+Guardian News*
+20
+6
+ABC News♦
+49
+8
+Sky News*
+80
+5
+CNBC Television*
+19
+6
+Washington Post*
+49
+8
+The White House*
+73
+7
+Notes: Column “R” indicates the number of times the channel was recommended; column “D” indicates the number of days on which
+the channel was recommended more than once; symbols indicate channel subscription status—diamond symbol (♦) for “diamond” and
+asterisk (*) for “gold.”
+Regarding trends across the entire chain over time
+(see Table 3), TEDx Talks (“diamond” status) was the
+clear “winner” at each step, and PowerfulJRE (The Joe
+Rogan Experience podcast), which has courted contro‐
+versy for being “a safe space to launder bad ideas”
+(Maiberg, 2018), was also prominent. Ranking 16th at
+step 1, PowerfulJRE (“diamond” status) goes on to rank
+second at both steps 2 and 3, outperforming main‐
+stream news and entertainment channels. In terms of
+locales, US channels dominate, though to a lesser extent
+than they did for “coronavirus.” At each step, US media
+sources make up between 50% (n = 10) and 60% (n = 12)
+of the top 20 channels. Indian channels also did well,
+making up between 15% (n = 3) and 30% (n = 6) of
+the top 20 channels at each step. This is likely related
+to a controversy involving Indian actress Neha Dhupia’s
+comments about violence against women (“Neha Dhupia
+addresses,” 2020). Among the Indian channels recom‐
+mended across steps and over time (and which are
+distributed, roughly equally, across tiers ranging from
+“bronze” to “diamond”), those engaged in anti‐feminist
+content (e.g., PeepOye Fame, Sahil Chhikara, Tanmay
+Bhat, and Bollywood Samachar) outperformed educa‐
+tional channels featuring videos on topics that include
+feminism (NPTEL‐NOC IITM and UPSC Preparation). It is
+striking that none of the top 20 most recommended
+channels at each step self‐describe as “feminist.” The first
+self‐described feminist channel to appear in our dataset
+is South‐Korean 하말넘많[heavytalker], which ranks
+37th at step 2.
+With regard to content diversity, looking at the
+top‐recommended videos across steps, an anti‐feminist
+trend was clear (see Table 4). Videos featuring the con‐
+troversial public intellectual Jordan Peterson emerge as
+“winners.” Following a Channel 4 News interview with
+Peterson which was recommended at step 1, a Joe Rogan
+interview with Peterson in which he criticizes the exis‐
+tence of “Women’s Studies” departments at universities
+is the second most frequently recommended video at
+both steps 2 and 3, and a video of Peterson’s 2018 book
+Media and Communication, 2021, Volume 9, Issue 4, Pages 234–249
+240
+
+
+===== PAGE 9 =====
+
+Table 2. Top five videos recommended for “coronavirus” at each step.
+Step
+Video title
+Channel
+R
+D
+Step 1
+Coronavirus Expert: “War is an Appropriate Analogy”
+Channel 4 News
+35
+4
+Journalist Goes Undercover at “Wet Markets,” Where
+60 Minutes Australia
+31
+8
+the Coronavirus Started
+Coronavirus II: Last Week Tonight With John Oliver (HBO)
+LastWeekTonight
+17
+3
+Coronavirus Disrupts Daily Life as Trump Declares
+TODAY
+13
+1
+National Emergency
+Trump’s Coronavirus Address, Blooper Reel Included
+The Daily Show with Trevor Noah
+12
+3
+Step 2
+Coronavirus Expert: “War is an Appropriate Analogy”
+Channel 4 News
+67
+4
+Watch CNBC’s Full Interview With Berkshire Hathaway
+CNBC Television
+61
+9
+CEO Warren Buffett
+Journalist Goes Undercover at “Wet Markets,” Where
+60 Minutes Australia
+61
+7
+the Coronavirus Started
+Trump’s Coronavirus Address, Blooper Reel Included
+The Daily Show with Trevor Noah
+45
+5
+Coronavirus: Last Week Tonight With John Oliver (HBO)
+LastWeekTonight
+44
+5
+Step 3
+Journalist Goes Undercover at “Wet Markets,” Where
+60 Minutes Australia
+143
+10
+the Coronavirus Started
+Watch CNBC’s Full Interview With Berkshire Hathaway
+CNBC Television
+134
+10
+CEO Warren Buffett
+Coronavirus Wxpert: “War is an Appropriate Analogy”
+Channel 4 News
+96
+5
+Coronavirus: Last Week Tonight With John Oliver (HBO)
+LastWeekTonight
+83
+5
+Trump’s Coronavirus Address, Blooper Reel Included
+The Daily Show with Trevor Noah
+59
+5
+Notes: Column “R” indicates the number of times the video was recommended; column “D” indicates the number of days on which the
+video was recommended more than once.
+Figure 3. RankFlow visualization of “feminism” for the top 10 most recommended channels at step 1, step 2, and step 3
+(top), and for the top 10 most recommended videos at step 1, step 2, and step 3 (bottom).
+Media and Communication, 2021, Volume 9, Issue 4, Pages 234–249
+241
+
+
+===== PAGE 10 =====
+
+Table 3. Top 20 channels recommended for “feminism” at each step.
+Step 1
+R
+D
+Step 2
+R
+D
+Step 3
+R
+D
+TEDx Talks♦
+76
+22
+TEDx Talks♦
+198
+27
+TEDx Talks♦
+696
+30
+The Late Late Show with
+32
+9
+PowerfulJRE♦
+56
+14
+PowerfulJRE♦
+286
+23
+James Corden♦
+Fox News*
+25
+9
+Channel 4 News*
+48
+13
+SET India♦
+116
+7
+TED♦
+16
+6
+NBC News*
+47
+8
+NBC News*
+116
+10
+Channel 4 News*
+16
+6
+PeepOye Fame♠
+45
+6
+TED♦
+111
+12
+PeepOye Fame♠
+16
+4
+SET India♦
+31
+5
+Fox News*
+84
+7
+The University of Melbourne♣
+13
+4
+TED♦
+30
+8
+92nd Street Y♠
+82
+6
+NewsNOW from FOX*
+13
+3
+Tanmay Bhat*
+28
+4
+Channel 4 News*
+77
+8
+NPTEL‐NOC IITM♠
+9
+3
+Fox News*
+26
+5
+Talent Replay*
+76
+5
+NBC News*
+9
+3
+TIME*
+23
+3
+LastWeekTonight*
+70
+6
+The White House*
+9
+2
+How To Academy♠
+22
+5
+Got Talent Global♦
+64
+5
+Washington Post*
+8
+2
+CBS News*
+22
+5
+Top Viral Talent♦
+62
+5
+Fox Business*
+8
+2
+Fox Business*
+22
+4
+PeepOye Fame♠
+53
+4
+LastWeekTonight*
+7
+2
+Bollywood Samachar*
+19
+4
+Habertürk TV♠
+52
+5
+SET India♦
+7
+2
+LastWeekTonight*
+16
+3
+TVO Docs♣
+39
+3
+PowerfulJRE♦
+7
+2
+Talent Replay*
+15
+2
+How To Academy♠
+38
+5
+UPSC Preparation♣
+7
+1
+Sahil Chhikara♣
+15
+4
+Top 10 Talent*
+37
+3
+The Hill*
+6
+2
+After Work Reactions♣
+15
+3
+The Agenda with
+37
+4
+Steve Paikin♠
+Ninja Nerd Science♠
+6
+3
+Gauthali Entertainment♥
+15
+4
+Tanmay Bhat*
+34
+3
+Jordan B Peterson*
+6
+3
+NPTEL‐NOC IITM♠
+14
+3
+After Work Reactions♣
+33
+3
+Notes: Column “R” indicates the number of times the channel was recommended; column “D” indicates the number of days on which
+the channel was recommended more than once; symbols indicate channel subscription status—diamond symbol (♦) for “diamond,”
+asterisk (*) for “gold,” spades (♠) for “silver,” clubs (♣) for “bronze,” and hearts (♥) for “opal.”
+presentation is in the top five videos recommended at
+both steps 2 and 3. Beyond Peterson, there is a notable
+presence of videos from Indian channels that seem to
+mock or disparage Neha Dhupia (e.g., videos with titles
+such as Destroying Pseudo Feminists Neha Dhupia and
+Nikhil Chinapa).
+Among the top five recommended videos for “femi‐
+nism” at each step, only the videos related to the Neha
+Dhupia controversy were uploaded during our period
+of study. All remaining videos, some of which were
+unrelated to the topic of feminism, were uploaded to
+YouTube years beforehand. For example, a 2015 video
+on the health dangers of wireless radiation by Dr. Devra
+Davis (see Table 4), the appearance of which might be
+explained by activity around Covid‐19 on YouTube at
+the time of data collection, including public discussions
+related to 5G conspiracy theories (Bruns et al., 2020).
+4.4. Beauty
+For “beauty,” channels promoting DIY crafts and beauty
+hacks (5‐Minute Craft, 5‐Minute Crafts GIRLY, 123 GO!,
+and 5‐Minute Crafts VS), falling within the “gold” and
+to a lesser extent “diamond” tiers, dominate the rank‐
+ing of most recommended channels across steps (see
+Table 5). As observed for “coronavirus” and “feminism,”
+as Figure 4 shows, we observed substantial content diver‐
+sity, especially at step 1. While only 20% of videos (n = 17
+videos) were recommended on two or more days in
+step 1 during the period studied, 31.4% of channels
+(n = 22) were recommended on more than one day.
+Regarding trends across the entire chain over time
+(see Table 5), “5‐minute” channels are the clear “win‐
+ners” across steps, together accounting for between 40%
+(n = 8) and 45% (n = 9) of the top 20 channels at
+each step. These US‐based channels pertain to TheSoul
+Publishing, an online publisher subject to claims of “gam‐
+ing” YouTube’s algorithm, including by uploading videos
+frequently and using clickbait strategies (Jennings, 2018).
+Similarly, Troom Troom, a channel of “mysterious inter‐
+national origin,” which posts DIY/hack videos and takes
+an approach similar to that of the “5‐minute” channels
+(Jennings, 2018), was recommended several times across
+different days in both step 2 and step 3.
+In contrast to our findings for “coronavirus” and “fem‐
+inism,” mainstream news media channels are completely
+absent from our top 20 recommendations across steps
+for “beauty.” Native‐YouTube channels clearly dominate.
+Media and Communication, 2021, Volume 9, Issue 4, Pages 234–249
+242
+
+
+===== PAGE 11 =====
+
+Table 4. Top five videos recommended for “feminism” at each step.
+Step
+Video title
+Channel
+R
+D
+Step 1
+Pitch Perfect Riff‐Off With Anna Kendrick & The Filharmonics
+The Late Late Show with
+22
+7
+James Corden
+Meeting the Enemy: A Feminist Comes to Terms With the
+TEDx Talks
+19
+8
+Men’s Rights Movement | Cassie Jaye
+“The Truth About Mobile Phone and Wireless Radiation”
+The University of Melbourne
+17
+6
+—Dr. Devra Davis
+Destroying Pseudo Feminists Neha Dhupia and Nikhil
+Peepoye
+16
+4
+Chinapa (MTV Roadies Revolution) #AkasshReacts
+Jordan Peterson Debate on the Gender Pay Gap, Campus
+Channel 4 News
+13
+5
+Protests and Postmodernism
+Step 2
+Destroying Pseudo Feminists Neha Dhupia and Nikhil
+Peepoye
+37
+5
+Chinapa (MTV Roadies Revolution) #AkasshReacts
+Joe Rogan Experience #877 With Jordan Peterson
+PowerfulJRE
+25
+9
+This Title is Her Choice—Roadies Cringe Mahotsav
+Tanmay Bhat
+24
+4
+Jordan B. Peterson on 12 Rules for Life
+How To Academy
+24
+6
+Bollywood Angry Reaction on Neha Dhupia Roadies
+Bollywood Samachar
+17
+4
+Controversy@Bollywood Samachar
+Top 10 Funny Performances Got Talent
+Talent Replay
+98
+8
+Step 3
+Joe Rogan Experience #877 With Jordan Peterson
+PowerfulJRE
+86
+12
+Jordan B. Peterson on 12 Rules for Life
+How To Academy
+58
+9
+How to Learn Any Language in Six Months
+TEDx Talks
+46
+5
+| Chris Lonsdale
+The Mathematics of Weight Loss | Ruben Meerman
+TEDx Talks
+45
+4
+| TEDxQUT (Edited Version)
+Notes: Column “R” indicates the number of times the video was recommended; column “D” indicates the number of days on which the
+video was recommended more than once.
+Figure 4. RankFlow visualization of “beauty” for the top 10 most recommended channels at step 1, step 2, and step 3 (top),
+and for the top 10 most recommended videos at step 1, step 2, and step 3 (bottom).
+Media and Communication, 2021, Volume 9, Issue 4, Pages 234–249
+243
+
+
+===== PAGE 12 =====
+
+Table 5. Top 20 channels recommended for “beauty” at each step.
+Step 1
+R
+D
+Step 2
+R
+D
+Step 3
+R
+D
+5‐Minute Crafts♦
+79
+23
+5‐Minute Crafts♦
+316
+33
+5‐Minute Crafts♦
+923
+33
+5‐Minute Crafts♦GIRLY
+39
+15
+5‐Minute Crafts♦GIRLY
+87
+17
+5‐Minute Crafts♦GIRLY
+188
+15
+Vogue*
+21
+6
+5‐Minute Crafts VS*
+66
+14
+Vogue*
+181
+15
+123 GO! *
+19
+5
+Vogue*
+48
+8
+5‐MINUTEN‐TRICKS*
+130
+8
+5‐Minute Crafts VS*
+17
+7
+123 GO! *
+43
+7
+5‐Minute Crafts VS*
+123
+12
+5‐Minute Crafts FAMILY♦
+17
+8
+5‐Minute Crafts FAMILY♦
+41
+10
+Dawn Gallagher♣
+106
+7
+123 GO Like! *
+12
+5
+123 GO! SCHOOL*
+40
+7
+123 GO! SCHOOL*
+93
+8
+Beauty Lady
+11
+5
+5‐MINUTEN‐TRICKS*
+35
+7
+Troom Troom♦
+90
+6
+TIK TOK N SANAM♣
+8
+4
+Dawn Gallagher♣
+29
+4
+5‐Minute Crafts FAMILY♦
+75
+7
+Crafty Panda♦
+7
+3
+123 GO Like! *
+29
+6
+Jen Phelps♣
+58
+4
+Dawn Gallagher♣
+6
+2
+Troom Troom♦
+26
+3
+123 GO Like! *
+56
+5
+5‐Minute Crafts PLAY♦
+6
+2
+Crafty Panda♦
+16
+3
+123 GO! *
+50
+5
+5‐Minute Crafts Tech*
+6
+3
+DIY Unique Ideas
+14
+3
+DIY Unique Ideas
+43
+4
+123 GO! SCHOOL*
+6
+3
+Kim Lianne*
+13
+3
+Kim Lianne*
+41
+3
+Crazy Shayna
+6
+3
+Crazy Shayna
+13
+3
+Jen Luvs Reviews♠
+41
+3
+DIY Unique Ideas
+5
+2
+Beauty’s Big Sister♣
+12
+3
+Allie Glines♠
+39
+3
+Dominique Sachse*
+4
+2
+Ali Andreea♠
+11
+3
+MarionCameleon♠
+37
+3
+Kim Lianne*
+4
+2
+Jessica Braun♠
+11
+2
+TEDx Talks♦
+32
+3
+RosyMcMichael*
+4
+2
+Zachary Michael♠
+11
+2
+Kelly Strack♠
+32
+3
+Cassandra Bankson*
+4
+2
+Yasmina Filali♣
+10
+2
+Julia Mazzucato♣
+32
+2
+Notes: Column “R” indicates the number of times the channel was recommended; column “D” indicates the number of days on which
+the channel was recommended more than once; symbols indicate channel subscription status—diamond symbol (♦) for “diamond,”
+asterisk (*) for “gold,” spades (♠) for “silver,” and clubs (♣) for “bronze”; for channels without specified subscription figures, rows were
+left with no symbol.
+There is a strong commercial element to many of the top‐
+recommended channels for “beauty,” for example, many
+YouTubers test and review products. US‐based channels
+continue to feature prominently: between 60% (n = 12)
+and 75% (n = 15) of the top 20 channels at each step are
+US‐based. Regarding popularity, between 75% (n = 15)
+and 80% (n = 16) of the top 20 channels at each step fall
+within the “silver,” “gold,” or “diamond” tiers.
+Turning to videos, a video from 5‐Minute Crafts, offer‐
+ing up “cooking tricks,” is the clear recommendation win‐
+ner across steps and, in general, TheSoul Publishing’s
+“5‐Minute’ channels” videos occurred most frequently
+(see Table 6). The only other videos in the top five
+were uploaded by Vogue and American beauty expert
+Dawn Gallagher. Notably, all the recurring videos from
+TheSoul Publishing’s “5‐minute” channels used fully cap‐
+italized letters (e.g., “33 GIRLY HACKS YOU DIDN’T KNOW
+BEFORE”), exemplifying the use of clickbait tactics to
+“game” the YouTube algorithm (Jennings, 2018). In terms
+of a diversity of viewpoints and representation, the top‐
+recommended videos offer a commercialized and gen‐
+dered representation of beauty and a limited represen‐
+tation of people of color.
+5. Discussion
+Our investigation shows significant variation in recom‐
+mended videos (content diversity) over time and across
+queries, especially at step 1. This finding aligns with
+the company’s longstanding commitment to “diversi‐
+fication” in the “up next” section (Davidson et al.,
+2010; The YouTube Team, 2019a). Yet, YouTube’s oper‐
+ationalization of media diversity deserves further atten‐
+tion. First, we found that the platform clearly priori‐
+tizes certain channels (source diversity) over time and
+across steps, which provided important insights into how
+YouTube operationalizes “authoritativeness” in practice.
+US channels dominated across queries, down the chains,
+and over time, which highlights the cultural dominance
+of the US on YouTube (Rieder et al., 2020). From
+our data, it also seems clear that YouTube, following
+political and social pressure, makes decisions to cat‐
+egorize certain topics societally significant and truth‐
+oriented enough for heavy‐headed platform interven‐
+tion (e.g., vaccination, climate change, elections), while
+others (e.g., gender, politics, and beauty) are consid‐
+ered less so. For “coronavirus,” for example, YouTube
+amplified US news partners in the chain. Users’ location
+Media and Communication, 2021, Volume 9, Issue 4, Pages 234–249
+244
+
+
+===== PAGE 13 =====
+
+Table 6. Top five videos recommended for “beauty” at each step.
+Step
+Video title
+Channel
+R
+D
+Step 1
+100 Cooking Tricks That Will Help You to Cut Costs || Live
+5‐Minute Crafts
+16
+6
+Hilary Duff’s Busy Mom Makeup Routine | Beauty Secrets | Vogue
+Vogue
+14
+4
+33 Girly Hacks You Didn’t Know Before
+5‐Minute Crafts VS
+10
+4
+17 Genius Ideas for Girls || Hair and Makeup Transformations
+5‐Minute Crafts
+9
+2
+31 Colorful Hair Hacks for a Flawless Look
+5‐Minute Crafts GIRLY
+9
+4
+Step 2
+100 Cooking Tricks That Will Help You to Cut Costs || Live
+5‐Minute Crafts
+90
+19
+101 Easy Yet Genius Kitchen Hacks You’ve Never Seen Before
+5‐Minute Crafts
+49
+10
+Makeup Techniques for Women Over 40! Dawn and Joseph
+Dawn Gallagher
+29
+5
+100 Best Cooking Hacks Live
+5‐Minute Crafts
+23
+8
+33 Girly Hacks You Didn’t Know Before
+5‐Minute Crafts VS
+21
+5
+Step 3
+100 Cooking Tricks That Will Help You to Cut Costs || Live
+5‐Minute Crafts
+234
+22
+100 Best Cooking Hacks Live
+5‐Minute Crafts
+164
+18
+Makeup Techniques for Women Over 40! Dawn and Joseph
+Dawn Gallagher
+105
+8
+All‐Time Best Life Hacks Everyone Should Know
+5‐Minute Crafts
+93
+12
+100 Best Kitchen Tips || Cooking Hacks, Easy Recipes and Yummy Ideas
+5‐Minute Crafts
+79
+8
+Notes: Column “R” indicates the number of times the video was recommended; column “D” indicates the number of days on which the
+video was recommended more than once.
+information, though, influences the news channels sur‐
+faced by YouTube, as the appearance of Australian news
+channels (e.g., 60 Minutes Australia) in our data demon‐
+strates. This is in line with YouTube’s announcement
+that it was surfacing local trusted news outlets for
+newsworthy events (Mohan & Kyncl, 2018). For “fem‐
+inism” and “beauty,” in contrast, YouTube‐native anti‐
+feminist content creators (e.g., PeepOye Fame; Sahil
+Chhikara), and “5‐Minute” channels, respectively, dom‐
+inated the “up next” section over time and across steps,
+raising the question of how easily channels operated by
+“entrepreneurs” and powerful publishing companies can
+become “authoritative voices” on topics with clear con‐
+sumer and niche markets.
+When moderating at the level of the channel,
+YouTube has had some success: YouTube‐native niche
+entrepreneurs promoting conspiracy theories have
+reportedly experienced a drop in views since the plat‐
+form updated its systems to demote borderline content
+(Thomson, 2020). However, our findings reveal the prob‐
+lems associated with prioritizing content from news part‐
+ners (and from users that self‐certify as verified accounts)
+as an approach to operationalizing the promotion of
+authoritative content (Caplan, 2020), especially when
+channels such as Fox News have been known to circu‐
+late misinformation, channels including PowerfulJRE are
+known for laundering “bad ideas” (Maiberg, 2018) and
+5‐minutes Crafts channels engage in clickbait practices
+(Jennings, 2018).
+Second, while YouTube might be committed to offer‐
+ing video diversity in the “up next” section, we found that
+the videos most recommended for each of our queries
+did not feature a breadth of genres, viewpoints, or fram‐
+ings. For “beauty,” YouTube’s “up next” section favored
+channels that upload highly stereotyped, commercial‐
+ized, and gendered content, and for “feminism” it prior‐
+itized channels run by male YouTubers with strong anti‐
+feminist views. We consider these findings to indicate
+YouTube has not effectively addressed content diversity
+from a social perspective (failing to attend to factors such
+as race, gender, nationality, sexuality, and ability).
+Our findings also indicate a clear correlation between
+frequently recommended videos and channels, and pop‐
+ularity and “freshness” (proxies for “quality”). All the
+channels that were “winners” in the recommenda‐
+tion chain across queries fell predominantly within the
+“silver,’’ “gold,” and “diamond” tiers, which means that
+these media sources are part of an “elite” group rep‐
+resenting less than 1% of all YouTube channels (Rieder
+et al., 2020). For videos, almost all of the most fre‐
+quently recommended videos had accrued millions of
+views. The recency signal was also evident in our
+data: The most frequently recommended channels were
+uploading videos regularly during the period of our data
+collection, and most frequently recommended videos
+were often recently uploaded. However, we also found
+older “viral” videos repeatedly recommended, some of
+which were potentially problematic in terms of misinfor‐
+mation, especially for “coronavirus” and “feminism.”
+Recency and popularity alone, though, are insuffi‐
+cient to explain why certain problematic videos and
+less popular channels appear in the “up next” rec‐
+ommendation chain. Platform and issue vernaculars
+also play a part. Content creators are increasingly
+aware of the importance of gaming social media algo‐
+rithms to boost visibility (Bishop, 2019), and they imple‐
+ment and test various optimization tactics—e.g., use
+of relevant keywords in headlines—to increase their
+chances of being amplified by YouTube’s recommen‐
+dations systems, which was visible in both “feminism”
+and “beauty.” Optimization tactics might explain the
+appearance of some channels with “opal” and “bronze”
+Media and Communication, 2021, Volume 9, Issue 4, Pages 234–249
+245
+
+
+===== PAGE 14 =====
+
+status—so‐called micro‐influencers (Boerman, 2020)—
+within the top 20 most recommended channels for
+“beauty,” such as former model Dawn Gallagher and
+beauty and fashion YouTuber Julia Mazzucato.
+For “feminism,” audience viewing patterns and
+the “data void” problem (Golebiewski & boyd, 2019)
+might explain the overrepresentation of anti‐feminist
+YouTube content creators around discussions of “femi‐
+nism” (Döring & Mohseni, 2019). Arguably, YouTube has
+a much richer repository of content in the case of “coron‐
+avirus” and “beauty” than it does for “feminism,” which
+might result in recommendations of less popular and/or
+less relevant content for that search term. Data voids are
+especially concerning when they have been successfully
+exploited by actors pushing problematic agendas, such
+as those that are anti‐feminist or misogynistic. Although
+YouTube was alerted to this issue in 2015 (Golebiewski
+& boyd, 2019, p. 29), and despite highly popular femi‐
+nist YouTubers being active on the platform (e.g., Jouelzy,
+Feminist Frequency), our study indicates that five years
+later, it is still a problem.
+Last, our analysis shows that the algorithms under‐
+pinning the “up next” feature, as with ranking, are sen‐
+sitive to newsworthy events and controversies (Rieder
+et al., 2018, p. 63). This was visible in the “feminism” data
+where India‐based channels that had uploaded new con‐
+tent to YouTube were recommended at high rates after
+a gender‐based controversy relating to actress Neha
+Dhuphia. Sensitivity to current events shows the impor‐
+tance of studying YouTube’s “related videos” algorithm
+over time and as part of the broader media system in
+which YouTube exists, where different internal and exter‐
+nal agencies converge to influence how the platform rec‐
+ommends content to users.
+6. Conclusion
+This article has provided new evidence about what the
+algorithms underpinning YouTube’s “up next” feature
+“do” over time, down the recommendation chain, and
+in relation to specific issue spaces. We paid attention
+to YouTube’s “moments of choice” that find their form
+in algorithmic processes (e.g., a commitment to content
+diversity and to the promotion of authoritative voices)
+and the impact of platform and issue vernaculars on
+what content gets surfaced in the “up next” section,
+albeit without fully accounting for the effects of person‐
+alization. Critically, we have also shown how corporate
+understandings of “diversity,” “quality,” and “authorita‐
+tiveness,” and their operationalization in practice, can
+have significant limitations in terms of improving the
+types of content that are amplified by automated recom‐
+mendations systems and, potentially, the type of infor‐
+mation users are exposed to in relation to certain issue
+domains. For future research, our approach to “platform
+observability” (Rieder & Hofmann, 2020, p. 21) might be
+usefully combined with studies that build on issue com‐
+parisons while also accounting for personalization.
+Acknowledgments
+The authors would like to thank Guangnan Zhu for his
+work in preparing the RankFlow files for our visualiza‐
+tions, and Bernhard Rieder for his useful comments on
+earlier versions of this article. Funding for this project
+was received from the QUT Digital Media Research
+Centre and the Australian Research Council Centre of
+Excellence for Automated Decision‐Making and Society.
+Conflict of Interests
+The authors declare no conflict of interests.
+Supplementary Material
+Supplementary material for this article is available online
+in the format provided by the author (unedited).
+References
+Airoldi, M., Beraldo, D., & Gandini, A. (2016). Follow the
+algorithm: An exploratory investigation of music on
+YouTube. Poetics, 57, 1–13. https://doi.org/10.1016/
+j.poetic.2016.05.001
+Ananny, M., & Crawford, K. (2018). Seeing without know‐
+ing: Limitations of the transparency ideal and its
+application to algorithmic accountability. New Media
+& Society, 20(3), 973–989. https://doi.org/10.1177/
+1461444816676645
+Bergen,
+M.
+(2019,
+April
+2).
+YouTube
+executives
+ignored warnings, letting toxic videos run rampant.
+Bloomberg. https://www.bloomberg.com/news/
+features/2019‐04‐02/youtube‐executives‐ignored‐
+warnings‐letting‐toxic‐videos‐run‐rampant
+Bishop, S. (2018). Anxiety, panic, and self‐optimization:
+Inequalities and the YouTube algorithm. Conver‐
+gence, 24(1), 69–84. https://doi.org/10.1177/1354
+856517736978
+Bishop, S. (2019). Managing visibility on YouTube
+through algorithmic gossip. New Media & Soci‐
+ety, 21(11/12), 2589–2606. https://doi.org/10.1177/
+1461444819854731
+Boerman, S. C. (2020). The effects of the standard‐
+ized Instagram disclosure for micro‐ and meso‐
+influencers. Computers in Human Behavior, 103,
+199–207. https://doi.org/10.1016/j.chb.2019.09.
+015
+Bruns, A., Harrington, S., & Hurcombe, E. (2020).
+“Corona?
+5G?
+or
+both?”:
+The
+dynamics
+of
+Covid‐19/5G
+conspiracy
+theories
+on
+Facebook.
+Media
+International
+Australia,
+177(1),
+12–29.
+https://doi.org/10.1177/1329878X20946113
+Bucher, T. (2012). Want to be on the top? Algorithmic
+power and the threat of invisibility on Facebook. New
+Media & Society, 14(7), 1164–1180. https://doi.org/
+10.1177/1461444812440159
+Burgess, J., & Green, J. (2018). YouTube: Online video and
+Media and Communication, 2021, Volume 9, Issue 4, Pages 234–249
+246
+
+
+===== PAGE 15 =====
+
+participatory culture (2nd ed.). Polity Press.
+Burgess, J., & Matamoros‐Fernández, A. (2016). Mapping
+sociocultural controversies across digital media plat‐
+forms: One week of #gamergate on Twitter, YouTube,
+and Tumblr. Communication Research and Prac‐
+tice, 2(1), 79–96. https://doi.org/10.1080/22041451.
+2016.1155338
+Caplan, R. (2020, December 18). Pornhub is just the
+latest example of the move toward a verified inter‐
+net. Slate Magazine. https://slate.com/technology/
+2020/12/pornhub‐verified‐users‐twitter.html
+Chadwick, A. (2017). The hybrid media system: Politics
+and power. Oxford University Press.
+Covington, P., Adams, J., & Sargin, E. (2016). Deep neu‐
+ral networks for YouTube recommendations. In P.
+Covington, J. Adams, & E. Sargin (Eds.), Proceedings
+of the 10th ACM conference on recommender sys‐
+tems (pp. 191–198). ACM. https://doi.org/10.1145/
+2959100.2959190
+Davidson, J., Liebald, B., Liu, J., Nandy, P., Van Vleet, T.,
+Gargi, U., & Sampath, D. (2010). The YouTube video
+recommendation system. In J. Davidson, B. Liebald,
+J. Liu, P. Nandy, T. Van Vleet, U. Gargi, S. Gupta, Y.
+He, M. Lambert, B. Livingstone, & D. Sampath (Eds.),
+Proceedings of the fourth ACM Conference on rec‐
+ommender systems (pp. 293–296). ACM. https://doi.
+org/10.1145/1864708.1864770
+Diakopoulos, N. (2015). Algorithmic accountability: Jour‐
+nalistic investigation of computational power struc‐
+tures. Digital Journalism, 3(3), 398–415. https://doi.
+org/10.1080/21670811.2014.976411
+Diakopoulos, N. (2016). Accountability in algorithmic
+decision making. Communications of the ACM, 59(2),
+56–62. https://doi.org/10.1145/2844110
+Diakopoulos, N., & Koliska, M. (2017). Algorithmic trans‐
+parency in the news media, Digital Journalism,
+5(7), 809–828. https://doi.org/10.1080/21670811.
+2016.1208053
+Döring, N., & Mohseni, M. R. (2019). Male dominance
+and sexism on YouTube: Results of three content
+analyses. Feminist Media Studies, 19(4), 512–524.
+https://doi.org/10.1080/14680777.2018.1467945
+Faddoul, M., Chaslot, G., & Farid, H. (2020). A longitu‐
+dinal analysis of YouTube’s promotion of conspiracy
+videos. ArXiv. http://arxiv.org/abs/2003.03318
+Gibbs, M., Meese, J., Arnold, M., Nansen, B., & Carter, M.
+(2015). #Funeral and Instagram: Death, social media,
+and platform vernacular. Information, Communi‐
+cation & Society, 18(3), 255–268. https://doi.org/
+10.1080/1369118X.2014.987152
+Glasser, T. L. (1984). Competition and diversity among
+radio formats: Legal and structural issues. Journal of
+Broadcasting, 28, 127–142.
+Golebiewski, M., & boyd, D. (2019). Data voids: Where
+missing data can easily be exploited. Data & Society.
+https://datasociety.net/wp‐content/uploads/2019/
+11/Data‐Voids‐2.0‐Final.pdf
+Haim, M., Graefe, A., & Brosius, H. (2018). Burst of
+the filter bubble? Digital Journalism, 6(3), 330–343.
+https://doi.org/10.1080/21670811.2017.1338145
+Helberger, N. (2011). Diversity by design. Journal of Infor‐
+mation Policy, 1, 441–469. https://doi.org/10.5325/
+jinfopoli.1.2011.0441
+Helberger, N. (2012). Exposure diversity as a policy goal.
+Journal of Media Law, 4(1), 65–92. https://doi.org/
+10.5235/175776312802483880
+Helberger, N. (2019). On the democratic role of news
+recommenders. Digital Journalism, 7(8), 993–1012.
+https://doi.org/10.1080/21670811.2019.1623700
+Horwitz, R. B. (2005). On media concentration and
+the diversity question. Information Society, 21(3),
+181–204.
+Jennings, R. (2018, November 12). YouTube is full of
+cringey, clickbait DIY channels: They’re even weirder
+than you think. Vox. https://www.vox.com/the‐
+goods/2018/11/12/18065662/troom‐troom‐5‐
+minute‐crafts‐youtube‐diy‐prank
+Jugovac, M., & Jannach, D. (2017). Interacting with rec‐
+ommenders: Overview and research directions. ACM
+Transactions on Interactive Intelligent Systems, 7(3).
+https://doi.org/10.1145/3001837
+Ledwich, M., & Zaitsev, A. (2020). Algorithmic extrem‐
+ism: Examining YouTube’s rabbit hole of radicaliza‐
+tion. First Monday, 25(3). https://doi.org/10.5210/
+fm.v25i3.10419
+Lewis, R. (2018). Alternative influence: Broadcasting
+the reactionary right on YouTube. Data & Society.
+https://datasociety.net/wp‐content/uploads/2018/
+09/DS_Alternative_Influence.pdf
+Li, H. O.‐Y., Bailey, A., Huynh, D., & Chan, J. (2020).
+YouTube as a source of information on Covid‐19:
+A pandemic of misinformation? BMJ Global Health,
+5(5). https://doi.org/10.1136/bmjgh‐2020‐002604
+Loecherbach, F., Moeller, J., Trilling, D., & van Atteveldt,
+W. (2020). The unified framework of media diversity:
+A systematic literature review. Digital Journalism,
+8(5), 605–642. https://doi.org/10.1080/21670811.
+2020.1764374
+Maiberg, E. (2018, September 8). The Joe Rogan Expe‐
+rience is a safe space to launder bad ideas. VICE.
+https://www.vice.com/en/article/9kv9qd/the‐joe‐
+rogan‐experience‐is‐a‐safe‐space‐to‐launder‐bad‐
+ideas
+McKelvey, F., & Hunt, R. (2019). Discoverability: Toward
+a definition of content discovery through plat‐
+forms. Social Media + Society, 2019. https://doi.org/
+10.1177/2056305118819188
+Mohan, N., & Kyncl, R. (2018, July 9). Building a better
+news experience on YouTube, together. Youtube Offi‐
+cial Blog. https://blog.youtube/news‐and‐events/
+building‐better‐news‐experience‐on
+Möller, J., Trilling, D., Helberger, N., & van Es, B. (2018).
+Do not blame it on the algorithm: An empirical assess‐
+ment of multiple recommender systems and their
+impact on content diversity. Information, Commu‐
+nication & Society, 21(7), 959–977. https://doi.org/
+Media and Communication, 2021, Volume 9, Issue 4, Pages 234–249
+247
+
+
+===== PAGE 16 =====
+
+10.1080/1369118X.2018.1444076
+Mozilla Foundation. (2020). YouTube regrets. https://
+foundation.mozilla.org/en/campaigns/youtube‐
+regrets
+Napoli, P. M. (1999). Deconstructing the diversity princi‐
+ple. Journal of Communication, 49(4), 7–34. https://
+doi.org/10.1111/j.1460‐2466.1999.tb02815.x
+Nechushtai, E., & Lewis, S. C. (2019). What kind of
+news gatekeepers do we want machines to be? Filter
+bubbles, fragmentation, and the normative dimen‐
+sions of algorithmic recommendations, Computers
+in Human Behavior, 90, 298–307. https://doi.org/
+10.1016/j.chb.2018.07.043
+Neha Dhupia addresses Roadies controversy after
+“weeks of vitriol”: “My dad’s WhatsApp is flooded
+with abuses.” (2020, March 15). Hindustan Times.
+https://www.hindustantimes.com/tv/neha‐dhupia‐
+addresses‐roadies‐controversy‐after‐weeks‐of‐
+vitriol‐my‐dad‐s‐whatsapp‐is‐flooded‐with‐abuses/
+story‐e3yg0d540ZEo8oCFKsQCDL.html
+O’Callaghan, D., Greene, D., Conway, M., Carthy, J., &
+Cunningham, P. (2015). Down the (white) rabbit hole:
+The extreme right and online recommender systems.
+Social Science Computer Review, 33(4), 459–478.
+https://doi.org/10.1177/0894439314555329
+Pariser, E. (2011). The filter bubble: How the new person‐
+alized web is changing what we read and how we
+think. Penguin Books.
+Pasquale, F. (2015). The black box society: The secret
+algorithms that control money and information. Har‐
+vard University Press.
+Ribeiro, M. H., Ottoni, R., West, R., Almeida, V. A. F., &
+Meira, W. (2020). Auditing radicalization pathways
+on YouTube. In M. H. Ribeiro, R. Ottoni, R. West,
+V. A. F. Almeida, W. Meira (Eds.), Proceedings of
+the 2020 conference on fairness, accountability, and
+transparency (pp. 131–141). ACM.
+Rieder, B. (2016). RankFlow [Computer software]. PolSys.
+http://labs.polsys.net/tools/rankflow
+Rieder, B. (2017). Scrutinizing an algorithmic tech‐
+nique: The Bayes classifier as interested reading
+of reality. Information, Communication & Society,
+20(1), 100–117. https://doi.org/10.1080/1369118X.
+2016.1181195
+Rieder, B. (2020). Engines of order: A mechanology of
+algorithmic techniques. Amsterdam University Press.
+Rieder, B., Coromina, Ò., & Matamoros‐Fernández, A.
+(2020). Mapping YouTube: A quantitative exploration
+of a platformed media system. First Monday, 25(8).
+https://doi.org/10.5210/fm.v25i8.10667
+Rieder, B., & Hofmann, J. (2020). Towards platform
+observability. Internet Policy Review, 9(4). https://
+doi.org/10.14763/2020.4.1535
+Rieder, B., Matamoros‐Fernández, A., & Coromina, Ò.
+(2018). From ranking algorithms to “ranking cul‐
+tures”: Investigating the modulation of visibility in
+YouTube search results. Convergence, 24(1), 50–68.
+https://doi.org/10.1177/1354856517736982
+Roose, K. (2020, October 24). How the epoch times cre‐
+ated a giant influence machine. The New York Times.
+https://www.nytimes.com/2020/10/24/technology/
+epoch‐times‐influence‐falun‐gong.html
+Sandvig, C., Hamilton, K., & Karahalios, K. (2014). Audit‐
+ing algorithms: Research methods for detecting
+discrimination on internet platforms [Conference
+paper]. Data and Discrimination: Converting Critical
+Concerns into Productive Inquiry. Seattle, WA, US.
+Savage, M. (2009). Contemporary sociology and the chal‐
+lenge of descriptive assemblage. European Journal
+of Social Theory, 12(1), 155–174. https://doi.org/
+10.1177/1368431008099650
+Schmitt, J. B., Rieger, D., Rutkowski, O., & Ernst, J. (2018).
+Counter‐messages as prevention or promotion of
+extremism?! The potential role of YouTube recom‐
+mendation algorithms. Journal of Communication,
+68(4), 780–808. https://doi.org/10.1093/joc/jqy029
+Seyfert, R., & Roberge, J. (2016). Algorithmic cultures:
+Essays on meaning, performance and new technolo‐
+gies. Routledge.
+Shen, H., DeVos, A., Eslami, M., & Holstein, K. (2021).
+Everyday algorithm auditing: Understanding the
+power of everyday users in surfacing harmful algo‐
+rithmic behaviors. Proceedings of the ACM on
+Human‐Computer Interaction, 5(CSCW2), Article 433.
+https://doi.org/10.1145/3479577
+Shepherd, K. (2020, May 9). Who is Judy Mikovits in
+“Plandemic,” the coronavirus conspiracy video just
+banned from social media? The Washington Post.
+https://www.washingtonpost.com/gdpr‐consent/
+?next_url=https%3a%2f%2fwww.washingtonpost.
+com%2fnation%2f2020%2f05%2f08%2fplandemic‐
+judy‐mikovits‐coronavirus%2f
+Siddiqui, S. (2008). YouTube and feminism: A class action
+project. Feminist Collections: A Quarterly of Women’s
+Studies Resources, 29(1), 24–25.
+Solsman, J. E. (2018, January 10). YouTube’s AI is the
+puppet master over most of what you watch. CNET.
+https://www.cnet.com/news/youtube‐ces‐2018‐
+neal‐mohan
+Sunstein, C. R. (2001). Republic.com. Princeton Univer‐
+sity Press. vThe YouTube Team. (2019a, January 25).
+Continuing our work to improve recommendations
+on YouTube. YouTube Official Blog. https://blog.
+youtube/news‐and‐events/continuing‐our‐work‐to‐
+improve
+The YouTube Team. (2019b, June 5). Our ongoing
+work to tackle hate. YouTube Official Blog. https://
+blog.youtube/news‐and‐events/our‐ongoing‐work‐
+to‐tackle‐hate
+The YouTube Team. (2019c, December 3). The four Rs
+of responsibility, part 2: Raising authoritative con‐
+tent and reducing borderline content and harmful
+misinformation.
+YouTube
+Official
+Blog.
+https://
+blog.youtube/inside‐youtube/the‐four‐rs‐of‐
+responsibility‐raise‐and‐reduce
+Thomson, C. (2020, September 18). YouTube’s plot to
+Media and Communication, 2021, Volume 9, Issue 4, Pages 234–249
+248
+
+
+===== PAGE 17 =====
+
+silence conspiracy theories. Wired. https://www.
+wired.com/story/youtube‐algorithm‐silence‐
+conspiracy‐theories
+Vrijenhoek, S., Kaya, M., Metoui, N., Möller, J., Odijk,
+D., & Helberger, N. (2021). Recommenders with a
+mission: Assessing diversity in news recommenda‐
+tions. In F. Scholer & P. Thomas (Eds.), CHIIR ’21:
+Proceedings of the 2021 conference on human infor‐
+mation interaction and retrieval (pp. 173–183). ACM.
+https://doi.org/10.1145/3406522.3446019
+YouTube. (n.d.). How does YouTube provide more quality
+information to users? https://www.youtube.com/
+intl/ALL_au/howyoutubeworks/our‐commitments/
+fighting‐misinformation/#raising‐quality‐info
+YouTube Creators. (n.d.). Awards. https://www.youtube.
+com/creators/awards
+YouTube
+Help.
+(2020).
+Coronavirus
+disease
+2019
+(Covid‐19)
+updates.
+https://support.google.com/
+youtube/answer/9777243?hl=en
+Zadrozny, B., & Collins, B. (2019, August 20). Trump,
+QAnon and an impending judgment day: Behind the
+Facebook‐fueled rise of The Epoch Times. NBC News.
+https://www.nbcnews.com/tech/tech‐news/trump‐
+qanon‐impending‐judgment‐day‐behind‐facebook‐
+fueled‐rise‐epoch‐n1044121
+Zhao, Z., Hong, L., Wei, L., Chen, J., Nath, A., Andrews, S.,
+& Chi, E. (2019). Recommending what video to watch
+next: A multitask ranking system. In Z. Zhoo, L. Hong,
+L. Wei, J. Chen, A. Nath, S. Andrews, A. Kumthekar,
+M. Sathiamoorthy, X. Yi, & E. H. Chi (Eds.), Proceed‐
+ings of the 13th ACM conference on recommender
+systems (pp. 43–51). ACM. https://doi.org/10.1145/
+3298689.3346997
+About the Authors
+Ariadna Matamoros‐Fernández is a lecturer in digital media in the School of Communication at the
+Queensland University of Technology, chief investigator at the Digital Media Research Centre, and asso‐
+ciate investigator at the national ARC Centre of Excellence for Automated Decision‐Making and Society.
+Joanne E. Gray is a lecturer in digital media in the School of Communication at the Queensland
+University of Technology and chief investigator at the Digital Media Research Centre.
+Louisa Bartolo is a PhD student in the Digital Media Research Centre at the Queensland University of
+Technology. She is also a student member of the ARC Centre of Excellence for Automated Decision‐
+Making and Society.
+Jean Burgess is professor of digital media in the Digital Media Research Centre and School of
+Communication at the Queensland University of Technology, and associate director of the national
+ARC Centre of Excellence for Automated Decision‐Making and Society.
+Nicolas Suzor is professor of law in the Digital Media Research Centre and School of Law at the
+Queensland University of Technology, and chief investigator in the national ARC Centre of Excellence
+for Automated Decision‐Making and Society.
+Media and Communication, 2021, Volume 9, Issue 4, Pages 234–249
+249

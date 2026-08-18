@@ -1,0 +1,60 @@
+{
+  "version": 2,
+  "generated_at": "2026-08-17T08:49:19.097Z",
+  "request": {
+    "topic": "",
+    "title": "",
+    "dois": [
+      "10.1073/pnas.2025334119"
+    ],
+    "pdf_url": "",
+    "si_requested": false,
+    "language_override": "",
+    "route_override": "open_access",
+    "source_url": "",
+    "api_fallback_web": null,
+    "api_fallback_web_for": [],
+    "no_api_fallback_web_for": []
+  },
+  "summary": {
+    "total": 1,
+    "downloaded": 0,
+    "seconds": 5.7
+  },
+  "results": [
+    {
+      "doi": "10.1073/pnas.2025334119",
+      "title": "Algorithmic amplification of politics on Twitter",
+      "language": "en",
+      "publisher": "National Academy of Sciences",
+      "route": "open_access",
+      "route_reason": "explicit_override",
+      "si_requested": false,
+      "status": "oa_not_found",
+      "provider": "open_access",
+      "oaAssessment": "confirmed_oa",
+      "oaChecks": {
+        "pmc": {
+          "checked": true,
+          "pmcid": "PMC8740571",
+          "error": ""
+        },
+        "unpaywall": {
+          "checked": false,
+          "error": "",
+          "is_oa": null
+        },
+        "crossref_license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "oaAttempts": [
+        {
+          "source": "pmc",
+          "url": "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_pdf/1e/5a/pnas.202025334.PMC8740571.pdf",
+          "status": "invalid_or_unavailable",
+          "http_status": 404,
+          "reason": "invalid content"
+        }
+      ]
+    }
+  ]
+}

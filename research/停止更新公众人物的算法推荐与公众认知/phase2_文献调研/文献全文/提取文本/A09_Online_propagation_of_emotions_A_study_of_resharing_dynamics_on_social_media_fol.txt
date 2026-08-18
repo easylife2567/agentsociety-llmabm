@@ -1,0 +1,1889 @@
+ID: A09
+DOI: 10.1371/journal.pone.0336134
+中文译名: 情绪的网络传播：名人自杀后社交媒体转发动力研究
+英文原题: Online propagation of emotions: A study of resharing dynamics on social media following celebrity suicides
+原文件: 文献全文/正文/A09_2025_情绪的网络传播：名人自杀后社交媒体转发动力研究__Online propagation of emotions A study of resharing dynamics on social media following celebrity suicides.pdf
+源URL: https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0336134&type=printable
+提取说明: 仅为机械文本提取，页码标记依原PDF；不代表已完成论证核验。
+
+
+===== PAGE 1 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+1 / 27
+ 
+ OPEN ACCESS
+Citation: Nouri E, Saraf N, Goh JM, Dasgupta 
+S, Cyr D (2025) Online propagation of 
+emotions: A study of resharing dynamics 
+on social media following celebrity suicides. 
+PLoS One 20(12): e0336134. https://doi.
+org/10.1371/journal.pone.0336134
+Editor: Eric Mayor, University of Basel, 
+SWITZERLAND
+Received: April 3, 2024
+Accepted: October 21, 2025
+Published: December 10, 2025
+Copyright: © 2025 Nouri et al. This is an open 
+access article distributed under the terms of 
+the Creative Commons Attribution License, 
+which permits unrestricted use, distribution, 
+and reproduction in any medium, provided the 
+original author and source are credited.
+Data availability statement: Data is avail­
+able from Harvard Dataverse https://doi.
+org/10.7910/DVN/0YEW8D.
+Funding: This study was supported by the 
+Insight Grant from the Social Sciences and 
+Humanities Research Council of Canada Grant 
+Number 435-2013-0641. The funders had 
+RESEARCH ARTICLE
+Online propagation of emotions: A study of 
+resharing dynamics on social media following 
+celebrity suicides
+Ehsan Nouri
+1,2*, Nilesh Saraf
+1, Jie Mein Goh1, Srabana Dasgupta1, Dianne Cyr1
+1  Beedie School of Business, Simon Fraser University, Burnaby, British Columbia, Canada, 2  Karsh 
+Institute of Democracy, University of Virginia, Charlottesville, Virginia, United States of America 
+* ehsan@virginia.edu
+Abstract 
+Emotional contagion on social media, particularly following shocking and tragic 
+events, often unfolds through widespread resharing, amplifying affective responses 
+that are typically intense and negative. This study focuses on the context of celebrity 
+suicides, which have the potential to trigger emotional contagion and lead to adverse 
+behavioral outcomes, such as copycat suicides. Using an exhaustive Twitter dataset 
+covering four celebrity suicides, we theorize the propagation of emotional content 
+through a valence-arousal framework, distinguishing emotions based on affective 
+valence (positive or negative) and physiological arousal (high or low). We analyze 
+how distinct emotions embedded in tweets propagate through retweet cascades, 
+treating each tweet and its retweets as a single cascade. Propagation is measured 
+across four cascade dimensions: size, lifetime, speed, and burstiness. Emotions are 
+extracted from over a million tweets and retweets using a BERT-based language 
+model and are used as predictors in regression analyses of the propagation metrics. 
+Our results show that emotional messages propagate in distinct ways after tragic 
+events. Disgust emerges as the most contagious emotion, spreading quickly, widely, 
+and with longevity, while fear, despite its arousal, spreads weakly. Anger and surprise 
+generate fast but short-lived cascades marked by high burstiness. Joy, though less 
+frequent, endures longer than neutral and negative content, reflecting resilience but 
+with lower burstiness. These findings advance research on online emotional propaga­
+tion by demonstrating that discrete emotions differ significantly even within the same 
+valence–arousal characteristic. They also offer insights for public health strategies to 
+mitigate risks linked to emotional amplification in digital environments.
+Introduction
+Online Social Media (SM) enables the widespread dissemination of user-generated 
+content on an unprecedented scale [1–3]. This is facilitated by features such as 
+
+
+===== PAGE 2 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+2 / 27
+resharing and algorithmic recommendations, which have transformed SM into a vital 
+tool for communication and discourse, capable of shaping public opinion and driving 
+behavior change [4,5]. Notable examples of SM’s influence include its role in mobiliz­
+ing social movements such as the Arab Spring, Occupy Wall Street, and Black Lives 
+Matter [6], as well as rallying citizens to provide aid during crises, such as natural 
+disasters [7]. The remarkable power of SM to galvanize such large-scale responses 
+among individuals with often tenuous connections lies not only in the informational 
+value of the messaging but also in their emotional resonance [8,9]. In other words, 
+SM can act as a powerful channel for emotional transmission, capable of radically 
+influencing opinions and behaviors across online populations.
+While examples such as protest mobilizations or citizen-led disaster responses 
+highlight the positive impact of SM on society, its darker side is equally evident in the 
+rapid spread of negative emotional content through these networks [8,10,11]. This 
+is particularly concerning given that SM exposes users from diverse backgrounds 
+to online content on a global scale, with exposure to negative emotions shown to 
+adversely affect mental well-being, mood and, in extreme cases, trigger self-harm 
+[12,13]. Research also indicates that negative discourse tends to grow faster and 
+dominate SM platforms, overshadowing positive interactions, particularly after shocks 
+and crises [11,14]. Moreover, people are generally more influenced by negative 
+information than positive [10,15,16], a phenomenon known as the negativity bias. 
+This bias, well documented across various contexts, even before the online era 
+[17], is likely amplified in the digital age due to the scale and reach of SM platforms. 
+Although the precise theoretical mechanism by which negative SM content shapes 
+users’ feelings, opinions, and behavior remains unclear, mounting evidence suggests 
+that contagion processes are at work, where repeated exposure to the same emo­
+tional content triggers online users to adopt the emotions and retransmit to others 
+[18–20]. For example, users exposed predominantly to negative content tend to 
+create and share more negative posts [10], creating a feedback loop that propagates 
+negativity across the network [21]. This multiplier effect can cascade through the 
+population, with its magnitude influenced by factors such as the context and connec­
+tivity of the networked community. Thus, research suggests that the online spread of 
+negative content provides indicative—though not conclusive—evidence that emotion, 
+not just information, is retransmitted online.
+This study seeks to understand how the retransmission (resharing) of online 
+emotional content unfolds on SM in the aftermath of high-profile tragic events that 
+predominantly trigger negative emotions. Our motivation arises from the concerning, 
+well-documented phenomenon that media coverage of suicides, particularly those 
+involving prominent figures, can lead to copycat behavior in the broader population 
+[22–26] —the “Werther Effect.” While prior research acknowledges the role of social 
+media in spreading information and emotions [10,19,27,28], its mediating role in 
+enabling copycat behavior through the distribution of emotions remains less under­
+stood, particularly whether tragic events trigger distinct propagation dynamics (used 
+interchangeably with diffusion; see conceptual clarification in S1 Appendix). We 
+therefore examine the temporal patterns of emotion propagation following tragedies, 
+no role in study design, data collection and 
+analysis, decision to publish, or preparation of 
+the manuscript.
+Competing interests: The authors have 
+declared that no competing interests exist.
+
+
+===== PAGE 3 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+3 / 27
+highlighting that each emotion follows its own trajectory and affects vulnerable audiences differently. This underscores 
+the need for tailored intervention strategies that account for these dynamics. A deeper understanding of such patterns is 
+critical to addressing the rapid and unpredictable effects of a fatal phenomenon that has become increasingly prominent in 
+the digital age [22,23,29,30].
+Hence, we pose the following research question: (RQ) How does the retransmission of emotions expressed on social 
+media platforms unfold in the aftermath of celebrity suicides? To address this question, we analyze the emotional content 
+of social media posts following multiple celebrity suicides and compare their “reshare cascades” across four distinct met­
+rics of propagation. Similar to some of the previous studies [27], while focusing on reshare cascades allows us to apply 
+current understanding of emotions, at the same time we also control for author level characteristics of the originating posts 
+among other factors. By correlating the emotions in posts with multiple propagation (diffusion) metrics, we derive insights 
+into how specific emotions shape the spread of content.
+Our study advances understanding of suicide contagion by identifying emotional propagation as a potential mediating 
+mechanism through which emotional and high-risk messages can reach vulnerable users and increase the likelihood of 
+copycat suicides [22,23,29]. Next, by applying the valence–arousal framework, i.e., the circumplex model of affect [31] to 
+celebrity suicides, we show that emotions with the same valence and arousal can still propagate very differently. Among 
+high-arousal negative emotions, disgust spreads quickly and extensively with persistence, anger spreads rapidly but fades 
+quickly, and fear shows weak propagation overall. By contrast, joy, a low-arousal positive emotion, endures longer than 
+negative emotions despite spreading more slowly, reflecting resilience in collective responses. This evidence demon­
+strates that discrete emotions provide sharper insights than broad valence–arousal categories for understanding how 
+emotional content circulates in highly visible tragedies [28,32].
+Second, we demonstrate that propagation must be understood multidimensionally, rather than reduced to a single 
+measure of virality. Prior studies often conflate metrics such as reshare volume, speed, and lifetime, treating them as 
+interchangeable, yet our results show that they capture distinct dynamics. An emotion may spread with high speed but 
+have only a short lifetime (anger), or diffuse more slowly yet endure longer despite weaker reach (joy).This challenges the 
+prevailing assumption that high-arousal negative emotions always dominate diffusion [33], revealing instead that differ­
+ent emotions leave different propagation signatures across speed, virality, lifetime, and burstiness. Finally, we contribute 
+methodologically by applying a fine-tuned BERT-based model [34] to detect discrete emotions in large-scale textual data, 
+offering greater accuracy than lexicon-based approaches. Taken together, these contributions provide a richer theoretical 
+and methodological foundation for studying emotional propagation in crisis contexts, situating celebrity suicides within 
+broader models of social media–enabled health behaviors.
+Our empirical setting and dataset offer several advantages. First, the unexpected nature of celebrity suicides minimizes 
+the likelihood of strategic behavior by online actors, reducing the risk of artificially influenced or contaminated activity. Sec­
+ond, these events’ tragic and emotionally unambiguous nature limits interpretive variability across users—unlike political 
+content, which often invites various speculation—enabling a clearer analysis of how emotions influence collectives. Third, 
+the dataset predates the widespread use of advanced chatbots, avoiding complications introduced by automated activity 
+in more recent data. Finally, at the time of data collection, suicide prevention and content filtering measures were limited, 
+allowing for a more unobstructed view of organic emotional propagation on the platform.
+The following sections begin with a review of the literature on emotional propagation in social media and its links to the 
+distribution of self-harm behaviors. We then present our methodology for analyzing over a million tweets and retweets 
+related to four celebrity suicides. Focusing on the temporal characteristics of retweet cascades—each comprising an orig­
+inal tweet and its reshares—we apply the valence-arousal framework [31] to theorize how the nature of emotions shapes 
+individual responses and drives interpersonal propagation dynamics. Our analysis examines propagation across four key 
+dimensions: volume, longevity, speed, and burstiness. This approach reveals how emotional content spreads in contexts 
+dominated by negative emotions. We conclude by discussing the theoretical and practical implications of our findings for 
+
+
+===== PAGE 4 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+4 / 27
+public policy, information systems, and related fields. Although our data predates recent platform changes, it provides 
+enduring insights into the dynamics of emotional propagation and adds empirical support to recent work showing that 
+distinct emotions follow distinct patterns of spread [28,32], which we identify through a multidimensional lens.
+Literature overview
+Social media and online content diffusion
+Social Media enables the spread of user-generated content through the interconnected network of its users [3]. As content 
+is reshared by users and distributed by platform algorithms, it can diffuse across the network, reaching a larger online 
+population compared to the author’s primary contacts. This diffusion capability has attracted considerable interest across 
+various research disciplines. In marketing, studies examine the role of SM in driving word-of-mouth promotion for products 
+[35]. Political science and communication scholars have examined the spread of fake news and rumors on SM platforms 
+[1,36–38]. Similarly, in the health sciences, SM is a critical tool for disseminating health behaviors and gauging public 
+opinions and health choices during events such as pandemics [15,39]. Lastly, network scientists have also focused on 
+understanding the underlying structures that enable information and behaviors to propagate through the interconnected 
+links of social networks on SM platforms [3,40].
+Research on the diffusion phenomenon of SM typically addresses three key aspects: structural features, temporal 
+dynamics, and content characteristics [2]. First, scholars have emphasized the importance of social network structures 
+formed through various connections between users, such as friendships, followers, group memberships, and resharing 
+links. Structural features like user centrality, the presence of weak ties, and the formation of clusters play a critical role 
+in shaping the outcomes of information diffusion [3,41]. Second, research has explored the temporal dynamics of diffu­
+sion events [36,38,42–44], focusing on the speed and duration of information spread. Key findings indicate that sharing 
+behavior often occurs in clustered bursts and that the aggregate temporal patterns of communication vary depending on 
+factors such as the topic [45], the emotions expressed [27,46,47], or the users involved [48]. Understanding these tempo­
+ral patterns is crucial for decision-makers, including business managers, law enforcement, and crisis response teams, as 
+it enables them to respond with effective intervention. Finally, the content of SM communications, ranging from text [33] 
+to multimedia like videos [49] and emojis [50,51], has also been analyzed to examine how different forms of information, 
+emotions, and meaning influence recipients. These studies highlight the differential impact of content characteristics on 
+how information spreads and resonates with audiences.
+To better understand the structural and temporal dynamics of information spread on social media, researchers often 
+use the concept of cascade trees to model the propagation process through interpersonal transmission and resharing 
+[1,36]. In this framework, the original post is the root of a tree-like graph that expands as users reshare it. Each node rep­
+resents a user, and each branch corresponds to a resharing event. For instance, a chain of retweets on X (formerly Twit­
+ter) can be visualized as a cascade tree, illustrating who retweeted whom through added nodes and connections. These 
+models are instrumental in analyzing diffusion patterns, including virality, influence, and the identification of key spreaders.
+Online propagation of emotions
+Human emotions involve coordinated changes in perception, physiological responses, motivation, behavior, and feel­
+ings triggered by how individuals appraise events that matter to them [52]. Since external factors can trigger emotions in 
+individuals, the emotional expressions in online content can act as powerful cues that stimulate users to mirror, amplify, 
+or retransmit the emotion to others. As per the emotional contagion theory, the transfer of emotions can be automatic, 
+unconscious and difficult to control, the primary pathways to such transfer are empathy which induces mimicry [53]. Fur­
+ther, research has also shown that online content can also reflect the emotions of its authors and serves as a pathway for 
+transmitting emotions between users [21,54], even via mediums like emails and webpages [33], or through emojis [51]. 
+This dynamic makes human collectives conducive to the emergence and propagation of emotional cascades, where the 
+
+
+===== PAGE 5 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+5 / 27
+transfer of emotions spreads rapidly from a few individuals to a significant portion of a collective [21]. Such findings within 
+online settings are significant because emotional transmission, once dependent on face-to-face cues like body language 
+and vocal tones, has evolved to operate through computer-mediated communication and network-driven cues in online 
+environments.
+Research on the emotionality of SM content has evolved in two key directions. One foundational area is focused on 
+the empirical evidence of emotional contagion, which differs from information diffusion. Emotional contagion occurs when 
+content expressing a particular emotional state created by one user on SM invokes similar emotions in the recipients. For 
+instance, Ferrara and Yang [10] show that exposure to negative (positive) content increases the likelihood of users post­
+ing negative (positive) content on Twitter. Similarly, in a large-scale Facebook experiment, Kramer et al. [19] found that 
+emotional expressions in users’ news feeds influenced the emotions expressed in their subsequent posts. Their study also 
+revealed that emotional exposure can impact social engagement, shaping user activity levels on the platform. Context 
+also plays a significant role, as shown by Coviello et al. [54], who found that real-world events, such as rainfall, can predict 
+online emotional responses. Notably, the emotions elicited by rainfall in one geographic location spread online to users in 
+unaffected regions, highlighting the reach and influence of emotional contagion in online environments. However, assert­
+ing the underlying mechanism of contagion requires a deeper study of the latent psychological states of the users, either 
+through recording subsequent posts or through experimental methods.
+A related research stream shows that different emotions exhibit distinct diffusion or propagation patterns. For instance, 
+a study on Weibo found that anger is more likely to spread between users than joy, whereas sadness has a weaker cor­
+relation among users [55]. Stieglitz and Dang-Xuan [8] observed that political tweets that are more emotionally charged 
+get retweeted more frequently and at a faster pace. Similarly, analyzing thousands of rumors on Twitter, Pröllochs et al. 
+[27] compared the diffusion rates of various emotion categories. They found that, unlike the emotions of surprise, fear, 
+and disgust, expressions of anger, anticipation, and trust result in more reshares, reach a broader audience, and persist 
+over a longer period. Berger and Milkman [33] also support these findings, showing that New York Times articles evoking 
+high-arousal emotions, such as awe, anger, and anxiety, are more likely to go viral than those associated with low-arousal 
+emotions, such as sadness.
+The study of how emotions spread across social media platforms emphasizes the need for theoretical frameworks to 
+comprehensively understand emotional propagation. Building on extant research, we draw from two foundational theo­
+retical approaches that offer distinct but complementary perspectives to guide our analysis. First, Goldenberg and Gross 
+[21] propose studying emotional contagion through an “emotional cascade approach,” which examines how a piece of 
+content elicits sequential reactions or reshares after it is viewed by others. We adopt this framework to analyze reshares 
+on Twitter in the aftermath of celebrity suicides. Second, we guide our empirical analysis using the “circumplex model of 
+affect” [31], which categorizes emotions along two bipolar dimensions: valence (positive vs. negative) and arousal (the 
+level of physiological activation they evoke). High-arousal negative emotions include anger, fear, frustration, distress, and 
+annoyance, whereas low-arousal negative emotions encompass misery, sadness, and boredom. On the positive valence 
+side, high-arousal emotions include happiness and excitement, while low-arousal positive emotions include satisfaction, 
+joy, and relaxation. The model is a structure of the affective experience of individuals where emotions at the opposite end 
+of each dimension seldom are experienced together. Thus, sadness and joy, which lie along the dimension of valence, 
+do not typically occur together, or sadness and anger, which lie apart on the arousal dimension, seldom will be observed 
+together.
+Previous research on the online dynamics of emotional content has shown that high arousal and negative emotions 
+are significant drivers of virality [28,33]. However, many studies examine arousal and valence separately and often restrict 
+their analysis to a single metric of retransmission, with the exception of a few studies [10,27,33]. For example, while an 
+existing study finds that emotions like fear and anger [55] are more likely to be reshared on social media, it does not 
+examine other aspects of the temporal dynamics, such as the duration or speed with which the retransmission occurs. 
+
+
+===== PAGE 6 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+6 / 27
+Overall, there is limited evidence in social media research distinguishing the temporal dynamics of diffusion created 
+by various emotions. Recent studies that challenge valence–arousal frameworks highlight the potential of focusing on 
+discrete emotions [28,32], and there is room to extend their findings by demonstrating how discrete emotions vary in their 
+temporal patterns of diffusion.
+Self-harm and digital social influence
+The third body of work informing our study pertains to suicide contagion, a phenomenon extensively studied across 
+multiple disciplines, including health sciences, communication, and psychology. The literature widely recognizes suicide 
+as a contagious act, with contagion occurring through proximity, demographic similarity, or the prominence of the victims. 
+Instances of suicide contagion have been documented for at least two centuries [30,56]. Celebrity suicides, in particular, 
+have been associated with inducing copycat behavior in the population as far back as the 18th century [24]. This effect is 
+often facilitated by media exposure and cognitive mechanisms such as imitation and suggestion [57,58]. Research has 
+shown that media publicity, even before the advent of digital and social media, played a significant role in triggering copy­
+cat suicides [26]. This phenomenon, commonly known as “The Werther Effect,” was first identified following the publication 
+of Goethe’s novel “The Sorrows of Young Werther” [59], which reportedly led to a wave of suicides across Europe. Empir­
+ical evidence for this effect was later confirmed by Phillips [24], who analyzed suicides reported in newspapers in the US 
+and UK and correlated them with subsequent increases in suicide rates within those communities.
+More recent studies have demonstrated evidence of suicide contagion across different regions, including US, Europe, 
+and East Asia [22,23,26,57]. For example, a study found that in August 2014, following the suicide of Robin Williams 
+(celebrity actor), there was an excess of 1,841 monthly suicide cases in the US—a 10% increase over baseline rates [22]. 
+Additionally, research on ethnic and locally clustered suicide events also suggests that individuals who are in contact with 
+or associated with someone who has died by suicide are more likely to engage in the same act [60]. This subset of the 
+more general realm of behavioral contagion underscores the urgency of preventive interventions, particularly in the early 
+stages of a contagion event, when the spread can escalate rapidly. Special attention is needed for vulnerable populations, 
+including youth and individuals with mental health conditions [61], who are more susceptible to social influence through 
+exposure to others’ behaviors, emotions, and thoughts.
+Social media expands interpersonal communication, potentially amplifying the extent of suicidal contagion. Content 
+shared on SM following celebrity suicides often exhibits distinct emotional patterns. For instance, a study of Reddit posts 
+following the suicide of ten celebrities found an increased expression of inward-focused content, anxiety, anger, and 
+negative emotions [62]. Similarly, Niederkrotenthaler et al. [63] analyzed Twitter activity following the suicide of Swedish 
+DJ Tim Bergling (Avicii), identifying several short-lived peaks of social media engagement appearing after the incident. 
+Each wave of engagement aligned with major news revelations—initial death reports, confirmation of suicide, and disclo­
+sure of the method—highlighting how different types of information trigger distinct emotional and temporal patterns. Their 
+analysis also revealed that tweets referencing the suicide method, though limited in volume, reached disproportionately 
+larger audiences due to being shared by highly followed accounts. Fahey et al. [25] further examined the temporal evolu­
+tion of emotions following celebrity suicides, showing that suicides of younger celebrities, women, and individuals in the 
+entertainment industry tend to evoke stronger emotional responses. These emotional and textual dynamics are thought to 
+be fundamental mechanisms through which exposure to suicide news and suicidal ideas occurs in digital environments, 
+potentially triggering emotional or even behavioral contagion.
+Social media also provides a valuable lens for understanding both the mental health of individuals and the mechanisms 
+of social influence. Patterns in language, emotional tone, and engagement have been used to detect suicidal ideation and 
+predict broader trends, including national suicide rates [62,64,65]. Distinct linguistic markers such as first-person pro­
+nouns, present-tense verbs, angry tones, and references to death are more prevalent in suicidal posts [66], revealing how 
+online expression reflects and shapes collective responses to suicide-related events.
+
+
+===== PAGE 7 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+7 / 27
+Despite these advances, there is a need for a deeper understanding of resharing—a core mechanism that can activate 
+contagion—since it allows us to study the bottom-up development of cascades, thereby disseminating content and emo­
+tions to a larger audience. Earlier studies analyzed aggregate-level temporal patterns of tweets and their reply networks 
+after celebrity suicides [63], as well as the emotional trends of communications classified by the characteristics of the 
+deceased celebrity [25]. We suggest that the underlying temporal dynamics between individual retweets, as well as the 
+cascade-level characteristics they generate (and how cascades vary in outcomes given their authors and content) will 
+help us gain a deeper understanding of the potential micro-level mechanisms at play.
+Metrics of online propagation
+The propagation (diffusion) of online content has been examined through multiple measures that collectively offer the 
+potential to understand the underlying micro-level mechanisms. We revisit these approaches to construct a more inte­
+grated theoretical lens connecting tweet content to retransmission patterns. A primary measure is cascade size, which is 
+widely used as a core indicator of content virality and influence. It refers to the total number of retweets (i.e., the number 
+of nodes in a cascade) and serves as a dependent variable in many studies [8,36,67,68]. While simple and intuitive, this 
+measure overlooks the temporal dynamics of diffusion. Del Vicario et al. [36] used cascade size to track misinformation 
+spread, while Stieglitz and Dang-Xuan [8] applied it to compare the diffusion of emotional and non-emotional content. Juul 
+and Ugander [71] further showed that cascade size explains much of the variance in how true and false news diffuses, 
+even when controlling for structural and temporal differences.
+Second, the lifetime of the cascade is defined as the time between the first and last event in the sequence of retweets, 
+i.e., the time between the original tweet and the last retweet [36]. A cascade with a long lifetime implies that it has been 
+reshared numerous times or that there have been long intervals when it was not reshared but was eventually. Overall, 
+long lifetimes mean that the Tweet’s emotional content has remained visible to the population over a longer period [27,38]. 
+It is also possible that cascade size and lifetime will be correlated within a population because exposure of a tweet to a 
+larger number of users will increase the likelihood that it will continue being reshared over a longer period. Third, the time-
+to-Nth retweet refers to how long a cascade takes to reach a predefined growth threshold, such as the time to its 100th 
+retweet [47]. This metric allows for comparing the diffusion speed across cascades while controlling for a baseline level of 
+virality [8,47].
+Finally, the burstiness of a cascade captures the excitability of online content. It reflects how reactions cluster in time, 
+with many users resharing within a short span followed by periods of lower activity, indicating synchronized collective 
+responsiveness rather than steady diffusion. In recent work, “bursts” of online activity observed in email communications 
+suggest a self-excitement process [69]. Thus, each cascade essentially is a sequence of bursts where two cascades can 
+have the exact same number of retweets, but one may have a greater number of bursts (irregularities) than the other. 
+Arranging retweets within each cascade chronologically can help discern multiple retweet bursts, with each burst tem­
+porally distinguishable from adjacent bursts. The theoretical distinction between the various dependent variables in the 
+literature provides a basis for understanding the nuances of how tweets are retransmitted differently depending on the 
+dominant emotion they convey.
+Theoretical framework and hypotheses
+This section outlines the theoretical basis for our empirical analysis, focusing on the relationship between emotional content in social 
+media messages and their temporal patterns of propagation. We draw on Russell’s Circumplex Model of Affect [31], which maps 
+emotions along arousal (high to low) and valence (positive to negative), to explain how these emotional qualities trigger cognitive 
+responses at the individual level that may shape collective retransmission behavior. Prior experimental and quasi-experimental evi­
+dence shows that both arousal and valence influence sharing and resharing intentions [10,19,33]. High-arousal and negative emo­
+tions often exert stronger effects because they heighten mobilization and action tendencies, elicit mimicry and empathic alignment, 
+
+
+===== PAGE 8 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+8 / 27
+and reflect the well-established negativity bias [17,53]. These dynamics are further amplified in digital environments where scaled 
+exposure and cascading visibility accelerate diffusion [21]. Yet the empirical record remains fragmented, as most studies examine 
+only one of the valence or arousal dimensions, focus on discrete emotions, or rely on limited of propagation. Our study addresses 
+this gap by analyzing emotions through a valence–arousal lens across four propagation metrics: size, lifetime, speed, and bursti­
+ness, providing a more comprehensive account of how emotional content spreads in the aftermath of celebrity suicides.
+We also consider the salience of our empirical context of self-harm by celebrities in our theorizing. In particular, we 
+consider how the level of heterogeneity within the collectives, driven by subjective interpretations and varied emotional 
+responses of the audience in our specific context, can generate propagation dynamics distinct from those in other studied 
+contexts. However, the empirical context of self-harm skews SM content towards negative valence and thus precludes a 
+full comparison with neutral and positive valence content. Therefore, all except one of our hypotheses are centered on the 
+dimension of (high) arousal, with the one on (negative) valence.
+Arousal and cascade size
+Cascade size, defined as the total number of users who reshare a message, is a widely used indicator for evaluating 
+the spread of online content, particularly on social media. Prior research has shown that exposure to content containing 
+high-arousal emotions—both positive (e.g., excitement, enthusiasm) and negative (e.g., anger, fear)—tends to generate 
+greater mobilization and action-oriented responses, compared to low-arousal or neutral content [33,70,71]. For instance, 
+Berger and Milkman [33] found that high-arousal emotions significantly increased the likelihood of New York Times articles 
+being forwarded via email, an early but robust indicator of emotional virality.
+On social media, this arousal-driven engagement translates directly into greater resharing probabilities, thereby 
+increasing cascade growth. Each retweet amplifies the message’s visibility and increases its chances of further propaga­
+tion by mobilizing emotionally stimulated audiences. This effect is well-documented in political messaging, where morally 
+charged and emotionally provocative content often produces large cascades [8,72]; however, the underlying mechanism—
+high arousal driving user engagement and resharing—is broadly applicable across a variety of social media contexts. 
+Even studies that do not categorize emotions using dimensional models [27,55], such as the valence–arousal framework 
+[31], have observed similar patterns. In other words, regardless of their classification, tweets expressing high-arousal 
+emotional states tended to produce larger cascade sizes. Thus, we propose our first hypothesis:
+Hypothesis 1: Social media messages containing high-arousal emotions receive a greater number of reshares than 
+messages containing neutral or low-arousal emotions.
+Arousal and cascade lifetime
+The influence of emotional arousal on cascade lifetime is not consistent across social media contexts, and we argue that 
+the emotional structure of the topic itself fundamentally shapes this variation. For instance, in emotionally ambiguous or 
+open-ended contexts like online rumors, Pröllochs et al. [27] found that high-arousal emotions such as anger or anticipa­
+tion prolong cascade lifetime; however, fear, despite being a high-arousal emotion, was linked to shorter lifetimes. Brady 
+et al. [72] find that the effect of anger on social transmission varies across moral topics, such as climate change vs. same-
+sex marriage. These mixed findings suggest that emotional arousal alone may not consistently predict cascade longevity, 
+likely due to the topic’s capability (e.g., rumors) to invite further speculation, reinterpretation, and debate from a heteroge­
+neous and ideologically diverse user base or, conversely, trigger avoidance in the audience.
+By contrast, celebrity suicides are emotionally unambiguous, tragic, and time-bounded events. They typically elicit rapid 
+and high-arousal emotional responses such as grief, shock, and outrage, particularly from users with parasocial ties or cul­
+tural attachments to the celebrity. However, these emotionally engaged audiences tend to be affectively homogeneous—they 
+
+
+===== PAGE 9 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+9 / 27
+share similar emotional states and interpretations—at least towards such tragedies. This emotional homogeneity fosters syn­
+chronized emotional reactivity, where users collectively engage in a brief but intense expression of emotion. While this initial 
+surge drives early resharing, it saturates the finite pool of engaged users. Therefore, their emotional energy is exhausted, 
+and no new interpretive frames emerge to sustain discussion, unlike rumors [27], which may invite retrospection.
+Research in emotional contagion supports this pattern: homogeneous groups are more likely to experience strong but 
+short-lived amplification as their emotional responses converge and saturate quickly [21,36,73]. Once this initial group has 
+reshared the content, often within hours, the pool of emotionally susceptible users contracts rapidly. Combined with algo­
+rithmic prioritization of recency and a lack of ongoing narrative development, this leads to a steep drop-off in visibility and 
+engagement. As a result, even though high-arousal emotional content spreads quickly, it tends to follow a burst–decay 
+trajectory characterized by rapid saturation and a shorter cascade lifetime overall [63,74].
+Therefore, while high-arousal emotions enhance the initial probability of resharing, we propose that in emotionally con­
+strained contexts like celebrity suicides, such emotions lead to shorter, not longer, cascade lifetimes.
+Hypothesis 2: Social media messages containing high-arousal emotions are reshared for a shorter period than mes­
+sages containing neutral or low-arousal emotions.
+Valence and cascade lifetime
+The relationship between emotional valence —particularly negative emotions— and cascade lifetime remains theoreti­
+cally underdeveloped and empirically inconsistent. While substantial literature confirms that negative content increases 
+engagement and resharing probability [8,10,43], this does not imply that such content persists longer. Unlike virality or 
+reach, cascade’s lifetime reflects how long a message remains actively reshared in a network. In theory, a stronger emo­
+tional reaction to negative content could either shorten lifetime by driving a rapid saturation of engaged users or extend it 
+by sustaining ongoing relevance and engagement across a broader user base.
+Importantly, the empirical context can moderate how valence influences cascade dynamics. In ambiguous or ideologically 
+contested contexts such as rumors and moral debates, negative emotions like anger can prolong cascade lifetimes by fueling 
+speculation, reinterpretation, and ideological conflict [27,72]. In contrast, in unambiguous and tragic events like celebrity sui­
+cides, emotional responses are highly synchronized among affectively homogeneous communities that share grief, sadness, 
+or shock. Research in emotional contagion and network homophily suggests that such alignment leads to strong but short-
+lived amplification, as the pool of emotionally susceptible users is quickly saturated [21,73]. Burnap et al. [47] observed similar 
+dynamics following the Woolwich terrorist attack, where negative posts spiked and declined within a short window, indicating 
+a brief lifespan. Moreover, algorithmic exposure mechanisms compound this trajectory. Once a burst of resharing subsides, 
+content loses visibility due to recency decay and reduced engagement, making it less likely to reach new users.
+Furthermore, negativity not only attracts attention but can also repel it. When content provokes fear, moral discomfort, or 
+emotional overload, it may cause users to disengage, limiting the number of resharers, i.e., people willing to reshare it. Accord­
+ing to the Extended Parallel Process Model [75], when individuals perceive a threat as emotionally overwhelming and believe 
+they lack the efficacy to respond effectively, they may engage in fear control responses, such as emotional withdrawal or 
+disengagement, to protect themselves. These responses further reduce the susceptible pool of audiences who could reshare.
+In sum, while negative emotions may enhance initial resharing, they can also trigger withdrawal, network saturation, 
+and algorithmic suppression, especially in emotionally unambiguous, tragic events. These processes collectively contrib­
+ute to shorter cascade lifetimes. Hence, we propose:
+Hypothesis 3: Social media messages containing negative-valence emotions are reshared for a shorter period than 
+messages containing neutral or positive-valence emotions.
+
+
+===== PAGE 10 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+10 / 27
+Arousal and resharing speed
+Resharing speed refers to how quickly an original message typically propagate across social media once posted. Prior 
+studies confirm that sentiment can accelerate this process. Stieglitz and Dang-Xuan [8] modeled speed as the time lag 
+between an original tweet and its first retweet, showing that emotionally expressive tweets spread faster than neutral 
+ones. Tsugawa and Ohsaki [43] measured speed as the time required for tweets to reach specific cascade sizes (e.g., 10, 
+100, or 1,000 retweets) and found that negative tweets tended to travel more quickly than positive or neutral ones when 
+diffusion volume was high. Together, these findings highlight that resharing speed captures the collective responsiveness 
+to a message, with emotionally charged content prompting more frequent and synchronized reactions.
+High-arousal emotions are especially effective at increasing resharing speed due to multiple reinforcing factors. First, 
+Prior research argues that high arousal enhances action tendencies and mobilizes individuals toward expressive behav­
+iors such as resharing [71]. Such emotions heighten urgency, prompting users to react in closer temporal proximity, which 
+at the collective level produces faster and more synchronized cascades. Empirical evidence supports this logic: Fan et al. 
+[76] show that anger, a high-arousal negative emotion, diffuses more rapidly than joy because it prefers weaker ties, which 
+enables it to penetrate more widely across the network (engaging more audience promptly), and produces shorter retweet 
+intervals, which reduces delays between consecutive reshares. Together, these findings suggest that arousal acts as a 
+catalyst for resharing speed, shaping not only whether content spreads but also how quickly a collective responds.
+Second, in the context of celebrity suicides, these dynamics are amplified. Unlike rumors or ongoing news, celebrity sui­
+cides are sudden, dramatic, and episodic, producing cascades that are intense but short-lived [25,63]. High-arousal emo­
+tions in this setting are expected to increase speed by reinforcing homogeneity of reaction, as grief and shock are present in 
+the context (widely shared) and foster emotional mimicry, leading individuals to align with one another and respond in more 
+simultaneous and concurrent ways [53]. Third, platform algorithms further compound this process by promoting content that 
+gains traction quickly, creating feedback loops where early surges in resharing accelerate subsequent exposure [21]. As 
+a result, high-arousal content triggers broad resonance, which manifests as reshares occurring in closer adjacency to one 
+another, due to the combined effects of individual mobilization, collective synchronization, and algorithmic amplification.
+Hypothesis 4: Social media messages containing high-arousal emotions are reshared more quickly than messages 
+containing neutral or low-arousal emotions.
+Arousal and resharing burstiness
+Burstiness describes a temporal pattern of engagement characterized by short, intense flurries of activity followed by peri­
+ods of minimal or no engagement. This phenomenon has been observed in various human communication systems, such 
+as email and instant messaging, which points to the uneven micro-level tendencies of users to allocate attention, memory, 
+and action resources [77]. In social media, burstiness reflects the clustering of retweets within narrow time windows, pro­
+ducing spikes in engagement that are not evenly distributed across a cascade’s lifetime.
+Building on prior research, we expect high-arousal emotions to be strongly associated with bursty patterns of resharing. 
+As we noted previously, these emotions stimulate rapid mobilization [71], activating intense reactions within emotionally 
+aligned user groups, particularly in the wake of emotionally unambiguous events like celebrity suicides. Additionally, Social 
+media collectives are inherently clustered, with users embedded in tightly knit communities [78]. High-arousal content is 
+more likely to activate each of these emotionally synchronized members within these clusters. Once a cluster is triggered, 
+users’ emotional alignment and social proximity lead to rapid, localized sharing, causing short-lived spikes in activity. Pre­
+vious studies have shown that highly emotional and negative content creates brief but intense engagement spikes [9,47]. 
+This pattern of rapid intra-cluster saturation, followed by temporary breaks before engagement spreads to other clusters, 
+creates a cascade characterized by multiple bursts rather than sustained, uniform activity.
+
+
+===== PAGE 11 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+11 / 27
+In contrast, low-arousal emotions are less likely to activate various clusters and spread rapidly across them. Hence, 
+they diffuse more slowly and evenly, resulting in flatter or less pronounced engagement patterns. The emotional salience 
+of high-arousal messages, combined with the topology of clustered networks, thus contributes to temporal irregularity in 
+resharing behavior. Therefore, we propose:
+Hypothesis 5: Social media messages containing high-arousal emotions show more bursty resharing patterns than 
+messages containing neutral or low-arousal emotions.
+Further, while we attempt to extend prior insights to the current empirical context, a contrasting theoretical approach to 
+understanding emotional content is that theoretical frameworks (such as valence-arousal) are relatively less predictive 
+of the virality of emotional content than models that separately examine discrete emotions [28,32]. We will discuss these 
+issues in the implications.
+Empirical analysis
+Data collection
+To examine the temporal dynamics and emotional composition of public responses to celebrity suicides, we identified four 
+incidents that occurred between 2012 and 2013 and analyzed the related activity on Twitter (recently renamed X in July 
+2023). The analysis covered both original tweets and retweets generated in the aftermath of each event. We employed a 
+combination of textual, temporal, and network features derived from the tweets and user activities to characterize commu­
+nication patterns following the incidents. The selected celebrities, listed in Table 1, represent prominent figures from televi­
+sion, cinema, and sports. For ease of reference, their names are abbreviated as DC, JS, LTY, and TS. The procedure for 
+identifying these cases and collecting the corresponding data is detailed in S1 Appendix.
+The dataset comprises all posts shared on Twitter within 21 days following each suicide. This timeframe is consis­
+tent with prior research indicating that the population-level influence of celebrity suicides typically diminishes within 
+two to three weeks [64]. The 21-day window thus provides a conservative and standardized observation period, given 
+the daily activity counts in our data. Each entry in the dataset represents either an original tweet or a retweet, totaling 
+approximately 1.1 million posts. In this structure, every tweet constitutes a distinct observation, and each of its retweets 
+is recorded as an additional observation. For example, if tweet A is retweeted three times (rA1, rA2, rA3), the resulting 
+cascade includes four posts: one original and three reshares.
+Each post in the dataset includes three sets of variables: content variables (word count, dominant emotion, and words-
+per-sentence) which reflect the linguistic characteristics of the tweet; temporal variables (the time between the original 
+tweet and last retweet and the time difference between subsequent retweets) pointing to the conversational features of the 
+posts; and structural variables (follower/friend count, exposure, retweet count) exhibit how the network of users is formed 
+around every single post on the platform. A descriptive guide table of the tweet variables is provided in S1 Appendix 
+(S1 Table 2).
+Table 1.  Demographics and general characteristics of suicide events.
+Name
+Occupation
+Age
+Suicide method
+Suicide date
+#Tweets (#Users)
+Don Cornelius (DC)
+TV and Film
+76
+Gunshot in home
+Feb 1, 2012
+317,457 (222,698)
+Junior Seau (JS)
+Sports
+43
+Gunshot in home
+May 2, 2012
+406,972 (273,344)
+Tony Scott (TS)
+Film
+68
+Jumping from bridge
+Aug 20, 2012
+204,853 (120,670)
+Lee T. Young (LTY)
+Film
+29
+Gunshot in home
+Aug 19, 2013
+142,621 (93,203)
+https://doi.org/10.1371/journal.pone.0336134.t001
+
+
+===== PAGE 12 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+12 / 27
+Identifying resharing cascades
+Following earlier studies on online social media [1,36,79], we employ the notion of a “cascade” as the series of reshares 
+(retweets) occurring for a single tweet. Therefore, if a tweet is retweeted n times, a cascade of size n + 1 is generated, with 
+its lifetime being the timespan between the last retweet and the original tweet.
+Following the four suicide events (DC, LTY, JS, TS), 91,868 distinct cascades were created on Twitter in the time 
+window of 21 days after each suicide date. These were identified by tweets that were retweeted at least once. The distri­
+bution of cascade size in terms of the number of retweets is right-skewed, as expected, for online user-generated content. 
+Sixty-seven percent of the cascades consist of one original tweet and one retweet, thus having a size of two, and only 
+8% involve more than five retweets. We list the summary statistics of cascade variables in Table 2. Author statistics in this 
+table refer to the original author alone and not the retweeters in that cascade.
+When users retweet (reshare) a tweet, it becomes visible to the followers of the user who retweeted it. This sets off a 
+chain reaction, allowing a new set of users to read and engage with the content. If a user from this second set decides 
+to retweet, the tweet then becomes visible to their followers, and the process continues. This iterative resharing process 
+forms a cascade graph illustrating the order and relationships among the users involved in the retweeting sequence.
+However, while we have the retweet time stamp and the user ID of the retweeter, data on which specific retweet 
+instance was read and reshared by the user is unavailable. For example, if user Y retweets a tweet from user X, and 
+then user Z retweets the retweet from user Y (because Y viewed Z’s retweet as Z’s follower or by any other means), our 
+data records two retweet instances, each representing a pair of the original author and the final retweeter: (X, Y) and (X, 
+Z). Thus, our data does not include information on which intermediate actor (Y), if any, resulted in Z resharing the origi­
+nal tweet (that is, the contagion chain X-Y-Z). Despite this limitation, we can create a time series of retweets within each 
+cascade by recording the temporal footprint of each node in the cascade graph (where each node represents a retweet 
+instance). Thus, although the sequence order cannot capture the exact relationships among users, it remains a valuable 
+approach for studying contagion dynamics. This methodology has been previously employed in research to analyze 
+temporal sequences of human actions and communications, providing insights into group and individual behavior under 
+various conditions, such as excitement and stress [80–82].
+Emotion detection
+To quantify the emotional content of a tweet, we extracted emotion scores for each cascade using the DistilRoBERTa 
+model, a type of Bidirectional Encoder Representations from Transformers (BERT) model [34]. Specifically, we use a 
+fine-tuned DistilRoBERTa-base checkpoint, trained on datasets such as Twitter and Reddit, to identify six basic emotions 
+(anger, disgust, fear, joy, sadness, surprise) and neutral content [83]. The performance of this type of language model on 
+natural language processing tasks has been reported to be on par with that of humans and is well-suited for detecting 
+Table 2.  Summary statistics of cascade variables.
+Variables
+Range
+Mean
+SD
+Word Count
+3 – 37
+16.30
+7.21
+Hashtag
+0,1
+0.28
+–
+Size
+2 – 6,111
+5.36
+40.17
+Author Follower Count
+0 – 13.5M
+23,927
+228,165
+Author Friends Count
+0 – 747K
+1,750
+8,864
+Author Status Count
+1 – 654K
+18,058
+28,923
+Author Like Count
+0 – 599K
+356
+4,204
+Author Verified
+0,1
+0.04
+–
+https://doi.org/10.1371/journal.pone.0336134.t002
+
+
+===== PAGE 13 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+13 / 27
+emotions in our dataset [84]. The architecture of this model is similar to BERT, which uses a deep neural network model 
+and self-attention mechanism with compression such that the resulting model is more efficient and smaller. The model can 
+recognize multiple emotions for each tweet and assign probability scores for each associated emotion, with the probability 
+scores adding up to one. Each tweet was then characterized by a dominant emotion identified through the highest proba­
+bility score. For example, a message identified as having an anger score of 30% and a sadness score of 70% would then 
+be categorized as having the dominant emotion of sadness.
+Model validation was performed on a random subset of 1000 tweets from our dataset that was annotated by Prolific 
+users for the basic emotion types (sadness, neutral, surprise, anger, joy, disgust, and fear) to ensure that the model is rel­
+atively accurate in identifying the dominant emotion. Using human annotations as ground truth, the DistilRoBERTa model 
+achieved a weighted average for precision, recall, and F1 scores of 0.45, 0.29, and 0.35, respectively. Accuracy scores for 
+individual emotional categories mostly outperform results obtained from weighted random guessing. Details of the valida­
+tion and the results of the validation are provided in S2 Appendix.
+Our analysis of the cascades’ dominant emotion indicates that 40% of cascades signal the dominant emotion of fear, 
+followed by 33% of sadness, 11% being neutral, and the remaining 12% indicating either surprise, anger, joy, or disgust 
+as their dominant emotion. Fig 1a displays the composition and frequency of these negative emotions in the cascades of 
+each suicide event. Looking beyond the dominant emotional label, we also analyzed the mean probability score of each 
+emotion within the four suicide events. Our findings on the intensity of emotions (Fig 1b) indicate that fear and sadness 
+are generally more pronounced compared to other emotions and that the intensity of emotions also varies with regard to 
+each event, indicating how users tend to express a different composition of emotions under different conditions. For exam­
+ple, the cascades in LTY and JS events exhibit more emotional content and less neutrality, which can be attributed to 
+their popularity and the public’s general perception. Lee Thompson Young (LTY) is the youngest of these four celebrities. 
+Therefore, the composition of his fan base and the fact that people are more affected by the death of a young person may 
+explain why the intensity of fear and sadness is highest in the aftermath of that event [25].
+Table 3 lists the count of cascades labeled with each dominant emotion. This categorization shows that fear and 
+sadness are the most predominant emotions in cascades, followed by surprise, anger, joy, and disgust. S1 Table 3 (S1 
+Appendix) shows sample tweets from each category with their emotion scores.
+Fig 1.  (a, left) Frequency and (b, right) intensity of emotions in the cascades.
+https://doi.org/10.1371/journal.pone.0336134.g001
+
+
+===== PAGE 14 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+14 / 27
+Operationalizing propagation metrics
+Cascade Size: Consistent with prior work [1], we define cascade size as the number of retweets plus one, capturing all 
+nodes in the cascade, including the original tweet.
+Cascade Lifetime: Following prior work [27,36], we compute cascade lifetime as the duration between the first and last 
+tweet. It is important to note that while our data contains retweets up to 21 days after the event, it is unlikely that this 
+truncated window would result in us missing any activity (i.e., retweets) related to the event. This is because social media 
+activity around shocking events, including on Twitter, drops to negligible levels after 2–3 weeks [63]. As summarized in 
+Table 4, cascade lifetimes in our dataset range from 0 to 28,600 minutes (roughly 20 days), with a mean of 218 minutes 
+(3.6 hours).
+Time to Nth ReTweet: Based on existing measures [8,47], we first identify tweets that received at least five retweets 
+(8,812 cascades) and then calculate the time taken to reach the fifth retweet; The time-to-fifth retweet ranges between 7 
+seconds to over 14 days, distinguishing between influential tweets that either gained traction rapidly or over an extended 
+period.
+Median Delay: We propose median delay as another measure of retransmission speed, defined as the median amount of 
+time elapsed between each two consecutive retweets within a cascade. This measure has not been used in prior stud­
+ies, but the median delay can reveal another beneficial aspect of the temporal dynamics of a cascade. A cascade with a 
+slight median delay indicates a fast sequence of resharing, which may happen because of the social network structure in 
+which the authors and retweeters are a part or because of the rapid influence it has on the audience who reshare (adopt) 
+the content, or both. Either way, median delay, being less biased than the average delay, can appropriately capture the 
+dynamics of tweet retransmission. Our measure improves upon the previous measure of time-to-Nth retweets since, by 
+definition, we may be excluding many tweets from the analysis. The summary statistics in Table 4 show that the median 
+delay, as defined in our data, can range from zero (usually smaller cascades that receive rapid reshares) to over a million 
+seconds (again, small cascades that took a long time to get reshared). On average, cascades in the JS suicide event 
+Table 3.  Percentage of cascades in each event labeled with each dominant emotion.
+Emotions
+DC
+JS
+TS
+LTY
+All Events
+Anger
+5.8
+4.5
+2.3
+2.7
+4.4
+Fear
+40.6
+38.3
+39.3
+47.0
+40.3
+Sadness
+26.2
+36.7
+35.8
+37.2
+33.1
+Joy
+5.8
+2.7
+5.6
+2.0
+4.0
+Disgust
+2.6
+2.0
+1.7
+0.7
+2.0
+Surprise
+5.1
+5.3
+4.0
+4.8
+5.0
+Neutral
+13.8
+10.5
+11.1
+5.5
+11.1
+https://doi.org/10.1371/journal.pone.0336134.t003
+Table 4.  Summary of propagation measures: structural and temporal.
+Celebrity
+Size
+Lifetime (Minutes)
+Median Delay (Seconds)
+Time-to-fifth RT (Seconds)
+Burstiness (σ/μ)
+mean
+sd
+mean
+sd
+mean
+sd
+mean
+sd
+mean
+sd
+DC
+5.02
+40.46
+191
+1.1K
+4,141
+31K
+5,833
+38K
+1.35
+1.33
+JS
+5.06
+42.48
+128
+636
+3,249
+21K
+3,255
+15K
+1.35
+1.33
+TS
+6.41
+33.61
+412
+1.5K
+8,203
+38K
+9,487
+49K
+1.58
+1.47
+LTY
+6.17
+37.97
+376
+1.6K
+5,802
+39K
+9,907
+47K
+1.52
+1.31
+ALL
+5.36
+40.14
+218
+1.1K
+4,522
+30K
+6,282
+36K
+1.40
+1.35
+https://doi.org/10.1371/journal.pone.0336134.t004
+
+
+===== PAGE 15 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+15 / 27
+demonstrated smaller ranges of median delay, showing that content related to this event was reshared faster compared to 
+the others.
+Burstiness: In our context, this can manifest as a (temporal) sequence of retweets within each cascade, where subsets of 
+retweets are posted rapidly within short intervals of time. Intuitively, the greater the intensity of an emotion, or if the emo­
+tions fall within a specific category of valence or arousal [31], the more likely reactions to them will be clustered in time. 
+To assess the degree of burstiness of a cascade, we employ the coefficient of variation (CV), calculated as the ratio of the 
+standard deviation to the mean of inter-retweet delays (σ/μ) as the most straightforward measure of irregularity [85]. A CV 
+value exceeding one implies that events are more clustered or irregularly spaced than a random process. In contrast, a 
+CV value below one indicates a more uniform spacing of events.
+The characteristics of the retweet cascade data and the details of the outcome variables are represented in Fig 2. Table 4 
+presents the descriptive statistics for all the above propagation outcomes. We use these five measures to run a series of 
+analyses, which are presented in Table 5 (Size and Log Lifetime), Table 6 (Median Delay and Time-to-fifth RT), and Table 7 
+(Burstiness).
+Regression model
+The common model specification for all these regressions is as follows. Each regression model examines the propagation 
+measure as the dependent variable (DV) (at the cascade level, log-transformed where necessary to account for the distri­
+bution’s skewness), as a function of several independent variables (Table 2), which include the tweet’s emotional content, 
+linguistic features, and the original author characteristics (popularity and activity). The transformations of specific propaga­
+tion measures yielded an approximately normal distribution of the variables. Since the emotion of a tweet is defined only 
+by the dominant emotion, for each cascade, only one of the six dummy independent variables is coded as ‘1’, else ‘0’. 
+Thus, estimation is conducted with Neutral as the base emotion (See Table 3). The controls in the model include friends 
+count, status count, favorites count, word count, hashtags, and fixed effects for each celebrity (Eq 1).
+	
+D.V. = β0 + β1aAnger + β1bFear + β1cSadness + β1dJoy + β1eSurprise
++ β1fDisgust + β2Celebrity + β3CONTROLS + ϵi
+	
+(Eq 1)
+Since each observation represents a distinct cascade resulting from a specific tweet, the coefficient estimates (β1a – β1f) 
+from the above regression will indicate how the emotional content within each tweet (the independent variables) is 
+Fig 2.  Cascades’ temporal structure and data generation process.
+https://doi.org/10.1371/journal.pone.0336134.g002
+
+
+===== PAGE 16 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+16 / 27
+correlated with the various propagation metrics (the dependent variable). The results will thus indicate the role of various 
+emotions contained within tweets in triggering resharing in distinct ways, depending on which metric(s) it strongly cor­
+relates with.
+Results
+Cascade size
+The average cascade size is 5.36 (SD = 40.2), indicating substantial variation in diffusion patterns. To address the 
+over-dispersed nature of the count data, we employed a negative binomial regression model [86] and, for comparison, fit­
+ted a Poisson model to the independent variables. As cascades expand and reach wider audiences, the likelihood of addi­
+tional reshares increases, suggesting that the dynamics of large cascades differ meaningfully from those of small ones. 
+Accordingly, we analyzed two subsets of data: (1) the full sample of 91,868 cascades, where a single retweet corresponds 
+to a cascade size of 2 (including the original tweet), and (2) cascades with three or more posts (size ≥ 3), totaling 30,637 
+observations. The regression results for cascade size across these subsets are reported in Table 5. We acknowledge that 
+sampling on the dependent variable may limit generalizability. The size threshold was set to improve construct validity by 
+focusing on cascades that show meaningful network diffusion beyond isolated or incidental reshares. This approach helps 
+reduce noise from the large number of trivial cascades that dominate the distribution.
+Table 5.  Regression results on the lifetime and size of cascades.
+DV: Cascade Size Negative Binomial Model
+DV: Log (Lifetime) OLS Model
+Size ≥ 2
+Size ≥ 3
+Size ≥ 2
+Size ≥ 3
+(1)
+(2)
+(3)
+(4)
+(5)
+(6)
+(7)
+(8)
+Emotion: Anger
+−0.057***
+−0.042
+−0.155***
+−0.200***
+Emotion: Fear
+−0.099***
+−0.103***
+−0.075***
+−0.100**
+Emotion: Sadness
+−0.081***
+−0.076***
+−0.003
+−0.052
+Emotion: Joy
+−0.087***
+−0.095***
+0.190***
+0.252***
+Emotion: Disgust
+0.622
+0.858**
+0.215*
+0.208***
+Emotion: Surprise
+−0.038
+0.007
+−0.174***
+−0.223***
+# Auth. Followers (Log)
+0.332***
+0.336***
+0.317***
+0.325***
+0.429***
+0.427***
+0.399***
+0.398***
+# Auth. Friends (log)
+−0.110***
+−0.109***
+−0.094***
+−0.092***
+−0.157***
+−0.157***
+−0.125***
+−0.125***
+# Auth. Tweets (log)
+−0.123***
+−0.125***
+−0.126***
+−0.130***
+−0.343***
+−0.339***
+−0.366***
+−0.361***
+# Auth. Likes (log)
+0.037***
+0.033***
+0.043***
+0.036***
+0.048***
+0.047***
+0.062***
+0.061***
+Auth. Verified?
+0.820***
+0.818***
+0.585***
+0.571***
+0.887***
+0.886***
+0.507***
+0.505***
+Wordcount
+0.011***
+0.009***
+0.018***
+0.014***
+0.012**
+0.012**
+0.021**
+0.020**
+Hashtag?
+−0.005
+0.046
+−0.028
+0.044
+0.127***
+0.162***
+0.072
+0.113**
+Celebrity: JS
+−0.061***
+−0.039**
+−0.116***
+−0.060**
+0.045**
+0.048***
+−0.004
+0.009
+Celebrity: LTY
+−0.017
+0.024***
+−0.043**
+0.036***
+0.366***
+0.371***
+0.627***
+0.643***
+Celebrity: TS
+−0.278***
+−0.243***
+−0.369***
+−0.297***
+0.547***
+0.548***
+0.501***
+0.512***
+Intercept
+0.437**
+0.488***
+0.806***
+0.832***
+3.178***
+3.186***
+4.048***
+4.069***
+Observations
+91,868
+91,868
+30,637
+30,637
+91,868
+91,868
+30,637
+30,637
+Adjusted R2
+–
+–
+–
+–
+0.162
+0.164
+0.244
+0.246
+Log Likelihood
+−207,590
+−206,767
+−92,816
+−92,346
+–
+–
+–
+–
+Akaike Inf. Crit
+415,202
+413,569
+185,655
+184,726
+–
+–
+–
+–
+Note: *p < 0.1; **p < 0.05; ***p < 0.01; The standard errors in this linear regression model are clustered on the celebrity suicide event; hence, four clusters 
+are created. Negative Binomial regression results are generated using the MASS library in R.
+https://doi.org/10.1371/journal.pone.0336134.t005
+
+
+===== PAGE 17 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+17 / 27
+Emotions demonstrate a variety of effects on cascade size (Table 5, Models 2 & 4). Prior studies have typically exam­
+ined emotions as just positive and negative, but we note that there are nuances amongst negative emotions. Except for 
+surprise and disgust, the emotions of fear, sadness, anger, and joy reduce the size of cascades compared to the baseline 
+of neutral emotion. Disgust has a positive effect on size in Model 4. Among the control variables, word count positively 
+influences cascade size, and hashtags do not have any significant effect. The dummy variables for celebrity indicate sig­
+nificant effects on cascade size (LTY > DC > JS > TS). The popularity of original authors (# Auth. Followers) has a positive 
+effect on size, whereas their friendliness (i.e., the number of people they follow: # Auth. Friends) decreases cascade size. 
+The verified status of the authors on Twitter (Auth. Verified) positively influences cascade size. Finally, the activity level of 
+the original authors, including the total number of tweets they posted in their account’s lifetime (# Auth. Tweets), is nega­
+tively related to cascade size. In contrast, the total number of tweets they liked (# Auth. Likes) increases the cascade size. 
+Interestingly, not only emotions but also the author’s characteristics, including their follower count and activity levels, affect 
+the virality of their content distinctly.
+Cascade lifetime
+The size of the cascades is intuitively correlated with their lifetime (r = 0.333, p = 0.000), suggesting that content that 
+persists longer usually receives more retweets, too. There are two overall observations about the coefficients. First, similar 
+to cascade size, there is a significant contextual difference between the four suicide events, indicating that the celebrity 
+in question influences the longevity of cascades. Second, with some exceptions, the coefficients for control variables are 
+Table 6.  Regression results on the median delay and time-to-fifth RT of cascades.
+DV: Log (Median Delay) OLS Model
+DV: Log (Time-to-Fifth RT) OLS Model
+Size ≥ 6
+Size ≥ 6
+(1)
+(2)
+(3)
+(4)
+Emotion: Anger
+−0.139**
+−0.227***
+Emotion: Fear
+0.100
+0.210**
+Emotion: Sadness
+0.057
+0.102
+Emotion: Joy
+0.351***
+0.308***
+Emotion: Disgust
+−0.301***
+−0.411***
+Emotion: Surprise
+−0.184**
+−0.162
+# Auth. Followers (Log)
+−0.079
+−0.086**
+−0.249***
+−0.259***
+# Auth. Friends (log)
+−0.009
+−0.009*
+0.019***
+0.019***
+# Auth. Tweets (log)
+−0.116***
+−0.112***
+−0.051
+−0.049
+# Auth. Likes (log)
+−0.015***
+−0.014***
+−0.035***
+−0.033***
+Auth. Verified?
+−0.228***
+−0.219***
+−0.394***
+−0.379***
+Wordcount
+0.009*
+0.009*
+0.004
+0.005
+Hashtag?
+0.002
+−0.048
+0.023
+−0.081
+Celebrity: JS
+−0.039
+−0.050
+−0.105***
+−0.130***
+Celebrity: LTY
+0.439***
+0.414***
+0.259***
+0.214***
+Celebrity: TS
+0.696***
+0.674***
+0.747***
+0.707***
+Intercept
+6.552***
+6.538***
+9.259***
+9.246***
+Observations
+8,812
+8,812
+8,812
+8,812
+Adjusted R2
+0.108
+0.114
+0.157
+0.162
+Note: *p < 0.1; **p < 0.05; ***p < 0.01; The standard errors in this linear regression model are clustered on the celebrity suicide event, hence four clusters 
+are created.
+https://doi.org/10.1371/journal.pone.0336134.t006
+
+
+===== PAGE 18 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+18 / 27
+remarkably similar in size and significance across the two metrics of Cascade Size and Lifetime – but not the coefficients 
+for the emotion categories. Emotions exhibit a diverse and nuanced set of effects. The cascades where the dominant 
+emotion is either anger, fear, or surprise lead to a reduced lifetime compared to those containing disgust and the positive 
+emotion of joy, which extend the cascade.
+The coefficients for control variables are similar to those observed for Cascade size except for Hashtag, which 
+is significant here (Table 5, Models 6 & 8). Thus, hashtags have a positive effect on the lifetime of the cascades, 
+suggesting that algorithmic hashtag-based recommendations can contribute to the diffusion by extending the cas­
+cades’ lifetime [45] by maintaining the visibility of the tweets for a longer period of time. Furthermore, more prominent 
+authors, i.e., those with a larger pool of followers (# Auth. Followers), generate cascades with longer lifetimes (Model 
+6, β = 0.427, p = 0.000, CI = 0.030) whereas a greater number of friends of the tweeted author is associated with a 
+reduced lifetime (Model 6, β = –0.157, p = 0.000, CI = 0.017).
+Median delay
+Next, as a measure of cascade speed [82], we examined the median inter-retweet delay in the temporal sequence by 
+which cascades were reshared. A lower median delay represents a high cadence of retweets within each cascade. Larger 
+delays in retweeting suggest lower intensity with which the tweet corners attention from the users, a lower cadence. We 
+drop all tweets with less than five retweets for our analysis to focus on highly contagious cascades with rich information 
+in their resharing pattern. As before, this leaves us with 8,812 observations (cascades). The results of the analysis are 
+presented in Table 6 (Models 1 & 2).
+Table 7.  Regression results on the burstiness of cascades (coefficient of variation).
+DV: Coefficient of variation OLS Model
+(1)
+(2)
+Emotion: Anger
+0.117***
+Emotion: Fear
+−0.226***
+Emotion: Sadness
+−0.083
+Emotion: Joy
+−0.206***
+Emotion: Disgust
+0.609**
+Emotion: Surprise
+0.055
+# Auth. Followers (Log)
+0.340***
+0.350***
+# Auth. Friends (log)
+−0.074***
+−0.074***
+# Auth. Tweets (log)
+−0.188***
+−0.188***
+# Auth. Likes (log)
+0.058***
+0.056***
+Auth. Verified?
+0.355***
+0.338***
+Wordcount
+0.014***
+0.013***
+Hashtag?
+−0.007
+0.114
+Celebrity: JS
+−0.098***
+−0.066*
+Celebrity: LTY
+0.106***
+0.154***
+Celebrity: TS
+−0.322***
+−0.277***
+Intercept
+0.947***
+0.939***
+Observations
+8,812
+8,812
+Adjusted R2
+0.172
+0.177
+Note: *p < 0.1; **p < 0.05; ***p < 0.01; The standard errors in this linear regression model are clustered 
+on the celebrity suicide event, hence four clusters are created.
+https://doi.org/10.1371/journal.pone.0336134.t007
+
+
+===== PAGE 19 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+19 / 27
+Our results suggest that the emotions of joy and fear make tweets get retweeted slower by increasing the median 
+delay, as seen in the models above (Table 6, Model 2). The resulting sequence of Twitter activity would be relatively dis­
+persed, with separate incidents of events (retweets) taking place at longer intervals of time. Meanwhile, the emotions of 
+anger (Model 2, β = −0.139, p = 0.019, CI = 0.059), disgust (Model 2, β = −0.301, p = 0.00, CI = 0.069), and surprise (Model 2, 
+β = −0.184, p = 0.00, CI = 0.079) increase the resharing speed, controlling for all contextual, linguistic, and network-related 
+factors.
+We also observe that the authors’ activity level positively influences the speed of future reshares. Furthermore, popular 
+users with higher follower count create cascades with faster resharing rates (Model 2, β = −0.086, p = 0.045, CI = 0.043). As 
+expected, this fast and long-lasting effect makes emotions and ideas viral and more potent in influencing additional users. 
+Unlike cascade lifetime, here the effect of author friendliness (number of users they follow, # Auth. Friends) is also slightly 
+positive towards cascade speed by decreasing the median delay (Model 2, β = −0.009, p = 0.068, CI = 0.005), which means 
+that although they create shorter living cascades, their content can still generate slightly faster responses by the audience.
+Time to 5th Retweet (Time5RT)
+Like the median delay, this measure also accounts for the speed at which cascades grow. The effects of anger and 
+disgust remain positive and significant, but joy has a negative effect. The results (Table 6, Model 4) also show that fear, 
+which used to be ineffective towards median delay, can increase Time5RT (Model 4, β = 0.210, p = 0.016, CI = 0.086) and 
+thus slow the resharing speed. Furthermore, the effects of author characteristics (popularity and activity) are similar to the 
+effects they have on median delay, except for author activity (# Auth Tweets), which does not show any significant effect 
+on Time5RT. The nuanced difference across the coefficients for these two measures (median-delay vis-a-vis Time5RT) 
+could be clarified by the non-uniform distribution of the temporal process through which these retweets occur, such as 
+bursts of activity in brief time spans.
+Cascade burstiness
+Here, the results (Table 7, Model 2) show that the emotions of anger (Model 2, β = 0.117, p = 0.004, CI = 0.04) and disgust 
+(Model 2, β = 0.609, p = 0.031, CI = 0.282) generate bursty and clustered temporal sequences of retweets: whereas tweets 
+containing fear (Model 2, β = −0.226, p = 0.003, CI = 0.075), and joy (Model 2, β = −0.206, p = 0.000, CI = 0.031) generate 
+less bursty patterns.
+Discussion of results and limitations
+Our findings show that emotions do play a role in resharing, but their effects are not uniform across valence-arousal cat­
+egories [28]. This partly reflects our empirical strategy: while the hypotheses were framed around the bipolar dimensions 
+of arousal and valence (four categories), our analysis moved beyond this structure by examining six distinct emotions 
+identified through a state-of-the-art large language model (DistilRoBERTa) [34]. This more granular lens reveals that emo­
+tions grouped within the same quadrant of the circumplex model (e.g., high-arousal–negative valence) [31] do not always 
+exhibit consistent associations with propagation. In this sense, the hypotheses serve as a theory-driven starting point, 
+while the empirical results highlight the complexity of how specific emotions shape propagation.
+The results of our hypothesis testing, based on six distinct emotions, are presented in Table 8. In the context of celeb­
+rity suicides, which are highly tragic events with global resonance, our data show that social media reactions are marked 
+by extreme responses, most often characterized by negative valence and high arousal. Given the broad appeal of celebri­
+ties, these dynamics expose a wide audience to heightened negative emotions through online discourse.
+Hypothesis 1 proposed that high-arousal messages would have larger cascade sizes than neutral messages; This 
+was supported for disgust but contradicted for anger and fear, which had smaller cascade sizes than neutral tweets. 
+
+
+===== PAGE 20 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+20 / 27
+Hypothesis 2 proposed that high-arousal messages would have shorter lifetimes, a counterintuitive expectation based on 
+prior research conducted in a different empirical context. This hypothesis received stronger support, as anger, fear, and 
+surprise were associated with shorter lifetimes, although disgust showed a longer lifetime. Additionally, joy exhibited a 
+longer lifetime compared to neutral tweets. Hypothesis 3 proposed that negative-valence tweets would have shorter life­
+times than neutral and positive-valence tweets. The results were mixed: anger and fear had shorter lifetimes, while disgust 
+again exhibited a longer lifetime. Hypothesis 4 proposed that high-arousal messages would spread faster. Here, this was 
+supported for anger and disgust, both of which propagated more quickly, whereas fear propagated more slowly than neu­
+tral tweets. Finally, hypothesis 5 proposed that high-arousal messages would exhibit greater burstiness. This was partially 
+supported, as anger and disgust showed greater burstiness, while fear showed the opposite pattern.
+Beyond the formal hypothesis tests, several additional patterns emerge. Sadness does not differ substantially from 
+neutral tweets in any propagation metric. Disgust stands out as a dominant emotion, positively influencing cascade size, 
+lifetime, speed, and burstiness, suggesting that tweets expressing disgust propagate more extensively, persistently, and 
+intensely in the aftermath of celebrity suicides. In contrast, fear exhibits a negative effect across all metrics, indicating 
+a highly subdued propagation pattern. Although both disgust and fear are high-arousal negative emotions, they display 
+opposite propagation characteristics. Among other high-arousal emotions, surprise is notable for showing divergent effects 
+on size and lifetime, counter to the intuition that larger cascades should statistically correlate with longer lifetimes. Finally, 
+while joy results in smaller cascade sizes, it is associated with longer lifetimes compared to neutral and negative content.
+Our study has several limitations. First, we analyzed only tweets that triggered cascades, so our conclusions are 
+generalizable only to messages that were reshared. A more comprehensive analysis would also model the probability of 
+a message being reshared in the first place. Second, features and algorithms on social media platforms, as well as the 
+composition of their user bases, may evolve over time, potentially affecting propagation mechanisms and further limiting 
+the generalizability of our findings. Third, our analysis relies solely on the timestamps of retweets, without capturing the 
+precise sequence of how each cascade unfolded (Fig 2). Future research could incorporate the structural connections 
+among users within a cascade, if such data become available, to better understand how interventions might interrupt the 
+spread of harmful content across different network structures.
+Additionally, our study does not directly test the assumption that emotions expressed in content are also experienced 
+by users and shape their resharing behavior. Addressing this would require experimental or survey-based methods that 
+capture user-level emotional responses. We therefore distinguish between resharing behavior, which drives propagation 
+and is the focus of our analysis, and emotional contagion, which entails inducing the same emotion in the audience (See 
+S1 Appendix for conceptual clarification). While the broader motivation for studying propagation is to understand mecha­
+nisms that may contribute to self-harm, our evidence speaks only to a potential mediating pathway rather than behavioral 
+Table 8.  Summary of results.
+1
+2
+3
+4
+5
+6
+7
+Emotion*
+Size
+Lifetime
+Speed
+Burstiness
+Valence
+Arousal
+Anger
+(-)**
+(-)
+(+)
+(+)
+Negative
+High
+Disgust
+(+)
+(+)
+(+)
+(+)
+Negative
+High
+Surprise
+(0)
+(-)
+(+)
+(0)
+Neutral
+High
+Sadness
+(-)
+(0)
+(0)
+(0)
+Negative
+Low
+Fear
+(-)
+(-)
+(-)
+(-)
+Negative
+High
+Joy
+(-)
+(+)
+(-)
+(-)
+Positive
+Low
+* The effect of emotions on cascade metrics is presented compared to neutral content.
+**(+)/(-)/(0) indicates a positive/negative/neutral effect on the outcome variable.
+https://doi.org/10.1371/journal.pone.0336134.t008
+
+
+===== PAGE 21 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+21 / 27
+contagion itself. Future research could extend this work by linking social media data with population-level suicide statistics 
+[64] to examine these broader outcomes.
+Implications
+Several insights emerge from our findings that have implications for research on the propagation of emotional content. 
+First, our results reinforce the growing consensus that theories of emotional propagation must move beyond coarse clas­
+sifications by valence [9,15,43] and arousal [33]. Recent work [28,32] has argued that discrete emotions provide a more 
+accurate lens for understanding diffusion dynamics, and our study adds further empirical support. We add that emotions 
+within the same quadrant of the circumplex model of affect do not propagate in uniform ways, particularly accounting for 
+their temporal patterns. Anger, fear, sadness, and disgust are all negatively valenced, yet they differ in how quickly they 
+spread, how long they persist, and the shapes of their cascades. Some emotions spread rapidly but fade quickly, while 
+others persist longer despite slower uptake. These findings underscore the importance of examining emotions at a more 
+granular level, where their unique appraisals, action tendencies, and social meanings shape how they diffuse through net­
+works. By documenting such heterogeneity within negative emotions, our study provides additional evidence that discrete 
+emotions are better suited than broad valence–arousal categories for capturing the dynamics of emotional propagation.
+Second, the findings highlight the critical role of context in shaping how emotions propagate [87]. Theories of content 
+diffusion often treat emotions as universal drivers of spread, but the same emotion can behave differently depending on 
+the event that triggers it. Anger associated with rumors or political conflict may spread rapidly as a mobilizing force [27], 
+while anger in response to a celebrity suicide may be tempered by grief, stigma, or collective mourning. This demon­
+strates that propagation is not a uniform process but one conditioned by the meaning of the event and the interpretive 
+frames through which audiences engage with it. Theories of emotional propagation must therefore account for context as 
+a moderating factor, recognizing that propagation signatures emerge from the interaction between the type of emotion and 
+the circumstances of its expression [87]. Without such contextual grounding, findings from rumors [27] or natural disasters 
+[11] cannot be meaningfully generalized to the domain of suicides or other health-related crises.
+Third, our multidimensional approach demonstrates that propagation cannot be captured by a single metric. Speed, 
+virality, lifetime, and burstiness each reflect different aspects of diffusion, and conflating them obscures important mech­
+anisms. For example, high-arousal emotions may trigger rapid spread (speed), but this can shorten content lifetime as 
+attention is quickly exhausted. Burstiness reflects synchronized imitation, which may be heightened by credibility cues 
+such as verified status. This implies that theoretical accounts of emotional content propagation should explicitly distin­
+guish among these diffusion dimensions and model how they interact. Instead of assuming that more arousal equals more 
+virality, theory should specify which aspect of diffusion—reach, persistence, intensity, or clustering—is most affected. By 
+linking distinct emotions to distinct diffusion signatures, our study provides a foundation for a richer theoretical framework 
+that aligns mechanisms with measurable outcomes.
+Fourth, our results imply that propagation dynamics are co-determined by structural and source-level attributes, not 
+only by the emotional qualities of content. Contrary to prior evidence [8,88], hashtags do not significantly enlarge cas­
+cades, which suggests that topical labels add little incremental visibility in this context, possibly because attention is 
+already concentrated or because platform ranking treats hashtags as weak relevance signals. In contrast, user popularity 
+and activity (follower counts, posting frequency, accumulated likes) reliably enhance spread, consistent with mecha­
+nisms of baseline audience size, repeated exposure, and preferential visibility in feeds. Verified status further accelerates 
+and prolongs propagation, indicating that recognized credibility functions as a signal that lowers audience skepticism, 
+increases perceived importance, and sustains attention over time. Theoretically, models of emotional propagation should 
+therefore integrate source reputation, social capital, and platform affordances as moderators of distinct diffusion dimen­
+sions (speed, virality, lifetime, burstiness). These moderators are likely to interact with emotion categories, producing 
+characteristic metric profiles; for example, anger from high-status accounts may convert rapid bursts into longer lifetimes, 
+
+
+===== PAGE 22 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+22 / 27
+whereas the same emotion from low-status accounts may dissipate quickly. This shifts explanation from content-only 
+accounts toward joint content–actor–structure models and reframes the null effect of hashtags as a boundary condition on 
+topical signaling rather than a contradiction of prior work.
+Beyond these theoretical contributions, the study also has practical implications for communication, public health, and 
+crisis management. Understanding how different emotions propagate can inform more targeted intervention strategies. 
+For instance, anger tends to spread rapidly and in a concentrated burst, suggesting that suicide prevention organizations 
+may need to intervene early when such content appears online. Sadness and fear, while slower to spread or less viral, still 
+expose vulnerable populations to prolonged negativity and may require sustained monitoring. Positive emotions, although 
+less frequent, tend to persist longer and can offer opportunities to amplify resilience-focused messaging. Moreover, the 
+finding that verified users and highly active accounts amplify emotional spread underscores the role of influential voices in 
+shaping online discourse. These insights extend beyond suicide prevention to other domains such as marketing and rep­
+utation management, where anger and disgust can quickly damage brand reputation if left unchecked. Overall, the results 
+emphasize the need for fine-grained, emotion-specific approaches to both theoretical modeling and practical intervention 
+[89] in online environments.
+Contribution
+While it is well established that social media can facilitate behavioral contagion and that exposure to negative or suicidal 
+content can induce self-harm [12,61,90,91], the role of emotional propagation as a potential mechanism in propagating 
+these adverse effects remains underexplored. Celebrity suicides provide a critical context, as they are associated with 
+documented increases in suicide rates through copycat behavior [22–24,29,57,92,93] and generating deeply negative 
+online discourse [25,62,63]. Existing work has examined the influence of traditional media reports on suicide contagion 
+[24,29,57,94], and more recently, shifts in emotional tone on social media following celebrity suicides [25,62,63], but little 
+is known about how resharing shapes the spreadin patterns of emotions in ways that may exacerbate fatal outcomes. Our 
+study addresses this gap by analyzing multiple propagation metrics to capture the distinct dynamics of different emotions, 
+thereby contributing to the literature on social media–enabled health behaviors and offering a deeper understanding of 
+how emotional propagation may potentially lead to high-risk emotional states, copycat suicides, and the need for tailored 
+intervention strategies.
+Our results provide several contributions to the literature on emotional propagation in social media contexts. First, 
+we show that even a tragic event such as a celebrity suicide evokes a spectrum of emotions across both valence and 
+arousal (Table 3). This context provides a unique opportunity to examine how distinct emotions propagate within the 
+same empirical setting, rather than inferring differences from separate events or platforms. We demonstrate that even 
+emotions within the same quadrant of the circumplex model can propagate differently. For example, anger, fear, sad­
+ness, and disgust are all negative, yet each follows its own distinct trajectory of spread. By documenting this heterogene­
+ity, our study contributes new evidence on how discrete emotions unfold in response to highly visible tragedies, showing 
+how discrete emotions surpass prior valence–arousal models and extending prior work on settings such as rumors 
+[27,95] and natural disasters [11].
+Second, our findings challenge dominant assumptions about the strength of high-arousal negative emotions in driving 
+diffusion [33,71]. Much of the existing literature has suggested that such emotions are the most contagious online, but 
+our results show that this generalization does not hold when propagation is examined across multiple metrics. We ana­
+lyze four dimensions of propagation: the speed of message diffusion [8,96], the number of users who reshare a message 
+(virality) [8,36,67], its duration in the public sphere (lifetime) [36], and the temporal clustering of reactions (burstiness, 
+reflecting collective mimicry). Anger, for instance, spreads quickly but dissipates rapidly, while sadness circulates widely 
+without sustaining large cascades. Joy spreads more slowly but persists longer, reflecting a different form of endur­
+ance. Longer lifetimes indicate content that continues to circulate, showing propagation strength, while faster and more 
+
+
+===== PAGE 23 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+23 / 27
+clustered reactions signal highly engaged and homogeneous communities. Taken together, these results indicate that 
+emotional spread and virality should be approached from a broader lens rather than reduced to a single metric. This multi­
+dimensional perspective clarifies why past findings appear inconsistent and opens opportunities to develop more complex 
+measures and investigate relationships among dimensions of propagation that remain poorly understood.
+Finally, we contribute methodologically by employing advanced computational tools to analyze emotion dynamics 
+at scale. Departing from lexicon-based approaches that dominated earlier work [63], we use a fine-tuned BERT-based 
+language model [34] that achieves higher accuracy in detecting discrete emotions in online text (see S1 Table 3 in the S1 
+Appendix for validation). This methodological advancement enables us to capture propagation signatures of emotions with 
+greater precision and reliability, strengthening both the empirical foundation and the theoretical claims of our study. Taken 
+together, these contributions enrich understanding of how emotional content spreads in the aftermath of celebrity suicides, 
+situating this high-risk context within broader theories of emotional propagation and extending the methodological toolkit 
+available to future research.
+Conclusion
+The advent of online social media is unparalleled in that it is a medium by which individuals’ thoughts, emotions, and 
+opinions are exposed to the world in real time and on a global scale. A social media platform is a venue where social the­
+ory is enacted on a global scale. Therefore, analyzing its content offers important insights into human society, especially 
+because it affects the behavior and opinions of those exposed to the media. Of relevance to the current research is how 
+messages that carry emotional content spread through this global platform and reach others by being reshared through 
+a chain of resharing actions by individual users. The underlying premise is that content diffusion differs depending on its 
+emotional content. By analyzing a large dataset of Twitter posts (currently known as X) following tragic and unexpected 
+events, i.e., four celebrity suicides, we uncover interesting patterns of content diffusion and link those patterns to the emo­
+tion within the posts.
+Emotional dynamics on social media are complex, as emotions embedded in online content can propagate and spread 
+through resharing across large user populations [10,21]. In the case of celebrity suicides, such propagation is especially 
+consequential because it may contribute to behavioral contagion, most notably the “Werther Effect,” where exposure to 
+suicide-related content is associated with increased risk of copycat suicides [24,26]. Prior research has established that 
+celebrity suicides correlate with rises in suicide rates, and the rapid scale and speed of resharing on social media suggest 
+that these risks may be amplified in digital environments [23,25,63]. Our study contributes to this body of work by exam­
+ining emotional propagation in the aftermath of celebrity suicides, offering evidence on a potential mediating mechanism 
+through which exposure to emotional content may exacerbate vulnerability in audiences. These insights provide a founda­
+tion for stakeholders, including public health policymakers, to design more targeted mitigation and prediction strategies in 
+the wake of shocking and tragic events.
+Supporting information
+S1 Appendix.  Conceptual clarification and data description. 
+(DOCX)
+S2 Appendix.  Validation of emotion labels. 
+(DOCX)
+Author contributions
+Conceptualization: Ehsan Nouri, Nilesh Saraf.
+Data curation: Ehsan Nouri, Jie Mein Goh.
+
+
+===== PAGE 24 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+24 / 27
+Formal analysis: Ehsan Nouri.
+Funding acquisition: Nilesh Saraf, Srabana Dasgupta, Dianne Cyr.
+Investigation: Ehsan Nouri, Jie Mein Goh, Srabana Dasgupta.
+Methodology: Ehsan Nouri, Jie Mein Goh, Srabana Dasgupta.
+Project administration: Nilesh Saraf, Dianne Cyr.
+Resources: Nilesh Saraf, Dianne Cyr.
+Software: Ehsan Nouri, Nilesh Saraf.
+Supervision: Nilesh Saraf, Jie Mein Goh.
+Validation: Ehsan Nouri, Nilesh Saraf, Jie Mein Goh, Srabana Dasgupta.
+Visualization: Ehsan Nouri.
+Writing – original draft: Ehsan Nouri, Nilesh Saraf.
+Writing – review & editing: Ehsan Nouri, Nilesh Saraf, Jie Mein Goh, Srabana Dasgupta.
+References
+	 1.	
+Vosoughi S, Roy D, Aral S. The spread of true and false news online. Science. 2018;359(6380):1146–51. https://doi.org/10.1126/science.aap9559 
+PMID: 29590045
+	 2.	
+Guille A, Hacid H, Favre C, Zighed DA. Information diffusion in online social networks. SIGMOD Rec. 2013;42(2):17–28. https://doi.
+org/10.1145/2503792.2503797
+	 3.	
+Bakshy E, Rosenn I, Marlow C, Adamic L. The role of social networks in information diffusion. In: Proceedings of the 21st international conference 
+on World Wide Web, 2012. 519–28. https://doi.org/10.1145/2187836.2187907
+	 4.	
+Centola D. The spread of behavior in an online social network experiment. Science. 2010;329(5996):1194–7. https://doi.org/10.1126/sci­
+ence.1185231 PMID: 20813952
+	 5.	
+Masur PK, DiFranzo D, Bazarova NN. Behavioral contagion on social media: Effects of social norms, design interventions, and critical media liter­
+acy on self-disclosure. PLoS One. 2021;16(7):e0254670. https://doi.org/10.1371/journal.pone.0254670 PMID: 34280233
+	 6.	
+Milan S. When algorithms shape collective action: social media and the dynamics of cloud protesting. Social Media + Society. 2015;1(2). https://
+doi.org/10.1177/2056305115622481
+	 7.	
+Tim Y, Pan SL, Ractham P, Kaewkitipong L. Digitally enabled disaster response: the emergence of social media as boundary objects in a flooding 
+disaster. Inform Syst J. 2016;27(2):197–232. https://doi.org/10.1111/isj.12114
+	 8.	
+Stieglitz S, Dang-Xuan L. Emotions and information diffusion in social media—sentiment of microblogs and sharing behavior. J Manag Inform Syst. 
+2013;29(4):217–48. https://doi.org/10.2753/mis0742-1222290408
+	 9.	
+Ferrara E, Yang Z. Quantifying the effect of sentiment on information diffusion in social media. PeerJ Comp Sci. 2015;1:e26. https://doi.
+org/10.7717/peerj-cs.26
+	10.	
+Ferrara E, Yang Z. Measuring emotional contagion in social media. PLoS One. 2015;10(11):e0142390. https://doi.org/10.1371/journal.
+pone.0142390 PMID: 26544688
+	11.	
+Li L, Wang Z, Zhang Q, Wen H. Effect of anger, anxiety, and sadness on the propagation scale of social media posts after natural disasters. Inform 
+Process Manag. 2020;57(6):102313. https://doi.org/10.1016/j.ipm.2020.102313
+	12.	
+Arendt F, Scherr S, Romer D. Effects of exposure to self-harm on social media: Evidence from a two-wave panel study among young adults. New 
+Media Soc. 2019;21(11–12):2422–42. https://doi.org/10.1177/1461444819850106
+	13.	
+Gao J, Zheng P, Jia Y, Chen H, Mao Y, Chen S, et al. Mental health problems and social media exposure during COVID-19 outbreak. PLoS One. 
+2020;15(4):e0231924. https://doi.org/10.1371/journal.pone.0231924 PMID: 32298385
+	14.	
+Zhang XA, Borden J, Kim S. Understanding publics’ post-crisis social media engagement behaviors: an examination of antecedents and mediators. 
+Tele Inform. 2018;35(8):2133–46. https://doi.org/10.1016/j.tele.2018.07.014
+	15.	
+Salathé M, Vu DQ, Khandelwal S, Hunter DR. The dynamics of health behavior sentiments on a large online social network. EPJ Data Sci. 
+2013;2(1). https://doi.org/10.1140/epjds16
+	16.	
+Kätsyri J, Kinnunen T, Kusumoto K, Oittinen P, Ravaja N. Negativity bias in media multitasking: the effects of negative social media messages on 
+attention to television news broadcasts. PLoS One. 2016;11(5):e0153712. https://doi.org/10.1371/journal.pone.0153712 PMID: 27144385
+
+
+===== PAGE 25 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+25 / 27
+	17.	
+Rozin P, Royzman EB. Negativity Bias, Negativity Dominance, and Contagion. Pers Soc Psychol Rev. 2001;5(4):296–320. https://doi.org/10.1207/
+s15327957pspr0504_2
+	18.	
+Kane AA, van Swol LM, Sarmiento-Lawrence IG. Emotional contagion in online groups as a function of valence and status. Comp Human Behav. 
+2023;139:107543. https://doi.org/10.1016/j.chb.2022.107543
+	19.	
+Kramer ADI, Guillory JE, Hancock JT. Experimental evidence of massive-scale emotional contagion through social networks. Proc Natl Acad Sci U 
+S A. 2014;111(24):8788–90. https://doi.org/10.1073/pnas.1320040111 PMID: 24889601
+	20.	
+Mønsted B, Sapieżyński P, Ferrara E, Lehmann S. Evidence of complex contagion of information in social media: an experiment using Twitter bots. 
+PLoS One. 2017;12(9):e0184148. https://doi.org/10.1371/journal.pone.0184148 PMID: 28937984
+	21.	
+Goldenberg A, Gross JJ. Digital emotion contagion. Trends Cogn Sci. 2020;24(4):316–28. https://doi.org/10.1016/j.tics.2020.01.009 PMID: 
+32160568
+	22.	
+Fink DS, Santaella-Tenorio J, Keyes KM. Increase in suicides the months after the death of Robin Williams in the US. PLoS One. 
+2018;13(2):e0191405. https://doi.org/10.1371/journal.pone.0191405 PMID: 29415016
+	23.	
+Ha J, Yang H-S. The Werther effect of celebrity suicides: Evidence from South Korea. PLoS One. 2021;16(4):e0249896. https://doi.org/10.1371/
+journal.pone.0249896 PMID: 33909657
+	24.	
+Phillips DP. The influence of suggestion on suicide: substantive and theoretical implications of the werther effect. Am Sociol Rev. 1974;39(3):340. 
+https://doi.org/10.2307/2094294
+	25.	
+Fahey RA, Matsubayashi T, Ueda M. Tracking the Werther Effect on social media: Emotional responses to prominent suicide deaths on twitter and 
+subsequent increases in suicide. Soc Sci Med. 2018;219:19–29. https://doi.org/10.1016/j.socscimed.2018.10.004 PMID: 30342383
+	26.	
+Niederkrotenthaler T, Till B, Kapusta ND, Voracek M, Dervic K, Sonneck G. Copycat effects after media reports on suicide: a population-based 
+ecologic study. Soc Sci Med. 2009;69(7):1085–90. https://doi.org/10.1016/j.socscimed.2009.07.041 PMID: 19682782
+	27.	
+Pröllochs N, Bär D, Feuerriegel S. Emotions in online rumor diffusion. EPJ Data Sci. 2021;10(1). https://doi.org/10.1140/epjds/s13688-021-00307-5
+	28.	
+Paletz SBF, Johns MA, Murauskaite EE, Golonka EM, Pandža NB, Rytting CA, et al. Emotional content and sharing on Facebook: a theory cage 
+match. Sci Adv. 2023;9(39):eade9231. https://doi.org/10.1126/sciadv.ade9231 PMID: 37774019
+	29.	
+Carmichael V, Whitley R. Media coverage of Robin Williams’ suicide in the United States: a contributor to contagion?. PLoS One. 
+2019;14(5):e0216543. https://doi.org/10.1371/journal.pone.0216543 PMID: 31071144
+	30.	
+Mesoudi A. The cultural dynamics of copycat suicide. PLoS One. 2009;4(9):e7252. https://doi.org/10.1371/journal.pone.0007252 PMID: 19789643
+	31.	
+Russell JA. A circumplex model of affect. J Personal Soc Psychol. 1980;39(6):1161–78. https://doi.org/10.1037/h0077714
+	32.	
+Yu Y, Huang S, Liu Y, Tan Y. Emotions in online content diffusion. Inform Syst Res. 2025. https://doi.org/10.1287/isre.2022.0611
+	33.	
+Berger J, Milkman KL. What makes online content viral?. J Market Res. 2012;49(2):192–205. https://doi.org/10.1509/jmr.10.0353
+	34.	
+Devlin J, Chang MW, Lee K, Toutanova K. BERT: pre-training of deep bidirectional transformers for language understanding. arXiv. 2019. http://
+arxiv.org/abs/1810.04805
+	35.	
+Babić Rosario A, Sotgiu F, De Valck K, Bijmolt THA. The effect of electronic word of mouth on sales: a meta-analytic review of platform, product, 
+and metric factors. J Market Res. 2016;53(3):297–318. https://doi.org/10.1509/jmr.14.0380
+	36.	
+Del Vicario M, Bessi A, Zollo F, Petroni F, Scala A, Caldarelli G, et al. The spreading of misinformation online. Proc Natl Acad Sci U S A. 
+2016;113(3):554–9. https://doi.org/10.1073/pnas.1517441113 PMID: 26729863
+	37.	
+Horner CG, Galletta D, Crawford J, Shirsat A. Emotions: the unexplored fuel of fake news on social media. J Manag Inform Syst. 2021;38(4):1039–
+66. https://doi.org/10.1080/07421222.2021.1990610
+	38.	
+Shin J, Jian L, Driscoll K, Bar F. The diffusion of misinformation on social media: temporal pattern, message, and source. Comp Human Behav. 
+2018;83:278–87. https://doi.org/10.1016/j.chb.2018.02.008
+	39.	
+Chew C, Eysenbach G. Pandemics in the age of Twitter: content analysis of Tweets during the 2009 H1N1 outbreak. PLoS One. 
+2010;5(11):e14118. https://doi.org/10.1371/journal.pone.0014118 PMID: 21124761
+	40.	
+Weng L, Menczer F, Ahn Y-Y. Virality prediction and community structure in social networks. Sci Rep. 2013;3:2522. https://doi.org/10.1038/
+srep02522 PMID: 23982106
+	41.	
+Katona Z, Zubcsek PP, Sarvary M. Network effects and personal influences: the diffusion of an online social network. J Market Res. 
+2011;48(3):425–43. https://doi.org/10.1509/jmkr.48.3.425
+	42.	
+Cheng J, Adamic L, Dow PA, Kleinberg JM, Leskovec J. Can cascades be predicted?. In: Proceedings of the 23rd international conference on 
+World wide web, 2014. 925–36. https://doi.org/10.1145/2566486.2567997
+	43.	
+Tsugawa S, Ohsaki H. On the relation between message sentiment and its virality on social media. Soc Netw Anal Min. 2017;7(1). https://doi.
+org/10.1007/s13278-017-0439-0
+	44.	
+Stieglitz S, Dang-Xuan L. Emotions and Information Diffusion in Social Media—Sentiment of Microblogs and Sharing Behavior. Journal of Manage­
+ment Information Systems. 2013;29(4):217–48. https://doi.org/10.2753/mis0742-1222290408
+	45.	
+Romero DM, Meeder B, Kleinberg J. Differences in the mechanics of information diffusion across topics. In: Proceedings of the 20th international 
+conference on World wide web, 2011. 695–704. https://doi.org/10.1145/1963405.1963503
+
+
+===== PAGE 26 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+26 / 27
+	46.	
+Dodds PS, Harris KD, Kloumann IM, Bliss CA, Danforth CM. Temporal patterns of happiness and information in a global social network: hedono­
+metrics and Twitter. PLoS One. 2011;6(12):e26752. https://doi.org/10.1371/journal.pone.0026752 PMID: 22163266
+	47.	
+Burnap P, Williams ML, Sloan L, Rana O, Housley W, Edwards A, et al. Tweeting the terror: modelling the social media reaction to the Woolwich 
+terrorist attack. Soc Netw Anal Min. 2014;4(1). https://doi.org/10.1007/s13278-014-0206-4
+	48.	
+Niu G, Long Y, Li VOK. Temporal behavior of social network users in information diffusion. In: 2014 IEEE/WIC/ACM International Joint Conferences 
+on Web Intelligence (WI) and Intelligent Agent Technologies (IAT), 2014. 150–7. https://doi.org/10.1109/wi-iat.2014.92
+	49.	
+Guadagno RE, Rempala DM, Murphy S, Okdie BM. What makes a video go viral? An analysis of emotional contagion and Internet memes. Comp 
+Human Behav. 2013;29(6):2312–9. https://doi.org/10.1016/j.chb.2013.04.016
+	50.	
+Kralj Novak P, Smailović J, Sluban B, Mozetič I. Sentiment of emojis. PLoS One. 2015;10(12):e0144296. https://doi.org/10.1371/journal.
+pone.0144296 PMID: 26641093
+	51.	
+Nian F, Yang X, Wang Z. Emotion spreading carried by emoji in social network. Soc Netw Anal Min. 2023;13(1). https://doi.org/10.1007/
+s13278-023-01144-2
+	52.	
+Scherer KR. What are emotions? And how can they be measured?. Soc Sci Inform. 2005;44(4):695–729. https://doi.
+org/10.1177/0539018405058216
+	53.	
+Hatfield E, Cacioppo JT, Rapson RL. Emotional contagion. Cambridge: Cambridge University Press; 1994.
+	54.	
+Coviello L, Sohn Y, Kramer ADI, Marlow C, Franceschetti M, Christakis NA, et al. Detecting emotional contagion in massive social networks. PLoS 
+One. 2014;9(3):e90315. https://doi.org/10.1371/journal.pone.0090315 PMID: 24621792
+	55.	
+Fan R, Zhao J, Chen Y, Xu K. Anger is more influential than joy: sentiment correlation in weibo. PLoS One. 2014;9(10):e110184. https://doi.
+org/10.1371/journal.pone.0110184 PMID: 25333778
+	56.	
+Cheng Q, Li H, Silenzio V, Caine ED. Suicide contagion: a systematic review of definitions and research utility. PLoS One. 2014;9(9):e108724. 
+https://doi.org/10.1371/journal.pone.0108724 PMID: 25259604
+	57.	
+Cheng ATA, Hawton K, Lee CTC, Chen THH. The influence of media reporting of the suicide of a celebrity on suicide rates: a population-based 
+study. Int J Epidemiol. 2007;36(6):1229–34. https://doi.org/10.1093/ije/dym196 PMID: 17905808
+	58.	
+Haw C, Hawton K, Niedzwiedz C, Platt S. Suicide clusters: a review of risk factors and mechanisms. Suicide Life Threat Behav. 2013;43(1):97–
+108. https://doi.org/10.1111/j.1943-278X.2012.00130.x PMID: 23356785
+	59.	
+Goethe JW. Die Leiden des jungen Werthers. Leipzig: Weygand’sche Buchhandlung; 1774.
+	60.	
+Lake AM, Gould MS. Suicide clusters and suicide contagion. A Concise Guide to Understanding Suicide. Cambridge University Press; 2014. 
+52–61. https://doi.org/10.1017/cbo9781139519502.008
+	61.	
+Dunlop SM, More E, Romer D. Where do youth learn about suicides on the Internet, and what influence does this have on suicidal ideation?. J 
+Child Psychol Psychiatry. 2011;52(10):1073–80. https://doi.org/10.1111/j.1469-7610.2011.02416.x PMID: 21658185
+	62.	
+Kumar M, Dredze M, Coppersmith G, De Choudhury M. Detecting changes in suicide content manifested in social media following celebrity sui­
+cides. HT ACM Conf Hypertext Soc Media. 2015;2015:85–94. https://doi.org/10.1145/2700171.2791026 PMID: 28713876
+	63.	
+Niederkrotenthaler T, Till B, Garcia D. Celebrity suicide on Twitter: activity, content and network analysis related to the death of Swedish DJ Tim 
+Bergling alias Avicii. J Affect Disord. 2019;245:848–55. https://doi.org/10.1016/j.jad.2018.11.071 PMID: 30699869
+	64.	
+Won H-H, Myung W, Song G-Y, Lee W-H, Kim J-W, Carroll BJ, et al. Predicting national suicide numbers with social media data. PLoS One. 
+2013;8(4):e61809. https://doi.org/10.1371/journal.pone.0061809 PMID: 23630615
+	65.	
+De Choudhury M, Kiciman E, Dredze M, Coppersmith G, Kumar M. Discovering shifts to suicidal ideation from mental health content in social 
+media. Proc SIGCHI Conf Hum Factor Comput Syst. 2016;2016:2098–110. https://doi.org/10.1145/2858036.2858207 PMID: 29082385
+	66.	
+O’Dea B, Larsen ME, Batterham PJ, Calear AL, Christensen H. A Linguistic analysis of suicide-related twitter posts. Crisis. 2017;38(5):319–29. 
+https://doi.org/10.1027/0227-5910/a000443 PMID: 28228065
+	67.	
+Juul JL, Ugander J. Comparing information diffusion mechanisms by matching on cascade size. Proc Natl Acad Sci U S A. 
+2021;118(46):e2100786118. https://doi.org/10.1073/pnas.2100786118 PMID: 34750252
+	68.	
+Meng J, Peng W, Tan P-N, Liu W, Cheng Y, Bae A. Diffusion size and structural virality: The effects of message and network features on spreading 
+health information on twitter. Comput Human Behav. 2018;89:111–20. https://doi.org/10.1016/j.chb.2018.07.039 PMID: 32288177
+	69.	
+Goh KI, Barabasi AL. Burstiness and memory in complex systems. 2006. http://arxiv.org/abs/physics/0610233
+	70.	
+Storbeck J, Clore GL. Affective arousal as information: how affective arousal influences judgments, learning, and memory. Soc Personal Psychol 
+Compass. 2008;2(5):1824–43. https://doi.org/10.1111/j.1751-9004.2008.00138.x PMID: 25067943
+	71.	
+Berger J. Arousal increases social transmission of information. Psychol Sci. 2011;22(7):891–3. https://doi.org/10.1177/0956797611413294 PMID: 
+21690315
+	72.	
+Brady WJ, Wills JA, Jost JT, Tucker JA, Van Bavel JJ. Emotion shapes the diffusion of moralized content in social networks. Proc Natl Acad Sci U 
+S A. 2017;114(28):7313–8. https://doi.org/10.1073/pnas.1618923114 PMID: 28652356
+	73.	
+Del Vicario M, Vivaldo G, Bessi A, Zollo F, Scala A, Caldarelli G, et al. Echo chambers: emotional contagion and group polarization on facebook. 
+Sci Rep. 2016;6:37825. https://doi.org/10.1038/srep37825 PMID: 27905402
+
+
+===== PAGE 27 =====
+
+PLOS One | https://doi.org/10.1371/journal.pone.0336134  December 10, 2025
+27 / 27
+	74.	
+Sangiorgio E, Di Marco N, Etta G, Cinelli M, Cerqueti R, Quattrociocchi W. Evaluating the effect of viral posts on social media engagement. Sci 
+Rep. 2025;15(1):639. https://doi.org/10.1038/s41598-024-84960-6 PMID: 39753870
+	75.	
+Witte K. Putting the fear back into fear appeals: The extended parallel process model. Commun Monographs. 1992;59(4):329–49. https://doi.
+org/10.1080/03637759209376276
+	76.	
+Fan R, Xu K, Zhao J. An agent-based model for emotion contagion and competition in online social media. Physica A: Stat Mech Appl. 
+2018;495:245–59. https://doi.org/10.1016/j.physa.2017.12.086
+	77.	
+Barabási A-L. The origin of bursts and heavy tails in human dynamics. Nature. 2005;435(7039):207–11. https://doi.org/10.1038/nature03459 PMID: 
+15889093
+	78.	
+Zhuang Y, Arenas A, Yağan O. Clustering determines the dynamics of complex contagions in multiplex networks. Phys Rev E. 2017;95(1–
+1):012312. https://doi.org/10.1103/PhysRevE.95.012312 PMID: 28208373
+	79.	
+Yoo E, Gu B, Rabinovich E. Diffusion on social media platforms: a point process model for interaction among similar content. J Manag Inform Syst. 
+2019;36(4):1105–41. https://doi.org/10.1080/07421222.2019.1661096
+	80.	
+Alves RA da S, Assuncao RM, Vaz de Melo POS. Burstiness Scale. In: Proceedings of the 22nd ACM SIGKDD International conference on knowl­
+edge discovery and data mining, 2016. 1405–14. https://doi.org/10.1145/2939672.2939852
+	81.	
+Tavares G, Faisal A. Scaling-laws of human broadcast communication enable distinction between human, corporate and robot Twitter users. PLoS 
+One. 2013;8(7):e65774. https://doi.org/10.1371/journal.pone.0065774 PMID: 23843945
+	82.	
+Zhu X, Kim Y, Park H. Do messages spread widely also diffuse fast? Examining the effects of message characteristics on information diffusion. 
+Comp Human Behav. 2020;103:37–47. https://doi.org/10.1016/j.chb.2019.09.006
+	83.	
+Hartmann J. Emotion English DistilRoBERTa-base. 2022. https://huggingface.co/j-hartmann/emotion-english-distilroberta-base/
+	84.	
+Rozado D, Hughes R, Halberstadt J. Longitudinal analysis of sentiment and emotion in news media headlines using automated labelling with 
+Transformer language models. PLoS One. 2022;17(10):e0276367. https://doi.org/10.1371/journal.pone.0276367 PMID: 36256658
+	85.	
+Goh K-I, Barabási A-L. Burstiness and memory in complex systems. Europhys Lett. 2008;81(4):48002. https://doi.org/10.1209/0295-5075/81/48002
+	86.	
+Lawless JF. Negative binomial and mixed Poisson regression. Can J Statistics. 1987;15(3):209–25. https://doi.org/10.2307/3314912
+	87.	
+Abouei M, Kordzadeh N, Ghasemaghaei M, Khan B. The impact of emotional expressions on the popularity of discussion threads: evidence from 
+Reddit. INTR. 2025. https://doi.org/10.1108/intr-12-2023-1187
+	88.	
+Pancer E, Poole M. The popularity and virality of political social media: hashtags, mentions, and links predict likes and retweets of 2016 U.S. presi­
+dential nominees’ tweets. Soc Infl. 2016;11(4):259–70. https://doi.org/10.1080/15534510.2016.1265582
+	89.	
+Sinyor M, Schaffer A, Heisel MJ, Picard A, Adamson G, Cheung CP, et al. Media guidelines for reporting on suicide: 2017 update of the Canadian 
+psychiatric association policy paper. Can J Psychiatry. 2018;63(3):182–96. https://doi.org/10.1177/0706743717753147 PMID: 29513631
+	90.	
+Daine K, Hawton K, Singaravelu V, Stewart A, Simkin S, Montgomery P. The power of the web: a systematic review of studies of the influence 
+of the internet on self-harm and suicide in young people. PLoS One. 2013;8(10):e77555. https://doi.org/10.1371/journal.pone.0077555 PMID: 
+24204868
+	91.	
+Marchant A, Hawton K, Stewart A, Montgomery P, Singaravelu V, Lloyd K, et al. A systematic review of the relationship between internet use, 
+self-harm and suicidal behaviour in young people: the good, the bad and the unknown. PLoS One. 2017;12(8):e0181722. https://doi.org/10.1371/
+journal.pone.0181722 PMID: 28813437
+	92.	
+Queinec R, Beitz C, Contrand B, Jougla E, Leffondré K, Lagarde E, et al. Copycat effect after celebrity suicides: results from the French national 
+death register. Psychol Med. 2011;41(3):668–71. https://doi.org/10.1017/S0033291710002011 PMID: 20961478
+	93.	
+Ramchand R, Cohen E, Draper J, Schoenbaum M, Reidenberg D, Colpe L, et al. Increases in Demand for Crisis and Other Suicide Prevention 
+Services After a Celebrity Suicide. Psychiatr Serv. 2019;70(8):728–31. https://doi.org/10.1176/appi.ps.201900007 PMID: 31035892
+	94.	
+Niederkrotenthaler T, Braun M, Pirkis J, Till B, Stack S, Sinyor M, et al. Association between suicide reporting in the media and suicide: systematic 
+review and meta-analysis. BMJ. 2020;368:m575. https://doi.org/10.1136/bmj.m575 PMID: 32188637
+	95.	
+Pröllochs N, Bär D, Feuerriegel S. Emotions explain differences in the diffusion of true vs. false social media rumors. Sci Rep. 2021;11(1):22721. 
+https://doi.org/10.1038/s41598-021-01813-2 PMID: 34811397
+	96.	
+Yoo E, Rand W, Eftekhar M, Rabinovich E. Evaluating information diffusion speed and its determinants in social media networks during humanitar­
+ian crises. J Ops Manag. 2016;45(1):123–33. https://doi.org/10.1016/j.jom.2016.05.007
