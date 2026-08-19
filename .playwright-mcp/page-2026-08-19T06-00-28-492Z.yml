@@ -1,9 +1,0 @@
-- generic [ref=e5]:
-  - generic [ref=e6]:
-    - text: 请完成安全验证
-    - generic [ref=e7] [cursor=pointer]
-  - generic [ref=e9]:
-    - generic [ref=e12] [cursor=pointer]
-    - generic [ref=e13]:
-      - text: 向右滑动完成验证
-      - generic [ref=e14] [cursor=pointer]
