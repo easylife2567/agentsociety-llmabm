@@ -1,0 +1,741 @@
+- generic [active] [ref=f2e1]:
+  - banner [ref=f2e3]:
+    - generic [ref=f2e4]:
+      - link [ref=f2e5] [cursor=pointer]:
+        - /url: https://www.cnki.net/
+      - link "总库" [ref=f2e8] [cursor=pointer]:
+        - /url: https://kns.cnki.net/starter/index
+      - generic [ref=f2e9]:
+        - link "检索" [ref=f2e11] [cursor=pointer]:
+          - /url: https://kns.cnki.net/kns8s/search
+        - link "CNKI AI" [ref=f2e14] [cursor=pointer]:
+          - /url: https://ai.cnki.net
+        - link "出版来源" [ref=f2e17] [cursor=pointer]:
+          - /url: https://navi.cnki.net/knavi/?language=CHS
+        - link "我的CNKI" [ref=f2e20] [cursor=pointer]:
+          - /url: https://kns.cnki.net/myspace/collect
+      - generic [ref=f2e23]:
+        - generic [ref=f2e28] [cursor=pointer]: 充值
+        - link "会员" [ref=f2e30] [cursor=pointer]:
+          - /url: https://member.cnki.net/
+  - generic [ref=f2e31]:
+    - generic [ref=f2e32]:
+      - generic [ref=f2e34]:
+        - list
+        - generic [ref=f2e35]:
+          - list [ref=f2e36]:
+            - listitem [ref=f2e37] [cursor=pointer]:
+              - generic [ref=f2e38]: 检索设置
+            - listitem [ref=f2e39] [cursor=pointer]: 高级检索
+            - listitem [ref=f2e40] [cursor=pointer]: 专业检索
+            - listitem [ref=f2e41] [cursor=pointer]: 作者发文检索
+            - listitem [ref=f2e42] [cursor=pointer]: 句子检索
+          - generic [ref=f2e45]:
+            - generic [ref=f2e46]:
+              - generic [ref=f2e47]:
+                - generic [ref=f2e48] [cursor=pointer]: 文献分类
+                - generic:
+                  - generic:
+                    - text: 文献分类
+                    - generic [ref=f2e50]: 全选 清除
+                  - list:
+                    - listitem [ref=f2e51]:
+                      - generic [ref=f2e52]:
+                        - generic [ref=f2e53] [cursor=pointer]
+                        - generic [ref=f2e54] [cursor=pointer]
+                        - link "基础科学":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f2e55]:
+                      - generic [ref=f2e56]:
+                        - generic [ref=f2e57] [cursor=pointer]
+                        - generic [ref=f2e58] [cursor=pointer]
+                        - link "工程科技Ⅰ辑":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f2e59]:
+                      - generic [ref=f2e60]:
+                        - generic [ref=f2e61] [cursor=pointer]
+                        - generic [ref=f2e62] [cursor=pointer]
+                        - link "工程科技Ⅱ辑":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f2e63]:
+                      - generic [ref=f2e64]:
+                        - generic [ref=f2e65] [cursor=pointer]
+                        - generic [ref=f2e66] [cursor=pointer]
+                        - link "农业科技":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f2e67]:
+                      - generic [ref=f2e68]:
+                        - generic [ref=f2e69] [cursor=pointer]
+                        - generic [ref=f2e70] [cursor=pointer]
+                        - link "医药卫生科技":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f2e71]:
+                      - generic [ref=f2e72]:
+                        - generic [ref=f2e73] [cursor=pointer]
+                        - generic [ref=f2e74] [cursor=pointer]
+                        - link "哲学与人文科学":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f2e75]:
+                      - generic [ref=f2e76]:
+                        - generic [ref=f2e77] [cursor=pointer]
+                        - generic [ref=f2e78] [cursor=pointer]
+                        - link "社会科学Ⅰ辑":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f2e79]:
+                      - generic [ref=f2e80]:
+                        - generic [ref=f2e81] [cursor=pointer]
+                        - generic [ref=f2e82] [cursor=pointer]
+                        - link "社会科学Ⅱ辑":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f2e83]:
+                      - generic [ref=f2e84]:
+                        - generic [ref=f2e85] [cursor=pointer]
+                        - generic [ref=f2e86] [cursor=pointer]
+                        - link "信息科技":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f2e87]:
+                      - generic [ref=f2e88]:
+                        - generic [ref=f2e89] [cursor=pointer]
+                        - generic [ref=f2e90] [cursor=pointer]
+                        - link "经济与管理科学":
+                          - /url: javascript:void(0);
+              - generic [ref=f2e91]:
+                - generic [ref=f2e95]:
+                  - term
+                  - definition [ref=f2e96]:
+                    - generic [ref=f2e98]:
+                      - generic [ref=f2e99] [cursor=pointer]: 主题
+                      - textbox [ref=f2e103]
+                      - generic [ref=f2e105]:
+                        - generic [ref=f2e106]: 精确
+                        - emphasis [ref=f2e107]: ∨
+                  - term
+                  - definition [ref=f2e108]:
+                    - generic [ref=f2e110] [cursor=pointer]:
+                      - generic [ref=f2e111]: AND
+                      - emphasis [ref=f2e112]: ∨
+                    - generic [ref=f2e113]:
+                      - generic [ref=f2e114] [cursor=pointer]: 作者
+                      - textbox [ref=f2e118]
+                      - generic [ref=f2e120] [cursor=pointer]:
+                        - generic [ref=f2e121]: 精确
+                        - emphasis [ref=f2e122]: ∨
+                    - link "-" [ref=f2e123] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                  - term:
+                    - link "+" [ref=f2e124] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                  - definition [ref=f2e125]:
+                    - generic [ref=f2e127] [cursor=pointer]:
+                      - generic [ref=f2e128]: AND
+                      - emphasis [ref=f2e129]: ∨
+                    - generic [ref=f2e130]:
+                      - generic [ref=f2e131] [cursor=pointer]: 文献来源
+                      - textbox [ref=f2e135]
+                      - generic [ref=f2e137] [cursor=pointer]:
+                        - generic [ref=f2e138]: 精确
+                        - emphasis [ref=f2e139]: ∨
+                    - link "-" [ref=f2e140] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                - generic [ref=f2e141]:
+                  - generic [ref=f2e142]:
+                    - generic [ref=f2e143]:
+                      - generic [ref=f2e144] [cursor=pointer]:
+                        - checkbox "OA出版" [ref=f2e145]
+                        - text: OA出版
+                      - generic [ref=f2e146] [cursor=pointer]:
+                        - checkbox "网络首发" [ref=f2e147]
+                        - text: 网络首发
+                      - generic [ref=f2e148] [cursor=pointer]:
+                        - checkbox "增强出版" [ref=f2e149]
+                        - text: 增强出版
+                    - generic [ref=f2e152] [cursor=pointer]:
+                      - checkbox "基金文献" [ref=f2e153]
+                      - text: 基金文献
+                    - generic [ref=f2e154]:
+                      - generic [ref=f2e156] [cursor=pointer]:
+                        - checkbox "中英文扩展" [checked] [ref=f2e157]
+                        - text: 中英文扩展
+                      - generic [ref=f2e158] [cursor=pointer]:
+                        - checkbox "同义词扩展" [ref=f2e159]
+                        - text: 同义词扩展
+                  - generic [ref=f2e160]:
+                    - generic [ref=f2e161]: 时间范围：
+                    - generic [ref=f2e162]:
+                      - generic [ref=f2e163]: 发表时间
+                      - textbox [ref=f2e164]
+                      - text: "--"
+                      - textbox [ref=f2e165]
+                    - generic [ref=f2e166]:
+                      - generic [ref=f2e167]: 更新时间
+                      - generic [ref=f2e169] [cursor=pointer]:
+                        - generic [ref=f2e170]: 不限
+                        - emphasis [ref=f2e171]: ∨
+                - generic [ref=f2e172]:
+                  - link "重置条件" [ref=f2e173] [cursor=pointer]:
+                    - /url: javascript:void(0);
+                  - button "检索" [ref=f2e174] [cursor=pointer]
+            - generic [ref=f2e178]:
+              - term [ref=f2e179]:
+                - text: 高级检索使用方法：
+                - link ">>" [ref=f2e180] [cursor=pointer]:
+                  - /url: http://piccache.cnki.net/index/helper/manuals.html#frame2-1-2
+              - definition [ref=f2e181]:
+                - paragraph [ref=f2e182]: 高级检索支持使用运算符*、+、-、''、""、()进行同一检索项内多个检索词的组合运算，检索框内输入的内容不得超过120个字符。
+                - paragraph [ref=f2e183]: 输入运算符*(与)、+(或)、-(非)时，优先级需用英文半角括号确定。
+                - paragraph [ref=f2e184]: 若检索词本身含空格或*、+、-、()、/、%、=等特殊符号，为避免歧义，须将检索词用英文半角单引号或英文半角双引号引起来。
+              - term [ref=f2e185]: 例如：
+              - definition [ref=f2e186]:
+                - paragraph [ref=f2e187]: （1）篇名检索项后输入：神经网络 * 自然语言，可以检索到篇名包含“神经网络”及“自然语言”的文献。
+                - paragraph [ref=f2e188]: （2）主题检索项后输入：(锻造 + 自由锻) * 裂纹，可以检索到主题为“锻造”或“自由锻”，且有关“裂纹”的文献。
+                - paragraph [ref=f2e189]: （3）如果需检索篇名包含“digital library”和“information service”的文献，在篇名检索项后输入：'digital library' * 'information service'。
+                - paragraph [ref=f2e190]: （4）如果需检索篇名包含“2+3”和“人才培养”的文献，在篇名检索项后输入：'2+3' * 人才培养。
+      - generic [ref=f2e191]:
+        - generic:
+          - generic [ref=f2e192]:
+            - link "总库" [ref=f2e193] [cursor=pointer]:
+              - /url: javascript:void(0)
+              - emphasis
+            - generic [ref=f2e195]:
+              - generic [ref=f2e196] [cursor=pointer]: 中文
+              - generic [ref=f2e197] [cursor=pointer]: 外文
+          - list [ref=f2e198]:
+            - listitem [ref=f2e199]:
+              - link "学术期刊" [ref=f2e200] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f2e202]:
+              - link "学位论文" [ref=f2e203] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f2e205]:
+              - link "图书" [ref=f2e206] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f2e208]:
+              - link "会议" [ref=f2e209] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f2e211]:
+              - link "报纸" [ref=f2e212] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f2e214]:
+              - link "年鉴" [ref=f2e215] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f2e217]:
+              - link "专利" [ref=f2e218] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f2e220]:
+              - link "标准" [ref=f2e221] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f2e223]:
+              - link "法律法规" [ref=f2e224] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+          - link "更多资源" [ref=f2e226] [cursor=pointer]:
+            - /url: javascript:void(0);
+    - generic [ref=f2e229]:
+      - generic [ref=f2e230]:
+        - generic [ref=f2e231]: 主编推荐
+        - list [ref=f2e232]:
+          - listitem [ref=f2e233]:
+            - link "相关荐文" [ref=f2e234] [cursor=pointer]:
+              - /url: javascript:void(0)
+          - listitem [ref=f2e236]:
+            - link "热门荐文" [ref=f2e237] [cursor=pointer]:
+              - /url: javascript:void(0)
+          - listitem [ref=f2e239]:
+            - link "最新荐文" [ref=f2e240] [cursor=pointer]:
+              - /url: javascript:void(0)
+      - generic [ref=f2e243]:
+        - definition [ref=f2e244]:
+          - heading [level=6] [ref=f2e245]:
+            - link "科研人员对生成式人工智能工具的使用情况和认知态度探究" [ref=f2e246] [cursor=pointer]:
+              - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPa-omjEvMY9Fga5Osllr5vipfrjJeCSEGvbLF1m740uw-6NzrUFBigu2u7drwfw0GFZZAY6gRVJEaBxHelczDD-zD5l2NjlvnaBH5PRohvV4VE0FAUxAEHipjcqq0yTstccDdXC-Mk4FScUYrjKNl11oiarT4hYmsmvlaxamJPxNu-mJtYTvTjkBefq-H3hEVk=&uniplatform=NZKPT&language=CHS
+          - paragraph [ref=f2e247]:
+            - generic [ref=f2e248]:
+              - link "丁佐奇" [ref=f2e249] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPY86IMDbP9FTXdpD4kjS1k_KakrHZBbRCsqC-8J_jH1RTLmwTWJ7jr0Vqj3xLvHzc-tlzKATGVkarGmGNYKiCUViujwoas4g3U7YL2-x0G3W8Zr5es23xGp&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "李亚萍" [ref=f2e250] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPY86IMDbP9FTXdpD4kjS1k_wziLXl1Gv_ILL4PpFiHgR3jaauw-nDRWsyUi9-1a1-CZOfJtylFRnHqNtn11EdxOn3i3QIkbFhG1ER6zgWa7X3XWMMayMB4z&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "李楚威" [ref=f2e251] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPY86IMDbP9FTXdpD4kjS1k_A9i3a31IlK9cTAOq-i5BBig5fwAMaEIj_N7MNiXmByexMzya0G5zUZx6e6R6N-gtnzSmkss1-B0V6RVd0tW0adkyrzpBkmeS&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "张彤" [ref=f2e252] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPY86IMDbP9FTXdpD4kjS1k_ek1wQ8_I3F4hKVIHLd9QuyvwZ7C4tmuBuJ-sygHBJ_np9CRcM1VOeDrfzWqMyeY06JYh3Tf74RaA03W3xYPNAQ==&uniplatform=NZKPT&language=CHS
+            - link "中国数字出版" [ref=f2e254] [cursor=pointer]:
+              - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEWAxy_6XRgrxqO-ci5B6rBELp_nHp4ZO7BkkNXLuIOb9CKAVWalUzjI03TFTWPY9sK68rHDx3jbppYkKyfKat9_orc-43AhVhM=&uniplatform=NZKPT&language=CHS
+            - emphasis [ref=f2e255]: 期刊
+          - paragraph [ref=f2e256]: 摘要：文章根据科研人员对生成式人工智能的认知情况和现有使用态度,探究生成式人工智能相关应用对科研领域的作用及现存困境。研究运用问卷调查法,针对生成式人工智能在科学研究中的应用现状、对现有技术和工具的看法进行调查,调查共回收有效问卷248份。研究发现,科研人员对目前生成式人工智能保持中立的态度,博士学历的受访者对生成式人工智能大模型更了解,受访者普遍对建设前沿背景、数据分析、总结归纳、其他细节等使用场景的...
+          - generic [ref=f2e257]:
+            - generic [ref=f2e258]: 主编荐语
+            - generic [ref=f2e260]: 李弘（副秘书长、《中国数字出版》副主编兼编辑部主任）： 当AI走进实验室，科研人员究竟是“拥抱”还是“观望”？中国药科大学丁佐奇团队基于248份有效问卷，揭开科研圈生成式AI使用的真实图景：博士群体对大模型认知显著更深，大家普遍认可其在前沿追踪、数据归纳中的高效价值，却对方案设计慎之又慎；近八成受访者担忧数据滥用与权责模糊，超六成强烈呼吁“AI生成内容必须标注+人工审核”。研究首次捕捉到“乐观态度直接驱动使用意愿”的关键关联，更针对性提出“本硕博分层培训”“权责协议前置”等实操路径。这份来自一线科研场景的调查，既回应了实践关切，也为破解“AI赋能科研却不敢用、不会用”的困局提供了扎实依据。点击阅读，看技术浪潮下科研范式的理性转向。
+          - generic [ref=f2e261]:
+            - list [ref=f2e262]:
+              - listitem [ref=f2e263]:
+                - text: 下载
+                - emphasis [ref=f2e264]: "1781"
+            - list [ref=f2e265]:
+              - listitem [ref=f2e266]:
+                - link "下载" [ref=f2e267] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvptZFPGzz32xXYww99gr5E1iRrp%2BIpfT0%2B4%2F%2BdNMKUkXdfUM0PAiTKuWqbV2Jkqs8RbRyUho8Pg1Ckcyx5zTyNzw7Umt9nDzwy31%2BirqzzeUyG0GXHRF7B1SqLFn5ESzMbR%2B7uf%2FUq5onmDkPfYmN%2FzIRUHBpmYiWZCdd8rlvRr0h3ex%2Ftm1F6n%2B21pAW4Nu8Ng8WK4nJHsGE1ruqkYr0176XsUhLsVyd1vJG94nr%2FeXiA7cODlm1RWFCfYtMPpK5Z07Hz2mrAJlVEnT09Lh1Nc%3D&language=CHS
+              - listitem [ref=f2e269]:
+                - link "CNKI AI阅读" [ref=f2e270] [cursor=pointer]:
+                  - /url: https://ai.cnki.net/trans?path=study&cid=kd9kqNkOM8Xyu_MccKCQ5AM1UHjV0uMR_icN4IXwgidRfUlSqzgpvds9xrdVxAcshtq-X_fGO0nOknq6iZGCj_15U4RVk_tCm67MCfzPBes!&mimetype=PDF&language=CHS&srid=knsrec
+              - listitem [ref=f2e272]:
+                - link "原版阅读" [ref=f2e273] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvptZFPGzz32xXYww99gr5E1iRrp%2BIpfT0%2B4%2F%2BdNMKUkXdfUM0PAiTKuWqbV2Jkqs8e%2BJNVmDaxd%2FQX0R8MeWo3tMzZWlMph9uYCAdD7dBNl1Tx9iFkWJMKeDp8pM33mgWloI06JeZj3AHASLOphhm2oAnR5FO8BkeNJ%2BjSDXO3jzq4Qi89k7RhHs%2BZ2T51F%2FP0N0%2FYVgblOg1Kyy3fnUCSWqT63EkRGSJkjzyxNOA%2F%2Fm4eByK2%2BXqu1WJmJcg8kSm3tr09vED%2F%2BTJIZmBG1xNo0%3D&language=CHS
+              - listitem [ref=f2e275]:
+                - link "收藏" [ref=f2e276] [cursor=pointer]:
+                  - /url: javascript:void(0)
+        - definition [ref=f2e278]:
+          - heading [level=6] [ref=f2e279]:
+            - link "中国网络文学海外传播的研究现状与趋势——基于CiteSpace的文献计量分析" [ref=f2e280] [cursor=pointer]:
+              - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPZfEtMJRReuO5Ye_aVLE9OLXrpqo6cgp0Rts82tTnluEYU6xrbS-J0H3ekww4fGuWwYRq1iSxu2dtE7zO3kHYlRHqfpXFMGSTvPs48ymEL328EHHmgrFwCUod88VzlKVYuQy1FiwoU-CNTjo7PBdxL5SfRzTR3kcCZ0nsDVxnj93vEfVJX19c4tf-STYwQwnoA=&uniplatform=NZKPT&language=CHS
+          - paragraph [ref=f2e281]:
+            - generic [ref=f2e282]:
+              - link "徐乃瑞" [ref=f2e283] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPYiz_6ReutBuab9dDPwSwqfaJ4dg39yYz7muzUPYFwKC5kBoFOtcRKzpuqs1K4Q6ff97WOY3vcj8RE_IdTfGmzjh-S2S2REh8gb8dqz-B8oYkG8jfkr39Iu&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "胡倩" [ref=f2e284] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPYiz_6ReutBuab9dDPwSwqfhdj7Ws1ZG8LkihFJmRQsT1eHcD1vOAEwBBTXmV2F4Sz2ZYskSK8mKfpja6RE6yzD1o91u0kpFk-WZAwrFuxGqA==&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "罗仕敏" [ref=f2e285] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPYiz_6ReutBuab9dDPwSwqfhdj7Ws1ZG8JPHJBtVWDyiOs-A6nfEARDkVrJ7cUFp46gZqW7kBIBUoUDizkK7x8KV4_FxJ43ytWNflPlFvSaXQyQyHxMQx1-&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "王侠" [ref=f2e286] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPYiz_6ReutBuab9dDPwSwqfhdj7Ws1ZG8Jk_lUaSMxpJwFPGyTF7twS4LbfJf7Pjn4kbNNiAd2hfVXMW41rsC5P87Y3i5lzpRduZWYtz68j-w==&uniplatform=NZKPT&language=CHS
+            - link "中国数字出版" [ref=f2e288] [cursor=pointer]:
+              - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEVk0_KPTFYcH7WCf9ToKq0xJam3nXtYNTco1UV9FZEm8AO-HCR5akDsDJ4qFG-k0ZNHvct7d7NvviMdyY6xIalGm1_DAleh3ok=&uniplatform=NZKPT&language=CHS
+            - emphasis [ref=f2e289]: 期刊
+          - paragraph [ref=f2e290]: 摘要：在我国文化“出海”规模以及网络文学产业日益扩大的背景下,文章基于中国知网数据库2010—2025年中国网络文学海外传播相关研究的486篇中文文献,从发文量、研究机构、合作网络、核心作者等角度,利用CiteSpace软件对其进行文献计量和知识图谱分析,识别该领域的研究热点和演进特征。研究发现:在研究进程上,中国网络文学海外传播相关研究于2016年后数量大幅增长;在研究内容上,现有相关研究主要聚焦探究...
+          - generic [ref=f2e291]:
+            - generic [ref=f2e292]: 主编荐语
+            - generic [ref=f2e294]: 李弘（副秘书长、《中国数字出版》副主编兼编辑部主任）： 中国网文"出海"研究，到底走到哪一步了？本文基于486篇文献、15年数据告诉你真相！2016年为啥突然爆发？谁在写、谁在做、机构间合作为何这么散？"文化自信""生态出海"是真研究还是喊口号？ 东南亚扎堆、中东空白、女性向缺席……研究盲区在哪？从Wuxiaworld到起点国际，从译介到IP全链条——这篇文献计量分析把网文海外传播研究的现状、热点、缺口和未来方向扒得明明白白。做传播学、出版学、网络文学研究的千万别错过！
+          - generic [ref=f2e295]:
+            - list [ref=f2e296]:
+              - listitem [ref=f2e297]:
+                - text: 下载
+                - emphasis [ref=f2e298]: "1302"
+            - list [ref=f2e299]:
+              - listitem [ref=f2e300]:
+                - link "下载" [ref=f2e301] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvptZFPGzz32xXYww99gr5E1iRrp%2BIpfT0%2B4%2F%2BdNMKUkXGgv3Q9oLkfKZtCGqmIh%2B2DFmtnbrYyrssVYIg05mjdTw7Umt9nDzwy31%2BirqzzeUyG0GXHRF7B1SqLFn5ESzMbR%2B7uf%2FUq5onmDkPfYmN%2FzIRUHBpmYiWZCdd8rlvRr0h3ex%2Ftm1F6n%2B21pAW4Nu8Gx%2B1rTD6UYe3FKs4IaubJX6XsUhLsVyd1vJG94nr%2FeXiA7cODlm1RWFCfYtMPpK5Z07Hz2mrAJlVEnT09Lh1Nc%3D&language=CHS
+              - listitem [ref=f2e303]:
+                - link "CNKI AI阅读" [ref=f2e304] [cursor=pointer]:
+                  - /url: https://ai.cnki.net/trans?path=study&cid=kd9kqNkOM8Xyu_MccKCQ5AM1UHjV0uMR_icN4IXwgidRfUlSqzgpvds9xrdVxAcsyO8woMpE31aC7OQ99XZmmv15U4RVk_tCm67MCfzPBes!&mimetype=PDF&language=CHS&srid=knsrec
+              - listitem [ref=f2e306]:
+                - link "原版阅读" [ref=f2e307] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvptZFPGzz32xXYww99gr5E1iRrp%2BIpfT0%2B4%2F%2BdNMKUkXGgv3Q9oLkfKZtCGqmIh%2B2G52dFGOJIUCtmABv3vsWb5MzZWlMph9uYCAdD7dBNl1Tx9iFkWJMKeDp8pM33mgWloI06JeZj3AHASLOphhm2oAnR5FO8BkeNJ%2BjSDXO3jzq4Qi89k7RhHs%2BZ2T51F%2FP3garMW2Nkb9qZ3HQUTlqCyqT63EkRGSJkjzyxNOA%2F%2Fm4eByK2%2BXqu1WJmJcg8kSm3tr09vED%2F%2BTJIZmBG1xNo0%3D&language=CHS
+              - listitem [ref=f2e309]:
+                - link "收藏" [ref=f2e310] [cursor=pointer]:
+                  - /url: javascript:void(0)
+        - definition [ref=f2e312]:
+          - heading [level=6] [ref=f2e313]:
+            - link "面向青年群体的社交疗愈型桌面游戏研究——以MBTI Crush为例" [ref=f2e314] [cursor=pointer]:
+              - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPZvPxqWX81qwrDi_ce9pyGBYiu3g1y6MhPaVqhDRmJq2J1y1k_A2lW1eFMUnfK7e2Vu7sIqqWrTPeqTVthE80cqmVHYzmv43uDO6B1-1x9VXYg1U3PQWl1ZBACjkSt0GTbnfxecfiFnBgHgEaCAdqNYOIn5ijwzqoABvxqbz0eqAPJqm2wS7q-VDoNFdfEPrLI=&uniplatform=NZKPT&language=CHS
+          - paragraph [ref=f2e315]:
+            - generic [ref=f2e316]:
+              - link "熊硕" [ref=f2e317] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPZvPxqWX81qwvCeU1sJQPDGZ6rCNkjxQmjWtC1ms79w3mNZwtv_xYnhuH7rNr0SD1jfMJaGIHz3iA2R4ZCmGkYVZamMHUwxEVUXljkwX6U6Vw==&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "胡业频" [ref=f2e318] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPZvPxqWX81qwvCeU1sJQPDG2kkz_HKVviGUzFGGi_JKgNS2UC139jnLxg22b8CMgWPdF2F-nBNDKAKv9R7z3XNOU1PzeLz8hRJA4YOg8ePGkBCbYoA-3p7E&uniplatform=NZKPT&language=CHS
+            - link "中国数字出版" [ref=f2e320] [cursor=pointer]:
+              - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEX2eAzxPnM9UDxNNRI_sjrNmEigzM2tTbaly8jNJ2CinGksr8x7PeqDGSOPTRNsVmNduhL3dLkwW4N1h6Z0t7CXU7y28G1DSms=&uniplatform=NZKPT&language=CHS
+            - generic [ref=f2e321]: 2026年 03期
+            - emphasis [ref=f2e322]: 期刊
+          - paragraph [ref=f2e323]: 摘要：当前，我国多数青年在事业、生活和感情方面均面临压力，亟待缓解。这使得青年群体热衷于MBTI心理话题的同时，也需要寻求有效的解压方式。桌游有明显的线下社交属性，这使得桌游相较于电子游戏成为极佳的青年群体见面社交疗愈工具。文章基于作者自主研发的MBTI Crush桌游，以四元法框架为设计方法论，通过机制、叙事、美学和技术的有机结合，系统阐释该社交疗愈型原创桌游MBTI Crush的框架逻辑、设计范式和...
+          - generic [ref=f2e324]:
+            - generic [ref=f2e325]: 主编荐语
+            - generic [ref=f2e327]: 李弘（副秘书长、《中国数字出版》副主编兼编辑部主任）： 学业内卷、职场焦虑、线上聊到麻木却不敢线下开口？华中科技大学团队原创社交疗愈桌游 《MBTI Crush》 来了——把16型人格、CP组队和108张人生烦恼卡，装进一场8人面基局。以经典"四元法"设计，用游戏安全区帮你卸下社交防备：组队猜信号、竞拍事业/生活/感情卡、嘴炮+推理齐飞，在笑骂与默契中悄悄完成情绪疏导与沟通训练。完整拆解设计逻辑 × 疗愈机制 × 实测体验：点击阅读，看看桌游如何成为当代青年的"线下心理缓冲带"
+          - generic [ref=f2e328]:
+            - list [ref=f2e329]:
+              - listitem [ref=f2e330]:
+                - text: 下载
+                - emphasis [ref=f2e331]: "1055"
+            - list [ref=f2e332]:
+              - listitem [ref=f2e333]:
+                - link "下载" [ref=f2e334] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp%2FBATd6cHlCPC9fmWrw2DGo6%2FZCb1aYgBg%2FsGwOic%2F7aup3Yxw4eMGzNnpOv0nQWt7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk70NrhMaqoff2lbMjf%2BYKwZxluINF6fMO20iEpFsF%2FxvLGz%2Bz36TeLCyBRZ5MVuwHifB6QxOYUyIR8PMoF5%2F7cs%3D&language=CHS
+              - listitem [ref=f2e336]:
+                - link "CNKI AI阅读" [ref=f2e337] [cursor=pointer]:
+                  - /url: https://ai.cnki.net/trans?path=study&cid=Pe2nFq1PBOM11SpCErZ-LwM1UHjV0uMR_icN4IXwgidRfUlSqzgpvds9xrdVxAcspaC35kSy9knVUgiaFBvX5iuvxLHoq_16S_0IlLn6ZVV3KAUBlVIsgcb0E8u_YkCK&mimetype=XML&language=CHS&srid=knsrec
+              - listitem [ref=f2e339]:
+                - link "HTML阅读" [ref=f2e340] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp%2FBATd6cHlCPC9fmWrw2DGo6%2FZCb1aYgBg%2FsGwOic%2F7fbbmDlspOvb0PO9tqtCCdyL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGYDZBGMyf5QM%2B4FKZ4CS2931fs4iheqXGejVmqoCIWDbR4MXWMVKZ0AuDIoSVAxlFqCIPOZZU1gs%2B4tMAbrwuo93KAUBlVIsgcb0E8u%2FYkCK&language=CHS
+              - listitem [ref=f2e342]:
+                - link "收藏" [ref=f2e343] [cursor=pointer]:
+                  - /url: javascript:void(0)
+        - definition [ref=f2e345]:
+          - heading [level=6] [ref=f2e346]:
+            - link "中国传媒科技创新报告（2025）:传媒科技赋能媒体主流影响力评价研究主报告" [ref=f2e347] [cursor=pointer]:
+              - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPaWJWrXYg7gQZvvUTxooawnwtG0a9mEnvS7kZSQ7PRC4ps7VFEMTqAkGWJfSvJaOaIMhfEdo2IgxDyJzIOKGl71yVq3-SoN2yFGCaNQHH8AcqiTDxw2WJ00G8xlfm1GHwBKNRQeT39favHqHqm_z32cJgdxVklfMJIqXZ2vbVqeqku0kJ--uHsyWogYg-6IyUs=&uniplatform=NZKPT&language=CHS
+          - paragraph [ref=f2e348]:
+            - generic [ref=f2e349]:
+              - link "唐远清" [ref=f2e350] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPbopsBpMZe0iSxwBK8pVewuygu4IzHrDOJ7g-xoeqNcG0UEomf5VAtlX9sPzEJKTDyiydySOQNS_3HMrzxZybD32HWryee_2y9g9pyOUs-xJ8hlgMDvOP_Z&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "段艳文" [ref=f2e351] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPbopsBpMZe0iSxwBK8pVewuzuwiZHbIYMZkyFm5xunS4P20_2pM_fWBwfunWIsVt10_dx2zZ6pWbteZrSy592LTL23nT3JYxNGrP2NvqL64kHkDhn63miiI&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "揭其涛" [ref=f2e352] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPaWJWrXYg7gQUvXg1zp0Hwl3Vj7GVygPQWrfNlsQnstJN2zuLsolb9B3nNX4-Z-OXpZpFZxbBKIr6vh1a9SCUk5BZU0ddB4bYGVq9ORLULnUTk8UdudmRqD&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "唐晨" [ref=f2e353] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPaWJWrXYg7gQUvXg1zp0HwlNoRMi2Qs6DJU59ENbQTrr724fLES46dlxouftpycRkhuop3VXvAxDEQRaMEoSk3lKLfdKs9CJDtAg-xvz96ERw==&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "蔡格格" [ref=f2e354] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPaWJWrXYg7gQUvXg1zp0HwlNoRMi2Qs6DJ9qOG3t79r_fwWwgLUU15_jNaEPhZQYH8Sr0fsh9bPaC5x5Xf-BD1RuMVW8V62PadEsBh6G_6JoE5dHrnBuPUc&uniplatform=NZKPT&language=CHS
+            - link "中国传媒科技" [ref=f2e356] [cursor=pointer]:
+              - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEUBWIq1NLbwoq0WoPboJf_ABjdjP6Bq1YzHl7ElaGHtrXTjepu0tCPl_BNaHwlr1fR_UoqYufO1c0Ke0iT0QnEEIRfy9BYKBRs=&uniplatform=NZKPT&language=CHS
+            - generic [ref=f2e357]: 2025年 12期
+            - emphasis [ref=f2e358]: 期刊
+          - paragraph [ref=f2e359]: 摘要：<正>2025年是“十四五”规划的收官之年，也是传媒业全面贯彻落实党的二十届三中、四中全会精神和深化主流媒体系统性变革的攻坚之年。这一年，传媒格局深层演进，技术生态加速迭代，主流媒体亟须实现价值引领、内容生产、技术支撑和组织结构等层面的系统性重塑。在人工智能（AI）从工具层介入迈向价值协同、内容共创的背景下，科技如何更好地赋能主流媒体影响力评价，助推主流媒体传播力、引导力、影响力、公信力建设，成为...
+          - generic [ref=f2e360]:
+            - generic [ref=f2e361]: 主编荐语
+            - generic [ref=f2e363]: 段艳文（副秘书长）： 2025年中国传媒科技创新进入"智能化跃迁"深水区，本报告基于全国300家媒体及科技企业的深度调研，揭示AI驱动下主流媒体影响力评价体系的重构路径——智能体化组织、多模态大模型生产、全域安全治理成为三大核心支柱。研究发现，超九成媒体已实现AI全链条应用，但87%单位尚未建立科学评价体系，暴露出技术创新与价值评估的"认知断层"。报告提出"国家数智传媒战略体系"顶层设计建议，为传媒业从"技术追赶"转向"文明建构"提供关键决策参考。重点关注第四章"问题与不足"及第五章"战略建议"，获取破局路径。
+          - generic [ref=f2e364]:
+            - list [ref=f2e365]:
+              - listitem [ref=f2e366]:
+                - text: 被引
+                - emphasis [ref=f2e367]: "1"
+              - listitem [ref=f2e368]:
+                - text: 下载
+                - emphasis [ref=f2e369]: "1223"
+            - list [ref=f2e370]:
+              - listitem [ref=f2e371]:
+                - link "下载" [ref=f2e372] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp%2FBATd6cHlCPC9fmWrw2DG5ZLBGzWFxyedzWUWnCVhN2HAuByHW4cow1bpHGbLQiN7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIkw7u1xfqyPdgUzyWcqOiIqNxluINF6fMO20iEpFsF%2FxvLGz%2Bz36TeLCyBRZ5MVuwHifB6QxOYUyIR8PMoF5%2F7cs%3D&language=CHS
+              - listitem [ref=f2e374]:
+                - link "CNKI AI阅读" [ref=f2e375] [cursor=pointer]:
+                  - /url: https://ai.cnki.net/trans?path=study&cid=Pe2nFq1PBOM11SpCErZ-LwM1UHjV0uMR_icN4IXwgicxd3ew9jxEwLkZnEx14TK_EZZfof2b11XkLX29kgMTHyuvxLHoq_16S_0IlLn6ZVV3KAUBlVIsgcb0E8u_YkCK&mimetype=XML&language=CHS&srid=knsrec
+              - listitem [ref=f2e377]:
+                - link "HTML阅读" [ref=f2e378] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp%2FBATd6cHlCPC9fmWrw2DG5ZLBGzWFxyedzWUWnCVhN%2FgStTfUXxiSnFrTc3Mi52WL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGUwuZJDGux6SGZxUgVqZ3PjK3%2F%2FWE0smiHtbCUITH5dhR4MXWMVKZ0AuDIoSVAxlFqCIPOZZU1gs%2B4tMAbrwuo93KAUBlVIsgcb0E8u%2FYkCK&language=CHS
+              - listitem [ref=f2e380]:
+                - link "收藏" [ref=f2e381] [cursor=pointer]:
+                  - /url: javascript:void(0)
+        - definition [ref=f2e383]:
+          - heading [level=6] [ref=f2e384]:
+            - link "网络文学领域人工智能生成内容应用的社会技术想象——基于某平台AI协议争议的微博文本分析" [ref=f2e385] [cursor=pointer]:
+              - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPYiz_6ReutBuTCvqHhhdOtEIya46IpsBJVqZghuIJEOfAGtrXGN9vjOS9L55pGAi8wjVaKzyZmpnIu3s8_UgAgL55eyITs4coFYtqJUCIuxYzM-1YQZKPP77WN4q0Vg0x0MeVYjU22QGSIZxTeSI0GTtcQ7IIzmMXqCXgjY9G31QrbMHphs-knhhAI8Lxn8Cyo=&uniplatform=NZKPT&language=CHS
+          - paragraph [ref=f2e386]:
+            - generic [ref=f2e387]:
+              - link "陆朦朦" [ref=f2e388] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPYqZOLFCmHJUEjhD5l7nTbLhDFidmEN5fPh_Y59M-8OzZz6xYZfPstn2WwEoyhrUm7cWu92h859bU4e0z561-wu7SLMyHo0dqXxq-zgVn1hunKU5dLA3Gfy&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "李睿" [ref=f2e389] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPYqZOLFCmHJUEjhD5l7nTbLpSoZuZ0qnfUHOvEcM8lWsHSaQE_3icq9ShFwY_RsbwjMUinOMlyOPxuM3e-9YH4ShRn8svGuXhaJlzFTxn5JpA==&uniplatform=NZKPT&language=CHS
+            - link "中国数字出版" [ref=f2e391] [cursor=pointer]:
+              - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEU4f1Ksrc_cXiQZVEiregKHN9DC1yrjnPJ5ea_djV0LzGMkEC4l4Rj7A0T5Z7mmmbH_2ZERDyiilAUIHJiiH6R2YxGGcFSbAtE=&uniplatform=NZKPT&language=CHS
+            - emphasis [ref=f2e392]: 期刊
+          - paragraph [ref=f2e393]: 摘要：人工智能生成内容技术在全球范围内的应用实例及社会效应持续成为热议话题，文章基于“网文作者联合抵制某平台AI协议”事件，在社会技术想象的理论框架下，探讨人工智能生成内容应用在网络文学创作领域引发的多元想象、情感态度及未来愿景。研究发现，首先，公众对AIGC技术的想象兼具工具性和认知性，涌现出对技术想象的固化；其次，超过半数社会技术想象的情感态度为负面倾向（54.48%），包括权益性批判、功能性质疑、...
+          - generic [ref=f2e394]:
+            - generic [ref=f2e395]: 主编荐语
+            - generic [ref=f2e397]: 李弘（副秘书长、《中国数字出版》副主编兼编辑部主任）： 当前，AI协议试图把网文作者的“心血”变成算法的“养料”。作者抓取了数千条网友评论，发现超半数声音藏着对“被替代”的焦虑：有人怒斥平台“偷盗式喂养”，有人嘲讽“AI写诗，人去打工”，也有人冷静指出“套路化写作本就难逃算法收割”。更有趣的是，作者、读者、平台、监管四方并非简单对立——读者用“裂开”表情包宣泄不满，作者借“偷盗者”隐喻争夺话语权。这场争议撕开了AIGC应用的一角：技术想象早已固化成“剥削工具”与“监管对象”的二元对立。。本文用社会技术想象理论解码这场“抵制风波”，带你看见算法浪潮下，普通创作者如何在技术乐观与悲观的夹缝中，重构属于自己的未来叙事。点击阅读，读懂AI时代的“人心向背”
+          - generic [ref=f2e398]:
+            - list [ref=f2e399]:
+              - listitem [ref=f2e400]:
+                - text: 下载
+                - emphasis [ref=f2e401]: "1431"
+            - list [ref=f2e402]:
+              - listitem [ref=f2e403]:
+                - link "下载" [ref=f2e404] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvptZFPGzz32xXYww99gr5E1iRrp%2BIpfT0%2B4%2F%2BdNMKUkXjABYboULI1CoViMwyjzEjFNUJyF3pO2BKWPTQntrCYvw7Umt9nDzwy31%2BirqzzeUyG0GXHRF7B1SqLFn5ESzMbR%2B7uf%2FUq5onmDkPfYmN%2FzIRUHBpmYiWZCdd8rlvRr0h3ex%2Ftm1F6n%2B21pAW4Nu8HPKPdOk59noXv4ouzp6DB%2F6XsUhLsVyd1vJG94nr%2FeXiA7cODlm1RWFCfYtMPpK5Z07Hz2mrAJlVEnT09Lh1Nc%3D&language=CHS
+              - listitem [ref=f2e406]:
+                - link "CNKI AI阅读" [ref=f2e407] [cursor=pointer]:
+                  - /url: https://ai.cnki.net/trans?path=study&cid=kd9kqNkOM8Xyu_MccKCQ5AM1UHjV0uMR_icN4IXwgidRfUlSqzgpvds9xrdVxAcsBBgpCrRfymytFtONI6D_Vf15U4RVk_tCm67MCfzPBes!&mimetype=PDF&language=CHS&srid=knsrec
+              - listitem [ref=f2e409]:
+                - link "原版阅读" [ref=f2e410] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvptZFPGzz32xXYww99gr5E1iRrp%2BIpfT0%2B4%2F%2BdNMKUkXjABYboULI1CoViMwyjzEjFHAGdyQ153I3UkOG4VxHgtMzZWlMph9uYCAdD7dBNl1Tx9iFkWJMKeDp8pM33mgWloI06JeZj3AHASLOphhm2oAnR5FO8BkeNJ%2BjSDXO3jzq4Qi89k7RhHs%2BZ2T51F%2FP8ZMUOVoW6c9KOT1Qh4AvHmqT63EkRGSJkjzyxNOA%2F%2Fm4eByK2%2BXqu1WJmJcg8kSm3tr09vED%2F%2BTJIZmBG1xNo0%3D&language=CHS
+              - listitem [ref=f2e412]:
+                - link "收藏" [ref=f2e413] [cursor=pointer]:
+                  - /url: javascript:void(0)
+        - definition [ref=f2e415]:
+          - heading [level=6] [ref=f2e416]:
+            - link "2024—2025年我国高等教育数字教材发展概况——基于《高等教育数字教材发展报告（2025）》" [ref=f2e417] [cursor=pointer]:
+              - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPZEjsVRLumEjvc4YQdnw05QJVWWcHHTu7sYIouNzJDGfmD_nFQY6ho5IWXqI_Lx1Yfq9V9U8h1irfdNgllopzaVERKNnOFRnMgbQxAU20ar-D6PtWh_yD1iPaHx5FlL5LJR09DSRR4UhsvZjU1Owwe8ngO6VlQaNVvYs9GPcc1Ta65TJkojC49TPfLrJA01Hnw=&uniplatform=NZKPT&language=CHS
+          - paragraph [ref=f2e418]:
+            - generic [ref=f2e419]:
+              - link "毛芳" [ref=f2e420] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPb0-un6jq2DNkmQacQKA0AxOSYmK2G4TYynvE-bjrjoqT03oA5vsSZ_EkbU1VNY3DVqstqA6gVqCMhFu3CDSfbSjDvY3ssxrTzT0BPkc7TGig==&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "徐晨霞" [ref=f2e421] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPb0-un6jq2DNkmQacQKA0Axq8RyNfJSAcrIal6t9q_jh-hOJ87ykPAAcktI8sTrGh-yaGXgo2yxcqhKnipIG3Z-Mqt598eA3seIVjbnWKrJHI3yVxPg5eHS&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "吴素平" [ref=f2e422] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPb0-un6jq2DNkmQacQKA0AxXoecgiP6BqzHhLXT163BQLc4vYMHPn1nWndmbsZ2DlE_4MMXK2xudBH_26YW3kKWpZldddWV_82v5HJIdMBUPk5SbC2c5UZN&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "许焘" [ref=f2e423] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPb0-un6jq2DNkmQacQKA0Ax8CmwYt-6chQdjeLrDR-Ha3I2Ap8M_dZmMW6avUYyfzz-_eL9XXQmwiSiwYplEVwtcYEZ0x1CVt68oumpf7om4g==&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "文娟" [ref=f2e424] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPb0-un6jq2DNkmQacQKA0AxUiJg5cF3Ra2K7s7jLyQw8MIwUxGL1Yw3SOmNH6rBT9Qd0Eqy973SlxdiAc1cle2VqJUBMAZKckLQvkZ2e4pnQA==&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "张泽" [ref=f2e425] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPb0-un6jq2DNkmQacQKA0AxdESdRyoXA2xDA0j74cxiUCO2AbSCDeJysV88FDWrCB-MO_F_MbtPhBQh-pb9svDMwkodMSWipQ2r6DTkCp4fXA==&uniplatform=NZKPT&language=CHS
+            - link "中国数字出版" [ref=f2e427] [cursor=pointer]:
+              - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEUNpakf1-RZOtalFMfRXZrLi-kkZ4HHnZuMNCLE1Faeb6nQSrDZSxwmJKRcw1ouH1Y17WU-8rKkanR9yZUX44AOwC_54wc-tPg=&uniplatform=NZKPT&language=CHS
+            - generic [ref=f2e428]: 2025年 06期
+            - emphasis [ref=f2e429]: 期刊
+          - paragraph [ref=f2e430]: 摘要：文章基于2025年高等教育数字教材发展调研数据，分析当前我国高等教育数字教材发展背景，从出版情况、经营情况、平台情况、应用情况等方面介绍当前高等教育数字教材发展现状，结合调研数据总结当前数字教材发展存在质量参差不齐、市场竞争无序、经营模式待完善等问题和挑战，需加强行业引导，严把内容质量，强化用户培训，加快数字化转型，加强版权保护，强化数据安全。未来，高校数字教材将向着智能化、生态化、个性化、规范化...
+          - generic [ref=f2e431]:
+            - generic [ref=f2e432]: 主编荐语
+            - generic [ref=f2e434]: 李弘（副秘书长、《中国数字出版》副主编兼编辑部主任）： 63家出版单位、6081种数字教材、354名学生用户一手数据——这份基于《高等教育数字教材发展报告（2025）》的深度解读，把中国高校数字教材的家底彻底摸清了：哪些学科数字教材最多？（工科第一，文科呢？）一本数字教材从立项到上线要多久？（答案：多数3-6个月）师生最想要什么功能？（老师要PPT，学生要全书检索）AI大模型接入率已达78.38%，谁在用？更关键的是——质量参差、竞争无序、盈利模式不清三大痛点如何破解？未来智能化、生态化、个性化的路怎么走？
+          - generic [ref=f2e435]:
+            - list [ref=f2e436]:
+              - listitem [ref=f2e437]:
+                - text: 被引
+                - emphasis [ref=f2e438]: "9"
+              - listitem [ref=f2e439]:
+                - text: 下载
+                - emphasis [ref=f2e440]: "1024"
+            - list [ref=f2e441]:
+              - listitem [ref=f2e442]:
+                - link "下载" [ref=f2e443] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdog%2BHL%2FGFrGhKahW4YGMC%2BSo6%2FZCb1aYgBg%2FsGwOic%2F7XP9skeVxznVpP5g%2BU8KkMR7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk%2BFs%2BSTbjd9rJUdiwCOdPnpxluINF6fMO20iEpFsF%2FxvLGz%2Bz36TeLCyBRZ5MVuwHifB6QxOYUyIR8PMoF5%2F7cs%3D&language=CHS
+              - listitem [ref=f2e445]:
+                - link "CNKI AI阅读" [ref=f2e446] [cursor=pointer]:
+                  - /url: https://ai.cnki.net/trans?path=study&cid=Pe2nFq1PBOM11SpCErZ-LwM1UHjV0uMR_icN4IXwgidRfUlSqzgpvds9xrdVxAcs2k6NXX4CPF4jVIzrKYqEQA6c3WW7qTe3koRylZhzBMR3KAUBlVIsgcb0E8u_YkCK&mimetype=XML&language=CHS&srid=knsrec
+              - listitem [ref=f2e448]:
+                - link "HTML阅读" [ref=f2e449] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdog%2BHL%2FGFrGhKahW4YGMC%2BSo6%2FZCb1aYgBg%2FsGwOic%2F7cGA%2FQbNi%2BGoK7YgeL2huqOL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGYDZBGMyf5QM%2B4FKZ4CS293cyOsNIK6BfWW7qZ05BNy3R4MXWMVKZ0AuDIoSVAxlFqCIPOZZU1gs%2B4tMAbrwuo93KAUBlVIsgcb0E8u%2FYkCK&language=CHS
+              - listitem [ref=f2e451]:
+                - link "收藏" [ref=f2e452] [cursor=pointer]:
+                  - /url: javascript:void(0)
+        - definition [ref=f2e454]:
+          - heading [level=6] [ref=f2e455]:
+            - link "2026年1—6月中国电子竞技产业发展概况分析——基于《2026年1—6月中国电子竞技产业报告》数据" [ref=f2e456] [cursor=pointer]:
+              - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPbfCyC_xCToG46W_qr5r9CnRKEBrQ32cj2ny0y9Ys3vDfesfUkshwdtsU9Hp6lebB_wkF6_VviyxMC-I81nYgpLsb-DM-JxWKHcveR0ijIN4Zp9gNLyioPlBInDkWnTXzJM8YDCFC7z9FPtP6HDeT_pY-i5LgoVU_F7O4yYjmehi_rIVNuQrqfV_w22l0tx89M=&uniplatform=NZKPT&language=CHS
+          - paragraph [ref=f2e457]:
+            - generic [ref=f2e458]: Report of China's Electronic Sports Industry from January to June 2026 research group
+            - link "中国数字出版" [ref=f2e460] [cursor=pointer]:
+              - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEU_E4VmfhDuTE5uYja1sMUOThwLwr4uDldigSpenmRojwCzUU726ga6Crb2DCps_nzfaBTZHSW9iyjHdPUBOAAUgd1_RTHGaT8=&uniplatform=NZKPT&language=CHS
+            - generic [ref=f2e461]: 2026年 04期
+            - emphasis [ref=f2e462]: 期刊
+          - paragraph [ref=f2e463]: 摘要：2026年上半年，我国电子竞技产业保持增长态势，收入为131.15亿元，同比上升2.78%。其中，电竞直播收入为105.49亿元，占比仍超过八成；赛事收入11.19亿元、俱乐部收入9.18亿元，同比均有增长。电子竞技游戏市场实际销售收入达896.16亿元，同比增长11.12%。总体来看，中国电子竞技产业在市场收入、扶持政策、全民电竞、高校参与、国际影响力与科技应用等方面均稳步发展，态势向好，电竞规...
+          - generic [ref=f2e464]:
+            - generic [ref=f2e465]: 主编荐语
+            - generic [ref=f2e467]: 李弘（副秘书长、《中国数字出版》副主编兼编辑部主任）： 电竞这一坐拥4.95亿用户、半年896亿游戏收入的数字原住民主场，正成为出版跨界破圈的高潜赛道。文用131.15亿产业收入、91项省级以上赛事、568万海外单场观赛峰值等硬数据，亮出三个关键判断：直播占八成收入折射变现仍偏单一，但"电竞粤超+古镇电竞节"正把IP沉入地方文化消费；自研赛事在东南亚、美洲、非洲三线出海，国产电竞已成文化输出新载体；AI已渗入训练、裁判、直转播全链。对谋划电竞设定集、选手传记、非遗联动图书的出版人而言，这篇是把"流量圈层"翻译成"可出版选题"的案头必读。
+          - generic [ref=f2e468]:
+            - list [ref=f2e469]:
+              - listitem [ref=f2e470]:
+                - text: 下载
+                - emphasis [ref=f2e471]: "36"
+            - list [ref=f2e472]:
+              - listitem [ref=f2e473]:
+                - link "下载" [ref=f2e474] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvjMKNSQwBIl4wRdJzL0QEWzXcAnP8r1CXQr3sOk9lHqS7O1dV%2FN9CV3vactNmZd6Pz1HIGhsLI3uDPbkjMnDEfAYz7hIz%2Bm4gioz%2Fd0uFLWAlsQo%2BpRvK7ckfm79OSQVfSBnBa%2BGi6z13JPvtSv3a9ygQ3rcCWK8v00%2FaZoGrk3ncu3akQQqBJQ%2FGNjYEzb4qSho76BHY6A30MdRwrEapQcutK7CNoydpGb7cQ5fGtjzcYv2GXYe%2BBJCrML7o%2FId9FNhm%2BKss77sEQmONusy%2Bmk%3D&language=CHS
+              - listitem [ref=f2e476]:
+                - link "CNKI AI阅读" [ref=f2e477] [cursor=pointer]:
+                  - /url: https://ai.cnki.net/trans?path=study&cid=Pe2nFq1PBOM11SpCErZ-LwM1UHjV0uMR_icN4IXwgidRfUlSqzgpvds9xrdVxAcsVG7EHny9MVj4ExRBPnKwiYnDa1x0Roidi_RcpyaNH-4!&mimetype=XML&language=CHS&srid=knsrec
+              - listitem [ref=f2e479]:
+                - link "HTML阅读" [ref=f2e480] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvjMKNSQwBIl4wRdJzL0QEWzXcAnP8r1CXQr3sOk9lHqS7O1dV%2FN9CV3vactNmZd6PxRB2K9DGVtYum%2BQiNpLLUaKYUMOo8J8xduABzFUNW8cwchwR2FN4KCUBRwOPEA0KFoI06JeZj3AHASLOphhm2oAnR5FO8BkeNJ%2BjSDXO3jzq4Qi89k7RhHs%2BZ2T51F%2FP%2FrvYwjARlZTV3C7wmLLceCqT63EkRGSJkjzyxNOA%2F%2Fm4eByK2%2BXqu1WJmJcg8kSm3tr09vED%2F%2BTJIZmBG1xNo0%3D&language=CHS
+              - listitem [ref=f2e482]:
+                - link "收藏" [ref=f2e483] [cursor=pointer]:
+                  - /url: javascript:void(0)
+        - definition [ref=f2e485]:
+          - heading [level=6] [ref=f2e486]:
+            - link "“十五五”时期推动我国数字阅读高质量发展的对策研究" [ref=f2e487] [cursor=pointer]:
+              - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPaejRcPFB5B5J6Ts_T5kcI-zH3UlDzLhHKSqFAuVDwrQMPsESyKSuzSnX6MF2twrhMRKDz-tzf3zJNEV4ITwDZ8IGbUIVijkUHkpZoqOWTyRBg6rvlIskXkLFL3FiyUI6jf8hxusa5eEwBWxMG0O0YJjBAgb3rMB_yYhTsVz4a4qyIEXULpN2hPtBEP_bgcJN0=&uniplatform=NZKPT&language=CHS
+          - paragraph [ref=f2e488]:
+            - generic [ref=f2e489]:
+              - link "李慧楠" [ref=f2e490] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPZM_oVJQz6Xke5sjcw_1llUzdc3dpj4MlcjbtrHFead65OgcGwlvhAjvklUnSafKTMN8tVhaQTTuuraMHVOSCnmgkBH3rSLI2TRoBYFWa42dz-hi0C50Gla&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "冯思然" [ref=f2e491] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPZM_oVJQz6Xke5sjcw_1llUJdjG59T-RNOzvs799Qw70zs2QBcUbcHanxX2qeadpth0JHflwT5_iuQxf97Buc8Esec7DnsZ5Iui_l1onbeocnbD_vYAFa1a&uniplatform=NZKPT&language=CHS
+              - text: ;
+              - link "敖然" [ref=f2e492] [cursor=pointer]:
+                - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPZM_oVJQz6Xke5sjcw_1llUIUS8ZfEljgvXL2nedYjYfPgVzvwEEzJL58nztiSwKu1bEXI3HTwQ5vs3X6VWRSFdoUfsAtfUUI9G6uCuSS9Tsg==&uniplatform=NZKPT&language=CHS
+            - link "中国数字出版" [ref=f2e494] [cursor=pointer]:
+              - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEWRD0AzF6fcPaTMNu5Dwe2gEJxSRNIGinxTI4VPx5pv8xlkkT1tUJi-Lixo3vscGp3GXS_7eYeT_IOCOX0cSyqbj-QRt_EXVBI=&uniplatform=NZKPT&language=CHS
+            - generic [ref=f2e495]: 2026年 01期
+            - emphasis [ref=f2e496]: 期刊
+          - paragraph [ref=f2e497]: 摘要：数字阅读是阅读领域的新质生产力，推动其高质量发展对于满足人民群众精神文化需求、推进文化强国建设具有重要战略意义。文章阐释数字阅读高质量发展的必要性，梳理行业发展现状及主要制约因素，并提出“十五五”时期的发展路径，旨在推动优质数字阅读内容供给，提升数字阅读便利性和满意度，实现高质量发展，为文化强国建设提供支撑。
+          - generic [ref=f2e498]:
+            - generic [ref=f2e499]: 主编荐语
+            - generic [ref=f2e501]: 李弘（副秘书长、《中国数字出版》副主编兼编辑部主任）： 当“全民阅读”连续12年写入政府工作报告，当6.7亿用户指尖划动屏幕成为日常，数字阅读已从“新时尚”变成了“新基建”。文章首次用行业一手数据揭示了“十五五”期间数字阅读的突围方向：广告收入首超订阅、AI创作效率提升40%、出海作品突破80万部——繁荣背后，出版机构、图书馆与商业平台却仍在“各自为战”，算法“流量至上”正悄悄窄化我们的认知边界。如何让古籍资源不再“沉睡”？怎样让适老版阅读不只“字号变大”？如何让算法既懂流量更懂文化？作者提出构建多主体协同机制、重构算法公共性指标等破局之策，为数字阅读从“规模扩张”转向“质量跃升”提供了清晰的路线图。点击阅读，看懂文化强国建设中的“数阅读答卷”。
+          - generic [ref=f2e502]:
+            - list [ref=f2e503]:
+              - listitem [ref=f2e504]:
+                - text: 被引
+                - emphasis [ref=f2e505]: "2"
+              - listitem [ref=f2e506]:
+                - text: 下载
+                - emphasis [ref=f2e507]: "255"
+            - list [ref=f2e508]:
+              - listitem [ref=f2e509]:
+                - link "下载" [ref=f2e510] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp%2FBATd6cHlCPC9fmWrw2DGo6%2FZCb1aYgBg%2FsGwOic%2F7UFrK6NBBHBaoZ8b2PzvzSt7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk5As%2FIMWQoiyV6p3bGXg%2FalxluINF6fMO20iEpFsF%2FxvLGz%2Bz36TeLCyBRZ5MVuwHifB6QxOYUyIR8PMoF5%2F7cs%3D&language=CHS
+              - listitem [ref=f2e512]:
+                - link "CNKI AI阅读" [ref=f2e513] [cursor=pointer]:
+                  - /url: https://ai.cnki.net/trans?path=study&cid=Pe2nFq1PBOM11SpCErZ-LwM1UHjV0uMR_icN4IXwgidRfUlSqzgpvds9xrdVxAcs7Y-YrfH-oN3Xuwdp6mymiSuvxLHoq_16S_0IlLn6ZVV3KAUBlVIsgcb0E8u_YkCK&mimetype=XML&language=CHS&srid=knsrec
+              - listitem [ref=f2e515]:
+                - link "HTML阅读" [ref=f2e516] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp%2FBATd6cHlCPC9fmWrw2DGo6%2FZCb1aYgBg%2FsGwOic%2F7ZsrGkBbNGazNcfnNc2XBOOL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGUwuZJDGux6SGZxUgVqZ3PiOSPNnbndV3LMYmTFqdzguR4MXWMVKZ0AuDIoSVAxlFqCIPOZZU1gs%2B4tMAbrwuo93KAUBlVIsgcb0E8u%2FYkCK&language=CHS
+              - listitem [ref=f2e518]:
+                - link "收藏" [ref=f2e519] [cursor=pointer]:
+                  - /url: javascript:void(0)
+        - definition [ref=f2e521]:
+          - heading [level=6] [ref=f2e522]:
+            - link "2026年1—6月中国游戏产业发展概况分析——基于《2026年1—6月中国游戏产业报告》数据" [ref=f2e523] [cursor=pointer]:
+              - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPYogVu-qQQcSzRBsSjL6mG-K2abb5pMeIUcqsD9bTn0IUPwbpO2DlYahJDRAbRqsk8DubDDoI0dvJIfsExPorqd26urIa90CoCmdHXwn-a5dhjGuknA_JLAdGlPHE2SI6F13Mhpp4ncpCK3ScoNWjlN5c_z8CzWMVM69kAdqtXP9QJ6U-NahVUoCagRiB3PYdg=&uniplatform=NZKPT&language=CHS
+          - paragraph [ref=f2e524]:
+            - generic [ref=f2e525]: Report of China's Game Industry from January to June 2026 research group
+            - link "中国数字出版" [ref=f2e527] [cursor=pointer]:
+              - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEUU2wVIb-WnVMBAogju7coWbObqhfqvMzg5flUppUdAKvdIS74PulTa6TZw1xZt5bZTPw1F0aeVeQ8zwk1ZGMifJDfRIUFCFHw=&uniplatform=NZKPT&language=CHS
+            - generic [ref=f2e528]: 2026年 04期
+            - emphasis [ref=f2e529]: 期刊
+          - paragraph [ref=f2e530]: 摘要：2026年1—6月，中国游戏市场实际销售收入达到1 884.50亿元，同比增长12.17%。用户规模为6.84亿人，再创新高。其中，客户端游戏27.92%的同比增速，成为产业结构性增长最亮眼板块。我国自主研发游戏在国内市场实际销售收入1 633.56亿元，同比增长16.31%；自研游戏海外市场实际销售收入123.72亿美元，同比增长30.22%，游戏“出海”表现十分强劲，合成类玩法成为“出海”亮点...
+          - generic [ref=f2e531]:
+            - generic [ref=f2e532]: 主编荐语
+            - generic [ref=f2e534]: 李弘（副秘书长、《中国数字出版》副主编兼编辑部主任）： 当出版业在“十五五”开局之年加速探索“游戏+图书”的IP联动与跨媒介叙事，一份扎实的产业底牌数据变得至关重要。《2026年1—6月中国游戏产业报告》显示：上半年市场收入1884.50亿元、同比增长12.17%，用户规模6.84亿再创新高；端游以27.92%的增速成为结构性亮点，自研游戏海外收入123.72亿美元、同比大增30.22%，合成类玩法成出海新赛道。更值得出版人关注的是：原创IP在收入TOP100移动游戏中占比近半，AI已从实验室全面渗入游戏生产管线。对正在谋划电竞设定集、游戏IP图书化、文旅联动选题的出版人而言，这份报告是把“流量圈层”翻译成“可出版选题”的案头必读。
+          - generic [ref=f2e535]:
+            - list [ref=f2e536]:
+              - listitem [ref=f2e537]:
+                - text: 下载
+                - emphasis [ref=f2e538]: "64"
+            - list [ref=f2e539]:
+              - listitem [ref=f2e540]:
+                - link "下载" [ref=f2e541] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvjMKNSQwBIl4wRdJzL0QEWzXcAnP8r1CXQr3sOk9lHqS7O1dV%2FN9CV3vactNmZd6PxB3Rk%2Fg9G%2Fv2sdF4G%2FgtO0Yz7hIz%2Bm4gioz%2Fd0uFLWAlsQo%2BpRvK7ckfm79OSQVfSBnBa%2BGi6z13JPvtSv3a9ygQ3rcCWK8v00%2FaZoGrk3ncu3akQQqBJQ%2FGNjYEzb4qZyEYkdlGFsvoGlwMHQFo3wutK7CNoydpGb7cQ5fGtjzcYv2GXYe%2BBJCrML7o%2FId9FNhm%2BKss77sEQmONusy%2Bmk%3D&language=CHS
+              - listitem [ref=f2e543]:
+                - link "CNKI AI阅读" [ref=f2e544] [cursor=pointer]:
+                  - /url: https://ai.cnki.net/trans?path=study&cid=Pe2nFq1PBOM11SpCErZ-LwM1UHjV0uMR_icN4IXwgidRfUlSqzgpvds9xrdVxAcspmlSY7_CAA6A8y1Wnu3HwInDa1x0Roidi_RcpyaNH-4!&mimetype=XML&language=CHS&srid=knsrec
+              - listitem [ref=f2e546]:
+                - link "HTML阅读" [ref=f2e547] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvjMKNSQwBIl4wRdJzL0QEWzXcAnP8r1CXQr3sOk9lHqS7O1dV%2FN9CV3vactNmZd6Px4qjhYCZnbIkj3cfHD3iWSKYUMOo8J8xduABzFUNW8cwchwR2FN4KCUBRwOPEA0KFoI06JeZj3AHASLOphhm2oAnR5FO8BkeNJ%2BjSDXO3jzq4Qi89k7RhHs%2BZ2T51F%2FP2Lcu4NO1KfLtLM5c9LQht6qT63EkRGSJkjzyxNOA%2F%2Fm4eByK2%2BXqu1WJmJcg8kSm3tr09vED%2F%2BTJIZmBG1xNo0%3D&language=CHS
+              - listitem [ref=f2e549]:
+                - link "收藏" [ref=f2e550] [cursor=pointer]:
+                  - /url: javascript:void(0)
+        - definition [ref=f2e552]:
+          - heading [level=6] [ref=f2e553]:
+            - link "出版学应用案例研究法：本质、价值与规范" [ref=f2e554] [cursor=pointer]:
+              - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPbopsBpMZe0ifseQs_QIM7f6FiNBukNmCZ3YJaZn_KUgKb8mdR32dYRI_pb333azdwk7rgF55uHSg2F0Tfe6SOtqTXkLly6qjkgmnqkavv7N8FINSREZ4WePdqcLUnbSCa3NFvJy7z8zjJnPF1jTTjLAdT30zw_yFoOZuujnMFfHYKnrri7fVoS9brKoTm1NWo=&uniplatform=NZKPT&language=CHS
+          - paragraph [ref=f2e555]:
+            - link "徐志武" [ref=f2e557] [cursor=pointer]:
+              - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPaejRcPFB5B5AheLyXPT1qCRHts9IEx-nXa1Gf8knnoQutgpzWn_kKPavq3f7ZN2ysvDsxQcxpOhRRrXIg1GF2-VPEWOeXFHyyvsJZ-IrjaZsLZRPWWd22u&uniplatform=NZKPT&language=CHS
+            - link "中国数字出版" [ref=f2e559] [cursor=pointer]:
+              - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEVdQbTz7P1V4XpJJGsRc2G3JLigTX-UImIT4gWa0tCnfKH8wFqXXi-ndHLrx3w0uvPiKuHhLzLcWzuvMhu5Uj0NY6aggkXkb_4=&uniplatform=NZKPT&language=CHS
+            - generic [ref=f2e560]: 2026年 01期
+            - emphasis [ref=f2e561]: 期刊
+          - paragraph [ref=f2e562]: 摘要：案例研究法是一种非常重要的质性研究方法，近年已成为管理学领域的主流研究方法之一。出版学研究若要建构公认的、权威的理论体系，需要研究者借鉴案例研究这一出版学领域中较少采纳的实证方法。一方面，案例研究法能够为出版学理论构建、出版实践创新发展、出版学术共同体建立提供直接的支撑作用；另一方面，案例研究法也更加契合出版实践性强，无法用数据量化其具体过程，但用质性数据依然能够较好地描述、实证分析现象、解决研究...
+          - generic [ref=f2e563]:
+            - generic [ref=f2e564]: 主编荐语
+            - generic [ref=f2e566]: 李弘（副秘书长、《中国数字出版》副主编兼编辑部主任）： 案例研究法已是管理学顶刊标配，出版学却还在“讲故事”而非“做研究”？华南师大徐志武教授最新发文，一针见血：当前出版学多数所谓“案例研究”根本不规范！什么才是真正的案例研究？出版学理论构建为何非它不可？ “为何”“如何”类真问题如何选案例、建理论？作者写给每一个不想再“水案例”的出版研究者。特别可贵的是，本文已被人大复印资料全文转载。
+          - generic [ref=f2e567]:
+            - list [ref=f2e568]:
+              - listitem [ref=f2e569]:
+                - text: 下载
+                - emphasis [ref=f2e570]: "373"
+            - list [ref=f2e571]:
+              - listitem [ref=f2e572]:
+                - link "下载" [ref=f2e573] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp%2FBATd6cHlCPC9fmWrw2DGo6%2FZCb1aYgBg%2FsGwOic%2F7TrTzxrkRtTJYaI1dlqgBsl7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk2B1KFngeyVsq7DyVFvUfD9xluINF6fMO20iEpFsF%2FxvLGz%2Bz36TeLCyBRZ5MVuwHifB6QxOYUyIR8PMoF5%2F7cs%3D&language=CHS
+              - listitem [ref=f2e575]:
+                - link "CNKI AI阅读" [ref=f2e576] [cursor=pointer]:
+                  - /url: https://ai.cnki.net/trans?path=study&cid=Pe2nFq1PBOM11SpCErZ-LwM1UHjV0uMR_icN4IXwgidRfUlSqzgpvds9xrdVxAcsX-74TVn5EA9b9jEX0nl-aCuvxLHoq_16S_0IlLn6ZVV3KAUBlVIsgcb0E8u_YkCK&mimetype=XML&language=CHS&srid=knsrec
+              - listitem [ref=f2e578]:
+                - link "HTML阅读" [ref=f2e579] [cursor=pointer]:
+                  - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp%2FBATd6cHlCPC9fmWrw2DGo6%2FZCb1aYgBg%2FsGwOic%2F7VLh5HlMr085nqZEYI0yT0OL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGUwuZJDGux6SGZxUgVqZ3PhSutAlZXAaiLdZ9Dmx4wjyR4MXWMVKZ0AuDIoSVAxlFqCIPOZZU1gs%2B4tMAbrwuo93KAUBlVIsgcb0E8u%2FYkCK&language=CHS
+              - listitem [ref=f2e581]:
+                - link "收藏" [ref=f2e582] [cursor=pointer]:
+                  - /url: javascript:void(0)
+    - generic [ref=f2e586]:
+      - generic:
+        - generic:
+          - list:
+            - listitem
+  - contentinfo [ref=f2e588]:
+    - generic [ref=f2e589]:
+      - generic [ref=f2e590]:
+        - list:
+          - listitem [ref=f2e591]:
+            - generic [ref=f2e592]: 读者服务
+            - link "购买知网卡" [ref=f2e593] [cursor=pointer]:
+              - /url: http://vipcard.cnki.net/ec/skwd/skwd.htm
+            - link "充值中心" [ref=f2e594] [cursor=pointer]:
+              - /url: http://zhifu.cnki.net/
+            - link "我的CNKI" [ref=f2e595] [cursor=pointer]:
+              - /url: http://my.cnki.net/
+            - link "帮助中心" [ref=f2e596] [cursor=pointer]:
+              - /url: http://service.cnki.net/helpcenter/
+          - listitem [ref=f2e597]:
+            - generic [ref=f2e598]: CNKI常用软件下载
+            - link "CAJViewer浏览器" [ref=f2e599] [cursor=pointer]:
+              - /url: http://cajviewer.cnki.net
+            - link "知网研学（原E-Study）" [ref=f2e600] [cursor=pointer]:
+              - /url: https://estudy.cnki.net/
+            - link "下载中心" [ref=f2e601] [cursor=pointer]:
+              - /url: https://www.cnki.net/software/xzydq.htm
+            - link "标准阅读器" [ref=f2e602] [cursor=pointer]:
+              - /url: https://piccache.cnki.net/2022/kdn/software/standardreader.exe
+          - listitem [ref=f2e603]:
+            - generic [ref=f2e604]: 特色服务
+            - link "手机知网" [ref=f2e605] [cursor=pointer]:
+              - /url: http://wap.cnki.net/
+            - link "杂志订阅" [ref=f2e606] [cursor=pointer]:
+              - /url: http://wuxizazhi.cnki.net/
+            - link "数字出版物订阅" [ref=f2e607] [cursor=pointer]:
+              - /url: http://mall.cnki.net/
+            - link "广告服务" [ref=f2e608] [cursor=pointer]:
+              - /url: http://a.cnki.net
+          - listitem [ref=f2e609]:
+            - generic [ref=f2e610]: 客户服务
+            - generic [ref=f2e611]: 订卡热线：400-819-9993
+            - generic [ref=f2e612]: 服务热线：400-810-9888
+            - generic [ref=f2e613]:
+              - text: 在线咨询：
+              - link "service.cnki.net" [ref=f2e614] [cursor=pointer]:
+                - /url: http://service.cnki.net
+            - generic [ref=f2e615]:
+              - text: 邮件咨询：
+              - link "help@cnki.net" [ref=f2e616] [cursor=pointer]:
+                - /url: mailto:help@cnki.net
+          - listitem [ref=f2e617]:
+            - link "新浪微博客服" [ref=f2e618] [cursor=pointer]:
+              - /url: http://e.weibo.com/u/3059308095
+            - link "官方微信" [ref=f2e621] [cursor=pointer]:
+              - /url: javascript:void(0)
+      - generic [ref=f2e624]:
+        - generic [ref=f2e625]:
+          - paragraph [ref=f2e627]:
+            - generic [ref=f2e628]:
+              - link "关于我们" [ref=f2e629] [cursor=pointer]:
+                - /url: http://cnki.net/gycnki/gycnki.htm
+              - link "CNKI 荣誉" [ref=f2e630] [cursor=pointer]:
+                - /url: http://www.cnki.net/other/gonggao/gongsirongyu.html
+              - link "版权公告" [ref=f2e631] [cursor=pointer]:
+                - /url: http://www.cnki.net/other/gonggao/bqsm.htm
+              - link "客服中心" [ref=f2e632] [cursor=pointer]:
+                - /url: https://service.cnki.net/
+              - link "用户建议" [ref=f2e633] [cursor=pointer]:
+                - /url: https://service.cnki.net/home?flag=1
+              - link "知网招聘" [ref=f2e634] [cursor=pointer]:
+                - /url: https://piccache.cnki.net/index/CNKIRecruit/index.html
+              - link "知网推广" [ref=f2e635] [cursor=pointer]:
+                - /url: http://a.cnki.net/
+            - generic [ref=f2e636]: © 1998-2026中国知网（CNKI）
+          - link [ref=f2e639] [cursor=pointer]:
+            - /url: https://www.etrust.org.cn/CX8852713371735.html
+        - generic [ref=f2e641]:
+          - generic [ref=f2e642]:
+            - text: 京 ICP 证 040431 号
+            - link "网络出版服务许可证网出证(京)字第416号" [ref=f2e643] [cursor=pointer]:
+              - /url: https://piccache.cnki.net/index/images/gb/416.jpg
+            - text: 京公网安备 11010802020460 号
+          - text: 同方知网数字科技有限公司 KDN 平台基础技术由 AIKBase 提供.
+    - generic [ref=f2e645]:
+      - link "在线咨询" [ref=f2e646] [cursor=pointer]:
+        - /url: https://service.cnki.net
+      - link "用户反馈" [ref=f2e647] [cursor=pointer]:
+        - /url: https://kefu.cnki.net/im/goLeavemsg.html?appid=01xds8&isLogin=true&skill=ff8080818906901e018909b8eda90057
