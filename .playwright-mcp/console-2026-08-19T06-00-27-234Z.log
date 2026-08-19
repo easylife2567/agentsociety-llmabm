@@ -1,0 +1,6 @@
+[    7212ms] [LOG] {code: 0, message: success, time: 2026-08-19 14:00:34.520, tid: 705b841c2f2243f780c497a42a8e89a2.61386.17871192345196753} @ https://kns.cnki.net/kns8s/defaultresult/index?captchaId=cfb02cd0-205b-4e83-bec5-fac95e4ab8bd:1388
+[    9478ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ https://kns.cnki.net/kns8s/defaultresult/index?captchaId=cfb02cd0-205b-4e83-bec5-fac95e4ab8bd:0
+[    9478ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ https://kns.cnki.net/kns8s/defaultresult/index?captchaId=cfb02cd0-205b-4e83-bec5-fac95e4ab8bd:0
+[    9693ms] [LOG] 初始化 visitorId: 29b09b0e5cca4868c12dffe1103991d0 @ https://login.cnki.net/tlogin/scripts/top.js?v=20240719:300
+[    9693ms] [LOG] 最终 fingerprint (32字符): c8e90e06f8f5480f2404ff2e817259b1 @ https://login.cnki.net/tlogin/scripts/top.js?v=20240719:301
+[  104848ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ https://recom.cnki.net/api/recommendations/words/union?w=(%E7%BD%91%E7%BB%9C%E6%82%BC%E5%BF%B5%20OR%20%E6%95%B0%E5%AD%97%E9%81%97%E4%BA%A7%20OR%20%E6%95%B0%E5%AD%97%E6%9D%A5%E7%94%9F%20OR%20%E8%BA%AB%E5%90%8E%E8%BA%AB%E4%BB%BD%20OR%20%E6%95%B0%E5%AD%97%E6%AD%BB%E4%BA%A1)&top=14:0

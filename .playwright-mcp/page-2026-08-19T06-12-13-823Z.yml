@@ -1,0 +1,516 @@
+- generic [active] [ref=f9e1]:
+  - banner [ref=f9e3]:
+    - generic [ref=f9e4]:
+      - link [ref=f9e5] [cursor=pointer]:
+        - /url: https://www.cnki.net/
+      - link "总库" [ref=f9e8] [cursor=pointer]:
+        - /url: https://kns.cnki.net/starter/index
+      - generic [ref=f9e9]:
+        - link "检索" [ref=f9e11] [cursor=pointer]:
+          - /url: https://kns.cnki.net/kns8s/search
+        - link "CNKI AI" [ref=f9e14] [cursor=pointer]:
+          - /url: https://ai.cnki.net
+        - link "出版来源" [ref=f9e17] [cursor=pointer]:
+          - /url: https://navi.cnki.net/knavi/
+        - link "我的CNKI" [ref=f9e20] [cursor=pointer]:
+          - /url: https://kns.cnki.net/myspace/collect
+      - generic [ref=f9e22]:
+        - generic [ref=f9e23]:
+          - generic [ref=f9e28] [cursor=pointer]: 充值
+          - link "会员" [ref=f9e30] [cursor=pointer]:
+            - /url: https://member.cnki.net/
+        - generic [ref=f9e699]:
+          - generic [ref=f9e700] [cursor=pointer]
+          - generic "中国传媒大学" [ref=f9e701] [cursor=pointer]
+          - generic [ref=f9e702] [cursor=pointer]: 个人登录
+  - generic [ref=f9e31]:
+    - generic [ref=f9e32]:
+      - generic [ref=f9e34]:
+        - list
+        - generic [ref=f9e35]:
+          - list [ref=f9e36]:
+            - listitem [ref=f9e37] [cursor=pointer]
+            - listitem [ref=f9e39] [cursor=pointer]: 高级检索
+            - listitem [ref=f9e40] [cursor=pointer]: 专业检索
+            - listitem [ref=f9e41] [cursor=pointer]: 作者发文检索
+            - listitem [ref=f9e42] [cursor=pointer]: 句子检索
+          - generic [ref=f9e3849]:
+            - generic [ref=f9e3850]:
+              - generic [ref=f9e3851]:
+                - generic [ref=f9e3852] [cursor=pointer]: 文献分类
+                - generic:
+                  - generic:
+                    - text: 文献分类
+                    - generic [ref=f9e3854]: 全选 清除
+                  - list:
+                    - listitem [ref=f9e3855]:
+                      - generic [ref=f9e3856]:
+                        - generic [ref=f9e3857] [cursor=pointer]
+                        - generic [ref=f9e3858] [cursor=pointer]
+                        - link "基础科学":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f9e3859]:
+                      - generic [ref=f9e3860]:
+                        - generic [ref=f9e3861] [cursor=pointer]
+                        - generic [ref=f9e3862] [cursor=pointer]
+                        - link "工程科技Ⅰ辑":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f9e3863]:
+                      - generic [ref=f9e3864]:
+                        - generic [ref=f9e3865] [cursor=pointer]
+                        - generic [ref=f9e3866] [cursor=pointer]
+                        - link "工程科技Ⅱ辑":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f9e3867]:
+                      - generic [ref=f9e3868]:
+                        - generic [ref=f9e3869] [cursor=pointer]
+                        - generic [ref=f9e3870] [cursor=pointer]
+                        - link "农业科技":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f9e3871]:
+                      - generic [ref=f9e3872]:
+                        - generic [ref=f9e3873] [cursor=pointer]
+                        - generic [ref=f9e3874] [cursor=pointer]
+                        - link "医药卫生科技":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f9e3875]:
+                      - generic [ref=f9e3876]:
+                        - generic [ref=f9e3877] [cursor=pointer]
+                        - generic [ref=f9e3878] [cursor=pointer]
+                        - link "哲学与人文科学":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f9e3879]:
+                      - generic [ref=f9e3880]:
+                        - generic [ref=f9e3881] [cursor=pointer]
+                        - generic [ref=f9e3882] [cursor=pointer]
+                        - link "社会科学Ⅰ辑":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f9e3883]:
+                      - generic [ref=f9e3884]:
+                        - generic [ref=f9e3885] [cursor=pointer]
+                        - generic [ref=f9e3886] [cursor=pointer]
+                        - link "社会科学Ⅱ辑":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f9e3887]:
+                      - generic [ref=f9e3888]:
+                        - generic [ref=f9e3889] [cursor=pointer]
+                        - generic [ref=f9e3890] [cursor=pointer]
+                        - link "信息科技":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f9e3891]:
+                      - generic [ref=f9e3892]:
+                        - generic [ref=f9e3893] [cursor=pointer]
+                        - generic [ref=f9e3894] [cursor=pointer]
+                        - link "经济与管理科学":
+                          - /url: javascript:void(0);
+              - generic [ref=f9e3895]:
+                - textbox [ref=f9e3897]
+                - generic [ref=f9e3898]:
+                  - generic [ref=f9e3899]:
+                    - generic [ref=f9e3900]:
+                      - generic [ref=f9e3901] [cursor=pointer]:
+                        - checkbox "仅看有全文" [ref=f9e3902]
+                        - text: 仅看有全文
+                      - generic [ref=f9e3903] [cursor=pointer]:
+                        - checkbox "包含资讯" [ref=f9e3904]
+                        - text: 包含资讯
+                      - generic [ref=f9e3905] [cursor=pointer]:
+                        - checkbox "OA出版" [ref=f9e3906]
+                        - text: OA出版
+                      - generic [ref=f9e3907] [cursor=pointer]:
+                        - checkbox "网络首发" [ref=f9e3908]
+                        - text: 网络首发
+                      - generic [ref=f9e3909] [cursor=pointer]:
+                        - checkbox "增强出版" [ref=f9e3910]
+                        - text: 增强出版
+                    - generic [ref=f9e3913] [cursor=pointer]:
+                      - checkbox "基金文献" [ref=f9e3914]
+                      - text: 基金文献
+                    - generic [ref=f9e3915]:
+                      - generic [ref=f9e3917] [cursor=pointer]:
+                        - checkbox "中英文扩展" [checked] [ref=f9e3918]
+                        - text: 中英文扩展
+                      - generic [ref=f9e3919] [cursor=pointer]:
+                        - checkbox "同义词扩展" [ref=f9e3920]
+                        - text: 同义词扩展
+                  - generic [ref=f9e3921]:
+                    - generic:
+                      - generic [ref=f9e3922]: 时间范围：
+                      - generic [ref=f9e3923]:
+                        - generic [ref=f9e3924]: 出版年度
+                        - textbox "起始年" [ref=f9e3927]
+                        - text: "--"
+                        - textbox "结束年" [ref=f9e3930]
+                      - generic [ref=f9e3931]:
+                        - generic [ref=f9e3932]: 期
+                        - textbox [ref=f9e3933]
+                    - generic [ref=f9e3934]:
+                      - generic [ref=f9e3935]: 更新时间
+                      - generic [ref=f9e3937] [cursor=pointer]:
+                        - generic [ref=f9e3938]: 不限
+                        - emphasis [ref=f9e3939]: ∨
+                  - generic [ref=f9e3940]:
+                    - generic [ref=f9e3941]: 来源类别：
+                    - generic [ref=f9e3942]:
+                      - generic [ref=f9e3943] [cursor=pointer]:
+                        - checkbox "全部期刊" [checked] [ref=f9e3944]
+                        - text: 全部期刊
+                      - generic [ref=f9e3945] [cursor=pointer]:
+                        - checkbox "WJCI" [ref=f9e3946]
+                        - text: WJCI
+                      - generic [ref=f9e3947] [cursor=pointer]:
+                        - checkbox "SCI来源期刊" [ref=f9e3948]
+                        - text: SCI来源期刊
+                      - generic [ref=f9e3949] [cursor=pointer]:
+                        - checkbox "EI来源期刊" [ref=f9e3950]
+                        - text: EI来源期刊
+                      - generic [ref=f9e3951] [cursor=pointer]:
+                        - checkbox "北大核心" [ref=f9e3952]
+                        - text: 北大核心
+                      - generic [ref=f9e3953] [cursor=pointer]:
+                        - checkbox "CSSCI" [ref=f9e3954]
+                        - text: CSSCI
+                      - generic [ref=f9e3955] [cursor=pointer]:
+                        - checkbox "CSCD" [ref=f9e3956]
+                        - text: CSCD
+                      - generic [ref=f9e3957] [cursor=pointer]:
+                        - checkbox "AMI" [ref=f9e3958]
+                        - text: AMI
+                - generic [ref=f9e3960]:
+                  - link "重置条件" [ref=f9e3961] [cursor=pointer]:
+                    - /url: javascript:void(0);
+                  - button "检索" [ref=f9e3962] [cursor=pointer]
+            - generic [ref=f9e3964]:
+              - link "新型出版模式介绍 ➜" [ref=f9e3966] [cursor=pointer]:
+                - /url: help/enhancePublishing
+                - text: 新型出版模式介绍
+                - generic [ref=f9e3967]: ➜
+              - generic [ref=f9e3969]:
+                - term [ref=f9e3970]:
+                  - text: 专业检索使用方法：
+                  - link ">>" [ref=f9e3971] [cursor=pointer]:
+                    - /url: https://piccache.cnki.net/2022/kdn/index/helper/manual.html#frame2-1-3
+                - term [ref=f9e3972]: 可检索字段：
+                - definition [ref=f9e3973]:
+                  - paragraph [ref=f9e3974]: SU=主题, TKA=篇关摘, TI=篇名, KY=关键词, AB=摘要, CO=小标题, FT=全文, AU=作者, FI=第一作者, RP=通讯作者, AF=作者单位, LY=期刊名称, RF=参考文献, FU=基金, CLC=中图分类号, SN=ISSN, CN=CN, DOI=DOI, QKLM=栏目信息, FAF=第一单位, CF=被引频次
+                - term [ref=f9e3975]: 示例：
+                - definition [ref=f9e3976]:
+                  - paragraph [ref=f9e3977]: 1）TI='生态' and KY='生态文明' and (AU % '陈' + '王' ) 可以检索到篇名包括“生态”并且关键词包括“生态文明”并且作者为“陈”姓和“王”姓的所有文章；
+                  - paragraph [ref=f9e3978]: 2）SU='北京' * '奥运' and FT='环境保护' 可以检索到主题包括“北京”及“奥运”并且全文中包括“环境保护”的信息；
+                  - paragraph [ref=f9e3979]: 3）SU=('经济发展' + '可持续发展') * '转变' - '泡沫' 可检索“经济发展”或“可持续发展”有关“转变”的信息，并且可以去除与“泡沫”有关的部分内容。
+      - generic [ref=f9e191]:
+        - generic:
+          - generic [ref=f9e192]:
+            - link "总库" [ref=f9e3644] [cursor=pointer]:
+              - /url: javascript:void(0)
+              - emphasis
+            - generic [ref=f9e195]:
+              - generic [ref=f9e196] [cursor=pointer]: 中文
+              - generic [ref=f9e197] [cursor=pointer]: 外文
+          - list [ref=f9e198]:
+            - listitem [ref=f9e199]:
+              - link "学术期刊" [ref=f9e3645] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f9e202]:
+              - link "学位论文" [ref=f9e3646] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f9e205]:
+              - link "图书" [ref=f9e3647] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f9e208]:
+              - link "会议" [ref=f9e3648] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f9e211]:
+              - link "报纸" [ref=f9e3649] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f9e214]:
+              - link "年鉴" [ref=f9e215] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f9e217]:
+              - link "专利" [ref=f9e218] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f9e220]:
+              - link "标准" [ref=f9e3650] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f9e223]:
+              - link "法律法规" [ref=f9e224] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+          - link "更多资源" [ref=f9e226] [cursor=pointer]:
+            - /url: javascript:void(0);
+    - generic [ref=f9e631]:
+      - generic [ref=f9e753]:
+        - generic [ref=f9e754] [cursor=pointer]
+        - generic [ref=f9e756]:
+          - generic [ref=f9e3651]:
+            - term [ref=f9e3652]:
+              - generic "只对前4万条记录分组" [ref=f9e3653]: 主题
+              - generic [ref=f9e3654] [cursor=pointer]
+              - generic "可视化" [ref=f9e3655] [cursor=pointer]
+            - term [ref=f9e3656]:
+              - link "主要主题" [ref=f9e3657] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "次要主题" [ref=f9e3658] [cursor=pointer]:
+                - /url: javascript:void(0)
+            - definition [ref=f9e3659]:
+              - list [ref=f9e3661]:
+                - listitem [ref=f9e3662]:
+                  - checkbox "传播视角" [ref=f9e3663] [cursor=pointer]
+                  - link "传播视角" [ref=f9e3664] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                  - generic [ref=f9e3665] [cursor=pointer]: (1)
+                - listitem [ref=f9e3666]:
+                  - checkbox "新闻传播" [ref=f9e3667] [cursor=pointer]
+                  - link "新闻传播" [ref=f9e3668] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                  - generic [ref=f9e3669] [cursor=pointer]: (1)
+                - listitem [ref=f9e3670]:
+                  - checkbox "“被去世”" [ref=f9e3671] [cursor=pointer]
+                  - link "“被去世”" [ref=f9e3672] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                  - generic [ref=f9e3673] [cursor=pointer]: (1)
+          - generic [ref=f9e3674]:
+            - term [ref=f9e3675]:
+              - generic "只对前4万条记录分组" [ref=f9e3676]: 学科
+              - generic [ref=f9e3677] [cursor=pointer]
+              - generic "可视化" [ref=f9e3678] [cursor=pointer]
+            - definition [ref=f9e3679]:
+              - list [ref=f9e3681]:
+                - listitem [ref=f9e3682]:
+                  - checkbox "新闻与传媒" [ref=f9e3683] [cursor=pointer]
+                  - link "新闻与传媒" [ref=f9e3684] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                  - generic [ref=f9e3685] [cursor=pointer]: (1)
+          - generic [ref=f9e3686]:
+            - term [ref=f9e3687]:
+              - generic "只对前100万条记录分组" [ref=f9e3688]: 年度
+              - generic [ref=f9e3689]:
+                - generic [ref=f9e3690] [cursor=pointer]: 时间
+                - generic [ref=f9e3692] [cursor=pointer]: 文献量
+              - generic [ref=f9e3694] [cursor=pointer]
+              - generic "可视化" [ref=f9e3695] [cursor=pointer]
+            - definition [ref=f9e3696]:
+              - list [ref=f9e3698]:
+                - listitem [ref=f9e3699]:
+                  - checkbox "2021年" [ref=f9e3700] [cursor=pointer]
+                  - link "2021年" [ref=f9e3701] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                  - generic [ref=f9e3702] [cursor=pointer]: (1)
+          - term [ref=f9e3704]:
+            - generic "只对前4万条记录分组" [ref=f9e3705] [cursor=pointer]: 研究层次
+            - generic [ref=f9e3706] [cursor=pointer]
+          - term [ref=f9e3708]:
+            - generic "只对前200万条记录分组" [ref=f9e3709] [cursor=pointer]: 期刊
+            - generic [ref=f9e3710]:
+              - generic [ref=f9e3711] [cursor=pointer]: 文献量
+              - generic [ref=f9e3713] [cursor=pointer]: CI指数
+            - generic [ref=f9e3715] [cursor=pointer]
+          - term [ref=f9e3717]:
+            - generic "只对前4万条记录分组" [ref=f9e3718] [cursor=pointer]: 来源类别
+            - generic [ref=f9e3719] [cursor=pointer]
+          - term [ref=f9e3721]:
+            - generic "只对前4万条记录分组" [ref=f9e3722] [cursor=pointer]: 作者
+            - generic [ref=f9e3723]:
+              - generic [ref=f9e3724] [cursor=pointer]: 文献量
+              - generic [ref=f9e3726] [cursor=pointer]: H指数
+            - generic [ref=f9e3728] [cursor=pointer]
+          - term [ref=f9e3730]:
+            - generic "只对前4万条记录分组" [ref=f9e3731] [cursor=pointer]: 机构
+            - generic [ref=f9e3732] [cursor=pointer]
+          - term [ref=f9e3734]:
+            - generic "只对前4万条记录分组" [ref=f9e3735] [cursor=pointer]: 基金
+            - generic [ref=f9e3736] [cursor=pointer]
+          - term [ref=f9e3738]:
+            - generic "只对前100万条记录分组" [ref=f9e3739] [cursor=pointer]: OA出版
+            - generic [ref=f9e3740] [cursor=pointer]
+      - generic [ref=f9e633]:
+        - generic [ref=f9e952]:
+          - generic [ref=f9e953]:
+            - text: 检索范围：
+            - generic [ref=f9e3762]: 学术期刊
+            - generic [ref=f9e954]: （主题：(名人去世+公众人物去世)*(社交媒体+短视频+抖音)）
+          - link "主题定制" [ref=f9e955] [cursor=pointer]:
+            - /url: javascript:void(0)
+          - link "检索历史" [ref=f9e956] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - generic [ref=f9e3763]:
+          - generic [ref=f9e3765]:
+            - generic [ref=f9e3767]:
+              - text: 共找到
+              - emphasis [ref=f9e3768]: "1"
+              - text: 条结果
+            - generic [ref=f9e3769]:
+              - generic [ref=f9e3770]:
+                - generic [ref=f9e3771] [cursor=pointer]:
+                  - checkbox "全选" [ref=f9e3772]
+                  - text: 全选
+                - text: 已选
+                - emphasis [ref=f9e3773] [cursor=pointer]: "453"
+                - link "清除" [ref=f9e3774] [cursor=pointer]:
+                  - /url: javascript:$(this).filenameClear();
+              - list [ref=f9e3775]:
+                - listitem [ref=f9e3776] [cursor=pointer]:
+                  - link "批量操作" [ref=f9e3777]:
+                    - /url: javascript:void(0)
+                - listitem [ref=f9e3779] [cursor=pointer]:
+                  - link "导出与分析" [ref=f9e3780]:
+                    - /url: javascript:void(0)
+              - list [ref=f9e3782]:
+                - listitem "详情" [ref=f9e3783] [cursor=pointer]
+                - listitem "列表" [ref=f9e3785] [cursor=pointer]
+              - generic [ref=f9e3788]:
+                - generic [ref=f9e3789]: 显示
+                - generic [ref=f9e3790] [cursor=pointer]: "20"
+              - generic [ref=f9e3794]:
+                - generic [ref=f9e3795]: 排序：
+                - list [ref=f9e3796] [cursor=pointer]:
+                  - listitem "只在800万条记录以内有效" [ref=f9e3797]: 相关度
+                  - listitem "只在800万条记录以内有效" [ref=f9e3798]: 发表时间
+                  - listitem "只在800万条记录以内有效" [ref=f9e3799]: 被引
+                  - listitem "只在800万条记录以内有效" [ref=f9e3800]: 下载
+                  - listitem "只在800万条记录以内有效" [ref=f9e3801]: 综合
+          - table [ref=f9e3808]:
+            - rowgroup [ref=f9e3809]:
+              - row [ref=f9e3810]:
+                - columnheader [ref=f9e3811]
+                - columnheader "篇名" [ref=f9e3812]
+                - columnheader "作者" [ref=f9e3813]
+                - columnheader "刊名" [ref=f9e3814]
+                - columnheader "发表时间" [ref=f9e3815]
+                - columnheader "被引" [ref=f9e3816]
+                - columnheader "下载" [ref=f9e3817]
+                - columnheader "操作" [ref=f9e3818]
+            - rowgroup [ref=f9e3819]:
+              - row [ref=f9e3820]:
+                - cell "1" [ref=f9e3821]:
+                  - checkbox [ref=f9e3822] [cursor=pointer]
+                  - text: "1"
+                - cell [ref=f9e3823]:
+                  - link "新闻传播视角下名人“被去世”现象分析" [ref=f9e3824] [cursor=pointer]:
+                    - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPYPx_ZyD0BgeadSdgaaSEFhGuG9t3QU9hkeTqJkVBAAH_W9o2yx0ssGm0o3HDqnPSUx-8a8bWVv5tlBmow2vpWeWVA_nJb9TzBWLDmOIg0ykd0kPv4PmxuWGk5VmzyjKcREu0WDa0aZQukWDOcxQesfeiacgO__slvSN9aTzJIw5g==&uniplatform=NZKPT&language=CHS
+                - cell [ref=f9e3825]:
+                  - link "刘苏雨" [ref=f9e3826] [cursor=pointer]:
+                    - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPYPx_ZyD0BgeS5oQfNwchOIOb5YHglaebmuq6YnyByOWhmfMA-qtry0tHio3aCVNrSPYENm-sk5_VFwbefCzG9Z0D6SlFOmpAXeZWxH27daTFTyYHv1KOnFNt6igH7GAZNmebhHGfw067roAsxn5eKx&uniplatform=NZKPT&language=CHS
+                - cell [ref=f9e3827]:
+                  - link "新闻研究导刊" [ref=f9e3829] [cursor=pointer]:
+                    - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEX0eavFjRY_BV52hIZX6Y0vggn-Aha6LWEAsxzxAC87IlbZd978JgAMPTg9FlpgFedTkymuAtN5K2TmVpPgToPx370Fu-9w2LE=&uniplatform=NZKPT&language=CHS
+                - cell "2021-08-10" [ref=f9e3830]
+                - cell [ref=f9e3831]:
+                  - link "1" [ref=f9e3833] [cursor=pointer]:
+                    - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPYPx_ZyD0BgeadSdgaaSEFhGuG9t3QU9hkeTqJkVBAAH_W9o2yx0ssGm0o3HDqnPSUx-8a8bWVv5tlBmow2vpWeWVA_nJb9TzBWLDmOIg0ykd0kPv4PmxuWGk5VmzyjKcREu0WDa0aZQukWDOcxQesfeiacgO__slvSN9aTzJIw5g==&uniplatform=NZKPT&language=CHS&anchor=citnet
+                - cell [ref=f9e3834]:
+                  - link "311" [ref=f9e3837] [cursor=pointer]:
+                    - /url: javascript:void(0);
+                - cell [ref=f9e3838]:
+                  - link "下载" [ref=f9e3839] [cursor=pointer]:
+                    - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdoabmU4NncMetQGnHwQAYvkPLv26fLyAXS4AanKysf0X7J5rjVbvMsR%2B5SAeqf796x7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk%2BT7kWC7c70eriUHlYENk01xluINF6fMO20iEpFsF%2FxvWzG90%2BuScGKvieC2F2f8MbW%2BDVXMsJEDMWSEW9EHP%2BQhtCcfzq06G6X3KBB%2FsvR9U2Gb4qyzvuwRCY426zL6aQ%3D%3D&language=CHS
+                  - link "HTML阅读" [ref=f9e3841] [cursor=pointer]:
+                    - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdoabmU4NncMetQGnHwQAYvkPLv26fLyAXS4AanKysf0X%2FfqT4rpmo9QTQIUWMhppQCL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGSZCozzaOrY%2FGf8PbRqBx9mOSPNnbndV3LMYmTFqdzguR4MXWMVKZ0AuDIoSVAxlFmyfF8hGbohZNLW0III3KpCDASisyERuaS5wcaymL94re2vT28QP%2F5MkhmYEbXE2jQ%3D%3D&language=CHS
+                  - generic "收藏" [ref=f9e3843] [cursor=pointer]
+                  - link "引用" [ref=f9e3845] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                  - link "CNKI AI阅读" [ref=f9e3847] [cursor=pointer]:
+                    - /url: https://ai.cnki.net/trans?path=study&cid=Pe2nFq1PBOM11SpCErZ-LwM1UHjV0uMR_icN4IXwgicPsqNQtklJmksK1t2l83xNZEzD2EkRPlLHC3h89qrZ2xcJFnCXWEvXwdDhbxhTw8J3KAUBlVIsgcb0E8u_YkCK&mimetype=XML&language=CHS&srid=kns
+        - generic:
+          - generic:
+            - list:
+              - listitem
+  - contentinfo [ref=f9e635]:
+    - generic [ref=f9e636]:
+      - generic [ref=f9e637]:
+        - list:
+          - listitem [ref=f9e638]:
+            - generic [ref=f9e639]: 读者服务
+            - link "购买知网卡" [ref=f9e640] [cursor=pointer]:
+              - /url: http://vipcard.cnki.net/ec/skwd/skwd.htm
+            - link "充值中心" [ref=f9e641] [cursor=pointer]:
+              - /url: http://zhifu.cnki.net/
+            - link "我的CNKI" [ref=f9e642] [cursor=pointer]:
+              - /url: http://my.cnki.net/
+            - link "帮助中心" [ref=f9e643] [cursor=pointer]:
+              - /url: http://service.cnki.net/helpcenter/
+          - listitem [ref=f9e644]:
+            - generic [ref=f9e645]: CNKI常用软件下载
+            - link "CAJViewer浏览器" [ref=f9e646] [cursor=pointer]:
+              - /url: http://cajviewer.cnki.net
+            - link "知网研学（原E-Study）" [ref=f9e647] [cursor=pointer]:
+              - /url: https://estudy.cnki.net/
+            - link "下载中心" [ref=f9e648] [cursor=pointer]:
+              - /url: https://www.cnki.net/software/xzydq.htm
+            - link "标准阅读器" [ref=f9e649] [cursor=pointer]:
+              - /url: https://piccache.cnki.net/2022/kdn/software/standardreader.exe
+          - listitem [ref=f9e650]:
+            - generic [ref=f9e651]: 特色服务
+            - link "手机知网" [ref=f9e652] [cursor=pointer]:
+              - /url: http://wap.cnki.net/
+            - link "杂志订阅" [ref=f9e653] [cursor=pointer]:
+              - /url: http://wuxizazhi.cnki.net/
+            - link "数字出版物订阅" [ref=f9e654] [cursor=pointer]:
+              - /url: http://mall.cnki.net/
+            - link "广告服务" [ref=f9e655] [cursor=pointer]:
+              - /url: http://a.cnki.net
+          - listitem [ref=f9e656]:
+            - generic [ref=f9e657]: 客户服务
+            - generic [ref=f9e658]: 订卡热线：400-819-9993
+            - generic [ref=f9e659]: 服务热线：400-810-9888
+            - generic [ref=f9e660]:
+              - text: 在线咨询：
+              - link "service.cnki.net" [ref=f9e661] [cursor=pointer]:
+                - /url: http://service.cnki.net
+            - generic [ref=f9e662]:
+              - text: 邮件咨询：
+              - link "help@cnki.net" [ref=f9e663] [cursor=pointer]:
+                - /url: mailto:help@cnki.net
+          - listitem [ref=f9e664]:
+            - link "新浪微博客服" [ref=f9e665] [cursor=pointer]:
+              - /url: http://e.weibo.com/u/3059308095
+            - link "官方微信" [ref=f9e668] [cursor=pointer]:
+              - /url: javascript:void(0)
+      - generic [ref=f9e671]:
+        - generic [ref=f9e672]:
+          - paragraph [ref=f9e674]:
+            - generic [ref=f9e675]:
+              - link "关于我们" [ref=f9e676] [cursor=pointer]:
+                - /url: http://cnki.net/gycnki/gycnki.htm
+              - link "CNKI 荣誉" [ref=f9e677] [cursor=pointer]:
+                - /url: http://www.cnki.net/other/gonggao/gongsirongyu.html
+              - link "版权公告" [ref=f9e678] [cursor=pointer]:
+                - /url: http://www.cnki.net/other/gonggao/bqsm.htm
+              - link "客服中心" [ref=f9e679] [cursor=pointer]:
+                - /url: https://service.cnki.net/
+              - link "用户建议" [ref=f9e680] [cursor=pointer]:
+                - /url: https://service.cnki.net/home?flag=1
+              - link "知网招聘" [ref=f9e681] [cursor=pointer]:
+                - /url: https://piccache.cnki.net/index/CNKIRecruit/index.html
+              - link "知网推广" [ref=f9e682] [cursor=pointer]:
+                - /url: http://a.cnki.net/
+            - generic [ref=f9e683]: © 1998-2026中国知网（CNKI）
+          - link [ref=f9e686] [cursor=pointer]:
+            - /url: https://www.etrust.org.cn/CX8852713371735.html
+        - generic [ref=f9e688]:
+          - generic [ref=f9e689]:
+            - text: 京 ICP 证 040431 号
+            - link "网络出版服务许可证网出证(京)字第416号" [ref=f9e690] [cursor=pointer]:
+              - /url: https://piccache.cnki.net/index/images/gb/416.jpg
+            - text: 京公网安备 11010802020460 号
+          - text: 同方知网数字科技有限公司 KDN 平台基础技术由 AIKBase 提供.
+    - generic [ref=f9e692]:
+      - link "在线咨询" [ref=f9e693] [cursor=pointer]:
+        - /url: https://service.cnki.net
+      - link "用户反馈" [ref=f9e694] [cursor=pointer]:
+        - /url: https://kefu.cnki.net/im/goLeavemsg.html?appid=01xds8&isLogin=true&skill=ff8080818906901e018909b8eda90057
+  - generic [ref=f9e705]:
+    - generic [ref=f9e706]:
+      - generic [ref=f9e707]: 拖动下方拼图完成验证
+      - img "close" [ref=f9e710] [cursor=pointer]
+    - generic [ref=f9e719]:
+      - generic [ref=f9e720]: 安全验证
+      - img "refresh" [ref=f9e724] [cursor=pointer]

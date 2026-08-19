@@ -1,0 +1,1227 @@
+- generic [ref=f19e1]:
+  - banner [ref=f19e3]:
+    - generic [ref=f19e4]:
+      - link [ref=f19e5] [cursor=pointer]:
+        - /url: https://www.cnki.net/
+      - link "总库" [ref=f19e8] [cursor=pointer]:
+        - /url: https://kns.cnki.net/starter/index
+      - generic [ref=f19e9]:
+        - link "检索" [ref=f19e11] [cursor=pointer]:
+          - /url: https://kns.cnki.net/kns8s/search
+        - link "CNKI AI" [ref=f19e14] [cursor=pointer]:
+          - /url: https://ai.cnki.net
+        - link "出版来源" [ref=f19e17] [cursor=pointer]:
+          - /url: https://navi.cnki.net/knavi/
+        - link "我的CNKI" [ref=f19e20] [cursor=pointer]:
+          - /url: https://kns.cnki.net/myspace/collect
+      - generic [ref=f19e22]:
+        - generic [ref=f19e23]:
+          - generic [ref=f19e28] [cursor=pointer]: 充值
+          - link "会员" [ref=f19e30] [cursor=pointer]:
+            - /url: https://member.cnki.net/
+        - generic [ref=f19e35]:
+          - generic [ref=f19e702] [cursor=pointer]
+          - generic "中国传媒大学" [ref=f19e703] [cursor=pointer]
+          - generic [ref=f19e37] [cursor=pointer]: 个人登录
+  - generic [ref=f19e38]:
+    - generic [ref=f19e39]:
+      - generic [ref=f19e41]:
+        - list
+        - generic [ref=f19e42]:
+          - list [ref=f19e43]:
+            - listitem [ref=f19e44] [cursor=pointer]:
+              - generic [ref=f19e45]: 检索设置
+            - listitem [ref=f19e46] [cursor=pointer]: 高级检索
+            - listitem [ref=f19e47] [cursor=pointer]: 专业检索
+            - listitem [ref=f19e48] [cursor=pointer]: 作者发文检索
+            - listitem [ref=f19e49] [cursor=pointer]: 句子检索
+          - generic [ref=f19e726]:
+            - generic [ref=f19e727]:
+              - generic [ref=f19e728]:
+                - generic [ref=f19e729] [cursor=pointer]: 文献分类
+                - generic:
+                  - generic:
+                    - text: 文献分类
+                    - generic [ref=f19e731]: 全选 清除
+                  - list:
+                    - listitem [ref=f19e732]:
+                      - generic [ref=f19e733]:
+                        - generic [ref=f19e734] [cursor=pointer]
+                        - generic [ref=f19e735] [cursor=pointer]
+                        - link "基础科学":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f19e736]:
+                      - generic [ref=f19e737]:
+                        - generic [ref=f19e738] [cursor=pointer]
+                        - generic [ref=f19e739] [cursor=pointer]
+                        - link "工程科技Ⅰ辑":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f19e740]:
+                      - generic [ref=f19e741]:
+                        - generic [ref=f19e742] [cursor=pointer]
+                        - generic [ref=f19e743] [cursor=pointer]
+                        - link "工程科技Ⅱ辑":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f19e744]:
+                      - generic [ref=f19e745]:
+                        - generic [ref=f19e746] [cursor=pointer]
+                        - generic [ref=f19e747] [cursor=pointer]
+                        - link "农业科技":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f19e748]:
+                      - generic [ref=f19e749]:
+                        - generic [ref=f19e750] [cursor=pointer]
+                        - generic [ref=f19e751] [cursor=pointer]
+                        - link "医药卫生科技":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f19e752]:
+                      - generic [ref=f19e753]:
+                        - generic [ref=f19e754] [cursor=pointer]
+                        - generic [ref=f19e755] [cursor=pointer]
+                        - link "哲学与人文科学":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f19e756]:
+                      - generic [ref=f19e757]:
+                        - generic [ref=f19e758] [cursor=pointer]
+                        - generic [ref=f19e759] [cursor=pointer]
+                        - link "社会科学Ⅰ辑":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f19e760]:
+                      - generic [ref=f19e761]:
+                        - generic [ref=f19e762] [cursor=pointer]
+                        - generic [ref=f19e763] [cursor=pointer]
+                        - link "社会科学Ⅱ辑":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f19e764]:
+                      - generic [ref=f19e765]:
+                        - generic [ref=f19e766] [cursor=pointer]
+                        - generic [ref=f19e767] [cursor=pointer]
+                        - link "信息科技":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f19e768]:
+                      - generic [ref=f19e769]:
+                        - generic [ref=f19e770] [cursor=pointer]
+                        - generic [ref=f19e771] [cursor=pointer]
+                        - link "经济与管理科学":
+                          - /url: javascript:void(0);
+              - generic [ref=f19e772]:
+                - textbox [ref=f19e774]: SU=短视频 * (去语境化 + 碎片化叙事 + 标签化)
+                - generic [ref=f19e775]:
+                  - generic [ref=f19e776]:
+                    - generic [ref=f19e777]:
+                      - generic [ref=f19e778] [cursor=pointer]:
+                        - checkbox "OA出版" [ref=f19e779]
+                        - text: OA出版
+                      - generic [ref=f19e780] [cursor=pointer]:
+                        - checkbox "网络首发" [ref=f19e781]
+                        - text: 网络首发
+                      - generic [ref=f19e782] [cursor=pointer]:
+                        - checkbox "增强出版" [ref=f19e783]
+                        - text: 增强出版
+                    - generic [ref=f19e786] [cursor=pointer]:
+                      - checkbox "基金文献" [ref=f19e787]
+                      - text: 基金文献
+                    - generic [ref=f19e788]:
+                      - generic [ref=f19e790] [cursor=pointer]:
+                        - checkbox "中英文扩展" [checked] [ref=f19e791]
+                        - text: 中英文扩展
+                      - generic [ref=f19e792] [cursor=pointer]:
+                        - checkbox "同义词扩展" [ref=f19e793]
+                        - text: 同义词扩展
+                  - generic [ref=f19e794]:
+                    - generic [ref=f19e795]: 时间范围：
+                    - generic [ref=f19e796]:
+                      - generic [ref=f19e797]: 发表时间
+                      - textbox [ref=f19e798]
+                      - text: "--"
+                      - textbox [ref=f19e799]
+                    - generic [ref=f19e800]:
+                      - generic [ref=f19e801]: 更新时间
+                      - generic [ref=f19e803] [cursor=pointer]:
+                        - generic [ref=f19e804]: 不限
+                        - emphasis [ref=f19e805]: ∨
+                - generic [ref=f19e806]:
+                  - link "重置条件" [ref=f19e807] [cursor=pointer]:
+                    - /url: javascript:void(0);
+                  - button "检索" [ref=f19e808] [cursor=pointer]
+                  - link "结果中检索" [ref=f19e823] [cursor=pointer]:
+                    - /url: javascript:void(0)
+            - generic [ref=f19e812]:
+              - term [ref=f19e813]:
+                - text: 专业检索使用方法：
+                - link ">>" [ref=f19e814] [cursor=pointer]:
+                  - /url: https://piccache.cnki.net/2022/kdn/index/helper/manual.html#frame2-1-3
+              - term [ref=f19e815]: 可检索字段：
+              - definition [ref=f19e816]:
+                - paragraph [ref=f19e817]: SU=主题, TKA=篇关摘, KY=关键词, TI=篇名, FT=全文, AU=作者, FI=第一作者, RP=通讯作者, AF=作者单位, FU=基金, AB=摘要, CO=小标题, RF=参考文献, CLC=分类号, LY=文献来源, DOI=DOI, CF=被引频次
+              - term [ref=f19e818]: 示例：
+              - definition [ref=f19e819]:
+                - paragraph [ref=f19e820]: 1）TI='生态' and KY='生态文明' and (AU % '陈' + '王' ) 可以检索到篇名包括“生态”并且关键词包括“生态文明”并且作者为“陈”姓和“王”姓的所有文章；
+                - paragraph [ref=f19e821]: 2）SU='北京' * '奥运' and FT='环境保护' 可以检索到主题包括“北京”及“奥运”并且全文中包括“环境保护”的信息；
+                - paragraph [ref=f19e822]: 3）SU=('经济发展' + '可持续发展') * '转变' - '泡沫' 可检索“经济发展”或“可持续发展”有关“转变”的信息，并且可以去除与“泡沫”有关的部分内容。
+      - generic [ref=f19e198]:
+        - generic:
+          - generic [ref=f19e199]:
+            - link "总库 45" [ref=f19e824] [cursor=pointer]:
+              - /url: javascript:void(0)
+              - generic [ref=f19e201]: 总库
+              - emphasis [ref=f19e825]: "45"
+            - generic [ref=f19e202]:
+              - generic [ref=f19e203] [cursor=pointer]: 中文
+              - generic [ref=f19e204] [cursor=pointer]: 外文
+          - list [ref=f19e205]:
+            - listitem [ref=f19e206]:
+              - link "学术期刊 23" [ref=f19e826] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - generic [ref=f19e208]: 学术期刊
+                - emphasis [ref=f19e827]: "23"
+            - listitem [ref=f19e209]:
+              - link "学位论文 14" [ref=f19e828] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - generic [ref=f19e211]: 学位论文
+                - emphasis [ref=f19e829]: "14"
+            - listitem [ref=f19e212]:
+              - link "图书 3" [ref=f19e830] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - generic [ref=f19e214]: 图书
+                - emphasis [ref=f19e831]: "3"
+            - listitem [ref=f19e215]:
+              - link "会议 1" [ref=f19e832] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - generic [ref=f19e217]: 会议
+                - emphasis [ref=f19e833]: "1"
+            - listitem [ref=f19e218]:
+              - link "报纸 0" [ref=f19e834] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - generic [ref=f19e220]: 报纸
+                - emphasis [ref=f19e835]: "0"
+            - listitem [ref=f19e221]:
+              - link "年鉴" [ref=f19e222] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f19e224]:
+              - link "专利" [ref=f19e225] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f19e227]:
+              - link "标准 0" [ref=f19e836] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - generic [ref=f19e229]: 标准
+                - emphasis [ref=f19e837]: "0"
+            - listitem [ref=f19e230]:
+              - link "法律法规" [ref=f19e231] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+          - link "更多资源" [ref=f19e233] [cursor=pointer]:
+            - /url: javascript:void(0);
+    - generic [ref=f19e638]:
+      - generic [ref=f19e838]:
+        - generic [ref=f19e839] [cursor=pointer]
+        - generic [ref=f19e841]:
+          - generic [ref=f19e842]:
+            - term [ref=f19e843]:
+              - generic "只对前4万条记录分组" [ref=f19e844]: 主题
+              - generic [ref=f19e845] [cursor=pointer]
+              - generic "可视化" [ref=f19e846] [cursor=pointer]
+            - term [ref=f19e847]:
+              - link "主要主题" [ref=f19e848] [cursor=pointer]:
+                - /url: javascript:void(0)
+              - link "次要主题" [ref=f19e849] [cursor=pointer]:
+                - /url: javascript:void(0)
+            - definition [ref=f19e850]:
+              - generic [ref=f19e851]:
+                - list [ref=f19e852]:
+                  - listitem [ref=f19e853]:
+                    - checkbox "短视频" [ref=f19e854] [cursor=pointer]
+                    - link "短视频" [ref=f19e855] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e856] [cursor=pointer]: (10)
+                  - listitem [ref=f19e857]:
+                    - checkbox "碎片化叙事" [ref=f19e858] [cursor=pointer]
+                    - link "碎片化叙事" [ref=f19e859] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e860] [cursor=pointer]: (6)
+                  - listitem [ref=f19e861]:
+                    - checkbox "短视频平台" [ref=f19e862] [cursor=pointer]
+                    - link "短视频平台" [ref=f19e863] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e864] [cursor=pointer]: (4)
+                  - listitem [ref=f19e865]:
+                    - checkbox "女性形象" [ref=f19e866] [cursor=pointer]
+                    - link "女性形象" [ref=f19e867] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e868] [cursor=pointer]: (2)
+                  - listitem [ref=f19e869]:
+                    - checkbox "身份认同" [ref=f19e870] [cursor=pointer]
+                    - link "身份认同" [ref=f19e871] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e872] [cursor=pointer]: (2)
+                  - listitem [ref=f19e873]:
+                    - checkbox "叙事研究" [ref=f19e874] [cursor=pointer]
+                    - link "叙事研究" [ref=f19e875] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e876] [cursor=pointer]: (2)
+                  - listitem [ref=f19e877]:
+                    - checkbox "自媒体" [ref=f19e878] [cursor=pointer]
+                    - link "自媒体" [ref=f19e879] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e880] [cursor=pointer]: (2)
+                  - listitem [ref=f19e881]:
+                    - checkbox "新媒体" [ref=f19e882] [cursor=pointer]
+                    - link "新媒体" [ref=f19e883] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e884] [cursor=pointer]: (2)
+                  - listitem [ref=f19e885]:
+                    - checkbox "融媒体" [ref=f19e886] [cursor=pointer]
+                    - link "融媒体" [ref=f19e887] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e888] [cursor=pointer]: (2)
+                  - listitem [ref=f19e889]:
+                    - checkbox "乡村形象" [ref=f19e890] [cursor=pointer]
+                    - link "乡村形象" [ref=f19e891] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e892] [cursor=pointer]: (2)
+                - generic [ref=f19e893] [cursor=pointer]
+          - generic [ref=f19e894]:
+            - term [ref=f19e895]:
+              - generic "只对前4万条记录分组" [ref=f19e896]: 来源类别
+              - generic [ref=f19e897] [cursor=pointer]
+              - generic "可视化" [ref=f19e898] [cursor=pointer]
+            - definition [ref=f19e899]:
+              - list [ref=f19e901]:
+                - listitem [ref=f19e902]:
+                  - checkbox "北大核心" [ref=f19e903] [cursor=pointer]
+                  - link "北大核心" [ref=f19e904] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                  - generic [ref=f19e905] [cursor=pointer]: (3)
+                - listitem [ref=f19e906]:
+                  - checkbox "CSSCI" [ref=f19e907] [cursor=pointer]
+                  - link "CSSCI" [ref=f19e908] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                  - generic [ref=f19e909] [cursor=pointer]: (3)
+                - listitem [ref=f19e910]:
+                  - checkbox "WJCI" [ref=f19e911] [cursor=pointer]
+                  - link "WJCI" [ref=f19e912] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                  - generic [ref=f19e913] [cursor=pointer]: (1)
+                - listitem [ref=f19e914]:
+                  - checkbox "AMI(顶级/权威/核心)" [ref=f19e915] [cursor=pointer]
+                  - link "AMI" [ref=f19e916] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                  - generic [ref=f19e917] [cursor=pointer]: (1)
+          - generic [ref=f19e918]:
+            - term [ref=f19e919]:
+              - generic "只对前4万条记录分组" [ref=f19e920]: 学科
+              - generic [ref=f19e921] [cursor=pointer]
+              - generic "可视化" [ref=f19e922] [cursor=pointer]
+            - definition [ref=f19e923]:
+              - generic [ref=f19e924]:
+                - list [ref=f19e925]:
+                  - listitem [ref=f19e926]:
+                    - checkbox "新闻与传媒" [ref=f19e927] [cursor=pointer]
+                    - link "新闻与传媒" [ref=f19e928] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e929] [cursor=pointer]: (37)
+                  - listitem [ref=f19e930]:
+                    - checkbox "社会学及统计学" [ref=f19e931] [cursor=pointer]
+                    - link "社会学及统计学" [ref=f19e932] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e933] [cursor=pointer]: (5)
+                  - listitem [ref=f19e934]:
+                    - checkbox "企业经济" [ref=f19e935] [cursor=pointer]
+                    - link "企业经济" [ref=f19e936] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e937] [cursor=pointer]: (3)
+                  - listitem [ref=f19e938]:
+                    - checkbox "高等教育" [ref=f19e939] [cursor=pointer]
+                    - link "高等教育" [ref=f19e940] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e941] [cursor=pointer]: (2)
+                  - listitem [ref=f19e942]:
+                    - checkbox "政党及群众组织" [ref=f19e943] [cursor=pointer]
+                    - link "政党及群众组织" [ref=f19e944] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e945] [cursor=pointer]: (2)
+                  - listitem [ref=f19e946]:
+                    - checkbox "自动化技术" [ref=f19e947] [cursor=pointer]
+                    - link "自动化技术" [ref=f19e948] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e949] [cursor=pointer]: (2)
+                  - listitem [ref=f19e950]:
+                    - checkbox "计算机软件及计算机应用" [ref=f19e951] [cursor=pointer]
+                    - link "计算机软件及计算机应用" [ref=f19e952] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e953] [cursor=pointer]: (2)
+                  - listitem [ref=f19e954]:
+                    - checkbox "音乐舞蹈" [ref=f19e955] [cursor=pointer]
+                    - link "音乐舞蹈" [ref=f19e956] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e957] [cursor=pointer]: (2)
+                  - listitem [ref=f19e958]:
+                    - checkbox "出版" [ref=f19e959] [cursor=pointer]
+                    - link "出版" [ref=f19e960] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e961] [cursor=pointer]: (1)
+                  - listitem [ref=f19e962]:
+                    - checkbox "体育" [ref=f19e963] [cursor=pointer]
+                    - link "体育" [ref=f19e964] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - generic [ref=f19e965] [cursor=pointer]: (1)
+                - generic [ref=f19e966] [cursor=pointer]
+          - term [ref=f19e968]:
+            - generic "只对前4万条记录分组" [ref=f19e969] [cursor=pointer]: 研究层次
+            - generic [ref=f19e970] [cursor=pointer]
+          - term [ref=f19e972]:
+            - generic "只对前100万条记录分组" [ref=f19e973] [cursor=pointer]: 年度
+            - generic [ref=f19e974]:
+              - generic [ref=f19e975] [cursor=pointer]: 时间
+              - generic [ref=f19e977] [cursor=pointer]: 文献量
+            - generic [ref=f19e979] [cursor=pointer]
+          - term [ref=f19e981]:
+            - generic "对所有数据进行分组" [ref=f19e982] [cursor=pointer]: 文献类型
+            - generic [ref=f19e983] [cursor=pointer]
+          - term [ref=f19e985]:
+            - generic "只对前100万条记录分组" [ref=f19e986] [cursor=pointer]: 文献来源
+            - generic [ref=f19e987] [cursor=pointer]
+          - term [ref=f19e989]:
+            - generic "只对前4万条记录分组" [ref=f19e990] [cursor=pointer]: 作者
+            - generic [ref=f19e991]:
+              - generic [ref=f19e992] [cursor=pointer]: 文献量
+              - generic [ref=f19e994] [cursor=pointer]: H指数
+            - generic [ref=f19e996] [cursor=pointer]
+          - term [ref=f19e998]:
+            - generic "只对前4万条记录分组" [ref=f19e999] [cursor=pointer]: 机构
+            - generic [ref=f19e1000] [cursor=pointer]
+          - term [ref=f19e1002]:
+            - generic "只对前4万条记录分组" [ref=f19e1003] [cursor=pointer]: 基金
+            - generic [ref=f19e1004] [cursor=pointer]
+          - term [ref=f19e1006]:
+            - generic "只对前100万条记录分组" [ref=f19e1007] [cursor=pointer]: OA出版
+            - generic [ref=f19e1008] [cursor=pointer]
+      - generic [ref=f19e640]:
+        - generic [ref=f19e1009]:
+          - generic [ref=f19e1010]: 检索范围： 总库
+          - link "主题定制" [ref=f19e1011] [cursor=pointer]:
+            - /url: javascript:void(0)
+          - link "检索历史" [ref=f19e1012] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - generic [ref=f19e3146]:
+          - generic [ref=f19e3148]:
+            - generic [ref=f19e3149]:
+              - generic [ref=f19e3150]:
+                - text: 共找到
+                - emphasis [ref=f19e3151]: "45"
+                - text: 条结果
+              - text: 2/3
+              - generic "键盘的“← →”可以实现快速翻页" [ref=f19e3153] [cursor=pointer]: <<
+              - generic "键盘的“← →”可以实现快速翻页" [ref=f19e3155] [cursor=pointer]: ">>"
+            - generic [ref=f19e3156]:
+              - generic [ref=f19e3157]:
+                - generic [ref=f19e3158] [cursor=pointer]:
+                  - checkbox "全选" [ref=f19e3159]
+                  - text: 全选
+                - text: 已选
+                - emphasis [ref=f19e3160] [cursor=pointer]: "2"
+                - link "清除" [active] [ref=f19e3161] [cursor=pointer]:
+                  - /url: javascript:$(this).filenameClear();
+              - list [ref=f19e3162]:
+                - listitem [ref=f19e3163] [cursor=pointer]:
+                  - link "批量操作" [ref=f19e3164]:
+                    - /url: javascript:void(0)
+                - listitem [ref=f19e3166] [cursor=pointer]:
+                  - link "导出与分析" [ref=f19e3167]:
+                    - /url: javascript:void(0)
+                  - list [ref=f19e3805]:
+                    - listitem [ref=f19e3806]:
+                      - link "导出文献" [ref=f19e3807]:
+                        - /url: javascript:void(0)
+                    - listitem [ref=f19e3809]:
+                      - link "可视化分析" [ref=f19e3810]:
+                        - /url: javascript:void(0)
+                    - listitem [ref=f19e3812]:
+                      - link "AI文献综述" [ref=f19e3813]:
+                        - /url: javascript:void(0)
+                    - listitem [ref=f19e3814]:
+                      - link "AI文献计量" [ref=f19e3815]:
+                        - /url: https://ai.cnki.net/wxjl
+              - list [ref=f19e3169]:
+                - listitem "详情" [ref=f19e3170] [cursor=pointer]
+                - listitem "列表" [ref=f19e3172] [cursor=pointer]
+              - generic [ref=f19e3175]:
+                - generic [ref=f19e3176]: 显示
+                - generic [ref=f19e3177] [cursor=pointer]: "20"
+              - generic [ref=f19e3181]:
+                - generic [ref=f19e3182]: 排序：
+                - list [ref=f19e3183] [cursor=pointer]:
+                  - listitem "只在800万条记录以内有效" [ref=f19e3184]: 相关度
+                  - listitem "只在800万条记录以内有效" [ref=f19e3185]: 发表时间
+                  - listitem "只在800万条记录以内有效" [ref=f19e3186]: 被引
+                  - listitem "只在800万条记录以内有效" [ref=f19e3187]: 下载
+                  - listitem "只在800万条记录以内有效" [ref=f19e3188]: 综合
+          - generic [ref=f19e3190]:
+            - table [ref=f19e3195]:
+              - rowgroup [ref=f19e3196]:
+                - row [ref=f19e3197]:
+                  - columnheader [ref=f19e3198]
+                  - columnheader "题名" [ref=f19e3199]
+                  - columnheader "作者" [ref=f19e3200]
+                  - columnheader "来源" [ref=f19e3201]
+                  - columnheader "发表时间" [ref=f19e3202]
+                  - columnheader "数据库" [ref=f19e3203]
+                  - columnheader "被引" [ref=f19e3204]
+                  - columnheader "下载" [ref=f19e3205]
+                  - columnheader "操作" [ref=f19e3206]
+              - rowgroup [ref=f19e3207]:
+                - row [ref=f19e3208]:
+                  - cell "21" [ref=f19e3209]:
+                    - checkbox [checked] [ref=f19e3210] [cursor=pointer]
+                    - text: "21"
+                  - cell [ref=f19e3211]:
+                    - link "甜宠题材微短剧的“碎片化”叙事研究" [ref=f19e3214] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPax5Krn7qd1BmZD4kVi6J3zhwHz5iyDOrdmEVFWURdo2Z-Mrtr3WSbc4s89Kl39lfiWx1NzZFXOsNjHVrLuCkPQFTSh1n45E33Y1Mf159_9pfdicKULfg-t8vaHi9JKq8s9l4xDquVpiOLkWgltMe60s2heVsXGTp8A7czmL8All4TeoO2fwtXq&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3215]:
+                    - link "陈宇丽" [ref=f19e3216] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPaDeDJT20FRT09qmSEwJPWXmVJhEhIyGiVLjZUPBeK8ckhgFy9FafkNn_L59HMkTORziXmJddU-bUIKRyzGd4OcEKk0jyOCiGnDPpx0D9cLJIHE_0ybhNRNMXxydsm--2YbUDMy0uJOLaLGtltjrZ8Y&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3217]:
+                    - paragraph [ref=f19e3218]:
+                      - link "深圳大学" [ref=f19e3219] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEUO6rQRXtCKL1oE3MlneNMorm8UkgURmQzN5hZPMd0rzKggEFUPGFzAYbMnfcoiOE8UQBx33KNTHPvWkLMN3Hch&uniplatform=NZKPT&language=CHS
+                  - cell "2023-06-30" [ref=f19e3220]
+                  - cell "硕士" [ref=f19e3221]
+                  - cell [ref=f19e3222]:
+                    - link "3" [ref=f19e3224] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPax5Krn7qd1BmZD4kVi6J3zhwHz5iyDOrdmEVFWURdo2Z-Mrtr3WSbc4s89Kl39lfiWx1NzZFXOsNjHVrLuCkPQFTSh1n45E33Y1Mf159_9pfdicKULfg-t8vaHi9JKq8s9l4xDquVpiOLkWgltMe60s2heVsXGTp8A7czmL8All4TeoO2fwtXq&uniplatform=NZKPT&language=CHS&anchor=citnet
+                  - cell [ref=f19e3225]:
+                    - link "2411" [ref=f19e3227] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3228]:
+                    - link "下载" [ref=f19e3229] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyR7mflgvgkB5hgRhjAQXrfYVkTBStnvQmcAhRPkKHDP3DSPX%2FGU14fVVrRVybklOVoil80vbNomKFjMOhCCNkgbBlem7EOQsXoZXjDGsrijOEYqVQU7m4DA0dixYqmPrAYDsvWZFlixFVNgzAuGDi60tfbwlTH4OUN0%2FhzF1u1On5pXCEdMZamMS4W6OJpWqEda9C1UCCEZT7StY81edvHYo3N8h39l3RGT%2F3qPLlQ0xsgl0bO%2FBzuNqO6NT16Byn%2FXKxus0%2FWw7mpsSUa%2FbvsHqD3kv8IMQvx%2BTK46immOfw%3D%3D&language=CHS
+                    - link "原版阅读" [ref=f19e3231] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyR7mflgvgkB5hgRhjAQXrfYVkTBStnvQmcAhRPkKHDP3DSPX%2FGU14fVVrRVybklOVrcU5DNpzsJBExlSG2DYJiyOKcEuiGBHYRrSZfqbgWXfAqrBqCZ4JEfMxq%2B%2BqHy9SKhalvRyfqhFWmFWyfjAnhN4akS5QdKxdiRZC743njY%2BOqV61kGWEGz5paOC6UJbJOkFBwij2iKyC8T97PI9gdApYy1H%2FyYpGUFgKxgqeWkfsQ5hSX6onYv20lt9vaaHLxUNjVpPVYpxGKeJotjiDDGhn54GH6OAbzBcztR3IojFA%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3233] [cursor=pointer]
+                    - link "引用" [ref=f19e3235] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3237] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=RGa7mrESpptToOMuMXTtLIdDpABOkPy0aETAVZfzihwm4iM4UTsUTJq-th3gskmnf2zcJ9klEVDdaHZxLJ2lnBMQcTim95WbQcQvyZY8W5vI1ZqBdCn8bJxRuFKgHA9D&mimetype=PDF&language=CHS&srid=kns
+                - row [ref=f19e3239]:
+                  - cell "22" [ref=f19e3240]:
+                    - checkbox [ref=f19e3241] [cursor=pointer]
+                    - text: "22"
+                  - cell [ref=f19e3242]:
+                    - link "央视频抖音号的女性形象建构研究" [ref=f19e3245] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPax5Krn7qd1BmZD4kVi6J3zhwHz5iyDOrdmEVFWURdo2WZewFA9DDeBfeh5EFSLv3JfxHYKHOTdlTgfEgFGIE7Jn1Di2d57ePFjiWFpkZvSTKr4gmHspYet8D5zISuNUM8en8WYySYOYCbxerVwoHRJCjKhV1JwJKe4kXfAi527u9HRll2i0FAr&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3246]:
+                    - link "马可鑫" [ref=f19e3247] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPax5Krn7qd1BnPKwVbgbOHHDLY4EQoQV1LWYLm9AGhFMaY2rD9iEZ0yMxLEcQefxC_k8RsUTWcZB9OKHnT6g7yujVlVhi8vm-g_FW8abRBo_LPwJw7--7c_Bcv9blAuRv5rlBKRBWIbO6US-J2kFZWK&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3248]:
+                    - paragraph [ref=f19e3249]:
+                      - link "湖南大学" [ref=f19e3250] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEUO6rQRXtCKL1oE3MlneNMorm8UkgURmQzN5hZPMd0rzKggEFUPGFzAiok92saVoPvQL3614ozCGzRm8eCB8hnc&uniplatform=NZKPT&language=CHS
+                  - cell "2023-04-28" [ref=f19e3251]
+                  - cell "硕士" [ref=f19e3252]
+                  - cell [ref=f19e3253]:
+                    - link "1" [ref=f19e3255] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPax5Krn7qd1BmZD4kVi6J3zhwHz5iyDOrdmEVFWURdo2WZewFA9DDeBfeh5EFSLv3JfxHYKHOTdlTgfEgFGIE7Jn1Di2d57ePFjiWFpkZvSTKr4gmHspYet8D5zISuNUM8en8WYySYOYCbxerVwoHRJCjKhV1JwJKe4kXfAi527u9HRll2i0FAr&uniplatform=NZKPT&language=CHS&anchor=citnet
+                  - cell [ref=f19e3256]:
+                    - link "357" [ref=f19e3258] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3259]:
+                    - link "下载" [ref=f19e3260] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyR7mflgvgkB5hgRhjAQXrfYVkTBStnvQmcAhRPkKHDP3Ii84ttLQl1Ylu8dbzRyTgMil80vbNomKFjMOhCCNkgbBlem7EOQsXoZXjDGsrijOEYqVQU7m4DA0dixYqmPrAYDsvWZFlixFVNgzAuGDi60tfbwlTH4OUN0%2FhzF1u1On5pXCEdMZamMS4W6OJpWqEda9C1UCCEZT7StY81edvHYo3N8h39l3RGT%2F3qPLlQ0xsgl0bO%2FBzuNqO6NT16Byn%2FXKxus0%2FWw7mpsSUa%2FbvsHqD3kv8IMQvx%2BTK46immOfw%3D%3D&language=CHS
+                    - link "原版阅读" [ref=f19e3262] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyR7mflgvgkB5hgRhjAQXrfYVkTBStnvQmcAhRPkKHDP3Ii84ttLQl1Ylu8dbzRyTgPcU5DNpzsJBExlSG2DYJiyOKcEuiGBHYRrSZfqbgWXfAqrBqCZ4JEfMxq%2B%2BqHy9SKhalvRyfqhFWmFWyfjAnhN4akS5QdKxdiRZC743njY%2BOqV61kGWEGz5paOC6UJbJOkFBwij2iKyC8T97PI9gdApYy1H%2FyYpGUFgKxgqeWkfsQ5hSX6onYv20lt9vaaHLxUNjVpPVYpxGKeJotjiDDGhn54GH6OAbzBcztR3IojFA%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3264] [cursor=pointer]
+                    - link "引用" [ref=f19e3266] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3268] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=RGa7mrESpptToOMuMXTtLIdDpABOkPy0aETAVZfzihwm4iM4UTsUTJq-th3gskmnfPmW9lTnEEi7agu8TfKW9hMQcTim95WbQcQvyZY8W5vI1ZqBdCn8bJxRuFKgHA9D&mimetype=PDF&language=CHS&srid=kns
+                - row [ref=f19e3270]:
+                  - cell "23" [ref=f19e3271]:
+                    - checkbox [ref=f19e3272] [cursor=pointer]
+                    - text: "23"
+                  - cell [ref=f19e3273]:
+                    - link "讲好警察故事：新媒体平台上的内容特点与传播效果——以中国警察网新浪微博为例" [ref=f19e3274] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPbSP_arHWluclJAXox3aBnc_cPoUZmEZQCZ_P6z7CPafw8g44aKRpksfeGElsWH4VabT6z6mkBTmhJzJwbZUb4MgwD83K_tHpmJvzaUPAuchN9d_QiqJVtT4R4ofWBrNuDJO_Ed7zSRjoHjdxDTbIAGCCwinrhGzq6SJXifyzqg6w==&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3275]:
+                    - link "李宏" [ref=f19e3276] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPbSP_arHWlucifnoZa0CkGxY5rboN7Vh-Tcn0jVOWnddVIjrt6ZlqBw0ooAlXMVuEvEUuXSHcNWKaPiR3QwG2xEIBMEMcKFs_uwawz0QHJc2sJX8PbJ9cfgXFarDoNFtVPe94Iw5_SSrg==&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3277]:
+                    - paragraph [ref=f19e3278]:
+                      - link "中国人民公安大学学报(社会科学版)" [ref=f19e3279] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEUZRRbbdb29QCOSt9CNe6NAGgtODvBfbF7wmOEJ3iaGB34B4jUyEUy99VCM_A8AcfM8wyK8ist7yuHuhXxYAf97aaCn1zDSj1Y=&uniplatform=NZKPT&language=CHS
+                  - cell "2022-12-15" [ref=f19e3280]
+                  - cell "期刊" [ref=f19e3281]
+                  - cell [ref=f19e3282]:
+                    - link "17" [ref=f19e3284] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPbSP_arHWluclJAXox3aBnc_cPoUZmEZQCZ_P6z7CPafw8g44aKRpksfeGElsWH4VabT6z6mkBTmhJzJwbZUb4MgwD83K_tHpmJvzaUPAuchN9d_QiqJVtT4R4ofWBrNuDJO_Ed7zSRjoHjdxDTbIAGCCwinrhGzq6SJXifyzqg6w==&uniplatform=NZKPT&language=CHS&anchor=citnet
+                  - cell [ref=f19e3285]:
+                    - link "2166" [ref=f19e3287] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3288]:
+                    - link "下载" [ref=f19e3289] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdpfnxH0ifbNup32DgGqxCY8bzQBFQlggGz9mjHhRFyvnluIe5%2FcW%2B%2BVuu2JbUJ%2BnYR7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIkxpdQKFRF2KK3TuXw%2B8vSXxxluINF6fMO20iEpFsF%2FxvWzG90%2BuScGKvieC2F2f8MbW%2BDVXMsJEDMWSEW9EHP%2BQhtCcfzq06G6X3KBB%2FsvR9U2Gb4qyzvuwRCY426zL6aQ%3D%3D&language=CHS
+                    - link "HTML阅读" [ref=f19e3291] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdpfnxH0ifbNup32DgGqxCY8bzQBFQlggGz9mjHhRFyvnsyfIhgVjZXw9coiNoOzS16L6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGYO5z66kJPcnqaxo5GSpg8z1fs4iheqXGejVmqoCIWDbR4MXWMVKZ0AuDIoSVAxlFmyfF8hGbohZNLW0III3KpCDASisyERuaS5wcaymL94re2vT28QP%2F5MkhmYEbXE2jQ%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3293] [cursor=pointer]
+                    - link "引用" [ref=f19e3295] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3297] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=Pe2nFq1PBOM11SpCErZ-LwM1UHjV0uMR_icN4IXwgidnZRYXDah0l_3BjosWP2U0nc6ks_DcCmlYZ-w9NezoC63tX2onnTexasLcgF4O3JF3KAUBlVIsgcb0E8u_YkCK&mimetype=XML&language=CHS&srid=kns
+                - row [ref=f19e3299]:
+                  - cell "24" [ref=f19e3300]:
+                    - checkbox [ref=f19e3301] [cursor=pointer]
+                    - text: "24"
+                  - cell [ref=f19e3302]:
+                    - link "基于短视频赛道的融媒体新闻节目立体化传播研究" [ref=f19e3303] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPZwF0kbEBNdSEuyf30DpBMVQihisAWM8dFxO_0Deqg0-xs0AlDNy0My119WIXTD39ddVD2yob8Bevh8G-AXlUTr11faAWKW2WjahGLqA-MoPn7bu3KWkT64FuZTA1dW3dsMuGhTfLsNgsMS9qR2-5_UBEwJZ3rlaGw8me7aUr4Rng==&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3304]:
+                    - link "柴剑" [ref=f19e3305] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPZwF0kbEBNdSHkpa7A_hN0ZeWgvBXKi1pexDUE58aGQyhBrHEa8a8Gsdh1oNKXoCcerWofLfLqHJOAvTLplBH6heIj5YrbHWTeaBnc1vwuNSAUCS4v6-JC8Nm6oaw7JUIY-ymQmfNV8eQ==&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3306]:
+                    - paragraph [ref=f19e3307]:
+                      - link "新闻传播" [ref=f19e3308] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEUvNrTF9GITJt_V84nhdFrNi4gUl29g_T2LeWfzQZJWJEOyBN1SN-ycY2xf0eo6efDtxOIvvlE4BLjGI9gXnhxWVzWXS0sT26c=&uniplatform=NZKPT&language=CHS
+                  - cell "2022-11-20" [ref=f19e3309]
+                  - cell "期刊" [ref=f19e3310]
+                  - cell [ref=f19e3311]:
+                    - link "7" [ref=f19e3313] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPZwF0kbEBNdSEuyf30DpBMVQihisAWM8dFxO_0Deqg0-xs0AlDNy0My119WIXTD39ddVD2yob8Bevh8G-AXlUTr11faAWKW2WjahGLqA-MoPn7bu3KWkT64FuZTA1dW3dsMuGhTfLsNgsMS9qR2-5_UBEwJZ3rlaGw8me7aUr4Rng==&uniplatform=NZKPT&language=CHS&anchor=citnet
+                  - cell [ref=f19e3314]:
+                    - link "94" [ref=f19e3316] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3317]:
+                    - link "下载" [ref=f19e3318] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdpfnxH0ifbNup32DgGqxCY8sEkl5UZRWCMNnJZn93abMKSKKPAaRM%2Bl%2B2MnV9lMTAB7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk0Cq47%2BaNeojQsfyxhX7IhxxluINF6fMO20iEpFsF%2FxvWzG90%2BuScGKvieC2F2f8MbW%2BDVXMsJEDMWSEW9EHP%2BQhtCcfzq06G6X3KBB%2FsvR9U2Gb4qyzvuwRCY426zL6aQ%3D%3D&language=CHS
+                    - link "HTML阅读" [ref=f19e3320] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdpfnxH0ifbNup32DgGqxCY8sEkl5UZRWCMNnJZn93abMPX1Bwo2N1UI0z%2F%2BuDOCdmeL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGYO5z66kJPcnqaxo5GSpg8yhjBJ4SdPzeIoEwnK573VeR4MXWMVKZ0AuDIoSVAxlFmyfF8hGbohZNLW0III3KpCDASisyERuaS5wcaymL94re2vT28QP%2F5MkhmYEbXE2jQ%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3322] [cursor=pointer]
+                    - link "引用" [ref=f19e3324] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3326] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=Pe2nFq1PBOM11SpCErZ-LwM1UHjV0uMR_icN4IXwgidzGm1QGl2DpuzxYj4eYgAm60D_zu1vndJw3S-ycSrkl63tX2onnTexasLcgF4O3JF3KAUBlVIsgcb0E8u_YkCK&mimetype=XML&language=CHS&srid=kns
+                - row [ref=f19e3328]:
+                  - cell "25" [ref=f19e3329]:
+                    - checkbox [ref=f19e3330] [cursor=pointer]
+                    - text: "25"
+                  - cell [ref=f19e3331]:
+                    - link "基于融媒体技术的中国话语舆情传播引导机制研究" [ref=f19e3332] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPZFsuSGccsFXmyHbu_svZh06Z9-u2tIGPmDsokXO9Dmx49P5-xumA7Zk8gJ8X3XpkNWRMeSpReFPqfuZRNZ_WxfNB4TXPpbVePJ5PozTCs-9EICtuRXnwGxwudpAzm5VakPKvUAAcEybL8PJCmfknJ7yvW4ieAj-IU6OGnwwE3Aaw==&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3333]:
+                    - link "李艳微" [ref=f19e3334] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPZFsuSGccsFXpWOME6X0ynp2Ksz7Ffy-mKNsex0EPmLyQ10TWy5z_2lc3uQyGccL7YfPN9igWSIt3ownHVtNkt-SKBlYiZdT3LTlSKtIfY5kvrGVQ_c356BMssUE50wy4lWzvyzrGwMv74aYfSniK07&uniplatform=NZKPT&language=CHS
+                    - text: ;
+                    - link "包磊" [ref=f19e3335] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPZFsuSGccsFXpWOME6X0ynpeBwhNYFp6fWg53db2D86xo09yQQo_gJeNe6JZHI_pjNVquYy9UvIdDzH2HQLdaPEXhmz7EHiZOw8z561daYxCSIiTuwPHMPc-oi3LF67upSIshNTLqTPlw==&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3336]:
+                    - paragraph [ref=f19e3337]:
+                      - link "情报科学" [ref=f19e3338] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEURbHVqmxYhMXbXwJaRzgrYSZXkUkdWZl-LxeNzaqHHBSCjitd97vb7-_2iyAAGz1NPuzWYhrYbVmlWxu6Mn6um6PGT35oKWuM=&uniplatform=NZKPT&language=CHS
+                  - cell "2022-09-28 20:02" [ref=f19e3339]
+                  - cell "期刊" [ref=f19e3340]
+                  - cell [ref=f19e3341]:
+                    - link "15" [ref=f19e3343] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPZFsuSGccsFXmyHbu_svZh06Z9-u2tIGPmDsokXO9Dmx49P5-xumA7Zk8gJ8X3XpkNWRMeSpReFPqfuZRNZ_WxfNB4TXPpbVePJ5PozTCs-9EICtuRXnwGxwudpAzm5VakPKvUAAcEybL8PJCmfknJ7yvW4ieAj-IU6OGnwwE3Aaw==&uniplatform=NZKPT&language=CHS&anchor=citnet
+                  - cell [ref=f19e3344]:
+                    - link "1841" [ref=f19e3346] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3347]:
+                    - link "下载" [ref=f19e3348] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdpfnxH0ifbNup32DgGqxCY87FdNoFvQc%2FvRuaRMedm5gDG74ytafp0Du0ZBFsPQRtl7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk9bEus%2BwPGHE0B7GjkcNkKFxluINF6fMO20iEpFsF%2FxvWzG90%2BuScGKvieC2F2f8MbW%2BDVXMsJEDMWSEW9EHP%2BQhtCcfzq06G6X3KBB%2FsvR9U2Gb4qyzvuwRCY426zL6aQ%3D%3D&language=CHS
+                    - link "HTML阅读" [ref=f19e3350] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdpfnxH0ifbNup32DgGqxCY87FdNoFvQc%2FvRuaRMedm5gLxMERzOveXOmNv1awUjuM6L6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGYO5z66kJPcnqaxo5GSpg8zcyOsNIK6BfWW7qZ05BNy3R4MXWMVKZ0AuDIoSVAxlFmyfF8hGbohZNLW0III3KpCDASisyERuaS5wcaymL94re2vT28QP%2F5MkhmYEbXE2jQ%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3352] [cursor=pointer]
+                    - link "引用" [ref=f19e3354] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3356] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=Pe2nFq1PBOM11SpCErZ-LwM1UHjV0uMR_icN4IXwgifanMNS8d6CPYTOffqeDEIsDTEeLDgECHm0Kr8QhTq3Sa3tX2onnTexasLcgF4O3JF3KAUBlVIsgcb0E8u_YkCK&mimetype=XML&language=CHS&srid=kns
+                - row [ref=f19e3358]:
+                  - cell "26" [ref=f19e3359]:
+                    - checkbox [ref=f19e3360] [cursor=pointer]
+                    - text: "26"
+                  - cell [ref=f19e3361]:
+                    - link "故事·话语·行为：抖音平台中的身体叙事研究" [ref=f19e3364] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPZ1WD2qbkHECn78NCuom0KvhrxTtu4T8t88GaqaAgphiYMjt-C_4MMYVsQ9AaGhPTED6xQTWFb_tKj9Ho96RG3DQkz97OXI1WR8kSaMd7OabSJ3S3cGa-6yib2SlDNtqDwG-7MsyVgsRQJL38vQgXymHBd2dx4bG9daS5096eIT6jcCI-MSBK9-&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3365]:
+                    - link "张昊璇" [ref=f19e3366] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPZ1WD2qbkHEClHbYZluSFTCMnVUCaIjpSRLTv9wNt8A4rfYBKhybIj1V0lxeXUZySadlZGrXu0b6ofzJ0feZPeJ6DvEA5FXAjBCwBdueisePxAuIb7ZkpOBOvdNWa7tIAo5wO3Iv14wRDQGsGBMO2kT&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3367]:
+                    - paragraph [ref=f19e3368]:
+                      - link "华侨大学" [ref=f19e3369] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEU7Bv63iH21fZ0mdTWDVmeUXdgvOTnDjfPPZJseYTPqblHFltaW1rDOlsyhUTujVC3CxHnk3xXujqtmgpJVx3W_&uniplatform=NZKPT&language=CHS
+                  - cell "2022-05-14" [ref=f19e3370]
+                  - cell "硕士" [ref=f19e3371]
+                  - cell [ref=f19e3372]:
+                    - link "5" [ref=f19e3374] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPZ1WD2qbkHECn78NCuom0KvhrxTtu4T8t88GaqaAgphiYMjt-C_4MMYVsQ9AaGhPTED6xQTWFb_tKj9Ho96RG3DQkz97OXI1WR8kSaMd7OabSJ3S3cGa-6yib2SlDNtqDwG-7MsyVgsRQJL38vQgXymHBd2dx4bG9daS5096eIT6jcCI-MSBK9-&uniplatform=NZKPT&language=CHS&anchor=citnet
+                  - cell [ref=f19e3375]:
+                    - link "669" [ref=f19e3377] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3378]:
+                    - link "下载" [ref=f19e3379] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyS5%2FvYq23y3KgQhOLN0TNCCVkTBStnvQmcAhRPkKHDP3JEypfbOEngsRap3NDb21gQil80vbNomKFjMOhCCNkgbBlem7EOQsXoZXjDGsrijOEYqVQU7m4DA0dixYqmPrAYDsvWZFlixFVNgzAuGDi60tfbwlTH4OUN0%2FhzF1u1Onw4efEtBgJAuq9PL0gRfxBha9C1UCCEZT7StY81edvHYo3N8h39l3RGT%2F3qPLlQ0xsgl0bO%2FBzuNqO6NT16Byn%2FXKxus0%2FWw7mpsSUa%2FbvsHqD3kv8IMQvx%2BTK46immOfw%3D%3D&language=CHS
+                    - link "原版阅读" [ref=f19e3381] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyS5%2FvYq23y3KgQhOLN0TNCCVkTBStnvQmcAhRPkKHDP3JEypfbOEngsRap3NDb21gTcU5DNpzsJBExlSG2DYJiyOKcEuiGBHYRrSZfqbgWXfAqrBqCZ4JEfMxq%2B%2BqHy9SKhalvRyfqhFWmFWyfjAnhN4akS5QdKxdiRZC743njY%2BEtFAXDbGgJDMUFC7ullblUP3U6TIdYn%2BXXdpAd4cL0TpYy1H%2FyYpGUFgKxgqeWkfsQ5hSX6onYv20lt9vaaHLxUNjVpPVYpxGKeJotjiDDGhn54GH6OAbzBcztR3IojFA%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3383] [cursor=pointer]
+                    - link "引用" [ref=f19e3385] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3387] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=RGa7mrESpptToOMuMXTtLIdDpABOkPy0aETAVZfzihwm4iM4UTsUTJq-th3gskmnQORXyy2q90u7MfAGH0_PKN-PbckLiJKYEIy_-V_5f6bI1ZqBdCn8bJxRuFKgHA9D&mimetype=PDF&language=CHS&srid=kns
+                - row [ref=f19e3389]:
+                  - cell "27" [ref=f19e3390]:
+                    - checkbox [ref=f19e3391] [cursor=pointer]
+                    - text: "27"
+                  - cell [ref=f19e3392]:
+                    - link "媒体融合环境下女性主持人话语形象塑造研究" [ref=f19e3395] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPauDYZ4aCtcpL7eVf-gBiueZc4a7nhPaqWmWAte8AMiJgkwtGQXvNOrK_Fh2WgmmeXXxjItp3a9D-t0b9BhkncQgoclYa7NuAuV5HuE5os-5UtM_VgHIgeX5u9sk5fOphF810NBX8t84DTfJoDv9xeEolPNbjr-c-GrHOsW1aIwh2i9PX4e0_u-&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3396]:
+                    - link "刘宇航" [ref=f19e3397] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPZ1WD2qbkHEClHbYZluSFTCdZWrZ2kW4TekdnTj4yPE3MZkmwcAI9GVMo3cccZDvZEzUg7OLv7Lp443ge6QkZdCb-nHt_I2UiS9KMcKWMcla28pVcjNGoHzBYN8wIAt3mjAiGQyIYN8L2lKY3IhUwab&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3398]:
+                    - paragraph [ref=f19e3399]:
+                      - link "深圳大学" [ref=f19e3400] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEX8UBh9FPXCtNcnZ8Lbt2COdceoEt8vUBCRnN9WaguXlPyqNWJCw8Ews9ht8LwkHk2q1m8akWRbOLjUgq7A0At1&uniplatform=NZKPT&language=CHS
+                  - cell "2022-05-13" [ref=f19e3401]
+                  - cell "硕士" [ref=f19e3402]
+                  - cell [ref=f19e3403]:
+                    - link "1" [ref=f19e3405] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPauDYZ4aCtcpL7eVf-gBiueZc4a7nhPaqWmWAte8AMiJgkwtGQXvNOrK_Fh2WgmmeXXxjItp3a9D-t0b9BhkncQgoclYa7NuAuV5HuE5os-5UtM_VgHIgeX5u9sk5fOphF810NBX8t84DTfJoDv9xeEolPNbjr-c-GrHOsW1aIwh2i9PX4e0_u-&uniplatform=NZKPT&language=CHS&anchor=citnet
+                  - cell [ref=f19e3406]:
+                    - link "175" [ref=f19e3408] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3409]:
+                    - link "下载" [ref=f19e3410] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyR7mflgvgkB5hgRhjAQXrfYVkTBStnvQmcAhRPkKHDP3FiKDMo1%2FW0zaP3x9jmjEkUil80vbNomKFjMOhCCNkgbBlem7EOQsXoZXjDGsrijOEYqVQU7m4DA0dixYqmPrAYDsvWZFlixFVNgzAuGDi60tfbwlTH4OUN0%2FhzF1u1On4OCg1RxZewCqFy6zl0OCU9a9C1UCCEZT7StY81edvHYo3N8h39l3RGT%2F3qPLlQ0xsgl0bO%2FBzuNqO6NT16Byn%2FXKxus0%2FWw7mpsSUa%2FbvsHqD3kv8IMQvx%2BTK46immOfw%3D%3D&language=CHS
+                    - link "原版阅读" [ref=f19e3412] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyR7mflgvgkB5hgRhjAQXrfYVkTBStnvQmcAhRPkKHDP3FiKDMo1%2FW0zaP3x9jmjEkXcU5DNpzsJBExlSG2DYJiyOKcEuiGBHYRrSZfqbgWXfAqrBqCZ4JEfMxq%2B%2BqHy9SKhalvRyfqhFWmFWyfjAnhN4akS5QdKxdiRZC743njY%2BEtFAXDbGgJDMUFC7ullblV1WXGVK1kaZCJVplF0HgyqpYy1H%2FyYpGUFgKxgqeWkfsQ5hSX6onYv20lt9vaaHLxUNjVpPVYpxGKeJotjiDDGhn54GH6OAbzBcztR3IojFA%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3414] [cursor=pointer]
+                    - link "引用" [ref=f19e3416] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3418] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=RGa7mrESpptToOMuMXTtLIdDpABOkPy0aETAVZfzihwm4iM4UTsUTJq-th3gskmn8zWKbxAh0ZmBJkc6L0i9SRMQcTim95WbQcQvyZY8W5vI1ZqBdCn8bJxRuFKgHA9D&mimetype=PDF&language=CHS&srid=kns
+                - row [ref=f19e3420]:
+                  - cell "28" [ref=f19e3421]:
+                    - checkbox [ref=f19e3422] [cursor=pointer]
+                    - text: "28"
+                  - cell [ref=f19e3423]:
+                    - link "技术链接与圈层壁垒：内容聚合下体育短视频的传播突围" [ref=f19e3424] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPauDYZ4aCtcpL7eVf-gBiueO0Du2JcViPP5sJgdcovQ2GO5X__s-mJ4M1kbkbkyRZo6xJtXCDzosp5_0dMrnfGdZZNn_ecOuLI0d9x4zQkA6ANwoikZhaKu0klnCQGACksTWWqXl4qZszqm1bDUTjxE_gGYEAWRD_279DFVxtHNdXf5XMO4hoVe&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3425]:
+                    - link "罗钰" [ref=f19e3426] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPauDYZ4aCtcpIXDw2bKriAZ4CkmrM5TcPztTE1f6b2VUgzx8TvGSCBdeRqd-GGKgtwoU7-pcnKl-TQVMkNBeBoMrlRbQcefEOmWnG8Euqv2ebm2b1nB3d8dvpvvlm08feFHt0Tf3QMlEA==&uniplatform=NZKPT&language=CHS
+                    - text: ;
+                    - link "田烨" [ref=f19e3427] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPauDYZ4aCtcpIXDw2bKriAZvrYTd3_RgpxIFNgNZUPdK-VL2KDVvtwWWaf1qGHIRHl1OmM0isvN4te9gaTFPZ03SyjDojTEhUex6MNpF0Xil3AWgYxmvKh7sC7su1_MbWC8QWrEpsf2vQ==&uniplatform=NZKPT&language=CHS
+                    - text: ;
+                    - link "彭靖靖" [ref=f19e3428] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPauDYZ4aCtcpIXDw2bKriAZAGjHoei-lGvagtR1pz2umOy7a5v9YcSTAdAqRcREzzifarLo0c0NiLqgY88NYJMS5uAf9a1SppfhHSZhfODK8hcpwe-QmOiIiTOyZ7mdQp7f0H9fPSEfhSzKebhaoj88&uniplatform=NZKPT&language=CHS
+                    - text: ;
+                    - link "王丽丽" [ref=f19e3429] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPauDYZ4aCtcpIXDw2bKriAZDGpFuRSHEx_HBazJ63rJOwrmiM7xzhxvzuk89Q1EcYLHxywVD8J2qIK1yFDIngbNWuIzrxoPmfZHMiUA6BNzXi1VbLkNgmFKjIdOpYIXba-ANSzuCFjmjTwFCekzalxg&uniplatform=NZKPT&language=CHS
+                    - text: ;
+                    - link "卫朝雪" [ref=f19e3430] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPauDYZ4aCtcpIXDw2bKriAZ3CzNKBolhvuiIomyKu-Udu9AFkY2Rov__zKIolYNj7f--Fw6C-l0C-PMAlvLH-Ql1pppPQHsH8w1qzIqw6RfnbH8R63x9x--X0qgNFAmK9CprDkHQsSdLTTYXJU9nM8L&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3431]:
+                    - paragraph [ref=f19e3432]:
+                      - link "第十二届全国体育科学大会论文摘要汇编——墙报交流（体育新闻传播分会）" [ref=f19e3433] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEX8UBh9FPXCtNcnZ8Lbt2COKubFUF77OmuajLO5OhGmtcGF9wvD-2L36b_6QVd0ltpSmG4aNxclxGdzdEFVdvLOnVAUs1L_R2I1fAtvxTq-tw==&uniplatform=NZKPT&language=CHS
+                  - cell "2022-03-25" [ref=f19e3434]
+                  - cell "中国会议" [ref=f19e3435]
+                  - cell [ref=f19e3436]
+                  - cell [ref=f19e3437]:
+                    - link "265" [ref=f19e3439] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3440]:
+                    - link "下载" [ref=f19e3441] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BIQfYJ9xGGMgrydkE9rX0UhqNjxajcb0llJZB%2BDeEruuiEeHUxqAIEn3%2FEB5DK6BHhZ8HzEcsdB0LXOKgQQ7cEZq%2F0mehtbwxO4rGQV9xei%2FpiMov8GoingO%2BHGd4p%2BkQHje0aj5T5od3PHpYBIx7P1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGYO5z66kJPcnqaxo5GSpg8wO6uTdFRAwGi2sLNK9fySOR4MXWMVKZ0AuDIoSVAxlFmyfF8hGbohZNLW0III3KpCDASisyERuaS5wcaymL94re2vT28QP%2F5MkhmYEbXE2jQ%3D%3D&language=CHS
+                    - link "原版阅读" [ref=f19e3443] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BIQfYJ9xGGMgrydkE9rX0UhqNjxajcb0llJZB%2BDeEruuiEeHUxqAIEn3%2FEB5DK6BHhZ8HzEcsdB0LXOKgQQ7cEZq%2F0mehtbwxO4rGQV9xegLzgqzRZWetuxZU%2FU3Zhdz%2Bn7BQMQp1IjbaMnhMm0vkNYNSUSmxYMZTzoRFSUI4sTSVfUOx8EJtTQKowy89oOFam2skVMGjMuvBDUnGgRH4LblG4O%2BCoE9GCphdxYjwEDYnbv4TSZkCyO%2Fapro4ZdePIoa1zpBgI%2Fhd8yFjXIgvoaSGehGrrDOLRBHQ5csj1Ow6fOD%2BJWfFhRjkjhe5oYnMH2HcYxjnqFlWZe2E6FjW3coBQGVUiyBxvQTy79iQIo%3D&language=CHS
+                    - generic "收藏" [ref=f19e3445] [cursor=pointer]
+                    - link "引用" [ref=f19e3447] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3449] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=Cepas2vDv1UfxKriHl_KOREioDQGUYyP45GzgsBWMKX8LDGH3olE2pujvp2Jx5X9hpcsCcZPxEx8JVey5DiZhaaHqcM5j5jnQu7zZAyA8K0OsxQqqDizildWFZxihsT2&mimetype=PDF&language=CHS&srid=kns
+                - row [ref=f19e3451]:
+                  - cell "29" [ref=f19e3452]:
+                    - checkbox [ref=f19e3453] [cursor=pointer]
+                    - text: "29"
+                  - cell [ref=f19e3454]:
+                    - link "移动短视频中小镇青年的“土味文化”——快手亚文化现象研究" [ref=f19e3455] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPa0l9AtFlT0tdEYo1iKTw2Maj9wtLGGuOSnb7HjLGlQsGHUF6sp-X27542m0AFGGXi2XuXXxBrxRy3GSv4DY-Gues5zLCPVXodQD9LNTrVewHY74_6zgr6Q3oSUR_Ys89gyTVtC2-1hYKxKwN26SYLO4qf07zjshdhfDgGRzfejYg==&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3456]:
+                    - link "赵婕" [ref=f19e3457] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPaUF9AvPtoa3bxB6QY2Q1lckZQl6KJGOz1zFO3QU0s-VANfOJQ1nTWFUwWvyqebh-smei4PEXQJaWUQ8oebyYhacYz09Rnxgi6QNOv5uMGxYl55t9ysbaa8LB2D9bg2UpltWftZezsJ2g==&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3458]:
+                    - paragraph [ref=f19e3459]:
+                      - link "新闻传播" [ref=f19e3460] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEXC0JjiIr8cBY8DkwuJl5N88AuFlJtRUjWiQfliIhPYGKQILgR47XEBsBd5Y5KRNV0FCT5C_8ixqRbNZ6VfmPJmOqTSrX4v0xU=&uniplatform=NZKPT&language=CHS
+                  - cell "2021-12-20" [ref=f19e3461]
+                  - cell "期刊" [ref=f19e3462]
+                  - cell [ref=f19e3463]:
+                    - link "10" [ref=f19e3465] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPa0l9AtFlT0tdEYo1iKTw2Maj9wtLGGuOSnb7HjLGlQsGHUF6sp-X27542m0AFGGXi2XuXXxBrxRy3GSv4DY-Gues5zLCPVXodQD9LNTrVewHY74_6zgr6Q3oSUR_Ys89gyTVtC2-1hYKxKwN26SYLO4qf07zjshdhfDgGRzfejYg==&uniplatform=NZKPT&language=CHS&anchor=citnet
+                  - cell [ref=f19e3466]:
+                    - link "1752" [ref=f19e3468] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3469]:
+                    - link "下载" [ref=f19e3470] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdq%2F0vXAQuV35Z0QgBQiDxeFsEkl5UZRWCMNnJZn93abME6M12xsXFhEkDv%2BKRYt%2B0d7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIkwT3UuVjFTGl1Xs4yUBXwCFxluINF6fMO20iEpFsF%2FxvWzG90%2BuScGKvieC2F2f8MbW%2BDVXMsJEDMWSEW9EHP%2BQhtCcfzq06G6X3KBB%2FsvR9U2Gb4qyzvuwRCY426zL6aQ%3D%3D&language=CHS
+                    - link "HTML阅读" [ref=f19e3472] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdq%2F0vXAQuV35Z0QgBQiDxeFsEkl5UZRWCMNnJZn93abMKtjAiBsd6hiNQNxzogak92L6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGYO5z66kJPcnqaxo5GSpg8zTREL%2BA%2FyJwEZyi2g84QvIR4MXWMVKZ0AuDIoSVAxlFmyfF8hGbohZNLW0III3KpCDASisyERuaS5wcaymL94re2vT28QP%2F5MkhmYEbXE2jQ%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3474] [cursor=pointer]
+                    - link "引用" [ref=f19e3476] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3478] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=Pe2nFq1PBOM11SpCErZ-LwM1UHjV0uMR_icN4IXwgidzGm1QGl2DpuzxYj4eYgAmvzc7dh3_8BSWELx9hm8OLxvU-zPPyvLbKFuSpmggmKp3KAUBlVIsgcb0E8u_YkCK&mimetype=XML&language=CHS&srid=kns
+                - row [ref=f19e3480]:
+                  - cell "30" [ref=f19e3481]:
+                    - checkbox [ref=f19e3482] [cursor=pointer]
+                    - text: "30"
+                  - cell [ref=f19e3483]:
+                    - link "视频搜索，下一个风口？" [ref=f19e3484] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPa0l9AtFlT0tdEYo1iKTw2M-jR79qwl2bJSzQiUOeJzWXC01haTgF9YytGSiyBU8ROU9pA9t_iuzEVmGnwTLNM0fX63HxIrMZ4QdfHNtTJD1j5OKhNq7XARsbLKaKRV6VIPMYGeiAKl2rOFMR7afdkvg4qj69CICF8LEAu0cioctA==&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3485]
+                  - cell [ref=f19e3486]:
+                    - paragraph [ref=f19e3487]:
+                      - link "发明与创新(大科技)" [ref=f19e3488] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEX19DivxlmNEc5qHL1Y84n2CVVPmGyipX2ccoqyacOPPrhsWQ7rXJveN99mJK8D6Uy29PQCxJRdiP1Y1d5FshW9qoqMpyLtK-w=&uniplatform=NZKPT&language=CHS
+                  - cell "2021-10-01" [ref=f19e3489]
+                  - cell "特色期刊" [ref=f19e3490]
+                  - cell [ref=f19e3491]
+                  - cell [ref=f19e3492]:
+                    - link "65" [ref=f19e3494] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3495]:
+                    - link "下载" [ref=f19e3496] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvmIuraDrGKSQTgEwIpuKcoM71HYfYj6jfnql1GYi%2F5nNgunwXySxseeCpX9Dt6Wr0JDi7HOcSV4JLZNrgc6Vy697b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIkwT3UuVjFTGl1Xs4yUBXwCFxluINF6fMO20iEpFsF%2FxvWzG90%2BuScGKvieC2F2f8MbW%2BDVXMsJEDMWSEW9EHP%2BQhtCcfzq06G6X3KBB%2FsvR9U2Gb4qyzvuwRCY426zL6aQ%3D%3D&language=CHS
+                    - link "HTML阅读" [ref=f19e3498] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvmIuraDrGKSQTgEwIpuKcoM71HYfYj6jfnql1GYi%2F5nNgunwXySxseeCpX9Dt6Wr0PxyCnCs0G4jWGSoSJwILSqL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGYO5z66kJPcnqaxo5GSpg8zTREL%2BA%2FyJwEZyi2g84QvIR4MXWMVKZ0AuDIoSVAxlFmyfF8hGbohZNLW0III3KpCDASisyERuaS5wcaymL94re2vT28QP%2F5MkhmYEbXE2jQ%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3500] [cursor=pointer]
+                    - link "引用" [ref=f19e3502] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3504] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=BIXc9s0YhSIO6ELAvT3bjAM1UHjV0uMR_icN4IXwgicCWe6OlwxtsgmX_pOyizTgTc7ohaMSrZWaPGfpm8gUw3BUCQsMmauDs8iQ9JfSkmF3KAUBlVIsgcb0E8u_YkCK&mimetype=XML&language=CHS&srid=kns
+                - row [ref=f19e3506]:
+                  - cell "31" [ref=f19e3507]:
+                    - checkbox [ref=f19e3508] [cursor=pointer]
+                    - text: "31"
+                  - cell [ref=f19e3509]:
+                    - link "抖音萌宠短视频营销策略分析" [ref=f19e3510] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPYQPwDCo6_HmnrFDl6nbPB0nepRPmTygzhaQVxhjAJ1BMKgMErAPOl_b97pS9hEbph4DUtATOBCUsQhR8wPcCnnYl1weDhPvHpYlQihO6BWdU4RVHvtbsONkz88Be2kroyeV31ZjKQ5LFOcOSU-rZfhmdm-w6dykGghvm_2HmJbFw==&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3511]:
+                    - link "彭阔东" [ref=f19e3512] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPYQPwDCo6_HmgOordQE_gquFENErytpnWVsPW7LxE_OrbJ2BFZww_oYR_QqeU6H7K8eJ7zV1PV3G2fSZaoKJnaP6RJDIx2viZYJCPUPO3YDPSkE-QxB8iM_IPBH5YhiWcdaBR2YsbQ1iL4upYMcFZ7A&uniplatform=NZKPT&language=CHS
+                    - text: ;
+                    - link "林亚苗" [ref=f19e3513] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPYQPwDCo6_HmgOordQE_gqui7G2a3ifts_M_368BWvp-0wp_vzdnK3zJQ3lEoBKBF21_nd63hTo2-gFDOmM3fSlNK0jArJg5TUNlB_KdZHxWZho7pkMRT4akNGEmpUmPZf9hR6C8SXAgFd5VyHbpdhX&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3514]:
+                    - paragraph [ref=f19e3515]:
+                      - link "经济师" [ref=f19e3516] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEXVggV0zCSMU_kLrSVKzJqkWH7Unr9J46G4UOKdDYnI9Oml-0drHVKaq3dgspIbjEkPcNAM8kawGf_QGVzvgQBLcg4xX-2Ro9U=&uniplatform=NZKPT&language=CHS
+                  - cell "2021-06-05" [ref=f19e3517]
+                  - cell "期刊" [ref=f19e3518]
+                  - cell [ref=f19e3519]:
+                    - link "18" [ref=f19e3521] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPYQPwDCo6_HmnrFDl6nbPB0nepRPmTygzhaQVxhjAJ1BMKgMErAPOl_b97pS9hEbph4DUtATOBCUsQhR8wPcCnnYl1weDhPvHpYlQihO6BWdU4RVHvtbsONkz88Be2kroyeV31ZjKQ5LFOcOSU-rZfhmdm-w6dykGghvm_2HmJbFw==&uniplatform=NZKPT&language=CHS&anchor=citnet
+                  - cell [ref=f19e3522]:
+                    - link "4219" [ref=f19e3524] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3525]:
+                    - link "下载" [ref=f19e3526] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdoabmU4NncMetQGnHwQAYvkZ1LfvJYFm3HX8uQXVPHNwzv25nIUy5AzY0Cam51G41Z7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk%2BwxK7%2B4TF90lpp0z3o0PaRxluINF6fMO20iEpFsF%2FxvWzG90%2BuScGKvieC2F2f8MbW%2BDVXMsJEDMWSEW9EHP%2BQhtCcfzq06G6X3KBB%2FsvR9U2Gb4qyzvuwRCY426zL6aQ%3D%3D&language=CHS
+                    - link "HTML阅读" [ref=f19e3528] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdoabmU4NncMetQGnHwQAYvkZ1LfvJYFm3HX8uQXVPHNw2vxqPQO%2BZ9gjnOX7HF971eL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGYO5z66kJPcnqaxo5GSpg8yOSPNnbndV3LMYmTFqdzguR4MXWMVKZ0AuDIoSVAxlFmyfF8hGbohZNLW0III3KpCDASisyERuaS5wcaymL94re2vT28QP%2F5MkhmYEbXE2jQ%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3530] [cursor=pointer]
+                    - link "引用" [ref=f19e3532] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3534] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=Pe2nFq1PBOM11SpCErZ-LwM1UHjV0uMR_icN4IXwgic4y2lhJsr9wDl22_ERcFjz_5X0PGvh0O2KAUYSVAPPehcJFnCXWEvXwdDhbxhTw8J3KAUBlVIsgcb0E8u_YkCK&mimetype=XML&language=CHS&srid=kns
+                - row [ref=f19e3536]:
+                  - cell "32" [ref=f19e3537]:
+                    - checkbox [ref=f19e3538] [cursor=pointer]
+                    - text: "32"
+                  - cell [ref=f19e3539]:
+                    - link "基于用户画像的短视频平台个性化信息推荐研究" [ref=f19e3542] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPZt0uGixJzFauqgplerYcI2XR6MQv7X_O6xx13QyCRW2qktCSV7na92ZkL-siaZ3U9ADq2xWUdORssabLf__PscGz_G8hjcHsh8aGz5NofFrQoMo19KWwOovHgdCd6iipjNdz-prIYxP6OIVnQDtxGxl3qzssm7TRgpmYGUBxSzS_Ra5VWlq98s&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3543]:
+                    - link "章雅楠" [ref=f19e3544] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPZt0uGixJzFauG0ovTyseLaTUSUTRUDLNdfRft1OkcIcJxGcOnyfziaBH-L0RndRNin_T7J8PNlQnFMAdiHnAzvMSZIaLiM7iamjR5orQXawNr26K_HjH-NtOFB6Giier0QaNG35YrzXIhW_vmV9AQm&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3545]:
+                    - paragraph [ref=f19e3546]:
+                      - link "黑龙江大学" [ref=f19e3547] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEU-aNlZS63x6fd25ZYuAKVEbRk65NtaiH9cgvrX97MJKjYeCqwftLmER6VV1fEuZXHb2_THxV9tQgRgnRMhPvsi&uniplatform=NZKPT&language=CHS
+                  - cell "2021-05-10" [ref=f19e3548]
+                  - cell "硕士" [ref=f19e3549]
+                  - cell [ref=f19e3550]:
+                    - link "18" [ref=f19e3552] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPZt0uGixJzFauqgplerYcI2XR6MQv7X_O6xx13QyCRW2qktCSV7na92ZkL-siaZ3U9ADq2xWUdORssabLf__PscGz_G8hjcHsh8aGz5NofFrQoMo19KWwOovHgdCd6iipjNdz-prIYxP6OIVnQDtxGxl3qzssm7TRgpmYGUBxSzS_Ra5VWlq98s&uniplatform=NZKPT&language=CHS&anchor=citnet
+                  - cell [ref=f19e3553]:
+                    - link "2944" [ref=f19e3555] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3556]:
+                    - link "下载" [ref=f19e3557] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyQYyRmAcDC0yuZxBMXV9yzFVkTBStnvQmcAhRPkKHDP3Lipv8trNJkJfC0UrL2ecS4il80vbNomKFjMOhCCNkgbBlem7EOQsXoZXjDGsrijOEYqVQU7m4DA0dixYqmPrAYDsvWZFlixFVNgzAuGDi60tfbwlTH4OUN0%2FhzF1u1On11MyTO3vgJi8EB%2F3iCdrpha9C1UCCEZT7StY81edvHYo3N8h39l3RGT%2F3qPLlQ0xsgl0bO%2FBzuNqO6NT16Byn%2FXKxus0%2FWw7mpsSUa%2FbvsHqD3kv8IMQvx%2BTK46immOfw%3D%3D&language=CHS
+                    - link "原版阅读" [ref=f19e3559] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyQYyRmAcDC0yuZxBMXV9yzFVkTBStnvQmcAhRPkKHDP3Lipv8trNJkJfC0UrL2ecS7cU5DNpzsJBExlSG2DYJiyOKcEuiGBHYRrSZfqbgWXfAqrBqCZ4JEfMxq%2B%2BqHy9SKhalvRyfqhFWmFWyfjAnhN4akS5QdKxdiRZC743njY%2BEtFAXDbGgJDMUFC7ullblUKwYy18XQCtPHV0oQ6v4GMpYy1H%2FyYpGUFgKxgqeWkfsQ5hSX6onYv20lt9vaaHLxUNjVpPVYpxGKeJotjiDDGhn54GH6OAbzBcztR3IojFA%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3561] [cursor=pointer]
+                    - link "引用" [ref=f19e3563] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3565] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=RGa7mrESpptToOMuMXTtLIdDpABOkPy0aETAVZfzihwm4iM4UTsUTJq-th3gskmnXw0oJp0CJXtAA-RNphARg2xc0mMpJ4zM9cw0rLyMgU7PhQCRo5kYiP4eWkONp9c2&mimetype=PDF&language=CHS&srid=kns
+                - row [ref=f19e3567]:
+                  - cell "33" [ref=f19e3568]:
+                    - checkbox [ref=f19e3569] [cursor=pointer]
+                    - text: "33"
+                  - cell [ref=f19e3570]:
+                    - link "美食类短视频的影像呈现与价值表达研究" [ref=f19e3573] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPb4ruKpMoVS7pPiZ81ogUsjWkeBDoTI_AEcRXdA4W4Po-dL_REJDIqoHS0dJ6BI6ZLRyVVKShxrAJVcrQyzDip1GwRGTc8UNK1PU9cC8xeCu95n3f3coLAA5y-iCx04IOOedgGtA3KXA5VXuVCxaO0wqa4pijXXz5IF0X3sIEFMCqYbaPidavmT&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3574]:
+                    - link "高欣" [ref=f19e3575] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPb4ruKpMoVS7sFPt9SqmIdzwG5EvPL21L92BAt0N7QKyuSewadzeHJl5HKT_Vn9xV481LxMhOChjsQ6Qu-1hm9C1UgpDr-R_f5Dzs7U-tIXOc8VrCw6_obDoicP2q6_loFtSrvXsI234g==&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3576]:
+                    - paragraph [ref=f19e3577]:
+                      - link "西北师范大学" [ref=f19e3578] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEWwG_D7wnAZSvrMK6LcUn8Fp3dY5CgjgnzwIeN_f5grXCrLN0IoeWe-F7DH41cAl1AoIEJ-pF67mjD3tXRyYQ4Z&uniplatform=NZKPT&language=CHS
+                  - cell "2021-05-01" [ref=f19e3579]
+                  - cell "硕士" [ref=f19e3580]
+                  - cell [ref=f19e3581]:
+                    - link "29" [ref=f19e3583] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPb4ruKpMoVS7pPiZ81ogUsjWkeBDoTI_AEcRXdA4W4Po-dL_REJDIqoHS0dJ6BI6ZLRyVVKShxrAJVcrQyzDip1GwRGTc8UNK1PU9cC8xeCu95n3f3coLAA5y-iCx04IOOedgGtA3KXA5VXuVCxaO0wqa4pijXXz5IF0X3sIEFMCqYbaPidavmT&uniplatform=NZKPT&language=CHS&anchor=citnet
+                  - cell [ref=f19e3584]:
+                    - link "3161" [ref=f19e3586] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3587]:
+                    - link "下载" [ref=f19e3588] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyS1HGorVqC4jogZUahu1d6SVkTBStnvQmcAhRPkKHDP3HkJzBPhOOWNRnAPE%2By3XT4il80vbNomKFjMOhCCNkgbBlem7EOQsXoZXjDGsrijOEYqVQU7m4DA0dixYqmPrAYDsvWZFlixFVNgzAuGDi60tfbwlTH4OUN0%2FhzF1u1On6yP8%2FzH%2FoHeDCt%2FA2gXmoJa9C1UCCEZT7StY81edvHYo3N8h39l3RGT%2F3qPLlQ0xsgl0bO%2FBzuNqO6NT16Byn%2FXKxus0%2FWw7mpsSUa%2FbvsHqD3kv8IMQvx%2BTK46immOfw%3D%3D&language=CHS
+                    - link "原版阅读" [ref=f19e3590] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyS1HGorVqC4jogZUahu1d6SVkTBStnvQmcAhRPkKHDP3HkJzBPhOOWNRnAPE%2By3XT7cU5DNpzsJBExlSG2DYJiyOKcEuiGBHYRrSZfqbgWXfAqrBqCZ4JEfMxq%2B%2BqHy9SKhalvRyfqhFWmFWyfjAnhN4akS5QdKxdiRZC743njY%2BEtFAXDbGgJDMUFC7ullblV5JQywedpMVgFb0ZAv2I0CpYy1H%2FyYpGUFgKxgqeWkfsQ5hSX6onYv20lt9vaaHLxUNjVpPVYpxGKeJotjiDDGhn54GH6OAbzBcztR3IojFA%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3592] [cursor=pointer]
+                    - link "引用" [ref=f19e3594] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3596] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=RGa7mrESpptToOMuMXTtLIdDpABOkPy0aETAVZfzihwm4iM4UTsUTJq-th3gskmnzwR98ALA7xwG0YK_8X-vnagR0PBUzSTmBzLmbQF9ZHvI1ZqBdCn8bJxRuFKgHA9D&mimetype=PDF&language=CHS&srid=kns
+                - row [ref=f19e3598]:
+                  - cell "34" [ref=f19e3599]:
+                    - checkbox [ref=f19e3600] [cursor=pointer]
+                    - text: "34"
+                  - cell [ref=f19e3601]:
+                    - link "移动社交语境下青年女性形象的新媒体呈现——以抖音短视频为例" [ref=f19e3604] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPbf90rPLlv_Di57dYiZhaw28njkE5IT3TFQ8Kmbvl6KXobFT8coo6kfehRDt9YUTxKxOq9NwyKtj2W_ztAiovfcQO6RTzI7v501vVUhzHnC7Mr2Rnjoe_E-qk-T4-2vXSOW6Aqau3u97kv_p39829_lE9Aki6EHd4QhR4KVNM8BjKOKAwMjj6Pg&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3605]:
+                    - link "于晴" [ref=f19e3606] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPb4ruKpMoVS7sFPt9SqmIdzM0KWLcOXQSozGHUmaKhp0VV9lIurfbPrTp4UDbPZSOD53hY_hE2pgq67y-BxWTyK2g7gc7PT5WJ5z7OjfwSJo8QkcuoC6laHuVriJdjkdG8g8_l-yRwTmA==&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3607]:
+                    - paragraph [ref=f19e3608]:
+                      - link "郑州大学" [ref=f19e3609] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEUeTsHCQwPRlnlCWa-DP1AaRX87pqxshkdOdU3s1paNyZSyeDP16LsHU7Fgn_c-qMejtm9F9GV15VkMfz3a71B4&uniplatform=NZKPT&language=CHS
+                  - cell "2021-05-01" [ref=f19e3610]
+                  - cell "硕士" [ref=f19e3611]
+                  - cell [ref=f19e3612]:
+                    - link "8" [ref=f19e3614] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPbf90rPLlv_Di57dYiZhaw28njkE5IT3TFQ8Kmbvl6KXobFT8coo6kfehRDt9YUTxKxOq9NwyKtj2W_ztAiovfcQO6RTzI7v501vVUhzHnC7Mr2Rnjoe_E-qk-T4-2vXSOW6Aqau3u97kv_p39829_lE9Aki6EHd4QhR4KVNM8BjKOKAwMjj6Pg&uniplatform=NZKPT&language=CHS&anchor=citnet
+                  - cell [ref=f19e3615]:
+                    - link "1712" [ref=f19e3617] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3618]:
+                    - link "下载" [ref=f19e3619] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyQ3Dad8hmCfMxR%2BM25w3D8YVkTBStnvQmcAhRPkKHDP3DvK7FbC0rpuu8nQw2l9R4Iil80vbNomKFjMOhCCNkgbBlem7EOQsXoZXjDGsrijOEYqVQU7m4DA0dixYqmPrAYDsvWZFlixFVNgzAuGDi60tfbwlTH4OUN0%2FhzF1u1On7UZaxAjN3hDpqDC7SCu1Oxa9C1UCCEZT7StY81edvHYo3N8h39l3RGT%2F3qPLlQ0xsgl0bO%2FBzuNqO6NT16Byn%2FXKxus0%2FWw7mpsSUa%2FbvsHqD3kv8IMQvx%2BTK46immOfw%3D%3D&language=CHS
+                    - link "原版阅读" [ref=f19e3621] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyQ3Dad8hmCfMxR%2BM25w3D8YVkTBStnvQmcAhRPkKHDP3DvK7FbC0rpuu8nQw2l9R4LcU5DNpzsJBExlSG2DYJiyOKcEuiGBHYRrSZfqbgWXfAqrBqCZ4JEfMxq%2B%2BqHy9SKhalvRyfqhFWmFWyfjAnhN4akS5QdKxdiRZC743njY%2BEtFAXDbGgJDMUFC7ullblX7Uf8w6LxiIQjAHit7TNVepYy1H%2FyYpGUFgKxgqeWkfsQ5hSX6onYv20lt9vaaHLxUNjVpPVYpxGKeJotjiDDGhn54GH6OAbzBcztR3IojFA%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3623] [cursor=pointer]
+                    - link "引用" [ref=f19e3625] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3627] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=RGa7mrESpptToOMuMXTtLIdDpABOkPy0aETAVZfzihwm4iM4UTsUTJq-th3gskmnOLrxC3xZqxayb3mlJ09M5KgR0PBUzSTmBzLmbQF9ZHvPhQCRo5kYiP4eWkONp9c2&mimetype=PDF&language=CHS&srid=kns
+                - row [ref=f19e3629]:
+                  - cell "35" [ref=f19e3630]:
+                    - checkbox [checked] [ref=f19e3631] [cursor=pointer]
+                    - text: "35"
+                  - cell [ref=f19e3632]:
+                    - link "第4章 短视频发布：渠道选择很重要" [ref=f19e3633] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPbf90rPLlv_Di57dYiZhaw2hcF-UX9Ca-H-aA2AxnyJzikGPS8OUitKwAyw3X3WfzdpL7NOqbCMZ1YkNf4M6yulp0AZ4zO0CCN6GaKgax7CWpReXc7EWutQ5YjHbF5A19XN479_ywJiYQGzmXnpmcM4qz9hUodxpvVEPV6zQW4lOyWErkpH5yLzqsjSL9qlJzsbI-Ch1lwc_g==&uniplatform=NZKPT&language=CHS
+                  - cell "周英英" [ref=f19e3634]:
+                    - link "周英英":
+                      - /url: javascript:void(0)
+                  - cell [ref=f19e3635]:
+                    - paragraph [ref=f19e3636]:
+                      - link "短视频+直播" [ref=f19e3637] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEUeTsHCQwPRlnlCWa-DP1AarDopzFcZ8Uc-1k96w7lidWqcuYx227B7W9_D0L45MLOjZ78s3dqh4lZA_XsOZ48eiqTxjCx2yYPDADNrDVDuInvTq6IRyiWs&uniplatform=NZKPT&language=CHS
+                  - cell "202104" [ref=f19e3638]
+                  - cell "图书章节" [ref=f19e3639]
+                  - cell [ref=f19e3640]
+                  - cell [ref=f19e3641]
+                  - cell [ref=f19e3642]:
+                    - link "引用" [ref=f19e3643] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                - row [ref=f19e3645]:
+                  - cell "36" [ref=f19e3646]:
+                    - checkbox [ref=f19e3647] [cursor=pointer]
+                    - text: "36"
+                  - cell [ref=f19e3648]:
+                    - link "短视频自媒体符号化传播策略研究" [ref=f19e3651] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPbf90rPLlv_Di57dYiZhaw28njkE5IT3TFQ8Kmbvl6KXic1DMHe3_fQrsKTREph0xggWT0kkzsOYl5B5vjwb7VsTLYzLs6a7kMuoxhPeLxqTsB5lvy1kpoYwrce0slBZOAbdP4r94xKglo7ZWKP3H2eibEqcGuiZm5i98HtKJvvgIrxwW6_sV2P&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3652]:
+                    - link "王艺" [ref=f19e3653] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPbf90rPLlv_DoNcsqF4kxTLW27tyBe4XlQIST2PD68BNm4l-0HtFZtZBNArHOGqqnE98KFWMIPYm4StPx-9aJKddY1ntLfnaoC3UDLKUlpbAlk3eb-axWIyfo7jjINHd2UG-VZ0iM9fCg==&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3654]:
+                    - paragraph [ref=f19e3655]:
+                      - link "黑龙江大学" [ref=f19e3656] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEUeTsHCQwPRlnlCWa-DP1AaRX87pqxshkdOdU3s1paNyZSyeDP16LsHls5xWS-lq8KpxLBD_VcT0O8C4rbH1ftg&uniplatform=NZKPT&language=CHS
+                  - cell "2021-03-25" [ref=f19e3657]
+                  - cell "硕士" [ref=f19e3658]
+                  - cell [ref=f19e3659]:
+                    - link "5" [ref=f19e3661] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPbf90rPLlv_Di57dYiZhaw28njkE5IT3TFQ8Kmbvl6KXic1DMHe3_fQrsKTREph0xggWT0kkzsOYl5B5vjwb7VsTLYzLs6a7kMuoxhPeLxqTsB5lvy1kpoYwrce0slBZOAbdP4r94xKglo7ZWKP3H2eibEqcGuiZm5i98HtKJvvgIrxwW6_sV2P&uniplatform=NZKPT&language=CHS&anchor=citnet
+                  - cell [ref=f19e3662]:
+                    - link "943" [ref=f19e3664] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3665]:
+                    - link "下载" [ref=f19e3666] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyQYyRmAcDC0yuZxBMXV9yzFVkTBStnvQmcAhRPkKHDP3OnTt1n6h5eXQoQZIhLn6ycil80vbNomKFjMOhCCNkgbBlem7EOQsXoZXjDGsrijOEYqVQU7m4DA0dixYqmPrAYDsvWZFlixFVNgzAuGDi60tfbwlTH4OUN0%2FhzF1u1On7UZaxAjN3hDpqDC7SCu1Oxa9C1UCCEZT7StY81edvHYo3N8h39l3RGT%2F3qPLlQ0xsgl0bO%2FBzuNqO6NT16Byn%2FXKxus0%2FWw7mpsSUa%2FbvsHqD3kv8IMQvx%2BTK46immOfw%3D%3D&language=CHS
+                    - link "原版阅读" [ref=f19e3668] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyQYyRmAcDC0yuZxBMXV9yzFVkTBStnvQmcAhRPkKHDP3OnTt1n6h5eXQoQZIhLn6yfcU5DNpzsJBExlSG2DYJiyOKcEuiGBHYRrSZfqbgWXfAqrBqCZ4JEfMxq%2B%2BqHy9SKhalvRyfqhFWmFWyfjAnhN4akS5QdKxdiRZC743njY%2BEtFAXDbGgJDMUFC7ullblX7Uf8w6LxiIQjAHit7TNVepYy1H%2FyYpGUFgKxgqeWkfsQ5hSX6onYv20lt9vaaHLxUNjVpPVYpxGKeJotjiDDGhn54GH6OAbzBcztR3IojFA%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3670] [cursor=pointer]
+                    - link "引用" [ref=f19e3672] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3674] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=RGa7mrESpptToOMuMXTtLIdDpABOkPy0aETAVZfzihwm4iM4UTsUTJq-th3gskmn7g7RgitPN2ceILpCgh2Hj2xc0mMpJ4zM9cw0rLyMgU7PhQCRo5kYiP4eWkONp9c2&mimetype=PDF&language=CHS&srid=kns
+                - row [ref=f19e3676]:
+                  - cell "37" [ref=f19e3677]:
+                    - checkbox [ref=f19e3678] [cursor=pointer]
+                    - text: "37"
+                  - cell [ref=f19e3679]:
+                    - link "短视频时代的城市诗意表达——西部网“五味什字视频工作室”创作分析" [ref=f19e3680] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPZgvOFh0O21sLQCMGYx0OL4Ctlea5VgcfpaNn6eDBjgLF_zgNckRuaZjoaVmUg2OGk06a9EUXZys_EYC5ZEF2-3Lpg-JP5vBCQiIcm889si72tDdn1ABzD4gGsg5V4sq8bQCNi6-na7kSZ4Bjd-NM92AsO_rm2-Rw7b8j6woJcXpQ==&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3681]:
+                    - link "曾嘉慧" [ref=f19e3682] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPZgvOFh0O21sFwhLCUzyIMCGoekx4ktx_i7x7OJt73Qm2N8rhpBkFQwD6kVIWxYEIkGZHQ20on5tUiYGnbvqPxrk9J5Qkj6-lTMg8XE6w7nNBVre6Vk9Rga41w7qaZABJunuLb691H1vj_SoLruRyvl&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3683]:
+                    - paragraph [ref=f19e3684]:
+                      - link "西部广播电视" [ref=f19e3685] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEXwvV_uwk0YB0lb1VfhbfyihNCblFv0Q9VGMKC1VKZMPw1BhG9yK99kELk0zU3DjI7AB6sJPztE2haHR4jTN8sUrndl6W8M9BA=&uniplatform=NZKPT&language=CHS
+                  - cell "2021-03-05" [ref=f19e3686]
+                  - cell "期刊" [ref=f19e3687]
+                  - cell [ref=f19e3688]:
+                    - link "1" [ref=f19e3690] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPZgvOFh0O21sLQCMGYx0OL4Ctlea5VgcfpaNn6eDBjgLF_zgNckRuaZjoaVmUg2OGk06a9EUXZys_EYC5ZEF2-3Lpg-JP5vBCQiIcm889si72tDdn1ABzD4gGsg5V4sq8bQCNi6-na7kSZ4Bjd-NM92AsO_rm2-Rw7b8j6woJcXpQ==&uniplatform=NZKPT&language=CHS&anchor=citnet
+                  - cell [ref=f19e3691]:
+                    - link "119" [ref=f19e3693] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3694]:
+                    - link "下载" [ref=f19e3695] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdoabmU4NncMetQGnHwQAYvkbbt3evDKMt6LrMc9oC3SEp2FLncZP3SHI8Y%2Fv1myej17b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIkzVQ8oLYUxGOoPzi59J4%2FxtxluINF6fMO20iEpFsF%2FxvWzG90%2BuScGKvieC2F2f8MbW%2BDVXMsJEDMWSEW9EHP%2BQhtCcfzq06G6X3KBB%2FsvR9U2Gb4qyzvuwRCY426zL6aQ%3D%3D&language=CHS
+                    - link "HTML阅读" [ref=f19e3697] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdoabmU4NncMetQGnHwQAYvkbbt3evDKMt6LrMc9oC3SEsjVBMF%2FFyxVNKtQGZJO4ryL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGRFI7QYfweUhb8tHm%2FpgAzehjBJ4SdPzeIoEwnK573VeR4MXWMVKZ0AuDIoSVAxlFmyfF8hGbohZNLW0III3KpCDASisyERuaS5wcaymL94re2vT28QP%2F5MkhmYEbXE2jQ%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3699] [cursor=pointer]
+                    - link "引用" [ref=f19e3701] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3703] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=Pe2nFq1PBOM11SpCErZ-LwM1UHjV0uMR_icN4IXwgie0FMw4-65_-svMb6l-Yqyq2pYZXlFtydDgCta_g-Br1RcJFnCXWEvXwdDhbxhTw8J3KAUBlVIsgcb0E8u_YkCK&mimetype=XML&language=CHS&srid=kns
+                - row [ref=f19e3705]:
+                  - cell "38" [ref=f19e3706]:
+                    - checkbox [ref=f19e3707] [cursor=pointer]
+                    - text: "38"
+                  - cell [ref=f19e3708]:
+                    - link "李子柒短视频走红海外的思考" [ref=f19e3709] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPb_Ywk3Cm6IW70L4qQKFhXzBY2scSt_qtQ3qn5LQO0DfHni6y3UOZ3OPh3arS4hYe_shasTu6Ch4OGGlAOMhjSsyBkkBx-SWlqWoz2K0vO8D5uWQvgls6QogUJ-kdwMPY8RogFRESA7pykw9ZOC-nEkiDQnKyPPPPhGpde_VmorOQ==&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3710]:
+                    - link "李海敏" [ref=f19e3711] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPZgvOFh0O21sFwhLCUzyIMCukuYM2Fv9YbQMXb2SwKxbJta_yM3mH8xtPRj5La5pVc_tCupWiai29WDnXrYTwRg5yS4gFIxkesWDfhNefOPIXafJQPKc7JcFt9mAakhTXBMZCYi-XqyTJ_jNo8BtL0g&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3712]:
+                    - paragraph [ref=f19e3713]:
+                      - link "电视研究" [ref=f19e3714] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEVnBYmV9Q9zTBSq9jangCEszKi8G4uDmCZwp5brKITMWuMPd3xTt4VEqsFAy5EIbZJifYhzhmWN0syzauxgq1Yn7nBcFW43lyk=&uniplatform=NZKPT&language=CHS
+                  - cell "2021-01-05" [ref=f19e3715]
+                  - cell "期刊" [ref=f19e3716]
+                  - cell [ref=f19e3717]:
+                    - link "18" [ref=f19e3719] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPb_Ywk3Cm6IW70L4qQKFhXzBY2scSt_qtQ3qn5LQO0DfHni6y3UOZ3OPh3arS4hYe_shasTu6Ch4OGGlAOMhjSsyBkkBx-SWlqWoz2K0vO8D5uWQvgls6QogUJ-kdwMPY8RogFRESA7pykw9ZOC-nEkiDQnKyPPPPhGpde_VmorOQ==&uniplatform=NZKPT&language=CHS&anchor=citnet
+                  - cell [ref=f19e3720]:
+                    - link "1610" [ref=f19e3722] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3723]:
+                    - link "下载" [ref=f19e3724] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdoabmU4NncMetQGnHwQAYvkINnobiBBK2mWl7m38FAaCT2DSGAoi25ZNzQLwv7dYVh7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk%2B%2BlKARvjgKRS7PgBWWnU2pxluINF6fMO20iEpFsF%2FxvWzG90%2BuScGKvieC2F2f8MbW%2BDVXMsJEDMWSEW9EHP%2BQhtCcfzq06G6X3KBB%2FsvR9U2Gb4qyzvuwRCY426zL6aQ%3D%3D&language=CHS
+                    - link "HTML阅读" [ref=f19e3726] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6KdoabmU4NncMetQGnHwQAYvkINnobiBBK2mWl7m38FAaCW%2FfbNI59ncNOXPfnsMezjyL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGRFI7QYfweUhb8tHm%2FpgAzfcyOsNIK6BfWW7qZ05BNy3R4MXWMVKZ0AuDIoSVAxlFmyfF8hGbohZNLW0III3KpCDASisyERuaS5wcaymL94re2vT28QP%2F5MkhmYEbXE2jQ%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3728] [cursor=pointer]
+                    - link "引用" [ref=f19e3730] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3732] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=Pe2nFq1PBOM11SpCErZ-LwM1UHjV0uMR_icN4IXwgie0o69fCA_jNqCggVsX6WnlOs0aS4HS_nql0uNbxOtZKhcJFnCXWEvXwdDhbxhTw8J3KAUBlVIsgcb0E8u_YkCK&mimetype=XML&language=CHS&srid=kns
+                - row [ref=f19e3734]:
+                  - cell "39" [ref=f19e3735]:
+                    - checkbox [ref=f19e3736] [cursor=pointer]
+                    - text: "39"
+                  - cell [ref=f19e3737]:
+                    - link "浅谈媒体资产标签化管理的应用前景" [ref=f19e3738] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPb_Ywk3Cm6IW70L4qQKFhXzBY2scSt_qtRxQFmcY3VB8BKXFB44w7V6y1meNEmwum8VuMRxHLV69YSfYbMWmxWn3yhqZvwFKZQ2v0Sa82REnBBUUw82TteOtP5gxkD-wqdhXTpz1LM7Mcqo3Sah9mg9d-jMx2M_ZsA27I3Zwmtfkg==&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3739]:
+                    - link "晋园园" [ref=f19e3740] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPb_Ywk3Cm6IW3IlhM8EdCno8hxErmoFGV1V583tQ0F53n7sWSJpsAc-FFoUjhk93UFT7PBDkcW6LCcF0I7T-CA8jS0BjdR9HSYlqSKSzEwmwmQIcaheSYNoEwXBK9zXXvVqxFQg0VBKUkHfR10qPwtw&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3741]:
+                    - paragraph [ref=f19e3742]:
+                      - link "现代电视技术" [ref=f19e3743] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEVnBYmV9Q9zTBSq9jangCEszKi8G4uDmCZwp5brKITMWuMPd3xTt4VEkA_RtGoAHB7DE08bsj2NsxEYe4IWMxhLdn8LJz4awqE=&uniplatform=NZKPT&language=CHS
+                  - cell "2020-09-15" [ref=f19e3744]
+                  - cell "期刊" [ref=f19e3745]
+                  - cell [ref=f19e3746]:
+                    - link "1" [ref=f19e3748] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPb_Ywk3Cm6IW70L4qQKFhXzBY2scSt_qtRxQFmcY3VB8BKXFB44w7V6y1meNEmwum8VuMRxHLV69YSfYbMWmxWn3yhqZvwFKZQ2v0Sa82REnBBUUw82TteOtP5gxkD-wqdhXTpz1LM7Mcqo3Sah9mg9d-jMx2M_ZsA27I3Zwmtfkg==&uniplatform=NZKPT&language=CHS&anchor=citnet
+                  - cell [ref=f19e3749]:
+                    - link "112" [ref=f19e3751] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3752]:
+                    - link "下载" [ref=f19e3753] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp9xMFmkePYI07tBv7fXudTd3bf77LPeSv7fOcgk82xXG3LGLHSJ5wTb%2BAPwHyWAOx7b5mY%2FmsIpB5E%2FKF94iQVtRGRF3wJSTnwmOEEZ8vwAlK57xT%2B8LhM%2BfEqYWvBGm0igmLMld3nSvbU4a5%2BOkNaUlSU0HSLnl9m7MwOtW%2FIk%2B%2BlKARvjgKRS7PgBWWnU2pxluINF6fMO20iEpFsF%2FxvWzG90%2BuScGKvieC2F2f8MbW%2BDVXMsJEDMWSEW9EHP%2BQhtCcfzq06G6X3KBB%2FsvR9U2Gb4qyzvuwRCY426zL6aQ%3D%3D&language=CHS
+                    - link "HTML阅读" [ref=f19e3755] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=Pmp%2F5es3RB81cmauPwpbvsPMJcfwHgIZAnUyOJG6Kdp9xMFmkePYI07tBv7fXudTd3bf77LPeSv7fOcgk82xXKXeKKr3TGUpm%2B0kpY3C%2FwOL6pUY4deTV2VvozAOFIpRZPJZEQefXW1RVS3a1v8jK%2F1BfoaD1y1Qo7XRFd7QjHpuNlDuxMvlZu263io%2FYiDKaul1dsBYtTi0d7iCbJHlGRFI7QYfweUhb8tHm%2FpgAzfcyOsNIK6BfWW7qZ05BNy3R4MXWMVKZ0AuDIoSVAxlFmyfF8hGbohZNLW0III3KpCDASisyERuaS5wcaymL94re2vT28QP%2F5MkhmYEbXE2jQ%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3757] [cursor=pointer]
+                    - link "引用" [ref=f19e3759] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3761] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=Pe2nFq1PBOM11SpCErZ-LwM1UHjV0uMR_icN4IXwgieXCHx7s5_zAhjwubVv3WFetOntwJ23icUABjb8yOYKPn-s4n4jlL7XQKLOuexh_op3KAUBlVIsgcb0E8u_YkCK&mimetype=XML&language=CHS&srid=kns
+                - row [ref=f19e3763]:
+                  - cell "40" [ref=f19e3764]:
+                    - checkbox [ref=f19e3765] [cursor=pointer]
+                    - text: "40"
+                  - cell [ref=f19e3766]:
+                    - link "乡村的凝视：“快手”短视频中的乡村形象研究" [ref=f19e3769] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPaBQUaLzp2_p-tYElIIXKkLFHlJmqvYY6LrA8OxMf5JyKPzuhQ9FOFpok6oKCvaYLMC4PDHraJYnsaE98p-InT8ZQMtu3_MJjN1pbxAPJGltx9UAz5JuM-yQ8ykJEnI9xKFl8OWZgXOi-UBzYPXEh2eY4-N2K57xFl31-SrjJTIILSAdQ-nS4M9&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3770]:
+                    - link "万晶晶" [ref=f19e3771] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/author/detail?v=wYvQo-F_OPaBQUaLzp2_p4zDAm2pVmhbr6h6aBLQYoJBP6Zy5203B9rZOsIVyhKHoa6Dx53u1PSP8tuxm59R02RutBNPmiZmbrWBqksVisYZo1Fq679EPyg3wrlm1YT3i07dAe4HwVFG1CJk2dmoI43zP5vsIMfw&uniplatform=NZKPT&language=CHS
+                  - cell [ref=f19e3772]:
+                    - paragraph [ref=f19e3773]:
+                      - link "华中科技大学" [ref=f19e3774] [cursor=pointer]:
+                        - /url: https://navi.cnki.net/knavi/detail?p=EZYlKpt3pEUHqot5f8p_ylH4WK2zO12wuhcWuWFn1p3PGLm8qDvAcc9FvbEADOMdD9udFXvXXFSnEVDJ_zlZVS2YK2KaAVph&uniplatform=NZKPT&language=CHS
+                  - cell "2020-05-01" [ref=f19e3775]
+                  - cell "硕士" [ref=f19e3776]
+                  - cell [ref=f19e3777]:
+                    - link "8" [ref=f19e3779] [cursor=pointer]:
+                      - /url: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPaBQUaLzp2_p-tYElIIXKkLFHlJmqvYY6LrA8OxMf5JyKPzuhQ9FOFpok6oKCvaYLMC4PDHraJYnsaE98p-InT8ZQMtu3_MJjN1pbxAPJGltx9UAz5JuM-yQ8ykJEnI9xKFl8OWZgXOi-UBzYPXEh2eY4-N2K57xFl31-SrjJTIILSAdQ-nS4M9&uniplatform=NZKPT&language=CHS&anchor=citnet
+                  - cell [ref=f19e3780]:
+                    - link "799" [ref=f19e3782] [cursor=pointer]:
+                      - /url: javascript:void(0);
+                  - cell [ref=f19e3783]:
+                    - link "下载" [ref=f19e3784] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyQ3Dad8hmCfMxR%2BM25w3D8YVkTBStnvQmcAhRPkKHDP3KUqv1xml2scSczBESuid2sil80vbNomKFjMOhCCNkgbBlem7EOQsXoZXjDGsrijOEYqVQU7m4DA0dixYqmPrAYDsvWZFlixFVNgzAuGDi60tfbwlTH4OUN0%2FhzF1u1On7ziKAGBapmwinRZQXe65fRa9C1UCCEZT7StY81edvHYo3N8h39l3RGT%2F3qPLlQ0xsgl0bO%2FBzuNqO6NT16Byn%2FXKxus0%2FWw7mpsSUa%2FbvsHqD3kv8IMQvx%2BTK46immOfw%3D%3D&language=CHS
+                    - link "原版阅读" [ref=f19e3786] [cursor=pointer]:
+                      - /url: https://bar.cnki.net/bar/download/order?id=%2BbbrIbe6iiYA%2BvD8dQ0EDilyGh6M%2Foyu76w0rLQaKyQ3Dad8hmCfMxR%2BM25w3D8YVkTBStnvQmcAhRPkKHDP3KUqv1xml2scSczBESuid2vcU5DNpzsJBExlSG2DYJiyOKcEuiGBHYRrSZfqbgWXfAqrBqCZ4JEfMxq%2B%2BqHy9SKhalvRyfqhFWmFWyfjAnhN4akS5QdKxdiRZC743njY%2BEtFAXDbGgJDMUFC7ullblWL0I2A43rVjaFmoMioEpUtpYy1H%2FyYpGUFgKxgqeWkfsQ5hSX6onYv20lt9vaaHLxUNjVpPVYpxGKeJotjiDDGhn54GH6OAbzBcztR3IojFA%3D%3D&language=CHS
+                    - generic "收藏" [ref=f19e3788] [cursor=pointer]
+                    - link "引用" [ref=f19e3790] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                    - link "CNKI AI阅读" [ref=f19e3792] [cursor=pointer]:
+                      - /url: https://ai.cnki.net/trans?path=study&cid=RGa7mrESpptToOMuMXTtLIdDpABOkPy0aETAVZfzihwm4iM4UTsUTJq-th3gskmnTqSatUajjqOXIHPZ4xuFH6gR0PBUzSTmBzLmbQF9ZHvPhQCRo5kYiP4eWkONp9c2&mimetype=PDF&language=CHS&srid=kns
+            - generic [ref=f19e3794]:
+              - generic [ref=f19e3795]:
+                - link "首页" [ref=f19e3796] [cursor=pointer]:
+                  - /url: javascript:void(0);
+                - link "上一页" [ref=f19e3797] [cursor=pointer]:
+                  - /url: javascript:void(0);
+              - link "1" [ref=f19e3799] [cursor=pointer]:
+                - /url: javascript:void(0);
+              - link "2" [ref=f19e3801] [cursor=pointer]:
+                - /url: javascript:void(0);
+              - link "3" [ref=f19e3803] [cursor=pointer]:
+                - /url: javascript:void(0);
+              - link "下一页" [ref=f19e3804] [cursor=pointer]:
+                - /url: javascript:void(0);
+        - generic:
+          - generic:
+            - list:
+              - listitem
+  - contentinfo [ref=f19e642]:
+    - generic [ref=f19e643]:
+      - generic [ref=f19e644]:
+        - list:
+          - listitem [ref=f19e645]:
+            - generic [ref=f19e646]: 读者服务
+            - link "购买知网卡" [ref=f19e647] [cursor=pointer]:
+              - /url: http://vipcard.cnki.net/ec/skwd/skwd.htm
+            - link "充值中心" [ref=f19e648] [cursor=pointer]:
+              - /url: http://zhifu.cnki.net/
+            - link "我的CNKI" [ref=f19e649] [cursor=pointer]:
+              - /url: http://my.cnki.net/
+            - link "帮助中心" [ref=f19e650] [cursor=pointer]:
+              - /url: http://service.cnki.net/helpcenter/
+          - listitem [ref=f19e651]:
+            - generic [ref=f19e652]: CNKI常用软件下载
+            - link "CAJViewer浏览器" [ref=f19e653] [cursor=pointer]:
+              - /url: http://cajviewer.cnki.net
+            - link "知网研学（原E-Study）" [ref=f19e654] [cursor=pointer]:
+              - /url: https://estudy.cnki.net/
+            - link "下载中心" [ref=f19e655] [cursor=pointer]:
+              - /url: https://www.cnki.net/software/xzydq.htm
+            - link "标准阅读器" [ref=f19e656] [cursor=pointer]:
+              - /url: https://piccache.cnki.net/2022/kdn/software/standardreader.exe
+          - listitem [ref=f19e657]:
+            - generic [ref=f19e658]: 特色服务
+            - link "手机知网" [ref=f19e659] [cursor=pointer]:
+              - /url: http://wap.cnki.net/
+            - link "杂志订阅" [ref=f19e660] [cursor=pointer]:
+              - /url: http://wuxizazhi.cnki.net/
+            - link "数字出版物订阅" [ref=f19e661] [cursor=pointer]:
+              - /url: http://mall.cnki.net/
+            - link "广告服务" [ref=f19e662] [cursor=pointer]:
+              - /url: http://a.cnki.net
+          - listitem [ref=f19e663]:
+            - generic [ref=f19e664]: 客户服务
+            - generic [ref=f19e665]: 订卡热线：400-819-9993
+            - generic [ref=f19e666]: 服务热线：400-810-9888
+            - generic [ref=f19e667]:
+              - text: 在线咨询：
+              - link "service.cnki.net" [ref=f19e668] [cursor=pointer]:
+                - /url: http://service.cnki.net
+            - generic [ref=f19e669]:
+              - text: 邮件咨询：
+              - link "help@cnki.net" [ref=f19e670] [cursor=pointer]:
+                - /url: mailto:help@cnki.net
+          - listitem [ref=f19e671]:
+            - link "新浪微博客服" [ref=f19e672] [cursor=pointer]:
+              - /url: http://e.weibo.com/u/3059308095
+            - link "官方微信" [ref=f19e675] [cursor=pointer]:
+              - /url: javascript:void(0)
+      - generic [ref=f19e678]:
+        - generic [ref=f19e679]:
+          - paragraph [ref=f19e681]:
+            - generic [ref=f19e682]:
+              - link "关于我们" [ref=f19e683] [cursor=pointer]:
+                - /url: http://cnki.net/gycnki/gycnki.htm
+              - link "CNKI 荣誉" [ref=f19e684] [cursor=pointer]:
+                - /url: http://www.cnki.net/other/gonggao/gongsirongyu.html
+              - link "版权公告" [ref=f19e685] [cursor=pointer]:
+                - /url: http://www.cnki.net/other/gonggao/bqsm.htm
+              - link "客服中心" [ref=f19e686] [cursor=pointer]:
+                - /url: https://service.cnki.net/
+              - link "用户建议" [ref=f19e687] [cursor=pointer]:
+                - /url: https://service.cnki.net/home?flag=1
+              - link "知网招聘" [ref=f19e688] [cursor=pointer]:
+                - /url: https://piccache.cnki.net/index/CNKIRecruit/index.html
+              - link "知网推广" [ref=f19e689] [cursor=pointer]:
+                - /url: http://a.cnki.net/
+            - generic [ref=f19e690]: © 1998-2026中国知网（CNKI）
+          - link [ref=f19e693] [cursor=pointer]:
+            - /url: https://www.etrust.org.cn/CX8852713371735.html
+        - generic [ref=f19e695]:
+          - generic [ref=f19e696]:
+            - text: 京 ICP 证 040431 号
+            - link "网络出版服务许可证网出证(京)字第416号" [ref=f19e697] [cursor=pointer]:
+              - /url: https://piccache.cnki.net/index/images/gb/416.jpg
+            - text: 京公网安备 11010802020460 号
+          - text: 同方知网数字科技有限公司 KDN 平台基础技术由 AIKBase 提供.
+    - generic [ref=f19e698]:
+      - generic [ref=f19e699]:
+        - link "在线咨询" [ref=f19e700] [cursor=pointer]:
+          - /url: https://service.cnki.net
+        - link "用户反馈" [ref=f19e701] [cursor=pointer]:
+          - /url: https://kefu.cnki.net/im/goLeavemsg.html?appid=01xds8&isLogin=true&skill=ff8080818906901e018909b8eda90057
+      - link [ref=f19e1624] [cursor=pointer]:
+        - /url: javascript:void(0);target=_self
+  - generic [ref=f19e706]:
+    - generic [ref=f19e707]:
+      - generic [ref=f19e708]: 拖动下方拼图完成验证
+      - img "close" [ref=f19e711] [cursor=pointer]
+    - generic [ref=f19e720]:
+      - generic [ref=f19e721]: 安全验证
+      - img "refresh" [ref=f19e725] [cursor=pointer]

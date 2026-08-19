@@ -1,0 +1,208 @@
+- generic [ref=e1]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link [ref=e5] [cursor=pointer]:
+        - /url: https://www.cnki.net/
+      - link "总库" [ref=e8] [cursor=pointer]:
+        - /url: https://kns.cnki.net/starter/index
+      - generic [ref=e9]:
+        - link "检索" [ref=e11] [cursor=pointer]:
+          - /url: https://kns.cnki.net/kns8s/search
+        - link "CNKI AI" [ref=e14] [cursor=pointer]:
+          - /url: https://ai.cnki.net
+        - link "出版来源" [ref=e17] [cursor=pointer]:
+          - /url: https://navi.cnki.net/knavi/?language=CHS
+        - link "我的CNKI" [ref=e20] [cursor=pointer]:
+          - /url: https://kns.cnki.net/myspace/collect
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - generic [ref=e28] [cursor=pointer]: 充值
+          - link "会员" [ref=e30] [cursor=pointer]:
+            - /url: https://member.cnki.net/
+        - generic [ref=e35]:
+          - generic [ref=e36] [cursor=pointer]
+          - generic "中国传媒大学" [ref=e37] [cursor=pointer]
+          - generic [ref=e38] [cursor=pointer]: 个人登录
+  - generic [ref=e40]:
+    - generic:
+      - heading "文献管理中心" [level=1] [ref=e43]
+      - generic [ref=e45]:
+        - textbox "中文文献、外文文献" [ref=e46]
+        - link:
+          - /url: javascript:void(0)
+        - button [ref=e47] [cursor=pointer]
+  - generic [ref=e49]:
+    - generic [ref=e50]:
+      - heading "文献导出格式" [level=2] [ref=e51]
+      - list [ref=e52]:
+        - listitem [ref=e53]:
+          - link "GB/T 7714-2025 格式引文" [ref=e54] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e55]:
+          - link "知网研学（原E-Study）" [ref=e56] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e57]:
+          - link "CAJ-CD 格式引文" [ref=e58] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e59]:
+          - link "MLA 格式引文" [ref=e60] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e61]:
+          - link "APA 格式引文" [ref=e62] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e63]:
+          - link "查新（引文格式）" [ref=e64] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e65]:
+          - link "查新（自定义引文格式）" [ref=e66] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e67]:
+          - link "Refworks" [ref=e68] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e69]:
+          - link "EndNote" [ref=e70] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e71]:
+          - link "NoteExpress" [ref=e72]:
+            - /url: javascript:void(0)
+        - listitem [ref=e74]:
+          - link "NoteFirst" [ref=e75] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e76]:
+          - link "BibTex" [ref=e77] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e78]:
+          - link "自定义" [ref=e79] [cursor=pointer]:
+            - /url: javascript:void(0)
+      - heading "AI智能应用" [level=2] [ref=e80]
+      - list [ref=e81]:
+        - listitem [ref=e82]:
+          - link "AI文献综述" [ref=e83] [cursor=pointer]:
+            - /url: javascript:void(0)
+    - generic [ref=e84]:
+      - heading [level=2] [ref=e85]:
+        - text: NoteExpress
+        - link "已选文献" [ref=e86] [cursor=pointer]:
+          - /url: /dm8/index.html?language=CHS&uniplatform=NZKPT
+      - generic [ref=e88]:
+        - list [ref=e89]:
+          - listitem [ref=e90] [cursor=pointer]:
+            - link "批量下载" [ref=e91]:
+              - /url: javascript:void(0)
+          - listitem [ref=e93] [cursor=pointer]:
+            - link "导出" [active] [ref=e94]:
+              - /url: javascript:void(0)
+          - listitem [ref=e96] [cursor=pointer]:
+            - link "AI文献综述" [ref=e97]:
+              - /url: javascript:void(0)
+          - listitem "已成功复制到剪贴板" [ref=e99] [cursor=pointer]:
+            - link "复制到剪贴板" [ref=e100]:
+              - /url: javascript:void(0)
+          - listitem [ref=e102] [cursor=pointer]:
+            - link "打印" [ref=e103]:
+              - /url: javascript:void(0)
+        - generic [ref=e105]:
+          - generic [ref=e106]: 排序
+          - generic [ref=e107]:
+            - link "发表时间" [ref=e108] [cursor=pointer]:
+              - /url: "javascript:"
+            - link "被引频次" [ref=e110] [cursor=pointer]:
+              - /url: "javascript:"
+      - list [ref=e112]:
+        - listitem [ref=e113]: "{Reference Type}: Thesis {Title}: 非亲密关系网络哀悼的持续性联结存续机制研究 {Author}: 丁婕 {Tertiary Author}: 杜辉 {Publisher}: 浙江传媒学院 {Type of Work}: 硕士 {Year}: 2025 {Keywords}: 网络哀悼;持续性联结理论;刘学州;LDA主题模型 {Abstract}: 随着数字技术的迅猛推进,人类的生活方式、社交结构和信息传播机制等都经历了前所未有的转型。互联网凭借其超越时空界限与信息高速流通的特性为哀悼行为开辟了新的媒介空间与实践路径,使得哀思表达不再拘泥于传统的物理场所与既定形式,通过网络平台即可实现集体哀悼的广泛参与。网络哀悼作为一种新兴的文化景观,不仅是社会文化变迁的微观映射,更是公众对死亡认知、哀悼态度和情感表达方式变化的直观呈现。然而目前的网络哀悼研究多聚焦于亲属或社会名人的逝世案例,对意外去世的普通个体的关注相对匮乏。传统哀悼行为通常依循血缘纽带,而今,诸多意外亡故的普通人的社交媒体主页下亦汇聚了大量无血缘关系的守墓人,形成了独特的网络哀悼现象。 本研究旨在探讨非亲密关系下公众对意外逝世个体进行网络哀悼的心理动机与持续联结的存续机制。基于持续性联结理论(Continuing Bonds Theory),本研究认为,哀悼并非仅仅是对逝者的告别,而是生者与逝者之间情感联结的延续与重构。这一理论视角为理解网络哀悼行为提供了重要的分析框架,尤其是在非亲密关系的背景下,公众通过社交媒体平台与逝者建立并维持情感联结的现象值得深入探讨。以逝者刘学州为案例,通过对15名参与网络哀悼的个体进行深度访谈,结合Python技术抓取刘学州微博主页最后一条微博自2022年1月24日至2024年9月20日期间的44297条评论数据,运用LDA主题模型分析哀悼主题与情感演变的特征。研究发现,哀悼者群体遍布全球,性别构成上女性占64.0%,男性占36.0%。哀悼内容可被归纳为日常问候、生命挽歌、哀思绵绵及美好祝愿四大主题,其中美好祝愿占比最高。整体评论有别于传统哀悼中的悲伤主导,呈现出积极向上的情感倾向。 公众对非亲属死亡的网络哀悼行为主要植根于深厚的同理心,而哀悼者与逝者间持续的情感联结则依赖于身份认同基础上的情感共鸣、媒体平台的技术支持以及社会文化变迁的驱动。这些内外部因素的交织作用,促进了网络哀悼行为的盛行,催生了“电子守墓人”现象,并使生者与逝者联结的持续性在网络平台上得以拓展与强化。研究对网络哀悼社会现象的深入分析,不仅有助于理解哀悼者的心理需求与社会诉求,也为社交媒体平台在相关领域的规范建设与发展提供了理论参考。 {URL}: https://link.cnki.net/doi/10.27852/d.cnki.gzjcm.2025.000075 {DOI}: 10.27852/d.cnki.gzjcm.2025.000075 {Database Provider}: CNKI"
+        - listitem [ref=e114]: "{Reference Type}: Thesis {Title}: 网络哀悼社区行为的情感实践研究 {Author}: 徐婷 {Tertiary Author}: 刘丹凌 {Publisher}: 西南大学 {Type of Work}: 硕士 {Year}: 2024 {Keywords}: 哀悼行为;情感实践;情感规范 {Abstract}: 通过网络媒介寄托哀思成为数字时代的新型文化现象,网络哀悼成为新的哀悼方式,早期表现为在线上论坛或者个人空间中发布哀悼信息,后发展出祭祀网站、网上纪念馆、虚拟墓地等专门设立的网络空间。网络哀悼社区改变了人们的哀悼行为,同样拓展了哀悼者的情感体验。情感是哀悼的底色,本文将豆瓣“网络公墓”小组作为研究对象,以参与式观察与深度访谈为研究方法,关注其中的哀悼行为以及出现的新现象,从情感社会学的视角探讨网络个体的哀悼情感实践,网络哀悼社区情感实践背后的深层原因是本文的核心问题。 研究发现,首先,网络公墓哀悼的对象类型可以包括人和物在内的一切,甚至可以提前哀悼活着的自己,哀悼活着的自己是网络公墓中比较特殊的存在。其次,在情感实践过程中,哀悼内容接收者更多关注哀悼亲人、公众人物以及自己的帖子;而社区中的情感表达则呈现出不同类型的哀伤处理,主要表现为遗憾的“反思性”情感、对交流的寻求以及进行自我的疗愈;社区中的情感互动主体包括昙花一现的情感过客与细水长流的“常驻嘉宾”。社区中的情感过客更多在意自己的情感状态是否被人所注意,而常驻社区的哀悼者更加关注并完善自己的帖子,积极地进行情感表达与互动。最后,本文从情感层面的关注、表达与互动对社区哀悼情感实践的深层原因进行分析,发现人们的关注倾向受到情感规范、情感体验与情感想象的影响;社区中的情感表达则是为了获取情感慰藉、支持以及进行情感调适,从而消解现实生死之变带来的痛苦;此外,在哀悼社区中感受到的情感共鸣与情感归属是促使成员进行双向互动的重要因素。 此外,本研究对社区中现存的问题进行了初步的讨论。网络公墓中的“自我哀悼”现象愈演愈烈,逐步侵占公共空间;社区悲伤弥散的氛围让成员感到情感负担并不得主动回避相关哀悼贴以维系情感平和;社区中充斥许多消极的死亡观点与言论,不被疏解的消极表达容易激化个体的负面情绪,成为极端行为的催化剂;而社区中不被限制的肆意表达脱离传统哀悼文化氛围,在消解哀悼仪式的严肃性。 总之,本研究植根于传统哀悼规范、网络社区和情感文化的语境,重视网络哀悼社区中的情感之于网络哀悼者的价值与力量,深入探讨了网络哀悼实践过程及其深层原因,同时关注到网络公墓中出现的新哀悼现象及问题,有助于拓展网络哀悼情感研究的边界,探究个体在哀悼平台的数字化情感实践。 {URL}: https://link.cnki.net/doi/10.27684/d.cnki.gxndx.2024.002602 {DOI}: 10.27684/d.cnki.gxndx.2024.002602 {Database Provider}: CNKI"
+        - listitem [ref=e115]: "{Reference Type}: Thesis {Title}: 新浪微博个人账号的集体哀悼行为研究 {Author}: 胡炜 {Tertiary Author}: 李滨;王云峰 {Publisher}: 湖南大学 {Type of Work}: 硕士 {Year}: 2023 {Keywords}: 新浪微博;集体哀悼;集群行为;情绪疏解 {Abstract}: 随着社交媒体的崛起,数字空间的不断延展为传统意义上的集体哀悼提供了新的空间,由此形成了集体哀悼行为的媒介延伸——网络集体哀悼行为。值得注意的是,新浪微博个人账号的集体哀悼行为出现了诸多新的变化,不仅哀悼情感变得更为复杂丰富,哀悼主体、哀悼场所以及哀悼对象也发生了深刻变化。 新浪微博个人账号的集体哀悼行为的发生,必然有着心理、社会和文化成因。将新浪微博个人账号的集体哀悼行为置于集群理论下,发现该行为不仅受到了个体心理满足需求和社会心理共鸣的影响,而且哀悼者的情绪易被具有冲突性、悲情性和利益性的事件点燃,在这个过程中,意见领袖的有意引导和网络社群的“安全感”也发挥着重要推动作用,使得哀悼者将情绪转化为了行动;而从更为深层的角度来看,新浪微博环境中的集体哀悼行为是多重因素共同作用的结果,其中有着新旧文化的双重影响,还有话语权的争夺。 当前国内正步入改革的深水区,社会不良情绪此起彼伏,健康良好的情感文明对于构建和谐社会有着重要的作用。与此同时,在对逝者的新浪微博个人账号进行观察后,发现新浪微博个人账号的集体哀悼行为对个体、社会和时代均产生了积极意义。其为个体提供了情感释放的方式,可以疏解不良情绪;为群体凝聚力量提供了可行途径,从而可以引导情绪;为社会情绪和矛盾提供记录功能,可以预知隐性的社会情绪。基于此背景,对新浪微博个人账号的集体哀悼行为有着新的理解,其或许能够成为缓解个体在社会转型期间焦虑不安的新途径。 {URL}: https://link.cnki.net/doi/10.27135/d.cnki.ghudu.2023.002794 {DOI}: 10.27135/d.cnki.ghudu.2023.002794 {Database Provider}: CNKI"
+        - listitem [ref=e116]: "{Reference Type}: Thesis {Title}: 网络哀悼中的集体记忆与国家认同建构 {Author}: 刘光胜 {Tertiary Author}: 常燕民 {Publisher}: 郑州大学 {Type of Work}: 硕士 {Year}: 2022 {Keywords}: 网络哀悼;集体记忆;国家认同;微博;袁隆平 {Abstract}: 社交媒体时代,数字技术深刻改变了传统哀悼文化实践。从悼念形态到纪念空间的扩展,网络哀悼如今已经成为了公众哀悼与纪念的流行方式。在面对公众人物的逝世时,网民会在特定的时空下进行集体缅怀,寄托哀思。但是,不同公众人物的逝世所引发的集体悼念规模与意义并不相同,人们的悼念行为往往包含了对于逝者生前的道德评价与主观认识,由此产生的集体记忆内容与意义指向也有所不同。作为社交媒体时代的一种新型数字文化实践,网络哀悼行为背后的深层次社会文化意义值得进一步审视与探析。本研究以袁隆平院士逝世事件为典型个案,从公众在新浪微博中的相关哀悼行为切入,爬取了人民日报等主流媒体发布的悼念微博下的15万余条评论数据,主要采取中文分词与机器学习等方法对文本进行描述性分析,并通过内容分析法对公众哀悼话语进行深入剖析,再结合深度访谈法探析公众网络哀悼行为背后的深层次意义,主要包括微博中有关袁隆平院士逝世的集体记忆,以及对其中有关公众国家认同的建构做进一步研究。研究发现:首先,公众的哀悼话语实践书写了有关袁隆平院士逝世的集体记忆。从集体记忆的内容来看,主要书写了哀悼与致敬的当下记忆,唤醒了缅怀与感恩的过去记忆,以及刻写了有关表达心意的未来记忆;作为集体记忆书写主体的公众在书写过程中主要基于内部与外部两种动因,分别是群体身份认同需求与社会情境的感染;在如何书写集体记忆的问题上,研究主要讨论了集体记忆书写的方式与书写的秩序,发现前者主要通过仪式性的操演与群体互动协作书写两种方式,而后者则主要从议程设置对哀悼音量的放大、记忆形式的创新以及记忆主题的选择性呈现三个方面进行引导。其次,在有关袁隆平院士逝世的集体记忆书写过程中,建构了公众对于国家的认同感。研究主要从公众与国家的关联感、归属感、忠诚感三个渐次递进的维度讨论了公众国家认同的建构。在集体记忆书写过程中,国家意象的凝聚增进了公众的国家关联感,而“哀悼共同体”的形成使得公众完成了身份与情感的双重归属,加强了公众的国家归属感,而公众未来行为的奉献意向与国家期待的满足也进一步唤起了公众的国家忠诚感,最终完成了公众国家认同的建构。 {URL}: https://link.cnki.net/doi/10.27466/d.cnki.gzzdu.2022.002195 {DOI}: 10.27466/d.cnki.gzzdu.2022.002195 {Database Provider}: CNKI"
+        - listitem [ref=e117]: "{Reference Type}: Thesis {Title}: 互动仪式链理论下微博用户的名人哀悼仪式研究 {Author}: 石雨乐 {Tertiary Author}: 宋建国 {Publisher}: 郑州大学 {Type of Work}: 硕士 {Year}: 2022 {Keywords}: 互动仪式链;社交媒体用户;名人逝世;哀悼仪式 {Abstract}: 伴随着互联网技术的迅猛发展而诞生的社交媒体平台已无可避免地对其用户行为产生深刻影响。同时,用户群体数量不断扩容使得其行为也在延申和重塑社交媒体平台的空间和结构。在微博用户的名人哀悼仪式中,虚拟在场的“身体”被赋予特殊的内涵和意义,高度程序化的仪式流程将情感内嵌于一定的互动机制之下。在微博平台上对名人逝世表达哀悼这一特定现象成为社交媒体平台用户名人哀悼仪式研究的独特典范。本文通过案例分析和文本分析的研究方法,聚焦“杂交水稻之父”袁隆平院士逝世事件,利用爬虫软件集搜客抓取2021年5月22日——2021年5月31日10天内与“袁隆平逝世”有关的微博帖子和话题数据,共计微博帖子38018条、微博话题数995个。将搜集到的微博帖子和话题作为样本,对微博用户名人哀悼仪式的微博文本进行深入分析,得出其微博帖子的文本和情感特征以及具体演绎过程。对名人哀悼仪式模型的影响因素、构成要素、形成机制以及最终结果进行细致的刻画与分析,建构微博用户基于社交媒体平台的哀者与逝者的互动仪式链模型。虚拟在场用户的名人哀悼仪式能够形成某种特定的互动仪式模型,离不开社交媒体平台。社交媒体平台用户的名人哀悼仪式具有书写集体记忆、延展情感空间以及塑造人物与城市形象的正向作用。同时,也会带来关注点偏移、伪情绪扩散和云哀悼绑架的反向思考。社交媒体用户的名人哀悼仪式突破传统意义上的线下哀悼仪式的桎梏,建立哀者与逝者两者之间的情感连接。通过对此类社会化现象的研究,能够更好的理解社交媒体用户的名人哀悼仪式所蕴含的巨大力量。 {URL}: https://link.cnki.net/doi/10.27466/d.cnki.gzzdu.2022.001897 {DOI}: 10.27466/d.cnki.gzzdu.2022.001897 {Database Provider}: CNKI"
+        - listitem [ref=e118]: "{Reference Type}: Journal Article {Title}: “春天的花开秋天的风”：社交媒体、集体悼念与延展性情感空间——以李文亮微博评论（2020-2021）为例的计算传播分析 {Author}: 周葆华; 钟媛 {Author Address}: 复旦大学新闻学院;复旦大学信息与传播研究中心;武汉大学媒体发展研究中心; {Journal}: 国际新闻界 {Year}: 2021 {Volume}: 43 {Issue}: 3 {Pages}: 79-106 {Keywords}: 网络哀悼;社交媒体;新冠疫情;情感公众;集体记忆;计算传播 {Abstract}: 数字与社交媒体改变死亡与悼念的形态,扩展了传统哀悼与纪念的空间。本文以李文亮医生的微博评论区为例,通过计算传播研究方法,抓取并挖掘2020-2021整一年间的134万多条数据,分析并阐释社交媒体时代对公众人物的网络集体悼念;并提出\"延展性情感空间\"概念,用以理解基于网络哀悼的临时性社区如何转化为常态性的情感表达空间。研究认为,社交媒体重塑公众哀悼与情感表达的形态,重构哀悼者与逝者、以及哀悼者之间的相互关系,形塑出独特的情感公众,也构成集体记忆的独特书写实践。 {ISBN/ISSN}: 1002-5685 {Notes}: 11-1523/G2 {URL}: https://link.cnki.net/doi/10.13495/j.cnki.cjjc.2021.03.005 {DOI}: 10.13495/j.cnki.cjjc.2021.03.005 {Database Provider}: CNKI"
+        - listitem [ref=e119]: "{Reference Type}: Thesis {Title}: 公众人物的社交媒体哀悼与持续性联结 {Author}: 高嘉潞 {Tertiary Author}: 冉华 {Publisher}: 武汉大学 {Type of Work}: 硕士 {Year}: 2021 {Keywords}: 社交媒体哀悼;持续性联结;数字死亡;名人;集体记忆 {Abstract}: 社交媒体为人们提供了一个新的空间来表达日常生活中的自我,并允许人们以前所未有的多样形式共享资源、观点和情感。随着数字技术的不断革新,社交媒体不再仅限于生者间的交往,交流的边界和权力进一步扩大到了生者与逝者之间。纵然逝者已经离开我们,但其生前的社交媒体账号成为了虚拟墓地,人们在这里来来往往哀悼他们。就这样,逝者在数字媒介社会依然以一种独特的方式,存活于哀悼者的真实生活。现如今,社交媒体被越来越多地用于哀悼和纪念,这种非面向的,跨越距离鸿沟的,公开的哀悼和表达悲伤的方式越来越常被人们选择。社交媒体不仅改变了人际关系和人际交流,也正在改变我们面对“生死”的态度和表达。 社交媒体哀悼作为一种重要的社会现象吸引了许多学者的兴趣,其中人们对公众人物的哀悼实践是重要的一部分;近年来,众多身陷新闻漩涡的名流逝世时,都会引发社交媒体哀悼的狂潮。但遗憾的是,相比起国际学术界,国内有关社交媒体哀悼的相关文献寥寥无几;相关研究所使用的理论视角大多集中重复在准社会交往、使用与满足理论,羊群效应等;所使用的研究方法更是多以内容分析、问卷调查为主,不少研究在讨论论文局限性时,都指向了希望未来能从深度访谈中挖掘更详尽、真实、细致的资料。 本文借丧亲与哀伤领域中的重要理论——持续性联结理论为视角,通过网络民族志观察和深度访谈,探究人们在社交媒体平台上对公众人物的哀悼实践,分析并阐释这种特殊单向关系中的持续性联结。本文发现,哀悼者通常出于信息交换、灵性想象、情绪释放、仪式习惯和帮助记忆等动机在社交媒体上哀悼逝者;另外,本文揭示了哀悼者自身如何理解自己在持续性联结中与逝者的关系,探究了联结背后一系列私人的或公共的意义,比如再定义哀悼者与逝者间的关系、再定义生存与死亡间的关系、想象共同体的感受与建立、公共议题的被看见、集体记忆的书写等;最后,本文总结了公众人物哀悼行为的三个特点,并在此基础上对有限生命与数字来生,以及关系连续性及超物质交流提出了进一步的反思与讨论。这些发现可以帮助我们更好地理解中国语境下的社交媒体哀悼现象,解释那些在社交媒体平台上,哀悼公众人物的“陌生人”的存在,验证社交媒体如何为持续性联结创造可能性,推动人们如何使用社交媒体哀悼以及人们如何与逝者维系联结这两个领域的讨论,补充前人文献对于社交媒体哀悼动机解释和定性数据描述的不足。 {URL}: https://link.cnki.net/doi/10.27379/d.cnki.gwhdu.2021.003713 {DOI}: 10.27379/d.cnki.gwhdu.2021.003713 {Database Provider}: CNKI"
+        - listitem [ref=e120]: "{Reference Type}: Thesis {Title}: 追忆逝去的名人：社交媒体上关于金庸的记忆书写研究 {Author}: 张胡强 {Tertiary Author}: 佘文斌 {Publisher}: 安徽大学 {Type of Work}: 硕士 {Year}: 2020 {Keywords}: 金庸;线上悼念;集体记忆;记忆书写 {Abstract}: 近年来,由名人去世引发的全民悼念的现象层出不穷,这一现象的规模在2018年金庸去世引发的全民悼念中达到峰值。在这一事件中,数以万计的悼念者通过社交媒体参与其中,通过各自的方式悼念金庸仙逝。立足于微信、微博两大社交媒体平台,本文将悼念者细分为主流媒体、社会精英以及草根网民三大记忆主体,对其中的悼念行为以及记忆书写进行探讨和研究。本文探讨的问题主要集中在以下几个层面:一是金庸去世后社交媒体上为何会出现大规模的悼念现象?二是在悼念过程中记忆主体有着怎样的记忆书写实践?三是各记忆主体的书写面向有何不同?最后是在其记忆书写的背后隐含着各自怎样的动机? 根据以上问题的提出及为了以上问题的解决,本文的内容编排如下。在第一章中,本文对社交媒体由“金庸去世”引发的线上悼念进行了综述,并将悼念者群体进行了三个层次的划分,为的是能够更好地把握线上悼念相关的基本概况。第二章及第三章是本文关于各记忆主体的记忆书写实践及其书写面向的考察。在第二章中,本文阐述了三方主体在记忆书写中的互动行为以及符号的使用、内容的呈现,体现了三方主体在记忆书写中的共情体验和差异叙事的特点。在本文的第三章中,对三方记忆主体的记忆书写面向进行了分析,主流媒体倾向于将金庸作为社会精英进行书写,社会精英倾向于将金庸作为知己进行书写,草根网民则倾向于将金庸作为偶像进行书写。第四章就书写面向的差异性进行了讨论,研究发现书写面向的差异性是各类记忆主体不同的书写动机造成的结果。主流媒体的书写动机为实现职能的发挥及职责的履行,社会精英的书写动机为满足印象管理和人格赋魅的需求,草根网民的书写动机为满足个体叙事和情感表达的诉求。在第五章中,是本文关于社交媒体上记忆书写的再思考,体现出了冲突与协调并存以及反“数字化”遗忘的特点。 在社交媒体上,媒体、精英以及草根网民在通过各自的方式进行悼念的同时,也作为记忆主体书写着有关金庸的记忆。在记忆书写的实践中,一方面在各方主体间存在着共情体验,体现为记忆书写中的媒体、精英与网民的密切互动;另一方面也存在着叙事的差异性,体现为三方记忆主体书写实践中的符号、内容以及书写面向的不同。这种书写差异性的出现,主要由各方主体的书写动机所致。值得一提的是,记忆书写中的矛盾与冲突也是不可忽视的因素,在此过程中主要体现为三方主体话语权的失衡,此外反“数字化遗忘”也构成了本次社交媒体上记忆书写的特征之一。 {URL}: https://link.cnki.net/doi/10.26917/d.cnki.ganhu.2020.001456 {DOI}: 10.26917/d.cnki.ganhu.2020.001456 {Database Provider}: CNKI"
+        - listitem [ref=e121]: "{Reference Type}: Newspaper Article {Title}: 阎肃“被去世” 社交媒体当严肃 {Author}: 周明华 {Secondary Title}: 四川日报 {Date}: 2015-11-03 {Pages}: 006 {Publisher}: 四川日报 {Notes}: 51-0001 {URL}: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPaLlZzII1QlQlz4N2-VZSY4VP8iaEg275HBN8SH1WnMTUGCmhXNGYZbx6ZldH3UN60Q7jJECbwOfv0GESf7lBAbe3ikNNDSRgnK0W7rbPzwY2SoLLr2IXNMQ8BGlIZZxgfPrtgY6hlzOemKgIKBIw-YZZ58qRjwRBBzqUq3ic2oqi5ufA2s5GzJJx5VuNbDP9Q=&uniplatform=NZKPT&language=CHS {Database Provider}: CNKI"
+  - contentinfo [ref=e123]:
+    - generic [ref=e124]:
+      - generic [ref=e125]:
+        - list:
+          - listitem [ref=e126]:
+            - generic [ref=e127]: 读者服务
+            - link "购买知网卡" [ref=e128] [cursor=pointer]:
+              - /url: http://vipcard.cnki.net/ec/skwd/skwd.htm
+            - link "充值中心" [ref=e129] [cursor=pointer]:
+              - /url: http://zhifu.cnki.net/
+            - link "我的CNKI" [ref=e130] [cursor=pointer]:
+              - /url: http://my.cnki.net/
+            - link "帮助中心" [ref=e131] [cursor=pointer]:
+              - /url: http://service.cnki.net/helpcenter/
+          - listitem [ref=e132]:
+            - generic [ref=e133]: CNKI常用软件下载
+            - link "CAJViewer浏览器" [ref=e134] [cursor=pointer]:
+              - /url: http://cajviewer.cnki.net
+            - link "知网研学（原E-Study）" [ref=e135] [cursor=pointer]:
+              - /url: https://estudy.cnki.net/
+            - link "下载中心" [ref=e136] [cursor=pointer]:
+              - /url: https://www.cnki.net/software/xzydq.htm
+            - link "标准阅读器" [ref=e137] [cursor=pointer]:
+              - /url: https://piccache.cnki.net/2022/kdn/software/standardreader.exe
+          - listitem [ref=e138]:
+            - generic [ref=e139]: 特色服务
+            - link "手机知网" [ref=e140] [cursor=pointer]:
+              - /url: http://wap.cnki.net/
+            - link "杂志订阅" [ref=e141] [cursor=pointer]:
+              - /url: http://wuxizazhi.cnki.net/
+            - link "数字出版物订阅" [ref=e142] [cursor=pointer]:
+              - /url: http://mall.cnki.net/
+            - link "广告服务" [ref=e143] [cursor=pointer]:
+              - /url: http://a.cnki.net
+          - listitem [ref=e144]:
+            - generic [ref=e145]: 客户服务
+            - generic [ref=e146]: 订卡热线：400-819-9993
+            - generic [ref=e147]: 服务热线：400-810-9888
+            - generic [ref=e148]:
+              - text: 在线咨询：
+              - link "service.cnki.net" [ref=e149] [cursor=pointer]:
+                - /url: http://service.cnki.net
+            - generic [ref=e150]:
+              - text: 邮件咨询：
+              - link "help@cnki.net" [ref=e151] [cursor=pointer]:
+                - /url: mailto:help@cnki.net
+          - listitem [ref=e152]:
+            - link "新浪微博客服" [ref=e153] [cursor=pointer]:
+              - /url: http://e.weibo.com/u/3059308095
+            - link "官方微信" [ref=e156] [cursor=pointer]:
+              - /url: javascript:void(0)
+      - generic [ref=e159]:
+        - generic [ref=e160]:
+          - paragraph [ref=e162]:
+            - generic [ref=e163]:
+              - link "关于我们" [ref=e164] [cursor=pointer]:
+                - /url: http://cnki.net/gycnki/gycnki.htm
+              - link "CNKI 荣誉" [ref=e165] [cursor=pointer]:
+                - /url: http://www.cnki.net/other/gonggao/gongsirongyu.html
+              - link "版权公告" [ref=e166] [cursor=pointer]:
+                - /url: http://www.cnki.net/other/gonggao/bqsm.htm
+              - link "客服中心" [ref=e167] [cursor=pointer]:
+                - /url: https://service.cnki.net/
+              - link "用户建议" [ref=e168] [cursor=pointer]:
+                - /url: https://service.cnki.net/home?flag=1
+              - link "知网招聘" [ref=e169] [cursor=pointer]:
+                - /url: https://piccache.cnki.net/index/CNKIRecruit/index.html
+              - link "知网推广" [ref=e170] [cursor=pointer]:
+                - /url: http://a.cnki.net/
+            - generic [ref=e171]: © 1998-2026中国知网（CNKI）
+          - link [ref=e174] [cursor=pointer]:
+            - /url: https://www.etrust.org.cn/CX8852713371735.html
+        - generic [ref=e176]:
+          - generic [ref=e177]:
+            - text: 京 ICP 证 040431 号
+            - link "网络出版服务许可证网出证(京)字第416号" [ref=e178] [cursor=pointer]:
+              - /url: https://piccache.cnki.net/index/images/gb/416.jpg
+            - text: 京公网安备 11010802020460 号
+          - text: 同方知网数字科技有限公司 KDN 平台基础技术由 AIKBase 提供.
+  - link "返回顶部" [ref=e201] [cursor=pointer]:
+    - /url: javascript:void(0);
+  - generic [ref=e181]:
+    - generic [ref=e182]:
+      - generic [ref=e183]: 拖动下方拼图完成验证
+      - img "close" [ref=e186] [cursor=pointer]
+    - generic [ref=e195]:
+      - generic [ref=e196]: 安全验证
+      - img "refresh" [ref=e200] [cursor=pointer]

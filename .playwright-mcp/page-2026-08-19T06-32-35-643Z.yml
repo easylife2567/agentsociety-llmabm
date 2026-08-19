@@ -1,0 +1,216 @@
+- generic [ref=e1]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link [ref=e5] [cursor=pointer]:
+        - /url: https://www.cnki.net/
+      - link "总库" [ref=e8] [cursor=pointer]:
+        - /url: https://kns.cnki.net/starter/index
+      - generic [ref=e9]:
+        - link "检索" [ref=e11] [cursor=pointer]:
+          - /url: https://kns.cnki.net/kns8s/search
+        - link "CNKI AI" [ref=e14] [cursor=pointer]:
+          - /url: https://ai.cnki.net
+        - link "出版来源" [ref=e17] [cursor=pointer]:
+          - /url: https://navi.cnki.net/knavi/?language=CHS
+        - link "我的CNKI" [ref=e20] [cursor=pointer]:
+          - /url: https://kns.cnki.net/myspace/collect
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - generic [ref=e28] [cursor=pointer]: 充值
+          - link "会员" [ref=e30] [cursor=pointer]:
+            - /url: https://member.cnki.net/
+        - generic [ref=e35]:
+          - generic [ref=e36] [cursor=pointer]
+          - generic "中国传媒大学" [ref=e37] [cursor=pointer]
+          - generic [ref=e38] [cursor=pointer]: 个人登录
+  - generic [ref=e40]:
+    - generic:
+      - heading "文献管理中心" [level=1] [ref=e43]
+      - generic [ref=e45]:
+        - textbox "中文文献、外文文献" [ref=e46]
+        - link:
+          - /url: javascript:void(0)
+        - button [ref=e47] [cursor=pointer]
+  - generic [ref=e49]:
+    - generic [ref=e50]:
+      - heading "文献导出格式" [level=2] [ref=e51]
+      - list [ref=e52]:
+        - listitem [ref=e53]:
+          - link "GB/T 7714-2025 格式引文" [ref=e54] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e55]:
+          - link "知网研学（原E-Study）" [ref=e56] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e57]:
+          - link "CAJ-CD 格式引文" [ref=e58] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e59]:
+          - link "MLA 格式引文" [ref=e60] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e61]:
+          - link "APA 格式引文" [ref=e62] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e63]:
+          - link "查新（引文格式）" [ref=e64] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e65]:
+          - link "查新（自定义引文格式）" [ref=e66] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e67]:
+          - link "Refworks" [ref=e68] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e69]:
+          - link "EndNote" [ref=e70] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e71]:
+          - link "NoteExpress" [ref=e72]:
+            - /url: javascript:void(0)
+        - listitem [ref=e74]:
+          - link "NoteFirst" [ref=e75] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e76]:
+          - link "BibTex" [ref=e77] [cursor=pointer]:
+            - /url: javascript:void(0)
+        - listitem [ref=e78]:
+          - link "自定义" [ref=e79] [cursor=pointer]:
+            - /url: javascript:void(0)
+      - heading "AI智能应用" [level=2] [ref=e80]
+      - list [ref=e81]:
+        - listitem [ref=e82]:
+          - link "AI文献综述" [ref=e83] [cursor=pointer]:
+            - /url: javascript:void(0)
+    - generic [ref=e84]:
+      - heading [level=2] [ref=e85]:
+        - text: NoteExpress
+        - link "已选文献" [ref=e86] [cursor=pointer]:
+          - /url: /dm8/index.html?language=CHS&uniplatform=NZKPT
+      - generic [ref=e88]:
+        - list [ref=e89]:
+          - listitem [ref=e90] [cursor=pointer]:
+            - link "批量下载" [ref=e91]:
+              - /url: javascript:void(0)
+          - listitem [ref=e93] [cursor=pointer]:
+            - link "导出" [active] [ref=e94]:
+              - /url: javascript:void(0)
+          - listitem [ref=e96] [cursor=pointer]:
+            - link "AI文献综述" [ref=e97]:
+              - /url: javascript:void(0)
+          - listitem "已成功复制到剪贴板" [ref=e99] [cursor=pointer]:
+            - link "复制到剪贴板" [ref=e100]:
+              - /url: javascript:void(0)
+          - listitem [ref=e102] [cursor=pointer]:
+            - link "打印" [ref=e103]:
+              - /url: javascript:void(0)
+        - generic [ref=e105]:
+          - generic [ref=e106]: 排序
+          - generic [ref=e107]:
+            - link "发表时间" [ref=e108] [cursor=pointer]:
+              - /url: "javascript:"
+            - link "被引频次" [ref=e110] [cursor=pointer]:
+              - /url: "javascript:"
+      - list [ref=e112]:
+        - listitem [ref=e113]: "{Reference Type}: Journal Article {Title}: 高中生英语课堂读后续写教学策略思考——以从影视叙事向书面表达的转化教学实践为例 {Author}: 姚子萍 {Author Address}: 宁波市城南中学; {Journal}: 中国基础教育资源库(中学版) {Pages}: 1-9 {Keywords}: 高中英语;读后续写;短视频;影视叙事技巧 {Abstract}: 本文聚焦高中英语读后续写教学，在建构主义学习理论、语言输入输出理论和图式理论的支持下，为破解当前读后续写教学中情节推进程式化、语言描写概念化、人物塑造标签化、语篇衔接松散化和课堂训练单一化等问题，通过具体课堂片段与学生习作表现分析，提出情节结构迁移、镜头语言转化、人物细节刻画、情感节奏表达和任务评价闭环等教学策略。研究表明，合理利用短视频资源能够激发学生写作兴趣，增强其情节构思能力，提升其读后续写质量与综合语言运用能力。 {ISBN/ISSN}: 1673-5307 {Notes}: 11-9124/G {URL}: https://link.cnki.net/doi/10.27008/j.cnki.jjhx.20260812.007 {DOI}: 10.27008/j.cnki.jjhx.20260812.007 {Database Provider}: CNKI"
+        - listitem [ref=e114]: "{Reference Type}: Journal Article {Title}: 时事新闻碎片化叙事与深度报道的有机融合 {Author}: 孟凡明 {Author Address}: 鞍山市新闻传媒中心; {Journal}: 新闻文化建设 {Year}: 2026 {Volume}: {Issue}: 11 {Pages}: 94-96 {Keywords}: 短视频;时事新闻;碎片化叙事;深度融合;编辑策略 {Abstract}: 短视频的兴起推动传播生态向碎片化转型，其内容形态的浓缩化、传播逻辑的去中心化与受众接收的浅互动化特征，既为时事新闻传播开辟了新空间，也对其真实性、时效性与公共性的本质属性构成挑战。作为承载信息传递、价值引导与舆论凝聚功能的核心载体，时事新闻需在适配碎片化传播规律的同时，坚守深度与价值本真。本文通过分析短视频传播特征与时事新闻本质属性，从内容重构、形式创新与编辑理念升级三个维度，探究核心信息提炼、逻辑脉络拆解、视觉化转化等具体实践路径，以期实现碎片化叙事与深度报道的有机融合，为短视频时代时事新闻增强传播效能、践行媒体责任提供可行参照。 {ISBN/ISSN}: 2096-787X {Notes}: 10-1677/G {URL}: https://link.cnki.net/doi/10.20253/j.cnki.cn10-1677/g.2026.11.033 {DOI}: 10.20253/j.cnki.cn10-1677/g.2026.11.033 {Database Provider}: CNKI"
+        - listitem [ref=e115]: "{Reference Type}: Thesis {Title}: 身份认同与身份危机：社交媒体平台的MBTI“标签化”传播研究 {Author}: 谢初宜 {Tertiary Author}: 何薇 {Publisher}: 广东技术师范大学 {Type of Work}: 硕士 {Year}: 2026 {Keywords}: MBTI;社交媒体;标签化传播;身份认同;身份危机 {Abstract}: 随着互联网的发展,MBTI在社交媒体平台上的“标签化”传播日益显著,逐渐形成了独特的网络亚文化现象。以MBTI类型为核心的标签传播已成为年轻人社交互动的重要方式。当“INFP”“ESTJ”等标签频繁出现在个人社交资料、话题讨论和日常对话中时,个体究竟是借助这些标签构建起清晰的自我认知,还是陷入了被标签所定义的身份危机?本研究以身份认同作为理论基础,以微博、小红书、抖音、豆瓣四大主流社交媒体平台的MBTI标签内容为研究对象,通过参与式观察、案例分析以及深度访谈相结合的研究方法,在梳理MBTI“标签化”传播的生成机制及社交媒体传播实践后,聚焦个体、群体在该传播过程中的身份认同状况,分析其身份认同的建构逻辑以及潜在的危机。研究发现,社交媒体的技术特性进一步放大了MBTI标签,液态社会的认同焦虑也导致个体寻求自我定位。MBTI标签既是应对社交复杂性的“简化工具”,也是重构自我叙事的“符号资源”。然而,当标签从“认知参考”异化为“身份枷锁”时,便可能引发新的认同困境。MBTI的“标签化”传播对个体自我认同的影响呈现双重性,一方面,标签化传播确实为个体提供了身份建构的新路径,帮助他们在不确定的社会环境中获得本体安全感。另一方面,标签化传播也暗藏着引发身份危机的风险,导致真实自我与社交表现的分裂。归根结底,“标签≠自我”,MBTI标签只是认识的“起点”而非“终点”,我们不应被16种类型所定义,而应在更广阔的生活实践中不断完善自我身份建构。 {URL}: https://link.cnki.net/doi/10.27729/d.cnki.ggdjs.2026.000615 {DOI}: 10.27729/d.cnki.ggdjs.2026.000615 {Database Provider}: CNKI"
+        - listitem [ref=e116]: "{Reference Type}: Journal Article {Title}: 从“完整观看”到“切片判断”：短视频传播中的去语境化评价 {Author}: 朱晓彧; 徐治文 {Author Address}: 陕西师范大学新闻传播学院; {Journal}: 榆林学院学报 {Year}: 2026 {Volume}: 36 {Issue}: 3 {Pages}: 124-128 {Keywords}: 短视频平台;切片传播;去语境化评价;情绪框架;公众判断 {Abstract}: 从“完整观看”滑向“切片判断”的传播现象出发，用媒介文本分析与机制分析相结合的质性路径，以影视飓风“相亲角”争议为关键个案，将原视频、跨平台流通的切片视频、二次创作内容及相关评论话语纳入同一分析链条，考察短视频在切片传播中公众评价的生成过程。研究发现，围绕事件形成的公共判断，并非仅由信息缺失所导致的偶然误读，而是在原有语境被压缩、情绪线索被凸显、传播范围被持续放大的过程中逐步生成并趋于收束。具体而言，原始文本中的解释性线索在跨平台迁移中被削弱，切片及其再叙事通过冲突强化与情绪唤醒重组理解入口，平台扩散则进一步加快了评价的集中化与稳定化。基于此，可得出短视频的“切片传播”不仅改变了信息的呈现方式，也在一定程度上重组了公众形成判断的条件。 {ISBN/ISSN}: 1008-3871 {Notes}: 61-1432/C {URL}: https://link.cnki.net/doi/10.16752/j.cnki.jylu.2026.03.019 {DOI}: 10.16752/j.cnki.jylu.2026.03.019 {Database Provider}: CNKI"
+        - listitem [ref=e117]: "{Reference Type}: Journal Article {Title}: 短视频背景音乐提升大学生音乐审美能力的策略探讨 {Author}: 弋舒羽 {Author Address}: 郑州大学; {Journal}: 流行歌曲 {Year}: 2026 {Volume}: {Issue}: 9 {Pages}: 141-144 {Keywords}: 短视频背景音乐;音乐审美能力;实践策略 {Abstract}: 短视频背景音乐已成为大学生日常生活的重要组成部分。高校将短视频背景音乐融入音乐教育，可以提升大学生音乐审美能力。基于此，本研究分析了短视频背景音乐的传播机制，如传播深度依赖短视频平台、传播具有高识别度、传播注重视听结合，剖析了短视频背景音乐对大学生音乐审美能力的影响，如大学生音乐审美注意力由深度聆听转向快速捕捉、大学生音乐审美判断出现标签化与同质化倾向、大学生音乐审美感受的主体性削弱等，提出了利用短视频背景音乐提升大学生音乐审美能力的策略，如将短视频背景音乐纳入音乐课程、设置短视频配乐任务、重建集体聆听场景等，旨在为高校音乐审美教育实践提供指引。 {ISBN/ISSN}: 1003-5907 {Notes}: 41-1048/J {URL}: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPab9FrFmnK-3P6lkQ7X7O9PDASDYM4OnF2xdW7J4RaFAJ7V0Y0ySK4fX8GSkSOISzBELTuZN818DnPW32ZDAC0KAUQHMce916cLDHQjgweN_CqtqiwVFgJupcI0-WYwn3seHsTA629ieLCUbeeoznhub9Zu2VdWvBUyuVgIX1We7Y5g8TZI9-Gd&uniplatform=NZKPT&language=CHS {Database Provider}: CNKI"
+        - listitem [ref=e118]: "{Reference Type}: Journal Article {Title}: 短视频碎片化叙事的文本生成与审读 {Author}: 张勃 {Author Address}: 山西广播电视台; {Journal}: 新闻采编 {Year}: 2026 {Volume}: {Issue}: 1 {Pages}: 63-64 {Keywords}: 短视频;新闻叙事;文本 {Abstract}: 本文从叙事内容、叙事结构、叙事视角和叙事语言等多个维度，深入研究短视频碎片化叙事的文本生成与审读，阐述了如何精简内容突出核心、构建碎片化与非线性结构、运用多元视角以及打造生动直观的叙事语言，以提升新闻视频的传播力、引导力、影响力、公信力，为新闻媒体的长远发展提供理论支撑与实践指引。 {ISBN/ISSN}: 2096-0719 {Notes}: 14-1070/G2 {URL}: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPaJa0eUhKnHZ8-1FwyL_7R2BWX82ZBTEEIhNciKug50YsicoeUSFqZDrttQ1MgKqbkixxaezQ0OW0pSr321wnNOgKqYHDefObUEOH_DsvCrhMt3FCerHlOoAaRQiXsXGsX-czKpPgKN-87hoSwxmSdXIc01Mb8rvDXXPzPs0DlNhumQ52gAc0Qi&uniplatform=NZKPT&language=CHS {Database Provider}: CNKI"
+        - listitem [ref=e119]: "{Reference Type}: Journal Article {Title}: 短视频新闻“碎片化叙事”对公众认知深度的影响 {Author}: 毕轩语 {Author Address}: 北京广播电视台; {Journal}: 记者观察 {Year}: 2025 {Volume}: {Issue}: 33 {Pages}: 131-133 {Abstract}: <正>近年来，随着移动互联网的迅速发展，短视频已成为公众获取信息的重要渠道。短视频新闻凭借碎片化叙事，有效提高了公众信息获取效率，降低了新闻传播门槛。但由于短视频新闻叙事缺乏完整性、新闻内容失真，给公众的认知带来了一定程度的负担，导致公众思维碎片化，甚至逐渐丧失了深度思考的能力。因此，本文将立足传播学、认知科学、社会心理学等，对短视频新闻碎片化叙事的内在特征、生成逻辑进行探讨，并分析碎片化叙事对公众认知深度的影响，以求突破“道德恐慌”“技术决定论”的局限性，辩证看待短视频新闻碎片化叙事，最终为优化平台算法、提高媒介素养、强化大众社会认知奠定坚实的基础。 {ISBN/ISSN}: 1004-3799 {Notes}: 14-1155/G2 {URL}: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPYnSdmqKjlXD2dwsPEduCiEZUn6UMv4ErZypHVFmq05_hPHypYtbVhxbspvG42IFZYOK20pgKrZFUxtrBhFT2WchJbOXfCcGNJVMfXQouNCfgYH0viB6M7eaeKW4t0fq9x3z66IaddozELWJtm0eQ9a_KTOxcwVUlplIXwzuYw0xnd3CKDkj9HL&uniplatform=NZKPT&language=CHS {Database Provider}: CNKI"
+        - listitem [ref=e120]: "{Reference Type}: Journal Article {Title}: 吸引、打碎与拼接：碎片化叙事指引的动画创作更迭 {Author}: 魏子奇 {Author Address}: 云南艺术学院; {Journal}: 文化创新比较研究 {Year}: 2025 {Volume}: 9 {Issue}: 33 {Pages}: 45-48 {Keywords}: 吸引;碎片化叙事;短视频动画;拼接;叙事指引;动画创作 {Abstract}: 近年来，随着短视频对日常信息的解构，动画的叙事方式产生了两方面的改变：其一，短视频时长要求动画叙事趋向精练简短；其二，叙事中信息向多种组合形式发展。传统动画中的单一叙事方式已经无法满足当代观众对信息获取的多样化和即时性要求。该文考察短视频平台中动画作品叙事方式，聚焦碎片化叙事特点，结合具体案例，探讨其对动画创作更迭的启发。该文认为：需要将短视频信息缺口的特点融入动画中提高吸引力；把完整的叙事拆解为最小可识别的符号，以提高动画信息传播效率；按照短视频组合方式来拼接动画叙事，弱化叙事逻辑链条。 {ISBN/ISSN}: 2096-4110 {Notes}: 23-1601/G0 {URL}: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPbHsTIwO0p_0f0LS8-_QCaxXpDvCopxLJMszNZSemBPL6NH3cknxF3qt71aaCml04XPz38tiMy226V-O8pSXtruAitHUBuKmYbvAnH9mnRkQ3txpQ_Ib8xabvNsZJMYPBH3-MRKIuWMyBAMqQ1QpPaFu1ysiI0y_jS7HgKfEdPZCbWj0tyNU5RF&uniplatform=NZKPT&language=CHS {Database Provider}: CNKI"
+        - listitem [ref=e121]: "{Reference Type}: Journal Article {Title}: 短视频平台上的传统节日文化商业表达特征 {Author}: 赵玉文; 詹玉姝 {Author Address}: 四川传媒学院传播与经管学院; {Journal}: 文化学刊 {Year}: 2025 {Volume}: {Issue}: 10 {Pages}: 75-78 {Keywords}: 短视频平台;传统节日文化;商业表达特征;符号化简约 {Abstract}: 短视频平台正在重塑传统节日文化的商业表达模式与传播形态。传统节日文化在短视频平台的商业化运作中呈现出符号化简约、情感化包装与流量化变现三个显著特征。这些特征在节庆元素标签化运用与情感营销精准投放，以及多元化变现路径构建等实践中得到充分体现，为传统节日文化在数字时代的商业化发展提供了新的路径与模式。 {ISBN/ISSN}: 1673-7725 {Notes}: 21-1545/C {URL}: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPZ1oswVQ5SDIu7Z-BAc--jNdlDqM85PgMW3q7J1miKyPQDRIEtyWnM24A5xtqdstcYvuilPrTnJDuChBZ2ZVoj7qKOh_bhZjf0O_OKKQlumVKDQsag-kaCwlfKuoXVCKl_dBBLyEcjByChCWr69sgWa1cY0dNSqzyaGVTBnPOv5D5NRwAzho0eG&uniplatform=NZKPT&language=CHS {Database Provider}: CNKI"
+        - listitem [ref=e122]: "{Reference Type}: Journal Article {Title}: 新闻编辑的“碎片化叙事”优化路径 {Author}: 张占慧 {Author Address}: 衡水广播电视台; {Journal}: 记者观察 {Year}: 2025 {Volume}: {Issue}: 29 {Pages}: 140-142 {Abstract}: <正>短视频时代，新闻传播的时空结构发生根本性变革。传统线性叙事被碎片化、跳跃式的叙事模式取代，用户注意力成为稀缺资源，信息接收呈现即时性与浅层化特征。在此背景下，新闻编辑需重构叙事逻辑，在碎片化与深度性、感官刺激与价值引领之间寻求平衡。本文从叙事结构、技术赋能、情感传播、伦理规范四个维度，探讨短视频新闻编辑的优化路径。 {ISBN/ISSN}: 1004-3799 {Notes}: 14-1155/G2 {URL}: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPYeZmF0Cpm3UZwOd1Zh7IFD6HYQ5BJH4Q9gLwkSntmiONQSzWhtQqUSehqTccnvbVZdymd3-25yXkPuz4gizUt1jnpVCum3ixLRSjbexXCPq1Wf2KEStC0Wknq644DEONLflw836wxRvPcirI9Gj9K8O6O7nQ8rnoBAl27yWNRMSqxKZo7S5_Up&uniplatform=NZKPT&language=CHS {Database Provider}: CNKI"
+        - listitem [ref=e123]: "{Reference Type}: Thesis {Title}: 代偿还是规训？女性卡车司机的数字化生存与实践 {Author}: 李霄 {Tertiary Author}: 郭慧玲 {Publisher}: 华东政法大学 {Type of Work}: 硕士 {Year}: 2025 {Keywords}: 女性卡车司机;性别展演;数字平台;短视频 {Abstract}: 在当今世界,随着新一轮科技革命和产业变革的迅速发展,数字技术已广泛应用并深刻渗透到全球各个领域,人类社会正在加速迈入数字时代。本文旨在探讨女性卡车司机在数字平台上的展演实践,特别是她们如何在抖音短视频平台上围绕卡车生活展开内容生产,分析其通过新媒介工具进行身体叙事、话语实践及自我建构的具体表现。通过这一研究,旨在考察女性卡车司机在数字平台上的身份构建与性别展演,以及她们在数字化生存中的代偿与规训之间的张力与冲突。 本研究选取了16个代表性女性卡车司机的抖音账号,进行内容分析和线上参与式观察,旨在深入了解这一群体在数字平台上的展演实践及其背后的身份构建机制。此外,本研究还通过深度访谈的方式,访谈了5位女性卡车司机博主,了解她们在创作内容过程中的个人经验、挑战与应对策略。 研究发现,女性卡车司机的数字展演实践展现出多样化的特征。在内容呈现上,女性卡车司机的数字化展演可分为“先赋性”和“自致性”两类;在展演目的上,又可划分为“经济目的”和“情感目的”两种类型。具体而言,先赋性经济目的型展演通过展示女性身体形象和传统性别角色来吸引观众,从而实现经济收益;而自致性经济目的型展演则通过突显女性卡车司机的驾驶技术和职业能力来达成经济目标;先赋性情感目的型展演则通过履行传统女性角色来寻求情感认同;自致性情感目的型展演则通过揭示女性卡车司机所面临的工作复杂性和职业困境来获得情感认同。 在分析了女性卡车司机数字展演的类型学特征之后,本文进一步挖掘了这一群体展演行为背后的深层次逻辑动因,聚焦于社会互动与身份建构的复杂交织,特别是从平台机制、博主能动性以及观众参与三个维度进行深入分析。作为数字平台之一,抖音通过其算法推荐系统调节内容的传播与曝光,形成了一种“算法主导”的内容生态。在这一生态中,女性卡车司机作为内容创作者,需要平衡平台算法和观众偏好的需求,同时保持创作的独立性,面临平台算法与观众需求之间的双重压力。 最后,本研究对女性卡车司机在数字平台上的生存状态进行了反思。在数字平台的语境下,性别角色的再生产与挑战并存,表现为性别身份的再生产以及性别赋权与性别规训之间的冲突。尽管面临诸多挑战,女性卡车司机通过个体的策略和自主性仍能够在平台上获得一定的空间与发声机会。然而,技术鸿沟和数字化生存的阶层差异问题仍是不可忽视的议题。 综上所述,女性卡车司机在短视频平台上的数字化生存不仅展示了性别角色在数字时代的多重构建与表现,还揭示了性别身份在... {URL}: https://link.cnki.net/doi/10.27150/d.cnki.ghdzc.2025.000087 {DOI}: 10.27150/d.cnki.ghdzc.2025.000087 {Database Provider}: CNKI"
+        - listitem [ref=e124]: "{Reference Type}: Thesis {Title}: 小红书平台心理学短视频的内容生产与传播研究 {Author}: 张颖 {Tertiary Author}: 朱秀凌 {Publisher}: 广东外语外贸大学 {Type of Work}: 硕士 {Year}: 2025 {Keywords}: 心理学短视频;科学传播;社会支持 {Abstract}: 短视频作为新媒体环境下的重要传播形式之一,为知识的科学传播提供了新路径。心理学短视频的出现不仅拓宽了大众获取心理学知识的渠道,更在心理健康科普、塑造公众心理学认知方面发挥着至关重要的作用。 本研究基于科学传播的对话模型和社会支持理论,通过深度访谈15位心理学短视频受众,对132个高传播力短视频进行内容分析和文本分析,探讨小红书平台心理学短视频的内容特征、社会价值及其传播困境。 研究发现,心理学短视频的传播实践契合科学传播中的对话模型。在对话发起阶段,创作者通过权威身份构建与热点议题选择建立信任;在对话互动中,依托用户反馈优化内容,促成知识共创;最终通过对话内化和应用,推动用户从认知到行动的转化。 此外,心理学短视频在社会支持层面展现出三重价值:情感支持、信息支持与工具性支持。情感支持体现为权威形象塑造、亲民人设打造与场景符号运用,增强用户心理归属感;信息支持通过知识简化与学术引用降低认知门槛;工具性支持则依托热点创作、算法推荐与精准触达,为用户提供实际解决方案。 然而,在算法驱动的流量机制影响下,心理学短视频面临着多重困境。知识碎片化导致系统性不足,内容同质化加剧认知偏差,标签化表达可能引发诊断泛化与污名风险;此外,非专业内容生产、情感剥削与平台监管缺位等问题,也对心理健康传播的伦理与学科公信力构成挑战。 {URL}: https://link.cnki.net/doi/10.27032/d.cnki.ggdwu.2025.001097 {DOI}: 10.27032/d.cnki.ggdwu.2025.001097 {Database Provider}: CNKI"
+        - listitem [ref=e125]: "{Reference Type}: Journal Article {Title}: 算法偏见与乡土想象：短视频平台受众对乡村形象的认知形塑 {Author}: 车三敏 {Author Address}: 西安财经大学文学院; {Journal}: 新闻前哨 {Year}: 2025 {Volume}: {Issue}: 7 {Pages}: 76-78 {Keywords}: 算法偏见;乡村形象;短视频平台;信息茧房;技术可供性 {Abstract}: 2024年是我国全功能接入国际互联网30周年。然而，随着短视频平台的普及，算法推荐机制在乡村形象传播中的作用日益凸显。尽管算法推荐为受众提供相对便捷的内容获取方式，但其潜在的偏见可能导致受众对乡村形象的认知出现偏差，致使乡村形象在短视频平台上呈现单一化和标签化。笔者认为，为优化乡村形象传播，可选择平衡算法优化与内容多样性、提升受众媒介素养等路径，帮助受众形成更加全面、真实的乡村形象认知。 {ISBN/ISSN}: 1003-2827 {Notes}: 42-1263/G2 {URL}: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPbl_dOpkyF11ltw6c21I_vgd6NJpXccXC2EYle1cisXYElPYlURPuNuOULUAKMUAGM1ks8LWZNCLeal5ErGvaEmj4R5k-ffE-NRCSy3FtAf8fPrb3rSyWna5PUpsEfghepAw_VETwlSOnopzNWwWSHBx9MrxmMs2MAPrXHPepDbLCXm5cT2YRfQ&uniplatform=NZKPT&language=CHS {Database Provider}: CNKI"
+        - listitem [ref=e126]: "{Reference Type}: Journal Article {Title}: 时间语法：短视频的碎片化叙事研究 {Author}: 谢瑞龙; 黄继谦 {Author Address}: 华南农业大学艺术学院; {Journal}: 新媒体研究 {Year}: 2025 {Volume}: 11 {Issue}: 5 {Pages}: 88-91+95 {Keywords}: 短视频叙事;新媒体研究;影像媒介;叙事学;碎片化传播 {Abstract}: 短视频的“短”不是影像总时长的短，而是信息间距的短，由一个又一个破碎的时间碎片组合而成。这样的时间碎片，可以理解为短视频自身的一种时间语法。研究以短视频为例，从电影叙事学与语言学中的时间叙事与语法视角分析短视频的碎片化叙事模式，探讨短视频在时空碎片化的背景下如何利用时间语法的规则进行叙事与传播。 {ISBN/ISSN}: 2096-0360 {Notes}: 10-1330/G2 {URL}: https://link.cnki.net/doi/10.16604/j.cnki.issn2096-0360.2025.05.016 {DOI}: 10.16604/j.cnki.issn2096-0360.2025.05.016 {Database Provider}: CNKI"
+        - listitem [ref=e127]: "{Reference Type}: Journal Article {Title}: 剧集解说类短视频的叙事逻辑及其批判 {Author}: 张波 {Author Address}: 贵州大学传媒学院; {Journal}: 贵州大学学报(艺术版) {Year}: 2024 {Volume}: 38 {Issue}: 4 {Pages}: 10-16 {Keywords}: 剧集解说;短视频;碎片化叙事;奇观性叙事;沉浸式叙事 {Abstract}: 随着快手、抖音等短视频平台相继成为国民级应用，剧集解说类短视频成为了一种新型追剧方式。剧集解说类短视频的叙事逻辑主要体现为碎片化叙事、奇观性叙事和沉浸式叙事，它的出现是对技术革命和用户时间压力的回应，也是对视觉文化生产逻辑的顺应，更是对数字平台氛围的主动融入。在剧集解说类短视频蓬勃发展的当下，尤其需要注意的是，它可能带来艺术作品整体性丧失、现实遮蔽和意义消解等困境。 {ISBN/ISSN}: 1671-444X {Notes}: 52-5025/J {URL}: https://link.cnki.net/doi/10.15958/j.cnki.gdxbysb.2024.04.002 {DOI}: 10.15958/j.cnki.gdxbysb.2024.04.002 {Database Provider}: CNKI"
+        - listitem [ref=e128]: "{Reference Type}: Thesis {Title}: 空间生产视角下的音乐云演艺研究 {Author}: 李丹 {Tertiary Author}: 谭雪芳 {Publisher}: 福建师范大学 {Type of Work}: 硕士 {Year}: 2024 {Keywords}: 音乐云演艺;空间生产理论;抖音;直播媒介 {Abstract}: 数字媒介技术的发展将现实的空间“搬上云端”,人们的日常生活和社会交往活动也发生了翻天覆地的改变。过去,人们只有在特定的场所,例如剧院、音乐厅等才能参与演艺活动,与他人建立联结。然而,在互联网时代,通过各类网络平台的演艺直播,人们可以在家中轻松地观看演出,与其他个体在虚实混合的空间中建立连接,媒介、人、空间三者的关系不断发生着勾连和互嵌。在演艺直播实践中,主体得以激活,普通人获得可见性,并催生出具备生产性的新演艺空间。这个新的演艺空间不仅为观众提供了与传统剧场不同的观演体验,还为传受双方提供了更加广阔的创作和表达空间。 本文以空间生产理论为视角,从抖音平台的音乐类演艺直播现象入手,分析人们是如何通过媒介建构出具备生产性的新演艺空间;抖音演艺直播中的参与者如何进行自我呈现;演艺直播中的消费环节具有怎样的特点;观演双方如何重塑新的角色和身份。本文采用网络参与式观察法、问卷调查法和深度访谈法,对以上问题进行了深入探究。研究发现,抖音演艺直播空间中的传播者和观众通过屏幕进行交涉,通过远程观看、社交联动和情感联结的方式参与空间建构,形成独特的文化交流模式。传播者积极展现生活,探索新表演方式,成为表演节目甚至生活的“主角”。观众则以围观者、创作者和消费者的多重身份参与主播的创作与传播过程。抖音演艺直播背后的社交平台和MCN机构也在持续注入新的活力。 {URL}: https://link.cnki.net/doi/10.27019/d.cnki.gfjsu.2024.002579 {DOI}: 10.27019/d.cnki.gfjsu.2024.002579 {Database Provider}: CNKI"
+        - listitem [ref=e129]: "{Reference Type}: Book {Title}: AI短视频文案写作从入门到精通 {Author}: 邵诗雨 {Publisher}: 北京大学出版社 {Date}: 202405 {Abstract}: 本书是一本专为短视频创作者打造的AI短视频文案写作实战手册，手把手教读者利用AI撰写短视频脚本和创意文案，从而轻松创作出爆款短视频文案。全书共分为9章：第1章介绍短视频文案与AIGC；第2章为AI助力文案选题策划；第3章为标题撰写与优化；第4章为短视频脚本与情节设计；第5章为短视频带货文案；第6章为评论区互动文案；第7章为段子文案；第8章为短视频内容标签化；第9章为短视频营销文案。本书内容丰富，有很强的实用性和操作性，可以帮助读者理解和掌握AI工具的使用，并学习如何根据不同受众群体的文化背景，创作出具有吸引力和影响力的短视频文案。 {Pages}: 205 {ISBN/ISSN}: 978-7-301-35026-3 {Database Provider}: CNKI"
+        - listitem [ref=e130]: "{Reference Type}: Journal Article {Title}: 数字时代的文旅热潮与传播——以广西网络走红现象为例 {Author}: 兰新之 {Author Address}: 广西广播电视台; {Journal}: 新闻潮 {Year}: 2024 {Volume}: {Issue}: 4 {Pages}: 21-24 {Keywords}: 文旅热潮;传播策略;广西科目三;广西小砂糖橘 {Abstract}: 2023年，广西凭借其独具特色的景点、习俗和文化现象，在数字媒体平台上获得空前关注，成为全国热点省（区）之一。通过抖音、微信视频号、微信公众号等平台的短视频传播，包括“广西祭祖“”广西科目三“”广西小砂糖橘”等主题的广西元素，引发全网广泛关注和讨论。本文以广西在网络上走红为研究背景，以广西走红原因探寻为研究主导，从多极化传播、标签化传播、媒介生态位三个维度分析广西走红原因，并提出广西从“网红”变“长红”的传播策略。 {ISBN/ISSN}: 2095-4182 {Notes}: 45-1044/G2 {URL}: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPZ-Ag0EN2O0melYoJlKSwUrR7KWdcAFQSpkQtpmaIWMhW131GKvtSsBkPEZGRGHXrp_fZYRVSsOpzJ7VGO9TZCLqJLXM86UgbEPXfZbJX-QwvpSFQziOdPZvYwhLThgIdrkuxiSTGyp0k9d3Lmr-Y-Y6YuVS2mVsiTxw5dxGmNJzNk6gJstdzC_&uniplatform=NZKPT&language=CHS {Database Provider}: CNKI"
+        - listitem [ref=e131]: "{Reference Type}: Journal Article {Title}: 与“网红”同行：融媒体时代凉山形象重塑的破局之路 {Author}: 席秦岭 {Author Address}: 成都市双流区融媒体中心; {Journal}: 全媒体探索 {Year}: 2024 {Volume}: {Issue}: 1 {Pages}: 119-121 {Keywords}: 地域形象;标签化;污名化;网红;舆论生态 {Abstract}: 长期以来，四川省凉山彝族自治州深受媒介传播的泛标签化影响，甚至被污名化，留下“贫穷、落后、野蛮、愚昧”的负面刻板印象。近年来，脱贫攻坚战的全面胜利给当地基础设施和群众思想观念带来根本性改变，跨越数字鸿沟为当地重塑形象创造了新的历史机遇。在短视频时代，凉山州团结本地“网红”力量进行议程设置，引导“网红”进行内容生产，通过“网红”向外界展示一个更真实、更立体、更多彩的凉山，为当地发展营造一个更加健康的舆论生态。 {ISBN/ISSN}: 2097-048X {Notes}: 37-1526/G2 {URL}: https://kns.cnki.net/kcms2/article/abstract?v=wYvQo-F_OPaWjU1rvIh_qH-ZavlBNuimhtjjlKiJPLvg11bRpKZ8ff7t_WTm9PUUBBsMuRkylpBEgIovn56YC_OQOq2aNcLPG0I_l_ZexTv7Ub1NgZkdBdQT2J52CDwfnQPio-UfZjezj6rOm9YVNt6blCclMy2LRhH2pq7Qfsb0218E4ydrZiDfWoxGnxoK&uniplatform=NZKPT&language=CHS {Database Provider}: CNKI"
+  - contentinfo [ref=e133]:
+    - generic [ref=e134]:
+      - generic [ref=e135]:
+        - list:
+          - listitem [ref=e136]:
+            - generic [ref=e137]: 读者服务
+            - link "购买知网卡" [ref=e138] [cursor=pointer]:
+              - /url: http://vipcard.cnki.net/ec/skwd/skwd.htm
+            - link "充值中心" [ref=e139] [cursor=pointer]:
+              - /url: http://zhifu.cnki.net/
+            - link "我的CNKI" [ref=e140] [cursor=pointer]:
+              - /url: http://my.cnki.net/
+            - link "帮助中心" [ref=e141] [cursor=pointer]:
+              - /url: http://service.cnki.net/helpcenter/
+          - listitem [ref=e142]:
+            - generic [ref=e143]: CNKI常用软件下载
+            - link "CAJViewer浏览器" [ref=e144] [cursor=pointer]:
+              - /url: http://cajviewer.cnki.net
+            - link "知网研学（原E-Study）" [ref=e145] [cursor=pointer]:
+              - /url: https://estudy.cnki.net/
+            - link "下载中心" [ref=e146] [cursor=pointer]:
+              - /url: https://www.cnki.net/software/xzydq.htm
+            - link "标准阅读器" [ref=e147] [cursor=pointer]:
+              - /url: https://piccache.cnki.net/2022/kdn/software/standardreader.exe
+          - listitem [ref=e148]:
+            - generic [ref=e149]: 特色服务
+            - link "手机知网" [ref=e150] [cursor=pointer]:
+              - /url: http://wap.cnki.net/
+            - link "杂志订阅" [ref=e151] [cursor=pointer]:
+              - /url: http://wuxizazhi.cnki.net/
+            - link "数字出版物订阅" [ref=e152] [cursor=pointer]:
+              - /url: http://mall.cnki.net/
+            - link "广告服务" [ref=e153] [cursor=pointer]:
+              - /url: http://a.cnki.net
+          - listitem [ref=e154]:
+            - generic [ref=e155]: 客户服务
+            - generic [ref=e156]: 订卡热线：400-819-9993
+            - generic [ref=e157]: 服务热线：400-810-9888
+            - generic [ref=e158]:
+              - text: 在线咨询：
+              - link "service.cnki.net" [ref=e159] [cursor=pointer]:
+                - /url: http://service.cnki.net
+            - generic [ref=e160]:
+              - text: 邮件咨询：
+              - link "help@cnki.net" [ref=e161] [cursor=pointer]:
+                - /url: mailto:help@cnki.net
+          - listitem [ref=e162]:
+            - link "新浪微博客服" [ref=e163] [cursor=pointer]:
+              - /url: http://e.weibo.com/u/3059308095
+            - link "官方微信" [ref=e166] [cursor=pointer]:
+              - /url: javascript:void(0)
+      - generic [ref=e169]:
+        - generic [ref=e170]:
+          - paragraph [ref=e172]:
+            - generic [ref=e173]:
+              - link "关于我们" [ref=e174] [cursor=pointer]:
+                - /url: http://cnki.net/gycnki/gycnki.htm
+              - link "CNKI 荣誉" [ref=e175] [cursor=pointer]:
+                - /url: http://www.cnki.net/other/gonggao/gongsirongyu.html
+              - link "版权公告" [ref=e176] [cursor=pointer]:
+                - /url: http://www.cnki.net/other/gonggao/bqsm.htm
+              - link "客服中心" [ref=e177] [cursor=pointer]:
+                - /url: https://service.cnki.net/
+              - link "用户建议" [ref=e178] [cursor=pointer]:
+                - /url: https://service.cnki.net/home?flag=1
+              - link "知网招聘" [ref=e179] [cursor=pointer]:
+                - /url: https://piccache.cnki.net/index/CNKIRecruit/index.html
+              - link "知网推广" [ref=e180] [cursor=pointer]:
+                - /url: http://a.cnki.net/
+            - generic [ref=e181]: © 1998-2026中国知网（CNKI）
+          - link [ref=e184] [cursor=pointer]:
+            - /url: https://www.etrust.org.cn/CX8852713371735.html
+        - generic [ref=e186]:
+          - generic [ref=e187]:
+            - text: 京 ICP 证 040431 号
+            - link "网络出版服务许可证网出证(京)字第416号" [ref=e188] [cursor=pointer]:
+              - /url: https://piccache.cnki.net/index/images/gb/416.jpg
+            - text: 京公网安备 11010802020460 号
+          - text: 同方知网数字科技有限公司 KDN 平台基础技术由 AIKBase 提供.
+  - generic [ref=e191]:
+    - generic [ref=e192]:
+      - generic [ref=e193]: 拖动下方拼图完成验证
+      - img "close" [ref=e196] [cursor=pointer]
+    - generic [ref=e205]:
+      - generic [ref=e206]: 安全验证
+      - img "refresh" [ref=e210] [cursor=pointer]

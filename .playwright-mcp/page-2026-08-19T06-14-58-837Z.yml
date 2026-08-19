@@ -1,0 +1,315 @@
+- generic [active] [ref=f11e1]:
+  - banner [ref=f11e3]:
+    - generic [ref=f11e4]:
+      - link [ref=f11e5] [cursor=pointer]:
+        - /url: https://www.cnki.net/
+      - link "总库" [ref=f11e8] [cursor=pointer]:
+        - /url: https://kns.cnki.net/starter/index
+      - generic [ref=f11e9]:
+        - link "检索" [ref=f11e11] [cursor=pointer]:
+          - /url: https://kns.cnki.net/kns8s/search
+        - link "CNKI AI" [ref=f11e14] [cursor=pointer]:
+          - /url: https://ai.cnki.net
+        - link "出版来源" [ref=f11e17] [cursor=pointer]:
+          - /url: https://navi.cnki.net/knavi/?language=CHS
+        - link "我的CNKI" [ref=f11e20] [cursor=pointer]:
+          - /url: https://kns.cnki.net/myspace/collect
+      - generic [ref=f11e22]:
+        - generic [ref=f11e23]:
+          - generic [ref=f11e28] [cursor=pointer]: 充值
+          - link "会员" [ref=f11e30] [cursor=pointer]:
+            - /url: https://member.cnki.net/
+        - generic [ref=f11e35]:
+          - generic [ref=f11e702] [cursor=pointer]
+          - generic "中国传媒大学" [ref=f11e703] [cursor=pointer]
+          - generic [ref=f11e37] [cursor=pointer]: 个人登录
+  - generic [ref=f11e38]:
+    - generic [ref=f11e39]:
+      - generic [ref=f11e41]:
+        - list
+        - generic [ref=f11e42]:
+          - list [ref=f11e43]:
+            - listitem [ref=f11e44] [cursor=pointer]:
+              - generic [ref=f11e45]: 检索设置
+            - listitem [ref=f11e46] [cursor=pointer]: 高级检索
+            - listitem [ref=f11e47] [cursor=pointer]: 专业检索
+            - listitem [ref=f11e48] [cursor=pointer]: 作者发文检索
+            - listitem [ref=f11e49] [cursor=pointer]: 句子检索
+          - generic [ref=f11e726]:
+            - generic [ref=f11e727]:
+              - generic [ref=f11e728]:
+                - generic [ref=f11e729] [cursor=pointer]: 文献分类
+                - generic:
+                  - generic:
+                    - text: 文献分类
+                    - generic [ref=f11e731]: 全选 清除
+                  - list:
+                    - listitem [ref=f11e732]:
+                      - generic [ref=f11e733]:
+                        - generic [ref=f11e734] [cursor=pointer]
+                        - generic [ref=f11e735] [cursor=pointer]
+                        - link "基础科学":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f11e736]:
+                      - generic [ref=f11e737]:
+                        - generic [ref=f11e738] [cursor=pointer]
+                        - generic [ref=f11e739] [cursor=pointer]
+                        - link "工程科技Ⅰ辑":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f11e740]:
+                      - generic [ref=f11e741]:
+                        - generic [ref=f11e742] [cursor=pointer]
+                        - generic [ref=f11e743] [cursor=pointer]
+                        - link "工程科技Ⅱ辑":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f11e744]:
+                      - generic [ref=f11e745]:
+                        - generic [ref=f11e746] [cursor=pointer]
+                        - generic [ref=f11e747] [cursor=pointer]
+                        - link "农业科技":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f11e748]:
+                      - generic [ref=f11e749]:
+                        - generic [ref=f11e750] [cursor=pointer]
+                        - generic [ref=f11e751] [cursor=pointer]
+                        - link "医药卫生科技":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f11e752]:
+                      - generic [ref=f11e753]:
+                        - generic [ref=f11e754] [cursor=pointer]
+                        - generic [ref=f11e755] [cursor=pointer]
+                        - link "哲学与人文科学":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f11e756]:
+                      - generic [ref=f11e757]:
+                        - generic [ref=f11e758] [cursor=pointer]
+                        - generic [ref=f11e759] [cursor=pointer]
+                        - link "社会科学Ⅰ辑":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f11e760]:
+                      - generic [ref=f11e761]:
+                        - generic [ref=f11e762] [cursor=pointer]
+                        - generic [ref=f11e763] [cursor=pointer]
+                        - link "社会科学Ⅱ辑":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f11e764]:
+                      - generic [ref=f11e765]:
+                        - generic [ref=f11e766] [cursor=pointer]
+                        - generic [ref=f11e767] [cursor=pointer]
+                        - link "信息科技":
+                          - /url: javascript:void(0);
+                    - listitem [ref=f11e768]:
+                      - generic [ref=f11e769]:
+                        - generic [ref=f11e770] [cursor=pointer]
+                        - generic [ref=f11e771] [cursor=pointer]
+                        - link "经济与管理科学":
+                          - /url: javascript:void(0);
+              - generic [ref=f11e772]:
+                - textbox [ref=f11e774]: SU=('名人去世'+'公众人物去世')*('社交媒体'+'短视频'+'抖音')
+                - generic [ref=f11e775]:
+                  - generic [ref=f11e776]:
+                    - generic [ref=f11e777]:
+                      - generic [ref=f11e778] [cursor=pointer]:
+                        - checkbox "OA出版" [ref=f11e779]
+                        - text: OA出版
+                      - generic [ref=f11e780] [cursor=pointer]:
+                        - checkbox "网络首发" [ref=f11e781]
+                        - text: 网络首发
+                      - generic [ref=f11e782] [cursor=pointer]:
+                        - checkbox "增强出版" [ref=f11e783]
+                        - text: 增强出版
+                    - generic [ref=f11e786] [cursor=pointer]:
+                      - checkbox "基金文献" [ref=f11e787]
+                      - text: 基金文献
+                    - generic [ref=f11e788]:
+                      - generic [ref=f11e790] [cursor=pointer]:
+                        - checkbox "中英文扩展" [checked] [ref=f11e791]
+                        - text: 中英文扩展
+                      - generic [ref=f11e792] [cursor=pointer]:
+                        - checkbox "同义词扩展" [ref=f11e793]
+                        - text: 同义词扩展
+                  - generic [ref=f11e794]:
+                    - generic [ref=f11e795]: 时间范围：
+                    - generic [ref=f11e796]:
+                      - generic [ref=f11e797]: 发表时间
+                      - textbox [ref=f11e798]
+                      - text: "--"
+                      - textbox [ref=f11e799]
+                    - generic [ref=f11e800]:
+                      - generic [ref=f11e801]: 更新时间
+                      - generic [ref=f11e803] [cursor=pointer]:
+                        - generic [ref=f11e804]: 不限
+                        - emphasis [ref=f11e805]: ∨
+                - generic [ref=f11e806]:
+                  - link "重置条件" [ref=f11e807] [cursor=pointer]:
+                    - /url: javascript:void(0);
+                  - button "检索" [ref=f11e808] [cursor=pointer]
+                  - link "结果中检索" [ref=f11e823] [cursor=pointer]:
+                    - /url: javascript:void(0)
+            - generic [ref=f11e812]:
+              - term [ref=f11e813]:
+                - text: 专业检索使用方法：
+                - link ">>" [ref=f11e814] [cursor=pointer]:
+                  - /url: https://piccache.cnki.net/2022/kdn/index/helper/manual.html#frame2-1-3
+              - term [ref=f11e815]: 可检索字段：
+              - definition [ref=f11e816]:
+                - paragraph [ref=f11e817]: SU=主题, TKA=篇关摘, KY=关键词, TI=篇名, FT=全文, AU=作者, FI=第一作者, RP=通讯作者, AF=作者单位, FU=基金, AB=摘要, CO=小标题, RF=参考文献, CLC=分类号, LY=文献来源, DOI=DOI, CF=被引频次
+              - term [ref=f11e818]: 示例：
+              - definition [ref=f11e819]:
+                - paragraph [ref=f11e820]: 1）TI='生态' and KY='生态文明' and (AU % '陈' + '王' ) 可以检索到篇名包括“生态”并且关键词包括“生态文明”并且作者为“陈”姓和“王”姓的所有文章；
+                - paragraph [ref=f11e821]: 2）SU='北京' * '奥运' and FT='环境保护' 可以检索到主题包括“北京”及“奥运”并且全文中包括“环境保护”的信息；
+                - paragraph [ref=f11e822]: 3）SU=('经济发展' + '可持续发展') * '转变' - '泡沫' 可检索“经济发展”或“可持续发展”有关“转变”的信息，并且可以去除与“泡沫”有关的部分内容。
+      - generic [ref=f11e198]:
+        - generic:
+          - generic [ref=f11e199]:
+            - link "总库" [ref=f11e200] [cursor=pointer]:
+              - /url: javascript:void(0)
+              - emphasis
+            - generic [ref=f11e202]:
+              - generic [ref=f11e203] [cursor=pointer]: 中文
+              - generic [ref=f11e204] [cursor=pointer]: 外文
+          - list [ref=f11e205]:
+            - listitem [ref=f11e206]:
+              - link "学术期刊" [ref=f11e207] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f11e209]:
+              - link "学位论文" [ref=f11e210] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f11e212]:
+              - link "图书" [ref=f11e213] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f11e215]:
+              - link "会议" [ref=f11e216] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f11e218]:
+              - link "报纸" [ref=f11e219] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f11e221]:
+              - link "年鉴" [ref=f11e222] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f11e224]:
+              - link "专利" [ref=f11e225] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f11e227]:
+              - link "标准" [ref=f11e228] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+            - listitem [ref=f11e230]:
+              - link "法律法规" [ref=f11e231] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - emphasis
+          - link "更多资源" [ref=f11e233] [cursor=pointer]:
+            - /url: javascript:void(0);
+    - generic [ref=f11e640]:
+      - generic [ref=f11e824]:
+        - generic [ref=f11e825]: 检索范围： 总库
+        - link "主题定制" [ref=f11e826] [cursor=pointer]:
+          - /url: javascript:void(0)
+        - link "检索历史" [ref=f11e827] [cursor=pointer]:
+          - /url: javascript:void(0)
+      - paragraph [ref=f11e834]: 抱歉，暂无数据，请稍后重试。
+      - generic:
+        - generic:
+          - list:
+            - listitem
+  - contentinfo [ref=f11e642]:
+    - generic [ref=f11e643]:
+      - generic [ref=f11e644]:
+        - list:
+          - listitem [ref=f11e645]:
+            - generic [ref=f11e646]: 读者服务
+            - link "购买知网卡" [ref=f11e647] [cursor=pointer]:
+              - /url: http://vipcard.cnki.net/ec/skwd/skwd.htm
+            - link "充值中心" [ref=f11e648] [cursor=pointer]:
+              - /url: http://zhifu.cnki.net/
+            - link "我的CNKI" [ref=f11e649] [cursor=pointer]:
+              - /url: http://my.cnki.net/
+            - link "帮助中心" [ref=f11e650] [cursor=pointer]:
+              - /url: http://service.cnki.net/helpcenter/
+          - listitem [ref=f11e651]:
+            - generic [ref=f11e652]: CNKI常用软件下载
+            - link "CAJViewer浏览器" [ref=f11e653] [cursor=pointer]:
+              - /url: http://cajviewer.cnki.net
+            - link "知网研学（原E-Study）" [ref=f11e654] [cursor=pointer]:
+              - /url: https://estudy.cnki.net/
+            - link "下载中心" [ref=f11e655] [cursor=pointer]:
+              - /url: https://www.cnki.net/software/xzydq.htm
+            - link "标准阅读器" [ref=f11e656] [cursor=pointer]:
+              - /url: https://piccache.cnki.net/2022/kdn/software/standardreader.exe
+          - listitem [ref=f11e657]:
+            - generic [ref=f11e658]: 特色服务
+            - link "手机知网" [ref=f11e659] [cursor=pointer]:
+              - /url: http://wap.cnki.net/
+            - link "杂志订阅" [ref=f11e660] [cursor=pointer]:
+              - /url: http://wuxizazhi.cnki.net/
+            - link "数字出版物订阅" [ref=f11e661] [cursor=pointer]:
+              - /url: http://mall.cnki.net/
+            - link "广告服务" [ref=f11e662] [cursor=pointer]:
+              - /url: http://a.cnki.net
+          - listitem [ref=f11e663]:
+            - generic [ref=f11e664]: 客户服务
+            - generic [ref=f11e665]: 订卡热线：400-819-9993
+            - generic [ref=f11e666]: 服务热线：400-810-9888
+            - generic [ref=f11e667]:
+              - text: 在线咨询：
+              - link "service.cnki.net" [ref=f11e668] [cursor=pointer]:
+                - /url: http://service.cnki.net
+            - generic [ref=f11e669]:
+              - text: 邮件咨询：
+              - link "help@cnki.net" [ref=f11e670] [cursor=pointer]:
+                - /url: mailto:help@cnki.net
+          - listitem [ref=f11e671]:
+            - link "新浪微博客服" [ref=f11e672] [cursor=pointer]:
+              - /url: http://e.weibo.com/u/3059308095
+            - link "官方微信" [ref=f11e675] [cursor=pointer]:
+              - /url: javascript:void(0)
+      - generic [ref=f11e678]:
+        - generic [ref=f11e679]:
+          - paragraph [ref=f11e681]:
+            - generic [ref=f11e682]:
+              - link "关于我们" [ref=f11e683] [cursor=pointer]:
+                - /url: http://cnki.net/gycnki/gycnki.htm
+              - link "CNKI 荣誉" [ref=f11e684] [cursor=pointer]:
+                - /url: http://www.cnki.net/other/gonggao/gongsirongyu.html
+              - link "版权公告" [ref=f11e685] [cursor=pointer]:
+                - /url: http://www.cnki.net/other/gonggao/bqsm.htm
+              - link "客服中心" [ref=f11e686] [cursor=pointer]:
+                - /url: https://service.cnki.net/
+              - link "用户建议" [ref=f11e687] [cursor=pointer]:
+                - /url: https://service.cnki.net/home?flag=1
+              - link "知网招聘" [ref=f11e688] [cursor=pointer]:
+                - /url: https://piccache.cnki.net/index/CNKIRecruit/index.html
+              - link "知网推广" [ref=f11e689] [cursor=pointer]:
+                - /url: http://a.cnki.net/
+            - generic [ref=f11e690]: © 1998-2026中国知网（CNKI）
+          - link [ref=f11e693] [cursor=pointer]:
+            - /url: https://www.etrust.org.cn/CX8852713371735.html
+        - generic [ref=f11e695]:
+          - generic [ref=f11e696]:
+            - text: 京 ICP 证 040431 号
+            - link "网络出版服务许可证网出证(京)字第416号" [ref=f11e697] [cursor=pointer]:
+              - /url: https://piccache.cnki.net/index/images/gb/416.jpg
+            - text: 京公网安备 11010802020460 号
+          - text: 同方知网数字科技有限公司 KDN 平台基础技术由 AIKBase 提供.
+    - generic [ref=f11e698]:
+      - generic [ref=f11e699]:
+        - link "在线咨询" [ref=f11e700] [cursor=pointer]:
+          - /url: https://service.cnki.net
+        - link "用户反馈" [ref=f11e701] [cursor=pointer]:
+          - /url: https://kefu.cnki.net/im/goLeavemsg.html?appid=01xds8&isLogin=true&skill=ff8080818906901e018909b8eda90057
+      - link [ref=f11e832] [cursor=pointer]:
+        - /url: javascript:void(0);target=_self
+  - generic [ref=f11e706]:
+    - generic [ref=f11e707]:
+      - generic [ref=f11e708]: 拖动下方拼图完成验证
+      - img "close" [ref=f11e711] [cursor=pointer]
+    - generic [ref=f11e720]:
+      - generic [ref=f11e721]: 安全验证
+      - img "refresh" [ref=f11e725] [cursor=pointer]
