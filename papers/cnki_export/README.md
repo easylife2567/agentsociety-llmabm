@@ -62,6 +62,8 @@
 
 ### 已知限制与经验（后续轮次必读）
 
+> 本工作流已固化为 skill：`.claude/skills/agentsociety-cnki-literature-search/`（SKILL.md + references/noteexpress-fields.md）。以下清单为该 skill 的落地记录，两者同步演进。
+
 1. **口径差异**：q1 采用学术期刊过滤（检索后筛选），q2–q4 为总库口径。合并入索引时按查询式记录，不强行统一。
 2. **导出中心 tab 生命周期**：每次 NoteExpress 导出前必须**关闭旧的导出中心 tab**，否则新 tab 载入旧批次（q2 踩坑）。
 3. **"已选"跨检索持久化**：结果页 Vue store 的已选集合跨检索保留（q1 的 453 条残留）。每组检索勾选前先刷新页面/清空。
