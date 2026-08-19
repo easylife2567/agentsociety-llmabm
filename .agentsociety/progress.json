@@ -13,7 +13,7 @@
     "literature_search": {
       "status": "completed",
       "started_at": null,
-      "completed_at": "2026-08-18T10:30:46.084589+00:00",
+      "completed_at": "2026-08-19T07:24:02.594483+00:00",
       "attempts": 1,
       "error": null,
       "metadata": {
@@ -23,7 +23,16 @@
         "registered_from": "research/停止更新公众人物的算法推荐与公众认知/phase2_文献调研",
         "index_file": "papers/literature_index.json",
         "skew_advisory": "2020-2025=78% DISTRIBUTIONAL_SKEW_ADVISORY",
-        "pending": "CNKI/万方中文补检（用户有学校访问权限）"
+        "pending": "CNKI/万方中文补检（用户有学校访问权限）",
+        "cnki_round1": {
+          "queries": "q1-q6",
+          "raw": 1258,
+          "deduped": 1237,
+          "appended": 1237,
+          "index_total": 1304,
+          "source": "cnki_wanfang_round1",
+          "notes": "title_abstract only; relevance_group per query; 12 no-year network-first records; venue coverage 100%"
+        }
       },
       "verification_status": "complete",
       "revision_round": 0
@@ -90,6 +99,17 @@
       "from_status": "not_started",
       "to_status": "completed",
       "from_stage": "literature_search",
+      "to_stage": "hypothesis"
+    },
+    {
+      "sequence": 2,
+      "timestamp": "2026-08-19T07:24:02.594493+00:00",
+      "kind": "stage_update",
+      "revision_round": 0,
+      "stage": "literature_search",
+      "from_status": "completed",
+      "to_status": "completed",
+      "from_stage": "hypothesis",
       "to_stage": "hypothesis"
     }
   ]
