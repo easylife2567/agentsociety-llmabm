@@ -3,7 +3,7 @@
   "workspace": {
     "topic": "公众人物死亡事件中的认知偏移：算法推荐、治理干预与群体差异",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "experiment_config",
+    "current_stage": "run_experiment",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
     "revision_round": 0,
@@ -50,10 +50,10 @@
       "revision_round": 0
     },
     "experiment_config": {
-      "status": "not_started",
+      "status": "completed",
       "started_at": null,
-      "completed_at": null,
-      "attempts": 0,
+      "completed_at": "2026-08-24T06:44:08.975536+00:00",
+      "attempts": 1,
       "error": null,
       "metadata": {},
       "verification_status": "not_started",
@@ -124,6 +124,17 @@
       "to_status": "completed",
       "from_stage": "hypothesis",
       "to_stage": "experiment_config"
+    },
+    {
+      "sequence": 4,
+      "timestamp": "2026-08-24T06:44:08.975544+00:00",
+      "kind": "stage_update",
+      "revision_round": 0,
+      "stage": "experiment_config",
+      "from_status": "not_started",
+      "to_status": "completed",
+      "from_stage": "experiment_config",
+      "to_stage": "run_experiment"
     }
   ]
 }

@@ -1,0 +1,1711 @@
+{
+  "env_modules": [
+    {
+      "module_type": "SocialMediaSpace",
+      "kwargs": {
+        "agent_id_name_pairs": [
+          [
+            1,
+            "user_1"
+          ],
+          [
+            2,
+            "user_2"
+          ],
+          [
+            3,
+            "user_3"
+          ],
+          [
+            4,
+            "user_4"
+          ],
+          [
+            5,
+            "user_5"
+          ],
+          [
+            6,
+            "user_6"
+          ],
+          [
+            7,
+            "user_7"
+          ],
+          [
+            8,
+            "user_8"
+          ],
+          [
+            9,
+            "user_9"
+          ],
+          [
+            10,
+            "user_10"
+          ],
+          [
+            11,
+            "user_11"
+          ],
+          [
+            12,
+            "user_12"
+          ],
+          [
+            13,
+            "user_13"
+          ],
+          [
+            14,
+            "user_14"
+          ],
+          [
+            15,
+            "user_15"
+          ],
+          [
+            16,
+            "user_16"
+          ],
+          [
+            17,
+            "user_17"
+          ],
+          [
+            18,
+            "user_18"
+          ],
+          [
+            19,
+            "user_19"
+          ],
+          [
+            20,
+            "user_20"
+          ],
+          [
+            21,
+            "user_21"
+          ],
+          [
+            22,
+            "user_22"
+          ],
+          [
+            23,
+            "user_23"
+          ],
+          [
+            24,
+            "user_24"
+          ],
+          [
+            25,
+            "user_25"
+          ],
+          [
+            26,
+            "user_26"
+          ],
+          [
+            27,
+            "user_27"
+          ],
+          [
+            28,
+            "user_28"
+          ],
+          [
+            29,
+            "user_29"
+          ],
+          [
+            30,
+            "user_30"
+          ],
+          [
+            31,
+            "user_31"
+          ],
+          [
+            32,
+            "user_32"
+          ],
+          [
+            33,
+            "user_33"
+          ],
+          [
+            34,
+            "user_34"
+          ],
+          [
+            35,
+            "user_35"
+          ],
+          [
+            36,
+            "user_36"
+          ],
+          [
+            37,
+            "user_37"
+          ],
+          [
+            38,
+            "user_38"
+          ],
+          [
+            39,
+            "user_39"
+          ],
+          [
+            40,
+            "user_40"
+          ],
+          [
+            41,
+            "user_41"
+          ],
+          [
+            42,
+            "user_42"
+          ],
+          [
+            43,
+            "user_43"
+          ],
+          [
+            44,
+            "user_44"
+          ],
+          [
+            45,
+            "user_45"
+          ],
+          [
+            46,
+            "user_46"
+          ],
+          [
+            47,
+            "user_47"
+          ],
+          [
+            48,
+            "user_48"
+          ],
+          [
+            49,
+            "user_49"
+          ],
+          [
+            50,
+            "user_50"
+          ],
+          [
+            51,
+            "user_51"
+          ],
+          [
+            52,
+            "user_52"
+          ],
+          [
+            53,
+            "user_53"
+          ],
+          [
+            54,
+            "user_54"
+          ],
+          [
+            55,
+            "user_55"
+          ],
+          [
+            56,
+            "user_56"
+          ],
+          [
+            57,
+            "user_57"
+          ],
+          [
+            58,
+            "user_58"
+          ],
+          [
+            59,
+            "user_59"
+          ],
+          [
+            60,
+            "user_60"
+          ],
+          [
+            61,
+            "user_61"
+          ],
+          [
+            62,
+            "user_62"
+          ],
+          [
+            63,
+            "user_63"
+          ],
+          [
+            64,
+            "user_64"
+          ],
+          [
+            65,
+            "user_65"
+          ],
+          [
+            66,
+            "user_66"
+          ],
+          [
+            67,
+            "user_67"
+          ],
+          [
+            68,
+            "user_68"
+          ],
+          [
+            69,
+            "user_69"
+          ],
+          [
+            70,
+            "user_70"
+          ],
+          [
+            71,
+            "user_71"
+          ],
+          [
+            72,
+            "user_72"
+          ],
+          [
+            73,
+            "user_73"
+          ],
+          [
+            74,
+            "user_74"
+          ],
+          [
+            75,
+            "user_75"
+          ],
+          [
+            76,
+            "user_76"
+          ],
+          [
+            77,
+            "user_77"
+          ],
+          [
+            78,
+            "user_78"
+          ],
+          [
+            79,
+            "user_79"
+          ],
+          [
+            80,
+            "user_80"
+          ],
+          [
+            81,
+            "user_81"
+          ],
+          [
+            82,
+            "user_82"
+          ],
+          [
+            83,
+            "user_83"
+          ],
+          [
+            84,
+            "user_84"
+          ],
+          [
+            85,
+            "user_85"
+          ],
+          [
+            86,
+            "user_86"
+          ],
+          [
+            87,
+            "user_87"
+          ],
+          [
+            88,
+            "user_88"
+          ],
+          [
+            89,
+            "user_89"
+          ],
+          [
+            90,
+            "user_90"
+          ],
+          [
+            91,
+            "user_91"
+          ],
+          [
+            92,
+            "user_92"
+          ],
+          [
+            93,
+            "user_93"
+          ],
+          [
+            94,
+            "user_94"
+          ],
+          [
+            95,
+            "user_95"
+          ],
+          [
+            96,
+            "user_96"
+          ],
+          [
+            97,
+            "user_97"
+          ],
+          [
+            98,
+            "user_98"
+          ],
+          [
+            99,
+            "user_99"
+          ],
+          [
+            100,
+            "user_100"
+          ]
+        ],
+        "persons": {
+          "901": {
+            "id": 901,
+            "username": "教育新闻联播",
+            "created_at": "2026-01-01T00:00:00"
+          },
+          "902": {
+            "id": 902,
+            "username": "考研界扛把子",
+            "created_at": "2026-01-01T00:00:00"
+          },
+          "903": {
+            "id": 903,
+            "username": "行业深扒",
+            "created_at": "2026-01-01T00:00:00"
+          },
+          "904": {
+            "id": 904,
+            "username": "快乐小狗",
+            "created_at": "2026-01-01T00:00:00"
+          }
+        },
+        "posts": {
+          "1": {
+            "post_id": 1,
+            "author_id": 901,
+            "content": "【讣告】据张雪峰工作室消息，知名考研辅导名师、教育博主张雪峰因病医治无效，于2026年8月20日20时不幸离世，享年42岁。感谢社会各界长期以来的关心和支持。",
+            "post_type": "original",
+            "parent_id": null,
+            "created_at": "2026-08-20T20:00:00",
+            "likes_count": 0,
+            "reposts_count": 0,
+            "comments_count": 0,
+            "view_count": 0,
+            "tags": [
+              "张雪峰",
+              "讣告"
+            ],
+            "topic_category": "news"
+          },
+          "2": {
+            "post_id": 2,
+            "author_id": 902,
+            "content": "凌晨看到这个消息，眼泪一下就出来了。当年考研最迷茫的时候就是听着张老师的课熬过来的，他说'考研是普通人最公平的翻身机会'。张老师，一路走好。",
+            "post_type": "original",
+            "parent_id": null,
+            "created_at": "2026-08-20T20:10:00",
+            "likes_count": 0,
+            "reposts_count": 0,
+            "comments_count": 0,
+            "view_count": 0,
+            "tags": [
+              "张雪峰",
+              "悼念"
+            ],
+            "topic_category": "mourning"
+          },
+          "3": {
+            "post_id": 3,
+            "author_id": 903,
+            "content": "听说张雪峰这次是因为长期高强度直播讲课，身体早就透支了，最近几个月一直在硬撑。教育行业真的卷，名师光环背后都是拿命换的。",
+            "post_type": "original",
+            "parent_id": null,
+            "created_at": "2026-08-20T20:20:00",
+            "likes_count": 0,
+            "reposts_count": 0,
+            "comments_count": 0,
+            "view_count": 0,
+            "tags": [
+              "张雪峰",
+              "内幕"
+            ],
+            "topic_category": "rumor"
+          },
+          "4": {
+            "post_id": 4,
+            "author_id": 904,
+            "content": "笑死，某机构连夜开会改PPT，把'张雪峰老师倾情推荐'全换成'张雪峰老师曾推荐'。人还没凉透，营销先活了。绷不住了哈哈哈哈#张雪峰#",
+            "post_type": "original",
+            "parent_id": null,
+            "created_at": "2026-08-20T20:30:00",
+            "likes_count": 0,
+            "reposts_count": 0,
+            "comments_count": 0,
+            "view_count": 0,
+            "tags": [
+              "张雪峰",
+              "玩梗"
+            ],
+            "topic_category": "meme"
+          }
+        },
+        "comments": {},
+        "follows": {},
+        "likes": {},
+        "feed_source": "global",
+        "polarization_mode": "none",
+        "random_seed": 42
+      }
+    }
+  ],
+  "agents": [
+    {
+      "agent_id": 1,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 1,
+        "name": "雪峰考研学员01",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 2,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 2,
+        "name": "雪峰考研学员02",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 3,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 3,
+        "name": "雪峰考研学员03",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 4,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 4,
+        "name": "雪峰考研学员04",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 5,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 5,
+        "name": "雪峰考研学员05",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 6,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 6,
+        "name": "雪峰考研学员06",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 7,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 7,
+        "name": "雪峰考研学员07",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 8,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 8,
+        "name": "雪峰考研学员08",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 9,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 9,
+        "name": "雪峰考研学员09",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 10,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 10,
+        "name": "雪峰考研学员10",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 11,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 11,
+        "name": "雪峰考研学员11",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 12,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 12,
+        "name": "雪峰考研学员12",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 13,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 13,
+        "name": "雪峰考研学员13",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 14,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 14,
+        "name": "雪峰考研学员14",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 15,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 15,
+        "name": "雪峰考研学员15",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 16,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 16,
+        "name": "雪峰考研学员16",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 17,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 17,
+        "name": "雪峰考研学员17",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 18,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 18,
+        "name": "雪峰考研学员18",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 19,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 19,
+        "name": "雪峰考研学员19",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 20,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 20,
+        "name": "雪峰考研学员20",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 21,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 21,
+        "name": "雪峰考研学员21",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 22,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 22,
+        "name": "雪峰考研学员22",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 23,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 23,
+        "name": "雪峰考研学员23",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 24,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 24,
+        "name": "雪峰考研学员24",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 25,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 25,
+        "name": "雪峰考研学员25",
+        "persona": "曾报名张雪峰的考研辅导课程，听过他的线下课和直播，熟悉他'考研是普通人的翻身机会'的观点，尊称他为'张老师'，对他有深厚感情。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 26,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 26,
+        "name": "教育圈观察员01",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 27,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 27,
+        "name": "教育圈观察员02",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 28,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 28,
+        "name": "教育圈观察员03",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 29,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 29,
+        "name": "教育圈观察员04",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 30,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 30,
+        "name": "教育圈观察员05",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 31,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 31,
+        "name": "教育圈观察员06",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 32,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 32,
+        "name": "教育圈观察员07",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 33,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 33,
+        "name": "教育圈观察员08",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 34,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 34,
+        "name": "教育圈观察员09",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 35,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 35,
+        "name": "教育圈观察员10",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 36,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 36,
+        "name": "教育圈观察员11",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 37,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 37,
+        "name": "教育圈观察员12",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 38,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 38,
+        "name": "教育圈观察员13",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 39,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 39,
+        "name": "教育圈观察员14",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 40,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 40,
+        "name": "教育圈观察员15",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 41,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 41,
+        "name": "教育圈观察员16",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 42,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 42,
+        "name": "教育圈观察员17",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 43,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 43,
+        "name": "教育圈观察员18",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 44,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 44,
+        "name": "教育圈观察员19",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 45,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 45,
+        "name": "教育圈观察员20",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 46,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 46,
+        "name": "教育圈观察员21",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 47,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 47,
+        "name": "教育圈观察员22",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 48,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 48,
+        "name": "教育圈观察员23",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 49,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 49,
+        "name": "教育圈观察员24",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 50,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 50,
+        "name": "教育圈观察员25",
+        "persona": "平时关注教育领域资讯和高考志愿填报话题，经常刷到张雪峰的直播切片和采访，对他有一定了解但不算粉丝。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 51,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 51,
+        "name": "刷视频的路人01",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 52,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 52,
+        "name": "刷视频的路人02",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 53,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 53,
+        "name": "刷视频的路人03",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 54,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 54,
+        "name": "刷视频的路人04",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 55,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 55,
+        "name": "刷视频的路人05",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 56,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 56,
+        "name": "刷视频的路人06",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 57,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 57,
+        "name": "刷视频的路人07",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 58,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 58,
+        "name": "刷视频的路人08",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 59,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 59,
+        "name": "刷视频的路人09",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 60,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 60,
+        "name": "刷视频的路人10",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 61,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 61,
+        "name": "刷视频的路人11",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 62,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 62,
+        "name": "刷视频的路人12",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 63,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 63,
+        "name": "刷视频的路人13",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 64,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 64,
+        "name": "刷视频的路人14",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 65,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 65,
+        "name": "刷视频的路人15",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 66,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 66,
+        "name": "刷视频的路人16",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 67,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 67,
+        "name": "刷视频的路人17",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 68,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 68,
+        "name": "刷视频的路人18",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 69,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 69,
+        "name": "刷视频的路人19",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 70,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 70,
+        "name": "刷视频的路人20",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 71,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 71,
+        "name": "刷视频的路人21",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 72,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 72,
+        "name": "刷视频的路人22",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 73,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 73,
+        "name": "刷视频的路人23",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 74,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 74,
+        "name": "刷视频的路人24",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 75,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 75,
+        "name": "刷视频的路人25",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 76,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 76,
+        "name": "刷视频的路人26",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 77,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 77,
+        "name": "刷视频的路人27",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 78,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 78,
+        "name": "刷视频的路人28",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 79,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 79,
+        "name": "刷视频的路人29",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 80,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 80,
+        "name": "刷视频的路人30",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 81,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 81,
+        "name": "刷视频的路人31",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 82,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 82,
+        "name": "刷视频的路人32",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 83,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 83,
+        "name": "刷视频的路人33",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 84,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 84,
+        "name": "刷视频的路人34",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 85,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 85,
+        "name": "刷视频的路人35",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 86,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 86,
+        "name": "刷视频的路人36",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 87,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 87,
+        "name": "刷视频的路人37",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 88,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 88,
+        "name": "刷视频的路人38",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 89,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 89,
+        "name": "刷视频的路人39",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 90,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 90,
+        "name": "刷视频的路人40",
+        "persona": "平时刷短视频和热搜打发时间，听说过'张雪峰'这个名字，知道他是讲考研的老师，但对他的具体经历了解不深。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 91,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 91,
+        "name": "热点吐槽君01",
+        "persona": "短视频二创作者，擅长跟热点做吐槽和玩梗视频，为了流量会快速跟进任何热点事件，风格戏谑。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 92,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 92,
+        "name": "热点吐槽君02",
+        "persona": "短视频二创作者，擅长跟热点做吐槽和玩梗视频，为了流量会快速跟进任何热点事件，风格戏谑。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 93,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 93,
+        "name": "热点吐槽君03",
+        "persona": "短视频二创作者，擅长跟热点做吐槽和玩梗视频，为了流量会快速跟进任何热点事件，风格戏谑。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 94,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 94,
+        "name": "热点吐槽君04",
+        "persona": "短视频二创作者，擅长跟热点做吐槽和玩梗视频，为了流量会快速跟进任何热点事件，风格戏谑。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 95,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 95,
+        "name": "热点吐槽君05",
+        "persona": "短视频二创作者，擅长跟热点做吐槽和玩梗视频，为了流量会快速跟进任何热点事件，风格戏谑。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 96,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 96,
+        "name": "热点吐槽君06",
+        "persona": "短视频二创作者，擅长跟热点做吐槽和玩梗视频，为了流量会快速跟进任何热点事件，风格戏谑。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 97,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 97,
+        "name": "热点吐槽君07",
+        "persona": "短视频二创作者，擅长跟热点做吐槽和玩梗视频，为了流量会快速跟进任何热点事件，风格戏谑。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 98,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 98,
+        "name": "热点吐槽君08",
+        "persona": "短视频二创作者，擅长跟热点做吐槽和玩梗视频，为了流量会快速跟进任何热点事件，风格戏谑。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 99,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 99,
+        "name": "热点吐槽君09",
+        "persona": "短视频二创作者，擅长跟热点做吐槽和玩梗视频，为了流量会快速跟进任何热点事件，风格戏谑。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    },
+    {
+      "agent_id": 100,
+      "agent_type": "PersonAgent",
+      "kwargs": {
+        "id": 100,
+        "name": "热点吐槽君10",
+        "persona": "短视频二创作者，擅长跟热点做吐槽和玩梗视频，为了流量会快速跟进任何热点事件，风格戏谑。",
+        "max_react_turns": 6,
+        "enable_memory": true,
+        "enable_todo_list": false
+      }
+    }
+  ]
+}
