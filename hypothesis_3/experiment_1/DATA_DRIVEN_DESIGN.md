@@ -79,7 +79,7 @@
 | 供给时间 | 死前存量（志愿填报/学习方法）设 03-20~23；其余 03-24 当日交错；营销 T0+8h 起 | v0.1 |
 | 作者 | 每主题 2 个化名代理（id 901–920），producer 不作 LLM agent | v0.1 §2.3 |
 | feed_source | `global` | v0.1 |
-| **推荐算法** | **`reddit_hot`**（热度加权）——v0.1 的 chronological 是 H2 的反事实臂，H2 移出后改用拟合现象的热度加权（梗内容高互动→更高曝光，形成链第 3 环节）；chronological 降级为可选稳健性检验 | 本版变更 |
+| **推荐算法** | **`reddit_hot`**（热度加权）——本 run 兼任 H3 的事件基线与 H4 的策展基线（v0.2b 补注：2026-08-31 主题澄清后，`chronological` 成为 [hypothesis_4/experiment_2](../../hypothesis_4/experiment_2/EXPERIMENT.md) 的去策展化处理臂，与本 run 唯一差异是 recommendation_algorithm） | 本版变更 |
 | random_seed | 42 | v0.1 |
 
 ## 3. 交互与测量规则（沿用 v0.1，摘要）
