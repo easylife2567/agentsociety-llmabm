@@ -1,5 +1,79 @@
-start_t: '2026-08-20T20:00:00'
+start_t: '2026-03-24T08:00:00'
 steps:
-- num_steps: 12
+- type: questionnaire
+  questionnaire_id: T0_baseline
+  title: 基线问卷（曝光前，检验 persona 分组效度）
+  questions:
+  - id: impression_words
+    prompt: "用 3-5 个词描述你对「张雪峰」的印象。如果你此前没听说过他，请回答「没听说过」。"
+    response_type: text
+  - id: familiarity
+    prompt: "你对张雪峰的熟悉程度（1=完全没听说过，5=非常熟悉）？"
+    response_type: integer
+  - id: impression_source
+    prompt: "如果你对张雪峰有印象，你的印象主要来自哪里？"
+    response_type: choice
+    choices: [生前视频/直播, 死亡事件相关短视频或帖子, 新闻报道, 朋友讨论, 没听说过/不适用]
+  - id: occupation
+    prompt: "在你印象中，张雪峰是做什么的？（没有印象请回答「不知道」）"
+    response_type: text
+- num_steps: 4
   tick: 1
   type: run
+- type: questionnaire
+  questionnaire_id: T1_day4
+  title: 第 1 次曝光后（死亡冲击波衰减期）
+  questions:
+  - id: impression_words
+    prompt: "用 3-5 个词描述你对「张雪峰」的印象。如果你此前没听说过他，请回答「没听说过」。"
+    response_type: text
+  - id: familiarity
+    prompt: "你对张雪峰的熟悉程度（1=完全没听说过，5=非常熟悉）？"
+    response_type: integer
+  - id: impression_source
+    prompt: "如果你对张雪峰有印象，你的印象主要来自哪里？"
+    response_type: choice
+    choices: [生前视频/直播, 死亡事件相关短视频或帖子, 新闻报道, 朋友讨论, 没听说过/不适用]
+  - id: occupation
+    prompt: "在你印象中，张雪峰是做什么的？（没有印象请回答「不知道」）"
+    response_type: text
+- num_steps: 4
+  tick: 1
+  type: run
+- type: questionnaire
+  questionnaire_id: T2_day8
+  title: 第 2 次曝光后（梗供给占比稳定期）
+  questions:
+  - id: impression_words
+    prompt: "用 3-5 个词描述你对「张雪峰」的印象。如果你此前没听说过他，请回答「没听说过」。"
+    response_type: text
+  - id: familiarity
+    prompt: "你对张雪峰的熟悉程度（1=完全没听说过，5=非常熟悉）？"
+    response_type: integer
+  - id: impression_source
+    prompt: "如果你对张雪峰有印象，你的印象主要来自哪里？"
+    response_type: choice
+    choices: [生前视频/直播, 死亡事件相关短视频或帖子, 新闻报道, 朋友讨论, 没听说过/不适用]
+  - id: occupation
+    prompt: "在你印象中，张雪峰是做什么的？（没有印象请回答「不知道」）"
+    response_type: text
+- num_steps: 4
+  tick: 1
+  type: run
+- type: questionnaire
+  questionnaire_id: T3_day12
+  title: 第 3 次曝光后（窗口终点）
+  questions:
+  - id: impression_words
+    prompt: "用 3-5 个词描述你对「张雪峰」的印象。如果你此前没听说过他，请回答「没听说过」。"
+    response_type: text
+  - id: familiarity
+    prompt: "你对张雪峰的熟悉程度（1=完全没听说过，5=非常熟悉）？"
+    response_type: integer
+  - id: impression_source
+    prompt: "如果你对张雪峰有印象，你的印象主要来自哪里？"
+    response_type: choice
+    choices: [生前视频/直播, 死亡事件相关短视频或帖子, 新闻报道, 朋友讨论, 没听说过/不适用]
+  - id: occupation
+    prompt: "在你印象中，张雪峰是做什么的？（没有印象请回答「不知道」）"
+    response_type: text

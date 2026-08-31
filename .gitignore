@@ -1,3 +1,7 @@
 __pycache__/
 *.pyc
 .playwright-mcp/
+
+# 用户提供的原始数据与其大体积派生物（脚本可复现，不入库）
+抖音微博小红书-全量已打标.xlsx
+datasets/zhangxf_labeled/valid_posts_clusters.parquet
