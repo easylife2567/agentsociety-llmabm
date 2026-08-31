@@ -2,7 +2,7 @@ start_t: '2026-03-24T08:00:00'
 steps:
 - type: questionnaire
   questionnaire_id: T0_baseline
-  title: 基线问卷（曝光前，检验 persona 分组效度）
+  title: 基线问卷（曝光前，检验分组效度）
   questions:
   - id: impression_words
     prompt: "用 3-5 个词描述你对「张雪峰」的印象。如果你此前没听说过他，请回答「没听说过」。"
