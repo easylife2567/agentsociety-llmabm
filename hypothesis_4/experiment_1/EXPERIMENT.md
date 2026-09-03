@@ -6,7 +6,7 @@
 
 ## Description
 
-策展基线：热度加权推荐（reddit_hot），完整算法策展环境。用于与 experiment_2（去策展化，chronological）比较，检验算法策展对数字表征转移的因果作用。
+策展基线：热度加权推荐（reddit_hot），完整算法策展环境。主假设（H4）的机制层与结果层 DV 均以本 run 为"有策展"侧：表征类别的曝光/互动份额偏移、舆论场表征转移轨迹，与 experiment_2（去策展化）对照。
 
 ## Shared Run（重要）
 

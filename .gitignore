@@ -5,3 +5,10 @@ __pycache__/
 # 用户提供的原始数据与其大体积派生物（脚本可复现，不入库）
 抖音微博小红书-全量已打标.xlsx
 datasets/zhangxf_labeled/valid_posts_clusters.parquet
+
+# CCB agent 运行时状态与缓存（含嵌套 git 仓库，不入库）
+.ccb/
+
+# 临时下载物与系统文件
+*.tar_*.gz
+.DS_Store
