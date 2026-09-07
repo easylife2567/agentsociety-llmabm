@@ -80,7 +80,7 @@
 
 | 文件 | 状态 |
 |---|---|
-| `custom/envs/curation_dynamics.py` | 待建（时间门控+S(t)+背景互动当量） |
-| `hypothesis_4/experiment_1/init/`（agent_profiles / supply_pool / init_config / steps.yaml / config_params.py / CONFIG_NOTES） | 待生成 |
-| `hypothesis_4/experiment_2/init/` | 待生成（仅 recommendation_algorithm 不同） |
-| `hypothesis_4/benchmark_curves.json` | 待生成（图1–图4 数字化效标） |
+| `custom/envs/curation_dynamics.py` | 已建成并通过 create-env-module-validate（2026-09-07；含 agent skill `social-media-curation`） |
+| `hypothesis_4/experiment_1/init/`（agent_profiles / supply_pool / init_config / steps.yaml / config_params.py / CONFIG_NOTES） | 已生成并通过 experiment-config validate（2026-09-07；供给池 521 条，媒体 23 条，W13 议程峰） |
+| `hypothesis_4/experiment_2/init/` | 已生成，与 E1 逐字段一致，唯一差异 `recommendation_algorithm=chronological` |
+| `hypothesis_4/benchmark_curves.json` | 已生成（xlsx 周×类群真实计数 + docx 图1–图4 数字化 + 形态容差） |

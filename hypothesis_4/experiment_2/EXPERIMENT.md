@@ -38,4 +38,4 @@ all 6 类群代表 agents; recommendation_algorithm=chronological
 
 ## Status
 
-needs_reconfig（v0.3 重设计：init 配置待重新生成，2026-09-07）
+ready（v0.3 配置已生成并通过 experiment-config validate，2026-09-07；与 experiment_1 逐字段一致，唯一差异 recommendation_algorithm=chronological）

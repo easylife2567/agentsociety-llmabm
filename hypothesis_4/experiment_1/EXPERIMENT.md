@@ -18,4 +18,4 @@ all 6 类群代表 agents（借势营销/事件悼念/其他讨论/教育观点/
 
 ## Status
 
-needs_reconfig（v0.3 重设计：6 类群 agent + 周级 12 ticks + 自定义 env 扩展 + 周级供给池；init 配置待重新生成，2026-09-07）
+ready（v0.3 配置已生成并通过 experiment-config validate，2026-09-07：6 类群 agent + CurationDynamicsSpace + 供给池 521 条（媒体 23）+ 周级 12 ticks（tick=604800s）+ T0/T1/T2/T3 四波问卷）

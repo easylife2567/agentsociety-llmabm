@@ -1,4 +1,4 @@
-# 试点配置生成记录(v0.3, chronological(去策展化))
+# 试点配置生成记录(v0.3, reddit_hot(策展基线))
 
 ```json
 {
@@ -53,7 +53,7 @@
   },
   "media_oversample": 3.0,
   "agents_n": 6,
-  "recommendation_algorithm": "chronological",
+  "recommendation_algorithm": "reddit_hot",
   "start_t": "2026-03-16T00:00:00",
   "event_start": "2026-03-24T08:00:00",
   "tick_seconds": 604800,
@@ -79,4 +79,4 @@
 - **初始互动**: 机制规则合成(类群底数×周注意力×对数正态,seed 固定),非黑箱
 - **时间**: start_t=2026-03-16T00:00:00(W12 周一),tick=604800s=1 周,12 ticks 覆盖 W12→W23;死亡事件 2026-03-24T08:00:00(W13)经 S(t) 与媒体/供给帖注入
 - **问卷**: T0@W12 生前基线 / T1@W15 悼念退潮 / T2@W19 二波启动 / T3@W22 玩梗峰值
-- **唯一实验操纵**: `recommendation_algorithm=chronological(去策展化)`
+- **唯一实验操纵**: `recommendation_algorithm=reddit_hot(策展基线)`
