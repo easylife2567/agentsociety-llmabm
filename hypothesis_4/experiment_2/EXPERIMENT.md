@@ -23,16 +23,19 @@
 
 | 项 | 值 |
 |---|---|
-| 模块 | 100 PersonAgent + SocialMediaSpace（与基线完全一致） |
-| 供给池 | 同一 `supply_pool.json`（140 条真实文本，seed=42） |
-| agent/persona/问卷 | 与基线逐项一致（已核验：除 recommendation_algorithm 外配置全同） |
+| 模块 | 6 类群代表 PersonAgent + SocialMediaSpace 自定义扩展（时间门控 + S(t) + 背景互动当量；与基线完全一致） |
+| 供给池 | 同一周 × 类群重构供给池（真实文本，周级错峰 created_at，seed=42） |
+| agent/persona/问卷 | 与基线逐项一致（除 recommendation_algorithm 外配置全同） |
 | **推荐算法** | **chronological**（唯一实验操纵） |
-| 时间窗 | 2026-03-24T08:00 起，12 ticks |
+| 时间窗 | W12 生前基线周（2026-03-16）起，12 ticks = 12 周（W12→W23） |
+| 权威媒体 | 单一媒体账号（env 侧供给源，按真实议程节奏注入报道帖） |
+
+> 2026-09-07 v0.3：原 100-agent/天级配置作废（hypothesis_3 已删除，共享 run 安排解除）。
 
 ## Agent Selection Criteria
 
-all 100 agents; recommendation_algorithm=chronological
+all 6 类群代表 agents; recommendation_algorithm=chronological
 
 ## Status
 
-Configured（config check 通过，2026-08-31；尚未运行）
+needs_reconfig（v0.3 重设计：init 配置待重新生成，2026-09-07）

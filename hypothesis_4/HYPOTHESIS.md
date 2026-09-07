@@ -14,16 +14,16 @@
 
 **Type:** control
 
-**Description:** 策展基线：热度加权推荐（reddit_hot），完整算法策展环境；与 hypothesis_3 experiment_1 共用同一 run（同供给池、同 agent 种子、同 12 ticks），不单独重复运行
+**Description:** 策展基线：热度加权推荐（reddit_hot），完整算法策展环境；同时兼任生成性验证 run（须先复现真实"专业→悼念→迷因"三阶段周级形态，拟合 benchmark_curves.json）
 
-**Agent Selection Criteria:** all 100 agents; recommendation_algorithm=reddit_hot
+**Agent Selection Criteria:** all 6 类群代表 agents（借势营销/事件悼念/其他讨论/教育观点/梗文化/水军低质号，全量占比划预算）; recommendation_algorithm=reddit_hot
 
 
 ### Group 2: treatment_decuration_chrono
 
 **Type:** treatment
 
-**Description:** 去策展化：时间线排序（chronological），移除热度加权与策展信号；同供给同用户池同种子（与基线唯一差异是 recommendation_algorithm）
+**Description:** 去策展化：时间线排序（chronological），移除热度加权与策展信号；同供给同 agent 同种子（与基线唯一差异是 recommendation_algorithm）
 
-**Agent Selection Criteria:** all 100 agents; recommendation_algorithm=chronological
+**Agent Selection Criteria:** all 6 类群代表 agents; recommendation_algorithm=chronological
 

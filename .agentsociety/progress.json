@@ -3,11 +3,21 @@
   "workspace": {
     "topic": "公众人物去世后，算法策展如何塑造舆论场对其的数字表征",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "run_experiment",
+    "current_stage": "experiment_config",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
-    "revision_round": 0,
-    "active_reroute": null
+    "revision_round": 1,
+    "active_reroute": {
+      "revision_round": 1,
+      "requested_at": "2026-09-07T08:11:53.127797+00:00",
+      "from_stage": "run_experiment",
+      "target_stage": "experiment_config",
+      "reason": "用户据原始数据挖掘(图表解读.docx)裁定 v0.3 重构:Agent改为6类群代表(全量占比,水军类群保留)、tick改周级12周两波结构、单一权威媒体归env、供给池按周×类群重构、新增自定义env(时间门控+S(t)+背景互动当量)、H3删除仅保留H4",
+      "source_artifact": "/Users/easylife/Project/AgentSociety/图表解读.docx",
+      "pending_stages": [
+        "experiment_config"
+      ]
+    }
   },
   "stages": {
     "literature_search": {
@@ -50,14 +60,14 @@
       "revision_round": 0
     },
     "experiment_config": {
-      "status": "completed",
+      "status": "needs_revision",
       "started_at": null,
-      "completed_at": "2026-08-24T06:44:08.975536+00:00",
+      "completed_at": null,
       "attempts": 1,
       "error": null,
       "metadata": {},
       "verification_status": "not_started",
-      "revision_round": 0
+      "revision_round": 1
     },
     "run_experiment": {
       "status": "not_started",
@@ -135,6 +145,34 @@
       "to_status": "completed",
       "from_stage": "experiment_config",
       "to_stage": "run_experiment"
+    },
+    {
+      "sequence": 5,
+      "timestamp": "2026-09-07T08:11:53.127808+00:00",
+      "kind": "reroute",
+      "revision_round": 1,
+      "from_stage": "run_experiment",
+      "to_stage": "experiment_config",
+      "reason": "用户据原始数据挖掘(图表解读.docx)裁定 v0.3 重构:Agent改为6类群代表(全量占比,水军类群保留)、tick改周级12周两波结构、单一权威媒体归env、供给池按周×类群重构、新增自定义env(时间门控+S(t)+背景互动当量)、H3删除仅保留H4",
+      "source_artifact": "/Users/easylife/Project/AgentSociety/图表解读.docx",
+      "invalidated_stages": [
+        "experiment_config"
+      ],
+      "previous_statuses": {
+        "experiment_config": "completed"
+      },
+      "previous_stage_states": {
+        "experiment_config": {
+          "status": "completed",
+          "started_at": null,
+          "completed_at": "2026-08-24T06:44:08.975536+00:00",
+          "attempts": 1,
+          "error": null,
+          "metadata": {},
+          "verification_status": "not_started",
+          "revision_round": 0
+        }
+      }
     }
   ]
 }
