@@ -290,7 +290,7 @@
         372
       ]
     },
-    "algorithm_mapping_prediction": "图1 平台差 → 算法差:reddit_hot 臂玩梗份额起势更早(W19 级)且终值更高(→60% 级);chronological 臂放大效应显著减弱",
+    "algorithm_mapping_prediction": "图1 平台差 → 算法差:interest 臂(纯兴趣匹配,无热度项)玩梗份额起势更早(W19 级)且终值更高(→60% 级);random/chronological 基线臂放大效应显著减弱 [2026-09-08 算法臂命名更新:旧 reddit_hot 臂 → interest 臂,新增 random 基线臂]",
     "suggested_tolerances": {
       "phase_timing": "±1 tick(周)",
       "share_levels": "±8 个百分点",
