@@ -3,11 +3,22 @@
   "workspace": {
     "topic": "公众人物去世后，算法策展如何塑造舆论场对其的数字表征",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "run_experiment",
+    "current_stage": "hypothesis",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
-    "revision_round": 1,
-    "active_reroute": null
+    "revision_round": 2,
+    "active_reroute": {
+      "revision_round": 2,
+      "requested_at": "2026-09-08T09:26:04.757065+00:00",
+      "from_stage": "run_experiment",
+      "target_stage": "hypothesis",
+      "reason": "用户决定推倒重来：保留文献调研与精读报告及 TOPIC.md 研究问题不变，从文献调研之后的阶段起重新设计整个 LLM ABM 实验（删除 hypothesis_4 全部假设与 E1/E2 配置、CALIBRATION.md 参数表、CurationDynamicsSpace 自定义 env 模块）",
+      "source_artifact": "EXPERIMENT_CONSTITUTION_1788335113228_0_gm0h.md",
+      "pending_stages": [
+        "hypothesis",
+        "experiment_config"
+      ]
+    }
   },
   "stages": {
     "literature_search": {
@@ -38,30 +49,24 @@
       "revision_round": 0
     },
     "hypothesis": {
-      "status": "completed",
+      "status": "needs_revision",
       "started_at": null,
-      "completed_at": "2026-08-22T11:26:54.725279+00:00",
+      "completed_at": null,
       "attempts": 1,
       "error": null,
-      "metadata": {
-        "hypotheses_count": 3
-      },
+      "metadata": {},
       "verification_status": "not_started",
-      "revision_round": 0
+      "revision_round": 2
     },
     "experiment_config": {
-      "status": "completed",
+      "status": "needs_revision",
       "started_at": null,
-      "completed_at": "2026-09-07T10:10:19.614703+00:00",
+      "completed_at": null,
       "attempts": 2,
       "error": null,
-      "metadata": {
-        "revision_round": 1,
-        "resolved": "v0.3 配置全部生成并通过 validate: CurationDynamicsSpace 模块 + E1/E2 init(steps.yaml tick=604800 周级 12 ticks, 供给池 521 条/媒体 23, 6 类群 agent, T0-T3 四波问卷)",
-        "resolved_at": "2026-09-07"
-      },
+      "metadata": {},
       "verification_status": "not_started",
-      "revision_round": 1
+      "revision_round": 2
     },
     "run_experiment": {
       "status": "not_started",
@@ -178,6 +183,52 @@
       "to_status": "completed",
       "from_stage": "experiment_config",
       "to_stage": "run_experiment"
+    },
+    {
+      "sequence": 7,
+      "timestamp": "2026-09-08T09:26:04.757070+00:00",
+      "kind": "reroute",
+      "revision_round": 2,
+      "from_stage": "run_experiment",
+      "to_stage": "hypothesis",
+      "reason": "用户决定推倒重来：保留文献调研与精读报告及 TOPIC.md 研究问题不变，从文献调研之后的阶段起重新设计整个 LLM ABM 实验（删除 hypothesis_4 全部假设与 E1/E2 配置、CALIBRATION.md 参数表、CurationDynamicsSpace 自定义 env 模块）",
+      "source_artifact": "EXPERIMENT_CONSTITUTION_1788335113228_0_gm0h.md",
+      "invalidated_stages": [
+        "hypothesis",
+        "experiment_config"
+      ],
+      "previous_statuses": {
+        "hypothesis": "completed",
+        "experiment_config": "completed"
+      },
+      "previous_stage_states": {
+        "hypothesis": {
+          "status": "completed",
+          "started_at": null,
+          "completed_at": "2026-08-22T11:26:54.725279+00:00",
+          "attempts": 1,
+          "error": null,
+          "metadata": {
+            "hypotheses_count": 3
+          },
+          "verification_status": "not_started",
+          "revision_round": 0
+        },
+        "experiment_config": {
+          "status": "completed",
+          "started_at": null,
+          "completed_at": "2026-09-07T10:10:19.614703+00:00",
+          "attempts": 2,
+          "error": null,
+          "metadata": {
+            "revision_round": 1,
+            "resolved": "v0.3 配置全部生成并通过 validate: CurationDynamicsSpace 模块 + E1/E2 init(steps.yaml tick=604800 周级 12 ticks, 供给池 521 条/媒体 23, 6 类群 agent, T0-T3 四波问卷)",
+            "resolved_at": "2026-09-07"
+          },
+          "verification_status": "not_started",
+          "revision_round": 1
+        }
+      }
     }
   ]
 }
