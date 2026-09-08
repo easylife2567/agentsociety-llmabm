@@ -3,7 +3,7 @@
   "workspace": {
     "topic": "公众人物去世后，算法策展如何塑造舆论场对其的数字表征",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "hypothesis",
+    "current_stage": "experiment_config",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
     "revision_round": 2,
@@ -15,7 +15,6 @@
       "reason": "用户决定推倒重来：保留文献调研与精读报告及 TOPIC.md 研究问题不变，从文献调研之后的阶段起重新设计整个 LLM ABM 实验（删除 hypothesis_4 全部假设与 E1/E2 配置、CALIBRATION.md 参数表、CurationDynamicsSpace 自定义 env 模块）",
       "source_artifact": "EXPERIMENT_CONSTITUTION_1788335113228_0_gm0h.md",
       "pending_stages": [
-        "hypothesis",
         "experiment_config"
       ]
     }
@@ -49,12 +48,15 @@
       "revision_round": 0
     },
     "hypothesis": {
-      "status": "needs_revision",
+      "status": "completed",
       "started_at": null,
-      "completed_at": null,
-      "attempts": 1,
+      "completed_at": "2026-09-08T10:47:55.478194+00:00",
+      "attempts": 2,
       "error": null,
-      "metadata": {},
+      "metadata": {
+        "hypotheses_count": 1,
+        "revision_note": "2026-09-08 用户裁定: 研究焦点从认知偏移改为推荐算法选择性放大已有玩梗群体→改变公共表征; H4 已修订, SIM_SETTINGS 重置为内置 PersonAgent+SocialMediaSpace, ABM 实现待 experiment_config 重设计"
+      },
       "verification_status": "not_started",
       "revision_round": 2
     },
@@ -229,6 +231,17 @@
           "revision_round": 1
         }
       }
+    },
+    {
+      "sequence": 8,
+      "timestamp": "2026-09-08T10:47:55.478201+00:00",
+      "kind": "stage_update",
+      "revision_round": 2,
+      "stage": "hypothesis",
+      "from_status": "needs_revision",
+      "to_status": "completed",
+      "from_stage": "hypothesis",
+      "to_stage": "experiment_config"
     }
   ]
 }
