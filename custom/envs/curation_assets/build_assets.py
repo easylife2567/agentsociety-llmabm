@@ -12,6 +12,7 @@ import json
 import re
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[3]  # 工作区根目录
@@ -145,6 +146,77 @@ def build_vocabs() -> dict:
     return vocabs
 
 
+# ---------------- 数据驱动剪枝 ----------------
+#
+# 规则（2026-09-09 实验比选 A/B/C/D/E/F 后裁定，见 vocabs.json pruning 元信息）：
+# - 三类主库统一：词的条件有效精确度 < 0.3 且条件命中数 >= 30 → 移入 pruned 列表（不再触发判类）。
+#   “条件” = 按判定优先级顺序，排除已被更高优先级类别（剪枝后）命中的帖子；
+#   条件精确度 = P(金标==本类 | 词命中且未被高优先类截获)。
+# - 单字词一律弃用（子串匹配下噪声过大，如 新/沸）。
+# - 梗词表（meme_matcher.py 同源）不剪：已验证的参考实现。
+# 关键实证：
+# - 金标悼念帖 66.7% 命中营销主库词、金标营销帖 72.6% 命中悼念主库词 —— 真实帖框架混合，
+#   单词匹配存在天花板（总体一致率 ~0.44）；LLM agent 帖为人设刻板单框架文本，实际判类优于回测。
+# - “营销前置”实验（F）：mourning 召回 0.903→0.337，一致率仅 +0.005，否决——
+#   保持文档规定的 悼念>营销>教育>玩梗 优先级。
+# - 教育召回低（~0.05）是“宽口径营销优先”的结构性后果（教育帖大量命中营销词），非 bug。
+PRUNE_MIN_HITS = 30
+PRUNE_MIN_PRECISION = 0.3
+PRUNE_ORDER = ["mourning", "marketing", "education"]  # = PRECEDENCE[:-1]
+
+
+def _hit_matrix(words: list[str], raw_l: np.ndarray, nrm: np.ndarray) -> np.ndarray:
+    """n_posts × n_words 布尔矩阵：两层（原文 lower + 归一化）子串命中。"""
+    cols = []
+    for w in words:
+        wl = w.lower()
+        cols.append(np.array([(wl in r) or (wl in s) for r, s in zip(raw_l, nrm)]))
+    if not cols:
+        return np.zeros((len(raw_l), 0), dtype=bool)
+    return np.column_stack(cols)
+
+
+def precision_prune(vocabs: dict) -> dict:
+    """按 PRUNE_ORDER 顺序做条件精确度剪枝，结果写回 vocabs（main 缩减 + pruned 记录）。"""
+    df = pd.read_excel(XLSX)
+    df = df[df["数据有效性"] != "存疑"].copy()
+    content = (df["title"].fillna("") + "\n" + df["content"].fillna("")).str.strip()
+    gold = df["内容类别"].map(TYPE_MAP).to_numpy()
+    raw_l = content.str.lower().to_numpy()
+    nrm = content.map(normalize).to_numpy()
+    higher = np.zeros(len(df), dtype=bool)
+    summary = {}
+    for cat in PRUNE_ORDER:
+        words = vocabs[cat]["main"]
+        single = [w for w in words if len(w) <= 1]
+        words = [w for w in words if len(w) > 1]
+        M = _hit_matrix(words, raw_l, nrm)
+        ch = M & (~higher)[:, None]
+        hits = ch.sum(0)
+        good = ((gold == cat)[:, None] & ch).sum(0)
+        prec = np.where(hits > 0, good / np.maximum(hits, 1), 1.0)
+        keep = (hits < PRUNE_MIN_HITS) | (prec >= PRUNE_MIN_PRECISION)
+        pruned = [{"word": w, "cond_hits": int(h), "cond_precision": round(float(p), 3)}
+                  for w, h, p, k in zip(words, hits, prec, keep) if not k]
+        entry = vocabs[cat]
+        entry["main"] = [w for w, k in zip(words, keep) if k]
+        if single:
+            entry["dropped_single_char"] = single
+        entry["pruned"] = pruned
+        higher = higher | (M[:, keep]).any(1)
+        summary[cat] = {"kept": int(keep.sum()), "pruned": len(pruned), "single_char_dropped": len(single)}
+        print(f"剪枝 {cat}: 保留 {keep.sum()} / 剪 {len(pruned)} / 弃单字 {len(single)}")
+    vocabs["pruning"] = {
+        "rule": f"cond_precision < {PRUNE_MIN_PRECISION} and cond_hits >= {PRUNE_MIN_HITS} -> pruned; "
+                f"len<=1 -> dropped_single_char; 条件=未被更高优先级类别(剪枝后)命中",
+        "gold_source": f"{XLSX.name} 内容类别列(剔除存疑, n={len(df)})",
+        "summary": summary,
+        "notes": "营销前置实验被否决(mourning召回0.903→0.337)；教育低召回=宽口径营销优先的结构性后果;"
+                 "真实帖框架混合致单词匹配天花板~0.44，agent帖判类优于回测",
+    }
+    return vocabs
+
+
 # ---------------- 判类器（与 env _tag_content_type 同逻辑，供回测） ----------------
 
 _EMOJI = re.compile(
@@ -204,7 +276,9 @@ OFFICIAL_KEYWORDS = ["讣告", "官方确认", "公司声明", "家属声明"]
 def build_injection() -> dict:
     df = pd.read_excel(XLSX)
     print(f"xlsx 行数: {len(df)}; 数据有效性取值: {df['数据有效性'].value_counts().to_dict()}")
-    df = df[df["数据有效性"] == "有效"].copy()
+    # 数据有效性标记的语义（已核实）："无效"=借势营销+爬取噪音（非真实讨论标记），"存疑"=20 行剔除项。
+    # benchmark 周矩阵口径 = 剔除存疑后的全部 52,716 行（含营销/噪音），注入数据必须同口径。
+    df = df[df["数据有效性"] != "存疑"].copy()
     df["published_at"] = pd.to_datetime(df["published_at"], utc=True)
     iso = df["published_at"].dt.isocalendar()
     df["week"] = [f"{y}-W{w:02d}" for y, w in zip(iso["year"], iso["week"])]
@@ -226,16 +300,25 @@ def build_injection() -> dict:
     weeks = df.groupby("week").size().to_dict()
     off = df.assign(c=content.values)
     off_cnt = off[off["c"].apply(lambda c: any(k in c for k in OFFICIAL_KEYWORDS))].groupby("week").size().to_dict()
-    meta = {"source": XLSX.name, "rows_valid": len(df), "weekly_counts": weeks,
+    meta = {"source": XLSX.name, "rows_total": len(df),
+            "filter": "剔除数据有效性=='存疑'(20行)；'无效'标记=营销+噪音,属真实供给组成部分,保留",
+            "weekly_counts": weeks,
             "official_counts": off_cnt,
             "official_keywords": OFFICIAL_KEYWORDS,
             "note": "content=title+content 截断1000字; is_official 为关键词预标(讣告/官方确认/公司声明/家属声明),可在 config 覆盖"}
+    # 硬性校验：周总量必须与 benchmark_curves.json weekly_category_matrix 完全一致
+    bm = json.loads((ROOT / "hypothesis_4/benchmark_curves.json").read_text(encoding="utf-8"))
+    bm_weeks = {w: v["total"] for w, v in bm["weekly_category_matrix"].items()}
+    mismatches = {w: (weeks.get(w, 0), bm_weeks[w]) for w in bm_weeks if weeks.get(w, 0) != bm_weeks[w]}
+    if mismatches:
+        raise RuntimeError(f"周总量与 benchmark 不一致: {mismatches}")
+    print("周总量与 benchmark_curves.json 逐周一致 ✓")
     return {"meta": meta, "posts": posts}
 
 
-def validate(vocabs: dict) -> None:
+def validate(vocabs: dict) -> dict:
     df = pd.read_excel(XLSX)
-    df = df[df["数据有效性"] == "有效"].copy()
+    df = df[df["数据有效性"] != "存疑"].copy()
     content = (df["title"].fillna("") + "\n" + df["content"].fillna("")).str.strip()
     tagger = Tagger(vocabs)
     pred = content.map(lambda c: tagger.tag(c)["type"])
@@ -245,31 +328,45 @@ def validate(vocabs: dict) -> None:
     print(ct.to_string())
     agree = (gold == pred).mean()
     print(f"\n总体一致率: {agree:.3f}")
+    metrics = {"overall_agreement": round(float(agree), 3),
+               "confusion": {str(g): {str(p): int(ct.loc[g, p]) for p in ct.columns}
+                             for g in ct.index}}
     for t in ["mourning", "meme", "education", "marketing"]:
         mask = gold == t
         rec = (pred[mask] == t).mean() if mask.any() else float("nan")
-        print(f"  {t}: 召回(金标→判类) = {rec:.3f} (n={int(mask.sum())})")
+        pmask = pred == t
+        prec = (gold[pmask] == t).mean() if pmask.any() else float("nan")
+        metrics[t] = {"recall": round(float(rec), 3), "precision": round(float(prec), 3),
+                      "n_gold": int(mask.sum())}
+        print(f"  {t}: 召回 = {rec:.3f} | 精确 = {prec:.3f} (n={int(mask.sum())})")
+    return metrics
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--validate", action="store_true", help="回测判类器对人工标签的一致率")
+    ap.add_argument("--no-prune", action="store_true", help="关闭数据驱动剪枝（消融用）")
     args = ap.parse_args()
 
     vocabs = build_vocabs()
-    (OUT / "vocabs.json").write_text(
-        json.dumps(vocabs, ensure_ascii=False, indent=1), encoding="utf-8")
-    print("vocabs.json 写出。各类规模:", json.dumps(vocabs["stats"], ensure_ascii=False))
+    if not args.no_prune:
+        precision_prune(vocabs)
+    vocabs["stats"] = {cat: {k: len(v) for k, v in vocabs[cat].items()}
+                       for cat in ["mourning", "education", "marketing", "meme"]}
 
     inj = build_injection()
     (OUT / "injection_posts.json").write_text(
         json.dumps(inj, ensure_ascii=False), encoding="utf-8")
-    print(f"injection_posts.json 写出。有效行 {inj['meta']['rows_valid']}, "
+    print(f"injection_posts.json 写出。总行数 {inj['meta']['rows_total']}, "
           f"周分布 {inj['meta']['weekly_counts']}")
     print(f"官方帖预标: {inj['meta']['official_counts']}")
 
     if args.validate:
-        validate(vocabs)
+        vocabs["backtest"] = validate(vocabs)
+
+    (OUT / "vocabs.json").write_text(
+        json.dumps(vocabs, ensure_ascii=False, indent=1), encoding="utf-8")
+    print("vocabs.json 写出。各类规模:", json.dumps(vocabs["stats"], ensure_ascii=False))
 
 
 if __name__ == "__main__":
