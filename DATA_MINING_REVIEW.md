@@ -36,5 +36,5 @@
 
 - 保留项 1（平台分化）直接支持"算法策展是放大速率的决定因素"；
 - 保留项 6 支撑"玩梗群体是**已有的**常驻群体"（事件前 0–7%，事件后爆发）；
-- 保留项 2 决定表征转移的测量口径（强梗词判定，见 `张雪峰梗词判定规则_*.md` 与 `datasets/zhangxf_labeled/meme_matcher.py`）；
+- 保留项 2 决定表征转移的测量口径（强梗词判定，见 `词表_玩梗型_最终版.md`（原《张雪峰梗词判定规则》，2026-09-08 并入四词表体系）与 `datasets/zhangxf_labeled/meme_matcher.py`）；
 - 效标曲线已另行数字化为 [hypothesis_4/benchmark_curves.json](hypothesis_4/benchmark_curves.json)（全量口径，权威效标）。
