@@ -59,7 +59,7 @@
     {"name": "alpha", "type": "float", "default": 1.0, "purpose": "interest 评分权重：类型自匹配"},
     {"name": "beta", "type": "float", "default": 1.0, "purpose": "interest 评分权重：词表重合"},
     {"name": "gamma", "type": "float", "default": 0.5, "purpose": "interest 评分权重：时新近度"},
-    {"name": "interest_noise_eps", "type": "float", "default": 0.05, "purpose": "interest 评分小随机扰动幅度（均匀[-eps,+eps]，独立 RNG 流、按 tick 播种保证确定性）"},
+    {"name": "interest_noise_eps", "type": "float", "default": 0.05, "purpose": "interest 评分小随机扰动幅度（均匀[-eps,+eps]，独立 RNG 流 rng_interest_noise=Random(seed+2000)，状态经 workspace getstate/setstate 续传保证确定性与 --resume 一致；2026-09-09 Reviewer 实测确认，措辞按实现对齐）"},
     {"name": "recency_max_age_weeks", "type": "int", "default": 8, "purpose": "recency = max(0, 1 - age_weeks/recency_max_age_weeks)"},
     {"name": "exposure_mode", "type": "str", "default": "none", "options": ["none", "penalize", "exclude"], "purpose": "已曝光（该 agent 历史 feed 见过的）帖处理：penalize=score 减去 exposure_penalty_weight；exclude=从候选剔除"},
     {"name": "exposure_penalty_weight", "type": "float", "default": 0.1, "purpose": "penalize 模式下的已曝光惩罚量"},
@@ -155,7 +155,7 @@
   "recommendation_arms": {
     "random": "全池均匀随机采样（rng_feed_random），可选 random_recency_window_weeks 窗口；无兴趣/历史参与（实验设计 三.1①）",
     "chronological": "按 (week_index 降序, post_id 降序) 取前 N；去个性化、弱策展基线（实验设计 三.1②）",
-    "interest": "score = alpha*类型自匹配(post.type==agent.type→1，否则0) + beta*词表重合(agent 类型词表与归一化帖文本的匹配覆盖率) + gamma*时新近度(max(0,1-age/recency_max_age_weeks)) + 均匀噪声[-eps,+eps]（rng_interest_noise，按 tick 播种）；无帖子级热度/互动项（用户 2026-09-08 裁定：纯兴趣匹配最小机制）；已曝光帖按 exposure_mode none/penalize/exclude 处理；官方置顶帖先占前部槽位，算法填充余下槽位并排除已置顶 id（避免重复）。"
+    "interest": "score = alpha*类型自匹配(post.type==agent.type→1，否则0) + beta*词表重合(agent 类型词表与归一化帖文本的匹配覆盖率) + gamma*时新近度(max(0,1-age/recency_max_age_weeks)) + 均匀噪声[-eps,+eps]（rng_interest_noise 独立流，seed+2000 初始化、getstate 续传；feed 装配顺序确定 → 全 run 确定性）；无帖子级热度/互动项（用户 2026-09-08 裁定：纯兴趣匹配最小机制）；已曝光帖按 exposure_mode none/penalize/exclude 处理；官方置顶帖先占前部槽位，算法填充余下槽位并排除已置顶 id（避免重复）。"
   },
 
   "norm_pressure_detail": {

@@ -30,7 +30,7 @@ VALID_TYPES = ("meme", "mourning", "marketing", "education", "other")
 _CONTENT_GUIDE: dict[str, str] = {
     "meme": (
         "写一条玩梗/抽象风格的帖子：用谐音、变体称呼、emoji、反讽或圈内梗表达，"
-        "短小轻快，不解释梗。不得对逝者家属进行人身攻击或恶意诅咒。"
+        "短小轻快，不解释梗。"
     ),
     "mourning": (
         "写一条悼念/缅怀风格的帖子：真诚追思、表达哀悼或由其离世引发的生命/健康感慨，"
@@ -38,7 +38,7 @@ _CONTENT_GUIDE: dict[str, str] = {
     ),
     "marketing": (
         "写一条借势营销帖子：借当前讨论热点引流你的课程/资料/咨询/服务，"
-        "含明确行动号召（链接/私信/领取/限时等），话术圆滑，初期可带一点表面惋惜。"
+        "含明确行动号召（链接/私信/领取/限时等），话术圆滑。"
     ),
     "education": (
         "写一条教育观点讨论帖子：围绕专业选择、升学规划、就业、教育公平或相关人物的教育观点"
@@ -310,10 +310,6 @@ class CurationDiscourseAgent(AgentBase):
             self.logger.error("[%s] content generation failed: %s", self.name, exc)
         max_chars = int(self._config.get("max_content_chars", 300))
         content = content[: max_chars + 100]  # 硬截断保护
-        if len(content) < 5:
-            record["reason"] = reason + " | content_empty"
-            self._decision_log.append(record)
-            return f"{self.name}: content generation empty, silent"
 
         # 4) 发布（env 侧幂等：每 tick 每 agent 仅首帖生效；唯一写工具，template_mode 安全）
         try:

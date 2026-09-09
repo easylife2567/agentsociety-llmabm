@@ -1,0 +1,104 @@
+{
+  "success": true,
+  "workspace_path": "/Users/easylife/Project/AgentSociety",
+  "module_path": "custom/envs/curation_dynamics_space.py",
+  "class_name": "CurationDynamicsSpace",
+  "scanner_diagnostics": [
+    {
+      "module_kind": "env_module",
+      "module_path": "custom/envs/curation_dynamics_space.py",
+      "file_path": "/Users/easylife/Project/AgentSociety/custom/envs/curation_dynamics_space.py",
+      "class_name": "CurationDynamicsSpace",
+      "accepted": true,
+      "issues": [],
+      "metadata": {
+        "tool_names": [
+          "get_feed",
+          "create_post"
+        ],
+        "tool_count": 2,
+        "has_step": true,
+        "default_constructible": true,
+        "type": "CurationDynamicsSpace",
+        "class_name": "CurationDynamicsSpace",
+        "workspace_module_path": "custom/envs/curation_dynamics_space.py"
+      }
+    }
+  ],
+  "test_reports": [
+    {
+      "module_kind": "env_module",
+      "name": "CurationDynamicsSpace",
+      "success": true,
+      "output": "--- 测试 CurationDynamicsSpace ---\n✓ 创建成功\n✓ description() 返回 367 字符\n✓ init_description() 返回 1064 字符\n✓ 已注册 2 个工具\n✓ step() 方法已覆写\n✓ router smoke test 成功",
+      "error": null,
+      "checks": [
+        {
+          "name": "instantiation",
+          "passed": true,
+          "message": "cls() 实例化成功",
+          "details": {}
+        },
+        {
+          "name": "description",
+          "passed": true,
+          "message": "description() 可调用",
+          "details": {
+            "length": 367
+          }
+        },
+        {
+          "name": "init_description",
+          "passed": true,
+          "message": "init_description() 可调用",
+          "details": {
+            "length": 1064
+          }
+        },
+        {
+          "name": "registered_tools",
+          "passed": true,
+          "message": "已注册 2 个工具",
+          "details": {
+            "tool_names": [
+              "get_feed",
+              "create_post"
+            ]
+          }
+        },
+        {
+          "name": "step",
+          "passed": true,
+          "message": "step() 方法已覆写",
+          "details": {}
+        },
+        {
+          "name": "router_smoke",
+          "passed": true,
+          "message": "CodeGenRouter 可正常挂载该环境",
+          "details": {}
+        }
+      ],
+      "metadata": {
+        "description_length": 367,
+        "init_description_length": 1064,
+        "tool_names": [
+          "get_feed",
+          "create_post"
+        ],
+        "tool_count": 2,
+        "has_step": true,
+        "router_tool_manager": true
+      }
+    }
+  ],
+  "registry": {
+    "registered": true,
+    "visible_in_registry": true,
+    "metadata_refreshed": true,
+    "metadata_file": ".agentsociety/env_modules/curationdynamicsspace.json",
+    "message": "CurationDynamicsSpace 已注册并可见"
+  },
+  "errors": [],
+  "summary": "# Validation Summary: CurationDynamicsSpace\n\n- Module path: `custom/envs/curation_dynamics_space.py`\n- Scanner accepted: `True`\n- Tester success: `True`\n- Registry visible: `True`\n- Overall success: `True`\n\n## Scanner Diagnostics\n- CurationDynamicsSpace: accepted\n\n## Tester Checks\n- CurationDynamicsSpace: passed\n\n## Registry\n- CurationDynamicsSpace 已注册并可见\n- Metadata file: `.agentsociety/env_modules/curationdynamicsspace.json`"
+}

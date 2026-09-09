@@ -1,0 +1,9 @@
+{
+  "type": "CurationDynamicsSpace",
+  "class_name": "CurationDynamicsSpace",
+  "description": "舆论场数字表征转移模拟环境（CurationDynamicsSpace）：三种推荐算法 × 两种悼念规范压力（3×2 全因子 6 cells）下，100 个固定类型 Agent 的差异化激活与公共表征构成变化（张雪峰 2026-03-24 去世 W13，W12→W22 共 11 周）。Agent 每周通过 **get_feed(agent_id)** 查看本周推荐信息流、意见气候、悼念规范压力与全局供给/曝光份额，再决定是否发言；发言通过 **create_post(agent_id, content)** 发布一篇类型由其固定 Agent 类型决定的内容（每 tick 至多 1 帖，重复调用无效）。环境按周注入真实打标内容、按推荐算法装配 feed、内生计算规范压力，并把供给/曝光/发言漏斗指标写入replay 表供分析。",
+  "init_description": "CurationDynamicsSpace：舆论场数字表征转移模拟环境。全部构造参数均为关键字参数且含默认值（cls() 无必填参数）：**recommendation_algorithm** 推荐算法（random 全池均匀随机 / chronological 时间倒序 / interest 纯兴趣匹配，默认 random）；**mourning_norm_pressure** 悼念规范压力模式（decay 内生衰减 / sustained 事件周后冻结峰值，默认 decay）；**random_seed** cell 种子（注入/随机臂/兴趣噪声三条 RNG 流由同一种子加固定偏移派生，默认 0）；**feed_size** 每 Agent 每 tick feed 槽位数（默认 20）；**sampling_ratio** 每周注入抽样比例（默认 0.05）；**injection_data_path** 注入数据集 JSON 路径（顶层含 posts 数组，空串=无外部注入）；**vocab_path** 四词表判类器 JSON 路径（空串=词表为空，判类回落 other）；**agent_types** Agent 类型字典（{agent_id: meme|mourning|marketing|education|other}，未列出默认 other）；**start_week** 起始 ISO 周（默认 2026-W12）；**num_ticks** 总 tick 数（默认 11）；**event_week** 去世周（默认 2026-W13）；**official_pin_extend_weeks** 官方置顶延伸周数（默认 1）；interest 臂权重 **alpha**/**beta**/**gamma**、噪声幅度 **interest_noise_eps**、时新衰减窗 **recency_max_age_weeks**、已曝光处理 **exposure_mode**（none/penalize/exclude）与 **exposure_penalty_weight**、随机臂窗口 **random_recency_window_weeks**；规范压力权重 **w_official**/**w_mourning**/**w_volume** 与等级阈值 **pressure_high_threshold**/**pressure_medium_threshold**。",
+  "is_custom": true,
+  "module_path": "custom/envs/curation_dynamics_space.py",
+  "file_path": "/Users/easylife/Project/AgentSociety/custom/envs/curation_dynamics_space.py"
+}
