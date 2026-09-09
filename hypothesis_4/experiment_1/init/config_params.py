@@ -42,6 +42,8 @@ SEEDS = [0, 1, 2]
 
 POPULATION_COUNTS = {"meme": 41, "mourning": 21, "marketing": 13, "education": 13, "other": 12}
 POPULATION_SEED = 42          # 群体生成种子：全 18 配置共享同一群体
+VOCAB_SAMPLE_SEED = POPULATION_SEED + 1  # 各 agent 类型词表抽样子种子（独立于群体 rng）
+TYPE_VOCAB_N = 40             # 每个 agent 注入其类型词表的词数（用户裁定：发言用词表词组织语言）
 SAMPLE_SEED_OFFSET = 777      # 注入样本抽样种子 = seed + 777
 
 START_WEEK = "2026-W12"
@@ -89,6 +91,30 @@ assert len(population) == 100, f"population size = {len(population)}"
 # env 侧 agent_types：{str(agent_id): type}，供兴趣匹配与供给口径统计。
 agent_types_map = {str(p["id"]): p["agent_type"] for p in population}
 
+# ---------------------------------------------------------------------------
+# 1b. 类型词表注入（用户裁定：agent 发言须用本类型词表中的词组织语言）
+# 词源与 env 判类器一致（仅 main + meme 四列表；aux/pruned 不参与）：
+# meme = linkage 全量 + strong 抽样；其余主类 = main 抽样；other = 空。
+# 每个 agent 抽 40 词作为"个人常用词库"，确定性（Random(43)），全 18 配置共享。
+# ---------------------------------------------------------------------------
+vocab_doc = json.loads(VOCAB_PATH.read_text(encoding="utf-8"))
+vocab_rng = random.Random(VOCAB_SAMPLE_SEED)
+
+
+def _type_vocab_source(agent_type: str) -> list[str]:
+    if agent_type == "meme":
+        meme = vocab_doc["meme"]
+        linkage = list(meme["linkage"])
+        strong_n = max(0, TYPE_VOCAB_N - len(linkage))
+        return linkage + vocab_rng.sample(list(meme["strong"]), min(strong_n, len(meme["strong"])))
+    if agent_type in ("mourning", "marketing", "education"):
+        main = list(vocab_doc[agent_type]["main"])
+        return vocab_rng.sample(main, min(TYPE_VOCAB_N, len(main)))
+    return []  # other：无词表约束
+
+
+type_vocab_by_id = {p["id"]: _type_vocab_source(p["agent_type"]) for p in population}
+
 agent_specs = [
     {
         "agent_id": p["id"],
@@ -100,6 +126,7 @@ agent_specs = [
             "name": p["name"],
             "agent_type": p["agent_type"],
             "persona": p["persona"],
+            "type_vocab": type_vocab_by_id[p["id"]],
         },
     }
     for p in population
@@ -107,12 +134,59 @@ agent_specs = [
 
 # ---------------------------------------------------------------------------
 # 2. 按 seed 预抽样注入样本（每份 250 条；schema 与 injection_posts.json 一致）
+#
+# 抽样方法：分层比例抽样——每周池先按 官方/非官方 分层，层内再按帖子类型
+# （数据集标签）分层，各层用最大余数法把当周配额 k 按比例分配到组。
+# 因此每周样本的类型构成与官方占比**确定性地**贴合当周真实构成（误差 ≤ 整数取整），
+# 不存在简单随机抽样的偶发偏斜；随机性只体现在"组内抽哪几条"。
 # ---------------------------------------------------------------------------
 full_data = json.loads(FULL_INJECTION_PATH.read_text(encoding="utf-8"))
 all_posts = full_data["posts"]
 by_week: dict[str, list[dict]] = {}
 for rec in all_posts:
     by_week.setdefault(str(rec["week"]), []).append(rec)
+
+
+def _largest_remainder(total_k: int, groups: dict[str, list]) -> dict[str, int]:
+    """按组大小比例把 total_k 分配到各组（最大余数法），和恰为 total_k。"""
+    n = sum(len(g) for g in groups.values())
+    quotas = {t: total_k * len(g) / n for t, g in groups.items()}
+    alloc = {t: min(int(q), len(groups[t])) for t, q in quotas.items()}
+    order = sorted(groups, key=lambda t: (-(quotas[t] - int(quotas[t])), t))
+    i = 0
+    while sum(alloc.values()) < total_k and i < 100000:
+        t = order[i % len(order)]
+        if alloc[t] < len(groups[t]):
+            alloc[t] += 1
+        i += 1
+    assert sum(alloc.values()) == total_k, f"最大余数分配失败: {alloc} != {total_k}"
+    return alloc
+
+
+def stratified_week_sample(pool: list[dict], k: int, week: str, rng: random.Random) -> list[dict]:
+    """当周池的两级分层比例抽样：官方/非官方 → 类型；W13/W14 官方保底 1 条。"""
+    k = min(k, len(pool))
+    official = [p for p in pool if p.get("is_official")]
+    regular = [p for p in pool if not p.get("is_official")]
+    alloc_top = _largest_remainder(k, {"official": official, "regular": regular})
+    if week in OFFICIAL_GUARANTEE_WEEKS and alloc_top["official"] == 0 and official:
+        alloc_top["official"] = 1
+        alloc_top["regular"] -= 1
+    picks: list[dict] = []
+    for stratum, group in (("official", official), ("regular", regular)):
+        kk = alloc_top[stratum]
+        if kk <= 0:
+            continue
+        by_type: dict[str, list] = {}
+        for p in group:
+            by_type.setdefault(str(p.get("type", "other")), []).append(p)
+        alloc_t = _largest_remainder(kk, by_type)
+        for t in sorted(by_type):
+            if alloc_t[t] > 0:
+                picks.extend(rng.sample(by_type[t], alloc_t[t]))
+    rng.shuffle(picks)
+    return picks
+
 
 sample_paths: dict[int, str] = {}
 for seed in SEEDS:
@@ -122,27 +196,26 @@ for seed in SEEDS:
         k = INJECTION_ALLOCATION[week]
         pool = by_week.get(week, [])
         assert len(pool) >= k, f"{week} 池仅 {len(pool)} 条，不足分配 {k}"
-        picks = rng.sample(pool, k)
-        # 官方帖保底：事件周及次周至少 1 条 is_official（不够则从池中换入）。
-        if week in OFFICIAL_GUARANTEE_WEEKS and not any(p.get("is_official") for p in picks):
-            picked_ids = {p["pid"] for p in picks}
-            officials = [p for p in pool if p.get("is_official") and p["pid"] not in picked_ids]
-            if officials:
-                swappable = [p for p in picks if not p.get("is_official")]
-                picks[picks.index(rng.choice(swappable))] = rng.choice(officials)
-        sampled.extend(picks)
+        sampled.extend(stratified_week_sample(pool, k, week, rng))
     sampled.sort(key=lambda p: (p["week"], p["pid"]))
     weekly_counts = {w: sum(1 for p in sampled if p["week"] == w) for w in sorted(INJECTION_ALLOCATION)}
+    weekly_type_counts = {
+        w: {t: sum(1 for p in sampled if p["week"] == w and p.get("type") == t)
+            for t in sorted({p.get("type") for p in sampled if p["week"] == w})}
+        for w in sorted(INJECTION_ALLOCATION)
+    }
     sample_doc = {
         "meta": {
             "source": "custom/envs/curation_assets/injection_posts.json",
             "purpose": "hypothesis_4 experiment_1 预抽样注入样本（全程 250 条，用户 2026-09-09 裁定）",
             "seed": seed,
             "sample_rng": f"Random({seed}+{SAMPLE_SEED_OFFSET})",
+            "sampling_method": "每周池内两级分层比例抽样（官方/非官方×类型，最大余数法），样本构成确定性贴合当周真实构成",
             "allocation": INJECTION_ALLOCATION,
             "official_guarantee_weeks": list(OFFICIAL_GUARANTEE_WEEKS),
             "rows_total": len(sampled),
             "weekly_counts": weekly_counts,
+            "weekly_type_counts": weekly_type_counts,
             "official_counts": {
                 w: sum(1 for p in sampled if p["week"] == w and p.get("is_official"))
                 for w in sorted(INJECTION_ALLOCATION)
@@ -228,11 +301,18 @@ manifest = {
         "counts": POPULATION_COUNTS,
         "seed": POPULATION_SEED,
         "note": "18 个配置共享同一群体（id-类型打散，人设含三机制类型化表现）",
+        "type_vocab": {
+            "rule": "agent 发言用本类型词表词组织语言（用户 2026-09-09 裁定）；词源=env 判类器同口径 main/meme 列表",
+            "per_agent_n": TYPE_VOCAB_N,
+            "sample_seed": VOCAB_SAMPLE_SEED,
+            "meme": "linkage 全量 + strong 抽样；mourning/marketing/education=main 抽样；other=空",
+        },
     },
     "injection": {
         "total_posts_per_run": 250,
         "allocation": INJECTION_ALLOCATION,
         "sample_seed_offset": SAMPLE_SEED_OFFSET,
+        "sampling_method": "每周池内两级分层比例抽样（官方×类型，最大余数法），构成确定性贴合当周真实分布",
         "sampling_ratio": 1.0,
         "sample_files": {str(s): sample_paths[s] for s in SEEDS},
     },

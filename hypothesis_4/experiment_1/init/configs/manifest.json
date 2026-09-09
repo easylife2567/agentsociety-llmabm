@@ -46,7 +46,13 @@
       "other": 12
     },
     "seed": 42,
-    "note": "18 个配置共享同一群体（id-类型打散，人设含三机制类型化表现）"
+    "note": "18 个配置共享同一群体（id-类型打散，人设含三机制类型化表现）",
+    "type_vocab": {
+      "rule": "agent 发言用本类型词表词组织语言（用户 2026-09-09 裁定）；词源=env 判类器同口径 main/meme 列表",
+      "per_agent_n": 40,
+      "sample_seed": 43,
+      "meme": "linkage 全量 + strong 抽样；mourning/marketing/education=main 抽样；other=空"
+    }
   },
   "injection": {
     "total_posts_per_run": 250,
@@ -64,6 +70,7 @@
       "2026-W22": 24
     },
     "sample_seed_offset": 777,
+    "sampling_method": "每周池内两级分层比例抽样（官方×类型，最大余数法），构成确定性贴合当周真实分布",
     "sampling_ratio": 1.0,
     "sample_files": {
       "0": "hypothesis_4/experiment_1/init/injection_sample_s0.json",

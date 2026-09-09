@@ -152,6 +152,9 @@ class CurationDiscourseAgent(AgentBase):
         if self._agent_type not in VALID_TYPES:
             raise ValueError(f"非法 agent_type: {self._agent_type}")
         self._persona = str(self.get_profile().get("persona", ""))
+        # 类型词表（配置期从 vocabs.json 按类型抽样注入 profile；用户裁定：
+        # 发言须用本类型词表中的词组织语言，同时让 env 判类标签与作者类型对齐）。
+        self._type_vocab: list[str] = [str(w) for w in (self.get_profile().get("type_vocab") or [])]
 
     async def to_workspace(self, workspace_path: Path) -> None:
         workspace_path = Path(workspace_path)
@@ -239,10 +242,18 @@ class CurationDiscourseAgent(AgentBase):
             f"你在扮演一个中文社交媒体用户，人设如下：\n\n{self._persona}\n\n"
             f"你的固定内容类型是：{self._agent_type}。{_CONTENT_GUIDE[self._agent_type]}"
         )
+        vocab_note = ""
+        if self._type_vocab:
+            vocab_note = (
+                "\n组织语言时，从你的常用词库里自然选用 1-3 个词融入正文"
+                "（贴合语境、不要堆砌、不要逐字罗列）："
+                + "、".join(self._type_vocab)
+            )
         user = (
             f"现在是 {snap.get('week', '?')}。你决定公开发言（动机：{reason}）。\n"
             f"请写一条不超过 {max_chars} 字的帖子正文，只输出正文本身，不要解释、不要引号。"
             "可以带 emoji 或话题标签，风格必须符合你的人设与类型。"
+            + vocab_note
         )
         return [{"role": "system", "content": system},
                 {"role": "user", "content": user}]

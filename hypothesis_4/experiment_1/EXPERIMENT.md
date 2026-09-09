@@ -20,14 +20,23 @@
 由 `curation_personas.build_population(seed=42)` 生成，id-类型打散；人设含沉默螺旋 /
 注意力衰减 / 规范压力三机制的类型化表现（锚定数据挖掘实证）。
 
+**类型词表约束**（用户 2026-09-09 裁定）：agent 发言须用本类型词表中的词组织语言。
+每个非 other agent 在配置期从 env 判类器同口径列表抽 40 词注入 profile（`type_vocab`，
+`Random(43)` 确定性抽样）：meme=linkage 全量+strong 抽样，其余主类=main 抽样，other 无约束。
+内容 prompt 要求自然选用 1-3 个词融入正文，使 agent 话语锚定实证词表，
+同时让 env 判类标签（assigned_type）与作者类型（pool_type）保持对齐。
+
 ## 真实帖子注入（用户裁定：全程约 250 条）
 
 - 源：custom/envs/curation_assets/injection_posts.json（52,716 行 W05–W22，剔除存疑）
 - 每 seed 预抽样 250 条（`Random(seed+777)`，W12–W22 池）：保底 15/周 + 85 条按真实周量比例
   → W12=17, W13=35, W14=30, W15=24, W16=22, W17=19, W18=18, W19=18, W20=20, W21=23, W22=24
+- **分层比例抽样**：每周池内按 官方/非官方 × 帖子类型 两级最大余数法分配配额，
+  样本类型构成确定性贴合当周真实分布（实测各周份额偏差 ≤3.3pp，仅整数取整误差），
+  杜绝简单随机抽样的偶发偏斜；随机性只在"组内抽哪几条"
 - W13/W14 保证 ≥1 条官方帖（官方议程置顶处理的载体）
 - env 侧 `sampling_ratio=1.0`：样本文件即全量注入，不再二次抽样
-- 样本文件：init/injection_sample_s{0,1,2}.json
+- 样本文件：init/injection_sample_s{0,1,2}.json（meta 含 weekly_type_counts 审计）
 
 ## 配置产物（init/）
 
