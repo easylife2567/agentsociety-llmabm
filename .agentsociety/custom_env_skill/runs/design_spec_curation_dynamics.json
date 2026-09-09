@@ -1,0 +1,184 @@
+{
+  "module_name": "curation_dynamics_space",
+  "class_name": "CurationDynamicsSpace",
+  "description": "舆论场数字表征转移模拟：三种推荐算法 × 两种悼念规范压力（3×2 全因子 6 cells）下，100 个固定类型 Agent 的差异化激活与公共表征构成变化（张雪峰 2026-03-24 去世 W13，W12→W22 共 11 周）。",
+  "rationale": "实验设计阶段.md / HYPOTHESIS.md H4 将机制定位为「算法策展 × 社会表达环境」的群体层面构成效应：算法决定谁被看见（曝光分配），规范压力+沉默螺旋+注意力衰减决定谁发言（激活/沉默），类型固定决定内容类型不变，形成 群体规模→发言比例→供给比例→曝光比例 漏斗。interest_normal cell 兼任生成性验证（拟合 benchmark_curves.json 三阶段形态）。本环境需提供：按周注入真实打标内容的池子、三种可开关的推荐算法（纯兴趣匹配无热度项，用户裁定）、内生的悼念规范压力指数（decay/sustained 两模式）、官方议程置顶、四词表判类器（对齐 meme_matcher.py），以及每 tick 的供给/曝光/发言漏斗 replay 指标。规模 100 agents × 11 ticks × 18 runs，balanced tier。",
+
+  "scale_budget": {
+    "target_agent_count": "100（固定：梗41/悼念21/营销13/教育13/其他12，用户口径主导类型，2026-09-08 裁定）",
+    "step_budget": "11 ticks/run（1 tick = 1 周，W12→W22）；每 cell 3 seeds，共 18 runs（≈1.98 万 agent-ticks）",
+    "runtime_budget": "balanced tier。LLM 成本主导：每 agent 每 tick 1 次发言决策 + 发言时 1 次内容生成 ≈ 1100-2200 次 LLM 调用/run。Env 侧要求：工具体返回紧凑、曝光在 feed 装配时批量记账（不逐帖写 replay）、状态从 kwargs + replay + workspace 可重建。",
+    "complexity_tier": "balanced"
+  },
+
+  "step_semantics": "1 step = 1 周（ISO week 2026-W12 起）。框架调用顺序已核实（society.py:581-631）：每 tick 先让 100 个 agent 行动（调用 env 工具），随后才调用 env.step(tick, t)（'Env advances AFTER agents'），时钟在 agent 阶段前由 set_current_time 推入。因此每 tick 的「内容更新(注入) + 算法推荐(feed 装配)」必须在 agent 阶段之前完成：init() 打开 tick 1（注入 W12、算 P_t、装配全部 feed），每个 step(k) 在收尾 tick k 的同时预卷打开 tick k+1（注入、P_t、装配 feed）。replay 快照在 step(k) 收尾段写入（此时 tick k 的 agent 产出已入池），step 主键用内部 _step_index（自增，绝不用 tick 时长参数）。具体时序：init()→[tick1 agent 阶段]→step(1){收尾tick1+打开tick2}→[tick2 agent 阶段]→step(2){...}→...→step(11){收尾tick11；不打开 W23}。Agent 帖在 tick 内仅入 pending 缓冲，收尾时并入池，故当 tick 的 feed 不含当 tick 新帖（'下一 tick 重新传播'，实验设计 四.6）。",
+
+  "tools": [
+    {
+      "name": "get_feed",
+      "kind": "observe",
+      "readonly": true,
+      "params": [
+        {"name": "agent_id", "type": "str", "purpose": "调用方 agent 标识（框架约定首参）"}
+      ],
+      "returns": {
+        "type": "dict",
+        "description": "当前 tick 该 agent 所见快照，含：week(str, 如 '2026-W12')；norm_pressure(float P_t)；norm_pressure_level(str 'high'|'medium'|'low')；own_spoke(bool 本 tick 是否已发言)；own_last_post(dict|null：{post_id, type, assigned_type, content}，最近一帖)；feed(list 长度=feed_size，元素 {post_id, author_handle, content, type, week, is_official}，官方置顶帖在前)；feed_type_distribution(dict 五类+noise 的份额，= 该 agent 所见意见气候)；global_supply_shares(dict 最近完结 tick 的 Agent 产出口径供给份额)；global_exposure_shares(dict 最近完结 tick 曝光份额)；personal_stats({total_posts:int, cumulative_exposures:{type:count}})。本工具为 readonly observe，'同 tick 重复调用返回同一 feed 不重复计曝光' 由构造保证（见 side_effects）。"
+      },
+      "side_effects": "none（readonly）。feed 在 step/init 的打开阶段对全部 100 个 agent 一次性预装配，曝光计数在装配时记账（1 次/agent/tick），本工具仅读取缓存快照，重复调用零副作用。无需同步幂等方案。"
+    },
+    {
+      "name": "create_post",
+      "kind": "regular",
+      "readonly": false,
+      "params": [
+        {"name": "agent_id", "type": "str", "purpose": "调用方 agent 标识（框架约定首参）"},
+        {"name": "content", "type": "str", "purpose": "帖子正文（非空）。无类型参数：帖子池类型 = 作者类型 by construction（实验设计 二.2：Agent 不得生成其他类型内容），类型由 agent 固定类型决定，Env 用四词表判类器独立打标记录 mismatch"}
+      ],
+      "returns": {
+        "type": "dict",
+        "description": "必须含字符串 status（'success'|'fail'|'error'，见 pitfalls P1）+ {post_id:int, pool_type:str(作者类型), assigned_type:str(词表判类结果), type_mismatch:bool, already_posted:bool, week:str, response:str 供 LLM 读取}。重复调用（同 tick 同 agent）返回 status='success'、already_posted=true、不改变任何状态（first-write-wins）。"
+      },
+      "side_effects": "把 {agent_id, content, pool_type=agent.type, assigned_type=_tag_content_type(content), type_mismatch, week} 追加进 _pending_agent_posts 缓冲（tick 收尾并入 _posts 池，供下一 tick 传播）；置 _spoke_this_tick[agent_id]=True。幂等方案（P3 Pattern B）：_posted_this_step 集合按 (agent_id) 去重，首写生效、重复调用 no-op 返回 success；step() 收尾时清空 _posted_this_step/_spoke_this_tick。"
+    }
+  ],
+
+  "config_kwargs": [
+    {"name": "recommendation_algorithm", "type": "str", "default": "random", "options": ["random", "chronological", "interest"], "purpose": "按 cell 锁定（实验设计 五.1）；Agent 不可选，不出现于任何工具参数"},
+    {"name": "mourning_norm_pressure", "type": "str", "default": "decay", "options": ["decay", "sustained"], "purpose": "悼念规范压力模式（实验设计 五.2）；sustained 在 event_week 算出峰值后冻结"},
+    {"name": "random_seed", "type": "int", "default": 0, "purpose": "cell seed；三个 RNG 流（注入抽样/随机臂抽样/兴趣噪声）由同一 seed + 固定偏移派生，保证六 cell 外部投放与采样一致（实验设计 五.2 '除算法与压力开关外完全一致'）"},
+    {"name": "feed_size", "type": "int", "default": 20, "purpose": "每 agent 每 tick feed 槽位数（官方置顶帖占前部）"},
+    {"name": "sampling_ratio", "type": "float", "default": 0.05, "purpose": "每周从注入数据集抽样的比例（实验设计 三.2 '真实数据抽取比例后续单独确定'，默认 0.05 由 orchestrator 锁定）"},
+    {"name": "injection_data_path", "type": "str", "default": "", "purpose": "注入数据集 JSON 资产路径（orchestrator 另行构建，schema 见 assets 节）；空串=无外部注入（仅用于调试/冒烟）"},
+    {"name": "vocab_path", "type": "str", "default": "", "purpose": "四词表判类器 + 类型词表 JSON 资产路径（orchestrator 构建，schema 见 assets 节）；空串=词表为空，判类回落 'other'"},
+    {"name": "agent_types", "type": "dict", "default": {}, "purpose": "{agent_id: type}，type∈{meme,mourning,marketing,education,other}；未列出 agent 默认 'other'。由 orchestrator 的 100 agent 配置派生"},
+    {"name": "start_week", "type": "str", "default": "2026-W12", "purpose": "首个 tick 的 ISO 周标签"},
+    {"name": "num_ticks", "type": "int", "default": 11, "purpose": "总 tick 数（W12→W22，实验设计 四）"},
+    {"name": "event_week", "type": "str", "default": "2026-W13", "purpose": "去世周（2026-03-24）；sustained 模式在此周计算 P_t 峰值并冻结；volume 比的分母基准周"},
+    {"name": "official_pin_extend_weeks", "type": "int", "default": 1, "purpose": "官方置顶帖在注入当周之外延续的周数（0=仅当周；默认次周也置顶，实验设计 三.3）"},
+    {"name": "alpha", "type": "float", "default": 1.0, "purpose": "interest 评分权重：类型自匹配"},
+    {"name": "beta", "type": "float", "default": 1.0, "purpose": "interest 评分权重：词表重合"},
+    {"name": "gamma", "type": "float", "default": 0.5, "purpose": "interest 评分权重：时新近度"},
+    {"name": "interest_noise_eps", "type": "float", "default": 0.05, "purpose": "interest 评分小随机扰动幅度（均匀[-eps,+eps]，独立 RNG 流、按 tick 播种保证确定性）"},
+    {"name": "recency_max_age_weeks", "type": "int", "default": 8, "purpose": "recency = max(0, 1 - age_weeks/recency_max_age_weeks)"},
+    {"name": "exposure_mode", "type": "str", "default": "none", "options": ["none", "penalize", "exclude"], "purpose": "已曝光（该 agent 历史 feed 见过的）帖处理：penalize=score 减去 exposure_penalty_weight；exclude=从候选剔除"},
+    {"name": "exposure_penalty_weight", "type": "float", "default": 0.1, "purpose": "penalize 模式下的已曝光惩罚量"},
+    {"name": "random_recency_window_weeks", "type": "int|None", "default": null, "purpose": "随机臂可选的 recency window：仅从最近 N 周池内采样；None=全池"},
+    {"name": "w_official", "type": "float", "default": 0.3, "purpose": "P_t 公式权重：官方议程强度"},
+    {"name": "w_mourning", "type": "float", "default": 0.4, "purpose": "P_t 公式权重：悼念类占比"},
+    {"name": "w_volume", "type": "float", "default": 0.3, "purpose": "P_t 公式权重：总量比"},
+    {"name": "pressure_high_threshold", "type": "float", "default": 0.6, "purpose": "P_t 等级 'high' 阈值"},
+    {"name": "pressure_medium_threshold", "type": "float", "default": 0.3, "purpose": "P_t 等级 'medium' 阈值（低于则 'low'）"}
+  ],
+
+  "assets": {
+    "injection_data": {
+      "path_kwarg": "injection_data_path",
+      "schema": "list of objects: {post_id: str(唯一, 建议 'w<week>_<seq>'), week: str('2026-W12'), type: str('meme'|'mourning'|'education'|'marketing'|'other'|'noise'), content: str, author_handle: str(外部伪账号), is_official: bool(关键词规则预标注：讣告/声明/官方确认/家属/公司声明)}",
+      "usage": "init() 按 week 索引；每 tick 打开阶段用 rng_injection 按 sampling_ratio 抽样投放进 _posts（author_id='ext_'+author_handle 伪账号）；type 即池类型；is_official 进入置顶集合（当周 + 延伸周）"
+    },
+    "vocab": {
+      "path_kwarg": "vocab_path",
+      "schema": "单层对象：{meme: {linkage: [str], strong: [str], exclude_death_fact: [str], weak_markers: [str]}, mourning: {strong: [str], context: [str]}, marketing: {keywords: [str]}, education: {keywords: [str]}, other: {keywords: [str]}, agent_type_vocab: {meme: [str], mourning: [str], marketing: [str], education: [str], other: [str]}}",
+      "usage": "四词表判类器 _tag_content_type 对齐 meme_matcher.py：归一化(去 emoji/标点/空白/符号) + 原文本两层匹配；优先级 悼念>营销>教育>玩梗>其他；梗词 linkage(出现即玩梗)/strong(剔除 exclude_death_fact 后两层匹配)/weak_markers(仅话题标记不触发)；哀悼 context 词须与 mourning.strong 词共现才触发。agent_type_vocab 供 interest 臂 '词表重合' 评分与 agent 兴趣表征（实验设计 一.2）"
+    }
+  },
+
+  "global_state": [
+    {"name": "_step_index", "type": "int", "initial": 0, "read_by": ["step 收尾(replay 主键)", "打开阶段(week 推算)"], "mutated_by": ["step() 开头自增(每步恰一次)"], "persistence": "in_memory + workspace", "replay_column": null, "note": "replay step 主键；绝不用 tick 时长参数（persistence-patterns 警示）"},
+    {"name": "_current_week", "type": "str", "initial": "start_week", "read_by": ["get_feed", "打开/收尾阶段"], "mutated_by": ["init/打开阶段(ISO 周递增)"], "persistence": "in_memory + workspace", "replay_column": {"name": "week", "type": "TEXT"}, "note": "ISO 周标签按 start_week + 周增量由日期算术推导（2026-03~05 窗口无跨年问题）；注入按标签查资产，缺失周=当周无外部内容"},
+    {"name": "_posts", "type": "dict[int, dict]", "initial": "{}", "read_by": ["打开阶段(feed 装配)", "收尾阶段(供给统计)", "get_feed(经 feed 缓存)"], "mutated_by": ["init/打开阶段(注入)", "step 收尾(agent 帖入池)"], "persistence": "workspace(ENV_STATE.json，含 exposure_count 等动态字段)；replay 只落聚合不落原文", "replay_column": null, "note": "帖结构：{post_id:int, author_id:str, author_handle:str, content:str, type:str(池类型=注入标签/作者类型), assigned_type:str(判类器，注入帖=数据集标签), type_mismatch:bool, week:str, is_official:bool, exposure_count:int(累计被曝光次数), tick_produced:int}。池累积不删除（真实内容在线留存），可见性由 recency/曝光/窗口 knob 控制"},
+    {"name": "_pending_agent_posts", "type": "list[dict]", "initial": "[]", "read_by": ["step 收尾"], "mutated_by": ["create_post(追加)", "step 收尾(清空并入池)"], "persistence": "in_memory + workspace", "replay_column": null, "note": "tick 内 agent 帖缓冲；收尾时并入 _posts 并参与该 tick 供给口径统计"},
+    {"name": "_spoke_this_tick", "type": "dict[str, bool]", "initial": "{}", "read_by": ["get_feed(own_spoke)", "step 收尾(replay)"], "mutated_by": ["create_post(置 True)", "step 收尾(清空)"], "persistence": "in_memory + workspace", "replay_column": null},
+    {"name": "_posted_this_step", "type": "set[str]", "initial": "set()", "read_by": ["create_post(幂等去重)"], "mutated_by": ["create_post(add)", "step 收尾(clear)"], "persistence": "in_memory + workspace", "replay_column": null, "note": "P3 Pattern B 去重键；first-write-wins"},
+    {"name": "_feeds", "type": "dict[str, list[dict]]", "initial": "{}", "read_by": ["get_feed", "收尾阶段(曝光统计)"], "mutated_by": ["init/打开阶段(全量重建)"], "persistence": "in_memory + workspace", "replay_column": null, "note": "每 agent 每 tick 预装配；含官方置顶槽位；重建自 _posts+P_t+RNG（确定性）"},
+    {"name": "_norm_pressure", "type": "float", "initial": "0.0", "read_by": ["get_feed", "replay"], "mutated_by": ["init/打开阶段"], "persistence": "replay + workspace", "replay_column": {"name": "norm_pressure", "type": "REAL"}, "note": "decay 模式：P_t = w_official*O_t + w_mourning*M_t + w_volume*V_t，clamp[0,1]；O_t=当周官方注入占比，M_t=当周供给(注入周t ∪ agent帖tick t-1)中悼念占比，V_t=当周注入量/event_week 注入量(≤1)。sustained 模式：W12 正常计算(≈0)、event_week 正常计算并记录峰值，此后冻结"},
+    {"name": "_norm_pressure_level", "type": "str", "initial": "low", "read_by": ["get_feed", "replay"], "mutated_by": ["init/打开阶段"], "persistence": "replay + workspace", "replay_column": {"name": "norm_pressure_level", "type": "TEXT"}, "note": "high/medium/low 阈值见 config_kwargs"},
+    {"name": "_official_pinned", "type": "dict[str, list[int]]", "initial": "{}", "read_by": ["打开阶段(feed 装配)", "收尾阶段(官方统计)"], "mutated_by": ["init/打开阶段"], "persistence": "in_memory", "replay_column": null, "note": "置顶周→post_id 列表；由当周 is_official 注入帖 + official_pin_extend_weeks 推得，可从资产重建"},
+    {"name": "_global_landscape", "type": "dict", "initial": "{}", "read_by": ["get_feed(global_supply/exposure_shares)"], "mutated_by": ["init/打开阶段(最近完结 tick 或 W12 注入基线快照)"], "persistence": "in_memory + workspace", "replay_column": null, "note": "get_feed 展示最近完结 tick 的全局供给/曝光份额；tick 1 用 init 时 W12 注入池构成的基线快照（营销主导 77.8%，对齐真实 W12）"},
+    {"name": "_rng_injection", "type": "random.Random", "initial": "Random(random_seed)", "read_by": ["注入抽样"], "mutated_by": ["抽样时推进"], "persistence": "workspace(getstate/setstate)", "replay_column": null, "note": "注入采样 RNG；与 feed 层 RNG 分离，保证六 cell 注入完全一致"},
+    {"name": "_rng_feed_random", "type": "random.Random", "initial": "Random(random_seed + 1000)", "read_by": ["随机臂采样"], "mutated_by": ["采样时推进"], "persistence": "workspace", "replay_column": null},
+    {"name": "_rng_interest_noise", "type": "random.Random", "initial": "Random(random_seed + 2000)", "read_by": ["interest 噪声"], "mutated_by": ["评分时推进"], "persistence": "workspace", "replay_column": null},
+    {"name": "_seen_by_agent", "type": "dict[str, set[int]]", "initial": "{}", "read_by": ["interest 评分(已曝光惩罚/剔除)"], "mutated_by": ["打开阶段(feed 装配时并入)"], "persistence": "in_memory + workspace", "replay_column": null, "note": "每 agent 历史见过的 post_id 集合，支撑已曝光 knob；100×~2200 个 id 规模可接受"},
+    {"name": "_cumulative_exposures", "type": "dict[str, dict[str, int]]", "initial": "{}", "read_by": ["get_feed(personal_stats)"], "mutated_by": ["收尾阶段(累加)"], "persistence": "in_memory + workspace", "replay_column": null},
+    {"name": "_total_posts_by_agent", "type": "dict[str, int]", "initial": "{}", "read_by": ["get_feed(personal_stats)"], "mutated_by": ["收尾阶段"], "persistence": "in_memory + workspace", "replay_column": null},
+    {"name": "_next_post_id", "type": "int", "initial": "1", "read_by": ["create_post", "注入"], "mutated_by": ["create_post/注入(自增)"], "persistence": "workspace", "replay_column": null},
+    {"name": "_lock", "type": "asyncio.Lock", "initial": "Lock()", "read_by": ["create_post"], "mutated_by": ["无"], "persistence": "in_memory(每次 __init__ 重建，不序列化)", "replay_column": null, "note": "persistence-patterns：不持久化锁"},
+    {"name": "_agent_types", "type": "dict[str, str]", "initial": "kwargs agent_types", "read_by": ["feed 装配(类型自匹配)", "create_post(pool_type)", "replay 维度"], "mutated_by": ["无(静态)"], "persistence": "in_memory(kwargs 重建)", "replay_column": null},
+    {"name": "_vocab", "type": "dict[str, list[str]]", "initial": "来自 vocab 资产", "read_by": ["判类器", "interest 评分"], "mutated_by": ["无(静态)"], "persistence": "in_memory(资产重载)", "replay_column": null},
+    {"name": "_injection_data", "type": "dict[str, list[dict]]", "initial": "来自注入资产", "read_by": ["打开阶段"], "mutated_by": ["无(静态)"], "persistence": "in_memory(资产重载)", "replay_column": null}
+  ],
+
+  "per_agent_state": [
+    {"name": "agent_type", "type": "str", "initial": "agent_types[agent_id] or 'other'", "read_by": ["get_feed(隐含)", "create_post", "replay"], "mutated_by": ["无(全程固定，实验设计 二.2)"], "persistence": "in_memory(kwargs) + replay", "replay_column": {"name": "agent_type", "type": "TEXT"}},
+    {"name": "current_feed", "type": "list[dict]", "initial": "[]", "read_by": ["get_feed"], "mutated_by": ["init/打开阶段"], "persistence": "in_memory + workspace(存于 _feeds[agent_id])", "replay_column": null},
+    {"name": "seen_post_ids", "type": "set[int]", "initial": "set()", "read_by": ["interest 评分"], "mutated_by": ["打开阶段(feed 装配并入)"], "persistence": "in_memory + workspace(存于 _seen_by_agent)", "replay_column": null},
+    {"name": "exposure_counts_tick", "type": "dict[str, int]", "initial": "全 0", "read_by": ["收尾阶段(replay)", "get_feed(climate)"], "mutated_by": ["打开阶段(feed 装配时按类型计数)"], "persistence": "in_memory + replay", "replay_column": {"name": "exposure_meme/exposure_mourning/exposure_education/exposure_marketing/exposure_other/exposure_noise", "type": "INTEGER ×6"}, "note": "= 该 agent 本 tick feed 各类型槽位数（曝光口径=1 个 feed 槽位）"},
+    {"name": "climate_shares", "type": "dict[str, float]", "initial": "全 0", "read_by": ["收尾阶段(replay)", "get_feed(feed_type_distribution)"], "mutated_by": ["打开阶段(由 feed 归一化)"], "persistence": "in_memory + replay", "replay_column": {"name": "climate_meme/climate_mourning/climate_education/climate_marketing/climate_other/climate_noise", "type": "REAL ×6"}, "note": "意见气候 = 该 agent 所见 feed 类型分布"},
+    {"name": "spoke", "type": "bool", "initial": "False", "read_by": ["get_feed(own_spoke)", "replay"], "mutated_by": ["create_post(置 True)", "step 收尾(重置)"], "persistence": "in_memory + workspace + replay", "replay_column": {"name": "spoke", "type": "INTEGER"}},
+    {"name": "produced_type", "type": "str|None", "initial": "None", "read_by": ["replay"], "mutated_by": ["create_post(=agent_type)"], "persistence": "in_memory + workspace + replay", "replay_column": {"name": "produced_type", "type": "TEXT"}, "note": "发言时=agent_type（by construction）；沉默=None"},
+    {"name": "assigned_type", "type": "str|None", "initial": "None", "read_by": ["replay"], "mutated_by": ["create_post(判类器输出)"], "persistence": "in_memory + workspace + replay", "replay_column": {"name": "assigned_type", "type": "TEXT"}},
+    {"name": "type_mismatch", "type": "bool", "initial": "False", "read_by": ["replay"], "mutated_by": ["create_post(assigned_type != agent_type)"], "persistence": "in_memory + workspace + replay", "replay_column": {"name": "type_mismatch", "type": "INTEGER"}},
+    {"name": "cumulative_exposures", "type": "dict[str, int]", "initial": "全 0", "read_by": ["get_feed(personal_stats)"], "mutated_by": ["收尾阶段"], "persistence": "in_memory + workspace", "replay_column": null},
+    {"name": "total_posts_made", "type": "int", "initial": "0", "read_by": ["get_feed(personal_stats)"], "mutated_by": ["收尾阶段(成功发言+1)"], "persistence": "in_memory + workspace", "replay_column": null}
+  ],
+
+  "metrics": {
+    "env_replay_columns": {
+      "note": "env 级，按 step 主键，每 tick 一行（收尾段写）：week TEXT; norm_pressure REAL; norm_pressure_level TEXT; total_supply INTEGER; agent_supply INTEGER; injected_count INTEGER; supply_share_meme/supply_share_mourning/supply_share_education/supply_share_marketing/supply_share_other REAL(Agent 产出口径，分母=五类 agent 帖总数，生成性验证主指标); supply_share_all_meme/.../supply_share_all_other/supply_share_all_noise REAL(注入+产出合计口径，分母含 noise，对齐 benchmark total); agent_supply_meme/.../agent_supply_other INTEGER; injected_meme/.../injected_noise INTEGER; total_exposures INTEGER; exposure_share_meme/.../exposure_share_other/exposure_share_noise REAL(推荐服务口径，槽位计数); exposure_meme/.../exposure_noise INTEGER; official_posts_count INTEGER; official_exposure_slots INTEGER",
+      "benchmark_alignment": "supply_share_{type}(Agent 产出口径) 为主对齐指标（orchestrator 裁定，需求 7）；combined 口径(含注入与 noise)同时记录供交叉检验"
+    },
+    "agent_replay_columns": {
+      "note": "agent 级，按 agent_id+step 主键，每 tick 每 agent 一行（收尾段 batch 写）：agent_type TEXT; spoke INTEGER; produced_type TEXT; assigned_type TEXT; type_mismatch INTEGER; exposure_meme/.../exposure_noise INTEGER×6; climate_meme/.../climate_noise REAL×6; norm_pressure_seen REAL; norm_pressure_level_seen TEXT; feed_slots INTEGER"
+    }
+  },
+
+  "persistence": {
+    "agent_replay_columns": ["agent_type", "spoke", "produced_type", "assigned_type", "type_mismatch", "exposure_meme", "exposure_mourning", "exposure_education", "exposure_marketing", "exposure_other", "exposure_noise", "climate_meme", "climate_mourning", "climate_education", "climate_marketing", "climate_other", "climate_noise", "norm_pressure_seen", "norm_pressure_level_seen", "feed_slots"],
+    "env_replay_columns": ["week", "norm_pressure", "norm_pressure_level", "total_supply", "agent_supply", "injected_count", "supply_share_meme", "supply_share_mourning", "supply_share_education", "supply_share_marketing", "supply_share_other", "supply_share_all_meme", "supply_share_all_mourning", "supply_share_all_education", "supply_share_all_marketing", "supply_share_all_other", "supply_share_all_noise", "agent_supply_meme", "agent_supply_mourning", "agent_supply_education", "agent_supply_marketing", "agent_supply_other", "injected_meme", "injected_mourning", "injected_education", "injected_marketing", "injected_other", "injected_noise", "total_exposures", "exposure_share_meme", "exposure_share_mourning", "exposure_share_education", "exposure_share_marketing", "exposure_share_other", "exposure_share_noise", "exposure_meme", "exposure_mourning", "exposure_education", "exposure_marketing", "exposure_other", "exposure_noise", "official_posts_count", "official_exposure_slots"],
+    "in_memory_fields": ["_feeds(可确定性重建)", "_official_pinned(资产可重建)", "climate_shares/exposure_counts_tick(由 feed 导出)", "_agent_types/_vocab/_injection_data(静态配置)", "_global_landscape(由最近完结 tick 指标重建)"],
+    "workspace_state": {
+      "yes": true,
+      "state_file": "state/ENV_STATE.json",
+      "persisted": ["_step_index", "_current_week", "_posts(含 exposure_count)", "_pending_agent_posts", "_spoke_this_tick", "_posted_this_step", "_feeds", "_norm_pressure", "_norm_pressure_level", "_global_landscape", "_seen_by_agent", "_cumulative_exposures", "_total_posts_by_agent", "_next_post_id", "_rng_injection/_rng_feed_random/_rng_interest_noise 的 getstate()", "norm_pressure 峰值(sustained 模式冻结值)"],
+      "not_serialized": ["_lock(asyncio.Lock，__init__ 重建)", "_vocab/_injection_data(由资产路径重载)", "_agent_types(由 kwargs 重建)", "推荐/判类器逻辑(纯代码)"],
+      "resume_reconstruct": "restore() 读回上述字段后，当前 tick 的 feed 已持久化可直接服务；P_t 历史由 env replay 表可查"
+    },
+    "step_counter": "_step_index",
+    "write_points": [
+      {"method": "step() 收尾段", "writes": ["agent_state_batch(100 行)", "env_state(1 行)"], "note": "每次 step 恰一次，主键=_step_index（已在 step 开头自增）"},
+      {"method": "init()", "writes": [], "note": "打开 tick 1，无 replay 写入"},
+      {"method": "close()", "writes": ["可选：把残留 _pending_agent_posts 并入 _posts"], "note": "11 步后无剩余 tick 需收尾"}
+    ]
+  },
+
+  "recommendation_arms": {
+    "random": "全池均匀随机采样（rng_feed_random），可选 random_recency_window_weeks 窗口；无兴趣/历史参与（实验设计 三.1①）",
+    "chronological": "按 (week_index 降序, post_id 降序) 取前 N；去个性化、弱策展基线（实验设计 三.1②）",
+    "interest": "score = alpha*类型自匹配(post.type==agent.type→1，否则0) + beta*词表重合(agent 类型词表与归一化帖文本的匹配覆盖率) + gamma*时新近度(max(0,1-age/recency_max_age_weeks)) + 均匀噪声[-eps,+eps]（rng_interest_noise，按 tick 播种）；无帖子级热度/互动项（用户 2026-09-08 裁定：纯兴趣匹配最小机制）；已曝光帖按 exposure_mode none/penalize/exclude 处理；官方置顶帖先占前部槽位，算法填充余下槽位并排除已置顶 id（避免重复）。"
+  },
+
+  "norm_pressure_detail": {
+    "decay": "每 tick 打开阶段按公式内生计算（见 _norm_pressure）",
+    "sustained": "event_week(W13) 正常计算并记录峰值，W14 起 P_t 冻结为该峰值（实验设计 五.2②：反事实维持高压不衰减）",
+    "exposure": "P_t 数值+等级经 get_feed 暴露给所有 agent（需求 5）"
+  },
+
+  "unresolved": [
+    {"id": "U1", "question": "注入数据集与词表资产的实际文件路径与最终 schema 需 orchestrator 构建后回填：injection_data_path/vocab_path 两个 init kwarg 约定如上（assets 节），其中 post_id 唯一性（建议 'w<week>_<seq>'）、is_official 关键词规则清单、vocab 资产中 mourning.context（哀悼上下文词，须与 strong 共现）与 agent_type_vocab 是否存在，需确认。", "impact": "assets 节为拟议契约；若 schema 不同，仅改加载层，不改工具/状态设计"},
+    {"id": "U2", "question": "P_t 公式与 interest 评分（含权重/阈值默认值）为拟议默认值；按实验设计 '参数设定与敏感性分析阶段确定'，默认值仅保证机制可运行，interest_normal 生成性验证未达标时应先做参数敏感性，而非改机制。", "impact": "影响 calibrate 阶段，不影响结构"},
+    {"id": "U3", "question": "Agent 产出口径供给份额分母是否含 noise：本设计裁定 Agent 产出口径分母=五类（noise 无 agent 产出，天然不在内）；combined 口径分母含 noise（对齐 benchmark weekly_category_matrix 的 total 口径）。请 orchestrator 确认主指标口径无误。", "impact": "影响基准对齐解读"},
+    {"id": "U4", "question": "get_feed 的 global_supply/exposure_shares 展示『最近完结 tick』指标；tick 1(W12) 无前序 tick，用 init 时 W12 注入池基线快照代替（营销主导，对齐真实 W12 77.8%）。", "impact": "仅影响 agent 感知的全局份额字段语义"},
+    {"id": "U5", "question": "帖子级曝光明细（逐帖 exposure_count 轨迹）不落 replay，仅以类型聚合口径落盘；若 analysis 阶段需要帖子级归因（如'哪类帖获得超额曝光'），需追加 post 级 replay 表（~3-4k 帖×11 周 ≈ 4 万行，SQLite 可承受）。", "impact": "balanced tier 取舍；可后补"},
+    {"id": "U6", "question": "speak/silent 决策与内容生成由 PersonAgent 侧 skill/人设驱动（LLM），Env 仅提供数据与约束；agent 侧需在每 tick 先调 get_feed 再决定是否 create_post，该编排契约由 orchestrator 在 agent 配置侧锁定。", "impact": "工具面已就绪，agent 侧需配套"}
+  ],
+
+  "compliance_notes": {
+    "P1": "create_post 返回含字符串 status ∈ {success, fail, error}；get_feed 为 readonly observe 无 status 要求",
+    "P2": "description()/init_description() 与工具 docstring 均以散文+加粗函数名描述操作（如 **get_feed(agent_id)**：获取您本周的推荐信息流...），严禁 Python 调用字面量",
+    "P3": "create_post 以 _posted_this_step 集合按 (agent_id) 每 tick 去重（first-write-wins），step 收尾清空；get_feed 纯读零风险",
+    "P4": "仅一个写工具 create_post（参数 agent_id, content）；get_feed 只读（参数 agent_id）。原考虑独立 get_env_status（参数仅 agent_id）会造成与 get_feed 相同的 variable_keys=('agent_id',)，存在模板缓存闭包串换风险，故并入 get_feed 响应并给出理由：①消除 P4 风险 ②每 tick 100×11×18 次工具调用预算下省一次调用 ③feed+气候+规范压力+全局份额为同一感知快照需原子一致。create_post 与 get_feed 的 key 集不同，无串换风险；docstring 仍需保持句首差异",
+    "P5": "class CurationDynamicsSpace(EnvBase)，直接继承 EnvBase，不从任何 contrib/自定义 env 继承；所需全部工具在类体内重新实现",
+    "compatibility": "文件 custom/envs/curation_dynamics_space.py；类名即 registry key；提供 step()、description()、init_description()；cls() 无必填构造参数（全部 kwargs 有默认值）；readonly observe 工具 get_feed 提供观察能力；to_workspace()/restore() 实现以支持 --resume"
+  }
+}
