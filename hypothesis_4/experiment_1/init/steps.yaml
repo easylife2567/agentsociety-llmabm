@@ -1,0 +1,5 @@
+start_t: "2026-03-16T00:00:00"
+steps:
+  - type: run
+    num_steps: 11
+    tick: 604800

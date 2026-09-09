@@ -3,21 +3,11 @@
   "workspace": {
     "topic": "公众人物去世后，算法策展如何塑造舆论场对其的数字表征",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "experiment_config",
+    "current_stage": "run_experiment",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
     "revision_round": 2,
-    "active_reroute": {
-      "revision_round": 2,
-      "requested_at": "2026-09-08T09:26:04.757065+00:00",
-      "from_stage": "run_experiment",
-      "target_stage": "hypothesis",
-      "reason": "用户决定推倒重来：保留文献调研与精读报告及 TOPIC.md 研究问题不变，从文献调研之后的阶段起重新设计整个 LLM ABM 实验（删除 hypothesis_4 全部假设与 E1/E2 配置、CALIBRATION.md 参数表、CurationDynamicsSpace 自定义 env 模块）",
-      "source_artifact": "EXPERIMENT_CONSTITUTION_1788335113228_0_gm0h.md",
-      "pending_stages": [
-        "experiment_config"
-      ]
-    }
+    "active_reroute": null
   },
   "stages": {
     "literature_search": {
@@ -61,10 +51,10 @@
       "revision_round": 2
     },
     "experiment_config": {
-      "status": "needs_revision",
+      "status": "completed",
       "started_at": null,
-      "completed_at": null,
-      "attempts": 2,
+      "completed_at": "2026-09-09T11:32:50.714130+00:00",
+      "attempts": 3,
       "error": null,
       "metadata": {},
       "verification_status": "not_started",
@@ -242,6 +232,17 @@
       "to_status": "completed",
       "from_stage": "hypothesis",
       "to_stage": "experiment_config"
+    },
+    {
+      "sequence": 9,
+      "timestamp": "2026-09-09T11:32:50.714136+00:00",
+      "kind": "stage_update",
+      "revision_round": 2,
+      "stage": "experiment_config",
+      "from_status": "needs_revision",
+      "to_status": "completed",
+      "from_stage": "experiment_config",
+      "to_stage": "run_experiment"
     }
   ]
 }

@@ -1,0 +1,90 @@
+{
+  "experiment": "hypothesis_4/experiment_1",
+  "design": "3 推荐算法 × 2 悼念规范压力 全因子，每 cell 3 seeds，共 18 runs",
+  "run_ids": [
+    "random_decay_s0",
+    "random_decay_s1",
+    "random_decay_s2",
+    "random_sustained_s0",
+    "random_sustained_s1",
+    "random_sustained_s2",
+    "chronological_decay_s0",
+    "chronological_decay_s1",
+    "chronological_decay_s2",
+    "chronological_sustained_s0",
+    "chronological_sustained_s1",
+    "chronological_sustained_s2",
+    "interest_decay_s0",
+    "interest_decay_s1",
+    "interest_decay_s2",
+    "interest_sustained_s0",
+    "interest_sustained_s1",
+    "interest_sustained_s2"
+  ],
+  "factors": {
+    "recommendation_algorithm": [
+      "random",
+      "chronological",
+      "interest"
+    ],
+    "mourning_norm_pressure": [
+      "decay",
+      "sustained"
+    ],
+    "random_seed": [
+      0,
+      1,
+      2
+    ]
+  },
+  "population": {
+    "counts": {
+      "meme": 41,
+      "mourning": 21,
+      "marketing": 13,
+      "education": 13,
+      "other": 12
+    },
+    "seed": 42,
+    "note": "18 个配置共享同一群体（id-类型打散，人设含三机制类型化表现）"
+  },
+  "injection": {
+    "total_posts_per_run": 250,
+    "allocation": {
+      "2026-W12": 17,
+      "2026-W13": 35,
+      "2026-W14": 30,
+      "2026-W15": 24,
+      "2026-W16": 22,
+      "2026-W17": 19,
+      "2026-W18": 18,
+      "2026-W19": 18,
+      "2026-W20": 20,
+      "2026-W21": 23,
+      "2026-W22": 24
+    },
+    "sample_seed_offset": 777,
+    "sampling_ratio": 1.0,
+    "sample_files": {
+      "0": "hypothesis_4/experiment_1/init/injection_sample_s0.json",
+      "1": "hypothesis_4/experiment_1/init/injection_sample_s1.json",
+      "2": "hypothesis_4/experiment_1/init/injection_sample_s2.json"
+    }
+  },
+  "steps": {
+    "start_t": "2026-03-16T00:00:00",
+    "num_steps": 11,
+    "tick_seconds": 604800
+  },
+  "deferred_defaults": {
+    "note": "interest 臂 α/β/γ 与 P_t 权重/阈值取 DesignSpec 默认值，待校准与敏感性分析（U2）",
+    "alpha": 1.0,
+    "beta": 1.0,
+    "gamma": 0.5,
+    "w_official": 0.3,
+    "w_mourning": 0.4,
+    "w_volume": 0.3
+  },
+  "default_init_config": "interest_decay_s0",
+  "run_command": "$PYTHON_PATH .agentsociety/bin/ags.py run-experiment start --hypothesis-id 4 --experiment-id 1 --init-config hypothesis_4/experiment_1/init/configs/<run_id>.json --run-id <run_id>"
+}
