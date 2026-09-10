@@ -1801,7 +1801,53 @@
    "跑步猝死",
    "根巧",
    "格聂",
-   "一根雪糕解决不了"
+   "一根雪糕解决不了",
+   "巧勒兹",
+   "巧乐滋",
+   "桥乐兹",
+   "巧乐子",
+   "QLZ",
+   "76兹",
+   "兹乐巧",
+   "巧了个乐兹",
+   "巧le兹",
+   "雪壁",
+   "雪毕",
+   "雪毙",
+   "雪璧",
+   "XB",
+   "碧雪",
+   "透心凉",
+   "xue碧",
+   "跑步鸡",
+   "跑步基",
+   "PBJ",
+   "跑不机",
+   "跑机",
+   "跑台",
+   "牢锋",
+   "牢蜂",
+   "laofeng",
+   "LF",
+   "牢章",
+   "牢彰",
+   "laozhang",
+   "LZ",
+   "牢学",
+   "牢穴",
+   "laoxue",
+   "LX",
+   "张聖",
+   "ZS",
+   "念章师",
+   "念張師",
+   "NZS",
+   "你跑不过我你信嘛",
+   "NPGMWNXM",
+   "赛博永升",
+   "赛博永牲",
+   "SBYS",
+   "射达"
   ],
   "exclude_death_fact": [
    "心源性猝死",
@@ -1852,7 +1898,7 @@
   },
   "meme": {
    "linkage": 13,
-   "strong": 96,
+   "strong": 142,
    "exclude_death_fact": 18,
    "weak_markers": 6
   }
@@ -1899,9 +1945,9 @@
    "meme": {
     "education": 195,
     "marketing": 807,
-    "meme": 4498,
+    "meme": 4502,
     "mourning": 1245,
-    "other": 421
+    "other": 417
    },
    "mourning": {
     "education": 125,
@@ -1913,16 +1959,16 @@
    "noise": {
     "education": 168,
     "marketing": 1231,
-    "meme": 29,
+    "meme": 33,
     "mourning": 1382,
-    "other": 1220
+    "other": 1216
    },
    "other": {
     "education": 366,
     "marketing": 1270,
-    "meme": 19,
+    "meme": 26,
     "mourning": 6391,
-    "other": 576
+    "other": 569
    }
   },
   "mourning": {
@@ -1932,7 +1978,7 @@
   },
   "meme": {
    "recall": 0.628,
-   "precision": 0.935,
+   "precision": 0.933,
    "n_gold": 7166
   },
   "education": {
