@@ -3,11 +3,14 @@
 每 tick 固定管线（LLM 调用预算受控，0-1 次/agent-tick）：
 1. **get_feed**（readonly, template_mode）——取回本周 feed 快照（feed 列表、意见气候、
    悼念规范压力、全局供给/曝光份额、个人累计曝光）。
-2. **数字化发言决策**（无 LLM，用户 2026-09-09 裁定；2026-09-10 改线性刺激-阈值规则）——
-   三机制因子线性等权合成刺激值 x = (spiral + decay + pressure)/3，
-   发言当且仅当 x ≥ activity（activity = 个体发言阈值，活跃 agent 阈值低；
-   确定性决策，无随机数，给定状态与参数行为唯一）。
-   决策分量（份额/因子/刺激值/阈值）全量写入 decision_log，可完整审计与事后重算。
+2. **数字化发言决策**（无 LLM，用户 2026-09-09 裁定；2026-09-10 改**表达效用模型**）——
+   Kuran（1995《Private Truths, Public Lies》）式表达效用：收益 − 规范成本，
+   U = D·R − c·v·P_t，发言当且仅当 U ≥ activity（activity = 个体表达门槛，
+   门槛低的 agent 更容易发言；确定性决策，无随机数，给定状态与参数行为唯一）。
+   三机制全部进入效用结构：沉默螺旋 D 与注意力衰减 R 相乘折减**收益**，
+   规范压力以偏好伪装成本 c·v·P_t **减除**（Castillo & Cozzo 2025 在螺旋之沉默 ABM 中
+   同样采用成本-收益框架；Bicchieri 2006：规范凸显 × 偏差预期成本）。
+   决策分量（份额/因子/收益/成本/效用/门槛）全量写入 decision_log，可完整审计与事后重算。
 3. 若发言，一次内容生成 completion——提示词包含本周 feed 前 feed_context_n 条帖子的
    作者与正文摘录，要求**基于所见内容**回应/讨论/二创/跟帖式发言（用户 2026-09-10 裁定），
    按 Agent 固定类型生成中文帖子（≤300 字），并自然融入本类型词表词（type_vocab）。
@@ -32,26 +35,35 @@ logger = logging.getLogger(__name__)
 
 VALID_TYPES = ("meme", "mourning", "marketing", "education", "other")
 
-# ---------------- 发言决策：线性刺激-阈值模型（用户 2026-09-10 裁定） ----------------
-# 三机制因子线性等权合成刺激值 x = (spiral + decay + pressure)/3；
-# 发言当且仅当 x ≥ activity（activity = 个体发言阈值，越低越容易发言）。
+# ---------------- 发言决策：表达效用模型（用户 2026-09-10 裁定，方案 B） ----------------
+# U = D·R − c·v·P_t，发言当且仅当 U ≥ activity（activity = 个体表达门槛，越低越容易发言）。
+#   D = 1 + s·(share_own − base)/base, clamp[0.05, 2]   沉默的螺旋：同类气候共振放大收益，
+#       少数派处境抑制收益（Noelle-Neumann 1974；Granovetter 1978 阈值结构保留）。
+#   R = exp(−λ·cum_own/50)                              注意力衰减：重复曝光疲劳折减收益
+#       （Wu & Huberman 2007；Candia et al. 2019 两段式衰减）。
+#   C = c·v·P_t                                         规范表达成本：偏好伪装/偏离成本
+#       （Kuran 1995；Castillo & Cozzo 2025 螺旋之沉默 ABM 成本-收益框架；
+#       Bicchieri 2006 规范凸显 × 偏差成本）。v 结构性取值：mourning 为负 → 悼念表达
+#       与规范同向，压力反成补贴。
+# 收益与成本不可通约地相乘/相减，杜绝线性等权平均的补偿性稀释（高收益可被低收益项
+# 平均拉低，导致 sustained 压力臂的操纵被稀释——线性规则的关键缺陷）。
 # 确定性决策（无随机数）：给定环境快照与参数，行为完全确定，跨 cell/seed 可比性最强。
-# 阈值基数 0.95 为校准值（快速校准：真实周构成气候代理，期望总量 ≈330 帖/run > 250 注入；
-# 基数 1.0 时仅 226 帖，agent 供给盖不过注入）。
+# 门槛基数 activity_base 为校准值（快速校准：真实周构成气候代理 + P_t=0.4·M_t+0.3·V_t，
+# calibrate_speak.py 扫描定标），中性状态（D≈R≈1、P_t≈0）下 U≈1.0。
 # 类型均值与 curation_personas._PARAM_SPECS 一致；profile 未带 params 时的回退值。
 
 _PARAM_DEFAULTS: dict[str, dict[str, float]] = {
-    "meme":      {"activity": 0.95, "spiral": 1.2, "decay": 0.8, "pressure": 0.9},
-    "mourning":  {"activity": 0.95, "spiral": 0.8, "decay": 1.2, "pressure": -0.3},
-    "marketing": {"activity": 0.95, "spiral": 0.2, "decay": 0.1, "pressure": 0.5},
-    "education": {"activity": 0.95, "spiral": 0.5, "decay": 0.4, "pressure": 0.15},
-    "other":     {"activity": 0.95, "spiral": 1.5, "decay": 1.0, "pressure": 0.6},
+    "meme":      {"activity": 0.95, "spiral": 1.2, "decay": 0.8, "norm_dev": 1.0},
+    "mourning":  {"activity": 0.95, "spiral": 0.8, "decay": 1.2, "norm_dev": -0.5},
+    "marketing": {"activity": 0.95, "spiral": 0.2, "decay": 0.1, "norm_dev": 0.8},
+    "education": {"activity": 0.95, "spiral": 0.5, "decay": 0.4, "norm_dev": 0.15},
+    "other":     {"activity": 0.95, "spiral": 1.5, "decay": 1.0, "norm_dev": 0.7},
 }
 # 沉默螺旋的期望份额基线。用户 2026-09-10 裁定：群体按发帖人口径比例
 # 玩梗18/悼念21/营销26/教育15/其他20（不再按内容划分口径）。
 _POP_SHARE = {"meme": 0.18, "mourning": 0.21, "marketing": 0.26, "education": 0.15, "other": 0.20}
-_DECAY_SCALE = 50.0          # 注意力衰减半饱和尺度（本类型累计曝光，exp 半饱和）
-_PRESSURE_FACTOR_CAP = 1.5   # 压力因子上限（mourning 同向增益封顶）
+_DECAY_SCALE = 50.0    # 注意力衰减半饱和尺度（本类型累计曝光，exp 半饱和）
+_NORM_COST_C = 1.0     # 规范成本全局尺度 c（结构常量；敏感性分析 U2 候选）
 
 # 各类型内容生成指引（人设之外的具体写作约束）
 _CONTENT_GUIDE: dict[str, str] = {
@@ -88,8 +100,8 @@ class CurationDiscourseAgent(AgentBase):
     def description(cls) -> str:
         return (
             "CurationDiscourseAgent: 固定内容类型的社媒发言者。"
-            "每 tick 先读推荐 feed，再按数值算法（沉默螺旋/注意力衰减/规范压力三机制参数合成）"
-            "决定是否公开发言；发言内容严格限于自身类型并融入类型词表词。"
+            "每 tick 先读推荐 feed，再按表达效用模型（沉默螺旋×注意力衰减折减收益，"
+            "减除规范表达成本）数值决策是否公开发言；发言内容严格限于自身类型并融入类型词表词。"
         )
 
     @classmethod
@@ -103,8 +115,9 @@ class CurationDiscourseAgent(AgentBase):
 - name (str): 显示名（中文网名）。
 - agent_type (str): 固定类型，取值 meme/mourning/marketing/education/other。
 - persona (str): 完整人设文本（类型模板 + 个体人口学特征），内容生成风格依据。
-- params (dict): 发言决策数值参数 {activity, spiral, decay, pressure}（可选，
-  缺失回退类型均值）。activity = 发言阈值（线性刺激-阈值规则，越低越容易发言）。
+- params (dict): 发言决策数值参数 {activity, spiral, decay, norm_dev}（可选，
+  缺失回退类型均值）。activity = 表达门槛（效用模型，越低越容易发言）；
+  norm_dev = 规范偏离成本系数 v（mourning 为负 = 与悼念规范同向）。
 - type_vocab (list[str]): 本类型词表个人常用词库（可选），发言须自然融入 1-3 词。
 
 **Config fields（均可选）:**
@@ -115,7 +128,7 @@ class CurationDiscourseAgent(AgentBase):
 **Example config:**
 ```json
 {"id": 1, "profile": {"name": "抽象老雪", "agent_type": "meme", "persona": "...",
-  "params": {"activity": 0.5, "spiral": 1.2, "decay": 0.8, "pressure": 0.9},
+  "params": {"activity": 0.5, "spiral": 1.2, "decay": 0.8, "norm_dev": 1.0},
   "type_vocab": ["抽象", "乐子"]}, "config": {"feed_context_n": 5}}
 ```
 """
@@ -172,7 +185,7 @@ class CurationDiscourseAgent(AgentBase):
         defaults = _PARAM_DEFAULTS.get(self._agent_type, {})
         self._params: dict[str, float] = {
             k: float(raw_params.get(k, defaults.get(k, 0.0)))
-            for k in ("activity", "spiral", "decay", "pressure")
+            for k in ("activity", "spiral", "decay", "norm_dev")
         }
 
     async def to_workspace(self, workspace_path: Path) -> None:
@@ -213,39 +226,51 @@ class CurationDiscourseAgent(AgentBase):
     # ---------------- 发言决策数值算法（无 LLM） ----------------
 
     def _speak_stimulus(self, snap: dict) -> tuple[float, dict]:
-        """三机制因子线性等权合成发言刺激值 x = (spiral + decay + pressure)/3。
+        """表达效用模型（Kuran 1995 成本-收益框架；用户 2026-09-10 裁定方案 B）。
 
-        - spiral（沉默的螺旋）: 1 + s·(share_own − base)/base，clamp[0.05, 2.0]；
-          base = 本类型在 100 人群体中的份额。同类气候强 → 增益，处于少数 → 抑制。
-        - decay（注意力衰减）: exp(−λ·cum_own/D0)，D0=50（本类型累计曝光的半饱和尺度）。
-        - pressure（悼念规范压力）: 1 − s·P_t，clamp[0, 1.5]；mourning 参数为负 →
-          与压力同向增益（压力高的时期正是悼念表达最盛的时期）。
-        发言当且仅当 x ≥ activity（activity = 个体发言阈值；活跃 agent 阈值低——
-        用户 2026-09-10 裁定）。中性状态（三因子均≈1）下 x≈1.0。
+        U = D·R − c·v·P_t，发言当且仅当 U ≥ activity。
+
+        - D（沉默的螺旋，收益侧共振因子）: 1 + s·(share_own − base)/base，
+          clamp[0.05, 2.0]；base = 本类型在 100 人群体中的份额。
+          同类气候强 → 共鸣放大表达收益；处于少数派 → 表达收益被抑制。
+        - R（注意力衰减，收益侧折减因子）: exp(−λ·cum_own/D0)，D0=50
+          （本类型累计曝光的半饱和尺度）。重复同类曝光越多，边际表达收益越低。
+        - C = c·v·P_t（悼念规范表达成本）：偏离悼念规范的表达要支付偏好伪装成本
+          （Kuran 1995；Castillo & Cozzo 2025；Bicchieri 2006）。
+          v = norm_dev 结构性取值，mourning 为负 → 悼念表达与规范同向，
+          压力反成补贴（压力高的时期正是悼念表达最盛的时期）。
+
+        发言当且仅当 U ≥ activity（activity = 个体表达门槛；门槛低更易发言——
+        用户 2026-09-10 裁定）。中性状态（D≈R≈1、P_t≈0）下 U≈1.0。
+        收益与成本分别以乘法/减法进入效用，杜绝线性等权平均的补偿性稀释。
         """
         prm = self._params
         own = self._agent_type
         climate = snap.get("feed_type_distribution") or {}
         share_own = float(climate.get(own, 0.0) or 0.0)
         base = _POP_SHARE.get(own, 0.2)
-        spiral = 1.0 + prm["spiral"] * (share_own - base) / max(base, 0.05)
-        spiral = max(0.05, min(2.0, spiral))
+        d = 1.0 + prm["spiral"] * (share_own - base) / max(base, 0.05)
+        d = max(0.05, min(2.0, d))
         cum = (snap.get("personal_stats") or {}).get("cumulative_exposures") or {}
         cum_own = float(cum.get(own, 0) or 0)
-        decay = math.exp(-prm["decay"] * cum_own / _DECAY_SCALE)
+        r = math.exp(-prm["decay"] * cum_own / _DECAY_SCALE)
+        benefit = d * r
         p_t = float(snap.get("norm_pressure", 0.0) or 0.0)
-        pressure = max(0.0, min(_PRESSURE_FACTOR_CAP, 1.0 - prm["pressure"] * p_t))
-        x = (spiral + decay + pressure) / 3.0
+        v = prm["norm_dev"]
+        cost = _NORM_COST_C * v * p_t
+        u = benefit - cost
         comps = {
             "share_own": round(share_own, 4),
             "share_base": base,
-            "spiral": round(spiral, 4),
+            "spiral": round(d, 4),
             "cum_own": cum_own,
-            "decay": round(decay, 4),
+            "decay": round(r, 4),
+            "benefit": round(benefit, 4),
+            "norm_dev": v,
             "norm_pressure": round(p_t, 4),
-            "pressure_factor": round(pressure, 4),
+            "norm_cost": round(cost, 4),
         }
-        return x, comps
+        return u, comps
 
     # ------------------------------------------------------------------
     # LLM prompt（仅内容生成；发言必须基于本周看到的帖子——用户 2026-09-10 裁定）
@@ -334,20 +359,20 @@ class CurationDiscourseAgent(AgentBase):
 
         record["week"] = snap.get("week")
 
-        # 2) 数值决策（无 LLM）：x = (spiral+decay+pressure)/3，发言当且仅当 x ≥ 阈值 activity
-        x, comps = self._speak_stimulus(snap)
+        # 2) 数值决策（无 LLM）：U = D·R − c·v·P_t，发言当且仅当 U ≥ 门槛 activity
+        u, comps = self._speak_stimulus(snap)
         threshold = self._params["activity"]
-        speak = x >= threshold
+        speak = u >= threshold
         record.update({
-            "x": round(x, 4),
+            "u": round(u, 4),
             "threshold": round(threshold, 4),
             "components": comps,
             "speak": speak,
-            "reason": f"x={x:.3f} {'>=' if speak else '<'} threshold={threshold:.3f}",
+            "reason": f"u={u:.3f} {'>=' if speak else '<'} threshold={threshold:.3f}",
         })
         if not speak:
             self._decision_log.append(record)
-            return f"{self.name}: silent (x={x:.3f} < threshold={threshold:.3f})"
+            return f"{self.name}: silent (u={u:.3f} < threshold={threshold:.3f})"
 
         # 3) 内容生成（1 次 LLM 调用）
         content = ""

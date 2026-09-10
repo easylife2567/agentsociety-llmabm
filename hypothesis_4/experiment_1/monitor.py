@@ -9,7 +9,7 @@
 - <run>/SOCIETY_STEP.json                            每 step 原子重写（current_time/step_count/terminated）
 - <run>/replay/curation_dynamics_env_state.*.jsonl   env 周度指标（43 列，每 tick 1 行）
 - <run>/replay/curation_dynamics_agent_state.*.jsonl agent 周度状态（20 列，每 tick ~100 行）
-- <run>/agents/agent_*/AGENT.json                    agent 元数据 + decision_log（x/阈值/三机制分量）
+- <run>/agents/agent_*/AGENT.json                    agent 元数据 + decision_log（u/门槛/机制分量）
 - <run>/env/*/state/ENV_STATE.json                   env 全量动态状态（帖池/feeds/P_t/当前周）
 
 输出（原子写，均落本实验目录 monitor/ 下）：
@@ -99,7 +99,7 @@ FIELDS: dict[str, str] = {
     "injected_marketing": "本 tick 注入的营销类帖数。",
     "injected_other": "本 tick 注入的其他类帖数。",
     "injected_noise": "本 tick 注入的噪音类帖数。",
-    "total_exposures": "本 tick 全部 Agent 的 feed 槽位总数（1 槽=1 次曝光；100 agent×feed_size=20 为上限）。",
+    "total_exposures": "本 tick 全部 Agent 的 feed 槽位总数（1 槽=1 次曝光；100 agent×feed_size=10 为上限）。",
     "exposure_share_meme": "玩梗类曝光份额 = 该类曝光槽位 / 总槽位。这是推荐算法的直接产出。",
     "exposure_share_mourning": "悼念类曝光份额（推荐算法的直接产出）。",
     "exposure_share_education": "教育类曝光份额（推荐算法的直接产出）。",
@@ -120,26 +120,29 @@ FIELDS: dict[str, str] = {
     "mismatch_rate": "该类型本 tick 判类不一致率：env 四词表判类(assigned_type)≠作者类型(pool_type)的帖子占比。仅诊断用，不影响发布。",
     "mean_climate_own": "该类型 agent 所见信息流中本类内容的平均占比（意见气候；沉默螺旋的输入）。",
     "mean_exposure_own": "该类型 agent 本 tick 本类内容的人均曝光数（注意力衰减的输入）。",
-    "mean_feed_slots": "该类型 agent 本周信息流平均长度（正常=20）。",
-    # 机制透视
-    "x": "发言刺激值 x = (spiral + decay + pressure)/3（三机制线性等权合成）。发言当且仅当 x ≥ activity。",
-    "threshold": "个体发言阈值 activity（= 类型均值 0.95 × U[0.8,1.2] 抖动）。阈值越低越容易发言，活跃 agent 阈值低。",
-    "spiral": "沉默的螺旋因子 = 1 + s·(share_own − base)/base，截断[0.05,2]。>1：同类气候比期望强→增益；<1：处于少数→抑制。base=本类型在 100 人群体中的份额。",
-    "decay": "注意力衰减因子 = exp(−λ·cum_own/50)。本类累计曝光越多越低（疲劳）。",
-    "pressure_factor": "悼念规范压力因子 = 1 − s·P_t，截断[0,1.5]。悼念型参数为负→与压力同向增益（压力越高越想表达）；其余类型受抑。",
+    "mean_feed_slots": "该类型 agent 本周信息流平均长度（正常=10）。",
+    # 机制透视（表达效用模型，用户 2026-09-10 裁定方案 B）
+    "u": "表达效用 U = D·R − c·v·P_t（Kuran 成本-收益框架）。发言当且仅当 U ≥ activity。中性状态（D≈R≈1、P_t≈0）下 U≈1。",
+    "threshold": "个体表达门槛 activity（= 类型均值 0.95 × U[0.8,1.2] 抖动）。门槛越低越容易发言，活跃 agent 门槛低。",
+    "spiral": "沉默的螺旋共振因子 D = 1 + s·(share_own − base)/base，截断[0.05,2]（收益侧）。>1：同类气候比期望强→共鸣放大收益；<1：处于少数→抑制收益。base=本类型在 100 人群体中的份额。",
+    "decay": "注意力衰减因子 R = exp(−λ·cum_own/50)（收益侧折减）。本类累计曝光越多越低（疲劳）。",
+    "benefit": "表达收益 = D·R（两收益侧因子相乘，不可被成本项平均补偿）。",
+    "norm_dev": "规范偏离成本系数 v（结构取值：玩梗1.0/营销0.8/其他0.7/教育0.15；悼念−0.5=与悼念规范同向，压力反成补贴）。",
+    "norm_pressure": "该 agent 决策时所见规范压力 P_t（norm_cost 的输入）。",
+    "norm_cost": "规范表达成本 = c·v·P_t（c=1.0 全局尺度；Kuran 1995 偏好伪装成本）。偏离悼念规范的表达被减除成本。",
     "share_own": "该 agent 所见信息流中本类内容占比（spiral 的输入）。",
     "share_base": "本类型在 100 人群体中的份额（spiral 的期望基线：玩梗0.18/悼念0.21/营销0.26/教育0.15/其他0.20）。",
     "cum_own": "该 agent 累计本类曝光数（decay 的输入，尺度 50 为半饱和点）。",
-    "speak": "决策结果：是否发言（x ≥ activity）。",
+    "speak": "决策结果：是否发言（U ≥ activity）。",
     "posted": "发言是否成功发布（发言后还有 1 次内容 LLM 调用，失败/空则 posted=False）。",
     "n_decisions": "该周该类型有决策记录的 agent 数（正常=类型人数）。",
     "n_speak": "决策发言的人数。",
     "n_posted": "实际成功发布的人数。",
-    "mean_x": "x 的类型内均值。",
+    "mean_u": "U 的类型内均值。",
     "mean_threshold": "activity 的类型内均值（个体间有 U[0.8,1.2] 抖动）。",
-    "mean_spiral": "spiral 因子类型内均值。",
-    "mean_decay": "decay 因子类型内均值。",
-    "mean_pressure": "pressure 因子类型内均值。",
+    "mean_benefit": "表达收益 D·R 的类型内均值。",
+    "mean_norm_cost": "规范表达成本 c·v·P_t 的类型内均值。",
+    "mean_norm_pressure": "决策时所见 P_t 的类型内均值。",
     # 帖子流
     "post_id": "帖子编号（全局自增）。官方讣告=official_w13_announcement（字符串 id）。",
     "author_handle": "作者（注入帖=数据集作者；agent 帖=agent_id）。",
@@ -297,7 +300,7 @@ def aggregate_weekly(data: dict) -> list[dict]:
         atype = ag["agent_type"]
         for rec in ag["decision_log"]:
             wk = rec.get("week")
-            if not wk or rec.get("x") is None:
+            if not wk or rec.get("u") is None:
                 continue
             mech.setdefault((wk, atype), []).append(rec)
 
@@ -345,11 +348,11 @@ def aggregate_weekly(data: dict) -> list[dict]:
                 "n_decisions": len(recs),
                 "n_speak": sum(1 for rc in recs if rc.get("speak")),
                 "n_posted": sum(1 for rc in recs if rc.get("posted")),
-                "mean_x": _mean_of("x"),
+                "mean_u": _mean_of("u"),
                 "mean_threshold": _mean_of("threshold"),
-                "mean_spiral": _mean_of("spiral", "components"),
-                "mean_decay": _mean_of("decay", "components"),
-                "mean_pressure": _mean_of("pressure_factor", "components"),
+                "mean_benefit": _mean_of("benefit", "components"),
+                "mean_norm_cost": _mean_of("norm_cost", "components"),
+                "mean_norm_pressure": _mean_of("norm_pressure", "components"),
             }
 
         # 派生视图
@@ -495,8 +498,8 @@ def render_weekly_md(weekly: list[dict], week_filter: str | None) -> str:
     out.append(_docs_block(["n_agents", "spoke_rate", "mismatch_rate", "mean_exposure_own",
                             "mean_climate_own", "mean_feed_slots"]))
     # 表D 机制透视
-    out.append("\n### 表D 机制透视（发言决策：x = (spiral+decay+pressure)/3，发言当且仅当 x ≥ activity）\n")
-    head = ("| 周 | 类型 | 决策数 | 发言 | 发布 | mean x | mean阈值 | mean螺旋 | mean衰减 | mean压力 |")
+    out.append("\n### 表D 机制透视（表达效用模型：U = D·R − c·v·P_t，发言当且仅当 U ≥ activity）\n")
+    head = ("| 周 | 类型 | 决策数 | 发言 | 发布 | mean U | mean门槛 | mean收益 | mean成本 | mean P_t |")
     out += [head, "|---" * 10 + "|"]
     for r in rows:
         for t in TYPE_ORDER:
@@ -505,12 +508,14 @@ def render_weekly_md(weekly: list[dict], week_filter: str | None) -> str:
                 continue
             out.append(
                 f"| {r.get('week')} | {TYPE_LABEL[t]} | {m['n_decisions']} | {m['n_speak']} | "
-                f"{m['n_posted']} | {_num(m['mean_x'])} | {_num(m['mean_threshold'])} | "
-                f"{_num(m['mean_spiral'])} | {_num(m['mean_decay'])} | {_num(m['mean_pressure'])} |")
-    out.append(_docs_block(["x", "threshold", "spiral", "decay", "pressure_factor",
-                            "share_own", "share_base", "cum_own", "speak", "posted",
-                            "n_decisions", "n_speak", "n_posted", "mean_x", "mean_threshold",
-                            "mean_spiral", "mean_decay", "mean_pressure"]))
+                f"{m['n_posted']} | {_num(m['mean_u'])} | {_num(m['mean_threshold'])} | "
+                f"{_num(m['mean_benefit'])} | {_num(m['mean_norm_cost'])} | "
+                f"{_num(m['mean_norm_pressure'])} |")
+    out.append(_docs_block(["u", "threshold", "spiral", "decay", "benefit", "norm_dev",
+                            "norm_cost", "share_own", "share_base", "cum_own", "speak",
+                            "posted", "n_decisions", "n_speak", "n_posted", "mean_u",
+                            "mean_threshold", "mean_benefit", "mean_norm_cost",
+                            "mean_norm_pressure"]))
     return "\n".join(out)
 
 

@@ -114,7 +114,7 @@
         "start_week": "2026-W12",
         "num_ticks": 11,
         "event_week": "2026-W13",
-        "feed_size": 20,
+        "feed_size": 10,
         "w_official": 0.0,
         "official_pin_extend_weeks": 0
       }
@@ -133,7 +133,7 @@
           "activity": 0.9103,
           "spiral": 0.2332,
           "decay": 0.0984,
-          "pressure": 0.453
+          "norm_dev": 0.7248
         },
         "type_vocab": [
           "辅导班",
@@ -191,7 +191,7 @@
           "activity": 1.1012,
           "spiral": 0.192,
           "decay": 0.0888,
-          "pressure": 0.5995
+          "norm_dev": 0.9592
         },
         "type_vocab": [
           "职高",
@@ -249,7 +249,7 @@
           "activity": 0.9984,
           "spiral": 1.6752,
           "decay": 0.9689,
-          "pressure": 0.4952
+          "norm_dev": 0.5778
         },
         "type_vocab": []
       }
@@ -266,7 +266,7 @@
           "activity": 1.0185,
           "spiral": 1.015,
           "decay": 0.9231,
-          "pressure": 0.9903
+          "norm_dev": 1.1004
         },
         "type_vocab": [
           "牢大",
@@ -324,7 +324,7 @@
           "activity": 0.7612,
           "spiral": 0.5444,
           "decay": 0.4351,
-          "pressure": 0.1783
+          "norm_dev": 0.1783
         },
         "type_vocab": [
           "公务员",
@@ -382,7 +382,7 @@
           "activity": 0.9529,
           "spiral": 0.1759,
           "decay": 0.095,
-          "pressure": 0.4323
+          "norm_dev": 0.6917
         },
         "type_vocab": [
           "阅读训练",
@@ -440,7 +440,7 @@
           "activity": 0.8025,
           "spiral": 1.1342,
           "decay": 0.9553,
-          "pressure": 1.0
+          "norm_dev": 1.1227
         },
         "type_vocab": [
           "牢大",
@@ -498,7 +498,7 @@
           "activity": 1.0381,
           "spiral": 0.5632,
           "decay": 0.4765,
-          "pressure": 0.152
+          "norm_dev": 0.152
         },
         "type_vocab": [
           "情怀",
@@ -556,7 +556,7 @@
           "activity": 0.9605,
           "spiral": 1.2512,
           "decay": 0.9486,
-          "pressure": 1.0
+          "norm_dev": 1.1716
         },
         "type_vocab": [
           "牢大",
@@ -614,7 +614,7 @@
           "activity": 0.9019,
           "spiral": 0.5799,
           "decay": 0.3922,
-          "pressure": 0.1349
+          "norm_dev": 0.1349
         },
         "type_vocab": [
           "SAT",
@@ -672,7 +672,7 @@
           "activity": 0.8437,
           "spiral": 0.4142,
           "decay": 0.421,
-          "pressure": 0.1337
+          "norm_dev": 0.1337
         },
         "type_vocab": [
           "应试教育",
@@ -730,7 +730,7 @@
           "activity": 0.9445,
           "spiral": 1.2188,
           "decay": 0.8715,
-          "pressure": 1.0
+          "norm_dev": 1.153
         },
         "type_vocab": [
           "牢大",
@@ -788,7 +788,7 @@
           "activity": 0.7958,
           "spiral": 0.2127,
           "decay": 0.0942,
-          "pressure": 0.4822
+          "norm_dev": 0.7716
         },
         "type_vocab": [
           "期末卷",
@@ -846,7 +846,7 @@
           "activity": 0.8545,
           "spiral": 0.1752,
           "decay": 0.0979,
-          "pressure": 0.4844
+          "norm_dev": 0.775
         },
         "type_vocab": [
           "干货",
@@ -904,7 +904,7 @@
           "activity": 1.067,
           "spiral": 0.5712,
           "decay": 0.3357,
-          "pressure": 0.1591
+          "norm_dev": 0.1591
         },
         "type_vocab": [
           "教师编",
@@ -962,7 +962,7 @@
           "activity": 0.9144,
           "spiral": 0.1985,
           "decay": 0.1146,
-          "pressure": 0.5805
+          "norm_dev": 0.9288
         },
         "type_vocab": [
           "本科",
@@ -1020,7 +1020,7 @@
           "activity": 0.8684,
           "spiral": 0.2157,
           "decay": 0.1092,
-          "pressure": 0.5567
+          "norm_dev": 0.8907
         },
         "type_vocab": [
           "扫描笔",
@@ -1078,7 +1078,7 @@
           "activity": 1.0396,
           "spiral": 1.2366,
           "decay": 0.9254,
-          "pressure": 0.492
+          "norm_dev": 0.574
         },
         "type_vocab": []
       }
@@ -1095,7 +1095,7 @@
           "activity": 0.786,
           "spiral": 0.4136,
           "decay": 0.4579,
-          "pressure": 0.1442
+          "norm_dev": 0.1442
         },
         "type_vocab": [
           "填报",
@@ -1153,7 +1153,7 @@
           "activity": 0.9193,
           "spiral": 0.8268,
           "decay": 1.2109,
-          "pressure": -0.3522
+          "norm_dev": -0.5869
         },
         "type_vocab": [
           "拼搏",
@@ -1211,7 +1211,7 @@
           "activity": 0.8097,
           "spiral": 0.8466,
           "decay": 1.1795,
-          "pressure": -0.3515
+          "norm_dev": -0.5858
         },
         "type_vocab": [
           "缅怀仪式",
@@ -1269,7 +1269,7 @@
           "activity": 0.7878,
           "spiral": 0.7082,
           "decay": 1.0873,
-          "pressure": -0.352
+          "norm_dev": -0.5867
         },
         "type_vocab": [
           "人大代表",
@@ -1327,7 +1327,7 @@
           "activity": 1.0273,
           "spiral": 0.8357,
           "decay": 1.4339,
-          "pressure": -0.3185
+          "norm_dev": -0.5308
         },
         "type_vocab": [
           "出身寒门",
@@ -1385,7 +1385,7 @@
           "activity": 1.1168,
           "spiral": 1.2806,
           "decay": 0.8462,
-          "pressure": 0.5057
+          "norm_dev": 0.59
         },
         "type_vocab": []
       }
@@ -1402,7 +1402,7 @@
           "activity": 0.8374,
           "spiral": 1.5805,
           "decay": 0.9056,
-          "pressure": 0.5972
+          "norm_dev": 0.6968
         },
         "type_vocab": []
       }
@@ -1419,7 +1419,7 @@
           "activity": 0.7613,
           "spiral": 0.2217,
           "decay": 0.1055,
-          "pressure": 0.4524
+          "norm_dev": 0.7238
         },
         "type_vocab": [
           "分期免息",
@@ -1477,7 +1477,7 @@
           "activity": 0.7886,
           "spiral": 1.7299,
           "decay": 1.1616,
-          "pressure": 0.6109
+          "norm_dev": 0.7128
         },
         "type_vocab": []
       }
@@ -1494,7 +1494,7 @@
           "activity": 1.1016,
           "spiral": 0.8948,
           "decay": 1.3731,
-          "pressure": -0.3479
+          "norm_dev": -0.5798
         },
         "type_vocab": [
           "天妒英才",
@@ -1552,7 +1552,7 @@
           "activity": 1.096,
           "spiral": 1.4438,
           "decay": 1.0483,
-          "pressure": 0.5171
+          "norm_dev": 0.6033
         },
         "type_vocab": []
       }
@@ -1569,7 +1569,7 @@
           "activity": 1.0399,
           "spiral": 0.7463,
           "decay": 1.4068,
-          "pressure": -0.3363
+          "norm_dev": -0.5604
         },
         "type_vocab": [
           "网红老师",
@@ -1627,7 +1627,7 @@
           "activity": 0.9054,
           "spiral": 0.9786,
           "decay": 0.7906,
-          "pressure": 0.7918
+          "norm_dev": 0.8798
         },
         "type_vocab": [
           "牢大",
@@ -1685,7 +1685,7 @@
           "activity": 0.769,
           "spiral": 0.1755,
           "decay": 0.0931,
-          "pressure": 0.5729
+          "norm_dev": 0.9166
         },
         "type_vocab": [
           "报考",
@@ -1743,7 +1743,7 @@
           "activity": 0.8858,
           "spiral": 0.1622,
           "decay": 0.1151,
-          "pressure": 0.4522
+          "norm_dev": 0.7236
         },
         "type_vocab": [
           "1v1",
@@ -1801,7 +1801,7 @@
           "activity": 1.0368,
           "spiral": 0.1851,
           "decay": 0.1042,
-          "pressure": 0.5023
+          "norm_dev": 0.8037
         },
         "type_vocab": [
           "录播课",
@@ -1859,7 +1859,7 @@
           "activity": 0.9576,
           "spiral": 0.5613,
           "decay": 0.4299,
-          "pressure": 0.1764
+          "norm_dev": 0.1764
         },
         "type_vocab": [
           "生存",
@@ -1917,7 +1917,7 @@
           "activity": 0.9968,
           "spiral": 0.2131,
           "decay": 0.085,
-          "pressure": 0.58
+          "norm_dev": 0.928
         },
         "type_vocab": [
           "保过",
@@ -1975,7 +1975,7 @@
           "activity": 0.8723,
           "spiral": 1.2764,
           "decay": 0.9682,
-          "pressure": 0.7057
+          "norm_dev": 0.8233
         },
         "type_vocab": []
       }
@@ -1992,7 +1992,7 @@
           "activity": 0.8755,
           "spiral": 0.1768,
           "decay": 0.1114,
-          "pressure": 0.5213
+          "norm_dev": 0.8341
         },
         "type_vocab": [
           "优惠券",
@@ -2050,7 +2050,7 @@
           "activity": 0.9398,
           "spiral": 1.7407,
           "decay": 1.1184,
-          "pressure": 0.5207
+          "norm_dev": 0.6075
         },
         "type_vocab": []
       }
@@ -2067,7 +2067,7 @@
           "activity": 0.7955,
           "spiral": 1.417,
           "decay": 0.7152,
-          "pressure": 0.8318
+          "norm_dev": 0.9242
         },
         "type_vocab": [
           "牢大",
@@ -2125,7 +2125,7 @@
           "activity": 1.0829,
           "spiral": 0.6633,
           "decay": 1.1589,
-          "pressure": -0.3156
+          "norm_dev": -0.526
         },
         "type_vocab": [
           "下辈子",
@@ -2183,7 +2183,7 @@
           "activity": 0.8161,
           "spiral": 0.86,
           "decay": 1.3885,
-          "pressure": -0.3433
+          "norm_dev": -0.5721
         },
         "type_vocab": [
           "母校怀念",
@@ -2241,7 +2241,7 @@
           "activity": 0.9365,
           "spiral": 0.2046,
           "decay": 0.1167,
-          "pressure": 0.4243
+          "norm_dev": 0.6788
         },
         "type_vocab": [
           "初中英语",
@@ -2299,7 +2299,7 @@
           "activity": 0.8806,
           "spiral": 0.2204,
           "decay": 0.0977,
-          "pressure": 0.563
+          "norm_dev": 0.9008
         },
         "type_vocab": [
           "推荐",
@@ -2357,7 +2357,7 @@
           "activity": 0.931,
           "spiral": 0.8806,
           "decay": 1.3631,
-          "pressure": -0.2733
+          "norm_dev": -0.4555
         },
         "type_vocab": [
           "黑白头像",
@@ -2415,7 +2415,7 @@
           "activity": 1.0311,
           "spiral": 0.4469,
           "decay": 0.3737,
-          "pressure": 0.1736
+          "norm_dev": 0.1736
         },
         "type_vocab": [
           "保研",
@@ -2473,7 +2473,7 @@
           "activity": 1.0284,
           "spiral": 0.1651,
           "decay": 0.0963,
-          "pressure": 0.5085
+          "norm_dev": 0.8136
         },
         "type_vocab": [
           "选科",
@@ -2531,7 +2531,7 @@
           "activity": 1.1195,
           "spiral": 0.1616,
           "decay": 0.1152,
-          "pressure": 0.5151
+          "norm_dev": 0.8242
         },
         "type_vocab": [
           "志愿规划",
@@ -2589,7 +2589,7 @@
           "activity": 0.9645,
           "spiral": 1.3126,
           "decay": 0.896,
-          "pressure": 1.0
+          "norm_dev": 1.1591
         },
         "type_vocab": [
           "牢大",
@@ -2647,7 +2647,7 @@
           "activity": 0.8877,
           "spiral": 0.8573,
           "decay": 1.1541,
-          "pressure": -0.2598
+          "norm_dev": -0.433
         },
         "type_vocab": [
           "rip",
@@ -2705,7 +2705,7 @@
           "activity": 0.9745,
           "spiral": 1.2163,
           "decay": 1.0571,
-          "pressure": 0.5126
+          "norm_dev": 0.598
         },
         "type_vocab": []
       }
@@ -2722,7 +2722,7 @@
           "activity": 0.9328,
           "spiral": 0.187,
           "decay": 0.1152,
-          "pressure": 0.4557
+          "norm_dev": 0.729
         },
         "type_vocab": [
           "折扣",
@@ -2780,7 +2780,7 @@
           "activity": 1.0446,
           "spiral": 0.985,
           "decay": 0.9446,
-          "pressure": 0.8007
+          "norm_dev": 0.8897
         },
         "type_vocab": [
           "牢大",
@@ -2838,7 +2838,7 @@
           "activity": 0.9961,
           "spiral": 0.1791,
           "decay": 0.0989,
-          "pressure": 0.4229
+          "norm_dev": 0.6766
         },
         "type_vocab": [
           "最后一小时",
@@ -2896,7 +2896,7 @@
           "activity": 0.9908,
           "spiral": 1.319,
           "decay": 0.6767,
-          "pressure": 1.0
+          "norm_dev": 1.1277
         },
         "type_vocab": [
           "牢大",
@@ -2954,7 +2954,7 @@
           "activity": 1.0174,
           "spiral": 0.9466,
           "decay": 1.1504,
-          "pressure": -0.3258
+          "norm_dev": -0.543
         },
         "type_vocab": [
           "明天和意外哪个先来",
@@ -3012,7 +3012,7 @@
           "activity": 1.0249,
           "spiral": 0.1841,
           "decay": 0.1074,
-          "pressure": 0.5611
+          "norm_dev": 0.8978
         },
         "type_vocab": [
           "零基础",
@@ -3070,7 +3070,7 @@
           "activity": 0.7862,
           "spiral": 0.5295,
           "decay": 0.322,
-          "pressure": 0.1452
+          "norm_dev": 0.1452
         },
         "type_vocab": [
           "寒门",
@@ -3128,7 +3128,7 @@
           "activity": 1.0288,
           "spiral": 0.7794,
           "decay": 1.3122,
-          "pressure": -0.3559
+          "norm_dev": -0.5931
         },
         "type_vocab": [
           "纪念仪式",
@@ -3186,7 +3186,7 @@
           "activity": 1.0738,
           "spiral": 0.2074,
           "decay": 0.0929,
-          "pressure": 0.4491
+          "norm_dev": 0.7186
         },
         "type_vocab": [
           "投档",
@@ -3244,7 +3244,7 @@
           "activity": 0.9919,
           "spiral": 0.7613,
           "decay": 0.9738,
-          "pressure": -0.3421
+          "norm_dev": -0.5702
         },
         "type_vocab": [
           "感激",
@@ -3302,7 +3302,7 @@
           "activity": 0.8663,
           "spiral": 1.2462,
           "decay": 0.9216,
-          "pressure": 0.9201
+          "norm_dev": 1.0223
         },
         "type_vocab": [
           "牢大",
@@ -3360,7 +3360,7 @@
           "activity": 0.971,
           "spiral": 1.0754,
           "decay": 0.7923,
-          "pressure": 0.9763
+          "norm_dev": 1.0847
         },
         "type_vocab": [
           "牢大",
@@ -3418,7 +3418,7 @@
           "activity": 0.8525,
           "spiral": 0.5328,
           "decay": 0.379,
-          "pressure": 0.1532
+          "norm_dev": 0.1532
         },
         "type_vocab": [
           "中考",
@@ -3476,7 +3476,7 @@
           "activity": 0.9324,
           "spiral": 1.384,
           "decay": 0.8922,
-          "pressure": 0.6531
+          "norm_dev": 0.762
         },
         "type_vocab": []
       }
@@ -3493,7 +3493,7 @@
           "activity": 0.8328,
           "spiral": 0.8764,
           "decay": 1.0927,
-          "pressure": -0.3108
+          "norm_dev": -0.5179
         },
         "type_vocab": [
           "白鸽",
@@ -3551,7 +3551,7 @@
           "activity": 0.8971,
           "spiral": 0.4605,
           "decay": 0.4333,
-          "pressure": 0.1276
+          "norm_dev": 0.1276
         },
         "type_vocab": [
           "放养",
@@ -3609,7 +3609,7 @@
           "activity": 1.09,
           "spiral": 0.1993,
           "decay": 0.1149,
-          "pressure": 0.5148
+          "norm_dev": 0.8237
         },
         "type_vocab": [
           "生物",
@@ -3667,7 +3667,7 @@
           "activity": 1.1176,
           "spiral": 1.4866,
           "decay": 1.1288,
-          "pressure": 0.5762
+          "norm_dev": 0.6722
         },
         "type_vocab": []
       }
@@ -3684,7 +3684,7 @@
           "activity": 1.0682,
           "spiral": 0.9437,
           "decay": 1.0009,
-          "pressure": -0.2698
+          "norm_dev": -0.4496
         },
         "type_vocab": [
           "工作生活平衡",
@@ -3742,7 +3742,7 @@
           "activity": 1.0548,
           "spiral": 1.1426,
           "decay": 0.9307,
-          "pressure": 0.827
+          "norm_dev": 0.9189
         },
         "type_vocab": [
           "牢大",
@@ -3800,7 +3800,7 @@
           "activity": 1.1201,
           "spiral": 1.3247,
           "decay": 0.8844,
-          "pressure": 0.6385
+          "norm_dev": 0.7449
         },
         "type_vocab": []
       }
@@ -3817,7 +3817,7 @@
           "activity": 0.9152,
           "spiral": 0.2151,
           "decay": 0.0988,
-          "pressure": 0.4065
+          "norm_dev": 0.6504
         },
         "type_vocab": [
           "借张雪峰标签",
@@ -3875,7 +3875,7 @@
           "activity": 0.8487,
           "spiral": 1.3587,
           "decay": 1.1165,
-          "pressure": 0.6215
+          "norm_dev": 0.7251
         },
         "type_vocab": []
       }
@@ -3892,7 +3892,7 @@
           "activity": 1.1052,
           "spiral": 0.2261,
           "decay": 0.0829,
-          "pressure": 0.4332
+          "norm_dev": 0.6931
         },
         "type_vocab": [
           "考点清单",
@@ -3950,7 +3950,7 @@
           "activity": 0.8073,
           "spiral": 1.6132,
           "decay": 1.0799,
-          "pressure": 0.7062
+          "norm_dev": 0.8239
         },
         "type_vocab": []
       }
@@ -3967,7 +3967,7 @@
           "activity": 1.0391,
           "spiral": 0.8332,
           "decay": 0.9724,
-          "pressure": -0.2675
+          "norm_dev": -0.4458
         },
         "type_vocab": [
           "头七",
@@ -4025,7 +4025,7 @@
           "activity": 1.05,
           "spiral": 0.435,
           "decay": 0.403,
-          "pressure": 0.1465
+          "norm_dev": 0.1465
         },
         "type_vocab": [
           "稳定",
@@ -4083,7 +4083,7 @@
           "activity": 0.9386,
           "spiral": 1.445,
           "decay": 0.9284,
-          "pressure": 0.5051
+          "norm_dev": 0.5893
         },
         "type_vocab": []
       }
@@ -4100,7 +4100,7 @@
           "activity": 1.1192,
           "spiral": 0.5627,
           "decay": 0.408,
-          "pressure": 0.1473
+          "norm_dev": 0.1473
         },
         "type_vocab": [
           "知识分子家庭",
@@ -4158,7 +4158,7 @@
           "activity": 1.0735,
           "spiral": 0.1601,
           "decay": 0.1148,
-          "pressure": 0.4924
+          "norm_dev": 0.7878
         },
         "type_vocab": [
           "理科",
@@ -4216,7 +4216,7 @@
           "activity": 0.928,
           "spiral": 0.6565,
           "decay": 1.0882,
-          "pressure": -0.2557
+          "norm_dev": -0.4262
         },
         "type_vocab": [
           "感激",
@@ -4274,7 +4274,7 @@
           "activity": 0.9914,
           "spiral": 0.7166,
           "decay": 1.036,
-          "pressure": -0.3061
+          "norm_dev": -0.5102
         },
         "type_vocab": [
           "参政议政",
@@ -4332,7 +4332,7 @@
           "activity": 1.1199,
           "spiral": 1.5886,
           "decay": 0.8616,
-          "pressure": 0.7038
+          "norm_dev": 0.8211
         },
         "type_vocab": []
       }
@@ -4349,7 +4349,7 @@
           "activity": 0.8526,
           "spiral": 1.5308,
           "decay": 0.9534,
-          "pressure": 0.7012
+          "norm_dev": 0.8181
         },
         "type_vocab": []
       }
@@ -4366,7 +4366,7 @@
           "activity": 0.8892,
           "spiral": 1.3381,
           "decay": 0.7255,
-          "pressure": 0.7209
+          "norm_dev": 0.801
         },
         "type_vocab": [
           "牢大",
@@ -4424,7 +4424,7 @@
           "activity": 0.9297,
           "spiral": 0.1987,
           "decay": 0.0933,
-          "pressure": 0.5526
+          "norm_dev": 0.8841
         },
         "type_vocab": [
           "基础训练",
@@ -4482,7 +4482,7 @@
           "activity": 0.9773,
           "spiral": 0.4467,
           "decay": 0.4441,
-          "pressure": 0.1226
+          "norm_dev": 0.1226
         },
         "type_vocab": [
           "中医学",
@@ -4540,7 +4540,7 @@
           "activity": 1.1327,
           "spiral": 1.1978,
           "decay": 0.6518,
-          "pressure": 0.9008
+          "norm_dev": 1.0009
         },
         "type_vocab": [
           "牢大",
@@ -4598,7 +4598,7 @@
           "activity": 0.9599,
           "spiral": 0.4914,
           "decay": 0.4356,
-          "pressure": 0.1446
+          "norm_dev": 0.1446
         },
         "type_vocab": [
           "理想",
@@ -4656,7 +4656,7 @@
           "activity": 0.9968,
           "spiral": 1.4385,
           "decay": 0.8321,
-          "pressure": 0.5589
+          "norm_dev": 0.652
         },
         "type_vocab": []
       }
@@ -4673,7 +4673,7 @@
           "activity": 1.0915,
           "spiral": 0.9772,
           "decay": 0.6619,
-          "pressure": 0.9472
+          "norm_dev": 1.0525
         },
         "type_vocab": [
           "牢大",
@@ -4731,7 +4731,7 @@
           "activity": 1.0275,
           "spiral": 1.0082,
           "decay": 0.6932,
-          "pressure": 0.8278
+          "norm_dev": 0.9198
         },
         "type_vocab": [
           "牢大",
@@ -4789,7 +4789,7 @@
           "activity": 0.9024,
           "spiral": 0.6866,
           "decay": 1.215,
-          "pressure": -0.3079
+          "norm_dev": -0.5132
         },
         "type_vocab": [
           "三鞠躬",
@@ -4847,7 +4847,7 @@
           "activity": 1.0196,
           "spiral": 0.7993,
           "decay": 1.2399,
-          "pressure": -0.2679
+          "norm_dev": -0.4464
         },
         "type_vocab": [
           "感激",
@@ -4905,7 +4905,7 @@
           "activity": 1.1025,
           "spiral": 0.8568,
           "decay": 1.0358,
-          "pressure": -0.293
+          "norm_dev": -0.4883
         },
         "type_vocab": [
           "敬重",
@@ -4963,7 +4963,7 @@
           "activity": 0.855,
           "spiral": 1.7072,
           "decay": 0.8797,
-          "pressure": 0.5723
+          "norm_dev": 0.6677
         },
         "type_vocab": []
       }
@@ -4980,7 +4980,7 @@
           "activity": 0.8724,
           "spiral": 1.2957,
           "decay": 0.647,
-          "pressure": 1.0
+          "norm_dev": 1.132
         },
         "type_vocab": [
           "牢大",
@@ -5038,7 +5038,7 @@
           "activity": 1.106,
           "spiral": 1.3177,
           "decay": 0.9065,
-          "pressure": 1.0
+          "norm_dev": 1.1612
         },
         "type_vocab": [
           "牢大",
@@ -5096,7 +5096,7 @@
           "activity": 0.8552,
           "spiral": 1.6533,
           "decay": 1.107,
-          "pressure": 0.6434
+          "norm_dev": 0.7506
         },
         "type_vocab": []
       }

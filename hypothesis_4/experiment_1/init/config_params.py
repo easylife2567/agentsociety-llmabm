@@ -54,7 +54,7 @@ SAMPLE_SEED_OFFSET = 777      # 注入样本抽样种子 = seed + 777
 START_WEEK = "2026-W12"
 EVENT_WEEK = "2026-W13"
 NUM_TICKS = 11                # W12 -> W22
-FEED_SIZE = 20
+FEED_SIZE = 10                 # 用户 2026-09-10 裁定：每 agent 每周信息流 10 条
 
 # 250 条周分配：保底 15/周×11=165，余 85 按真实周量比例分配（和=250）。
 INJECTION_ALLOCATION = {
@@ -339,7 +339,7 @@ manifest = {
             "sample_seed": VOCAB_SAMPLE_SEED,
             "meme": "linkage 全量 + strong 抽样；mourning/marketing/education=main 抽样；other=空",
         },
-        "speak_decision": "数值算法（无 LLM，用户 2026-09-10 裁定改线性刺激-阈值规则）：x=(spiral+decay+pressure)/3，发言当且仅当 x≥activity（个体发言阈值，活跃者阈值低；确定性决策无随机数）；阈值基数 0.95 校准（真实周构成气候代理，期望 ≈330 帖/run > 250 注入）；params 随 profile 下发",
+        "speak_decision": "表达效用模型（无 LLM，用户 2026-09-10 裁定方案 B；Kuran 1995 成本-收益框架）：U=D·R−c·v·P_t，发言当且仅当 U≥activity（个体表达门槛，门槛低者易发言；确定性决策无随机数）。D=1+s·(share_own−base)/base clamp[0.05,2]（沉默螺旋，收益侧共振）；R=exp(−λ·cum_own/50)（注意力衰减，收益侧折减）；C=c·v·P_t（规范表达成本，v=norm_dev 结构系数，mourning 为负=同向补贴；c=1.0）。门槛基数 0.95 校准（calibrate_speak.py：真实周构成气候代理+P_t=0.4·M_t+0.3·V_t，decay 352 帖/run 供给 58%>250 注入；sustained 251 帖）；params 随 profile 下发",
         "content_grounding": "发言内容须基于本周 feed 前 5 条（feed_context_n=5）：回应/讨论/二创/跟帖（用户 2026-09-10 裁定）",
     },
     "injection": {
