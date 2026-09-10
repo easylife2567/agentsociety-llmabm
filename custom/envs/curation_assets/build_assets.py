@@ -1,5 +1,6 @@
 # build_assets.py — 构建 CurationDynamicsSpace 的两个数据资产
-# 1) vocabs.json        : 四类型词表机器可读版（与 词表_*_最终版.md / meme_matcher.py 同尺）
+# 1) vocabs.json        : 四类型词表机器可读版（四份 词表_*_最终版.md 为唯一词源；
+#                         meme_matcher.py 已改为从 vocabs.json 加载，保持同尺同源）
 # 2) injection_posts.json : 真实打标数据周切片（供 env 每周抽样注入）
 # 3) --validate          : 用判类器回测全量人工标签，输出混淆矩阵（质量门）
 #
@@ -7,7 +8,6 @@
 from __future__ import annotations
 
 import argparse
-import ast
 import json
 import re
 from pathlib import Path
@@ -23,7 +23,7 @@ VOCAB_MD = {
     "education": ROOT / "词表_教育型_最终版.md",
     "marketing": ROOT / "词表_营销型_最终版.md",
 }
-MEME_MATCHER = ROOT / "datasets/zhangxf_labeled/meme_matcher.py"
+MEME_MD = ROOT / "词表_玩梗型_最终版.md"
 XLSX = ROOT / "抖音微博小红书-全量已打标.xlsx"
 
 # 判定优先级（三词表文档一致声明）
@@ -41,6 +41,16 @@ EDU_LEGACY_MARKERS = [
     "张雪峰说", "张老师忠告", "语录", "曾经说过", "生前", "留下", "提醒",
     "搬运", "搬运历史视频", "评价教育贡献",
 ]
+
+# 玩梗 §五：弱关联话题标记（非玩梗，不触发判类，仅审计）
+MEME_WEAK_MARKERS = ["悼念", "缅怀", "一路走好", "健身", "跑步锻炼", "嘴唇发紫"]
+# 玩梗 §五：正常称呼人名（提人名=讨论非玩梗）及其全拼/拼音缩写（匹配统一小写比较）。
+# 谐音梗（张雪封/张雪峯等）与 §五 保留例外不在扣减之列。
+MEME_PERSONA_NAMES = {
+    "张雪峰", "张老师", "张师", "张总", "雪峰老师", "雪峰哥", "峰哥",
+    "老张", "老峰", "老雪", "张生", "张胜",
+    "zhangxuefeng", "zhangsheng", "zxf", "张seng", "张sheng",
+}
 
 # 判类所需各文件的主库章节（中文数字章节号）
 MAIN_SECTIONS = {
@@ -91,31 +101,53 @@ def dedup_keep_order(words: list[str]) -> list[str]:
 
 
 def extract_meme_lists() -> dict[str, list[str]]:
-    """用 AST 从 meme_matcher.py 抽取列表字面量（不执行模块代码）。"""
-    tree = ast.parse(MEME_MATCHER.read_text(encoding="utf-8"))
-    wanted = {"LINKAGE": "linkage", "STRONG": "strong",
-              "EXCLUDE_DEATH_FACT": "exclude_death_fact", "WEAK_MARKERS": "weak_markers"}
-    out: dict[str, list[str]] = {}
-    for node in tree.body:
-        if isinstance(node, ast.Assign) and isinstance(node.value, ast.List):
-            name = getattr(node.targets[0], "id", None)
-            if name in wanted:
-                out[wanted[name]] = [el.value for el in node.value.elts
-                                     if isinstance(el, ast.Constant) and isinstance(el.value, str)]
-    missing = set(wanted.values()) - set(out)
+    """解析 词表_玩梗型_最终版.md（梗热词全量表，唯一词源）：
+    §一 强梗词主库→strong、§二 联动人名→linkage、§三 慎用数字→cautious_numbers（不进判类）、
+    §四 已排除词→exclude_death_fact；§五 的弱关联标记与正常称呼人名按硬编码口径扣减。
+
+    对 §一 枚举做四处机械扣减（均记录在 dropped 字段，供审计）：
+    1) weak_markers 交集（§五：话题标记非玩梗，不触发判类）；
+    2) §三 慎用数字原文（§三：不收入主库，新闻事实陈述误伤；§一中重出的以 §三 为准）；
+    3) len<=1（单字子串噪声，与三类主库同一弃用规则）；
+    4) §五 正常称呼人名及其全拼/拼音缩写（提人名=讨论非玩梗）；
+      谐音梗（张雪封/张雪峯等）与 §五 保留例外（张雪峰死了/张雪峰套餐、张圣、念/忆张师、
+      牢峰/牢张/牢雪）均不在扣减之列。
+    """
+    secs = parse_sections(MEME_MD)
+    missing = [s for s in ("一", "二", "三", "四") if s not in secs]
     if missing:
-        raise RuntimeError(f"meme_matcher.py 列表抽取失败: {missing}")
-    return out
+        raise RuntimeError(f"词表_玩梗型_最终版.md 缺少章节: {missing}")
+    cautious = set(secs["三"])
+    enumerated = dedup_keep_order(secs["一"])
+    dropped = {
+        "weak_markers_overlap": [w for w in enumerated if w in MEME_WEAK_MARKERS],
+        "cautious_numbers": [w for w in enumerated if w in cautious],
+        "persona_names": [w for w in enumerated if w.lower() in MEME_PERSONA_NAMES],
+        "single_char": [w for w in enumerated if len(w) <= 1],
+    }
+    strong = [w for w in enumerated
+              if w not in MEME_WEAK_MARKERS
+              and w not in cautious
+              and w.lower() not in MEME_PERSONA_NAMES
+              and len(w) > 1]
+    return {
+        "linkage": dedup_keep_order(secs["二"]),
+        "strong": strong,
+        "exclude_death_fact": dedup_keep_order(secs["四"]),
+        "weak_markers": list(MEME_WEAK_MARKERS),
+        "cautious_numbers": sorted(cautious),  # 审计用，不参与判类（§三：靠 LLM 辅助判定）
+        "dropped": dropped,                    # §一 扣减记录，供审计
+    }
 
 
 def build_vocabs() -> dict:
-    vocabs: dict = {"version": "2026-09-08-final",
+    vocabs: dict = {"version": "2026-09-10-meme-full",
                     "precedence": PRECEDENCE,
                     "residual": "other",
                     "sources": {"mourning": "词表_哀悼型_最终版.md",
                                 "education": "词表_教育型_最终版.md",
                                 "marketing": "词表_营销型_最终版.md",
-                                "meme": "词表_玩梗型_最终版.md + meme_matcher.py"},
+                                "meme": "词表_玩梗型_最终版.md（梗热词全量表 967 词版）"},
                     "matching": "two layers: raw.lower() + normalized (strip emoji/punct/space/underscore, keep CJK+alnum, lowercase); substring match"}
     stats = {}
     for cat, md in VOCAB_MD.items():
