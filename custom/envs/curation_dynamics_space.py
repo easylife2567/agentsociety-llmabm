@@ -28,6 +28,52 @@ from agentsociety2.storage.workspace_state import atomic_write_text
 
 logger = get_logger()
 
+
+# ---------------- 模板缓存嵌入补丁（本地确定性向量，替代外部 embedding 服务） ----------------
+# 背景：框架 EnvRouterActor 的模板代码缓存（CacheCodeProvider）在每次查找前后都要把指令文本
+# 嵌入成向量做 FAISS 精确匹配。用户的 Ark 计划无任何 embedding 模型（全套 doubao-embedding
+# 404 / v3 401），导致每次嵌入都失败 → 缓存永远 miss → 每个 agent 每 tick 都重新让 LLM 现场
+# 生成同一段代码（实测中位数 ~11.5s/次，单 run ~6-7 小时）。
+# 本补丁在 EnvRouterActor 的工作进程内（本模块 import 时，早于首次 get_feed）把
+# _compute_embedding 替换为完全确定性的哈希向量：
+#   * 相同文本 → 逐字节相同的向量 → FAISS sim=1.0 → 缓存精确命中（复用 LLM 首次生成的代码）；
+#   * 不同文本 → 各维独立伪随机、L2 归一 → 余弦≈0 → 远低于 0.85 阈值 → 正常 miss。
+# 安全：哈希向量无语义含义，不可能造成错误代码复用（误命中只发生在 sim≈1，即文本逐字节
+# 相同时）；与配置无关，不含外部请求。缓存内容仍是 env 的同一份确定性代码，不动实验语义。
+# 有意保留本模块 import 的 raw 版本参考（embedding_stub.py 已废弃）——进程内版本为唯一实现。
+
+def _patch_cache_embedding() -> None:
+    """把框架的 embedding 静态方法替换为进程内确定性哈希向量（须在首次 get_feed 前生效）。"""
+    import hashlib
+
+    import numpy as np
+    from agentsociety2.config.config import Config
+    from agentsociety2.env.router_codegen import CacheCodeProvider
+
+    dim = Config.EMBEDDING_DIMS
+
+    def _det_vec(text: str):
+        seed = int(hashlib.sha256(text.encode("utf-8")).hexdigest()[:16], 16)
+        rng = random.Random(seed)
+        vec = np.array([rng.uniform(-1.0, 1.0) for _ in range(dim)], dtype=np.float32)
+        norm = float(np.sqrt(float(np.dot(vec, vec)))) or 1.0
+        return vec / norm
+
+    async def _local_embedding(router, text):
+        async with router._embedding_cache_lock:
+            if text in router._embedding_cache:
+                return router._embedding_cache[text]
+        emb = _det_vec(text)
+        async with router._embedding_cache_lock:
+            if len(router._embedding_cache) < 10000:
+                router._embedding_cache[text] = emb
+        return emb
+
+    CacheCodeProvider._compute_embedding = staticmethod(_local_embedding)
+
+
+_patch_cache_embedding()
+
 # 本模块自选的 workspace 布局：<workspace_root>/state/ENV_STATE.json
 _STATE_REL = "state/ENV_STATE.json"
 
