@@ -179,7 +179,7 @@ class CurationDynamicsSpace(EnvBase):
         self._event_week = str(kwargs.pop("event_week", "2026-W13"))
         self._official_pin_extend_weeks = int(kwargs.pop("official_pin_extend_weeks", 1))
         self._alpha = float(kwargs.pop("alpha", 1.0))
-        self._beta = float(kwargs.pop("beta", 1.0))
+        self._beta = float(kwargs.pop("beta", 1.0))  # 废弃：倾向分替代词表重合项（2026-09-09 裁定）
         self._gamma = float(kwargs.pop("gamma", 0.5))
         self._interest_noise_eps = float(kwargs.pop("interest_noise_eps", 0.05))
         self._recency_max_age_weeks = int(kwargs.pop("recency_max_age_weeks", 8))
@@ -227,15 +227,6 @@ class CurationDynamicsSpace(EnvBase):
         self._vocab_meme_strong = list(meme_v.get("strong", []) or [])
         self._vocab_meme_exclude_death_fact = list(meme_v.get("exclude_death_fact", []) or [])
         self._vocab_meme_weak_markers = list(meme_v.get("weak_markers", []) or [])  # 不参与判类，仅审计
-        # interest 臂词表重合用表（裁定 U1：meme→strong，linkage 96% 命中无区分度，不用于重合评分；
-        # 其余→各自 main；other→空）。
-        self._agent_vocab_by_type: dict[str, list[str]] = {
-            "meme": self._vocab_meme_strong,
-            "mourning": self._vocab_mourning_main,
-            "marketing": self._vocab_marketing_main,
-            "education": self._vocab_education_main,
-            "other": [],
-        }
 
         # 动态状态（全部在 __init__ 初始化；restore() 在 __init__/init() 之后覆盖）。
         self._lock = asyncio.Lock()  # 不序列化，每次 __init__ 重建
@@ -265,8 +256,6 @@ class CurationDynamicsSpace(EnvBase):
         self._agent_posts_pooled_prev: set[int] = set()
         self._injected_count_by_week: dict[str, int] = {}
         self._event_week_injected_count = 0
-        self._norm_cache: dict[int, str] = {}
-        self._overlap_cache: dict[tuple[str, int], int] = {}
 
         # 周窗口 + 确定性注入量（k_w = round(池大小 × ratio)，与 RNG 无关，init 即可得，
         # 供 volume 比 V_t 与 replay 的 injected_count 使用；采样本身在每 tick 打开时进行）。
@@ -351,33 +340,28 @@ class CurationDynamicsSpace(EnvBase):
             return "meme"
         return "other"
 
-    def _overlap_count(self, agent_type: str, post_id: int) -> int:
-        """interest 臂词表重合分：Agent 类型词表与帖文本两层匹配的命中词数（去重）。
-        裁定 U1：meme→meme.strong；其余→各自 main；other→空表。"""
-        key = (agent_type, post_id)
-        cached = self._overlap_cache.get(key)
-        if cached is not None:
-            return cached
-        words = self._agent_vocab_by_type.get(agent_type, [])
-        if not words:
-            self._overlap_cache[key] = 0
-            return 0
-        p = self._posts[post_id]
-        raw = str(p["content"]).lower()
-        nrm = self._norm_cache.get(post_id)
-        if nrm is None:
-            nrm = _normalize(p["content"])
-            self._norm_cache[post_id] = nrm
-        if agent_type == "meme":
-            stripped = [raw, nrm]
-            for w in self._vocab_meme_exclude_death_fact:
-                stripped = [s.replace(w.lower(), "□") for s in stripped]
-            layers = stripped
-        else:
-            layers = [raw, nrm]
-        n = sum(1 for w in words if w.lower() in layers[0] or w.lower() in layers[1])
-        self._overlap_cache[key] = n
-        return n
+    def _compute_tendencies(self, text: str) -> dict[str, float]:
+        """四类倾向分：各类型词表命中次数 ÷ 句长（命中/50 字），与判类器同口径两层匹配。
+
+        用户裁定（2026-09-09）：帖子类型表征不由 LLM 解析，用词表命中次数与句子长度
+        计算 梗/教育/哀悼/营销 倾向，作为兴趣推荐臂的匹配依据与 feed item 的信息字段。
+        meme 命中 = linkage 命中数 + 死因词替换「□」后的 strong 命中数；其余主类 = main
+        命中数；other/noise 无词表不参与。返回各类密度值（≥0，未截断，保留 4 位小数）。"""
+        raw = str(text)
+        nrm = _normalize(raw)
+        layers = [raw.lower(), nrm]
+        stripped = list(layers)
+        for w in self._vocab_meme_exclude_death_fact:
+            stripped = [s.replace(w.lower(), "□") for s in stripped]
+        hits = {
+            "mourning": len(self._hits(self._vocab_mourning_main, layers)),
+            "marketing": len(self._hits(self._vocab_marketing_main, layers)),
+            "education": len(self._hits(self._vocab_education_main, layers)),
+            "meme": len(self._hits(self._vocab_meme_linkage, layers))
+            + sum(1 for w in self._vocab_meme_strong if any(w.lower() in l for l in stripped)),
+        }
+        norm_len = max(1.0, len(raw) / 50.0)
+        return {t: round(h / norm_len, 4) for t, h in hits.items()}
 
     # ---------------- 周/打开/收尾逻辑 ----------------
 
@@ -431,13 +415,18 @@ class CurationDynamicsSpace(EnvBase):
             "author_handle": p["author_handle"],
             "content": p["content"],
             "type": p["type"],
+            "tendencies": p.get("tendencies") or {},
             "week": p["week"],
             "is_official": p["is_official"],
         }
 
     def _interest_rank(self, aid: str, week: str, candidates: list[int]) -> list[int]:
-        """interest 臂：score = alpha·类型自匹配 + beta·词表重合 + gamma·时新近度 + 均匀噪声[-eps,+eps]；
-        已曝光帖按 exposure_mode none/penalize/exclude 处理。无帖子级热度/互动项（纯兴趣匹配最小机制）。"""
+        """interest 臂：score = alpha·倾向分匹配 + gamma·时新近度 + 均匀噪声[-eps,+eps]。
+
+        倾向分匹配（用户裁定 2026-09-09）：取帖子四类倾向分中本 Agent 类型维度的值
+        （词表命中次数/句长密度），替代此前的硬类型命中 + 词表重合两项（beta 项废弃，
+        倾向分本身即词表命中的密度归一化）。已曝光帖按 exposure_mode none/penalize/exclude
+        处理。无帖子级热度/互动项（纯兴趣匹配最小机制）。"""
         atype = self._agent_types.get(aid, "other")
         seen = self._seen_by_agent.get(aid, set())
         eps = self._interest_noise_eps
@@ -446,8 +435,7 @@ class CurationDynamicsSpace(EnvBase):
             if self._exposure_mode == "exclude" and pid in seen:
                 continue
             p = self._posts[pid]
-            sc = self._alpha * (1.0 if p["type"] == atype else 0.0)
-            sc += self._beta * self._overlap_count(atype, pid)
+            sc = self._alpha * (p.get("tendencies") or {}).get(atype, 0.0)
             age = max(0, _week_ord(week) - _week_ord(p["week"]))
             sc += self._gamma * max(0.0, 1.0 - age / self._recency_max_age_weeks)
             if self._exposure_mode == "penalize" and pid in seen:
@@ -494,8 +482,6 @@ class CurationDynamicsSpace(EnvBase):
         并在装配时一次性记账曝光（get_feed 零副作用）。"""
         self._current_week = week
         self._tick_index = _week_ord(week) - _week_ord(self._start_week) + 1
-        self._norm_cache = {}
-        self._overlap_cache = {}
         self._exposure_counts_tick = {}
         self._climate_shares = {}
         self._injected_this_week = {t: 0 for t in TYPE_ORDER_ALL}
@@ -513,14 +499,16 @@ class CurationDynamicsSpace(EnvBase):
                 if ttype not in TYPE_ORDER_ALL:
                     ttype = "other"
                 author = str(rec.get("author", "unknown"))
+                content = str(rec.get("content", ""))
                 self._posts[pid] = {
                     "post_id": pid,
                     "author_id": "ext_" + author,
                     "author_handle": author,
-                    "content": str(rec.get("content", "")),
+                    "content": content,
                     "type": ttype,
                     "assigned_type": ttype,  # 注入帖判类结果=数据集标签
                     "type_mismatch": False,
+                    "tendencies": self._compute_tendencies(content),
                     "week": str(rec.get("week", week)),
                     "is_official": bool(rec.get("is_official", False)),
                     "exposure_count": 0,
@@ -578,6 +566,7 @@ class CurationDynamicsSpace(EnvBase):
                 "type": rec["pool_type"],
                 "assigned_type": rec["assigned_type"],
                 "type_mismatch": rec["type_mismatch"],
+                "tendencies": rec.get("tendencies") or {},
                 "week": rec["week"],
                 "is_official": False,
                 "exposure_count": 0,
@@ -844,6 +833,7 @@ class CurationDynamicsSpace(EnvBase):
                     "pool_type": pool_type,
                     "assigned_type": assigned,
                     "type_mismatch": assigned != pool_type,
+                    "tendencies": self._compute_tendencies(text),
                     "week": self._current_week,
                 }
             )

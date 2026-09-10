@@ -11,8 +11,35 @@
 | 种子 `random_seed` | 0 / 1 / 2 |
 
 - 环境：`CurationDynamicsSpace`（custom/envs/curation_dynamics_space.py）
-- Agent：`CurationDiscourseAgent`（custom/agents/，固定内容类型，~2-3 LLM 调用/agent-tick）
+- Agent：`CurationDiscourseAgent`（custom/agents/，固定内容类型，0-1 次 LLM 调用/agent-tick）
 - 规模：100 agents × 11 ticks（2026-W12→W22，事件周 W13）× 18 runs ≈ 1.98 万 agent-ticks
+
+## 发言决策数字化与帖子倾向分（用户 2026-09-09 裁定）
+
+**帖子倾向分**：每帖（注入 + agent 产出）计算四类倾向分
+`tendency_T = 词表命中次数 / max(1, 字数/50)`（命中/50 字密度，与判类器同口径两层匹配；
+meme = linkage + 死因词替换「□」后的 strong 命中）。用于 interest 臂匹配
+（score = α·本类倾向分 + γ·时新近度 + ε，β 硬命中+词表重合项废弃）
+并随 feed item 下发。不使用 LLM 解析帖子类型。
+
+**发言决策**（数值算法，无 LLM）：
+
+```
+p = activity × spiral × decay × pressure          （clamp [0, 0.98]）
+spiral   = 1 + s·(share_own − base)/base          （沉默的螺旋，clamp[0.05,2]）
+decay    = exp(−λ·cum_own/50)                     （注意力衰减，本类累计曝光半饱和）
+pressure = 1 − s·P_t                              （mourning 参数为负→同向增益）
+```
+
+发言当且仅当 `u < p`，`u = Random(f"{agent_id}:{tick}")`（公共随机数，跨 cell/seed 可比）。
+参数按类型锚定实证（marketing 0.90 / education 0.55 / meme 0.50 / mourning 0.55 / other 0.25
+活动率；individual = 均值×U[0.8,1.2] 抖动），随 profile 下发。LLM 仅负责内容生成
+（含类型词表词融入，每 agent 40 词个人词库）。
+
+**快速校准**（真实周构成 + P_t 公式近似）：decay 模式期望总发言 ≈333 帖/run（>250 ✓）；
+W13 悼念冲击 20 帖→快速衰减（9→4）；玩梗前期被压 0-2/周、W20-22 回升至 7-21 帖；
+营销稳定 10-13/周。sustained 模式后期玩梗持续受抑（W21/22 ≈15/10 vs 21/15）、
+悼念表达更持久——两压力模式的机制对比可见。
 
 ## 群体（全部 18 runs 共享）
 

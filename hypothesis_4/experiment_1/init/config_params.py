@@ -126,6 +126,7 @@ agent_specs = [
             "name": p["name"],
             "agent_type": p["agent_type"],
             "persona": p["persona"],
+            "params": p["params"],
             "type_vocab": type_vocab_by_id[p["id"]],
         },
     }
@@ -300,13 +301,14 @@ manifest = {
     "population": {
         "counts": POPULATION_COUNTS,
         "seed": POPULATION_SEED,
-        "note": "18 个配置共享同一群体（id-类型打散，人设含三机制类型化表现）",
+        "note": "18 个配置共享同一群体（id-类型打散，人设含三机制类型化表现 + 发言决策数值参数 params）",
         "type_vocab": {
             "rule": "agent 发言用本类型词表词组织语言（用户 2026-09-09 裁定）；词源=env 判类器同口径 main/meme 列表",
             "per_agent_n": TYPE_VOCAB_N,
             "sample_seed": VOCAB_SAMPLE_SEED,
             "meme": "linkage 全量 + strong 抽样；mourning/marketing/education=main 抽样；other=空",
         },
+        "speak_decision": "数值算法（无 LLM）：p=activity×spiral×decay×pressure，u=Random(f'{id}:{tick}') 公共随机数；params 随 profile 下发",
     },
     "injection": {
         "total_posts_per_run": 250,
@@ -318,8 +320,9 @@ manifest = {
     },
     "steps": {"start_t": "2026-03-16T00:00:00", "num_steps": NUM_TICKS, "tick_seconds": 604800},
     "deferred_defaults": {
-        "note": "interest 臂 α/β/γ 与 P_t 权重/阈值取 DesignSpec 默认值，待校准与敏感性分析（U2）",
-        "alpha": 1.0, "beta": 1.0, "gamma": 0.5,
+        "note": ("interest 臂 α/γ 与 P_t 权重/阈值取 DesignSpec 默认值，待校准与敏感性分析（U2）。"
+                 "β 已废弃（2026-09-09 裁定：倾向分替代硬类型命中+词表重合项），保留 kwarg 兼容、不参与评分"),
+        "alpha": 1.0, "beta_deprecated": None, "gamma": 0.5,
         "w_official": 0.3, "w_mourning": 0.4, "w_volume": 0.3,
     },
     "default_init_config": default_run_id,

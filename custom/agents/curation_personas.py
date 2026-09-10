@@ -122,12 +122,51 @@ _NAME_FLAVOR: dict[str, list[str]] = {
     "other": ["路人", "围观", "随便看看", "普通", "吃瓜", "路过"],
 }
 
+# ---------------- 发言决策数值参数（用户 2026-09-09 裁定：发言行为数字化） ----------------
+# p_speak = activity × spiral因子 × decay因子 × pressure因子（agent 侧实现，见
+# CurationDiscourseAgent._speak_probability）。各类型均值锚定数据挖掘实证，
+# 个体参数 = 均值 × U[0.8, 1.2] 抖动后截断到 [lo, hi]。
+#
+# - activity: 基础发言倾向（营销"人少帖多"最高；路人最低）
+# - spiral:   沉默螺旋敏感度（路人最强；营销商业动机稳定最弱）
+# - decay:    注意力衰减系数（悼念情感疲劳最快；营销近乎无疲劳）
+# - pressure: 悼念规范压力敏感度（玩梗最受抑制；悼念为负=与压力同向增益）
+_PARAM_SPECS: dict[str, dict[str, tuple[float, float, float]]] = {
+    #              activity        spiral          decay           pressure
+    "meme":      {"activity": (0.50, 0.2, 0.9), "spiral": (1.2, 0.3, 2.5),
+                  "decay": (0.8, 0.2, 2.0),     "pressure": (0.9, 0.3, 1.0)},
+    "mourning":  {"activity": (0.55, 0.2, 0.9), "spiral": (0.8, 0.2, 2.0),
+                  "decay": (1.2, 0.4, 2.5),     "pressure": (-0.3, -0.6, 0.0)},
+    "marketing": {"activity": (0.90, 0.5, 1.0), "spiral": (0.2, 0.0, 0.8),
+                  "decay": (0.1, 0.0, 0.6),     "pressure": (0.5, 0.1, 1.0)},
+    "education": {"activity": (0.55, 0.2, 0.9), "spiral": (0.5, 0.1, 1.5),
+                  "decay": (0.4, 0.1, 1.2),     "pressure": (0.15, 0.0, 0.6)},
+    "other":     {"activity": (0.25, 0.1, 0.7), "spiral": (1.5, 0.5, 3.0),
+                  "decay": (1.0, 0.3, 2.2),     "pressure": (0.6, 0.2, 1.0)},
+}
+
+# 群体类型份额（发言决策中沉默螺旋的"期望份额"基线，与 100 人群体构成一致）
+POP_SHARE: dict[str, float] = {
+    "meme": 0.41, "mourning": 0.21, "marketing": 0.13, "education": 0.13, "other": 0.12,
+}
+
+
+def _sample_params(agent_type: str, rng: random.Random) -> dict[str, float]:
+    """个体参数 = 类型均值 × U[0.8,1.2]，截断到该参数合法区间，保留 4 位小数。"""
+    params: dict[str, float] = {}
+    for name, (mean, lo, hi) in _PARAM_SPECS[agent_type].items():
+        params[name] = round(min(hi, max(lo, mean * rng.uniform(0.8, 1.2))), 4)
+    return params
+
 
 _YOUNG_OCCUPATIONS = {"大学生", "高中生", "考研学生", "考研二战的学生", "研究生"}
 
 
-def build_persona(agent_type: str, rng: random.Random) -> tuple[str, str]:
-    """抽样个体特征并拼合完整人设文本；返回 (name, persona)。"""
+def build_persona(agent_type: str, rng: random.Random) -> tuple[str, str, dict[str, float]]:
+    """抽样个体特征并拼合完整人设文本；返回 (name, persona, params)。
+
+    params 为发言决策数值参数（activity/spiral/decay/pressure，见 _PARAM_SPECS），
+    与 persona 文本一并随 profile 下发，供 CurationDiscourseAgent 数字化决策使用。"""
     d = _DEMOGRAPHICS[agent_type]
     b = _TYPE_BEHAVIOR[agent_type]
     age = rng.randint(*d["age"])
@@ -148,14 +187,15 @@ def build_persona(agent_type: str, rng: random.Random) -> tuple[str, str]:
         f"- {b['pressure']}\n"
         f"- {b['activity']}"
     )
-    return name, persona
+    return name, persona, _sample_params(agent_type, rng)
 
 
 def build_population(counts: dict[str, int], seed: int = 0) -> list[dict]:
     """装配 N 个 agent profile（id 从 1 连续编号，类型顺序打散避免 id 与类型相关）。
 
     counts: {"meme": 41, "mourning": 21, "marketing": 13, "education": 13, "other": 12}
-    返回: [{"id": int, "name": str, "agent_type": str, "persona": str}, ...]
+    返回: [{"id": int, "name": str, "agent_type": str, "persona": str,
+            "params": {activity, spiral, decay, pressure}}, ...]
     """
     rng = random.Random(seed)
     types: list[str] = []
@@ -164,8 +204,10 @@ def build_population(counts: dict[str, int], seed: int = 0) -> list[dict]:
     rng.shuffle(types)
     profiles = []
     for i, t in enumerate(types, start=1):
-        name, persona = build_persona(t, rng)
-        profiles.append({"id": i, "name": name, "agent_type": t, "persona": persona})
+        name, persona, params = build_persona(t, rng)
+        profiles.append(
+            {"id": i, "name": name, "agent_type": t, "persona": persona, "params": params}
+        )
     return profiles
 
 
@@ -177,3 +219,4 @@ if __name__ == "__main__":
     for t in TYPE_LABELS:
         sample = next(p for p in pop if p["agent_type"] == t)
         print(f"\n===== {t} | id={sample['id']} {sample['name']} =====\n{sample['persona']}")
+        print(f"params: {sample['params']}")

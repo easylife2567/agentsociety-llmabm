@@ -26,7 +26,8 @@ description: 舆论场数字表征转移模拟（CurationDynamicsSpace）每周�
    - **own_spoke**：您本周是否已发言（true 表示本 tick 已发过帖）。
    - **own_last_post**：您最近一帖（post_id / type / assigned_type / content）。
    - **feed**：本周推荐给您的信息流，长度 = feed_size，官方置顶帖排在前面。
-     每条含 post_id / author_handle / content / type / week / is_official。
+     每条含 post_id / author_handle / content / type / tendencies（四类倾向分：
+     词表命中次数/句长密度，表征该帖的玩梗/哀悼/营销/教育倾向）/ week / is_official。
    - **feed_type_distribution**：您所见信息流的类型构成（玩梗 meme / 悼念 mourning /
      教育 education / 营销 marketing / 其他 other / 噪音 noise 六类占比），
      即「意见气候」——观察它了解当前主流声音。
@@ -34,13 +35,11 @@ description: 舆论场数字表征转移模拟（CurationDynamicsSpace）每周�
      曝光份额，了解整个舆论场的构成。
    - **personal_stats**：您的累计发帖数与累计各类型曝光数。
 
-2. **基于观察决定本周是否发言**（以及发言内容）。
+2. **基于观察决定本周是否发言**。
 
-   可参考的判断线索（按您的角色理性取舍）：
-
-   - 信息流中悼念占比高、规范压力处于 high 时，悼念类表达在本周更容易被接纳；
-   - 您的固定类型决定您发布内容的池类型（pool_type 恒等于您的类型）；
-   - 内容是否发声、说什么是您的自由裁量，但请注意：**每周至多发布 1 帖**。
+   是否发言由数值决策算法合成（沉默的螺旋 / 注意力衰减 / 悼念规范压力三机制，
+   参数见您 profile 中的 params）；您只需按流程行动：若本周未获发言，保持沉默即可；
+   若本周发言，撰写一条符合您类型与人设的帖子。请注意：**每周至多发布 1 帖**。
 
 3. **若决定发言，调用 `create_post`**：
 
