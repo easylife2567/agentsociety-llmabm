@@ -3,11 +3,11 @@
 每 tick 固定管线（LLM 调用预算受控，0-1 次/agent-tick）：
 1. **get_feed**（readonly, template_mode）——取回本周 feed 快照（feed 列表、意见气候、
    悼念规范压力、全局供给/曝光份额、个人累计曝光）。
-2. **数字化发言决策**（无 LLM，用户 2026-09-09 裁定）——按参数合成
-   p = activity × spiral × decay × pressure（三机制显式建模），
-   发言当且仅当 u < p，u = Random(f"{id}:{tick}").random()（公共随机数：同一 (id, tick)
-   在所有 cell/seed 取同一 u，处理组间可比；组间差异完全来自环境快照参数）。
-   决策分量（份额/因子/概率/随机数）全量写入 decision_log，可完整审计与事后重算。
+2. **数字化发言决策**（无 LLM，用户 2026-09-09 裁定；2026-09-10 改线性刺激-阈值规则）——
+   三机制因子线性等权合成刺激值 x = (spiral + decay + pressure)/3，
+   发言当且仅当 x ≥ activity（activity = 个体发言阈值，活跃 agent 阈值低；
+   确定性决策，无随机数，给定状态与参数行为唯一）。
+   决策分量（份额/因子/刺激值/阈值）全量写入 decision_log，可完整审计与事后重算。
 3. 若发言，一次内容生成 completion——提示词包含本周 feed 前 feed_context_n 条帖子的
    作者与正文摘录，要求**基于所见内容**回应/讨论/二创/跟帖式发言（用户 2026-09-10 裁定），
    按 Agent 固定类型生成中文帖子（≤300 字），并自然融入本类型词表词（type_vocab）。
@@ -21,7 +21,6 @@ from __future__ import annotations
 import json
 import logging
 import math
-import random
 from collections import deque
 from datetime import datetime
 from pathlib import Path
@@ -33,25 +32,26 @@ logger = logging.getLogger(__name__)
 
 VALID_TYPES = ("meme", "mourning", "marketing", "education", "other")
 
-# ---------------- 发言决策数值算法（用户 2026-09-09 裁定：发言行为数字化） ----------------
-# p = activity × spiral × decay × pressure，clamp[0, _P_MAX]；发言当且仅当 u < p，
-# u = Random(f"{agent_id}:{tick}").random()（公共随机数，见模块 docstring）。
-# 类型均值与 curation_personas._PARAM_SPECS 一致（activity 已按 2026-09-10 发帖人
-# 口径重锚）；profile 未带 params 时的回退值。
+# ---------------- 发言决策：线性刺激-阈值模型（用户 2026-09-10 裁定） ----------------
+# 三机制因子线性等权合成刺激值 x = (spiral + decay + pressure)/3；
+# 发言当且仅当 x ≥ activity（activity = 个体发言阈值，越低越容易发言）。
+# 确定性决策（无随机数）：给定环境快照与参数，行为完全确定，跨 cell/seed 可比性最强。
+# 阈值基数 0.95 为校准值（快速校准：真实周构成气候代理，期望总量 ≈330 帖/run > 250 注入；
+# 基数 1.0 时仅 226 帖，agent 供给盖不过注入）。
+# 类型均值与 curation_personas._PARAM_SPECS 一致；profile 未带 params 时的回退值。
 
 _PARAM_DEFAULTS: dict[str, dict[str, float]] = {
-    "meme":      {"activity": 0.49, "spiral": 1.2, "decay": 0.8, "pressure": 0.9},
-    "mourning":  {"activity": 0.53, "spiral": 0.8, "decay": 1.2, "pressure": -0.3},
-    "marketing": {"activity": 0.60, "spiral": 0.2, "decay": 0.1, "pressure": 0.5},
-    "education": {"activity": 0.61, "spiral": 0.5, "decay": 0.4, "pressure": 0.15},
-    "other":     {"activity": 0.53, "spiral": 1.5, "decay": 1.0, "pressure": 0.6},
+    "meme":      {"activity": 0.95, "spiral": 1.2, "decay": 0.8, "pressure": 0.9},
+    "mourning":  {"activity": 0.95, "spiral": 0.8, "decay": 1.2, "pressure": -0.3},
+    "marketing": {"activity": 0.95, "spiral": 0.2, "decay": 0.1, "pressure": 0.5},
+    "education": {"activity": 0.95, "spiral": 0.5, "decay": 0.4, "pressure": 0.15},
+    "other":     {"activity": 0.95, "spiral": 1.5, "decay": 1.0, "pressure": 0.6},
 }
 # 沉默螺旋的期望份额基线。用户 2026-09-10 裁定：群体按发帖人口径比例
 # 玩梗18/悼念21/营销26/教育15/其他20（不再按内容划分口径）。
 _POP_SHARE = {"meme": 0.18, "mourning": 0.21, "marketing": 0.26, "education": 0.15, "other": 0.20}
 _DECAY_SCALE = 50.0          # 注意力衰减半饱和尺度（本类型累计曝光，exp 半饱和）
 _PRESSURE_FACTOR_CAP = 1.5   # 压力因子上限（mourning 同向增益封顶）
-_P_MAX = 0.98                # 发言概率上限
 
 # 各类型内容生成指引（人设之外的具体写作约束）
 _CONTENT_GUIDE: dict[str, str] = {
@@ -104,7 +104,7 @@ class CurationDiscourseAgent(AgentBase):
 - agent_type (str): 固定类型，取值 meme/mourning/marketing/education/other。
 - persona (str): 完整人设文本（类型模板 + 个体人口学特征），内容生成风格依据。
 - params (dict): 发言决策数值参数 {activity, spiral, decay, pressure}（可选，
-  缺失回退类型均值）。
+  缺失回退类型均值）。activity = 发言阈值（线性刺激-阈值规则，越低越容易发言）。
 - type_vocab (list[str]): 本类型词表个人常用词库（可选），发言须自然融入 1-3 词。
 
 **Config fields（均可选）:**
@@ -212,14 +212,16 @@ class CurationDiscourseAgent(AgentBase):
 
     # ---------------- 发言决策数值算法（无 LLM） ----------------
 
-    def _speak_probability(self, snap: dict) -> tuple[float, dict]:
-        """p = activity × spiral × decay × pressure，clamp[0, _P_MAX]。
+    def _speak_stimulus(self, snap: dict) -> tuple[float, dict]:
+        """三机制因子线性等权合成发言刺激值 x = (spiral + decay + pressure)/3。
 
         - spiral（沉默的螺旋）: 1 + s·(share_own − base)/base，clamp[0.05, 2.0]；
           base = 本类型在 100 人群体中的份额。同类气候强 → 增益，处于少数 → 抑制。
         - decay（注意力衰减）: exp(−λ·cum_own/D0)，D0=50（本类型累计曝光的半饱和尺度）。
         - pressure（悼念规范压力）: 1 − s·P_t，clamp[0, 1.5]；mourning 参数为负 →
           与压力同向增益（压力高的时期正是悼念表达最盛的时期）。
+        发言当且仅当 x ≥ activity（activity = 个体发言阈值；活跃 agent 阈值低——
+        用户 2026-09-10 裁定）。中性状态（三因子均≈1）下 x≈1.0。
         """
         prm = self._params
         own = self._agent_type
@@ -233,8 +235,7 @@ class CurationDiscourseAgent(AgentBase):
         decay = math.exp(-prm["decay"] * cum_own / _DECAY_SCALE)
         p_t = float(snap.get("norm_pressure", 0.0) or 0.0)
         pressure = max(0.0, min(_PRESSURE_FACTOR_CAP, 1.0 - prm["pressure"] * p_t))
-        p = prm["activity"] * spiral * decay * pressure
-        p = max(0.0, min(_P_MAX, p))
+        x = (spiral + decay + pressure) / 3.0
         comps = {
             "share_own": round(share_own, 4),
             "share_base": base,
@@ -244,7 +245,7 @@ class CurationDiscourseAgent(AgentBase):
             "norm_pressure": round(p_t, 4),
             "pressure_factor": round(pressure, 4),
         }
-        return p, comps
+        return x, comps
 
     # ------------------------------------------------------------------
     # LLM prompt（仅内容生成；发言必须基于本周看到的帖子——用户 2026-09-10 裁定）
@@ -333,20 +334,20 @@ class CurationDiscourseAgent(AgentBase):
 
         record["week"] = snap.get("week")
 
-        # 2) 数值决策（无 LLM）：p = activity × spiral × decay × pressure，u 公共随机数
-        p, comps = self._speak_probability(snap)
-        u = random.Random(f"{self._id}:{tick}").random()
-        speak = u < p
+        # 2) 数值决策（无 LLM）：x = (spiral+decay+pressure)/3，发言当且仅当 x ≥ 阈值 activity
+        x, comps = self._speak_stimulus(snap)
+        threshold = self._params["activity"]
+        speak = x >= threshold
         record.update({
-            "p": round(p, 4),
-            "u": round(u, 4),
+            "x": round(x, 4),
+            "threshold": round(threshold, 4),
             "components": comps,
             "speak": speak,
-            "reason": f"numeric p={p:.3f} {'>' if speak else '<='} u={u:.3f}",
+            "reason": f"x={x:.3f} {'>=' if speak else '<'} threshold={threshold:.3f}",
         })
         if not speak:
             self._decision_log.append(record)
-            return f"{self.name}: silent (p={p:.3f}, u={u:.3f})"
+            return f"{self.name}: silent (x={x:.3f} < threshold={threshold:.3f})"
 
         # 3) 内容生成（1 次 LLM 调用）
         content = ""

@@ -919,7 +919,7 @@
     "compatibility": "文件 custom/envs/curation_dynamics_space.py；类名即 registry key；提供 step()、description()、init_description()；cls() 无必填构造参数（全部 kwargs 有默认值）；readonly observe 工具 get_feed 提供观察能力；to_workspace()/restore() 实现以支持 --resume"
   },
   "experiment_overrides_2026_09_10": {
-    "note": "用户 2026-09-10 四项裁定（实验级配置，模块机制不变）",
+    "note": "用户 2026-09-10 裁定（实验级配置，模块机制不变；含同日追加的两项）",
     "agenda_setting": {
       "change": "官方媒体全程仅 W13 一条讣告帖（原文给定，随注入样本下发，is_official=True）并对全员置顶；其余真实数据帖一律 is_official=False",
       "config": {
@@ -930,7 +930,7 @@
     },
     "population_caliber": {
       "change": "群体比例改按发帖人口径：meme 18 / mourning 21 / marketing 26 / education 15 / other 20",
-      "effect": "POP_SHARE 同步；activity 重锚 = 0.60 × (内容份额/作者份额) → 0.49/0.53/0.60/0.61/0.53"
+      "effect": "POP_SHARE 同步；activity 改阈值语义（同日 decision_rule 裁定）：类型均值统一 0.95，类型分化由 spiral/decay/pressure 承载（旧 0.60×内容份额/作者份额 概率锚定废弃）"
     },
     "content_grounding": {
       "change": "Agent 内容生成提示词注入本周 feed 前 5 条（feed_context_n=5，单条摘 120 字）",
@@ -938,6 +938,14 @@
     },
     "find_feed_dict": {
       "change": "agent 侧 _find_feed_dict 递归 DFS 改迭代 BFS（浅层优先、命中即停、跳过 variables）"
+    },
+    "decision_rule": {
+      "change": "发言决策改线性刺激-阈值规则：x=(spiral+decay+pressure)/3，发言当且仅当 x≥activity；activity=个体发言阈值（活跃者阈值低），类型均值统一 0.95（校准），确定性决策无随机数；替代 p=activity×spiral×decay×pressure 概率规则",
+      "effect": "agent 侧决策重写（_speak_stimulus）；阈值基数 0.95 校准 → 期望 ≈330 帖/run > 250 注入；decay 330 vs sustained 302，机制对比保留"
+    },
+    "injection_caliber": {
+      "change": "确认注入分层只依据各周帖子（内容）类型占比，与 agent 群体发帖人口径比例独立、互不混用",
+      "effect": "config manifest 与 EXPERIMENT.md 明示口径区分"
     }
   }
 }
