@@ -2,7 +2,7 @@
 
 人设 = 个体人口学特征（年龄/职业/平台/活跃等级，按类型分层抽样）
      + 类型表达风格
-     + 三机制类型化表现（沉默的螺旋 / 注意力衰减 / 悼念规范压力，实验设计 二.1）
+     + 三机制类型化表现（沉默的螺旋 / 注意力衰减 / 玩梗涌现环境，实验设计 二.1）
      + 发言活跃度基线。
 
 机制表现的类型差异锚定数据挖掘报告实证（activity 自 2026-09-10 起为表达门槛语义，
@@ -36,7 +36,7 @@ _TYPE_BEHAVIOR: dict[str, dict[str, str]] = {
         ),
         "spiral": "你对同温层极敏感：看到越多同类玩梗帖你越想玩；看到严肃内容刷屏时会觉得'现在玩不合适'。",
         "decay": "你对重复内容疲劳得很快，尤其是翻来覆去的悼念/说教内容；但梗只要有新变体你就觉得新鲜。",
-        "pressure": "悼念规范压力对你影响最大：压力高时你会明显收敛（怕挨骂），压力一下降你就活跃起来。",
+        "emergence": "你玩梗的时机很看舆论场：这段时间帖子总量足够丰富、梗有土壤，且当周新增发言不多、场面不挤时，你才敢放手玩；刷屏大洪峰的周你多半选择潜水观望（新帖一下子被淹没了）。",
         "activity": "你的发言欲望中等，但很看氛围。",
     },
     "mourning": {
@@ -46,7 +46,7 @@ _TYPE_BEHAVIOR: dict[str, dict[str, str]] = {
         ),
         "spiral": "你在悼念氛围主导时处于主流位置、表达自在；当玩梗内容泛滥时你会觉得不适、不想与之同屏而减少发言。",
         "decay": "你的表达由真实情感驱动，事件初期最强烈；随时间推移情感自然平复，发言意愿明显衰减。",
-        "pressure": "规范压力与你同向：压力高的时期正是你最想表达的时期，压力变化对你的抑制很小。",
+        "emergence": "舆论场的冷热与你关系不大：你只按自己的情感节奏表达，热闹或冷清都不改变你的心意。",
         "activity": "事件前后你的活跃度变化很大：初期高，随后快速回落。",
     },
     "marketing": {
@@ -56,7 +56,7 @@ _TYPE_BEHAVIOR: dict[str, dict[str, str]] = {
         ),
         "spiral": "你不太受意见气候影响：商业动机稳定，别人发什么不改变你的推广节奏。",
         "decay": "你的内容产能稳定，几乎不存在疲劳问题；热点凉了你就换下一个热点。",
-        "pressure": "规范压力对你有一定顾忌：悼念氛围最浓时你会把推广包装得更委婉（先致哀再带货），压力低了就更直接。",
+        "emergence": "帖子多少、场子冷热对你影响不大：只要还有流量机会你就照常发。",
         "activity": "你的推广节奏稳定规律，保持中上频率的发声。",
     },
     "education": {
@@ -66,7 +66,7 @@ _TYPE_BEHAVIOR: dict[str, dict[str, str]] = {
         ),
         "spiral": "你有稳定的话题与立场，意见气候对你影响中等：讨论冷清时你也照说，但很少有人回应时你会降低频率。",
         "decay": "你的议题生命力长、衰减慢；事件本身对你只是一个讨论由头，过去之后你照常谈教育。",
-        "pressure": "规范压力对你影响不大：你的内容本身严肃，与悼念规范不冲突。",
+        "emergence": "舆论场的冷热对你的表达影响不大，你的议题节奏由自己掌握。",
         "activity": "你的发言频率稳定，每周都有一定表达欲。",
     },
     "other": {
@@ -76,7 +76,7 @@ _TYPE_BEHAVIOR: dict[str, dict[str, str]] = {
         ),
         "spiral": "你是沉默螺旋最明显的群体：非常在意'大家都怎么说'，风向不明或与自己观感不符时你选择只看不说。",
         "decay": "你的兴趣来得快去得也快，同一个话题讨论几周后你就失去兴趣。",
-        "pressure": "规范压力对你影响中等偏高：氛围严肃时你会更谨慎、更少开口。",
+        "emergence": "帖子多不多、场子挤不挤你不太敏感：反正多数时候你只是看，兴致来了才冒个泡。",
         "activity": "你的活跃度不高且随机，兴致来了才说，多数时候是看客。",
     },
 }
@@ -124,33 +124,33 @@ _NAME_FLAVOR: dict[str, list[str]] = {
     "other": ["路人", "围观", "随便看看", "普通", "吃瓜", "路过"],
 }
 
-# ---------------- 发言决策数值参数（用户 2026-09-09 数字化；2026-09-10 表达效用模型） ----------------
-# 表达效用 U = D·R − c·v·P_t（agent 侧实现，见 CurationDiscourseAgent._speak_stimulus）；
+# ---------------- 发言决策数值参数（用户 2026-09-09 数字化；2026-09-10 涌现增益模型） ----------------
+# 表达效用 U = D·R·G^θ（agent 侧实现，见 CurationDiscourseAgent._speak_stimulus）；
 # 发言当且仅当 U ≥ activity。个体参数 = 均值 × U[0.8, 1.2] 抖动后截断。
 #
 # - activity: 个体表达门槛（越低越容易发言——用户 2026-09-10 裁定）。
 #   类型均值统一：发帖人口径下各类型人均发帖强度（内容份额/作者份额）实证
 #   meme 0.82 / mourning 0.89 / marketing 1.00 / education 1.02 / other 0.88
 #   （W12-W22 注入池 48,360 帖）≈ 1，无类型差异依据；类型行为分化由三机制参数承载。
-#   门槛基数为校准值（calibrate_speak.py：真实周构成气候代理 + P_t=0.4·M_t+0.3·V_t
-#   效用模型扫描定标）。
+#   门槛基数为校准值（calibrate_speak.py：真实 Stock/Flow 涌现环境代理 + 效用模型
+#   扫描定标）。
 # - spiral:   沉默螺旋敏感度 s（路人最强；营销商业动机稳定最弱）
 # - decay:    注意力衰减系数 λ（悼念情感疲劳最快；营销近乎无疲劳）
-# - norm_dev: 规范偏离成本系数 v（Kuran 1995 偏好伪装成本；结构性强弱：
-#   玩梗 1.0 > 营销 0.8 > 其他 0.7 > 教育 0.15；悼念 −0.5 = 与悼念规范同向，
-#   压力反成表达补贴）
+# - emergence: 涌现环境增益指数 θ（结构性强弱：仅玩梗 1.0 = 玩梗时机受涌现环境
+#   门控——洪峰期新表达被淹没、退潮期才被看见；其余类型 0 = 环境不影响其决策，
+#   G^0≡1）
 _PARAM_SPECS: dict[str, dict[str, tuple[float, float, float]]] = {
-    #              activity(门槛)   spiral          decay           norm_dev
+    #              activity(门槛)   spiral          decay           emergence(θ)
     "meme":      {"activity": (0.95, 0.5, 1.5), "spiral": (1.2, 0.3, 2.5),
-                  "decay": (0.8, 0.2, 2.0),     "norm_dev": (1.0, 0.5, 1.5)},
+                  "decay": (0.8, 0.2, 2.0),     "emergence": (1.0, 0.5, 1.5)},
     "mourning":  {"activity": (0.95, 0.5, 1.5), "spiral": (0.8, 0.2, 2.0),
-                  "decay": (1.2, 0.4, 2.5),     "norm_dev": (-0.5, -0.7, -0.3)},
+                  "decay": (1.2, 0.4, 2.5),     "emergence": (0.0, 0.0, 0.0)},
     "marketing": {"activity": (0.95, 0.5, 1.5), "spiral": (0.2, 0.0, 0.8),
-                  "decay": (0.1, 0.0, 0.6),     "norm_dev": (0.8, 0.4, 1.2)},
+                  "decay": (0.1, 0.0, 0.6),     "emergence": (0.0, 0.0, 0.0)},
     "education": {"activity": (0.95, 0.5, 1.5), "spiral": (0.5, 0.1, 1.5),
-                  "decay": (0.4, 0.1, 1.2),     "norm_dev": (0.15, 0.0, 0.5)},
+                  "decay": (0.4, 0.1, 1.2),     "emergence": (0.0, 0.0, 0.0)},
     "other":     {"activity": (0.95, 0.5, 1.5), "spiral": (1.5, 0.5, 3.0),
-                  "decay": (1.0, 0.3, 2.2),     "norm_dev": (0.7, 0.3, 1.1)},
+                  "decay": (1.0, 0.3, 2.2),     "emergence": (0.0, 0.0, 0.0)},
 }
 
 # 群体类型份额（发言决策中沉默螺旋的"期望份额"基线，与 100 人群体构成一致）。
@@ -175,7 +175,7 @@ _YOUNG_OCCUPATIONS = {"大学生", "高中生", "考研学生", "考研二战的
 def build_persona(agent_type: str, rng: random.Random) -> tuple[str, str, dict[str, float]]:
     """抽样个体特征并拼合完整人设文本；返回 (name, persona, params)。
 
-    params 为发言决策数值参数（activity/spiral/decay/norm_dev，见 _PARAM_SPECS），
+    params 为发言决策数值参数（activity/spiral/decay/emergence，见 _PARAM_SPECS），
     与 persona 文本一并随 profile 下发，供 CurationDiscourseAgent 表达效用决策使用。"""
     d = _DEMOGRAPHICS[agent_type]
     b = _TYPE_BEHAVIOR[agent_type]
@@ -194,7 +194,7 @@ def build_persona(agent_type: str, rng: random.Random) -> tuple[str, str, dict[s
         f"行为特征：\n"
         f"- {b['spiral']}\n"
         f"- {b['decay']}\n"
-        f"- {b['pressure']}\n"
+        f"- {b['emergence']}\n"
         f"- {b['activity']}"
     )
     return name, persona, _sample_params(agent_type, rng)
@@ -205,7 +205,7 @@ def build_population(counts: dict[str, int], seed: int = 0) -> list[dict]:
 
     counts: {"meme": 18, "mourning": 21, "marketing": 26, "education": 15, "other": 20}
     返回: [{"id": int, "name": str, "agent_type": str, "persona": str,
-            "params": {activity, spiral, decay, norm_dev}}, ...]
+            "params": {activity, spiral, decay, emergence}}, ...]
     """
     rng = random.Random(seed)
     types: list[str] = []

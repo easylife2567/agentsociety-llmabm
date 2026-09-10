@@ -1,15 +1,15 @@
 {
   "module_name": "curation_dynamics_space",
   "class_name": "CurationDynamicsSpace",
-  "description": "舆论场数字表征转移模拟：三种推荐算法 × 两种悼念规范压力（3×2 全因子 6 cells）下，100 个固定类型 Agent 的差异化激活与公共表征构成变化（张雪峰 2026-03-24 去世 W13，W12→W22 共 11 周）。",
-  "rationale": "实验设计阶段.md / HYPOTHESIS.md H4 将机制定位为「算法策展 × 社会表达环境」的群体层面构成效应：算法决定谁被看见（曝光分配），规范压力+沉默螺旋+注意力衰减决定谁发言（激活/沉默），类型固定决定内容类型不变，形成 群体规模→发言比例→供给比例→曝光比例 漏斗。interest_normal cell 兼任生成性验证（拟合 benchmark_curves.json 三阶段形态）。本环境需提供：按周注入真实打标内容的池子、三种可开关的推荐算法（纯兴趣匹配无热度项，用户裁定）、内生的悼念规范压力指数（decay/sustained 两模式）、官方议程置顶、四词表判类器（对齐 meme_matcher.py），以及每 tick 的供给/曝光/发言漏斗 replay 指标。规模 100 agents × 11 ticks × 18 runs，balanced tier。",
+  "description": "舆论场数字表征转移模拟：三种推荐算法 × 两种玩梗涌现模式（3×2 全因子 6 cells）下，100 个固定类型 Agent 的差异化激活与公共表征构成变化（张雪峰 2026-03-24 去世 W13，W12→W22 共 11 周）。",
+  "rationale": "实验设计阶段.md / HYPOTHESIS.md H4 将机制定位为「算法策展 × 社会表达环境」的群体层面构成效应：算法决定谁被看见（曝光分配），玩梗涌现环境增益+沉默螺旋+注意力衰减决定谁发言（U = D·R·G^θ，仅玩梗型受 G 门控），类型固定决定内容类型不变，形成 群体规模→发言比例→供给比例→曝光比例 漏斗。interest_normal cell 兼任生成性验证（拟合 benchmark_curves.json 三阶段形态）。本环境需提供：按周注入真实打标内容的池子、三种可开关的推荐算法（纯兴趣匹配无热度项，用户裁定）、玩梗涌现环境（存量丰沛度 B/流量空旷度 S → 涌现增益 G；normal/sustained_hot 两模式，S 读现实口径周新增调度、B 内生——实现裁定见 experiment_overrides_2026_09_10.meme_emergence）、官方议程置顶、四词表判类器（对齐 meme_matcher.py），以及每 tick 的供给/曝光/发言漏斗 replay 指标。规模 100 agents × 11 ticks × 18 runs，balanced tier。",
   "scale_budget": {
     "target_agent_count": "100（固定：梗41/悼念21/营销13/教育13/其他12，用户口径主导类型，2026-09-08 裁定）",
     "step_budget": "11 ticks/run（1 tick = 1 周，W12→W22）；每 cell 3 seeds，共 18 runs（≈1.98 万 agent-ticks）",
     "runtime_budget": "balanced tier。LLM 成本主导：每 agent 每 tick 1 次发言决策 + 发言时 1 次内容生成 ≈ 1100-2200 次 LLM 调用/run。Env 侧要求：工具体返回紧凑、曝光在 feed 装配时批量记账（不逐帖写 replay）、状态从 kwargs + replay + workspace 可重建。",
     "complexity_tier": "balanced"
   },
-  "step_semantics": "1 step = 1 周（ISO week 2026-W12 起）。框架调用顺序已核实（society.py:581-631）：每 tick 先让 100 个 agent 行动（调用 env 工具），随后才调用 env.step(tick, t)（'Env advances AFTER agents'），时钟在 agent 阶段前由 set_current_time 推入。因此每 tick 的「内容更新(注入) + 算法推荐(feed 装配)」必须在 agent 阶段之前完成：init() 打开 tick 1（注入 W12、算 P_t、装配全部 feed），每个 step(k) 在收尾 tick k 的同时预卷打开 tick k+1（注入、P_t、装配 feed）。replay 快照在 step(k) 收尾段写入（此时 tick k 的 agent 产出已入池），step 主键用内部 _step_index（自增，绝不用 tick 时长参数）。具体时序：init()→[tick1 agent 阶段]→step(1){收尾tick1+打开tick2}→[tick2 agent 阶段]→step(2){...}→...→step(11){收尾tick11；不打开 W23}。Agent 帖在 tick 内仅入 pending 缓冲，收尾时并入池，故当 tick 的 feed 不含当 tick 新帖（'下一 tick 重新传播'，实验设计 四.6）。",
+  "step_semantics": "1 step = 1 周（ISO week 2026-W12 起）。框架调用顺序已核实（society.py:581-631）：每 tick 先让 100 个 agent 行动（调用 env 工具），随后才调用 env.step(tick, t)（'Env advances AFTER agents'），时钟在 agent 阶段前由 set_current_time 推入。因此每 tick 的「内容更新(注入) + 算法推荐(feed 装配)」必须在 agent 阶段之前完成：init() 打开 tick 1（注入 W12、算涌现环境、装配全部 feed），每个 step(k) 在收尾 tick k 的同时预卷打开 tick k+1（注入、涌现环境、装配 feed）。replay 快照在 step(k) 收尾段写入（此时 tick k 的 agent 产出已入池），step 主键用内部 _step_index（自增，绝不用 tick 时长参数）。具体时序：init()→[tick1 agent 阶段]→step(1){收尾tick1+打开tick2}→[tick2 agent 阶段]→step(2){...}→...→step(11){收尾tick11；不打开 W23}。Agent 帖在 tick 内仅入 pending 缓冲，收尾时并入池，故当 tick 的 feed 不含当 tick 新帖（'下一 tick 重新传播'，实验设计 四.6）。",
   "tools": [
     {
       "name": "get_feed",
@@ -24,7 +24,7 @@
       ],
       "returns": {
         "type": "dict",
-        "description": "当前 tick 该 agent 所见快照，含：week(str, 如 '2026-W12')；norm_pressure(float P_t)；norm_pressure_level(str 'high'|'medium'|'low')；own_spoke(bool 本 tick 是否已发言)；own_last_post(dict|null：{post_id, type, assigned_type, content}，最近一帖)；feed(list 长度=feed_size，元素 {post_id, author_handle, content, type, tendencies(dict 四类倾向分=词表命中次数/句长密度), week, is_official}，官方置顶帖在前)；feed_type_distribution(dict 五类+noise 的份额，= 该 agent 所见意见气候)；global_supply_shares(dict 最近完结 tick 的 Agent 产出口径供给份额)；global_exposure_shares(dict 最近完结 tick 曝光份额)；personal_stats({total_posts:int, cumulative_exposures:{type:count}})。本工具为 readonly observe，'同 tick 重复调用返回同一 feed 不重复计曝光' 由构造保证（见 side_effects）。"
+        "description": "当前 tick 该 agent 所见快照，含：week(str, 如 '2026-W12')；meme_env(dict 玩梗涌现环境：{stock:int 存量=过去 6 周 arena 供给总数, flow:int arena 新增, flow_world:int 现实口径周新增, abundance:float 丰沛度 B, emptiness:float 空旷度 S, gain:float 涌现增益 G=clamp(B^β·S^σ,0.2,3.0)})；own_spoke(bool 本 tick 是否已发言)；own_last_post(dict|null：{post_id, type, assigned_type, content}，最近一帖)；feed(list 长度=feed_size，元素 {post_id, author_handle, content, type, tendencies(dict 四类倾向分=词表命中次数/句长密度), week, is_official}，官方置顶帖在前)；feed_type_distribution(dict 五类+noise 的份额，= 该 agent 所见意见气候)；global_supply_shares(dict 最近完结 tick 的 Agent 产出口径供给份额)；global_exposure_shares(dict 最近完结 tick 曝光份额)；personal_stats({total_posts:int, cumulative_exposures:{type:count}})。本工具为 readonly observe，'同 tick 重复调用返回同一 feed 不重复计曝光' 由构造保证（见 side_effects）。"
       },
       "side_effects": "none（readonly）。feed 在 step/init 的打开阶段对全部 100 个 agent 一次性预装配，曝光计数在装配时记账（1 次/agent/tick），本工具仅读取缓存快照，重复调用零副作用。无需同步幂等方案。"
     },
@@ -64,14 +64,14 @@
       "purpose": "按 cell 锁定（实验设计 五.1）；Agent 不可选，不出现于任何工具参数"
     },
     {
-      "name": "mourning_norm_pressure",
+      "name": "meme_emergence_mode",
       "type": "str",
-      "default": "decay",
+      "default": "normal",
       "options": [
-        "decay",
-        "sustained"
+        "normal",
+        "sustained_hot"
       ],
-      "purpose": "悼念规范压力模式（实验设计 五.2）；sustained 在 event_week 算出峰值后冻结"
+      "purpose": "玩梗涌现模式（实验设计 五.2）；sustained_hot 在 event_week 记录空旷度 S 后冻结（B 保持内生）"
     },
     {
       "name": "random_seed",
@@ -125,7 +125,7 @@
       "name": "event_week",
       "type": "str",
       "default": "2026-W13",
-      "purpose": "去世周（2026-03-24）；sustained 模式在此周计算 P_t 峰值并冻结；volume 比的分母基准周"
+      "purpose": "去世周（2026-03-24）；sustained_hot 模式在此周记录空旷度 S 并冻结；K_a 缺省时事件周窗口存量由此锚定"
     },
     {
       "name": "official_pin_extend_weeks",
@@ -187,34 +187,46 @@
       "purpose": "随机臂可选的 recency window：仅从最近 N 周池内采样；None=全池"
     },
     {
-      "name": "w_official",
-      "type": "float",
-      "default": 0.3,
-      "purpose": "P_t 公式权重：官方议程强度"
+      "name": "emergence_flow_by_week",
+      "type": "dict[str,int]",
+      "default": "{}",
+      "purpose": "现实口径周新增帖量调度（空旷度 S 输入，外生）；空缺周回退内生 arena 计数"
     },
     {
-      "name": "w_mourning",
-      "type": "float",
-      "default": 0.4,
-      "purpose": "P_t 公式权重：悼念类占比"
+      "name": "emergence_window_stock",
+      "type": "int",
+      "default": "6",
+      "purpose": "存量 Stock 滚动窗口长度（周，含当周）"
     },
     {
-      "name": "w_volume",
-      "type": "float",
-      "default": 0.3,
-      "purpose": "P_t 公式权重：总量比"
+      "name": "emergence_ka",
+      "type": "float|null",
+      "default": "null",
+      "purpose": "丰沛度 B 的半饱和常数 K_a；null=取注入计划事件周窗口存量（sim 口径 52）"
     },
     {
-      "name": "pressure_high_threshold",
-      "type": "float",
-      "default": 0.6,
-      "purpose": "P_t 等级 'high' 阈值"
+      "name": "emergence_kf",
+      "type": "float|null",
+      "default": "null",
+      "purpose": "空旷度 S 的半饱和常数 K_f；null=取调度基线周值（1246）"
     },
     {
-      "name": "pressure_medium_threshold",
+      "name": "emergence_beta",
       "type": "float",
-      "default": 0.3,
-      "purpose": "P_t 等级 'medium' 阈值（低于则 'low'）"
+      "default": "1.0",
+      "purpose": "G = B^β·S^σ 的丰沛度指数 β（起步值，待 U2 敏感性）"
+    },
+    {
+      "name": "emergence_sigma",
+      "type": "float",
+      "default": "1.0",
+      "purpose": "G 的空旷度指数 σ（起步值，待 U2 敏感性）"
+    },
+    {
+      "name": "emergence_gain_min / emergence_gain_max",
+      "type": "float×2",
+      "default": "0.2 / 3.0",
+      "purpose": "涌现增益 G 的 clamp 上下限"
     }
   ],
   "assets": {
@@ -338,43 +350,53 @@
       ],
       "persistence": "in_memory + workspace",
       "replay_column": null,
-      "note": "每 agent 每 tick 预装配；含官方置顶槽位；重建自 _posts+P_t+RNG（确定性）"
+      "note": "每 agent 每 tick 预装配；含官方置顶槽位；重建自 _posts+meme_env+RNG（确定性）"
     },
     {
-      "name": "_norm_pressure",
-      "type": "float",
-      "initial": "0.0",
+      "name": "_meme_env",
+      "type": "dict[str, float|int]",
+      "initial": "{stock,flow,flow_world,abundance,emptiness,gain}（基线周=1）",
       "read_by": [
-        "get_feed",
+        "get_feed(快照下发)",
         "replay"
       ],
       "mutated_by": [
-        "init/打开阶段"
+        "init/打开阶段(_compute_meme_env)"
       ],
-      "persistence": "replay + workspace",
+      "persistence": "in_memory + replay + workspace",
       "replay_column": {
-        "name": "norm_pressure",
-        "type": "REAL"
+        "name": "meme_env_stock/meme_env_flow/meme_env_flow_world",
+        "type": "INTEGER ×3；meme_env_abundance/meme_env_emptiness/meme_env_gain REAL ×3"
       },
-      "note": "decay 模式：P_t = w_official*O_t + w_mourning*M_t + w_volume*V_t，clamp[0,1]；O_t=当周官方注入占比，M_t=当周供给(注入周t ∪ agent帖tick t-1)中悼念占比，V_t=当周注入量/event_week 注入量(≤1)。sustained 模式：W12 正常计算(≈0)、event_week 正常计算并记录峰值，此后冻结"
+      "note": "玩梗涌现环境（用户 2026-09-10 裁定存量/流量语义）。B：Stock=过去 emergence_window_stock 周（含当周）arena 供给总数（注入+agent 帖，内生），B=f(Stock)/f(Stock_base)，f(x)=x/(x+K_a)；S：Flow=现实口径周新增调度 emergence_flow_by_week（外生，空缺周回退 arena 计数），S=h(Flow)/h(Flow_base)，h(x)=K_f/(K_f+x)；G=clamp(B^β·S^σ,0.2,3.0)；基线周 W12 全部=1；sustained_hot 冻结 S 于事件周值（见 _sustained_s）"
     },
     {
-      "name": "_norm_pressure_level",
-      "type": "str",
-      "initial": "low",
+      "name": "_sustained_s",
+      "type": "float|null",
+      "initial": "None",
       "read_by": [
-        "get_feed",
-        "replay"
+        "打开阶段(_compute_meme_env)"
       ],
       "mutated_by": [
-        "init/打开阶段"
+        "打开阶段(仅 sustained_hot：event_week 记录，之后只读)"
       ],
-      "persistence": "replay + workspace",
-      "replay_column": {
-        "name": "norm_pressure_level",
-        "type": "TEXT"
-      },
-      "note": "high/medium/low 阈值见 config_kwargs"
+      "persistence": "in_memory + workspace",
+      "replay_column": null,
+      "note": "sustained_hot 模式在事件周（W13）记录的空旷度 S，W14 起每周用它替代当期 S（维持洪峰高热不退）"
+    },
+    {
+      "name": "_flow_by_week",
+      "type": "dict[str, int]",
+      "initial": "{}",
+      "read_by": [
+        "打开阶段(_compute_meme_env 的 Stock 窗口)"
+      ],
+      "mutated_by": [
+        "打开阶段(每 tick 记录 arena 总新增：注入+上一 tick agent 帖)"
+      ],
+      "persistence": "in_memory + workspace",
+      "replay_column": null,
+      "note": "arena 供给流量历史（内生口径），供存量 Stock 的滚动窗口计算与 S 的回退计数"
     },
     {
       "name": "_official_pinned",
@@ -733,11 +755,11 @@
   ],
   "metrics": {
     "env_replay_columns": {
-      "note": "env 级，按 step 主键，每 tick 一行（收尾段写）：week TEXT; norm_pressure REAL; norm_pressure_level TEXT; total_supply INTEGER; agent_supply INTEGER; injected_count INTEGER; supply_share_meme/supply_share_mourning/supply_share_education/supply_share_marketing/supply_share_other REAL(Agent 产出口径，分母=五类 agent 帖总数，生成性验证主指标); supply_share_all_meme/.../supply_share_all_other/supply_share_all_noise REAL(注入+产出合计口径，分母含 noise，对齐 benchmark total); agent_supply_meme/.../agent_supply_other INTEGER; injected_meme/.../injected_noise INTEGER; total_exposures INTEGER; exposure_share_meme/.../exposure_share_other/exposure_share_noise REAL(推荐服务口径，槽位计数); exposure_meme/.../exposure_noise INTEGER; official_posts_count INTEGER; official_exposure_slots INTEGER",
+      "note": "env 级，按 step 主键，每 tick 一行（收尾段写）：week TEXT; meme_env_stock/meme_env_flow/meme_env_flow_world INTEGER（存量/arena 新增/现实口径新增）; meme_env_abundance/meme_env_emptiness/meme_env_gain REAL（丰沛度 B/空旷度 S/涌现增益 G）; total_supply INTEGER; agent_supply INTEGER; injected_count INTEGER; supply_share_meme/supply_share_mourning/supply_share_education/supply_share_marketing/supply_share_other REAL(Agent 产出口径，分母=五类 agent 帖总数，生成性验证主指标); supply_share_all_meme/.../supply_share_all_other/supply_share_all_noise REAL(注入+产出合计口径，分母含 noise，对齐 benchmark total); agent_supply_meme/.../agent_supply_other INTEGER; injected_meme/.../injected_noise INTEGER; total_exposures INTEGER; exposure_share_meme/.../exposure_share_other/exposure_share_noise REAL(推荐服务口径，槽位计数); exposure_meme/.../exposure_noise INTEGER; official_posts_count INTEGER; official_exposure_slots INTEGER",
       "benchmark_alignment": "supply_share_{type}(Agent 产出口径) 为主对齐指标（orchestrator 裁定，需求 7）；combined 口径(含注入与 noise)同时记录供交叉检验"
     },
     "agent_replay_columns": {
-      "note": "agent 级，按 agent_id+step 主键，每 tick 每 agent 一行（收尾段 batch 写）：agent_type TEXT; spoke INTEGER; produced_type TEXT; assigned_type TEXT; type_mismatch INTEGER; exposure_meme/.../exposure_noise INTEGER×6; climate_meme/.../climate_noise REAL×6; norm_pressure_seen REAL; norm_pressure_level_seen TEXT; feed_slots INTEGER"
+      "note": "agent 级，按 agent_id+step 主键，每 tick 每 agent 一行（收尾段 batch 写）：agent_type TEXT; spoke INTEGER; produced_type TEXT; assigned_type TEXT; type_mismatch INTEGER; exposure_meme/.../exposure_noise INTEGER×6; climate_meme/.../climate_noise REAL×6; meme_env_abundance_seen/meme_env_emptiness_seen/meme_env_gain_seen REAL×3; feed_slots INTEGER"
     }
   },
   "persistence": {
@@ -759,14 +781,19 @@
       "climate_marketing",
       "climate_other",
       "climate_noise",
-      "norm_pressure_seen",
-      "norm_pressure_level_seen",
+      "meme_env_abundance_seen",
+      "meme_env_emptiness_seen",
+      "meme_env_gain_seen",
       "feed_slots"
     ],
     "env_replay_columns": [
       "week",
-      "norm_pressure",
-      "norm_pressure_level",
+      "meme_env_stock",
+      "meme_env_flow",
+      "meme_env_flow_world",
+      "meme_env_abundance",
+      "meme_env_emptiness",
+      "meme_env_gain",
       "total_supply",
       "agent_supply",
       "injected_count",
@@ -826,15 +853,15 @@
         "_spoke_this_tick",
         "_posted_this_step",
         "_feeds",
-        "_norm_pressure",
-        "_norm_pressure_level",
+        "_meme_env（stock/flow/flow_world/abundance/emptiness/gain）",
+        "_sustained_s（sustained_hot 冻结的空旷度）",
         "_global_landscape",
         "_seen_by_agent",
         "_cumulative_exposures",
         "_total_posts_by_agent",
         "_next_post_id",
         "_rng_injection/_rng_feed_random/_rng_interest_noise 的 getstate()",
-        "norm_pressure 峰值(sustained 模式冻结值)"
+        "_flow_by_week（arena 流量历史，供 Stock 窗口）"
       ],
       "not_serialized": [
         "_lock(asyncio.Lock，__init__ 重建)",
@@ -842,7 +869,7 @@
         "_agent_types(由 kwargs 重建)",
         "推荐/判类器逻辑(纯代码)"
       ],
-      "resume_reconstruct": "restore() 读回上述字段后，当前 tick 的 feed 已持久化可直接服务；P_t 历史由 env replay 表可查"
+      "resume_reconstruct": "restore() 读回上述字段后，当前 tick 的 feed 已持久化可直接服务；涌现环境历史由 env replay 表可查"
     },
     "step_counter": "_step_index",
     "write_points": [
@@ -873,11 +900,6 @@
     "chronological": "按 (week_index 降序, post_id 降序) 取前 N；去个性化、弱策展基线（实验设计 三.1②）",
     "interest": "score = alpha*倾向分匹配(帖 tendencies 中本 Agent 类型维度值=词表命中次数/句长密度) + gamma*时新近度(max(0,1-age/recency_max_age_weeks)) + 均匀噪声[-eps,+eps]（rng_interest_noise 独立流，seed+2000 初始化、getstate 续传；feed 装配顺序确定 → 全 run 确定性）；倾向分由 _compute_tendencies 在注入/发帖时计算入库（用户 2026-09-09 裁定：帖子类型表征用词表命中次数与句长计算，不由 LLM 解析；beta 硬类型命中+词表重合项废弃）；无帖子级热度/互动项（纯兴趣匹配最小机制）；已曝光帖按 exposure_mode none/penalize/exclude 处理；官方置顶帖先占前部槽位，算法填充余下槽位并排除已置顶 id（避免重复）。"
   },
-  "norm_pressure_detail": {
-    "decay": "每 tick 打开阶段按公式内生计算（见 _norm_pressure）",
-    "sustained": "event_week(W13) 正常计算并记录峰值，W14 起 P_t 冻结为该峰值（实验设计 五.2②：反事实维持高压不衰减）",
-    "exposure": "P_t 数值+等级经 get_feed 暴露给所有 agent（需求 5）"
-  },
   "unresolved": [
     {
       "id": "U1",
@@ -886,7 +908,7 @@
     },
     {
       "id": "U2",
-      "question": "P_t 公式与 interest 评分（含权重/阈值默认值）为拟议默认值；按实验设计 '参数设定与敏感性分析阶段确定'，默认值仅保证机制可运行，interest_normal 生成性验证未达标时应先做参数敏感性，而非改机制。",
+      "question": "涌现环境参数（K_a/K_f/β/σ/clamp）与 interest 评分（含权重/阈值默认值）为拟议默认值；按实验设计 '参数设定与敏感性分析阶段确定'，默认值仅保证机制可运行，interest_normal 生成性验证未达标时应先做参数敏感性，而非改机制。",
       "impact": "影响 calibrate 阶段，不影响结构"
     },
     {
@@ -919,14 +941,13 @@
     "compatibility": "文件 custom/envs/curation_dynamics_space.py；类名即 registry key；提供 step()、description()、init_description()；cls() 无必填构造参数（全部 kwargs 有默认值）；readonly observe 工具 get_feed 提供观察能力；to_workspace()/restore() 实现以支持 --resume"
   },
   "experiment_overrides_2026_09_10": {
-    "note": "用户 2026-09-10 裁定（实验级配置，模块机制不变；含同日追加的两项）",
+    "note": "用户 2026-09-10/11 裁定（实验级配置 + 同日机制重设计：悼念规范压力退役、玩梗涌现环境上岗；早版线性刺激-阈值规则已被涌现增益表达效用模型取代）",
     "agenda_setting": {
       "change": "官方媒体全程仅 W13 一条讣告帖（原文给定，随注入样本下发，is_official=True）并对全员置顶；其余真实数据帖一律 is_official=False",
       "config": {
-        "w_official": 0.0,
         "official_pin_extend_weeks": 0
       },
-      "effect": "P_t = w_mourning·M_t + w_volume·V_t（上限 0.7）；讣告帖仅 W13 置顶，W14 起按算法自然竞争"
+      "effect": "讣告帖仅 W13 置顶，W14 起按算法自然竞争；讣告帖作为普通注入帖计入当周 arena 供给（1/35），进入涌现环境的存量/流量统计"
     },
     "population_caliber": {
       "change": "群体比例改按发帖人口径：meme 18 / mourning 21 / marketing 26 / education 15 / other 20",
@@ -940,12 +961,35 @@
       "change": "agent 侧 _find_feed_dict 递归 DFS 改迭代 BFS（浅层优先、命中即停、跳过 variables）"
     },
     "decision_rule": {
-      "change": "发言决策改线性刺激-阈值规则：x=(spiral+decay+pressure)/3，发言当且仅当 x≥activity；activity=个体发言阈值（活跃者阈值低），类型均值统一 0.95（校准），确定性决策无随机数；替代 p=activity×spiral×decay×pressure 概率规则",
-      "effect": "agent 侧决策重写（_speak_stimulus）；阈值基数 0.95 校准 → 期望 ≈330 帖/run > 250 注入；decay 330 vs sustained 302，机制对比保留"
+      "change": "发言决策改涌现增益表达效用模型：U = D·R·G^θ，发言当且仅当 U ≥ activity（个体门槛，活跃者低，类型均值统一 0.95 校准）；D = 1+s·(share_own−base)/base clamp[0.05,2]（沉默的螺旋收益侧气候共振）、R = exp(−λ·cum_own/50)（注意力衰减收益侧疲劳）、G = clamp(B^β·S^σ,0.2,3.0)（玩梗涌现环境增益，env 侧逐周计算，仅玩梗型 θ=1.0，其余 θ=0）；三因子乘法进入效用，杜绝线性等权平均的补偿性稀释；确定性决策无随机数；替代 2026-09-10 早版线性刺激 x=(spiral+decay+pressure)/3 与更早的 p=activity×spiral×decay×pressure 概率规则",
+      "effect": "agent 侧 _speak_stimulus 重写；门槛基数 0.95 校准 → normal 臂期望 ≈463 帖/run（agent 供给 ~65% > 注入 250，≈460 次内容 LLM 调用/run）；normal 玩梗 W19 起量 14 帖 vs sustained_hot W19=0，机制对比保留"
+    },
+    "meme_emergence": {
+      "change": "第二因子由悼念规范压力改为玩梗涌现环境（用户 2026-09-10 裁定存量/流量语义；悼念规范压力与沉默螺旋 D 因子存在共线性冗余，经用户确认退役）",
+      "config": {
+        "meme_emergence_mode": "normal | sustained_hot",
+        "emergence_flow_by_week": "现实口径周新增调度（W12=1246 … W22=5338）",
+        "emergence_window_stock": 6,
+        "emergence_ka": null,
+        "emergence_kf": null,
+        "emergence_beta": 1.0,
+        "emergence_sigma": 1.0,
+        "emergence_gain_min": 0.2,
+        "emergence_gain_max": 3.0
+      },
+      "effect": "env 打开阶段逐周计算 B/S/G 经 get_feed 快照下发；sustained_hot 事件周后冻结 S；实现裁定：S 读外生现实口径调度、B 保持内生——sim arena 流量被 250 条注入预算压缩（峰谷比 ~1.6× vs 现实 ~9×），单靠内生计数表达不出真实洪峰/退潮节律，S 外生保住臂间对比度，B 内生保留 meme 再拥挤反哺存量、G 回落自限的反馈回路"
     },
     "injection_caliber": {
       "change": "确认注入分层只依据各周帖子（内容）类型占比，与 agent 群体发帖人口径比例独立、互不混用",
       "effect": "config manifest 与 EXPERIMENT.md 明示口径区分"
     }
+  },
+  "meme_env_detail": {
+    "semantics": "用户 2026-09-10 裁定存量/流量语义：舆论场总帖子越丰沛越易诞生 meme（存量 B），当期新增帖子越少越空旷、越宜 meme 传播（流量 S）",
+    "normal": "S 随现实口径周新增调度逐周演化：洪峰（W13-W14）压低 S → G<1 玩梗表达被淹没；退潮释放 → G>1 被看见",
+    "sustained_hot": "事件周（W13）记录 S 后冻结（维持高热不退，反事实）；B 保持内生",
+    "gain": "G=clamp(B^β·S^σ,0.2,3.0)，β=σ=1 起步；仅进入玩梗型表达效用（θ=1.0，其余类型 θ=0）",
+    "self_limit": "玩梗供给回升 → 存量加厚 + 当期流量抬升 → G 回落，logistic 式自限反馈",
+    "exposure": "B/S/G 数值经 get_feed 快照（meme_env 键）下发所有 agent；θ=0 的类型等效不受影响"
   }
 }

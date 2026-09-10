@@ -1,25 +1,25 @@
 {
   "experiment": "hypothesis_4/experiment_1",
-  "design": "3 推荐算法 × 2 悼念规范压力 全因子，每 cell 3 seeds，共 18 runs",
+  "design": "3 推荐算法 × 2 玩梗涌现模式 全因子，每 cell 3 seeds，共 18 runs",
   "run_ids": [
-    "random_decay_s0",
-    "random_decay_s1",
-    "random_decay_s2",
-    "random_sustained_s0",
-    "random_sustained_s1",
-    "random_sustained_s2",
-    "chronological_decay_s0",
-    "chronological_decay_s1",
-    "chronological_decay_s2",
-    "chronological_sustained_s0",
-    "chronological_sustained_s1",
-    "chronological_sustained_s2",
-    "interest_decay_s0",
-    "interest_decay_s1",
-    "interest_decay_s2",
-    "interest_sustained_s0",
-    "interest_sustained_s1",
-    "interest_sustained_s2"
+    "random_normal_s0",
+    "random_normal_s1",
+    "random_normal_s2",
+    "random_sustained_hot_s0",
+    "random_sustained_hot_s1",
+    "random_sustained_hot_s2",
+    "chronological_normal_s0",
+    "chronological_normal_s1",
+    "chronological_normal_s2",
+    "chronological_sustained_hot_s0",
+    "chronological_sustained_hot_s1",
+    "chronological_sustained_hot_s2",
+    "interest_normal_s0",
+    "interest_normal_s1",
+    "interest_normal_s2",
+    "interest_sustained_hot_s0",
+    "interest_sustained_hot_s1",
+    "interest_sustained_hot_s2"
   ],
   "factors": {
     "recommendation_algorithm": [
@@ -27,9 +27,9 @@
       "chronological",
       "interest"
     ],
-    "mourning_norm_pressure": [
-      "decay",
-      "sustained"
+    "meme_emergence_mode": [
+      "normal",
+      "sustained_hot"
     ],
     "random_seed": [
       0,
@@ -54,7 +54,7 @@
       "sample_seed": 43,
       "meme": "linkage 全量 + strong 抽样；mourning/marketing/education=main 抽样；other=空"
     },
-    "speak_decision": "表达效用模型（无 LLM，用户 2026-09-10 裁定方案 B；Kuran 1995 成本-收益框架）：U=D·R−c·v·P_t，发言当且仅当 U≥activity（个体表达门槛，门槛低者易发言；确定性决策无随机数）。D=1+s·(share_own−base)/base clamp[0.05,2]（沉默螺旋，收益侧共振）；R=exp(−λ·cum_own/50)（注意力衰减，收益侧折减）；C=c·v·P_t（规范表达成本，v=norm_dev 结构系数，mourning 为负=同向补贴；c=1.0）。门槛基数 0.95 校准（calibrate_speak.py：真实周构成气候代理+P_t=0.4·M_t+0.3·V_t，decay 352 帖/run 供给 58%>250 注入；sustained 251 帖）；params 随 profile 下发",
+    "speak_decision": "涌现增益表达效用模型（无 LLM，用户 2026-09-10 裁定）：U=D·R·G^θ，发言当且仅当 U≥activity（个体表达门槛，门槛低者易发言；确定性决策无随机数）。D=1+s·(share_own−base)/base clamp[0.05,2]（沉默螺旋）；R=exp(−λ·cum_own/50)（注意力衰减）；G=clamp(B^β·S^σ,0.2,3.0)（玩梗涌现环境增益，env 侧逐周计算：B=存量丰沛度=过去6周arena供给/基线、S=流量空旷度=现实口径新增/基线，两者以基线周W12=1；θ=emergence 结构系数，仅玩梗型 1.0，其余 0）。中性状态（D≈R≈1、G=1）下 U≈1.0，三因子乘法进入效用；门槛基数 0.95 校准（calibrate_speak.py 真实 Stock/Flow 涌现环境代理）；params 随 profile 下发",
     "content_grounding": "发言内容须基于本周 feed 前 5 条（feed_context_n=5）：回应/讨论/二创/跟帖（用户 2026-09-10 裁定）"
   },
   "injection": {
@@ -74,12 +74,32 @@
     },
     "sample_seed_offset": 777,
     "sampling_method": "每周池内类型分层比例抽样（最大余数法），按当周帖子（内容）类型占比分配配额，构成确定性贴合当周真实分布；与 agent 群体的发帖人口径比例（18/21/26/15/20）相互独立、互不混用（用户 2026-09-10 确认）；真实数据帖一律按普通内容处理",
-    "official_announcement": "官方媒体全程仅 W13 一条讣告帖（原文给定），全员置顶可见，官方无其他作用（w_official=0，置顶不延伸）",
+    "official_announcement": "官方媒体全程仅 W13 一条讣告帖（原文给定），全员置顶可见，官方无其他作用（置顶不延伸）",
     "sampling_ratio": 1.0,
     "sample_files": {
       "0": "hypothesis_4/experiment_1/init/injection_sample_s0.json",
       "1": "hypothesis_4/experiment_1/init/injection_sample_s1.json",
       "2": "hypothesis_4/experiment_1/init/injection_sample_s2.json"
+    }
+  },
+  "emergence_env": {
+    "semantics": "存量/流量（用户 2026-09-10 裁定）：总帖子越丰沛越易诞生 meme（B_t），当期新增越少越空旷越宜传播（S_t）",
+    "stock": "Stock_t = 过去 emergence_window_stock=6 周 arena 供给总数（内生：注入+agent 帖），B_t=f(Stock_t)/f(Stock_base)，f(x)=x/(x+K_a)，K_a 默认=注入计划事件周窗口存量",
+    "flow": "Flow_t = 现实口径周新增帖量调度（真实数据各周全量帖数，sim arena 流量被注入预算压缩故 S 读外生调度），S_t=h(Flow_t)/h(Flow_base)，h(x)=K_f/(K_f+x)，K_f 默认=调度基线周值",
+    "gain": "G_t=clamp(B^β·S^σ,0.2,3.0)，β=σ=1 起步；仅玩梗型 θ=1.0 进入效用，其余 θ=0",
+    "sustained_hot": "反事实臂：事件周（W13）后 S 冻结在事件周记录值，B 保持内生",
+    "flow_schedule": {
+      "2026-W12": 1246,
+      "2026-W13": 11394,
+      "2026-W14": 8678,
+      "2026-W15": 5050,
+      "2026-W16": 3756,
+      "2026-W17": 2416,
+      "2026-W18": 1703,
+      "2026-W19": 1792,
+      "2026-W20": 2735,
+      "2026-W21": 4252,
+      "2026-W22": 5338
     }
   },
   "steps": {
@@ -88,14 +108,18 @@
     "tick_seconds": 604800
   },
   "deferred_defaults": {
-    "note": "interest 臂 α/γ 与 P_t 权重/阈值取 DesignSpec 默认值，待校准与敏感性分析（U2）。β 已废弃（2026-09-09 裁定：倾向分替代硬类型命中+词表重合项），保留 kwarg 兼容、不参与评分；w_official 已按 2026-09-10 议程重设计裁定显式置 0（官方媒体无其他作用）",
+    "note": "interest 臂 α/γ 取 DesignSpec 默认值；涌现窗口/αβσ 与 K_a/K_f 用 env 默认，待校准与敏感性分析（U2）。β 已废弃（2026-09-09 裁定：倾向分替代硬类型命中+词表重合项），保留 kwarg 兼容、不参与评分。2026-09-10 机制重设计：悼念规范压力（norm_pressure/w_* 权重）整体退役",
     "alpha": 1.0,
     "beta_deprecated": null,
     "gamma": 0.5,
-    "w_official": 0.0,
-    "w_mourning": 0.4,
-    "w_volume": 0.3
+    "emergence_window_stock": 6,
+    "emergence_beta": 1.0,
+    "emergence_sigma": 1.0,
+    "emergence_gain_clamp": [
+      0.2,
+      3.0
+    ]
   },
-  "default_init_config": "interest_decay_s0",
+  "default_init_config": "interest_normal_s0",
   "run_command": "$PYTHON_PATH .agentsociety/bin/ags.py run-experiment start --hypothesis-id 4 --experiment-id 1 --init-config hypothesis_4/experiment_1/init/configs/<run_id>.json --run-id <run_id>"
 }

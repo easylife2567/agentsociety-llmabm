@@ -2,17 +2,22 @@
 
 生成 CurationDynamicsSpace × CurationDiscourseAgent 的全因子实验配置：
 
-- 3 推荐算法（random / chronological / interest）× 2 悼念规范压力模式（decay / sustained）
+- 3 推荐算法（random / chronological / interest）× 2 玩梗涌现模式（normal / sustained_hot）
   = 6 cells，每 cell 3 seeds（0/1/2）= 18 个 init_config 变体，写入 init/configs/。
 - 100 个 agent（用户 2026-09-10 裁定按发帖人口径：玩梗18/悼念21/营销26/教育15/其他20），
   群体由 custom/agents/curation_personas.build_population(seed=42) 生成，**18 个配置完全共享**。
 - 真实帖子注入：按用户裁定「全程约 250 条」，从 custom/envs/curation_assets/
   injection_posts.json 的 W12–W22 池中按 seed 预抽样 3 份样本文件（每份 250 条，
   保底+按真实周量比例分配），env 侧 sampling_ratio=1.0 全量注入当周样本。
+- 玩梗涌现环境（用户 2026-09-10 裁定的存量/流量语义）：Stock_t = 过去 6 周 arena
+  供给总数（内生：注入 + agent 帖）→ 丰沛度 B_t；Flow_t 读取现实口径周新增帖量调度
+  emergence_flow_by_week（真实数据各周全量帖数，缺周回退内生计数）→ 空旷度 S_t。
+  G_t = clamp(B^β·S^σ, 0.2, 3.0)，仅进入玩梗型效用（θ=emergence=1.0）。
+  sustained_hot 反事实臂：事件周（W13）后 S 冻结在事件周值，B 保持内生。
 - 议程设置（用户 2026-09-10 裁定）：官方媒体全程仅 W13 一条讣告帖（原文给定），
   注入并对全员置顶可见；其余真实数据帖一律按普通内容处理（is_official=False），
-  P_t 官方项权重置 0（w_official=0.0），官方置顶不延伸（official_pin_extend_weeks=0）。
-- init/init_config.json 为标准 CLI 默认配置（= configs/interest_decay_s0.json）。
+  官方置顶不延伸（official_pin_extend_weeks=0）。
+- init/init_config.json 为标准 CLI 默认配置（= configs/interest_normal_s0.json）。
 
 仅使用标准库；由 `experiment-config run` 执行。
 """
@@ -40,7 +45,7 @@ configs_dir.mkdir(parents=True, exist_ok=True)
 # 实验结构常量（用户 2026-09-08 裁定）
 # ---------------------------------------------------------------------------
 ALGORITHMS = ["random", "chronological", "interest"]
-PRESSURE_MODES = ["decay", "sustained"]
+EMERGENCE_MODES = ["normal", "sustained_hot"]
 SEEDS = [0, 1, 2]
 
 # 用户 2026-09-10 裁定：按发帖人类型占比（不再按内容划分）——
@@ -74,7 +79,7 @@ assert sum(INJECTION_ALLOCATION.values()) == 250
 
 # 议程设置重设计（用户 2026-09-10 裁定）：官方媒体全程仅此一条帖子，W13 注入并对
 # 全员置顶可见；除此之外官方媒体无任何其他作用——其余真实数据帖一律按普通内容处理
-# （is_official=False），P_t 的官方项权重置 0，官方置顶不延伸周。
+# （is_official=False），官方置顶不延伸周。
 # W13 配额 = 34 条普通抽样 + 1 条讣告帖 = 35（总注入量维持 250）。
 ANNOUNCEMENT_WEEK = "2026-W13"
 ANNOUNCEMENT_POST: dict = {
@@ -169,6 +174,22 @@ by_week: dict[str, list[dict]] = {}
 for rec in all_posts:
     by_week.setdefault(str(rec["week"]), []).append(rec)
 
+# ---------------------------------------------------------------------------
+# 2b. 玩梗涌现环境流量调度（emergence_flow_by_week；用户 2026-09-10 存量/流量语义）
+#
+# S_t（空旷度）读取现实口径周新增帖量：sim arena 的流量被 250 条注入预算压缩
+# （保底 15/周托底谷值、洪峰仅 ~2×，agent 供给又平稳 → arena 总流量峰谷比 ~1.6×，
+# 远弱于现实 ~9×），单靠内生计数表达不出真实洪峰/退潮节律，S 会失去臂间对比度。
+# 故调度取真实数据各周全量帖数（W12–W22），env 内归一化 h(x)=K_f/(K_f+x)、
+# 基线周（W12）=1；B_t（丰沛度）保持内生（arena 供给），保留 meme 再拥挤反哺
+# 存量的自限反馈。sustained_hot 臂在 env 内冻结 S，不需要单独调度。
+# ---------------------------------------------------------------------------
+EMERGENCE_FLOW_BY_WEEK: dict[str, int] = {
+    week: len(by_week.get(week, [])) for week in INJECTION_ALLOCATION
+}
+assert all(v > 0 for v in EMERGENCE_FLOW_BY_WEEK.values()), "涌现流量调度存在空周"
+print(f"✓ 涌现流量调度（现实口径周新增）：{EMERGENCE_FLOW_BY_WEEK}")
+
 
 def _largest_remainder(total_k: int, groups: dict[str, list]) -> dict[str, int]:
     """按组大小比例把 total_k 分配到各组（最大余数法），和恰为 total_k。"""
@@ -260,7 +281,7 @@ for seed in SEEDS:
 # 3. 生成 18 个 init_config 变体 + 默认 init_config.json
 # ---------------------------------------------------------------------------
 
-def make_config(algorithm: str, pressure: str, seed: int) -> dict:
+def make_config(algorithm: str, mode: str, seed: int) -> dict:
     return {
         "env_modules": [
             {
@@ -268,8 +289,14 @@ def make_config(algorithm: str, pressure: str, seed: int) -> dict:
                 "kwargs": {
                     # —— 实验因子（cell 内锁定）——
                     "recommendation_algorithm": algorithm,
-                    "mourning_norm_pressure": pressure,
+                    "meme_emergence_mode": mode,  # normal / sustained_hot（W13 后冻结 S）
                     "random_seed": seed,
+                    # —— 玩梗涌现环境（用户 2026-09-10 存量/流量语义）——
+                    "emergence_flow_by_week": EMERGENCE_FLOW_BY_WEEK,
+                    # 其余涌现参数（emergence_window_stock=6 / emergence_ka /
+                    # emergence_kf / emergence_beta=1.0 / emergence_sigma=1.0 /
+                    # gain_min=0.2 / gain_max=3.0）用 env 默认值，
+                    # 待校准与敏感性分析（U2）统一处理。
                     # —— 数据资产 ——
                     "injection_data_path": sample_paths[seed],
                     "vocab_path": "custom/envs/curation_assets/vocabs.json",
@@ -282,11 +309,9 @@ def make_config(algorithm: str, pressure: str, seed: int) -> dict:
                     "event_week": EVENT_WEEK,
                     "feed_size": FEED_SIZE,
                     # —— 议程设置（用户 2026-09-10 裁定）——
-                    "w_official": 0.0,               # 官方媒体无其他作用：P_t 官方项停用
                     "official_pin_extend_weeks": 0,  # 讣告帖仅事件周（W13）置顶，不延伸
-                    # 其余 kwargs（official_pin_extend_weeks / alpha / beta / gamma /
-                    # interest_noise_eps / P_t 权重与阈值 / exposure_mode）用 spec 默认值，
-                    # 待校准与敏感性分析（U2）统一处理。
+                    # 其余 kwargs（alpha / beta / gamma / interest_noise_eps /
+                    # exposure_mode）用 spec 默认值。
                 },
             }
         ],
@@ -296,18 +321,18 @@ def make_config(algorithm: str, pressure: str, seed: int) -> dict:
 
 run_ids: list[str] = []
 for algorithm in ALGORITHMS:
-    for pressure in PRESSURE_MODES:
+    for mode in EMERGENCE_MODES:
         for seed in SEEDS:
-            run_id = f"{algorithm}_{pressure}_s{seed}"
-            cfg = make_config(algorithm, pressure, seed)
+            run_id = f"{algorithm}_{mode}_s{seed}"
+            cfg = make_config(algorithm, mode, seed)
             (configs_dir / f"{run_id}.json").write_text(
                 json.dumps(cfg, ensure_ascii=False, indent=2), encoding="utf-8"
             )
             run_ids.append(run_id)
             print(f"✓ {run_id}")
 
-# 默认 init_config.json = 核心处理 cell（interest × decay, seed 0），供标准 CLI / 冒烟。
-default_run_id = "interest_decay_s0"
+# 默认 init_config.json = 核心处理 cell（interest × normal, seed 0），供标准 CLI / 冒烟。
+default_run_id = "interest_normal_s0"
 (script_dir / "init_config.json").write_text(
     (configs_dir / f"{default_run_id}.json").read_text(encoding="utf-8"), encoding="utf-8"
 )
@@ -321,11 +346,11 @@ print("✓ steps.yaml (start_t=2026-03-16, 11 × 604800s)")
 
 manifest = {
     "experiment": "hypothesis_4/experiment_1",
-    "design": "3 推荐算法 × 2 悼念规范压力 全因子，每 cell 3 seeds，共 18 runs",
+    "design": "3 推荐算法 × 2 玩梗涌现模式 全因子，每 cell 3 seeds，共 18 runs",
     "run_ids": run_ids,
     "factors": {
         "recommendation_algorithm": ALGORITHMS,
-        "mourning_norm_pressure": PRESSURE_MODES,
+        "meme_emergence_mode": EMERGENCE_MODES,
         "random_seed": SEEDS,
     },
     "population": {
@@ -339,7 +364,7 @@ manifest = {
             "sample_seed": VOCAB_SAMPLE_SEED,
             "meme": "linkage 全量 + strong 抽样；mourning/marketing/education=main 抽样；other=空",
         },
-        "speak_decision": "表达效用模型（无 LLM，用户 2026-09-10 裁定方案 B；Kuran 1995 成本-收益框架）：U=D·R−c·v·P_t，发言当且仅当 U≥activity（个体表达门槛，门槛低者易发言；确定性决策无随机数）。D=1+s·(share_own−base)/base clamp[0.05,2]（沉默螺旋，收益侧共振）；R=exp(−λ·cum_own/50)（注意力衰减，收益侧折减）；C=c·v·P_t（规范表达成本，v=norm_dev 结构系数，mourning 为负=同向补贴；c=1.0）。门槛基数 0.95 校准（calibrate_speak.py：真实周构成气候代理+P_t=0.4·M_t+0.3·V_t，decay 352 帖/run 供给 58%>250 注入；sustained 251 帖）；params 随 profile 下发",
+        "speak_decision": "涌现增益表达效用模型（无 LLM，用户 2026-09-10 裁定）：U=D·R·G^θ，发言当且仅当 U≥activity（个体表达门槛，门槛低者易发言；确定性决策无随机数）。D=1+s·(share_own−base)/base clamp[0.05,2]（沉默螺旋）；R=exp(−λ·cum_own/50)（注意力衰减）；G=clamp(B^β·S^σ,0.2,3.0)（玩梗涌现环境增益，env 侧逐周计算：B=存量丰沛度=过去6周arena供给/基线、S=流量空旷度=现实口径新增/基线，两者以基线周W12=1；θ=emergence 结构系数，仅玩梗型 1.0，其余 0）。中性状态（D≈R≈1、G=1）下 U≈1.0，三因子乘法进入效用；门槛基数 0.95 校准（calibrate_speak.py 真实 Stock/Flow 涌现环境代理）；params 随 profile 下发",
         "content_grounding": "发言内容须基于本周 feed 前 5 条（feed_context_n=5）：回应/讨论/二创/跟帖（用户 2026-09-10 裁定）",
     },
     "injection": {
@@ -347,17 +372,26 @@ manifest = {
         "allocation": INJECTION_ALLOCATION,
         "sample_seed_offset": SAMPLE_SEED_OFFSET,
         "sampling_method": "每周池内类型分层比例抽样（最大余数法），按当周帖子（内容）类型占比分配配额，构成确定性贴合当周真实分布；与 agent 群体的发帖人口径比例（18/21/26/15/20）相互独立、互不混用（用户 2026-09-10 确认）；真实数据帖一律按普通内容处理",
-        "official_announcement": "官方媒体全程仅 W13 一条讣告帖（原文给定），全员置顶可见，官方无其他作用（w_official=0，置顶不延伸）",
+        "official_announcement": "官方媒体全程仅 W13 一条讣告帖（原文给定），全员置顶可见，官方无其他作用（置顶不延伸）",
         "sampling_ratio": 1.0,
         "sample_files": {str(s): sample_paths[s] for s in SEEDS},
     },
+    "emergence_env": {
+        "semantics": "存量/流量（用户 2026-09-10 裁定）：总帖子越丰沛越易诞生 meme（B_t），当期新增越少越空旷越宜传播（S_t）",
+        "stock": "Stock_t = 过去 emergence_window_stock=6 周 arena 供给总数（内生：注入+agent 帖），B_t=f(Stock_t)/f(Stock_base)，f(x)=x/(x+K_a)，K_a 默认=注入计划事件周窗口存量",
+        "flow": "Flow_t = 现实口径周新增帖量调度（真实数据各周全量帖数，sim arena 流量被注入预算压缩故 S 读外生调度），S_t=h(Flow_t)/h(Flow_base)，h(x)=K_f/(K_f+x)，K_f 默认=调度基线周值",
+        "gain": "G_t=clamp(B^β·S^σ,0.2,3.0)，β=σ=1 起步；仅玩梗型 θ=1.0 进入效用，其余 θ=0",
+        "sustained_hot": "反事实臂：事件周（W13）后 S 冻结在事件周记录值，B 保持内生",
+        "flow_schedule": EMERGENCE_FLOW_BY_WEEK,
+    },
     "steps": {"start_t": "2026-03-16T00:00:00", "num_steps": NUM_TICKS, "tick_seconds": 604800},
     "deferred_defaults": {
-        "note": ("interest 臂 α/γ 与 P_t 权重/阈值取 DesignSpec 默认值，待校准与敏感性分析（U2）。"
-                 "β 已废弃（2026-09-09 裁定：倾向分替代硬类型命中+词表重合项），保留 kwarg 兼容、不参与评分；"
-                 "w_official 已按 2026-09-10 议程重设计裁定显式置 0（官方媒体无其他作用）"),
+        "note": ("interest 臂 α/γ 取 DesignSpec 默认值；涌现窗口/αβσ 与 K_a/K_f 用 env 默认，"
+                 "待校准与敏感性分析（U2）。β 已废弃（2026-09-09 裁定：倾向分替代硬类型命中+词表重合项），"
+                 "保留 kwarg 兼容、不参与评分。2026-09-10 机制重设计：悼念规范压力（norm_pressure/w_* 权重）整体退役"),
         "alpha": 1.0, "beta_deprecated": None, "gamma": 0.5,
-        "w_official": 0.0, "w_mourning": 0.4, "w_volume": 0.3,
+        "emergence_window_stock": 6, "emergence_beta": 1.0, "emergence_sigma": 1.0,
+        "emergence_gain_clamp": [0.2, 3.0],
     },
     "default_init_config": default_run_id,
     "run_command": (

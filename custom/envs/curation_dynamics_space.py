@@ -1,9 +1,9 @@
 """舆论场数字表征转移模拟环境（CurationDynamicsSpace）。
 
-实验背景：张雪峰 2026-03-24（2026-W13）去世后，三种推荐算法 × 两种悼念规范压力
+实验背景：张雪峰 2026-03-24（2026-W13）去世后，三种推荐算法 × 两种玩梗涌现环境
 （3×2 全因子 6 cells）下，100 个固定类型 Agent 的差异化激活与公共表征构成变化
 （W12→W22 共 11 周）。Agent 每 tick 先通过 **get_feed(agent_id)** 读取本周推荐信息流
-（feed）、意见气候、悼念规范压力与全局供给/曝光份额，再决定是否发言；发言通过
+（feed）、意见气候、玩梗涌现环境与全局供给/曝光份额，再决定是否发言；发言通过
 **create_post(agent_id, content)** 发布一篇类型由其固定 Agent 类型决定的内容（每 tick
 至多 1 帖，重复调用无效）。
 
@@ -85,15 +85,19 @@ def _rng_state_from_json(v: Any) -> Any:
 
 
 class CurationDynamicsSpace(EnvBase):
-    """舆论场数字表征转移模拟环境：三种推荐算法 × 两种悼念规范压力（3×2 全因子 6 cells），
+    """舆论场数字表征转移模拟环境：三种推荐算法 × 两种玩梗涌现环境（3×2 全因子 6 cells），
     100 个固定类型 Agent 的差异化激活与公共表征构成变化（张雪峰 2026-03-24 去世 W13，W12→W22 共 11 周）。"""
 
     # ---------------- Replay 列声明 ----------------
-    # env 级：每 step 一行（主键 step=_step_index），43 列。
+    # env 级：每 step 一行（主键 step=_step_index），47 列。
     _env_state_columns: ClassVar[list[ColumnDef]] = [
         ColumnDef("week", "TEXT", description="当前 tick 的 ISO 周标签"),
-        ColumnDef("norm_pressure", "REAL", description="悼念规范压力 P_t"),
-        ColumnDef("norm_pressure_level", "TEXT", description="P_t 等级 high/medium/low"),
+        ColumnDef("meme_env_stock", "INTEGER", description="涌现环境存量 Stock_t：过去 emergence_window_stock 周（含本周）供给总数（注入+agent 帖）"),
+        ColumnDef("meme_env_flow", "INTEGER", description="涌现环境流量（arena 口径）：本 tick 新增供给总数（注入+agent 帖）"),
+        ColumnDef("meme_env_flow_world", "INTEGER", description="涌现环境流量（现实口径）：本周真实新增帖量镜像调度值"),
+        ColumnDef("meme_env_abundance", "REAL", description="丰沛度 B_t = f(Stock_t)/f(Stock_base)，f(x)=x/(x+K_a)；基线周=1"),
+        ColumnDef("meme_env_emptiness", "REAL", description="空旷度 S_t = h(Flow_t)/h(Flow_base)，h(x)=K_f/(K_f+x)；基线周=1；sustained_hot 臂事件周后冻结"),
+        ColumnDef("meme_env_gain", "REAL", description="涌现增益 G_t = clamp(B_t^β·S_t^σ, gain_min, gain_max)；经 agent 侧 θ 进入表达效用"),
         ColumnDef("total_supply", "INTEGER", description="本 tick 新增供给总数（agent 产出+注入）"),
         ColumnDef("agent_supply", "INTEGER", description="本 tick Agent 产出帖数"),
         ColumnDef("injected_count", "INTEGER", description="本 tick 注入帖数"),
@@ -136,7 +140,7 @@ class CurationDynamicsSpace(EnvBase):
         ColumnDef("official_exposure_slots", "INTEGER", description="本 tick 官方帖占据的 feed 槽位数"),
     ]
 
-    # agent 级：每 step 每 agent 一行（主键 agent_id+step），20 列。
+    # agent 级：每 step 每 agent 一行（主键 agent_id+step），21 列。
     _agent_state_columns: ClassVar[list[ColumnDef]] = [
         ColumnDef("agent_type", "TEXT", description="Agent 固定类型（全程不变）"),
         ColumnDef("spoke", "INTEGER", description="本 tick 是否发言"),
@@ -155,8 +159,9 @@ class CurationDynamicsSpace(EnvBase):
         ColumnDef("climate_marketing", "REAL", description="该 Agent 所见意见气候"),
         ColumnDef("climate_other", "REAL", description="该 Agent 所见意见气候"),
         ColumnDef("climate_noise", "REAL", description="该 Agent 所见意见气候"),
-        ColumnDef("norm_pressure_seen", "REAL", description="本 tick 该 Agent 看到的 P_t"),
-        ColumnDef("norm_pressure_level_seen", "TEXT", description="本 tick 该 Agent 看到的 P_t 等级"),
+        ColumnDef("meme_env_abundance_seen", "REAL", description="本 tick 该 Agent 所见丰沛度 B_t"),
+        ColumnDef("meme_env_emptiness_seen", "REAL", description="本 tick 该 Agent 所见空旷度 S_t"),
+        ColumnDef("meme_env_gain_seen", "REAL", description="本 tick 该 Agent 所见涌现增益 G_t"),
         ColumnDef("feed_slots", "INTEGER", description="本 tick 该 Agent feed 槽位数"),
     ]
 
@@ -166,7 +171,7 @@ class CurationDynamicsSpace(EnvBase):
         super().__init__()
         # config kwargs（全部有默认值，与 spec config_kwargs 一致；cls() 无必填参数）。
         self._recommendation_algorithm = str(kwargs.pop("recommendation_algorithm", "random"))
-        self._mourning_norm_pressure = str(kwargs.pop("mourning_norm_pressure", "decay"))
+        self._meme_emergence_mode = str(kwargs.pop("meme_emergence_mode", "normal"))
         self._random_seed = int(kwargs.pop("random_seed", 0))
         self._feed_size = int(kwargs.pop("feed_size", 20))
         self._sampling_ratio = float(kwargs.pop("sampling_ratio", 0.05))
@@ -187,11 +192,17 @@ class CurationDynamicsSpace(EnvBase):
         self._exposure_penalty_weight = float(kwargs.pop("exposure_penalty_weight", 0.1))
         rrw = kwargs.pop("random_recency_window_weeks", None)
         self._random_recency_window_weeks: Optional[int] = int(rrw) if rrw is not None else None
-        self._w_official = float(kwargs.pop("w_official", 0.3))
-        self._w_mourning = float(kwargs.pop("w_mourning", 0.4))
-        self._w_volume = float(kwargs.pop("w_volume", 0.3))
-        self._pressure_high_threshold = float(kwargs.pop("pressure_high_threshold", 0.6))
-        self._pressure_medium_threshold = float(kwargs.pop("pressure_medium_threshold", 0.3))
+        raw_flow_sched = kwargs.pop("emergence_flow_by_week", None)
+        self._emergence_flow_by_week: dict[str, int] = (
+            {str(w): int(c) for w, c in raw_flow_sched.items()} if raw_flow_sched else {}
+        )
+        self._emergence_window_stock = int(kwargs.pop("emergence_window_stock", 6))
+        self._emergence_ka = kwargs.pop("emergence_ka", None)
+        self._emergence_kf = kwargs.pop("emergence_kf", None)
+        self._emergence_beta = float(kwargs.pop("emergence_beta", 1.0))
+        self._emergence_sigma = float(kwargs.pop("emergence_sigma", 1.0))
+        self._emergence_gain_min = float(kwargs.pop("emergence_gain_min", 0.2))
+        self._emergence_gain_max = float(kwargs.pop("emergence_gain_max", 3.0))
         if kwargs:
             logger.warning(
                 "CurationDynamicsSpace received unknown init kwargs: %s; ignored.",
@@ -200,8 +211,10 @@ class CurationDynamicsSpace(EnvBase):
 
         if self._recommendation_algorithm not in ("random", "chronological", "interest"):
             raise ValueError(f"recommendation_algorithm must be one of random/chronological/interest, got {self._recommendation_algorithm!r}")
-        if self._mourning_norm_pressure not in ("decay", "sustained"):
-            raise ValueError(f"mourning_norm_pressure must be decay/sustained, got {self._mourning_norm_pressure!r}")
+        if self._meme_emergence_mode not in ("normal", "sustained_hot"):
+            raise ValueError(f"meme_emergence_mode must be normal/sustained_hot, got {self._meme_emergence_mode!r}")
+        if self._emergence_window_stock < 1:
+            raise ValueError(f"emergence_window_stock must be >= 1, got {self._emergence_window_stock}")
         if self._exposure_mode not in ("none", "penalize", "exclude"):
             raise ValueError(f"exposure_mode must be none/penalize/exclude, got {self._exposure_mode!r}")
         for aid, ttype in self._agent_types.items():
@@ -238,9 +251,12 @@ class CurationDynamicsSpace(EnvBase):
         self._spoke_this_tick: dict[str, bool] = {}
         self._posted_this_step: set[str] = set()
         self._feeds: dict[str, list[dict[str, Any]]] = {}
-        self._norm_pressure = 0.0
-        self._norm_pressure_level = "low"
-        self._norm_pressure_peak: Optional[float] = None  # sustained 模式冻结峰值
+        self._meme_env: dict[str, Any] = {
+            "stock": 0, "flow": 0, "flow_world": 0,
+            "abundance": 1.0, "emptiness": 1.0, "gain": 1.0,
+        }
+        self._sustained_s: Optional[float] = None  # sustained_hot 模式：event_week 冻结的空旷度
+        self._flow_by_week: dict[str, int] = {}  # arena 周供给总量历史（丰沛度存量口径的输入）
         self._official_pinned: dict[str, list[int]] = {}
         self._pinned_ids: list[int] = []
         self._global_landscape: dict[str, Any] = {}
@@ -267,6 +283,26 @@ class CurationDynamicsSpace(EnvBase):
                 k = 1
             self._injected_count_by_week[week] = min(k, len(pool))
         self._event_week_injected_count = self._injected_count_by_week.get(self._event_week, 0)
+
+        # 涌现环境形状常数（半饱和点；机制定形状、效标定尺度，可被 config 显式覆盖）：
+        # K_a = 注入计划口径的事件周存量估计（B 读内生 arena 计数，同尺度）；
+        # K_f = 空旷度流量口径的基线周值（S 读外生真实调度时有现实尺度，回退内生时同arena尺度）。
+        # 效标拟合见 calibrate_speak.py；K→0 极限退化为纯比值。
+        ev_idx = (
+            self._weeks.index(self._event_week) if self._event_week in self._weeks else len(self._weeks) - 1
+        )
+        ka_window = self._weeks[: ev_idx + 1][-self._emergence_window_stock :]
+        self._emergence_ka_final = (
+            float(self._emergence_ka)
+            if self._emergence_ka is not None
+            else float(sum(self._injected_count_by_week.get(w, 0) for w in ka_window))
+        )
+        flow_base_world = self._emergence_flow_by_week.get(
+            self._start_week, self._injected_count_by_week.get(self._start_week, 0)
+        )
+        self._emergence_kf_final = (
+            float(self._emergence_kf) if self._emergence_kf is not None else float(flow_base_world)
+        )
 
     # ---------------- 资产加载 ----------------
 
@@ -365,37 +401,61 @@ class CurationDynamicsSpace(EnvBase):
 
     # ---------------- 周/打开/收尾逻辑 ----------------
 
-    def _compute_norm_pressure(self, week: str) -> tuple[float, str]:
-        """P_t = w_official·O_t + w_mourning·M_t + w_volume·V_t，clamp[0,1]。
-        O_t=当周官方注入占比；M_t=当周供给（注入周 t ∪ 上一 tick 收尾入池的 agent 帖）中悼念占比；
-        V_t=当周注入量/event_week 注入量（≤1）。sustained 模式：W12 正常计算，event_week 正常计算
-        并记录峰值，此后冻结为峰值。"""
-        inj_total = sum(self._injected_this_week.values())
-        o_t = self._official_injected_this_week / inj_total if inj_total > 0 else 0.0
-        supply_ids = list(self._injected_this_week_ids)
-        supply_ids += [pid for pid in self._agent_posts_pooled_prev if pid in self._posts]
-        if supply_ids:
-            m_t = sum(1 for pid in supply_ids if self._posts[pid]["type"] == "mourning") / len(supply_ids)
-        else:
-            m_t = 0.0
-        v_t = (
-            min(1.0, inj_total / self._event_week_injected_count)
-            if self._event_week_injected_count > 0
-            else 0.0
+    def _compute_meme_env(self, week: str) -> dict[str, Any]:
+        """玩梗涌现环境（用户 2026-09-10 裁定，取代悼念规范压力 P_t）。
+
+        存量（丰沛度输入，内生）：Stock_t = 过去 emergence_window_stock 周（含本周）的
+        供给总数之和（供给口径 = 注入周 t ∪ 上一 tick 收尾入池的 agent 帖，含全部类型含
+        noise）。流量（空旷度输入，外生）：Flow_t = 真实周新增帖量镜像调度
+        emergence_flow_by_week（未提供该周时回退内生 arena 计数——250 条注入预算把
+        arena 洪峰压缩到 ~2×、agent 周供给近似恒定，只有现实口径保留「洪峰→退潮」
+        的完整对比度，见 EXPERIMENT.md）。两序列均以基线周（start_week）为 1：
+        B_t = f(Stock_t)/f(Stock_base)，f(x)=x/(x+K_a)（存量越丰沛越易诞生 meme）；
+        S_t = h(Flow_t)/h(Flow_base)，h(x)=K_f/(K_f+x)（单期新增越少越空旷、越宜传播）。
+        涌现增益 G_t = clamp(B_t^β·S_t^σ, gain_min, gain_max)，经 agent 侧 θ 进入表达
+        效用（U = D·R·G^θ，仅玩梗型 θ=1，其余类型 θ=0 不受环境影响）。
+        sustained_hot 模式（反事实臂「维持高热」）：W12/W13 正常计算，W13 记录 S
+        （事件周空旷度），此后冻结为该值；B 保持内生演化（用户裁定）。"""
+        flow_sim = sum(self._injected_this_week.values()) + len(
+            [pid for pid in self._agent_posts_pooled_prev if pid in self._posts]
         )
-        p = self._w_official * o_t + self._w_mourning * m_t + self._w_volume * v_t
-        p = max(0.0, min(1.0, p))
-        if self._mourning_norm_pressure == "sustained":
-            if self._norm_pressure_peak is not None and _week_ord(week) > _week_ord(self._event_week):
-                p = float(self._norm_pressure_peak)
+        self._flow_by_week[week] = flow_sim
+        w0_ord = _week_ord(self._start_week)
+        w_ord = _week_ord(week)
+        window_lo = max(w0_ord, w_ord - self._emergence_window_stock + 1)
+        stock_t = sum(
+            c for w, c in self._flow_by_week.items() if window_lo <= _week_ord(w) <= w_ord
+        )
+        # 窗口在基线周截断 → Stock_W12 = Flow_W12。
+        stock_base = self._flow_by_week.get(self._start_week, 0)
+
+        # 空旷度流量口径：外生真实调度优先，缺该周回退内生计数。
+        flow_env = int(self._emergence_flow_by_week.get(week, flow_sim))
+        flow_env_base = self._emergence_flow_by_week.get(self._start_week, stock_base)
+
+        ka = max(float(self._emergence_ka_final), 1e-9)
+        kf = max(float(self._emergence_kf_final), 1e-9)
+        f_b0 = stock_base / (stock_base + ka)
+        abundance = (stock_t / (stock_t + ka)) / f_b0 if f_b0 > 0 else 1.0
+        h_f0 = kf / (kf + flow_env_base)
+        emptiness = (kf / (kf + flow_env)) / h_f0 if h_f0 > 0 else 1.0
+
+        if self._meme_emergence_mode == "sustained_hot":
+            if self._sustained_s is not None and w_ord > _week_ord(self._event_week):
+                emptiness = float(self._sustained_s)
             elif week == self._event_week:
-                self._norm_pressure_peak = p
-        level = (
-            "high"
-            if p >= self._pressure_high_threshold
-            else ("medium" if p >= self._pressure_medium_threshold else "low")
-        )
-        return p, level
+                self._sustained_s = emptiness
+
+        gain = (abundance ** self._emergence_beta) * (emptiness ** self._emergence_sigma)
+        gain = max(self._emergence_gain_min, min(self._emergence_gain_max, gain))
+        return {
+            "stock": int(stock_t),
+            "flow": int(flow_sim),
+            "flow_world": int(flow_env),
+            "abundance": round(float(abundance), 4),
+            "emptiness": round(float(emptiness), 4),
+            "gain": round(float(gain), 4),
+        }
 
     def _compute_pinned_ids(self, week: str) -> list[int]:
         """官方置顶：is_official 注入帖在当周 + official_pin_extend_weeks 延伸周内置顶，
@@ -478,8 +538,8 @@ class CurationDynamicsSpace(EnvBase):
         return feed
 
     def _open_tick(self, week: str) -> None:
-        """打开一个 tick：注入本周内容、计算 P_t、官方置顶集合、预装配全部 Agent 的 feed，
-        并在装配时一次性记账曝光（get_feed 零副作用）。"""
+        """打开一个 tick：注入本周内容、计算玩梗涌现环境、官方置顶集合、预装配全部
+        Agent 的 feed，并在装配时一次性记账曝光（get_feed 零副作用）。"""
         self._current_week = week
         self._tick_index = _week_ord(week) - _week_ord(self._start_week) + 1
         self._exposure_counts_tick = {}
@@ -520,8 +580,8 @@ class CurationDynamicsSpace(EnvBase):
                     self._official_injected_this_week += 1
                     self._official_pinned.setdefault(week, []).append(pid)
 
-        # 2) 规范压力。
-        self._norm_pressure, self._norm_pressure_level = self._compute_norm_pressure(week)
+        # 2) 玩梗涌现环境（存量/流量/丰沛度/空旷度/涌现增益）。
+        self._meme_env = self._compute_meme_env(week)
 
         # 3) 官方置顶集合。
         self._pinned_ids = self._compute_pinned_ids(week)
@@ -577,7 +637,7 @@ class CurationDynamicsSpace(EnvBase):
         return merged
 
     def _env_row(self, week: str, merged: list[dict[str, Any]]) -> dict[str, Any]:
-        """env 级指标（43 列，key 与 _env_state_columns 精确一致）。"""
+        """env 级指标（47 列，key 与 _env_state_columns 精确一致）。"""
         agent_counts = {t: 0 for t in TYPE_ORDER}
         for rec in merged:
             pt = rec["pool_type"]
@@ -616,8 +676,12 @@ class CurationDynamicsSpace(EnvBase):
 
         row: dict[str, Any] = {
             "week": week,
-            "norm_pressure": self._norm_pressure,
-            "norm_pressure_level": self._norm_pressure_level,
+            "meme_env_stock": self._meme_env["stock"],
+            "meme_env_flow": self._meme_env["flow"],
+            "meme_env_flow_world": self._meme_env["flow_world"],
+            "meme_env_abundance": self._meme_env["abundance"],
+            "meme_env_emptiness": self._meme_env["emptiness"],
+            "meme_env_gain": self._meme_env["gain"],
             "total_supply": total_supply,
             "agent_supply": agent_supply,
             "injected_count": injected_count,
@@ -649,7 +713,7 @@ class CurationDynamicsSpace(EnvBase):
         }
 
     def _agent_rows(self, week: str, merged: list[dict[str, Any]]) -> list[dict[str, Any]]:
-        """agent 级指标（20 列，batch 写）。"""
+        """agent 级指标（21 列，batch 写）。"""
         by_aid = {rec["agent_id"]: rec for rec in merged}
         rows: list[dict[str, Any]] = []
         for aid in sorted(self._agent_types):
@@ -676,8 +740,9 @@ class CurationDynamicsSpace(EnvBase):
                     "climate_marketing": cli.get("marketing", 0.0),
                     "climate_other": cli.get("other", 0.0),
                     "climate_noise": cli.get("noise", 0.0),
-                    "norm_pressure_seen": self._norm_pressure,
-                    "norm_pressure_level_seen": self._norm_pressure_level,
+                    "meme_env_abundance_seen": self._meme_env["abundance"],
+                    "meme_env_emptiness_seen": self._meme_env["emptiness"],
+                    "meme_env_gain_seen": self._meme_env["gain"],
                     "feed_slots": len(self._feeds.get(aid, [])),
                 }
             )
@@ -723,8 +788,9 @@ class CurationDynamicsSpace(EnvBase):
     async def get_feed(self, agent_id: str) -> dict:
         """读取您本周在舆论场的完整感知快照（只读观测工具，无任何副作用）。
 
-        **get_feed(agent_id)** 返回：当前周标签 **week**；本周悼念规范压力 **norm_pressure**
-        及其等级 **norm_pressure_level**；您本周是否已发言 **own_spoke**；您最近一帖
+        **get_feed(agent_id)** 返回：当前周标签 **week**；本周玩梗涌现环境 **meme_env**
+        （stock/flow=arena 存量与本周新增、flow_world=现实口径新增、abundance=丰沛度、
+        emptiness=空旷度、gain=涌现增益）；您本周是否已发言 **own_spoke**；您最近一帖
         **own_last_post**；您的本周推荐信息流 **feed**（长度 = feed_size，官方置顶帖在前，
         每条含 post_id / author_handle / content / type / week / is_official）；您所见意见气候
         **feed_type_distribution**（feed 中六类内容占比，六类=玩梗/悼念/教育/营销/其他/噪音）；
@@ -747,11 +813,18 @@ class CurationDynamicsSpace(EnvBase):
                 self._cumulative_exposures.get(aid, {t: 0 for t in TYPE_ORDER_ALL})
             ),
         }
+        env = self._meme_env
         return {
             "status": "success",
             "week": self._current_week,
-            "norm_pressure": round(float(self._norm_pressure), 4),
-            "norm_pressure_level": self._norm_pressure_level,
+            "meme_env": {
+                "stock": int(env["stock"]),
+                "flow": int(env["flow"]),
+                "flow_world": int(env["flow_world"]),
+                "abundance": round(float(env["abundance"]), 4),
+                "emptiness": round(float(env["emptiness"]), 4),
+                "gain": round(float(env["gain"]), 4),
+            },
             "own_spoke": bool(self._spoke_this_tick.get(aid, False)),
             "own_last_post": last,
             "feed": feed,
@@ -762,7 +835,8 @@ class CurationDynamicsSpace(EnvBase):
             "response": (
                 f"您在本周（{self._current_week}）的推荐信息流共 {len(feed)} 条"
                 f"（官方置顶 {sum(1 for it in feed if it['is_official'])} 条），"
-                f"悼念规范压力 {self._norm_pressure:.3f}（{self._norm_pressure_level}），"
+                f"本周舆论场存量 {env['stock']} 帖、新增 {env['flow']} 帖"
+                f"（现实口径新增 {env['flow_world']} 帖），"
                 f"您本周已发言：{'是' if self._spoke_this_tick.get(aid, False) else '否'}。"
             ),
         }
@@ -854,7 +928,7 @@ class CurationDynamicsSpace(EnvBase):
     # ---------------- 生命周期 ----------------
 
     async def init(self, start_datetime: datetime) -> None:
-        """打开 tick 1（W12）：注入本周内容、计算 P_t、预装配全部 Agent 的 feed，并
+        """打开 tick 1（W12）：注入本周内容、计算玩梗涌现环境、预装配全部 Agent 的 feed，并
         以 W12 注入池构成建立全局份额基线快照（U4）。无 replay 写入。"""
         self.t = start_datetime
         self._open_tick(self._weeks[0])
@@ -863,7 +937,7 @@ class CurationDynamicsSpace(EnvBase):
     async def step(self, tick: int, t: datetime) -> None:
         """每 tick 恰执行一次：先收尾当前 tick k（pending agent 帖并入池、写 env 1 行 +
         agent batch 行、更新全局份额快照、清空每 tick 状态），再预卷打开 tick k+1
-        （注入、P_t、装配 feed）；step(11) 只收尾不打开 W23。replay 主键 = 内部 _step_index。"""
+        （注入、涌现环境、装配 feed）；step(11) 只收尾不打开 W23。replay 主键 = 内部 _step_index。"""
         self._step_index += 1
         week = self._current_week
         merged = self._flush_pending_to_pool()
@@ -903,14 +977,14 @@ class CurationDynamicsSpace(EnvBase):
     @classmethod
     def description(cls) -> str:
         return (
-            "舆论场数字表征转移模拟环境（CurationDynamicsSpace）：三种推荐算法 × 两种悼念"
-            "规范压力（3×2 全因子 6 cells）下，100 个固定类型 Agent 的差异化激活与公共表征构成"
+            "舆论场数字表征转移模拟环境（CurationDynamicsSpace）：三种推荐算法 × 两种玩梗"
+            "涌现环境（3×2 全因子 6 cells）下，100 个固定类型 Agent 的差异化激活与公共表征构成"
             "变化（张雪峰 2026-03-24 去世 W13，W12→W22 共 11 周）。Agent 每周通过 "
-            "**get_feed(agent_id)** 查看本周推荐信息流、意见气候、悼念规范压力与全局供给/曝光"
+            "**get_feed(agent_id)** 查看本周推荐信息流、意见气候、玩梗涌现环境与全局供给/曝光"
             "份额，再决定是否发言；发言通过 **create_post(agent_id, content)** 发布一篇类型由"
             "其固定 Agent 类型决定的内容（每 tick 至多 1 帖，重复调用无效）。环境按周注入真实"
-            "打标内容、按推荐算法装配 feed、内生计算规范压力，并把供给/曝光/发言漏斗指标写入"
-            "replay 表供分析。"
+            "打标内容、按推荐算法装配 feed、逐周计算涌现环境（存量丰沛度 × 流量空旷度），"
+            "并把供给/曝光/发言漏斗指标写入 replay 表供分析。"
         )
 
     @classmethod
@@ -919,20 +993,25 @@ class CurationDynamicsSpace(EnvBase):
             "CurationDynamicsSpace：舆论场数字表征转移模拟环境。全部构造参数均为关键字参数且含"
             "默认值（cls() 无必填参数）：**recommendation_algorithm** 推荐算法（random 全池均匀"
             "随机 / chronological 时间倒序 / interest 纯兴趣匹配，默认 random）；"
-            "**mourning_norm_pressure** 悼念规范压力模式（decay 内生衰减 / sustained 事件周后"
-            "冻结峰值，默认 decay）；**random_seed** cell 种子（注入/随机臂/兴趣噪声三条 RNG 流"
-            "由同一种子加固定偏移派生，默认 0）；**feed_size** 每 Agent 每 tick feed 槽位数"
-            "（默认 20）；**sampling_ratio** 每周注入抽样比例（默认 0.05）；**injection_data_path**"
-            " 注入数据集 JSON 路径（顶层含 posts 数组，空串=无外部注入）；**vocab_path** 四词表"
-            "判类器 JSON 路径（空串=词表为空，判类回落 other）；**agent_types** Agent 类型字典"
+            "**meme_emergence_mode** 玩梗涌现环境模式（normal 正常演化 / sustained_hot 反事实臂："
+            "空旷度 S 冻结在事件周值、丰沛度 B 保持内生，默认 normal）；**random_seed** cell 种子"
+            "（注入/随机臂/兴趣噪声三条 RNG 流由同一种子加固定偏移派生，默认 0）；"
+            "**feed_size** 每 Agent 每 tick feed 槽位数（默认 20）；**sampling_ratio** 每周注入"
+            "抽样比例（默认 0.05）；**injection_data_path** 注入数据集 JSON 路径（顶层含 posts "
+            "数组，空串=无外部注入）；**vocab_path** 四词表判类器 JSON 路径（空串=词表为空，"
+            "判类回落 other）；**agent_types** Agent 类型字典"
             "（{agent_id: meme|mourning|marketing|education|other}，未列出默认 other）；"
             "**start_week** 起始 ISO 周（默认 2026-W12）；**num_ticks** 总 tick 数（默认 11）；"
             "**event_week** 去世周（默认 2026-W13）；**official_pin_extend_weeks** 官方置顶延伸"
             "周数（默认 1）；interest 臂权重 **alpha**/**beta**/**gamma**、噪声幅度 "
             "**interest_noise_eps**、时新衰减窗 **recency_max_age_weeks**、已曝光处理 "
             "**exposure_mode**（none/penalize/exclude）与 **exposure_penalty_weight**、随机臂窗口 "
-            "**random_recency_window_weeks**；规范压力权重 **w_official**/**w_mourning**/**w_volume**"
-            " 与等级阈值 **pressure_high_threshold**/**pressure_medium_threshold**。"
+            "**random_recency_window_weeks**；涌现环境 **emergence_flow_by_week**（真实周新增帖量"
+            "镜像调度 {周: 帖数}，空旷度 S 的外生流量口径，缺省回退内生 arena 计数）、"
+            "**emergence_window_stock**（存量回看窗口周数，默认 6）、**emergence_ka**/**emergence_kf**"
+            "（半饱和形状常数，缺省自动取注入计划的事件周存量与基线周流量）、"
+            "**emergence_beta**/**emergence_sigma**（B/S 指数，默认 1）、"
+            "**emergence_gain_min**/**emergence_gain_max**（G 截断，默认 0.2/3.0）。"
         )
 
     # ---------------- workspace 持久化（--resume） ----------------
@@ -953,9 +1032,9 @@ class CurationDynamicsSpace(EnvBase):
             "_spoke_this_tick": self._spoke_this_tick,
             "_posted_this_step": sorted(self._posted_this_step),
             "_feeds": self._feeds,
-            "_norm_pressure": self._norm_pressure,
-            "_norm_pressure_level": self._norm_pressure_level,
-            "_norm_pressure_peak": self._norm_pressure_peak,
+            "_meme_env": dict(self._meme_env),
+            "_sustained_s": self._sustained_s,
+            "_flow_by_week": {w: int(c) for w, c in self._flow_by_week.items()},
             "_global_landscape": self._global_landscape,
             "_seen_by_agent": {aid: sorted(ids) for aid, ids in self._seen_by_agent.items()},
             "_cumulative_exposures": self._cumulative_exposures,
@@ -996,9 +1075,17 @@ class CurationDynamicsSpace(EnvBase):
         self._spoke_this_tick = dict(d.get("_spoke_this_tick", {}) or {})
         self._posted_this_step = set(d.get("_posted_this_step", []) or [])
         self._feeds = dict(d.get("_feeds", {}) or {})
-        self._norm_pressure = float(d.get("_norm_pressure", 0.0))
-        self._norm_pressure_level = str(d.get("_norm_pressure_level", "low"))
-        self._norm_pressure_peak = d.get("_norm_pressure_peak")
+        loaded_env = d.get("_meme_env") or {}
+        self._meme_env = {
+            "stock": int(loaded_env.get("stock", 0)),
+            "flow": int(loaded_env.get("flow", 0)),
+            "flow_world": int(loaded_env.get("flow_world", 0)),
+            "abundance": float(loaded_env.get("abundance", 1.0)),
+            "emptiness": float(loaded_env.get("emptiness", 1.0)),
+            "gain": float(loaded_env.get("gain", 1.0)),
+        }
+        self._sustained_s = d.get("_sustained_s")
+        self._flow_by_week = {str(w): int(c) for w, c in (d.get("_flow_by_week") or {}).items()}
         self._global_landscape = dict(d.get("_global_landscape", {}) or {})
         self._seen_by_agent = {
             str(aid): set(ids) for aid, ids in (d.get("_seen_by_agent") or {}).items()

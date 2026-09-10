@@ -7,10 +7,10 @@
 数据源（全部由引擎每个 tick 立即落盘）：
 - <run>/pid.json                                     进程心跳（~1s：status/pid/step_count/simulation_time）
 - <run>/SOCIETY_STEP.json                            每 step 原子重写（current_time/step_count/terminated）
-- <run>/replay/curation_dynamics_env_state.*.jsonl   env 周度指标（43 列，每 tick 1 行）
-- <run>/replay/curation_dynamics_agent_state.*.jsonl agent 周度状态（20 列，每 tick ~100 行）
+- <run>/replay/curation_dynamics_env_state.*.jsonl   env 周度指标（47 列，每 tick 1 行）
+- <run>/replay/curation_dynamics_agent_state.*.jsonl agent 周度状态（21 列，每 tick ~100 行）
 - <run>/agents/agent_*/AGENT.json                    agent 元数据 + decision_log（u/门槛/机制分量）
-- <run>/env/*/state/ENV_STATE.json                   env 全量动态状态（帖池/feeds/P_t/当前周）
+- <run>/env/*/state/ENV_STATE.json                   env 全量动态状态（帖池/feeds/玩梗涌现环境/当前周）
 
 输出（原子写，均落本实验目录 monitor/ 下）：
 - monitor/<run_id>/status.md + status.json   单 run 快照（周度指标 / Agent 行为 / 机制透视 /
@@ -71,9 +71,13 @@ FIELDS: dict[str, str] = {
     "step_count": "引擎已完成 step 数（SOCIETY_STEP.json；本实验 11 步=11 周）。",
     "completed_step_count": "已完成的前置 step 数（含 Ask/Intervene 等非仿真步；本实验无）。",
     "terminated": "引擎是否已判定终止（SOCIETY_STEP.json）。",
-    # env 周度（43 列）
-    "norm_pressure": "悼念规范压力指数 P_t = 0.4·M_t + 0.3·V_t（官方项权重=0）。M_t=当周悼念类供给占比，V_t=当周供给总量相对峰值比。范围 0~0.7；decay 臂逐周内生演化，sustained 臂冻结 W13 峰值。",
-    "norm_pressure_level": "P_t 等级：high/medium/low（阈值 0.6/0.3）。",
+    # env 周度（47 列）
+    "meme_env_stock": "舆论场存量 Stock_t = 过去 6 周 arena 供给总数（注入 + agent 帖，内生）。玩梗涌现环境丰沛度 B_t 的输入：总帖子越丰沛越易诞生 meme（用户 2026-09-10 裁定）。",
+    "meme_env_flow": "本周 arena 新增供给数（注入 + 上一周并入的 agent 帖）。存量的滚动窗口输入。",
+    "meme_env_flow_world": "本周现实口径新增帖量（外生调度 emergence_flow_by_week = 真实数据各周全量帖数）。空旷度 S_t 的输入：当期新增越少越空旷越宜传播。sim arena 流量被注入预算压缩（峰谷比 ~1.6× vs 现实 ~9×），故 S 读现实口径。",
+    "meme_env_abundance": "丰沛度 B_t = f(Stock_t)/f(Stock_base)，f(x)=x/(x+K_a)；基线周（W12）=1。K_a 默认=注入计划事件周窗口存量（17+35=52）。",
+    "meme_env_emptiness": "空旷度 S_t = h(Flow_t)/h(Flow_base)，h(x)=K_f/(K_f+x)；基线周=1。sustained_hot 反事实臂：事件周（W13）记录、之后冻结（B 保持内生）。",
+    "meme_env_gain": "涌现增益 G_t = clamp(B^β·S^σ, 0.2, 3.0)，β=σ=1 起步。仅经玩梗型效用（θ=1.0）影响决策：洪峰期新表达被淹没（G<1）、退潮期才被看见（G>1）。",
     "total_supply": "本 tick 新增供给总数 = Agent 产出 + 注入帖。",
     "agent_supply": "本 tick Agent 产出帖数（合计）。",
     "injected_count": "本 tick 注入的真实数据帖数（W13 含官方讣告 1 条）。",
@@ -114,22 +118,24 @@ FIELDS: dict[str, str] = {
     "exposure_noise": "本 tick 噪音类曝光槽位数。",
     "official_posts_count": "本 tick 置顶集合中的官方帖数（仅 W13 讣告=1，其余周=0）。",
     "official_exposure_slots": "官方帖占据的 feed 槽位数。W13 应=100（全员置顶可见），其余周=0。",
-    # agent 周度（20 列聚合）
+    # agent 周度（21 列聚合）
     "n_agents": "该类型 Agent 人数（群体构成：玩梗18/悼念21/营销26/教育15/其他20）。",
     "spoke_rate": "该类型本 tick 发言率 = 发言人数 / 类型人数。",
     "mismatch_rate": "该类型本 tick 判类不一致率：env 四词表判类(assigned_type)≠作者类型(pool_type)的帖子占比。仅诊断用，不影响发布。",
     "mean_climate_own": "该类型 agent 所见信息流中本类内容的平均占比（意见气候；沉默螺旋的输入）。",
     "mean_exposure_own": "该类型 agent 本 tick 本类内容的人均曝光数（注意力衰减的输入）。",
     "mean_feed_slots": "该类型 agent 本周信息流平均长度（正常=10）。",
-    # 机制透视（表达效用模型，用户 2026-09-10 裁定方案 B）
-    "u": "表达效用 U = D·R − c·v·P_t（Kuran 成本-收益框架）。发言当且仅当 U ≥ activity。中性状态（D≈R≈1、P_t≈0）下 U≈1。",
+    # 机制透视（涌现增益表达效用模型，用户 2026-09-10 裁定）
+    "u": "表达效用 U = D·R·G^θ。发言当且仅当 U ≥ activity。中性状态（D≈R≈1、G=1）下 U≈1。",
     "threshold": "个体表达门槛 activity（= 类型均值 0.95 × U[0.8,1.2] 抖动）。门槛越低越容易发言，活跃 agent 门槛低。",
     "spiral": "沉默的螺旋共振因子 D = 1 + s·(share_own − base)/base，截断[0.05,2]（收益侧）。>1：同类气候比期望强→共鸣放大收益；<1：处于少数→抑制收益。base=本类型在 100 人群体中的份额。",
     "decay": "注意力衰减因子 R = exp(−λ·cum_own/50)（收益侧折减）。本类累计曝光越多越低（疲劳）。",
-    "benefit": "表达收益 = D·R（两收益侧因子相乘，不可被成本项平均补偿）。",
-    "norm_dev": "规范偏离成本系数 v（结构取值：玩梗1.0/营销0.8/其他0.7/教育0.15；悼念−0.5=与悼念规范同向，压力反成补贴）。",
-    "norm_pressure": "该 agent 决策时所见规范压力 P_t（norm_cost 的输入）。",
-    "norm_cost": "规范表达成本 = c·v·P_t（c=1.0 全局尺度；Kuran 1995 偏好伪装成本）。偏离悼念规范的表达被减除成本。",
+    "benefit": "表达收益 = D·R（两收益侧因子相乘）。",
+    "emergence": "涌现环境增益指数 θ（结构取值：仅玩梗型 1.0，其余类型 0 = G 不影响其决策，G^0≡1）。",
+    "env_abundance": "决策时所见丰沛度 B_t（快照键 meme_env.abundance；存量越丰沛越易诞生 meme）。",
+    "env_emptiness": "决策时所见空旷度 S_t（快照键 meme_env.emptiness；当期新增越少越空旷越宜传播；sustained_hot 臂 W13 后冻结）。",
+    "env_gain": "决策时所见涌现增益 G_t（快照键 meme_env.gain）。",
+    "env_multiplier": "环境乘子 G^θ（θ=emergence；玩梗型随周变化，其余类型恒 1）。",
     "share_own": "该 agent 所见信息流中本类内容占比（spiral 的输入）。",
     "share_base": "本类型在 100 人群体中的份额（spiral 的期望基线：玩梗0.18/悼念0.21/营销0.26/教育0.15/其他0.20）。",
     "cum_own": "该 agent 累计本类曝光数（decay 的输入，尺度 50 为半饱和点）。",
@@ -141,8 +147,8 @@ FIELDS: dict[str, str] = {
     "mean_u": "U 的类型内均值。",
     "mean_threshold": "activity 的类型内均值（个体间有 U[0.8,1.2] 抖动）。",
     "mean_benefit": "表达收益 D·R 的类型内均值。",
-    "mean_norm_cost": "规范表达成本 c·v·P_t 的类型内均值。",
-    "mean_norm_pressure": "决策时所见 P_t 的类型内均值。",
+    "mean_env_gain": "决策时所见涌现增益 G 的类型内均值。",
+    "mean_env_multiplier": "环境乘子 G^θ 的类型内均值（仅玩梗型随周变化，其余恒 1）。",
     # 帖子流
     "post_id": "帖子编号（全局自增）。官方讣告=official_w13_announcement（字符串 id）。",
     "author_handle": "作者（注入帖=数据集作者；agent 帖=agent_id）。",
@@ -351,8 +357,8 @@ def aggregate_weekly(data: dict) -> list[dict]:
                 "mean_u": _mean_of("u"),
                 "mean_threshold": _mean_of("threshold"),
                 "mean_benefit": _mean_of("benefit", "components"),
-                "mean_norm_cost": _mean_of("norm_cost", "components"),
-                "mean_norm_pressure": _mean_of("norm_pressure", "components"),
+                "mean_env_gain": _mean_of("env_gain", "components"),
+                "mean_env_multiplier": _mean_of("env_multiplier", "components"),
             }
 
         # 派生视图
@@ -452,21 +458,25 @@ def render_process_md(data: dict) -> str:
 def render_weekly_md(weekly: list[dict], week_filter: str | None) -> str:
     rows = [r for r in weekly if not week_filter or r.get("week") == week_filter]
     out = []
-    # 表A 供给与压力
-    out.append("### 表A 周度供给与规范压力\n")
-    head = "| 周 | P_t | 等级 | 供给总 | Agent帖 | 注入 | " + " | ".join(
-        f"供给{TYPE_LABEL[t]}" for t in TYPE_ORDER) + " | 供给噪音 | 官方帖 | 官方槽位 |"
-    sep = "|---" * (6 + len(TYPE_ORDER) + 3) + "|"
+    # 表A 供给与玩梗涌现环境
+    out.append("### 表A 周度供给与玩梗涌现环境\n")
+    head = ("| 周 | 存量 | arena新增 | 现实新增 | B丰沛 | S空旷 | G增益 | 供给总 | Agent帖 | 注入 | "
+            + " | ".join(f"供给{TYPE_LABEL[t]}" for t in TYPE_ORDER)
+            + " | 供给噪音 | 官方帖 | 官方槽位 |")
+    sep = "|---" * (10 + len(TYPE_ORDER) + 3) + "|"
     out += [head, sep]
     for r in rows:
-        cells = [r.get("week"), _num(r.get("norm_pressure"), 3), r.get("norm_pressure_level"),
+        cells = [r.get("week"), r.get("meme_env_stock"), r.get("meme_env_flow"),
+                 r.get("meme_env_flow_world"), _num(r.get("meme_env_abundance"), 3),
+                 _num(r.get("meme_env_emptiness"), 3), _num(r.get("meme_env_gain"), 3),
                  r.get("total_supply"), r.get("agent_supply"), r.get("injected_count")]
         cells += [_pct(r.get(f"supply_share_all_{t}")) for t in TYPE_ORDER]
         cells += [_pct(r.get("supply_share_all_noise")), r.get("official_posts_count"),
                   r.get("official_exposure_slots")]
         out.append("| " + " | ".join(str(c) if c is not None else "—" for c in cells) + " |")
-    out.append(_docs_block(["week", "norm_pressure", "norm_pressure_level", "total_supply",
-                            "agent_supply", "injected_count"] +
+    out.append(_docs_block(["week", "meme_env_stock", "meme_env_flow", "meme_env_flow_world",
+                            "meme_env_abundance", "meme_env_emptiness", "meme_env_gain",
+                            "total_supply", "agent_supply", "injected_count"] +
                            [f"supply_share_all_{t}" for t in TYPE_ORDER] +
                            ["official_posts_count", "official_exposure_slots"]))
     # 表B 曝光
@@ -498,8 +508,8 @@ def render_weekly_md(weekly: list[dict], week_filter: str | None) -> str:
     out.append(_docs_block(["n_agents", "spoke_rate", "mismatch_rate", "mean_exposure_own",
                             "mean_climate_own", "mean_feed_slots"]))
     # 表D 机制透视
-    out.append("\n### 表D 机制透视（表达效用模型：U = D·R − c·v·P_t，发言当且仅当 U ≥ activity）\n")
-    head = ("| 周 | 类型 | 决策数 | 发言 | 发布 | mean U | mean门槛 | mean收益 | mean成本 | mean P_t |")
+    out.append("\n### 表D 机制透视（涌现增益表达效用模型：U = D·R·G^θ，发言当且仅当 U ≥ activity）\n")
+    head = ("| 周 | 类型 | 决策数 | 发言 | 发布 | mean U | mean门槛 | mean收益 | mean G | mean G^θ |")
     out += [head, "|---" * 10 + "|"]
     for r in rows:
         for t in TYPE_ORDER:
@@ -509,13 +519,14 @@ def render_weekly_md(weekly: list[dict], week_filter: str | None) -> str:
             out.append(
                 f"| {r.get('week')} | {TYPE_LABEL[t]} | {m['n_decisions']} | {m['n_speak']} | "
                 f"{m['n_posted']} | {_num(m['mean_u'])} | {_num(m['mean_threshold'])} | "
-                f"{_num(m['mean_benefit'])} | {_num(m['mean_norm_cost'])} | "
-                f"{_num(m['mean_norm_pressure'])} |")
-    out.append(_docs_block(["u", "threshold", "spiral", "decay", "benefit", "norm_dev",
-                            "norm_cost", "share_own", "share_base", "cum_own", "speak",
+                f"{_num(m['mean_benefit'])} | {_num(m['mean_env_gain'])} | "
+                f"{_num(m['mean_env_multiplier'])} |")
+    out.append(_docs_block(["u", "threshold", "spiral", "decay", "benefit", "emergence",
+                            "env_abundance", "env_emptiness", "env_gain", "env_multiplier",
+                            "share_own", "share_base", "cum_own", "speak",
                             "posted", "n_decisions", "n_speak", "n_posted", "mean_u",
-                            "mean_threshold", "mean_benefit", "mean_norm_cost",
-                            "mean_norm_pressure"]))
+                            "mean_threshold", "mean_benefit", "mean_env_gain",
+                            "mean_env_multiplier"]))
     return "\n".join(out)
 
 
@@ -594,7 +605,8 @@ def render_run_status_md(data: dict, weekly: list[dict], pv: dict,
     ]
     if last:
         lines.append(f"- **最近完结周**：{last.get('week')}（step {last.get('step')}）　"
-                     f"P_t={_num(last.get('norm_pressure'))}（{last.get('norm_pressure_level')}）　"
+                     f"涌现环境 B={_num(last.get('meme_env_abundance'))} S={_num(last.get('meme_env_emptiness'))} "
+                     f"G={_num(last.get('meme_env_gain'))}　"
                      f"Agent 帖 {last.get('agent_supply')} / 注入 {last.get('injected_count')}")
     lines += ["", "## 进程与进度", render_process_md(data),
               _docs_block(["status", "pid", "alive", "start_time", "end_time", "simulation_time",
@@ -613,7 +625,7 @@ def render_overview(runs: list[dict], weekly_map: dict[str, list[dict]]) -> str:
         "",
         f"- 生成时间：{datetime.now().isoformat(timespec='seconds')}",
         "",
-        "| run | 状态 | 进程 | 周进度 | 当前周 | P_t | Agent帖累计 | 供给前二(combined) | 帖池 |",
+        "| run | 状态 | 进程 | 周进度 | 当前周 | 涌现G | Agent帖累计 | 供给前二(combined) | 帖池 |",
         "|---|---|---|---|---|---|---|---|---|",
     ]
     for data in sorted(runs, key=lambda d: d["label"]):
@@ -621,7 +633,7 @@ def render_overview(runs: list[dict], weekly_map: dict[str, list[dict]]) -> str:
         weekly = weekly_map.get(data["label"], [])
         last = weekly[-1] if weekly else None
         weeks_done = len(weekly)
-        p_t = _num(last.get("norm_pressure")) if last else "—"
+        env_gain = _num(last.get("meme_env_gain")) if last else "—"
         cur_week = (data["env_state"] or {}).get("_current_week") or (last.get("week") if last else "—")
         agent_total = sum(int(r.get("agent_supply") or 0) for r in weekly)
         top2 = "—"
@@ -633,7 +645,7 @@ def render_overview(runs: list[dict], weekly_map: dict[str, list[dict]]) -> str:
         alive = "✅" if p["alive"] else ""
         pool_total = len((data["env_state"] or {}).get("_posts") or {})
         lines.append(f"| {data['label']} | {p['status']} | {alive} | {weeks_done}/11 | "
-                     f"{cur_week} | {p_t} | {agent_total} | {top2} | {pool_total} |")
+                     f"{cur_week} | {env_gain} | {agent_total} | {top2} | {pool_total} |")
     lines += [
         "",
         "**字段说明**：",
@@ -644,10 +656,11 @@ def render_overview(runs: list[dict], weekly_map: dict[str, list[dict]]) -> str:
         "周进度": "已完结的周数 / 总周数（11 周 = W12…W22）。",
         "帖池": "ENV_STATE.json 帖池中的帖子总数（含注入与 agent 产出）。",
     }
-    for k in ["status", "pid", "alive", "step_count", "week", "norm_pressure",
+    for k in ["status", "pid", "alive", "step_count", "week", "meme_env_gain",
               "agent_supply", "supply_share_all_meme", "exposure_count"]:
         if k in FIELDS:
-            label = {"agent_supply": "Agent帖累计", "supply_share_all_meme": "供给前二(combined)"}.get(k, k)
+            label = {"agent_supply": "Agent帖累计", "supply_share_all_meme": "供给前二(combined)",
+                     "meme_env_gain": "涌现G"}.get(k, k)
             lines.append(f"- `{label}`：{overview_docs.get(label) or FIELDS[k]}")
     lines.append(f"- `周进度`：{overview_docs['周进度']}")
     lines.append(f"- `帖池`：{overview_docs['帖池']}")
@@ -736,7 +749,7 @@ def main() -> None:
             for d in collected
         ],
         "field_docs": {k: FIELDS[k] for k in
-                       ["status", "pid", "alive", "step_count", "week", "norm_pressure",
+                       ["status", "pid", "alive", "step_count", "week", "meme_env_gain",
                         "agent_supply", "supply_share_all_meme", "exposure_count"] if k in FIELDS},
     }, ensure_ascii=False, indent=2, default=str))
     print(f"✓ 总览 -> {out_dir / 'overview.md'}")
