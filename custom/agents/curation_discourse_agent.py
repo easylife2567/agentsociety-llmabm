@@ -8,8 +8,9 @@
    发言当且仅当 u < p，u = Random(f"{id}:{tick}").random()（公共随机数：同一 (id, tick)
    在所有 cell/seed 取同一 u，处理组间可比；组间差异完全来自环境快照参数）。
    决策分量（份额/因子/概率/随机数）全量写入 decision_log，可完整审计与事后重算。
-3. 若发言，一次内容生成 completion——按 Agent 固定类型生成中文帖子（≤300 字），
-   并要求自然融入本类型词表词（type_vocab）。
+3. 若发言，一次内容生成 completion——提示词包含本周 feed 前 feed_context_n 条帖子的
+   作者与正文摘录，要求**基于所见内容**回应/讨论/二创/跟帖式发言（用户 2026-09-10 裁定），
+   按 Agent 固定类型生成中文帖子（≤300 字），并自然融入本类型词表词（type_vocab）。
 4. **create_post**（幂等, template_mode）——发布，帖类型 = 作者类型（by construction）。
 
 类型全程固定（实验设计 二.2）：LLM 只负责"说什么"，"是否说"由数值算法决定。
@@ -21,6 +22,7 @@ import json
 import logging
 import math
 import random
+from collections import deque
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -34,16 +36,19 @@ VALID_TYPES = ("meme", "mourning", "marketing", "education", "other")
 # ---------------- 发言决策数值算法（用户 2026-09-09 裁定：发言行为数字化） ----------------
 # p = activity × spiral × decay × pressure，clamp[0, _P_MAX]；发言当且仅当 u < p，
 # u = Random(f"{agent_id}:{tick}").random()（公共随机数，见模块 docstring）。
-# 类型均值与 curation_personas._PARAM_SPECS 一致；profile 未带 params 时的回退值。
+# 类型均值与 curation_personas._PARAM_SPECS 一致（activity 已按 2026-09-10 发帖人
+# 口径重锚）；profile 未带 params 时的回退值。
 
 _PARAM_DEFAULTS: dict[str, dict[str, float]] = {
-    "meme":      {"activity": 0.50, "spiral": 1.2, "decay": 0.8, "pressure": 0.9},
-    "mourning":  {"activity": 0.55, "spiral": 0.8, "decay": 1.2, "pressure": -0.3},
-    "marketing": {"activity": 0.90, "spiral": 0.2, "decay": 0.1, "pressure": 0.5},
-    "education": {"activity": 0.55, "spiral": 0.5, "decay": 0.4, "pressure": 0.15},
-    "other":     {"activity": 0.25, "spiral": 1.5, "decay": 1.0, "pressure": 0.6},
+    "meme":      {"activity": 0.49, "spiral": 1.2, "decay": 0.8, "pressure": 0.9},
+    "mourning":  {"activity": 0.53, "spiral": 0.8, "decay": 1.2, "pressure": -0.3},
+    "marketing": {"activity": 0.60, "spiral": 0.2, "decay": 0.1, "pressure": 0.5},
+    "education": {"activity": 0.61, "spiral": 0.5, "decay": 0.4, "pressure": 0.15},
+    "other":     {"activity": 0.53, "spiral": 1.5, "decay": 1.0, "pressure": 0.6},
 }
-_POP_SHARE = {"meme": 0.41, "mourning": 0.21, "marketing": 0.13, "education": 0.13, "other": 0.12}
+# 沉默螺旋的期望份额基线。用户 2026-09-10 裁定：群体按发帖人口径比例
+# 玩梗18/悼念21/营销26/教育15/其他20（不再按内容划分口径）。
+_POP_SHARE = {"meme": 0.18, "mourning": 0.21, "marketing": 0.26, "education": 0.15, "other": 0.20}
 _DECAY_SCALE = 50.0          # 注意力衰减半饱和尺度（本类型累计曝光，exp 半饱和）
 _PRESSURE_FACTOR_CAP = 1.5   # 压力因子上限（mourning 同向增益封顶）
 _P_MAX = 0.98                # 发言概率上限
@@ -104,12 +109,14 @@ class CurationDiscourseAgent(AgentBase):
 
 **Config fields（均可选）:**
 - max_content_chars (int, 默认 300): 单帖最大字符数。
+- feed_context_n (int, 默认 5): 内容生成提示词中包含的本周 feed 帖子条数
+  （发言须基于所见帖子：回应/讨论/二创/跟帖）。
 
 **Example config:**
 ```json
 {"id": 1, "profile": {"name": "抽象老雪", "agent_type": "meme", "persona": "...",
   "params": {"activity": 0.5, "spiral": 1.2, "decay": 0.8, "pressure": 0.9},
-  "type_vocab": ["抽象", "乐子"]}, "config": {}}
+  "type_vocab": ["抽象", "乐子"]}, "config": {"feed_context_n": 5}}
 ```
 """
 
@@ -183,24 +190,24 @@ class CurationDiscourseAgent(AgentBase):
     # Env 返回解析（防御式：codegen 生成的代码自行命名 results 键）
     # ------------------------------------------------------------------
     @staticmethod
-    def _find_feed_dict(node: Any, depth: int = 0) -> dict | None:
-        """在 ask_env 返回的 results 里深度搜索 get_feed 快照（含 feed/norm_pressure 键的字典）。"""
-        if depth > 4 or not isinstance(node, (dict, list)):
+    def _find_feed_dict(node: Any) -> dict | None:
+        """在 ask_env 返回的 results 里查找 get_feed 快照（含 feed/norm_pressure 键的字典）。
+
+        迭代 BFS 实现（浅层优先 + 命中即停），比递归 DFS 少一层函数调用开销且无深递归；
+        跳过 variables 子树；对任意嵌套结构保持防御式兼容。"""
+        if not isinstance(node, (dict, list)):
             return None
-        if isinstance(node, dict):
-            if "feed" in node and "norm_pressure" in node:
-                return node
-            for k, v in node.items():
-                if k == "variables":
-                    continue
-                found = CurationDiscourseAgent._find_feed_dict(v, depth + 1)
-                if found is not None:
-                    return found
-        else:
-            for v in node:
-                found = CurationDiscourseAgent._find_feed_dict(v, depth + 1)
-                if found is not None:
-                    return found
+        queue: deque[Any] = deque([node])
+        while queue:
+            cur = queue.popleft()
+            if isinstance(cur, dict):
+                if "feed" in cur and "norm_pressure" in cur:
+                    return cur
+                for k, v in cur.items():
+                    if k != "variables" and isinstance(v, (dict, list)):
+                        queue.append(v)
+            else:
+                queue.extend(v for v in cur if isinstance(v, (dict, list)))
         return None
 
     # ---------------- 发言决策数值算法（无 LLM） ----------------
@@ -240,10 +247,11 @@ class CurationDiscourseAgent(AgentBase):
         return p, comps
 
     # ------------------------------------------------------------------
-    # LLM prompt（仅内容生成）
+    # LLM prompt（仅内容生成；发言必须基于本周看到的帖子——用户 2026-09-10 裁定）
     # ------------------------------------------------------------------
     def _content_messages(self, snap: dict, comps: dict) -> list[dict]:
         max_chars = int(self._config.get("max_content_chars", 300))
+        feed_n = int(self._config.get("feed_context_n", 5))
         system = (
             f"你在扮演一个中文社交媒体用户，人设如下：\n\n{self._persona}\n\n"
             f"你的固定内容类型是：{self._agent_type}。{_CONTENT_GUIDE[self._agent_type]}"
@@ -255,12 +263,29 @@ class CurationDiscourseAgent(AgentBase):
                 "（贴合语境、不要堆砌、不要逐字罗列）："
                 + "、".join(self._type_vocab)
             )
+        # feed 上下文：取本周 feed 前 feed_context_n 条（官方置顶/算法排序在前），
+        # 摘录作者与正文（单条截断 120 字），作为发言对象。
+        feed_lines: list[str] = []
+        for it in (snap.get("feed") or [])[: max(0, feed_n)]:
+            text = str(it.get("content", "")).strip().replace("\n", " ")[:120]
+            badge = "【官方】" if it.get("is_official") else ""
+            feed_lines.append(
+                f"- {badge}@{it.get('author_handle', '?')}（{it.get('week', '?')}）：{text}"
+            )
+        if feed_lines:
+            feed_block = (
+                "\n你本周刷到的前几条帖子：\n" + "\n".join(feed_lines) + "\n"
+                "你的发言必须建立在你看到的内容之上：可以回应、补充、反驳、二创、"
+                "玩其中的梗、或接话跟帖式地引用讨论；若其中某条与你高度相关，优先围绕它展开。"
+            )
+        else:
+            feed_block = "\n本周信息流为空，你可就当前话题自由发言。"
         context = (
             f"本周悼念规范压力 P_t={comps['norm_pressure']:.2f}，"
             f"你的 feed 里同类内容占比约 {comps['share_own']:.0%}。"
         )
         user = (
-            f"现在是 {snap.get('week', '?')}。你决定公开发言。\n{context}\n"
+            f"现在是 {snap.get('week', '?')}。你决定公开发言。\n{context}\n{feed_block}\n"
             f"请写一条不超过 {max_chars} 字的帖子正文，只输出正文本身，不要解释、不要引号。"
             "可以带 emoji 或话题标签，风格必须符合你的人设与类型。"
             + vocab_note

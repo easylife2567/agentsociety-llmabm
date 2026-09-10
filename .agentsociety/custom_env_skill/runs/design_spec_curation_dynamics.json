@@ -917,5 +917,27 @@
     "P4": "仅一个写工具 create_post（参数 agent_id, content）；get_feed 只读（参数 agent_id）。原考虑独立 get_env_status（参数仅 agent_id）会造成与 get_feed 相同的 variable_keys=('agent_id',)，存在模板缓存闭包串换风险，故并入 get_feed 响应并给出理由：①消除 P4 风险 ②每 tick 100×11×18 次工具调用预算下省一次调用 ③feed+气候+规范压力+全局份额为同一感知快照需原子一致。create_post 与 get_feed 的 key 集不同，无串换风险；docstring 仍需保持句首差异",
     "P5": "class CurationDynamicsSpace(EnvBase)，直接继承 EnvBase，不从任何 contrib/自定义 env 继承；所需全部工具在类体内重新实现",
     "compatibility": "文件 custom/envs/curation_dynamics_space.py；类名即 registry key；提供 step()、description()、init_description()；cls() 无必填构造参数（全部 kwargs 有默认值）；readonly observe 工具 get_feed 提供观察能力；to_workspace()/restore() 实现以支持 --resume"
+  },
+  "experiment_overrides_2026_09_10": {
+    "note": "用户 2026-09-10 四项裁定（实验级配置，模块机制不变）",
+    "agenda_setting": {
+      "change": "官方媒体全程仅 W13 一条讣告帖（原文给定，随注入样本下发，is_official=True）并对全员置顶；其余真实数据帖一律 is_official=False",
+      "config": {
+        "w_official": 0.0,
+        "official_pin_extend_weeks": 0
+      },
+      "effect": "P_t = w_mourning·M_t + w_volume·V_t（上限 0.7）；讣告帖仅 W13 置顶，W14 起按算法自然竞争"
+    },
+    "population_caliber": {
+      "change": "群体比例改按发帖人口径：meme 18 / mourning 21 / marketing 26 / education 15 / other 20",
+      "effect": "POP_SHARE 同步；activity 重锚 = 0.60 × (内容份额/作者份额) → 0.49/0.53/0.60/0.61/0.53"
+    },
+    "content_grounding": {
+      "change": "Agent 内容生成提示词注入本周 feed 前 5 条（feed_context_n=5，单条摘 120 字）",
+      "effect": "发言须基于所见帖子：回应/讨论/二创/跟帖式引用"
+    },
+    "find_feed_dict": {
+      "change": "agent 侧 _find_feed_dict 递归 DFS 改迭代 BFS（浅层优先、命中即停、跳过 variables）"
+    }
   }
 }

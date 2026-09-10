@@ -4,11 +4,14 @@
 
 - 3 推荐算法（random / chronological / interest）× 2 悼念规范压力模式（decay / sustained）
   = 6 cells，每 cell 3 seeds（0/1/2）= 18 个 init_config 变体，写入 init/configs/。
-- 100 个 agent（用户口径：梗41/悼念21/营销13/教育13/其他12），群体由
-  custom/agents/curation_personas.build_population(seed=42) 生成，**18 个配置完全共享**。
+- 100 个 agent（用户 2026-09-10 裁定按发帖人口径：玩梗18/悼念21/营销26/教育15/其他20），
+  群体由 custom/agents/curation_personas.build_population(seed=42) 生成，**18 个配置完全共享**。
 - 真实帖子注入：按用户裁定「全程约 250 条」，从 custom/envs/curation_assets/
   injection_posts.json 的 W12–W22 池中按 seed 预抽样 3 份样本文件（每份 250 条，
   保底+按真实周量比例分配），env 侧 sampling_ratio=1.0 全量注入当周样本。
+- 议程设置（用户 2026-09-10 裁定）：官方媒体全程仅 W13 一条讣告帖（原文给定），
+  注入并对全员置顶可见；其余真实数据帖一律按普通内容处理（is_official=False），
+  P_t 官方项权重置 0（w_official=0.0），官方置顶不延伸（official_pin_extend_weeks=0）。
 - init/init_config.json 为标准 CLI 默认配置（= configs/interest_decay_s0.json）。
 
 仅使用标准库；由 `experiment-config run` 执行。
@@ -40,7 +43,9 @@ ALGORITHMS = ["random", "chronological", "interest"]
 PRESSURE_MODES = ["decay", "sustained"]
 SEEDS = [0, 1, 2]
 
-POPULATION_COUNTS = {"meme": 41, "mourning": 21, "marketing": 13, "education": 13, "other": 12}
+# 用户 2026-09-10 裁定：按发帖人类型占比（不再按内容划分）——
+# 玩梗18% / 悼念21% / 营销26% / 讨论教育15% / 其他20%。
+POPULATION_COUNTS = {"meme": 18, "mourning": 21, "marketing": 26, "education": 15, "other": 20}
 POPULATION_SEED = 42          # 群体生成种子：全 18 配置共享同一群体
 VOCAB_SAMPLE_SEED = POPULATION_SEED + 1  # 各 agent 类型词表抽样子种子（独立于群体 rng）
 TYPE_VOCAB_N = 40             # 每个 agent 注入其类型词表的词数（用户裁定：发言用词表词组织语言）
@@ -66,8 +71,25 @@ INJECTION_ALLOCATION = {
     "2026-W22": 24,
 }
 assert sum(INJECTION_ALLOCATION.values()) == 250
-# 事件周及其后一周保证至少 1 条官方帖（官方议程设置处理的载体）。
-OFFICIAL_GUARANTEE_WEEKS = ("2026-W13", "2026-W14")
+
+# 议程设置重设计（用户 2026-09-10 裁定）：官方媒体全程仅此一条帖子，W13 注入并对
+# 全员置顶可见；除此之外官方媒体无任何其他作用——其余真实数据帖一律按普通内容处理
+# （is_official=False），P_t 的官方项权重置 0，官方置顶不延伸周。
+# W13 配额 = 34 条普通抽样 + 1 条讣告帖 = 35（总注入量维持 250）。
+ANNOUNCEMENT_WEEK = "2026-W13"
+ANNOUNCEMENT_POST: dict = {
+    "pid": "official_w13_announcement",
+    "week": ANNOUNCEMENT_WEEK,
+    "type": "mourning",  # 讣告报道，判类器同向（去世/抢救无效/猝死等哀悼词）
+    "author": "官方媒体",
+    "is_official": True,
+    "content": (
+        "今晚（3月24日），苏州峰学蔚来教育科技有限公司发布讣告称，张雪峰因突发疾病，"
+        "经抢救无效不幸去世。记者了解到，今天中午12点26分，张雪峰在公司跑步后出现不适，"
+        "被紧急送至医院。遗憾的是，经全力抢救无效于下午3点50分不幸去世。"
+        "医院诊断，原因为心源性猝死。"
+    ),
+}
 
 # steps.yaml：1 tick = 1 周 = 604800 秒；start_t = W12 周一。
 STEPS_YAML = """\
@@ -164,27 +186,19 @@ def _largest_remainder(total_k: int, groups: dict[str, list]) -> dict[str, int]:
     return alloc
 
 
-def stratified_week_sample(pool: list[dict], k: int, week: str, rng: random.Random) -> list[dict]:
-    """当周池的两级分层比例抽样：官方/非官方 → 类型；W13/W14 官方保底 1 条。"""
+def stratified_week_sample(pool: list[dict], k: int, rng: random.Random) -> list[dict]:
+    """当周池的类型分层比例抽样（最大余数法）：样本类型构成确定性贴合当周真实分布，
+    随机性只体现在"类型组内抽哪几条"。（2026-09-10 裁定：官方媒体仅 W13 单条讣告帖，
+    真实数据帖不再按官方/非官方分层，一律按普通内容处理。）"""
     k = min(k, len(pool))
-    official = [p for p in pool if p.get("is_official")]
-    regular = [p for p in pool if not p.get("is_official")]
-    alloc_top = _largest_remainder(k, {"official": official, "regular": regular})
-    if week in OFFICIAL_GUARANTEE_WEEKS and alloc_top["official"] == 0 and official:
-        alloc_top["official"] = 1
-        alloc_top["regular"] -= 1
+    by_type: dict[str, list] = {}
+    for p in pool:
+        by_type.setdefault(str(p.get("type", "other")), []).append(p)
+    alloc_t = _largest_remainder(k, by_type)
     picks: list[dict] = []
-    for stratum, group in (("official", official), ("regular", regular)):
-        kk = alloc_top[stratum]
-        if kk <= 0:
-            continue
-        by_type: dict[str, list] = {}
-        for p in group:
-            by_type.setdefault(str(p.get("type", "other")), []).append(p)
-        alloc_t = _largest_remainder(kk, by_type)
-        for t in sorted(by_type):
-            if alloc_t[t] > 0:
-                picks.extend(rng.sample(by_type[t], alloc_t[t]))
+    for t in sorted(by_type):
+        if alloc_t[t] > 0:
+            picks.extend(rng.sample(by_type[t], alloc_t[t]))
     rng.shuffle(picks)
     return picks
 
@@ -196,9 +210,16 @@ for seed in SEEDS:
     for week in sorted(INJECTION_ALLOCATION):
         k = INJECTION_ALLOCATION[week]
         pool = by_week.get(week, [])
-        assert len(pool) >= k, f"{week} 池仅 {len(pool)} 条，不足分配 {k}"
-        sampled.extend(stratified_week_sample(pool, k, week, rng))
-    sampled.sort(key=lambda p: (p["week"], p["pid"]))
+        # W13 留 1 个名额给官方讣告帖，普通抽样 k-1 条。
+        k_regular = k - 1 if week == ANNOUNCEMENT_WEEK else k
+        assert len(pool) >= k_regular, f"{week} 池仅 {len(pool)} 条，不足分配 {k_regular}"
+        # 官方媒体无其他作用：真实数据帖一律按普通内容处理（is_official=False）。
+        sampled.extend(
+            {**p, "is_official": False} for p in stratified_week_sample(pool, k_regular, rng)
+        )
+        if week == ANNOUNCEMENT_WEEK:
+            sampled.append(dict(ANNOUNCEMENT_POST))
+    sampled.sort(key=lambda p: (p["week"], str(p["pid"])))  # pid 混合 int/str（讣告帖），统一按字符串序
     weekly_counts = {w: sum(1 for p in sampled if p["week"] == w) for w in sorted(INJECTION_ALLOCATION)}
     weekly_type_counts = {
         w: {t: sum(1 for p in sampled if p["week"] == w and p.get("type") == t)
@@ -208,12 +229,18 @@ for seed in SEEDS:
     sample_doc = {
         "meta": {
             "source": "custom/envs/curation_assets/injection_posts.json",
-            "purpose": "hypothesis_4 experiment_1 预抽样注入样本（全程 250 条，用户 2026-09-09 裁定）",
+            "purpose": ("hypothesis_4 experiment_1 预抽样注入样本（全程 250 条，用户 2026-09-09 裁定；"
+                        "2026-09-10 议程重设计：官方媒体仅 W13 单条讣告帖，其余真实帖按普通内容处理）"),
             "seed": seed,
             "sample_rng": f"Random({seed}+{SAMPLE_SEED_OFFSET})",
-            "sampling_method": "每周池内两级分层比例抽样（官方/非官方×类型，最大余数法），样本构成确定性贴合当周真实构成",
+            "sampling_method": "每周池内类型分层比例抽样（最大余数法），样本构成确定性贴合当周真实构成",
             "allocation": INJECTION_ALLOCATION,
-            "official_guarantee_weeks": list(OFFICIAL_GUARANTEE_WEEKS),
+            "official_announcement": {
+                "pid": ANNOUNCEMENT_POST["pid"],
+                "week": ANNOUNCEMENT_WEEK,
+                "type": ANNOUNCEMENT_POST["type"],
+                "note": "官方媒体全程唯一帖子（讣告，原文给定），env 内对全员置顶 W13",
+            },
             "rows_total": len(sampled),
             "weekly_counts": weekly_counts,
             "weekly_type_counts": weekly_type_counts,
@@ -254,6 +281,9 @@ def make_config(algorithm: str, pressure: str, seed: int) -> dict:
                     "num_ticks": NUM_TICKS,
                     "event_week": EVENT_WEEK,
                     "feed_size": FEED_SIZE,
+                    # —— 议程设置（用户 2026-09-10 裁定）——
+                    "w_official": 0.0,               # 官方媒体无其他作用：P_t 官方项停用
+                    "official_pin_extend_weeks": 0,  # 讣告帖仅事件周（W13）置顶，不延伸
                     # 其余 kwargs（official_pin_extend_weeks / alpha / beta / gamma /
                     # interest_noise_eps / P_t 权重与阈值 / exposure_mode）用 spec 默认值，
                     # 待校准与敏感性分析（U2）统一处理。
@@ -301,6 +331,7 @@ manifest = {
     "population": {
         "counts": POPULATION_COUNTS,
         "seed": POPULATION_SEED,
+        "caliber": "按发帖人类型占比统计（用户 2026-09-10 裁定，不再按内容划分）",
         "note": "18 个配置共享同一群体（id-类型打散，人设含三机制类型化表现 + 发言决策数值参数 params）",
         "type_vocab": {
             "rule": "agent 发言用本类型词表词组织语言（用户 2026-09-09 裁定）；词源=env 判类器同口径 main/meme 列表",
@@ -308,22 +339,25 @@ manifest = {
             "sample_seed": VOCAB_SAMPLE_SEED,
             "meme": "linkage 全量 + strong 抽样；mourning/marketing/education=main 抽样；other=空",
         },
-        "speak_decision": "数值算法（无 LLM）：p=activity×spiral×decay×pressure，u=Random(f'{id}:{tick}') 公共随机数；params 随 profile 下发",
+        "speak_decision": "数值算法（无 LLM）：p=activity×spiral×decay×pressure，u=Random(f'{id}:{tick}') 公共随机数；params 随 profile 下发；activity 已按发帖人口径重锚（0.60×内容份额/作者份额）",
+        "content_grounding": "发言内容须基于本周 feed 前 5 条（feed_context_n=5）：回应/讨论/二创/跟帖（用户 2026-09-10 裁定）",
     },
     "injection": {
         "total_posts_per_run": 250,
         "allocation": INJECTION_ALLOCATION,
         "sample_seed_offset": SAMPLE_SEED_OFFSET,
-        "sampling_method": "每周池内两级分层比例抽样（官方×类型，最大余数法），构成确定性贴合当周真实分布",
+        "sampling_method": "每周池内类型分层比例抽样（最大余数法），构成确定性贴合当周真实分布；真实数据帖一律按普通内容处理",
+        "official_announcement": "官方媒体全程仅 W13 一条讣告帖（原文给定），全员置顶可见，官方无其他作用（w_official=0，置顶不延伸）",
         "sampling_ratio": 1.0,
         "sample_files": {str(s): sample_paths[s] for s in SEEDS},
     },
     "steps": {"start_t": "2026-03-16T00:00:00", "num_steps": NUM_TICKS, "tick_seconds": 604800},
     "deferred_defaults": {
         "note": ("interest 臂 α/γ 与 P_t 权重/阈值取 DesignSpec 默认值，待校准与敏感性分析（U2）。"
-                 "β 已废弃（2026-09-09 裁定：倾向分替代硬类型命中+词表重合项），保留 kwarg 兼容、不参与评分"),
+                 "β 已废弃（2026-09-09 裁定：倾向分替代硬类型命中+词表重合项），保留 kwarg 兼容、不参与评分；"
+                 "w_official 已按 2026-09-10 议程重设计裁定显式置 0（官方媒体无其他作用）"),
         "alpha": 1.0, "beta_deprecated": None, "gamma": 0.5,
-        "w_official": 0.3, "w_mourning": 0.4, "w_volume": 0.3,
+        "w_official": 0.0, "w_mourning": 0.4, "w_volume": 0.3,
     },
     "default_init_config": default_run_id,
     "run_command": (
