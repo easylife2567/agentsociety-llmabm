@@ -116,15 +116,54 @@ agent_types 映射（100 agents），vocab_path=custom/envs/curation_assets/voca
 
 ## 运行方式
 
+**多 run 编排（2026-09-10 源码核实）**：平台约定一个 experiment 只有一个固定 `run/`
+槽位（`agentsociety2/skills/experiment/config.py:96`），扩展 skill 的 `--run-id` 不影响
+run 目录且重复跑同一 `run/` 会把 replay 追加混写（`replay_sink.py` O_APPEND）。
+引擎 CLI 原生支持任意 `--run-dir`（`agentsociety2/society/cli.py`），故 18 个 run
+各自独立目录放在 `runs/<run_id>/`；`ags.py run-experiment status` 只看固定 `run/`，
+18 个 run 的状态由监视器总览承担。
+
 ```bash
-# 单个 run
+# 冒烟 1 run（标准入口，落固定 run/）
 $PYTHON_PATH .agentsociety/bin/ags.py run-experiment start \
   --hypothesis-id 4 --experiment-id 1 \
-  --init-config hypothesis_4/experiment_1/init/configs/<run_id>.json \
-  --run-id <run_id>
+  --init-config hypothesis_4/experiment_1/init/configs/interest_decay_s0.json
+
+# 18 runs（引擎 CLI 直启，各自独立 run 目录；顺序或 ≤3 并发，控 LLM 速率）
+for cfg in hypothesis_4/experiment_1/init/configs/{algorithm}_{pressure}_s{seed}.json; do
+  run_id=$(basename "$cfg" .json)
+  $PYTHON_PATH -m agentsociety2.society.cli \
+    --config "$cfg" \
+    --steps  hypothesis_4/experiment_1/init/steps.yaml \
+    --run-dir hypothesis_4/experiment_1/runs/$run_id \
+    --experiment-id h4e1_$run_id \
+    --log-file hypothesis_4/experiment_1/runs/$run_id/engine.log
+done
+
+# 中断恢复（引擎原生：从 run_dir/SOCIETY.json 续跑）
+# 在上述命令末尾追加 --resume
 ```
 
-先冒烟 1 run（interest_decay_s0）确认管线与 LLM 预算，再跑全部 18 runs。
+## 监视器（实时状态快照，零侵入）
+
+引擎每 tick 立即落盘（replay JSONL 追加写、ENV_STATE.json 原子重写、pid.json ~1s 心跳），
+`monitor.py` 纯读这些文件、把每个 run 的最新状态刷新为快照（无 watch 循环，
+想看最新就再跑一次；零 LLM 调用）：
+
+```bash
+$PYTHON_PATH hypothesis_4/experiment_1/monitor.py                  # 自动发现 run/ 与 runs/*，刷新全部快照
+$PYTHON_PATH hypothesis_4/experiment_1/monitor.py --week 2026-W13  # 只看某周
+```
+
+- 输出：`monitor/<run_id>/status.md`（人读周报）+ `status.json`（机读全量）；
+  `monitor/overview.md|json`（18+1 run 总览）
+- 内容：进程/进度、周度指标（P_t、供给/曝光构成、官方槽位）、Agent 行为聚合
+  （发言率/判类不一致）、机制透视（x、阈值、三机制分量）、帖子流（帖池按周 +
+  进行中新帖）、派生视图（策展偏差 = 曝光−供给、模拟 vs 真实基准）
+- 每张表附字段说明，`status.json` 内嵌 `field_docs` 全量词汇表
+
+先冒烟 1 run（interest_decay_s0）确认管线与 LLM 预算（≈330 次内容调用/run），
+再跑全部 18 runs。
 
 ## 判类与指标口径
 
