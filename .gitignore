@@ -12,3 +12,10 @@ datasets/zhangxf_labeled/valid_posts_clusters.parquet
 # 临时下载物与系统文件
 *.tar_*.gz
 .DS_Store
+
+# CurationDynamics H4E1 引擎产物与监视快照（由 run_batch / monitor 自动生成，脚本可复现，不入库）
+agentsociety_data/
+hypothesis_4/experiment_1/run/
+hypothesis_4/experiment_1/runs/
+hypothesis_4/experiment_1/monitor/
+hypothesis_4/experiment_1/*.log
