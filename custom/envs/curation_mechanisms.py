@@ -128,7 +128,7 @@ def age_weeks(current_week: str, post_week: str) -> int:
 # 默认参数（env kwargs 与校准脚本共用同一套默认值；改这里即同时改两条实现）。
 DEFAULT_HALF_LIFE_WEEKS = 1.5      # 时间冷却半衰期（周）
 DEFAULT_SATURATION_SCALE = 20.0    # 曝光饱和尺度：累计曝光达该值时生命折半
-DEFAULT_RETIRE_FLOOR = 0.05        # 生命低于该值的帖退出候选池（≈6.5 周龄）
+DEFAULT_RETIRE_FLOOR = 0.35        # 生命低于该值的帖退出候选池（≈3 周流通窗口：age 0/1/2）
 
 
 def weekly_decay(half_life_weeks: float) -> float:
@@ -168,7 +168,7 @@ def post_vitality(
 
 
 def is_retired(life: float, retire_floor: float = DEFAULT_RETIRE_FLOOR) -> bool:
-    """时间生命低于退场线的帖退出候选池（默认 ≈6.5 周龄，等效于自适应候选窗口）。
+    """时间生命低于退场线的帖退出候选池（默认 0.35 ≈ 3 周流通窗口，等效于候选窗口）。
 
     只按时间生命退场、不按曝光饱和退场：避免把"被推得多"的高热帖提前踢出池子
     而使池子在后期（总曝光远超池容量时）塌缩。

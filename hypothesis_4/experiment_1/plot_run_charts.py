@@ -291,7 +291,9 @@ def chart4_meme_speaking(weekly: list[dict], run_id: str, out: Path) -> Path:
 
     ax.legend([line_rate, line_gain], [line_rate.get_label(), line_gain.get_label()],
               loc="upper left", frameon=False, bbox_to_anchor=(0.0, 0.86))
-    ax.set_title(f"玩梗发言率 — 涌现增益 G 释放后 W19 起爆（{run_id}）",
+    # 2026-09-12：原标题"涌现增益 G 释放后 W19 起爆"把跳变归因给 G，已被诊断推翻
+    # （W18/W19 的 G 同为 3.0，跳变来自 D 的输入退化）；改中性描述，结论由数据自证。
+    ax.set_title(f"玩梗型 Agent 发言率与涌现增益 G（{run_id}）",
                  fontweight="bold", fontsize=13)
     ax.set_xticks(x, weeks, rotation=45)
     fig.tight_layout()

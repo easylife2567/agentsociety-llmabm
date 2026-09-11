@@ -21,7 +21,7 @@
         },
         "life_half_life_weeks": 1.5,
         "life_saturation_scale": 20.0,
-        "life_retire_floor": 0.05,
+        "life_retire_floor": 0.35,
         "interest_sample_temp": 4.0,
         "injection_data_path": "hypothesis_4/experiment_1/init/injection_sample_s2.json",
         "vocab_path": "custom/envs/curation_assets/vocabs.json",

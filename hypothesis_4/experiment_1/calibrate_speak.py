@@ -60,7 +60,7 @@ EVENT_WEEK = "2026-W13"
 # ---------------------------------------------------------------------------
 LIFE_HALF_LIFE_WEEKS = 1.5      # 时间冷却半衰期（周）
 LIFE_SATURATION_SCALE = 20.0    # 曝光饱和尺度：累计曝光达该值生命折半
-LIFE_RETIRE_FLOOR = 0.05        # 退场线（≈6.5 周龄）
+LIFE_RETIRE_FLOOR = 0.35        # 退场线（≈3 周流通窗口：age 0/1/2）
 INTEREST_SAMPLE_TEMP = 4.0      # 兴趣比例抽样温度
 # env 侧 RNG 流：注入=seed、随机臂=seed+1000、兴趣噪声=seed+2000、兴趣抽样=seed+3000。
 # 校准取 seed=0（cell 种子之一），抽样流偏移与 env 一致。

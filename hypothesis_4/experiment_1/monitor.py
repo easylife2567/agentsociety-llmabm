@@ -118,6 +118,15 @@ FIELDS: dict[str, str] = {
     "exposure_noise": "本 tick 噪音类曝光槽位数。",
     "official_posts_count": "本 tick 置顶集合中的官方帖数（仅 W13 讣告=1，其余周=0）。",
     "official_exposure_slots": "官方帖占据的 feed 槽位数。W13 应=100（全员置顶可见），其余周=0。",
+    # feed 机制审计（用户 2026-09-12 裁定：帖子生命周期 + 曝光饱和 + 兴趣比例抽样）
+    "feed_live_pool": "本周未退场、进入候选池的帖数（跨算法臂同源的内容可得性；三臂应相等）。",
+    "feed_sample_temp": "interest 臂比例抽样温度（按 exp(score/temp) 无放回抽 feed_size 条；<=0=确定性 top-k 消融档）。",
+    "feed_half_life_weeks": "帖子时间生命的半衰期（周）：1.5 周龄生命力折半。",
+    "feed_saturation_scale": "曝光饱和尺度：累计曝光达该值时生命力折半（默认 20）。",
+    "exposure_slots_age0": "本 tick 曝光槽位中帖龄 0 周（本周新帖）的槽位数——老帖霸屏的直接指标。",
+    "exposure_slots_age1": "本 tick 曝光槽位中帖龄 1 周的槽位数。",
+    "exposure_slots_age2": "本 tick 曝光槽位中帖龄 2 周的槽位数。",
+    "exposure_slots_age3plus": "本 tick 曝光槽位中帖龄 ≥3 周的槽位数；给定 3 周流通窗口（退场线 0.35）下应恒为 0。",
     # agent 周度（21 列聚合）
     "n_agents": "该类型 Agent 人数（群体构成：玩梗18/悼念21/营销26/教育15/其他20）。",
     "spoke_rate": "该类型本 tick 发言率 = 发言人数 / 类型人数。",
@@ -491,6 +500,24 @@ def render_weekly_md(weekly: list[dict], week_filter: str | None) -> str:
         cells += [_pct(r.get(f"exposure_share_{t}")) for t in TYPE_ALL]
         out.append("| " + " | ".join(str(c) if c is not None else "—" for c in cells) + " |")
     out.append(_docs_block(["total_exposures", "exposure_meme", "exposure_share_meme"]))
+    # 表B2 feed 机制审计（生命周期 / 曝光年龄结构 / 抽样参数）
+    out.append("\n### 表B2 feed 机制审计（帖子生命周期与候选取样）\n")
+    head = "| 周 | 活池 | 曝光龄0 | 龄1 | 龄2 | 龄≥3 | 龄≥3占比 | 抽样温度 | 半衰期 | 饱和尺度 |"
+    out += [head, "|---" * 10 + "|"]
+    for r in rows:
+        a = [r.get(f"exposure_slots_age{k}") for k in (0, 1, 2)]
+        old = r.get("exposure_slots_age3plus")
+        tot = sum(x for x in a + [old] if isinstance(x, (int, float)))
+        cells = [r.get("week"), r.get("feed_live_pool")] + [x if x is not None else "—" for x in a] + [
+            old if old is not None else "—",
+            _pct((old / tot) if (isinstance(old, (int, float)) and tot) else None),
+            _num(r.get("feed_sample_temp"), 2), _num(r.get("feed_half_life_weeks"), 2),
+            _num(r.get("feed_saturation_scale"), 1),
+        ]
+        out.append("| " + " | ".join(str(c) if c is not None else "—" for c in cells) + " |")
+    out.append(_docs_block(["feed_live_pool", "exposure_slots_age0", "exposure_slots_age1",
+                            "exposure_slots_age2", "exposure_slots_age3plus",
+                            "feed_sample_temp", "feed_half_life_weeks", "feed_saturation_scale"]))
     # 表C Agent 行为
     out.append("\n### 表C Agent 行为聚合（按类型）\n")
     head = "| 周 | 类型 | 人数 | 发言率 | 判类不一致率 | 本类人均曝光 | 所见本类占比(气候) | feed长度 |"

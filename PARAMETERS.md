@@ -7,7 +7,8 @@
 
 ## 0. 总纲：发言决策模型
 
-每个 agent 每周（1 tick = 1 周 = 604800 秒）做一次**确定性数值决策**（无 LLM、无随机数）：
+每个 agent 每周（1 tick = 1 周 = 604800 秒）做一次**确定性数值决策**（无 LLM、无随机数；
+随机性只存在于平台侧的 feed 选址，见 §4）：
 
 ```
 U = D × R × G^θ        发言当且仅当 U ≥ activity
@@ -21,8 +22,14 @@ U = D × R × G^θ        发言当且仅当 U ≥ activity
 
 中性状态（D≈R≈1、G=1）下 U≈1.0。三因子全部**乘法**进入效用（收益侧），杜绝线性等权平均的补偿性稀释。
 
+> **D 的输入 `share_own` = 该 agent 本周 feed 中本类内容占比**（不是全局份额、也不是真实世界份额）。
+> 2026-09-12 烟测诊断（`hypothesis_4/experiment_1/SMOKE_DIAGNOSIS_w19_cliff.md`）：旧 feed 机制下
+> 同类型 agent 拿到同一份 top-10，share_own 只能取 {0,1}，D 因此退化成 0.05↔2.0 的开关
+> （W18→W19 发言率 0→100%）。修复放在推荐算法侧（§4），D 的公式与 clamp 未动。
+
 - 代码：`custom/agents/curation_discourse_agent.py`（`_speak_stimulus`，第 228–278 行）
-- 环境侧 G 的计算：`custom/envs/curation_dynamics_space.py`（第 526–560 行附近）
+- 环境侧 G 的计算：`custom/envs/curation_dynamics_space.py`（`_compute_meme_env`）
+- feed 机制共享纯函数：`custom/envs/curation_mechanisms.py`（env 与 calibrate_speak 同源）
 
 ---
 
@@ -113,6 +120,9 @@ profile 未带 params 时的回退值，与 1.1 各类型均值一致
 | `emergence_sigma`（σ） | 1.0 | 空旷度指数 |
 | `emergence_gain_min / max` | 0.2 / 3.0 | G 的截断区间 |
 
+> 注：Stock 用**逐周供给计数**（注入 + agent 帖），与 §4 的帖子生命周期/候选池无关 ——
+> 帖子退场只影响"谁能被推荐"，不影响 B。/ 2026-09-12：K_a/K_f/β/σ 本轮未动（用户裁定）。
+
 ### 3.2 周度计算公式
 
 ```
@@ -135,7 +145,11 @@ G_t = clamp(B_t^β · S_t^σ, 0.2, 3.0)
 ## 4. 信息流与排序参数（env 模块）
 
 定义：`custom/envs/curation_dynamics_space.py` init kwargs；实验传参见
-`hypothesis_4/experiment_1/init/config_params.py` 第 286–312 行。
+`hypothesis_4/experiment_1/init/config_params.py`（`LIFE_*` / `INTEREST_SAMPLE_TEMP` 常量）。
+
+**feed 装配三步**（2026-09-12 起）：① 候选池 = 未退场的活帖（平台级，三臂同源）；
+② 按算法从候选池选 feed_size 条（random=均匀抽样 / chronological=时间倒序 /
+interest=按兴趣分比例抽样）；③ 装配时记账曝光（曝光饱和项随之下降）。
 
 | 参数 | 实验取值 | 含义 |
 |---|---|---|
@@ -144,13 +158,37 @@ G_t = clamp(B_t^β · S_t^σ, 0.2, 3.0)
 | `sampling_ratio` | 1.0 | 注入样本全量进 env，不再二次抽样 |
 | `meme_emergence_mode` | `normal` / `sustained_hot`（全因子 2 水平） | 涌现环境反事实臂 |
 | `alpha` | 1.0 | interest 臂：倾向分匹配权重 |
-| `gamma` | 0.5 | interest 臂：时新近度权重（score = alpha·倾向分 + gamma·时新近度 + 噪声） |
+| `gamma` | 0.5 | interest 臂：新鲜度基准项（`score = (α·倾向分 + γ)·生命力`） |
 | `beta` | 1.0（**废弃**） | 2026-09-09 裁定：倾向分替代词表重合项，不再使用 |
-| `interest_noise_eps` | 0.05 | interest 臂均匀噪声幅度 [-eps, +eps] |
-| `recency_max_age_weeks` | 8 | 时新近度线性衰减的最大周龄 |
+| `interest_noise_eps` | 0.05 | interest 臂均匀噪声幅度 [-eps, +eps]（相对分数跨度可忽略，保留兼容） |
+| `recency_max_age_weeks` | 8（**退役**） | 旧加性时新项 `γ·max(0,1−age/8)` 已于 2026-09-12 退役，kwarg 仅保留兼容 |
 | `exposure_mode` | none | 曝光惩罚模式（none/penalize/exclude，实验关闭） |
 | `exposure_penalty_weight` | 0.1 | 曝光惩罚权重（exposure_mode=none 时不生效） |
-| `random_recency_window_weeks` | None | 随机时新窗口（实验未启用） |
+| `random_recency_window_weeks` | None | 随机时新窗口（已由生命周期/退场取代，实验未启用） |
+
+### 4.1 帖子生命周期（用户 2026-09-12 裁定；平台级，三臂共用）
+
+| 参数 | 实验取值 | 含义 |
+|---|---|---|
+| `life_half_life_weeks` | 1.5 | 时间冷却半衰期（周）：1.5 周龄生命力折半 |
+| `life_saturation_scale` | 20.0 | 曝光饱和尺度：累计曝光达该值生命力折半（"被推给约 20 人后就腻了"） |
+| `life_retire_floor` | 0.35 | 退场线：时间生命低于此值退出候选池（≈**3 周流通窗口**：只在 age 0/1/2 可见） |
+
+每帖状态 `life`（创建 1.0，每周 × `0.5**(1/half_life)`）；打分用
+`生命力 = life × 0.5**(累计曝光 / saturation_scale)`；`life < retire_floor` 的帖退出候选池。
+**退场只按时间生命判、不按曝光饱和判**（避免高热帖被提前踢出池子使后期池塌缩）。
+预飞实测（100 agents × 11 周）：退场线 0.05（6.5 周窗口）→ age≥3 槽位占 60%；
+0.35（3 周窗口）→ age≥3 = 0.00、top-10% 曝光集中度 0.24、零曝光帖 0.06
+（旧机制分别为 0.60 / 0.64 / 0.54）。
+
+### 4.2 兴趣比例抽样（interest 臂的选择实现）
+
+| 参数 | 实验取值 | 含义 |
+|---|---|---|
+| `interest_sample_temp` | 4.0 | 抽样温度：按 `exp(score/temp)` 无放回抽 feed_size 条；`<=0` 退化为确定性 top-k（消融档） |
+
+RNG：独立流 `Random(random_seed + 3000)`（注入=seed、随机臂=+1000、兴趣噪声=+2000、
+兴趣抽样=+3000），同 seed 跨 cell 抽出同一序列 → 臂间可比性不变。
 | `official_pin_extend_weeks` | 0 | 官方置顶延伸周数：讣告帖仅事件周 W13 置顶，不延伸 |
 
 ---
@@ -221,6 +259,8 @@ config 未显式覆盖，取代码默认值。
 |---|---|
 | `custom/agents/curation_personas.py` | `_PARAM_SPECS`（四参数类型规格）、`_sample_params`（抖动抽样）、`POP_SHARE`、人设文本 |
 | `custom/agents/curation_discourse_agent.py` | `_PARAM_DEFAULTS`（回退值）、`_POP_SHARE`、`_DECAY_SCALE`、决策与内容生成逻辑 |
-| `custom/envs/curation_dynamics_space.py` | 涌现环境（窗口/K_a/K_f/β/σ/clamp）、排序（alpha/gamma/noise/recency/exposure）、feed_size、置顶延伸 |
+| `custom/envs/curation_mechanisms.py` | **feed 机制共享纯函数**（周序数、文本归一化/词表命中/倾向分、生命周期与曝光饱和、兴趣打分、softmax 权重与加权无放回抽样）——env 与 calibrate_speak 同源 |
+| `custom/envs/curation_dynamics_space.py` | 涌现环境（窗口/K_a/K_f/β/σ/clamp）、feed 机制（生命周期/抽样/退场）、排序（alpha/gamma/noise/exposure）、feed_size、置顶延伸 |
 | `hypothesis_4/experiment_1/init/config_params.py` | 因子设计、群体种子、时间轴、注入分配、官方讣告帖、env 实验传参 |
-| `hypothesis_4/experiment_1/calibrate_speak.py` | 门槛基数 0.95 的扫描定标方法与候选集 |
+| `hypothesis_4/experiment_1/calibrate_speak.py` | 门槛基数 0.95 的扫描定标方法与候选集；feed 层同构推演；`--assert-replay` 涌现环境公式断言 |
+| `hypothesis_4/experiment_1/SMOKE_DIAGNOSIS_w19_cliff.md` | 2026-09-12 烟测诊断（W19 悬崖与老帖霸屏的因果链、被实测排除的改法、用户裁定） |

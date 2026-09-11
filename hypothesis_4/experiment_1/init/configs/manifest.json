@@ -64,7 +64,7 @@
       "vitality": "vitality = life × 0.5**(累计曝光 / life_saturation_scale)，打分用",
       "life_half_life_weeks": 1.5,
       "life_saturation_scale": 20.0,
-      "life_retire_floor": 0.05,
+      "life_retire_floor": 0.35,
       "note": "被实测排除的形态：硬性'每帖每周最多推给 C 个 agent'会饿死早期 feed（W12 仅 47 帖，C=2 只供 94 槽位而当周需求 1000 槽位），故曝光上限以饱和衰减实现同一意图；退场只按时间生命判，避免高热帖被提前踢出池子"
     },
     "interest_sampling": {
