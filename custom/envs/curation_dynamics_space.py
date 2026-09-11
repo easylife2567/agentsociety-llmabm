@@ -14,6 +14,7 @@
 from __future__ import annotations
 
 import asyncio
+import importlib.util
 import json
 import random
 import re
@@ -27,6 +28,19 @@ from agentsociety2.storage import ColumnDef
 from agentsociety2.storage.workspace_state import atomic_write_text
 
 logger = get_logger()
+
+
+# ---------------- feed 机制共享纯函数（与 calibrate_speak.py 同源，避免校准-仿真漂移） ----------------
+# 用户 2026-09-12 裁定（见 hypothesis_4/experiment_1/SMOKE_DIAGNOSIS_w19_cliff.md）：
+# 帖子生命周期（老帖冷却 + 曝光饱和 + 过期退场）与兴趣比例抽样。
+# 纯函数放 custom/envs/curation_mechanisms.py，env 与校准脚本各自按路径 import 同一份实现。
+_MECH_MODULE_NAME = "curation_mechanisms"
+_MECH_PATH = Path(__file__).resolve().parent / f"{_MECH_MODULE_NAME}.py"
+_mech_spec = importlib.util.spec_from_file_location(_MECH_MODULE_NAME, _MECH_PATH)
+if _mech_spec is None or _mech_spec.loader is None:  # pragma: no cover - 路径异常时快速失败
+    raise ImportError(f"无法加载共享机制模块: {_MECH_PATH}")
+mech = importlib.util.module_from_spec(_mech_spec)
+_mech_spec.loader.exec_module(mech)
 
 
 # ---------------- 模板缓存嵌入补丁（本地确定性向量，替代外部 embedding 服务） ----------------
@@ -167,25 +181,23 @@ _EPOCH_MONDAY = date(2026, 1, 5)  # 固定周一锚点（2026-01-05），用于 
 
 
 def _week_monday(week: str) -> date:
-    """ISO 周标签 → 该周周一（ISO 8601 算法：1 月 4 日所在周为第 1 周）。"""
-    m = _WEEK_RE.match(str(week))
-    if not m:
-        raise ValueError(f"invalid ISO week label: {week!r}")
-    y, w = int(m.group(1)), int(m.group(2))
-    jan4 = date(y, 1, 4)
-    return jan4 - timedelta(days=jan4.isoweekday() - 1) + timedelta(weeks=w - 1)
+    """ISO 周标签 → 该周周一（委托共享机制模块，保证与校准脚本同一实现）。"""
+    return mech.week_monday(week)
 
 
 def _week_add(week: str, n: int) -> str:
-    """ISO 周标签偏移 n 周（2026-03~05 窗口无跨年问题，通用实现）。"""
-    d = _week_monday(week) + timedelta(weeks=n)
-    iso = d.isocalendar()
-    return f"{iso.year}-W{iso.week:02d}"
+    """ISO 周标签偏移 n 周（委托共享机制模块）。"""
+    return mech.week_add(week, n)
 
 
 def _week_ord(week: str) -> int:
-    """ISO 周标签 → 周序数（自 _EPOCH_MONDAY 起的周数，仅用于比较）。"""
-    return (_week_monday(week) - _EPOCH_MONDAY).days // 7
+    """ISO 周标签 → 周序数（委托共享机制模块，仅用于比较）。"""
+    return mech.week_ord(week)
+
+
+def _post_age_weeks(current_week: str, post_week: str) -> int:
+    """帖龄（周）：同周为 0（委托共享机制模块）。"""
+    return mech.age_weeks(current_week, post_week)
 
 
 def _rng_state_from_json(v: Any) -> Any:
@@ -200,7 +212,7 @@ class CurationDynamicsSpace(EnvBase):
     100 个固定类型 Agent 的差异化激活与公共表征构成变化（张雪峰 2026-03-24 去世 W13，W12→W22 共 11 周）。"""
 
     # ---------------- Replay 列声明 ----------------
-    # env 级：每 step 一行（主键 step=_step_index），47 列。
+    # env 级：每 step 一行（主键 step=_step_index），55 列。
     _env_state_columns: ClassVar[list[ColumnDef]] = [
         ColumnDef("week", "TEXT", description="当前 tick 的 ISO 周标签"),
         ColumnDef("meme_env_stock", "INTEGER", description="涌现环境存量 Stock_t：过去 emergence_window_stock 周（含本周）供给总数（注入+agent 帖）"),
@@ -249,6 +261,15 @@ class CurationDynamicsSpace(EnvBase):
         ColumnDef("exposure_noise", "INTEGER", description="本 tick 曝光槽位（按类型）"),
         ColumnDef("official_posts_count", "INTEGER", description="本 tick 置顶集合中的官方帖数"),
         ColumnDef("official_exposure_slots", "INTEGER", description="本 tick 官方帖占据的 feed 槽位数"),
+        # —— feed 机制审计（用户 2026-09-12 裁定：帖子生命周期 + 曝光饱和 + 比例抽样）——
+        ColumnDef("feed_live_pool", "INTEGER", description="本周未退场、进入候选池的帖数（三臂同源的内容可得性）"),
+        ColumnDef("feed_sample_temp", "REAL", description="interest 臂比例抽样的温度（<=0 表示确定性 top-k 消融档）"),
+        ColumnDef("feed_half_life_weeks", "REAL", description="帖子时间生命的半衰期（周）"),
+        ColumnDef("feed_saturation_scale", "REAL", description="曝光饱和尺度：累计曝光达该值时生命折半"),
+        ColumnDef("exposure_slots_age0", "INTEGER", description="本 tick 曝光槽位中帖龄 0 周（本周新帖）的槽位数"),
+        ColumnDef("exposure_slots_age1", "INTEGER", description="本 tick 曝光槽位中帖龄 1 周的槽位数"),
+        ColumnDef("exposure_slots_age2", "INTEGER", description="本 tick 曝光槽位中帖龄 2 周的槽位数"),
+        ColumnDef("exposure_slots_age3plus", "INTEGER", description="本 tick 曝光槽位中帖龄 ≥3 周的槽位数（老帖霸屏的直接指标）"),
     ]
 
     # agent 级：每 step 每 agent 一行（主键 agent_id+step），21 列。
@@ -298,7 +319,20 @@ class CurationDynamicsSpace(EnvBase):
         self._beta = float(kwargs.pop("beta", 1.0))  # 废弃：倾向分替代词表重合项（2026-09-09 裁定）
         self._gamma = float(kwargs.pop("gamma", 0.5))
         self._interest_noise_eps = float(kwargs.pop("interest_noise_eps", 0.05))
+        # 旧加性时新项（gamma·max(0,1−age/max_age)）已退役，仅保留 kwarg 兼容；见 curation_mechanisms。
         self._recency_max_age_weeks = int(kwargs.pop("recency_max_age_weeks", 8))
+        # —— 帖子生命周期（用户 2026-09-12 裁定：老帖随时间冷却、被推多也冷却、过期退场）——
+        self._life_half_life_weeks = float(
+            kwargs.pop("life_half_life_weeks", mech.DEFAULT_HALF_LIFE_WEEKS)
+        )
+        self._life_saturation_scale = float(
+            kwargs.pop("life_saturation_scale", mech.DEFAULT_SATURATION_SCALE)
+        )
+        self._life_retire_floor = float(
+            kwargs.pop("life_retire_floor", mech.DEFAULT_RETIRE_FLOOR)
+        )
+        # —— 兴趣比例抽样（用户 2026-09-12 裁定：A+B 都上；temperature<=0 退化为确定性 top-k）——
+        self._interest_sample_temp = float(kwargs.pop("interest_sample_temp", 4.0))
         self._exposure_mode = str(kwargs.pop("exposure_mode", "none"))
         self._exposure_penalty_weight = float(kwargs.pop("exposure_penalty_weight", 0.1))
         rrw = kwargs.pop("random_recency_window_weeks", None)
@@ -328,15 +362,20 @@ class CurationDynamicsSpace(EnvBase):
             raise ValueError(f"emergence_window_stock must be >= 1, got {self._emergence_window_stock}")
         if self._exposure_mode not in ("none", "penalize", "exclude"):
             raise ValueError(f"exposure_mode must be none/penalize/exclude, got {self._exposure_mode!r}")
+        if self._life_half_life_weeks <= 0:
+            raise ValueError(f"life_half_life_weeks must be > 0, got {self._life_half_life_weeks}")
+        if self._life_retire_floor < 0:
+            raise ValueError(f"life_retire_floor must be >= 0, got {self._life_retire_floor}")
         for aid, ttype in self._agent_types.items():
             if ttype not in TYPE_ORDER:
                 raise ValueError(f"agent_types[{aid!r}] = {ttype!r} not in {TYPE_ORDER}")
 
-        # 三 RNG 流分离：注入=seed、随机臂=seed+1000、兴趣噪声=seed+2000（噪声流按 tick 重播种，
-        # 保证六 cell 除算法/压力开关外完全一致）。
+        # 四 RNG 流分离：注入=seed、随机臂=seed+1000、兴趣噪声=seed+2000、
+        # 兴趣比例抽样=seed+3000（同 seed 跨 cell 抽出同一序列，保证臂间可比）。
         self._rng_injection = random.Random(self._random_seed)
         self._rng_feed_random = random.Random(self._random_seed + 1000)
         self._rng_interest_noise = random.Random(self._random_seed + 2000)
+        self._rng_interest_sample = random.Random(self._random_seed + 3000)
 
         # 静态资产（空路径=空资产，仅调试/冒烟）。
         self._vocab: dict[str, Any] = self._load_json_asset(self._vocab_path, "vocab")
@@ -383,6 +422,9 @@ class CurationDynamicsSpace(EnvBase):
         self._agent_posts_pooled_prev: set[int] = set()
         self._injected_count_by_week: dict[str, int] = {}
         self._event_week_injected_count = 0
+        # feed 机制审计（用户 2026-09-12 裁定后的新增观测量）：
+        self._feed_live_pool = 0            # 本周未退场、进入候选池的帖数（三臂同源可得性）
+        self._exposure_age_buckets: dict[str, int] = {"age0": 0, "age1": 0, "age2": 0, "age3plus": 0}
 
         # 周窗口 + 确定性注入量（k_w = round(池大小 × ratio)，与 RNG 无关，init 即可得，
         # 供 volume 比 V_t 与 replay 的 injected_count 使用；采样本身在每 tick 打开时进行）。
@@ -591,13 +633,52 @@ class CurationDynamicsSpace(EnvBase):
             "is_official": p["is_official"],
         }
 
-    def _interest_rank(self, aid: str, week: str, candidates: list[int]) -> list[int]:
-        """interest 臂：score = alpha·倾向分匹配 + gamma·时新近度 + 均匀噪声[-eps,+eps]。
+    def _decay_post_lives(self, week: str) -> None:
+        """每周开场把在池帖的时间生命乘一次冷却步长（帖子生命周期，用户 2026-09-12 裁定）。
+
+        放在注入**之前**执行：本周新注入/新入池的帖保持 life=1.0（帖龄 0）。
+        缺 life 字段的帖（老 checkpoint / 新代码混跑）按帖龄回填，保证幂等。
+        """
+        step = mech.weekly_decay(self._life_half_life_weeks)
+        for pid, p in self._posts.items():
+            life = p.get("life")
+            if life is None:
+                life = mech.life_at_age(
+                    _post_age_weeks(week, p["week"]), self._life_half_life_weeks
+                )
+            p["life"] = float(life) * step
+
+    def _live_candidates(self) -> list[int]:
+        """候选池 = 全池中未退场的帖（生命周期机制）。
+
+        平台级内容可得性规则，**三算法臂共用同一候选池**（保证臂间差异只来自排序/选择）：
+        帖的时间生命低于退场线即退出视野 —— 这同时取代了"候选窗口"这一独立旋钮。
+        """
+        return [
+            pid
+            for pid in sorted(self._posts)
+            if not mech.is_retired(self._posts[pid].get("life", 1.0), self._life_retire_floor)
+        ]
+
+    def _post_vitality(self, pid: int) -> float:
+        p = self._posts[pid]
+        return mech.post_vitality(
+            p.get("life", 1.0),
+            int(p.get("exposure_count", 0)),
+            self._life_saturation_scale,
+        )
+
+    def _interest_rank(self, aid: str, week: str, candidates: list[int]) -> list[tuple[float, int]]:
+        """interest 臂：score = (alpha·倾向分匹配 + gamma)·生命力 + 均匀噪声[-eps,+eps]。
 
         倾向分匹配（用户裁定 2026-09-09）：取帖子四类倾向分中本 Agent 类型维度的值
         （词表命中次数/句长密度），替代此前的硬类型命中 + 词表重合两项（beta 项废弃，
         倾向分本身即词表命中的密度归一化）。已曝光帖按 exposure_mode none/penalize/exclude
-        处理。无帖子级热度/互动项（纯兴趣匹配最小机制）。"""
+        处理。无帖子级热度/互动项（纯兴趣匹配最小机制）。
+
+        用户裁定 2026-09-12：时新项由**加性加成**（8 周后归零但不降权，老帖仍以 α·T
+        竞争）改为**乘性生命力**（老帖整体打折并最终退场）。返回 (score, pid) 供调用方
+        做比例抽样或确定性 top-k。"""
         atype = self._agent_types.get(aid, "other")
         seen = self._seen_by_agent.get(aid, set())
         eps = self._interest_noise_eps
@@ -606,20 +687,41 @@ class CurationDynamicsSpace(EnvBase):
             if self._exposure_mode == "exclude" and pid in seen:
                 continue
             p = self._posts[pid]
-            sc = self._alpha * (p.get("tendencies") or {}).get(atype, 0.0)
-            age = max(0, _week_ord(week) - _week_ord(p["week"]))
-            sc += self._gamma * max(0.0, 1.0 - age / self._recency_max_age_weeks)
+            sc = mech.interest_score(
+                (p.get("tendencies") or {}).get(atype, 0.0),
+                self._alpha,
+                self._gamma,
+                self._post_vitality(pid),
+            )
             if self._exposure_mode == "penalize" and pid in seen:
                 sc -= self._exposure_penalty_weight
             if eps > 0:
                 sc += self._rng_interest_noise.uniform(-eps, eps)
             scored.append((sc, pid))
         scored.sort(key=lambda x: (-x[0], -x[1]))
-        return [pid for _, pid in scored]
+        return scored
+
+    def _select_slots(self, scored: list[tuple[float, int]], k: int) -> list[int]:
+        """按 exp(score/temperature) 无放回抽 k 条（用户裁定 2026-09-12 的"比例抽样"）。
+
+        烟测诊断：只要"取分数最高的 k 条"这个操作还在、而高分帖数量 ≥ k，选出的集合就与
+        agent 无关（同类型 18 人拿到同一份 top-10 → 气候 share_own 逐 agent sd=0 →
+        D 的输入退化成 {0,1}）。改为比例抽样后，每个 agent 的 k 条成为"分数比例的样本"，
+        逐 agent 有梯度。temperature<=0 退化为确定性 top-k（消融开关）。
+        """
+        if k <= 0 or not scored:
+            return []
+        if self._interest_sample_temp <= 0:
+            return [pid for _, pid in scored[:k]]
+        pids = [pid for _, pid in scored]
+        weights = mech.softmax_weights([s for s, _ in scored], self._interest_sample_temp)
+        return mech.weighted_sample_without_replacement(
+            pids, weights, k, self._rng_interest_sample
+        )
 
     def _assemble_feed(self, aid: str, week: str) -> list[dict[str, Any]]:
         """为单个 Agent 装配本周 feed：官方置顶帖占前部槽位（各算法臂一致），
-        算法填充余下槽位并排除已置顶 id；候选=全池（累积不删除，可见性由 recency/曝光/窗口 knob 控制）。"""
+        算法填充余下槽位并排除已置顶 id；候选 = 未退场的活帖池（三臂同源可得性）。"""
         pinned_set = set(self._pinned_ids)
         feed: list[dict[str, Any]] = []
         for pid in self._pinned_ids[: self._feed_size]:
@@ -627,23 +729,16 @@ class CurationDynamicsSpace(EnvBase):
         remaining = self._feed_size - len(feed)
         if remaining <= 0:
             return feed
-        candidates = [pid for pid in sorted(self._posts) if pid not in pinned_set]
+        candidates = [pid for pid in self._live_candidates() if pid not in pinned_set]
         alg = self._recommendation_algorithm
         if alg == "random":
-            if self._random_recency_window_weeks is not None and self._random_recency_window_weeks > 0:
-                wmin = _week_ord(_week_add(week, -(self._random_recency_window_weeks - 1)))
-                wmax = _week_ord(week)
-                candidates = [
-                    pid for pid in candidates
-                    if wmin <= _week_ord(self._posts[pid]["week"]) <= wmax
-                ]
             take = min(remaining, len(candidates))
             chosen = self._rng_feed_random.sample(candidates, take) if take > 0 else []
         elif alg == "chronological":
             candidates.sort(key=lambda pid: (_week_ord(self._posts[pid]["week"]), pid), reverse=True)
             chosen = candidates[:remaining]
         else:  # interest
-            chosen = self._interest_rank(aid, week, candidates)[:remaining]
+            chosen = self._select_slots(self._interest_rank(aid, week, candidates), remaining)
         for pid in chosen:
             feed.append(self._feed_item(pid))
         return feed
@@ -658,6 +753,10 @@ class CurationDynamicsSpace(EnvBase):
         self._injected_this_week = {t: 0 for t in TYPE_ORDER_ALL}
         self._injected_this_week_ids = []
         self._official_injected_this_week = 0
+        self._exposure_age_buckets = {"age0": 0, "age1": 0, "age2": 0, "age3plus": 0}
+
+        # 0) 帖子生命周期：本周冷却步长（须在注入之前，保证新帖 life=1.0）。
+        self._decay_post_lives(week)
 
         # 1) 注入（rng_injection 流，与 feed 层 RNG 分离）。
         pool = self._injection_by_week.get(week, [])
@@ -683,6 +782,7 @@ class CurationDynamicsSpace(EnvBase):
                     "week": str(rec.get("week", week)),
                     "is_official": bool(rec.get("is_official", False)),
                     "exposure_count": 0,
+                    "life": 1.0,  # 生命周期起点（用户 2026-09-12 裁定）
                     "tick_produced": self._tick_index,
                 }
                 self._injected_this_week[ttype] += 1
@@ -698,6 +798,7 @@ class CurationDynamicsSpace(EnvBase):
         self._pinned_ids = self._compute_pinned_ids(week)
 
         # 4) 预装配全部 feed（曝光在装配时记账：1 次/agent/tick；get_feed 只读缓存快照）。
+        self._feed_live_pool = len(self._live_candidates())
         for aid in sorted(self._agent_types):
             feed = self._assemble_feed(aid, week)
             self._feeds[aid] = feed
@@ -708,6 +809,9 @@ class CurationDynamicsSpace(EnvBase):
                 seen.add(pid)
                 self._posts[pid]["exposure_count"] += 1
                 counts[item["type"]] += 1
+                # 老帖霸屏的直接指标：本周曝光槽位的帖龄分桶（0/1/2/≥3 周）。
+                age = _post_age_weeks(week, self._posts[pid]["week"])
+                self._exposure_age_buckets["age3plus" if age >= 3 else f"age{age}"] += 1
             self._exposure_counts_tick[aid] = counts
             n = len(feed)
             self._climate_shares[aid] = {t: (c / n if n else 0.0) for t, c in counts.items()}
@@ -741,6 +845,7 @@ class CurationDynamicsSpace(EnvBase):
                 "week": rec["week"],
                 "is_official": False,
                 "exposure_count": 0,
+                "life": 1.0,  # 生命周期起点（用户 2026-09-12 裁定）
                 "tick_produced": self._step_index,
             }
         self._pending_agent_posts = []
@@ -748,7 +853,7 @@ class CurationDynamicsSpace(EnvBase):
         return merged
 
     def _env_row(self, week: str, merged: list[dict[str, Any]]) -> dict[str, Any]:
-        """env 级指标（47 列，key 与 _env_state_columns 精确一致）。"""
+        """env 级指标（55 列，key 与 _env_state_columns 精确一致）。"""
         agent_counts = {t: 0 for t in TYPE_ORDER}
         for rec in merged:
             pt = rec["pool_type"]
@@ -811,6 +916,12 @@ class CurationDynamicsSpace(EnvBase):
             row[f"exposure_{t}"] = exposure_counts[t]
         row["official_posts_count"] = len(self._pinned_ids)
         row["official_exposure_slots"] = official_exposure_slots
+        row["feed_live_pool"] = self._feed_live_pool
+        row["feed_sample_temp"] = self._interest_sample_temp
+        row["feed_half_life_weeks"] = self._life_half_life_weeks
+        row["feed_saturation_scale"] = self._life_saturation_scale
+        for bucket, cnt in self._exposure_age_buckets.items():
+            row[f"exposure_slots_{bucket}"] = cnt
         return row
 
     def _landscape_row(self, week: str, merged: list[dict[str, Any]]) -> dict[str, Any]:
@@ -1115,9 +1226,14 @@ class CurationDynamicsSpace(EnvBase):
             "**start_week** 起始 ISO 周（默认 2026-W12）；**num_ticks** 总 tick 数（默认 11）；"
             "**event_week** 去世周（默认 2026-W13）；**official_pin_extend_weeks** 官方置顶延伸"
             "周数（默认 1）；interest 臂权重 **alpha**/**beta**/**gamma**、噪声幅度 "
-            "**interest_noise_eps**、时新衰减窗 **recency_max_age_weeks**、已曝光处理 "
-            "**exposure_mode**（none/penalize/exclude）与 **exposure_penalty_weight**、随机臂窗口 "
-            "**random_recency_window_weeks**；涌现环境 **emergence_flow_by_week**（真实周新增帖量"
+            "**interest_noise_eps**、已曝光处理 "
+            "**exposure_mode**（none/penalize/exclude）与 **exposure_penalty_weight**；"
+            "**帖子生命周期**（用户 2026-09-12 裁定）：**life_half_life_weeks** 时间冷却半衰期"
+            "（默认 1.5）、**life_saturation_scale** 曝光饱和尺度（累计曝光达该值生命折半，"
+            "默认 20）、**life_retire_floor** 退场线（时间生命低于此值退出候选池，默认 0.05"
+            "≈6.5 周龄）；**interest_sample_temp** interest 臂比例抽样温度（按 "
+            "exp(score/temp) 无放回抽 feed_size 条，默认 4.0；<=0 退化为确定性 top-k）；"
+            "涌现环境 **emergence_flow_by_week**（真实周新增帖量"
             "镜像调度 {周: 帖数}，空旷度 S 的外生流量口径，缺省回退内生 arena 计数）、"
             "**emergence_window_stock**（存量回看窗口周数，默认 6）、**emergence_ka**/**emergence_kf**"
             "（半饱和形状常数，缺省自动取注入计划的事件周存量与基线周流量）、"
@@ -1154,6 +1270,7 @@ class CurationDynamicsSpace(EnvBase):
             "_rng_injection": self._rng_injection.getstate(),
             "_rng_feed_random": self._rng_feed_random.getstate(),
             "_rng_interest_noise": self._rng_interest_noise.getstate(),
+            "_rng_interest_sample": self._rng_interest_sample.getstate(),
             "_official_pinned": {w: list(ids) for w, ids in self._official_pinned.items()},
             "_pinned_ids": list(self._pinned_ids),
             "_agent_posts_pooled_prev": sorted(self._agent_posts_pooled_prev),
@@ -1208,14 +1325,15 @@ class CurationDynamicsSpace(EnvBase):
             str(aid): int(v) for aid, v in (d.get("_total_posts_by_agent") or {}).items()
         }
         self._next_post_id = int(d.get("_next_post_id", 1))
-        for attr, key in (
-            ("_rng_injection", "_rng_injection"),
-            ("_rng_feed_random", "_rng_feed_random"),
-            ("_rng_interest_noise", "_rng_interest_noise"),
+        for key in (
+            "_rng_injection",
+            "_rng_feed_random",
+            "_rng_interest_noise",
+            "_rng_interest_sample",
         ):
             st = d.get(key)
             if st is not None:
-                getattr(self, attr).setstate(_rng_state_from_json(st))
+                getattr(self, key).setstate(_rng_state_from_json(st))
         self._official_pinned = {str(w): list(ids) for w, ids in (d.get("_official_pinned") or {}).items()}
         self._pinned_ids = [int(pid) for pid in (d.get("_pinned_ids") or [])]
         self._agent_posts_pooled_prev = set(int(pid) for pid in (d.get("_agent_posts_pooled_prev") or []))

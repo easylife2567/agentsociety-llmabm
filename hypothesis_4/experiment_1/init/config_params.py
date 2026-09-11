@@ -17,6 +17,10 @@
 - 议程设置（用户 2026-09-10 裁定）：官方媒体全程仅 W13 一条讣告帖（原文给定），
   注入并对全员置顶可见；其余真实数据帖一律按普通内容处理（is_official=False），
   官方置顶不延伸（official_pin_extend_weeks=0）。
+- feed 机制（用户 2026-09-12 裁定，见 SMOKE_DIAGNOSIS_w19_cliff.md）：帖子生命周期
+  （时间冷却 + 曝光饱和 + 退场）＋ interest 臂兴趣比例抽样，修烟测暴露的"老帖霸屏"
+  与"同类型 agent 共享同一份 feed → W18→W19 发言悬崖"；参数见下方
+  LIFE_* / INTEREST_SAMPLE_TEMP 常量与 manifest["feed_mechanism"]。
 - init/init_config.json 为标准 CLI 默认配置（= configs/interest_normal_s0.json）。
 
 仅使用标准库；由 `experiment-config run` 执行。
@@ -60,6 +64,20 @@ START_WEEK = "2026-W12"
 EVENT_WEEK = "2026-W13"
 NUM_TICKS = 11                # W12 -> W22
 FEED_SIZE = 10                 # 用户 2026-09-10 裁定：每 agent 每周信息流 10 条
+
+# ---------------------------------------------------------------------------
+# feed 机制参数（用户 2026-09-12 裁定：生命周期 + 曝光饱和 + 比例抽样）
+#
+# 诊断（hypothesis_4/experiment_1/SMOKE_DIAGNOSIS_w19_cliff.md）：烟测中兴趣臂
+# (a) 候选集是全历史档案、年龄只是加性加成 → 老帖霸屏（W12-W15 帖吃掉 61.8% 曝光）；
+# (b) 打分无 agent 相关项 + "取 top-k" → 同类型 agent 共享同一份 feed（逐 agent sd=0）
+#     → D 的输入退化成 {0,1} → W18→W19 发言悬崖。
+# 实测排除：寿命衰减单独、±20/30/50% 排序抖动、硬性曝光上限（会饿死早期 feed）。
+# ---------------------------------------------------------------------------
+LIFE_HALF_LIFE_WEEKS = 1.5     # 时间冷却半衰期（周）：1.5 周龄生命折半
+LIFE_SATURATION_SCALE = 20.0   # 曝光饱和尺度：累计曝光达该值生命折半
+LIFE_RETIRE_FLOOR = 0.05       # 退场线：时间生命低于此值退出候选池（≈6.5 周龄）
+INTEREST_SAMPLE_TEMP = 4.0     # 兴趣比例抽样温度（<=0 退化为确定性 top-k 消融档）
 
 # 250 条周分配：保底 15/周×11=165，余 85 按真实周量比例分配（和=250）。
 INJECTION_ALLOCATION = {
@@ -297,6 +315,14 @@ def make_config(algorithm: str, mode: str, seed: int) -> dict:
                     # emergence_kf / emergence_beta=1.0 / emergence_sigma=1.0 /
                     # gain_min=0.2 / gain_max=3.0）用 env 默认值，
                     # 待校准与敏感性分析（U2）统一处理。
+                    # —— feed 机制（用户 2026-09-12 裁定，见 SMOKE_DIAGNOSIS_w19_cliff.md）——
+                    # 帖子生命周期：老帖随时间冷却、被推得多也冷却、寿终退场；
+                    # 兴趣比例抽样：把"取分数最高的 feed_size 条"换成"按 exp(score/temp)
+                    # 无放回抽 feed_size 条"，使每个 agent 的 feed 各不相同（修 W19 悬崖）。
+                    "life_half_life_weeks": LIFE_HALF_LIFE_WEEKS,
+                    "life_saturation_scale": LIFE_SATURATION_SCALE,
+                    "life_retire_floor": LIFE_RETIRE_FLOOR,
+                    "interest_sample_temp": INTEREST_SAMPLE_TEMP,
                     # —— 数据资产 ——
                     "injection_data_path": sample_paths[seed],
                     "vocab_path": "custom/envs/curation_assets/vocabs.json",
@@ -367,6 +393,36 @@ manifest = {
         "speak_decision": "涌现增益表达效用模型（无 LLM，用户 2026-09-10 裁定）：U=D·R·G^θ，发言当且仅当 U≥activity（个体表达门槛，门槛低者易发言；确定性决策无随机数）。D=1+s·(share_own−base)/base clamp[0.05,2]（沉默螺旋）；R=exp(−λ·cum_own/50)（注意力衰减）；G=clamp(B^β·S^σ,0.2,3.0)（玩梗涌现环境增益，env 侧逐周计算：B=存量丰沛度=过去6周arena供给/基线、S=流量空旷度=现实口径新增/基线，两者以基线周W12=1；θ=emergence 结构系数，仅玩梗型 1.0，其余 0）。中性状态（D≈R≈1、G=1）下 U≈1.0，三因子乘法进入效用；门槛基数 0.95 校准（calibrate_speak.py 真实 Stock/Flow 涌现环境代理）；params 随 profile 下发",
         "content_grounding": "发言内容须基于本周 feed 前 5 条（feed_context_n=5）：回应/讨论/二创/跟帖（用户 2026-09-10 裁定）",
     },
+    "feed_mechanism": {
+        "adopted_from": "hypothesis_4/experiment_1/SMOKE_DIAGNOSIS_w19_cliff.md（用户 2026-09-12 裁定）",
+        "post_lifecycle": {
+            "state": "每帖 life（时间生命，创建时 1.0，每周 × weekly_decay）",
+            "vitality": "vitality = life × 0.5**(累计曝光 / life_saturation_scale)，打分用",
+            "life_half_life_weeks": LIFE_HALF_LIFE_WEEKS,
+            "life_saturation_scale": LIFE_SATURATION_SCALE,
+            "life_retire_floor": LIFE_RETIRE_FLOOR,
+            "note": ("被实测排除的形态：硬性'每帖每周最多推给 C 个 agent'会饿死早期 feed"
+                     "（W12 仅 47 帖，C=2 只供 94 槽位而当周需求 1000 槽位），故曝光上限"
+                     "以饱和衰减实现同一意图；退场只按时间生命判，避免高热帖被提前踢出池子"),
+        },
+        "interest_sampling": {
+            "temperature": INTEREST_SAMPLE_TEMP,
+            "rule": ("interest 臂把'按分数排序取前 feed_size 条'换成'按 exp(score/temp) 无放回抽"
+                     " feed_size 条'；temp<=0 退化为确定性 top-k（消融档）"),
+            "rng": "独立流 Random(random_seed + 3000)，同 seed 跨 cell 抽出同一序列，保证臂间可比",
+            "why": ("烟测实测：只要保留确定性 top-10 且高分帖数 ≥ 10，选出的集合就与 agent 无关"
+                    "（同类型 18 人 share_own 的逐 agent sd = 0）→ D 的输入退化成 {0,1}"),
+        },
+        "cross_arm_comparability": {
+            "platform_level": "候选池 = 未退场的活帖（生命周期/退场），三算法臂完全相同",
+            "arm_specific": "只在于如何从同一候选池中选 feed_size 条：random=均匀抽样；chronological=时间倒序取最新；interest=按兴趣分比例抽样",
+            "note": "同周 feed_live_pool 与置顶槽位数三臂必须相等（冒烟验收项 7）",
+        },
+        "replay_columns": [
+            "feed_live_pool", "feed_sample_temp", "feed_half_life_weeks",
+            "feed_saturation_scale", "exposure_slots_age0/1/2/3plus",
+        ],
+    },
     "injection": {
         "total_posts_per_run": 250,
         "allocation": INJECTION_ALLOCATION,
@@ -388,8 +444,11 @@ manifest = {
     "deferred_defaults": {
         "note": ("interest 臂 α/γ 取 DesignSpec 默认值；涌现窗口/αβσ 与 K_a/K_f 用 env 默认，"
                  "待校准与敏感性分析（U2）。β 已废弃（2026-09-09 裁定：倾向分替代硬类型命中+词表重合项），"
-                 "保留 kwarg 兼容、不参与评分。2026-09-10 机制重设计：悼念规范压力（norm_pressure/w_* 权重）整体退役"),
+                 "保留 kwarg 兼容、不参与评分。2026-09-10 机制重设计：悼念规范压力（norm_pressure/w_* 权重）整体退役。"
+                 "2026-09-12：加性时新项 γ·max(0,1−age/recency_max_age_weeks) 退役，"
+                 "时新改由帖子生命力的乘性衰减承载（recency_max_age_weeks 保留 kwarg 兼容、不参与评分）"),
         "alpha": 1.0, "beta_deprecated": None, "gamma": 0.5,
+        "recency_max_age_weeks_deprecated": None,
         "emergence_window_stock": 6, "emergence_beta": 1.0, "emergence_sigma": 1.0,
         "emergence_gain_clamp": [0.2, 3.0],
     },
