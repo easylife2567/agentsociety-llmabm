@@ -72,16 +72,17 @@ VOCAB_PATH = workspace_root / "custom" / "envs" / "curation_assets" / "vocabs.js
 MANIFEST_PATH = script_dir / "init" / "configs" / "manifest.json"
 BENCH_PATH = workspace_root / "hypothesis_4" / "benchmark_curves.json"
 
-# agent 帖倾向分画像（逐类型中位数）。
-# 来源：烟测 run interest_normal_s0 的 ENV_STATE.json 全池 agent 帖实测中位数
-# （见 SMOKE_DIAGNOSIS_w19_cliff.md 第 3.7 节：agent 帖短而词表密度高，meme 帖倾向分
-# 系统性高于注入帖）。LLM 内容生成器（prompt / 温度 / 词表）若有改动需回填复核。
+# agent 帖倾向分画像（逐类型中位数）——LLM 内容生成器的输入参数，不是本机制的产出。
+# 来源：feed 机制重设计后的烟测 run interest_normal_s0 的 ENV_STATE.json 全池 agent 帖
+# 实测中位数（2026-09-12 复填；agent 帖短而词表密度高，meme 帖倾向分系统性高于注入帖，
+# 见 SMOKE_DIAGNOSIS_w19_cliff.md 第 3.7 节）。LLM 内容生成器（prompt / 温度 / 词表）
+# 若有改动需回填复核——敏感性实测：画像整体缩放 ×0.4-1.0 不改变玩梗起量形态。
 AGENT_TENDENCY_PROFILE: dict[str, dict[str, float]] = {
-    "meme":      {"mourning": 0.495, "marketing": 0.0,   "education": 0.0,   "meme": 8.791},
-    "mourning":  {"mourning": 4.991, "marketing": 0.267, "education": 1.145, "meme": 0.256},
-    "marketing": {"mourning": 0.0,   "marketing": 6.25,  "education": 1.907, "meme": 0.0},
-    "education": {"mourning": 0.0,   "marketing": 1.111, "education": 4.24,  "meme": 0.0},
-    "other":     {"mourning": 0.275, "marketing": 0.291, "education": 0.515, "meme": 0.0},
+    "meme":      {"mourning": 0.42,  "marketing": 0.0,   "education": 0.0,   "meme": 6.56},
+    "mourning":  {"mourning": 3.13,  "marketing": 0.43,  "education": 1.37,  "meme": 0.17},
+    "marketing": {"mourning": 0.14,  "marketing": 4.64,  "education": 2.13,  "meme": 0.0},
+    "education": {"mourning": 0.0,   "marketing": 1.25,  "education": 3.98,  "meme": 0.0},
+    "other":     {"mourning": 0.42,  "marketing": 0.81,  "education": 1.14,  "meme": 0.0},
 }
 
 TYPE_KEYS = {  # benchmark 中文键 → agent 类型
