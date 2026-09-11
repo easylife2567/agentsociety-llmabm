@@ -7,6 +7,7 @@
     chart1  玩梗供给份额 — 模拟 vs 真实基准   （对应 docx 图1 双线对比）
     chart2  周度供给量 — 注入+Agent 产出堆叠柱（对应 docx 图2 总量柱状）
     chart3  各内容类型供给量堆叠面积          （对应 docx 图3 绝对数量堆叠）
+    chart3b 各内容类型 Agent 发帖量堆叠面积    （图3 的 Agent 侧变体，不含注入帖）
     chart4  玩梗型 Agent 发言率 + 涌现增益 G  （对应 docx 图4 玩梗率，副轴加机制量）
 
 同时把周度指标导出为 CSV（data/），作为 run/（已 gitignore）之外的持久数据副本。
@@ -230,6 +231,35 @@ def chart3_stacked_area(weekly: list[dict], run_id: str, out: Path) -> Path:
     return out
 
 
+def chart3b_agent_supply_stacked_area(weekly: list[dict], run_id: str, out: Path) -> Path:
+    """各内容类型 Agent 发帖量堆叠面积（图3 的 Agent 侧变体，不含注入帖）。
+
+    noise 仅存在于注入侧（Agent 不产噪音帖），故序列只含 5 类。
+    """
+    weeks = [w["week"] for w in weekly]
+    x = list(range(len(weeks)))
+    agent_types = [t for t in TYPE_ORDER if t != "noise"]
+    series = {t: [w.get(f"agent_supply_{t}", 0) for w in weekly] for t in agent_types}
+
+    fig, ax = plt.subplots(figsize=(10, 5.4))
+    _death_line(ax, weeks)
+    ax.stackplot(x, *[series[t] for t in agent_types],
+                 labels=[TYPE_LABEL[t] for t in agent_types],
+                 colors=[TYPE_COLOR[t] for t in agent_types],
+                 edgecolor="white", linewidth=0.6, alpha=0.92, zorder=2)
+    ax.set_xticks(x, weeks, rotation=45)
+    ax.set_ylabel("Agent 发帖数（帖）")
+    ax.set_title(f"Agent 发帖量变化（堆叠面积 · 仅 Agent 产出 · 不含注入帖，{run_id}）",
+                 fontweight="bold", fontsize=13)
+    ax.legend(loc="upper right", frameon=False, fontsize=9)
+    ax.margins(y=0.05)
+    _tidy(ax)
+    fig.tight_layout()
+    fig.savefig(out, dpi=300)
+    plt.close(fig)
+    return out
+
+
 def chart4_meme_speaking(weekly: list[dict], run_id: str, out: Path) -> Path:
     """玩梗型 Agent 发言率（绿线填充）+ 涌现增益 G 副轴（对应 docx 图4 + 机制量）。"""
     weeks = [w["week"] for w in weekly]
@@ -298,6 +328,7 @@ def main() -> int:
             (chart1_meme_share, "chart1_meme_share_sim_vs_real.png"),
             (chart2_supply_volume, "chart2_weekly_supply_volume.png"),
             (chart3_stacked_area, "chart3_supply_stacked_area.png"),
+            (chart3b_agent_supply_stacked_area, "chart3b_agent_supply_stacked_area.png"),
             (chart4_meme_speaking, "chart4_meme_speaking_rate.png"),
         ):
             out = CHARTS_DIR / f"{run_id}__{name}"
