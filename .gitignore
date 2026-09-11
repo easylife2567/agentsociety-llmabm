@@ -13,6 +13,9 @@ datasets/zhangxf_labeled/valid_posts_clusters.parquet
 *.tar_*.gz
 .DS_Store
 
+# 归档压缩包（体积大，由打包流程生成，不入库）
+AgentSociety_*.tar.gz
+
 # CurationDynamics H4E1 引擎产物与监视快照（由 run_batch / monitor 自动生成，脚本可复现，不入库）
 agentsociety_data/
 hypothesis_4/experiment_1/run/
