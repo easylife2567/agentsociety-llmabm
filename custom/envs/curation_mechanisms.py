@@ -21,7 +21,74 @@ from __future__ import annotations
 import math
 import re
 from datetime import date, timedelta
-from typing import Any, Sequence
+from typing import Any, Mapping, Sequence
+
+# ---------------- 文本归一化与词表命中（与 env 判类器/倾向分同源） ----------------
+
+# 逐字移植 build_assets.py _EMOJI（emoji / 符号 / 国旗 / 变体选择器 / 零宽连接符）。
+_EMOJI = re.compile(r"[\U0001F000-\U0001FAFF\U00002600-\U000027BF\U0001F1E6-\U0001F1FF️‍]")
+
+
+def normalize(s: str) -> str:
+    """逐字移植 build_assets.py normalize()：去 emoji 后剥掉所有非单词字符（保留 CJK+字母数字），小写。"""
+    s = _EMOJI.sub("", str(s))
+    return re.sub(r"[\W_]+", "", s).lower()
+
+
+def hits(words: Sequence[str], layers: Sequence[str]) -> list[str]:
+    """两层子串匹配命中词表（raw.lower() + normalize()）。"""
+    return [w for w in words if any(w.lower() in l for l in layers)]
+
+
+# 倾向分词表键（由 vocab JSON 提取；键名与 env 内部列表一一对应）。
+TENDENCY_VOCAB_KEYS = (
+    "mourning_main",
+    "marketing_main",
+    "education_main",
+    "meme_linkage",
+    "meme_strong",
+    "meme_exclude_death_fact",
+)
+
+
+def vocab_lists_from_doc(vocab_doc: Mapping[str, Any]) -> dict[str, list[str]]:
+    """从 vocabs.json 结构提取倾向分/判类所需的六份词表（与 env 同口径）。"""
+    meme_v = dict(vocab_doc.get("meme") or {})
+    return {
+        "mourning_main": list((vocab_doc.get("mourning") or {}).get("main", []) or []),
+        "marketing_main": list((vocab_doc.get("marketing") or {}).get("main", []) or []),
+        "education_main": list((vocab_doc.get("education") or {}).get("main", []) or []),
+        "meme_linkage": list(meme_v.get("linkage", []) or []),
+        "meme_strong": list(meme_v.get("strong", []) or []),
+        "meme_exclude_death_fact": list(meme_v.get("exclude_death_fact", []) or []),
+    }
+
+
+def compute_tendencies(text: str, vocab: Mapping[str, Sequence[str]]) -> dict[str, float]:
+    """四类倾向分：各类型词表命中次数 ÷ 句长（命中/50 字），与判类器同口径两层匹配。
+
+    用户裁定（2026-09-09）：帖子类型表征不由 LLM 解析，用词表命中次数与句子长度计算
+    梗/教育/哀悼/营销倾向，作为兴趣推荐臂的匹配依据。meme 命中 = linkage 命中数 +
+    死因词替换「□」后的 strong 命中数；其余主类 = main 命中数。返回各类密度值（≥0，4 位小数）。
+    """
+    raw = str(text)
+    nrm = normalize(raw)
+    layers = [raw.lower(), nrm]
+    stripped = list(layers)
+    for w in vocab.get("meme_exclude_death_fact", ()) or ():
+        stripped = [s.replace(w.lower(), "□") for s in stripped]
+    cnt = {
+        "mourning": len(hits(vocab.get("mourning_main", ()) or (), layers)),
+        "marketing": len(hits(vocab.get("marketing_main", ()) or (), layers)),
+        "education": len(hits(vocab.get("education_main", ()) or (), layers)),
+        "meme": len(hits(vocab.get("meme_linkage", ()) or (), layers))
+        + sum(
+            1 for w in (vocab.get("meme_strong", ()) or ())
+            if any(w.lower() in l for l in stripped)
+        ),
+    }
+    norm_len = max(1.0, len(raw) / 50.0)
+    return {t: round(h / norm_len, 4) for t, h in cnt.items()}
 
 # ---------------- ISO 周工具（唯一的周序数来源，env 的 _week_ord 委托到此处） ----------------
 

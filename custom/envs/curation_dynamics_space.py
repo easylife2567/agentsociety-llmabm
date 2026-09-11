@@ -167,13 +167,12 @@ PRECEDENCE = ["mourning", "marketing", "education", "meme"]
 # ---------------- 判类器（与 build_assets.py 完全同源，勿改判定语义） ----------------
 
 # 逐字移植 build_assets.py _EMOJI（emoji / 符号 / 国旗 / 变体选择器 / 零宽连接符）。
-_EMOJI = re.compile(r"[\U0001F000-\U0001FAFF\U00002600-\U000027BF\U0001F1E6-\U0001F1FF️‍]")
+_EMOJI = mech._EMOJI
 
 
 def _normalize(s: str) -> str:
-    """逐字移植 build_assets.py normalize()：去 emoji 后剥掉所有非单词字符（保留 CJK+字母数字），小写。"""
-    s = _EMOJI.sub("", str(s))
-    return re.sub(r"[\W_]+", "", s).lower()
+    """逐字移植 build_assets.py normalize()（委托共享机制模块，保证与校准脚本同一实现）。"""
+    return mech.normalize(s)
 
 
 _WEEK_RE = re.compile(r"^(\d{4})-W(\d{2})$")
@@ -390,6 +389,8 @@ class CurationDynamicsSpace(EnvBase):
         self._vocab_meme_strong = list(meme_v.get("strong", []) or [])
         self._vocab_meme_exclude_death_fact = list(meme_v.get("exclude_death_fact", []) or [])
         self._vocab_meme_weak_markers = list(meme_v.get("weak_markers", []) or [])  # 不参与判类，仅审计
+        # 倾向分词表（六份，与判类器同口径）打包给共享机制模块用。
+        self._tendency_vocab = mech.vocab_lists_from_doc(self._vocab)
 
         # 动态状态（全部在 __init__ 初始化；restore() 在 __init__/init() 之后覆盖）。
         self._lock = asyncio.Lock()  # 不序列化，每次 __init__ 重建
@@ -500,7 +501,7 @@ class CurationDynamicsSpace(EnvBase):
 
     @staticmethod
     def _hits(words: list[str], layers: list[str]) -> list[str]:
-        return [w for w in words if any(w.lower() in l for l in layers)]
+        return mech.hits(words, layers)
 
     def _tag_content_type(self, text: str) -> str:
         """四词表判类：raw.lower() + normalize() 两层子串匹配；meme=linkage 命中 或
@@ -534,23 +535,9 @@ class CurationDynamicsSpace(EnvBase):
 
         用户裁定（2026-09-09）：帖子类型表征不由 LLM 解析，用词表命中次数与句子长度
         计算 梗/教育/哀悼/营销 倾向，作为兴趣推荐臂的匹配依据与 feed item 的信息字段。
-        meme 命中 = linkage 命中数 + 死因词替换「□」后的 strong 命中数；其余主类 = main
-        命中数；other/noise 无词表不参与。返回各类密度值（≥0，未截断，保留 4 位小数）。"""
-        raw = str(text)
-        nrm = _normalize(raw)
-        layers = [raw.lower(), nrm]
-        stripped = list(layers)
-        for w in self._vocab_meme_exclude_death_fact:
-            stripped = [s.replace(w.lower(), "□") for s in stripped]
-        hits = {
-            "mourning": len(self._hits(self._vocab_mourning_main, layers)),
-            "marketing": len(self._hits(self._vocab_marketing_main, layers)),
-            "education": len(self._hits(self._vocab_education_main, layers)),
-            "meme": len(self._hits(self._vocab_meme_linkage, layers))
-            + sum(1 for w in self._vocab_meme_strong if any(w.lower() in l for l in stripped)),
-        }
-        norm_len = max(1.0, len(raw) / 50.0)
-        return {t: round(h / norm_len, 4) for t, h in hits.items()}
+        实现委托共享机制模块（curation_mechanisms.compute_tendencies），
+        保证校准脚本与 env 的倾向分逐值一致。"""
+        return mech.compute_tendencies(text, self._tendency_vocab)
 
     # ---------------- 周/打开/收尾逻辑 ----------------
 

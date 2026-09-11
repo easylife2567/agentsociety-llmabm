@@ -1,45 +1,48 @@
-"""玩梗涌现环境门槛基数（activity_base）快速校准（2026-09-10 机制重设计后重写）。
+"""玩梗涌现环境门槛基数（activity_base）快速校准（2026-09-12 feed 机制重设计后重写）。
 
-方法论：与旧表达效用校准同框架（确定性决策、无随机数、真实数据代理），
-环境项 P_t 替换为玩梗涌现增益 G_t，且环境-行为反馈与 env 实现**同构、完全内生化**：
+方法论：与旧表达效用校准同框架（真实数据代理），但**气候输入改为同构的 feed 层推演**——
+烟测诊断（SMOKE_DIAGNOSIS_w19_cliff.md）指出：旧校准用"真实世界当周本类内容份额"作 D 因子的
+气候代理，而真实 sim 里 D 读的是 agent 本人 feed 的类型分布，二者口径差正是"校准说 W19 温和起量、
+sim 却一步到顶"的来源。本版直接推演 feed：候选池 = 真实注入样本（带正文→真倾向分）+ agent 帖，
+按**与 env 完全相同的**生命周期/曝光饱和/退场与兴趣比例抽样装配 feed，再算 share_own → D。
+
+机制同构由代码保证：周序数、生命衰减、曝光饱和、倾向分、兴趣打分、softmax 抽样全部来自
+`custom/envs/curation_mechanisms.py`（env 同时 import 同一份）。另提供
+`--assert-replay <run_dir>`：用 replay 记录的逐周供给计数复算 B/S/G 并与 replay 记录值
+逐值比对（容差 1e-6），直接校验涌现环境公式的同构性。
 
 - S_t（流量空旷度）：env 读外生现实口径周新增调度（config_params.EMERGENCE_FLOW_BY_WEEK，
-  = injection_posts.json 各周全量帖数；sim arena 流量被 250 条注入预算压缩——保底 15/周
-  托底谷值、洪峰仅 ~2×、agent 供给又平稳 → 峰谷比 ~1.6× vs 现实 ~9×，表达不出真实
-  洪峰/退潮节律，故 S 读现实口径），S_t = h(Flow_w)/h(Flow_base)，h(x)=K_f/(K_f+x)，
-  K_f = 调度基线周值（W12）→ 基线周 S=1。sustained_hot 反事实臂：事件周（W13）记录
-  S，之后冻结（B 保持内生）。
-- B_t（存量丰沛度）：env 内生——Stock_t = 过去 6 周 arena 供给总数（当周注入 + 上一周
-  agent 发言；agent 帖滞后 1 tick 入池，与 env 的 step(k) 关池→_open_tick(k+1) 时机
-  一致），B_t = f(Stock_t)/f(Stock_base)，f(x)=x/(x+K_a)，K_a = 注入计划事件周窗口
-  存量（W12+W13 注入 = 17+35 = 52，env 默认），Stock_base = W12 arena 流量（17）
-  → 基线周 B=1。B 不因 sustained 臂冻结（meme 再拥挤反哺存量的自限反馈保留）。
-- G_t = clamp(B_t^β · S_t^σ, 0.2, 3.0)，β=σ=1（env 默认起步值）。
-- 气候代理（沉默螺旋 D 因子输入）：benchmark_curves.json weekly_category_matrix
-  剔除「爬取噪音」的本类内容份额。
-- 累计曝光代理：cum_own(w) += feed_size × share_own(w)（期望本类曝光；feed_size=10）。
-- 决策：U = D·R·G^θ，发言当且仅当 U ≥ activity_i；θ = params["emergence"]
-  （仅玩梗型 >0，其余类型 0 → G 不进入其效用）。D/R 公式与 agent 实现一致。
-- 扫描门槛基数（个体门槛按基数等比例缩放，保持 U[0.8,1.2] 抖动结构），
-  另做 OAT 敏感性：K_a/K_f 倍率、β、σ（其余保持默认）。
+  = injection_posts.json 各周全量帖数），S_t = h(Flow_w)/h(Flow_base)，h(x)=K_f/(K_f+x)，
+  K_f = 调度基线周值（W12）。sustained_hot 反事实臂：事件周（W13）记录 S，之后冻结。
+- B_t（存量丰沛度）：env 内生——Stock_t = 过去 6 周 arena 供给总数（注入 + 滞后 1 tick 的
+  agent 帖），B_t = f(Stock_t)/f(Stock_base)，f(x)=x/(x+K_a)，K_a = 注入计划事件周窗口存量。
+- G_t = clamp(B_t^β · S_t^σ, 0.2, 3.0)。
+- 决策：U = D·R·G^θ，发言当且仅当 U ≥ activity_i；θ = params["emergence"]（仅玩梗型 >0）。
+  D/R 公式与 agent 实现一致；R 的 cum_own 用推演中该 agent 实际见到的本类槽位数累计。
 
-选点标准：agent 供给 ≈300-350 帖/run（>250 注入），形态合理（W13 悼念冲击、
-玩梗 W20-22 回潮、营销/教育稳定供给）。本脚本零副作用，只读文件并打印；
-定标结果由人工裁定后写入文档。
+选点标准（2026-09-12 更新）：agent 供给 > 注入 250 且总量在可接受预算内 ＋ 形态合理
+（W13 悼念冲击、**玩梗 W18-W19 温和起步 → W20-W22 起量**、营销/教育稳定供给）＋
+玩梗 share_own 逐 agent 有梯度（sd > 0）。
+
+**2026-09-12 复核结论（用户裁定"activity 基数本轮不动"）**：feed 机制重设计后重扫
+1.15/1.10/1.05/1.00/0.95，门槛基数维持 **0.95**（personas 未改）。基准基数 0.95 下
+normal 臂代理总量 525 帖/run（旧机制定标 463，上移 13%，主因气候从 {0,1} 变为有梯度后
+多数类型的 D 抬升）；若按旧"300-350 帖/run"目标则应取 1.15（该档代理总量 337、
+玩梗轨迹 0/0/0/0/2/2/6/13/15/17 更平缓、反事实臂 W20-22 仅 6 帖）——**留作后续裁定项**。
+本脚本只读文件并打印；定标结果人工裁定后写入文档。
 """
 
 from __future__ import annotations
 
+import argparse
 import importlib.util
 import json
 import math
+import random
 from pathlib import Path
 
 script_dir = Path(__file__).resolve().parent
 workspace_root = script_dir.parent.parent
-benchmark_path = workspace_root / "hypothesis_4" / "benchmark_curves.json"
-personas_path = workspace_root / "custom" / "agents" / "curation_personas.py"
-manifest_path = script_dir / "init" / "configs" / "manifest.json"
 
 FEED_SIZE = 10          # 用户 2026-09-10 裁定：每 agent 每周 10 条信息流
 BASE_REF = 0.95         # personas 当前门槛基数（缩放锚点）
@@ -52,6 +55,35 @@ WEEKS = [f"2026-W{i}" for i in range(12, 23)]
 START_WEEK = "2026-W12"
 EVENT_WEEK = "2026-W13"
 
+# ---------------------------------------------------------------------------
+# feed 机制参数（与 init/configs/manifest.json 的 feed_mechanism 同源）
+# ---------------------------------------------------------------------------
+LIFE_HALF_LIFE_WEEKS = 1.5      # 时间冷却半衰期（周）
+LIFE_SATURATION_SCALE = 20.0    # 曝光饱和尺度：累计曝光达该值生命折半
+LIFE_RETIRE_FLOOR = 0.05        # 退场线（≈6.5 周龄）
+INTEREST_SAMPLE_TEMP = 4.0      # 兴趣比例抽样温度
+# env 侧 RNG 流：注入=seed、随机臂=seed+1000、兴趣噪声=seed+2000、兴趣抽样=seed+3000。
+# 校准取 seed=0（cell 种子之一），抽样流偏移与 env 一致。
+CALIB_SAMPLE_SEED = 3000
+
+# 注入样本（config_params 按 seed+777 预抽样；校准用 seed0 → 777）
+INJECTION_SAMPLE_PATH = script_dir / "init" / "injection_sample_s0.json"
+VOCAB_PATH = workspace_root / "custom" / "envs" / "curation_assets" / "vocabs.json"
+MANIFEST_PATH = script_dir / "init" / "configs" / "manifest.json"
+BENCH_PATH = workspace_root / "hypothesis_4" / "benchmark_curves.json"
+
+# agent 帖倾向分画像（逐类型中位数）。
+# 来源：烟测 run interest_normal_s0 的 ENV_STATE.json 全池 agent 帖实测中位数
+# （见 SMOKE_DIAGNOSIS_w19_cliff.md 第 3.7 节：agent 帖短而词表密度高，meme 帖倾向分
+# 系统性高于注入帖）。LLM 内容生成器（prompt / 温度 / 词表）若有改动需回填复核。
+AGENT_TENDENCY_PROFILE: dict[str, dict[str, float]] = {
+    "meme":      {"mourning": 0.495, "marketing": 0.0,   "education": 0.0,   "meme": 8.791},
+    "mourning":  {"mourning": 4.991, "marketing": 0.267, "education": 1.145, "meme": 0.256},
+    "marketing": {"mourning": 0.0,   "marketing": 6.25,  "education": 1.907, "meme": 0.0},
+    "education": {"mourning": 0.0,   "marketing": 1.111, "education": 4.24,  "meme": 0.0},
+    "other":     {"mourning": 0.275, "marketing": 0.291, "education": 0.515, "meme": 0.0},
+}
+
 TYPE_KEYS = {  # benchmark 中文键 → agent 类型
     "梗文化讨论": "meme",
     "事件悼念讨论": "mourning",
@@ -61,10 +93,28 @@ TYPE_KEYS = {  # benchmark 中文键 → agent 类型
 }
 TYPE_ORDER = ["meme", "mourning", "marketing", "education", "other"]
 
+
+# ---------------------------------------------------------------------------
+# 共享机制模块（与 env 完全同一份实现）
+# ---------------------------------------------------------------------------
+def _load_shared_module(name: str, path: Path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+mech = _load_shared_module("curation_mechanisms", workspace_root / "custom" / "envs" / "curation_mechanisms.py")
+personas_mod = _load_shared_module("curation_personas", workspace_root / "custom" / "agents" / "curation_personas.py")
+
+POPULATION_COUNTS = {"meme": 18, "mourning": 21, "marketing": 26, "education": 15, "other": 20}
+population = personas_mod.build_population(POPULATION_COUNTS, seed=42)
+AGENT_TYPES = {str(p["id"]): p["agent_type"] for p in population}
+
 # ---------------------------------------------------------------------------
 # 输入：注入分配 + 现实口径流量调度（与 18 个配置同源：configs/manifest.json）
 # ---------------------------------------------------------------------------
-manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
 INJ_ALLOC: dict[str, int] = {str(k): int(v) for k, v in manifest["injection"]["allocation"].items()}
 FLOW_WORLD: dict[str, int] = {str(k): int(v) for k, v in manifest["emergence_env"]["flow_schedule"].items()}
 assert sorted(INJ_ALLOC) == sorted(FLOW_WORLD) == sorted(WEEKS), "manifest 周集合与 WEEKS 不一致"
@@ -73,17 +123,23 @@ K_F_DEFAULT = FLOW_WORLD[START_WEEK]                          # env 默认 emerg
 K_A_DEFAULT = INJ_ALLOC[START_WEEK] + INJ_ALLOC[EVENT_WEEK]   # env 默认 emergence_ka（17+35=52）
 STOCK_BASE = INJ_ALLOC[START_WEEK]                            # W12 arena 流量（17，agent 帖滞后入池）
 
-spec = importlib.util.spec_from_file_location("curation_personas", personas_path)
-personas_mod = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(personas_mod)
-
-POPULATION_COUNTS = {"meme": 18, "mourning": 21, "marketing": 26, "education": 15, "other": 20}
-population = personas_mod.build_population(POPULATION_COUNTS, seed=42)
+# 注入样本（带正文）：倾向分用共享函数现算，与 env 注入时同口径
+_sample_doc = json.loads(INJECTION_SAMPLE_PATH.read_text(encoding="utf-8"))
+_vocab_lists = mech.vocab_lists_from_doc(json.loads(VOCAB_PATH.read_text(encoding="utf-8")))
+INJECTED_BY_WEEK: dict[str, list[dict]] = {}
+for _p in _sample_doc["posts"]:
+    _t = str(_p.get("type", "other"))
+    INJECTED_BY_WEEK.setdefault(str(_p["week"]), []).append(
+        {"type": _t if _t in TYPE_ORDER else "other",
+         "tend": mech.compute_tendencies(str(_p.get("content", "")), _vocab_lists)}
+    )
+assert all(len(INJECTED_BY_WEEK.get(w, [])) == INJ_ALLOC[w] for w in WEEKS), \
+    "注入样本周量与 manifest 分配不一致"
 
 
 def typed_shares() -> dict[str, dict[str, float]]:
-    """各周各类型真实内容份额（剔除爬取噪音；D 因子气候代理）。"""
-    bench = json.loads(benchmark_path.read_text(encoding="utf-8"))
+    """各周各类型真实内容份额（剔除爬取噪音）——仅作输出对照，不再作为 D 的气候输入。"""
+    bench = json.loads(BENCH_PATH.read_text(encoding="utf-8"))
     matrix = bench["weekly_category_matrix"]
     shares: dict[str, dict[str, float]] = {}
     for wk in WEEKS:
@@ -97,32 +153,52 @@ def typed_shares() -> dict[str, dict[str, float]]:
 def simulate(
     base: float,
     mode: str,
-    shares: dict[str, dict[str, float]],
     ka: float = K_A_DEFAULT,
     kf: float = K_F_DEFAULT,
     beta: float = 1.0,
     sigma: float = 1.0,
-) -> tuple[dict[str, dict[str, int]], dict[str, dict[str, float]]]:
-    """端到端代理推演 11 周，返回 ({week: {type: 发言数}}, {week: 环境轨迹})。
+    temp: float = INTEREST_SAMPLE_TEMP,
+    half_life: float = LIFE_HALF_LIFE_WEEKS,
+    saturation: float = LIFE_SATURATION_SCALE,
+) -> tuple[dict[str, dict[str, int]], dict[str, dict[str, float]], dict[str, dict[str, float]]]:
+    """端到端代理推演 11 周，返回 ({week: {type: 发言数}}, {week: 环境轨迹}, {week: {type: 本类可见份额}})。
 
-    与 env 同构：agent 第 w 周发言在 w+1 周开池时并入 arena 流量（滞后 1 tick），
-    Stock 以 6 周窗口滚动累计；S 读现实口径调度；sustained_hot 在事件周记录 S 并冻结。
+    与 env 同构（周序数/生命衰减/曝光饱和/退场/倾向分/兴趣打分/比例抽样全部走共享纯函数）：
+    - 候选池：当周注入 + 上一 tick 收尾并入的 agent 帖（agent 帖滞后 1 tick 可见）；
+    - 每帖 life 每周 × weekly_decay，注入/入池置 1.0；life < 退场线 → 退出候选池；
+    - feed 装配：对每个 agent 按 interest_score 打分，按 exp(score/T) 无放回抽 FEED_SIZE 条，
+      装配时即记账曝光（曝光饱和项随之下降，抑制单帖同周垄断）；
+    - share_own = 该 agent 本周 feed 中本类槽位占比（D 的气候输入，逐 agent 不同）；
+    - Stock 以 6 周窗口滚动累计；S 读现实口径调度；sustained_hot 在事件周记录 S 并冻结。
     """
+    rng = random.Random(CALIB_SAMPLE_SEED)
     cum_own = {p["id"]: 0.0 for p in population}
+    pool: list[dict] = []           # {week, type, tend(dict), life, exposure}
     flow_hist: dict[str, float] = {}
-    prev_speak = 0.0            # 上一周 agent 发言总数（W11=0）
+    prev_speak = 0.0                # 上一周 agent 发言总数（W11=0）
     result: dict[str, dict[str, int]] = {}
     trace: dict[str, dict[str, float]] = {}
+    climates: dict[str, dict[str, float]] = {}
     sustained_s: float | None = None
     flow_base = float(FLOW_WORLD[START_WEEK])   # 现实口径基线（env: flow_env_base）
 
     for wk in WEEKS:
+        # 0) 生命周期：本周冷却步长（在注入之前，保证新帖 life=1.0）。
+        step = mech.weekly_decay(half_life)
+        for item in pool:
+            item["life"] *= step
+
+        # 1) 注入本周（life=1.0）。
+        for rec in INJECTED_BY_WEEK[wk]:
+            pool.append({"week": wk, "type": rec["type"], "tend": dict(rec["tend"]),
+                         "life": 1.0, "exposure": 0})
+
+        # 2) 涌现环境（与 env 同式；B 的输入是 arena 供给计数，与内容无关）。
         flow_arena = INJ_ALLOC[wk] + prev_speak
         flow_hist[wk] = flow_arena
         i = WEEKS.index(wk)
         stock = sum(flow_hist[w] for w in WEEKS[max(0, i - STOCK_WINDOW + 1): i + 1])
         stock_base = flow_hist[START_WEEK]
-
         abundance = (stock / (stock + ka)) / (stock_base / (stock_base + ka))
         emptiness = (kf / (kf + FLOW_WORLD[wk])) / (kf / (kf + flow_base))
         if mode == "sustained_hot":
@@ -136,25 +212,65 @@ def simulate(
             "B": round(abundance, 3), "S": round(emptiness, 3), "G": round(gain, 3),
         }
 
+        # 3) 逐 agent 装配 feed（曝光现算现记账）+ 数值决策。
+        live = [it for it in pool if not mech.is_retired(it["life"], LIFE_RETIRE_FLOOR)]
         counts = {t: 0 for t in TYPE_ORDER}
-        sh = shares[wk]
+        share_by_type: dict[str, list[float]] = {t: [] for t in TYPE_ORDER}
+        agent_posts: list[dict] = []
         for ag in population:
             t = ag["agent_type"]
             prm = ag["params"]
+            scored = [
+                (mech.interest_score(it["tend"].get(t, 0.0), 1.0, 0.5,
+                                     mech.post_vitality(it["life"], it["exposure"],
+                                                        saturation)), it)
+                for it in live
+            ]
+            scored.sort(key=lambda x: (-x[0], id(x[1])))
+            picks = mech.weighted_sample_without_replacement(
+                [it for _, it in scored],
+                mech.softmax_weights([s for s, _ in scored], temp),
+                FEED_SIZE, rng,
+            )
+            own = 0
+            for it in picks:
+                it["exposure"] += 1
+                if it["type"] == t:
+                    own += 1
+            share_own = own / FEED_SIZE
+            share_by_type[t].append(share_own)
+
             base_share = personas_mod.POP_SHARE[t]
-            d = 1.0 + prm["spiral"] * (sh[t] - base_share) / max(base_share, 0.05)
+            d = 1.0 + prm["spiral"] * (share_own - base_share) / max(base_share, 0.05)
             d = max(0.05, min(2.0, d))
             r = math.exp(-prm["decay"] * cum_own[ag["id"]] / DECAY_SCALE)
             u = d * r * (gain ** prm["emergence"])
             if u >= prm["activity"] * base / BASE_REF:
                 counts[t] += 1
-            cum_own[ag["id"]] += FEED_SIZE * sh[t]
+                agent_posts.append({"week": wk, "type": t,
+                                    "tend": dict(AGENT_TENDENCY_PROFILE[t]),
+                                    "life": 1.0, "exposure": 0})
+            cum_own[ag["id"]] += own
+
+        # 4) 本 tick 产出的 agent 帖滞后 1 tick 入池（下一周才可见）。
+        pool.extend(agent_posts)
+
+        climates[wk] = {t: (sum(v) / len(v) if v else 0.0) for t, v in share_by_type.items()}
+        climates[wk + "_sd"] = {t: (statistics_pstdev(v) if v else 0.0)
+                                for t, v in share_by_type.items()}
         result[wk] = counts
         prev_speak = float(sum(counts.values()))
-    return result, trace
+    return result, trace, climates
 
 
-def summarize(label: str, res: dict, trace: dict | None = None) -> None:
+def statistics_pstdev(vals: list[float]) -> float:
+    if len(vals) < 2:
+        return 0.0
+    m = sum(vals) / len(vals)
+    return math.sqrt(sum((x - m) ** 2 for x in vals) / len(vals))
+
+
+def summarize(label: str, res: dict, trace: dict | None = None, climates: dict | None = None) -> None:
     totals = {t: sum(res[wk][t] for wk in WEEKS) for t in TYPE_ORDER}
     grand = sum(totals.values())
     print(f"\n-- {label}：总发言 {grand} 帖/run（agent 供给 {grand / (grand + 250):.0%} > 注入 250）--")
@@ -163,60 +279,145 @@ def summarize(label: str, res: dict, trace: dict | None = None) -> None:
         for key, name in (("stock", "Stock"), ("B", "B"), ("S", "S"), ("G", "G")):
             cells = " | ".join(f"{trace[wk][key]:>7.2f}" for wk in WEEKS)
             print(f"{name:<10} | {cells}")
+    if climates is not None:
+        print("气候 share_own（均值/逐agent sd，D 因子的实际输入）")
+        print("类型       | " + " | ".join(f"{w[-3:]:>13}" for w in WEEKS))
+        for t in TYPE_ORDER:
+            cells = " | ".join(
+                f"{climates[w][t]:>6.2f}/{climates[w + '_sd'][t]:>5.2f}" for w in WEEKS
+            )
+            print(f"{t:<10} | {cells}")
     print("周        |  合计 | " + " | ".join(f"{t:>9}" for t in TYPE_ORDER))
     for wk in WEEKS:
         cells = " | ".join(f"{res[wk][t]:>9}" for t in TYPE_ORDER)
         print(f"{wk} | {sum(res[wk].values()):>5} | {cells}")
     meme_late = sum(res[wk]["meme"] for wk in ("2026-W20", "2026-W21", "2026-W22"))
+    meme_onset = sum(res[wk]["meme"] for wk in ("2026-W18", "2026-W19"))
     mourn_early = sum(res[wk]["mourning"] for wk in ("2026-W13", "2026-W14", "2026-W15"))
-    print(f"要点：W13-W15 悼念 {mourn_early} 帖；W20-22 玩梗 {meme_late} 帖；"
-          f"W12 合计 {sum(res['2026-W12'].values())} 帖")
+    print(f"要点：W13-W15 悼念 {mourn_early} 帖；W18-W19 玩梗起步 {meme_onset} 帖；"
+          f"W20-22 玩梗 {meme_late} 帖；W12 合计 {sum(res['2026-W12'].values())} 帖")
+
+
+# ---------------------------------------------------------------------------
+# 同构断言：用 replay 记录的供给计数复算 B/S/G，与 replay 记录值逐值比对
+# ---------------------------------------------------------------------------
+def assert_emergence_isomorphic(run_dir: Path, tol: float = 1e-4) -> bool:
+    """校验"校准脚本的涌现环境公式 == env 实现"。
+
+    做法：读 runs/<id>/replay/curation_dynamics_env_state.*.jsonl 的逐周
+    (injected_count, agent_supply, meme_env_flow_world)，用本脚本的公式复算 B/S/G，
+    与 replay 记录的 meme_env_abundance / meme_env_emptiness / meme_env_gain 逐值比对。
+    只依赖供给计数（与内容/行为无关），因此不受推演差异影响，能直接暴露公式漂移。
+
+    口径要点：env 的当周 arena 流量 = 当周注入 + **上一周**收尾并入的 agent 帖
+    （`_compute_meme_env` 用 `_agent_posts_pooled_prev`），故复算需取前一周的 agent_supply。
+    容差：replay 落盘的 B/S/G 保留 4 位小数，故用 1e-4（> 半个末位）而非 1e-6。
+    """
+    files = sorted((run_dir / "replay").glob("curation_dynamics_env_state.*.jsonl"))
+    if not files:
+        print(f"✗ 同构断言失败：{run_dir}/replay 下无 curation_dynamics_env_state.*.jsonl")
+        return False
+    rows = []
+    for fp in files:
+        for line in fp.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line:
+                rows.append(json.loads(line))
+    rows.sort(key=lambda r: r.get("step", 0))
+    if not rows:
+        print("✗ 同构断言失败：replay 无数据行")
+        return False
+
+    flow_hist: dict[str, float] = {}
+    prev_agent_supply = 0.0
+    bad = 0
+    for r in rows:
+        wk = str(r["week"])
+        flow_hist[wk] = float(r["injected_count"]) + prev_agent_supply
+        prev_agent_supply = float(r["agent_supply"])
+        i = WEEKS.index(wk)
+        stock = sum(flow_hist[w] for w in WEEKS[max(0, i - STOCK_WINDOW + 1): i + 1])
+        stock_base = flow_hist[START_WEEK]
+        b = (stock / (stock + K_A_DEFAULT)) / (stock_base / (stock_base + K_A_DEFAULT))
+        s = ((K_F_DEFAULT / (K_F_DEFAULT + FLOW_WORLD[wk]))
+             / (K_F_DEFAULT / (K_F_DEFAULT + FLOW_WORLD[START_WEEK])))
+        g = max(GAIN_MIN, min(GAIN_MAX, b * s))
+        for name, got, exp in (("B", b, r["meme_env_abundance"]),
+                               ("S", s, r["meme_env_emptiness"]),
+                               ("G", g, r["meme_env_gain"])):
+            if abs(got - float(exp)) > tol:
+                bad += 1
+                print(f"✗ {wk} {name}: 复算 {got:.10f} != replay {float(exp):.10f}")
+    if bad:
+        print(f"✗ 同构断言失败：{bad} 个值不一致（容差 {tol:g}）")
+        return False
+    print(f"✓ 同构断言通过：{len(rows)} 周 B/S/G 与 replay 逐值一致（容差 {tol:g}）")
+    return True
 
 
 def main() -> None:
+    ap = argparse.ArgumentParser(description="activity_base 快速校准（feed 层同构推演）")
+    ap.add_argument("--assert-replay", type=Path, default=None,
+                    help="给定 run 目录，先做涌现环境公式同构断言再继续（如 hypothesis_4/experiment_1/runs/interest_normal_s0）")
+    ap.add_argument("--bases", type=float, nargs="*", default=CANDIDATE_BASES,
+                    help="待扫的门槛基数（默认 1.0/0.95/0.9/0.85/0.8/0.7）")
+    args = ap.parse_args()
+
+    if args.assert_replay is not None and not assert_emergence_isomorphic(args.assert_replay):
+        raise SystemExit(1)
+
     shares = typed_shares()
 
     print("== 输入代理 ==")
-    print("周        | 注入 | 现实口径流量（S 调度）")
+    print("周        | 注入 | 现实口径流量（S 调度） | 真实口径本类份额（对照，非气候输入）")
     for wk in WEEKS:
-        print(f"{wk} | {INJ_ALLOC[wk]:>4} | {FLOW_WORLD[wk]}")
+        print(f"{wk} | {INJ_ALLOC[wk]:>4} | {FLOW_WORLD[wk]:>21} | "
+              + " ".join(f"{t[:4]}={shares[wk][t]:.2f}" for t in TYPE_ORDER))
     print(f"env 默认：K_a={K_A_DEFAULT}（注入计划事件周窗口存量）、K_f={K_F_DEFAULT}"
           f"（调度基线周值）、窗口={STOCK_WINDOW} 周、G clamp[{GAIN_MIN},{GAIN_MAX}]、β=σ=1")
+    print(f"feed 机制：half_life={LIFE_HALF_LIFE_WEEKS} 周、饱和尺度={LIFE_SATURATION_SCALE}、"
+          f"退场线={LIFE_RETIRE_FLOOR}、抽样温度={INTEREST_SAMPLE_TEMP}、"
+          f"抽样流 Random({CALIB_SAMPLE_SEED})、注入样本={INJECTION_SAMPLE_PATH.name}")
 
     for mode, label in (("normal", "涌现臂 normal"), ("sustained_hot", "反事实臂 sustained_hot（W13 后冻结 S）")):
         print(f"\n===== {label} =====")
-        for base in CANDIDATE_BASES:
-            res, trace = simulate(base, mode, shares)
-            summarize(f"门槛基数 base={base:.2f}", res, trace)
+        for base in args.bases:
+            res, trace, climates = simulate(base, mode)
+            summarize(f"门槛基数 base={base:.2f}", res, trace, climates)
 
     print("\n===== OAT 敏感性（base=0.95，其余参数保持默认）=====")
-    print("参数           | 取值  | normal 总/玩梗W20-22/悼念W13-15 | sustained_hot 总/玩梗W20-22/悼念W13-15")
+    print("参数           | 取值  | normal 总/玩梗起步W18-19/玩梗W20-22/悼念W13-15 | sustained_hot 同口径")
     base = 0.95
     for label, key, grid in (
         ("K_a 倍率", "ka", [0.5, 1.0, 2.0]),
         ("K_f 倍率", "kf", [0.5, 1.0, 2.0]),
         ("β", "beta", [0.5, 1.0, 1.5]),
         ("σ", "sigma", [0.5, 1.0, 1.5]),
+        ("抽样温度", "temp", [2.0, 4.0, 8.0]),
+        ("半衰期(周)", "half", [1.0, 1.5, 3.0]),
     ):
-        defaults = {"ka": K_A_DEFAULT, "kf": K_F_DEFAULT, "beta": 1.0, "sigma": 1.0}
         for v in grid:
-            kw = dict(defaults)
-            kw[key] = v * K_A_DEFAULT if key == "ka" else v * K_F_DEFAULT if key == "kf" else v
-            res_n, _ = simulate(base, "normal", shares, **kw)
-            res_s, _ = simulate(base, "sustained_hot", shares, **kw)
+            if key == "temp":
+                res_n = simulate(base, "normal", temp=v)[0]
+                res_s = simulate(base, "sustained_hot", temp=v)[0]
+            elif key == "half":
+                res_n = simulate(base, "normal", half_life=v)[0]
+                res_s = simulate(base, "sustained_hot", half_life=v)[0]
+            else:
+                defaults = {"ka": K_A_DEFAULT, "kf": K_F_DEFAULT, "beta": 1.0, "sigma": 1.0}
+                kw = dict(defaults)
+                kw[key] = v * K_A_DEFAULT if key == "ka" else v * K_F_DEFAULT if key == "kf" else v
+                res_n = simulate(base, "normal", **kw)[0]
+                res_s = simulate(base, "sustained_hot", **kw)[0]
 
             def fmt(res: dict) -> str:
                 g = sum(sum(res[wk].values()) for wk in WEEKS)
+                mo = sum(res[wk]["meme"] for wk in ("2026-W18", "2026-W19"))
                 ml = sum(res[wk]["meme"] for wk in ("2026-W20", "2026-W21", "2026-W22"))
                 me = sum(res[wk]["mourning"] for wk in ("2026-W13", "2026-W14", "2026-W15"))
-                return f"{g:>4}/{ml:>3}/{me:>3}"
+                return f"{g:>4}/{mo:>3}/{ml:>3}/{me:>3}"
 
-            name = f"{label}={v:g}"
-            print(f"{name:<14} | {v:>4g} | {fmt(res_n):>31} | {fmt(res_s):>35}")
-
-    print("\n选点标准：agent 供给 ≈300-350 帖/run（>250 注入）；形态合理"
-          "（W13 悼念冲击、玩梗 W20-22 回潮、营销/教育稳定供给、"
-          "normal−sustained_hot 的玩梗尾部差可见）。")
+            print(f"{label:<14} | {v:<5g} | {fmt(res_n)} | {fmt(res_s)}")
 
 
 if __name__ == "__main__":
