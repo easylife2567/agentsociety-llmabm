@@ -74,6 +74,71 @@ def _patch_cache_embedding() -> None:
 
 _patch_cache_embedding()
 
+
+# ---------------- 模板代码确定性补丁（固定指令短路为完整快照代码） ----------------
+# 背景：模板缓存 miss 时由 LLM 现场生成执行代码，生成结果不可控——实测首次 codegen
+# 的 get_feed 代码只把 status/week/feed_size 等摘要存入 results，丢弃了 loader 端
+# （CurationDiscourseAgent._find_feed_dict）等待的完整 feed/meme_env 快照 → 所有 Agent
+# 每 tick 判 feed_unavailable → 全员沉默、Agent 帖 0，整个反馈回路不产生任何 Agent 内容。
+# 本补丁在 CacheCodeProvider.get_code 前拦截两条固定指令，返回确定性执行代码：
+#   * get_feed：把 get_feed 返回的完整快照写入 results 顶层（含 feed/meme_env 键）；
+#   * create_post：确定性发布（status/post_id/week）。
+# 其余指令仍走原 cache→LLM 代码生成路径。确定性代码不依赖 LLM，杜绝同类契约漂移。
+
+def _patch_template_code() -> None:
+    import agentsociety2.env.router_codegen as _rc
+
+    _GET_FEED_CODE = """\
+agent_id = ctx['variables']['agent_id']
+response = await modules['CurationDynamicsSpace'].get_feed(agent_id)
+if isinstance(response, dict) and response.get('status') == 'success':
+    results['status'] = 'success'
+    for _k in ('week', 'meme_env', 'own_spoke', 'own_last_post', 'feed',
+               'feed_type_distribution', 'global_supply_shares',
+               'global_exposure_shares', 'personal_stats'):
+        results[_k] = response.get(_k)
+    _feed = results.get('feed') or []
+    _env = results.get('meme_env') or {}
+    print(f"Feed snapshot for agent {agent_id} in week {results.get('week')}: "
+          f"{len(_feed)} posts (official "
+          f"{sum(1 for it in _feed if it.get('is_official'))}), "
+          f"meme gain {_env.get('gain')}")
+else:
+    results['status'] = 'fail'
+    results['reason'] = response.get('reason', 'unknown') if isinstance(response, dict) else 'unknown'
+"""
+
+    _CREATE_POST_CODE = """\
+agent_id = ctx['variables']['agent_id']
+content = ctx['variables']['content']
+response = await modules['CurationDynamicsSpace'].create_post(agent_id, content)
+if isinstance(response, dict) and response.get('status') == 'success':
+    results['status'] = 'success'
+    results['week'] = response.get('week')
+    results['post_id'] = response.get('post_id')
+    results['already_posted'] = response.get('already_posted', False)
+    results['type_mismatch'] = response.get('type_mismatch', False)
+    print(f"Post published {response.get('post_id')} in week {response.get('week')}")
+else:
+    results['status'] = 'fail'
+    results['reason'] = response.get('reason', 'unknown') if isinstance(response, dict) else 'unknown'
+"""
+
+    _orig_get_code = _rc.CacheCodeProvider.get_code
+
+    async def _patched_get_code(self, context, router):
+        inst = str(getattr(context, "instruction", "") or "").strip()
+        if inst.startswith("Please call get_feed()"):
+            return _GET_FEED_CODE
+        if inst.startswith("Please call create_post()"):
+            return _CREATE_POST_CODE
+        return await _orig_get_code(self, context, router)
+
+    _rc.CacheCodeProvider.get_code = _patched_get_code
+
+
+_patch_template_code()
+
 # 本模块自选的 workspace 布局：<workspace_root>/state/ENV_STATE.json
 _STATE_REL = "state/ENV_STATE.json"
 
