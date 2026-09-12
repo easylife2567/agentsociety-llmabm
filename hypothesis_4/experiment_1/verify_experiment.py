@@ -200,14 +200,16 @@ def layer_b():
     # 回归护栏——2026-09-13 实测 monitor.py 的中文说明里混入 ASCII 双引号，
     # `--with-monitor` 每完成一个 run 就崩一次，只有跑到那时候才暴露。
     _syn: list[str] = []
-    for _f in ("run_batch.py", "monitor.py", "proxy_predict.py", "verify_experiment.py"):
+    _scripts = ("run_batch.py", "monitor.py", "proxy_predict.py", "verify_experiment.py",
+                "plot_run_charts.py", "plot_arm_charts.py", "probe_llm.py")
+    for _f in _scripts:
         _p = SCRIPT_DIR / _f
         try:
             compile(_p.read_text(encoding="utf-8"), str(_p), "exec")
         except SyntaxError as _e:
             _syn.append(f"{_f}:{_e.lineno} {_e.msg}")
-    check(not _syn, "B8 调度/监视/代理脚本可编译（防语法错误静默上线）",
-          "4 个脚本全部通过" if not _syn else "；".join(_syn))
+    check(not _syn, "B8 调度/监视/出图脚本可编译（防语法错误静默上线）",
+          f"{len(_scripts)} 个脚本全部通过" if not _syn else "；".join(_syn))
 
     # B9 批跑成功口径：**只看步数**，不看 pid.status；死进程判 interrupted 不判 running。
     # 回归护栏——引擎在 step 抛异常后仍落盘 status=completed 并打印

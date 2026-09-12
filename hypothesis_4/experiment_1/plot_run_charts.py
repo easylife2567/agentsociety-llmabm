@@ -10,7 +10,8 @@
     chart3b 各内容类型 Agent 发帖量堆叠面积    （图3 的 Agent 侧变体，不含注入帖）
     chart4  玩梗型 Agent 发言率 + 涌现增益 G  （对应 docx 图4 玩梗率，副轴加机制量）
 
-同时把周度指标导出为 CSV（data/），作为 run/（已 gitignore）之外的持久数据副本。
+同时把周度指标导出为 CSV（data/<run_id>/weekly_*.csv），作为 run/（已 gitignore）
+之外的持久数据副本；按 run 分目录，避免多 run 批跑时互相覆盖。
 
 用法：
     $PYTHON_PATH hypothesis_4/experiment_1/plot_run_charts.py                  # 烟测（monitor/run/status.json）
@@ -84,6 +85,13 @@ def _tidy(ax) -> None:
 # ---------------- CSV 导出 ----------------
 
 def export_csv(weekly: list[dict], out_dir: Path) -> list[Path]:
+    """把单 run 的周度表导出到 out_dir。
+
+    ⚠ out_dir 必须是**按 run 分目录**的（见 main 里 DATA_DIR / run_id）。早期版本
+    直接写 data/ 下的固定文件名（weekly_supply.csv 等），9 个 run 顺序执行时每个
+    run 都会覆盖前一个，最终 data/ 里只剩最后一个 run 的数据而无任何报错——
+    属静默数据污染。改为 data/<run_id>/weekly_*.csv 后互不干扰。
+    """
     out_dir.mkdir(parents=True, exist_ok=True)
     paths: list[Path] = []
 
@@ -321,7 +329,7 @@ def main() -> int:
     print(f"run_id={run_id}  weeks={len(weekly)}  source={status_path}")
 
     if not args.no_csv:
-        for p in export_csv(weekly, DATA_DIR):
+        for p in export_csv(weekly, DATA_DIR / run_id):
             print(f"✓ CSV {p.relative_to(SCRIPT_DIR)}")
 
     if not args.no_charts:
