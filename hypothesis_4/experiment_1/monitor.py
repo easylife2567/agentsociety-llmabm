@@ -128,7 +128,7 @@ FIELDS: dict[str, str] = {
     "exposure_slots_age2": "本 tick 曝光槽位中帖龄 2 周的槽位数。",
     "exposure_slots_age3plus": "本 tick 曝光槽位中帖龄 ≥3 周的槽位数；给定 3 周流通窗口（退场线 0.35）下应恒为 0。",
     # agent 周度（21 列聚合）
-    "n_agents": "该类型 Agent 人数（群体构成：玩梗18/悼念21/营销26/教育15/其他20）。",
+    "n_agents": "该类型 Agent 人数（群体构成：营销23/悼念22/其他21/玩梗19/教育15，用户 2026-09-13 更正）。",
     "spoke_rate": "该类型本 tick 发言率 = 发言人数 / 类型人数。",
     "mismatch_rate": "该类型本 tick 判类不一致率：env 四词表判类(assigned_type)≠作者类型(pool_type)的帖子占比。仅诊断用，不影响发布。",
     "mean_climate_own": "该类型 agent 所见信息流中本类内容的平均占比（意见气候；沉默螺旋的输入）。",
@@ -146,7 +146,7 @@ FIELDS: dict[str, str] = {
     "env_gain": "决策时所见涌现增益 G_t（快照键 meme_env.gain）。",
     "env_multiplier": "环境乘子 G^θ（θ=emergence；玩梗型随周变化，其余类型恒 1）。",
     "share_own": "该 agent 所见信息流中本类内容占比（spiral 的输入）。",
-    "share_base": "本类型在 100 人群体中的份额（spiral 的期望基线：玩梗0.18/悼念0.21/营销0.26/教育0.15/其他0.20）。",
+    "share_base": "本类型在 100 人群体中的份额（spiral 的期望基线：玩梗0.19/悼念0.22/营销0.23/教育0.15/其他0.21）。",
     "cum_own": "该 agent 累计本类曝光数（decay 的输入，尺度 50 为半饱和点）。",
     "speak": "决策结果：是否发言（U ≥ activity）。",
     "posted": "发言是否成功发布（发言后还有 1 次内容 LLM 调用，失败/空则 posted=False）。",

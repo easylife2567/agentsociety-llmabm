@@ -153,9 +153,9 @@ _PARAM_SPECS: dict[str, dict[str, tuple[float, float, float]]] = {
 
 # 群体类型份额（发言决策中沉默螺旋的"期望份额"基线，与 100 人群体构成一致）。
 # 用户 2026-09-10 裁定：按发帖人口径统计占比（不再按内容划分），
-# 玩梗18 / 悼念21 / 营销26 / 教育15 / 其他20。
+# 用户 2026-09-13 更正为：营销 23 / 悼念 22 / 其他 21 / 玩梗 19 / 教育 15。
 POP_SHARE: dict[str, float] = {
-    "meme": 0.18, "mourning": 0.21, "marketing": 0.26, "education": 0.15, "other": 0.20,
+    "meme": 0.19, "mourning": 0.22, "marketing": 0.23, "education": 0.15, "other": 0.21,
 }
 
 
@@ -209,7 +209,7 @@ def build_persona(agent_type: str, rng: random.Random) -> tuple[str, str, dict[s
 def build_population(counts: dict[str, int], seed: int = 0) -> list[dict]:
     """装配 N 个 agent profile（id 从 1 连续编号，类型顺序打散避免 id 与类型相关）。
 
-    counts: {"meme": 18, "mourning": 21, "marketing": 26, "education": 15, "other": 20}
+    counts: {"meme": 19, "mourning": 22, "marketing": 23, "education": 15, "other": 21}
     返回: [{"id": int, "name": str, "agent_type": str, "persona": str,
             "params": {activity, spiral, decay}}, ...]
     """

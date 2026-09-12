@@ -13,7 +13,7 @@
 已知偏差（图上会体现，判断时需扣除）：
   ① 议程设置：`--w13-floor N`（默认 5）让 W13 每个 agent 的 feed 保底含 N 条哀悼帖
      （按哀悼倾向分取全池前 N 条、全员相同），用于复现"讣告强制曝光"；设 0 可关闭（此时会低估悼念峰）；
-  ② 营销 λ=0.1（疲劳最弱）→ 代理下营销退得比真实慢；
+  ② 营销 λ=0.05（2026-09-12 由 0.1 下调，"几乎不疲劳但热点凉了会换赛道"）；
   ③ 代理起爆略早于真实 run（形态用相对比较，绝对值以真实 run 为准）。
 
 用法：
@@ -57,7 +57,7 @@ TYPE_ORDER = ("meme", "mourning", "education", "marketing", "other")
 TYPE_LABEL = {"meme": "玩梗", "mourning": "悼念", "education": "教育",
               "marketing": "营销", "other": "其他"}
 TYPE_COLOR = pltmod.TYPE_COLOR
-N_AGENTS = {"meme": 18, "mourning": 21, "marketing": 26, "education": 15, "other": 20}
+N_AGENTS = {"meme": 19, "mourning": 22, "marketing": 23, "education": 15, "other": 21}
 BENCH_CN = {"meme": "梗文化讨论", "mourning": "事件悼念讨论", "education": "教育观点讨论",
             "marketing": "借势营销", "other": "其他讨论"}
 

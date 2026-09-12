@@ -7,7 +7,7 @@
   （2026-09-12 用户裁定：玩梗涌现环境增益 G 退役 → 第二因子 sustained_hot 无行为差异，
   3×2 全因子降为单因子；Agent 只由沉默螺旋 D 与注意力衰减 R 两条规则约束，
   U = D·R ≥ activity。env 侧 B/S/G 仍逐周计算并写 replay，作为描述性时间轴与审计线索。）
-- 100 个 agent（用户 2026-09-10 裁定按发帖人口径：玩梗18/悼念21/营销26/教育15/其他20），
+- 100 个 agent（用户 2026-09-13 更正按发帖人口径：营销23/悼念22/其他21/玩梗19/教育15），
   群体由 custom/agents/curation_personas.build_population(seed=42) 生成，**18 个配置完全共享**。
 - 真实帖子注入：按用户裁定「全程约 250 条」，从 custom/envs/curation_assets/
   injection_posts.json 的 W12–W22 池中按 seed 预抽样 3 份样本文件（每份 250 条，
@@ -62,8 +62,8 @@ EMERGENCE_MODES = ["normal"]
 SEEDS = [0, 1, 2]
 
 # 用户 2026-09-10 裁定：按发帖人类型占比（不再按内容划分）——
-# 玩梗18% / 悼念21% / 营销26% / 讨论教育15% / 其他20%。
-POPULATION_COUNTS = {"meme": 18, "mourning": 21, "marketing": 26, "education": 15, "other": 20}
+# 用户 2026-09-13 更正：营销23% / 悼念22% / 其他21% / 玩梗19% / 讨论教育15%。
+POPULATION_COUNTS = {"meme": 19, "mourning": 22, "marketing": 23, "education": 15, "other": 21}
 POPULATION_SEED = 42          # 群体生成种子：全 18 配置共享同一群体
 VOCAB_SAMPLE_SEED = POPULATION_SEED + 1  # 各 agent 类型词表抽样子种子（独立于群体 rng）
 TYPE_VOCAB_N = 40             # 每个 agent 注入其类型词表的词数（用户裁定：发言用词表词组织语言）
@@ -453,7 +453,7 @@ manifest = {
         "total_posts_per_run": 250,
         "allocation": INJECTION_ALLOCATION,
         "sample_seed_offset": SAMPLE_SEED_OFFSET,
-        "sampling_method": "每周池内类型分层比例抽样（最大余数法），按当周帖子（内容）类型占比分配配额，构成确定性贴合当周真实分布；与 agent 群体的发帖人口径比例（18/21/26/15/20）相互独立、互不混用（用户 2026-09-10 确认）；真实数据帖一律按普通内容处理",
+        "sampling_method": "每周池内类型分层比例抽样（最大余数法），按当周帖子（内容）类型占比分配配额，构成确定性贴合当周真实分布；与 agent 群体的发帖人口径比例（19/22/23/15/21）相互独立、互不混用（用户 2026-09-10 确认）；真实数据帖一律按普通内容处理",
         "official_announcement": "官方媒体全程仅 W13 一条讣告帖（原文给定），全员置顶可见，官方无其他作用（置顶不延伸）",
         "sampling_ratio": 1.0,
         "sample_files": {str(s): sample_paths[s] for s in SEEDS},

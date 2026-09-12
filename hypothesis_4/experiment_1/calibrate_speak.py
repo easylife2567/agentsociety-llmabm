@@ -111,7 +111,7 @@ def _load_shared_module(name: str, path: Path):
 mech = _load_shared_module("curation_mechanisms", workspace_root / "custom" / "envs" / "curation_mechanisms.py")
 personas_mod = _load_shared_module("curation_personas", workspace_root / "custom" / "agents" / "curation_personas.py")
 
-POPULATION_COUNTS = {"meme": 18, "mourning": 21, "marketing": 26, "education": 15, "other": 20}
+POPULATION_COUNTS = {"meme": 19, "mourning": 22, "marketing": 23, "education": 15, "other": 21}
 population = personas_mod.build_population(POPULATION_COUNTS, seed=42)
 AGENT_TYPES = {str(p["id"]): p["agent_type"] for p in population}
 

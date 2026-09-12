@@ -3,7 +3,7 @@
 
 复用 calibrate_speak.simulate()（与 env 同构的 feed 推演 + U=D·R 数值决策），
 只把兴趣抽样的 RNG 种子扫一遍（对应 env 的 seed+3000 流），
-对 100 人群体（meme18/mourning21/marketing26/education15/other20）出：
+对 100 人群体（meme19/mourning22/marketing23/education15/other21）出：
 
   表A  逐周 × 逐类型发帖数（多 seed 均值，括号内为逐 seed sd）
   表B  时段汇总（早期 W12-W15 / 中期 W16-W19 / 后期 W20-W22）：帖数、占比、人均发言次数

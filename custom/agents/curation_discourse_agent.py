@@ -81,8 +81,8 @@ _PARAM_DEFAULTS: dict[str, dict[str, float]] = {
     "other":     {"activity": 0.95, "spiral": 1.5, "decay": 1.0},
 }
 # 沉默螺旋的期望份额基线。用户 2026-09-10 裁定：群体按发帖人口径比例
-# 玩梗18/悼念21/营销26/教育15/其他20（不再按内容划分口径）。
-_POP_SHARE = {"meme": 0.18, "mourning": 0.21, "marketing": 0.26, "education": 0.15, "other": 0.20}
+# 用户 2026-09-13 更正为：营销23/悼念22/其他21/玩梗19/教育15（不再按内容划分口径）。
+_POP_SHARE = {"meme": 0.19, "mourning": 0.22, "marketing": 0.23, "education": 0.15, "other": 0.21}
 
 # 各类型内容生成指引（人设之外的具体写作约束）
 _CONTENT_GUIDE: dict[str, str] = {
