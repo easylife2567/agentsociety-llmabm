@@ -76,7 +76,7 @@ VALID_TYPES = ("meme", "mourning", "marketing", "education", "other")
 _PARAM_DEFAULTS: dict[str, dict[str, float]] = {
     "meme":      {"activity": 0.95, "spiral": 1.2, "decay": 0.8},
     "mourning":  {"activity": 0.95, "spiral": 0.8, "decay": 1.2},
-    "marketing": {"activity": 0.95, "spiral": 0.2, "decay": 0.1},
+    "marketing": {"activity": 0.95, "spiral": 0.2, "decay": 0.05},
     "education": {"activity": 0.95, "spiral": 0.5, "decay": 0.4},
     "other":     {"activity": 0.95, "spiral": 1.5, "decay": 1.0},
 }
