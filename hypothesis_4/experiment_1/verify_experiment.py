@@ -21,8 +21,10 @@
      B5 D/R 公式：三处对同一输入给出同值（共享纯函数 + cliff 边界）；
      B6 保底候选资格口径：仅排除 noise，不限定 mourning 类型；
      B7 校准器确定性：同 (seed,N,scale) 两次调用逐值一致（防 id() 平票漂移）；
-     B8 调度/监视/代理脚本可编译（防语法错误静默上线）；
-     B9 批跑成功口径：步数唯一判据 + 死进程判 interrupted（防空 run 静默混入 / 静默跳过）。
+     B8 调度/监视/出图脚本可编译（防语法错误静默上线）；
+     B9 批跑成功口径：步数唯一判据 + 死进程判 interrupted（防空 run 静默混入 / 静默跳过）；
+     B10 replay 落盘完整性：agent_state 行数 = n_agents × 11 周、env_state = 11
+        （卡实际落盘数据，补 B9 只卡引擎自我申报的缺口）。
 
   C. **机制层**（直接驱动 env 逐周，无 agent 产出、无 LLM、不写 replay）
      C1 W13 每条 feed 首位 = 官方讣告帖（official=True），三臂一致；
@@ -236,6 +238,44 @@ def layer_b():
     check(_s_short == "failed" and _s_full == "completed" and _s_dead == "interrupted",
           "B9 批跑成功口径（步数唯一判据 + 死进程判 interrupted）",
           f"自称completed但step=0→{_s_short}；step={_exp}+terminated→{_s_full}；死进程→{_s_dead}")
+
+    # B10 replay 落盘完整性：agent_state 行数须 = n_agents × 11，env_state 须 = 11。
+    # B9 卡的是引擎**自我申报**的步数；本项卡的是**实际落盘的数据**。二者缺一不可——
+    # 事故形态「step_count 对但 curation 表为空/被截断」只靠 B9 挡不住。
+    _pac = _load("plot_arm_charts", SCRIPT_DIR / "plot_arm_charts.py")
+    _cases: list[tuple[str, bool]] = []
+    with _tf.TemporaryDirectory() as _td2:
+        _rd = Path(_td2) / "replay"
+        _rd.mkdir(parents=True)
+
+        def _fill(agent_lines: int, env_lines: int, profile_lines: int = 0) -> None:
+            for f in _rd.glob("*.jsonl"):
+                f.unlink()
+            if agent_lines:
+                (_rd / "curation_dynamics_agent_state.aa.jsonl").write_text(
+                    "{}\n" * agent_lines, encoding="utf-8")
+            if env_lines:
+                (_rd / "curation_dynamics_env_state.bb.jsonl").write_text(
+                    "{}\n" * env_lines, encoding="utf-8")
+            if profile_lines:
+                (_rd / "core_agent_profile.cc.jsonl").write_text(
+                    "{}\n" * profile_lines, encoding="utf-8")
+
+        _NA = 100
+        _fill(_NA * _exp, _exp, _NA)
+        _cases.append(("完整", _pac.check_replay(Path(_td2), _NA, "t") is None))
+        _fill(_NA * _exp - 1, _exp)                       # agent_state 少一行
+        _cases.append(("agent_state 少1行", _pac.check_replay(Path(_td2), _NA, "t") is not None))
+        _fill(_NA * _exp, _exp - 1)                       # env_state 少一行
+        _cases.append(("env_state 少1行", _pac.check_replay(Path(_td2), _NA, "t") is not None))
+        _fill(0, 0, _NA)                                  # 只有 profile（事故原始形态）
+        _cases.append(("仅 profile（事故形态）", _pac.check_replay(Path(_td2), _NA, "t") is not None))
+        _fill(0, 0, 0)                                    # 全空
+        _cases.append(("replay 全空", _pac.check_replay(Path(_td2), _NA, "t") is not None))
+    _bad = [n for n, ok in _cases if not ok]
+    check(not _bad, "B10 replay 落盘完整性（行数 = n_agents × 11 周）",
+          "5 种情形判定全对（含 09-13 事故形态「仅 profile」）" if not _bad
+          else "判定错误：" + "、".join(_bad))
     return mech, cal
 
 

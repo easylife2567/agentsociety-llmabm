@@ -83,8 +83,45 @@ plt.rcParams.update({
 
 # ---------------- 载入与校验 ----------------
 
-def load_runs(explicit: list[tuple[Path, str]]) -> list[dict]:
-    """载入快照并**强校验**：周数必须达 11。任何 run 不完整就直接报错退出。
+def replay_counts(run_path: Path) -> dict[str, int]:
+    """统计 run/replay 下各逻辑表的**总行数**（JSONL 按 hash 分片，故要跨文件求和）。"""
+    out: dict[str, int] = {}
+    rp = run_path / "replay"
+    if not rp.is_dir():
+        return out
+    for f in rp.glob("*.jsonl"):
+        if f.name == "_schema.json":
+            continue
+        key = f.name.split(".")[0]
+        with open(f, encoding="utf-8", errors="replace") as fh:
+            out[key] = out.get(key, 0) + sum(1 for _ in fh)
+    return out
+
+
+def check_replay(run_path: Path, n_agents: int, label: str) -> str | None:
+    """校验 replay 表**行数**是否与「n_agents × 11 周」相符，不符则返回原因。
+
+    step_count 是引擎的自我申报；replay 行数才是实际落盘的数据。二者要同时成立
+    才算真跑完——2026-09-13 那次事故里引擎把「第 0 步就崩」的 run 申报成
+    completed，而 replay 里只剩 core_agent_profile、两张 curation_dynamics 表**全空**。
+    只卡 step_count 挡不住「步数对但表被截断」这一族。
+    """
+    c = replay_counts(run_path)
+    if not c:
+        return f"{label}: replay/ 无任何 jsonl"
+    want_agent = n_agents * EXPECTED_WEEKS
+    got_agent = c.get("curation_dynamics_agent_state", 0)
+    got_env = c.get("curation_dynamics_env_state", 0)
+    if got_agent != want_agent:
+        return (f"{label}: curation_dynamics_agent_state {got_agent} 行 ≠ "
+                f"{n_agents} agents × {EXPECTED_WEEKS} 周 = {want_agent}")
+    if got_env != EXPECTED_WEEKS:
+        return f"{label}: curation_dynamics_env_state {got_env} 行 ≠ {EXPECTED_WEEKS}"
+    return None
+
+
+def load_runs(explicit: list[tuple[Path, str]], strict: bool = True) -> list[dict]:
+    """载入快照并**强校验**：周数达 11 且 replay 表行数达标。任何 run 不合格就报错退出。
 
     这里刻意不做「有几个算几个」的宽松处理：少一个 seed 会让臂均值变成
     2 个 seed 的均值却仍然画成同样的曲线——是静默错误，必须炸出来。
@@ -113,6 +150,22 @@ def load_runs(explicit: list[tuple[Path, str]]) -> list[dict]:
         if len(weekly) != EXPECTED_WEEKS:
             problems.append(f"{label}: 周数 {len(weekly)} ≠ {EXPECTED_WEEKS}（run 未跑完或数据不全）")
             continue
+        # agent 总数从快照自取（= 各类型 n_agents 之和），避免硬编码 100
+        n_agents = sum(a.get("n_agents", 0) for a in weekly[0].get("agent_agg", {}).values())
+        run_path = Path(data.get("path") or "")
+        if not (n_agents and run_path.is_dir()):
+            # 快照里的 path 指不回 run 目录（如已归档/搬移）→ 无法核对实际落盘数据。
+            # 干跑放行；正式出图必须报错，否则「路径失效」会变成静默跳过完整性校验。
+            if strict:
+                problems.append(
+                    f"{label}: 无法核对 replay（path={run_path or '(空)'} "
+                    f"不存在或 n_agents={n_agents}）；快照可能已过期，请重新跑 monitor.py")
+                continue
+        else:
+            why = check_replay(run_path, n_agents, label)
+            if why:
+                problems.append(why)
+                continue
         m = RUN_ID_RE.match(label)
         runs.append({
             "label": label,
@@ -135,6 +188,14 @@ def group_by_arm(runs: list[dict]) -> dict[str, list[dict]]:
             raise SystemExit(f"{r['label']}: label 不匹配 <arm>_s<seed>，无法归臂")
         out.setdefault(r["arm"], []).append(r)
     return out
+
+
+def _ref_weeks(by_arm: dict) -> list[dict]:
+    """取任一在场臂的首个 run 的 weekly——真实基准三臂同源（外生数据），取谁都一样。
+
+    不能写死 ARMS[0]（random）：臂可能尚未跑完/缺失，写死会 KeyError。
+    """
+    return by_arm[next(iter(by_arm))][0]["weekly"]
 
 
 def agg(runs_of_arm: list[dict], getter) -> tuple[list[float], list[float], list[float]]:
@@ -175,7 +236,7 @@ def chart_a1_meme_share(by_arm: dict, weeks: list[str], out: Path) -> Path:
     fig, ax = plt.subplots(figsize=(11, 5.8))
     _death_line(ax, weeks)
 
-    real = [w["benchmark"]["meme"]["bench_share"] for w in by_arm[ARMS[0]][0]["weekly"]]
+    real = [w["benchmark"]["meme"]["bench_share"] for w in _ref_weeks(by_arm)]
     ax.plot(x, real, color="#111111", marker="s", markersize=6, linewidth=2.6,
             label="真实基准（抖音）", zorder=5)
 
@@ -360,7 +421,7 @@ def export_csv(by_arm: dict, weeks: list[str], data_dir: Path) -> list[Path]:
           ["arm", "week", "type", "mean_agent_supply", "mean_bias"], rows)
 
     # 真实基准（各臂相同，单列一次）
-    ref = by_arm[ARMS[0] if ARMS[0] in by_arm else next(iter(by_arm))][0]["weekly"]
+    ref = _ref_weeks(by_arm)
     write("benchmark.csv",
           ["week", "type", "bench_share"],
           [[wk["week"], t, wk["benchmark"][t]["bench_share"]]
@@ -397,7 +458,7 @@ def main() -> int:
             p = Path(s)
             explicit.append((p, labels[i] if i < len(labels) else p.parent.name))
 
-    runs = load_runs(explicit)
+    runs = load_runs(explicit, strict=not args.dry_run)
     if not args.dry_run:
         for r in runs:
             if r["arm"] is None:
