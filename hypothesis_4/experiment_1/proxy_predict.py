@@ -147,7 +147,8 @@ def main() -> int:
     pltmod._death_line(axA, W)
     axA.set_xticks(x, W, rotation=45)
     axA.set_ylabel("Agent 周发帖数（帖，堆叠）")
-    _floor_note = f"，W13 保底 {args.w13_floor} 条哀悼帖" if args.w13_floor > 0 else ""
+    _floor_note = (f"，W13 议程保底 {args.w13_floor} 条（哀悼倾向分前 {args.w13_floor}，"
+                   f"候选池排除 noise）" if args.w13_floor > 0 else "")
     axA.set_title(f"代理预测 · 各类 Agent 周发帖数（{args.seeds} seed 均值，"
                   f"R 尺度 {args.r_scale:g}{_floor_note}）",
                   fontweight="bold", fontsize=12)

@@ -157,6 +157,12 @@ def layer_b():
     check(floor_ok, "B4 议程保底条数 = 5（manifest / 9 配置 / 校准脚本同源）",
           f"manifest=5，9 配置={sorted(floors)}，校准解析={cal.EVENT_WEEK_MOURNING_FLOOR}")
 
+    # B4b 校准器保留注入帖原始类型（含 noise）：否则方案 B 的过滤在校准侧失效，
+    # 且 env 把 noise 单列一类、校准器若并入 "other" 会抬高"其他"型 agent 的 cum_own。
+    raw_types = {rec["type"] for lst in cal.INJECTED_BY_WEEK.values() for rec in lst}
+    check("noise" in raw_types, "B4b 校准器保留注入帖原始类型（与 env 同口径，含 noise）",
+          f"注入池出现类型 {sorted(raw_types)}")
+
     # B5 公式同值：D 与 R 对同一输入与解析式逐值一致
     import math
     px = mech.spiral_factor(0.30, 0.19, 1.2)
@@ -169,6 +175,23 @@ def layer_b():
           "B5 D/R 公式（含 D<0 的净成本段与 R 尺度 15）",
           f"D(0.30)={px:.4f} >0；D(share=0)={py:.4f} <0（孤立成本；s=1.2 时占比需低于 "
           f"{crit:.3f} 才转负）；R(λ=0.8,cum=30)={rz:.4f}")
+
+    # B6 保底候选资格口径：noise 出局、其余类型（含 other/marketing）按倾向分参与。
+    check(not mech.floor_eligible("noise") and mech.floor_eligible("mourning")
+          and mech.floor_eligible("other") and mech.floor_eligible("marketing"),
+          "B6 保底候选资格：仅排除 noise，不限定 mourning 类型",
+          f"排除表 {mech.DEFAULT_EVENT_FLOOR_EXCLUDE_TYPES}")
+
+    # B7 校准器可复现：同一 (seed, N, scale) 两次调用必须逐值一致。
+    # 回归护栏——曾经平票次序用 id()（内存地址）做 tie-break，同一 seed 每次跑出的
+    # W13 份额都在漂移（±0.01 量级），使所有代理预估失去可复现性。
+    _kw = dict(r_scale=15.0, w13_floor=5, rng_seed=3000)
+    _r1, _r2 = cal.simulate(0.95, "normal", **_kw)[0], cal.simulate(0.95, "normal", **_kw)[0]
+    _same = _r1 == _r2
+    check(_same, "B7 校准器确定性（同 seed 两次调用逐值一致）",
+          "逐周逐类型完全一致" if _same else
+          "不一致：" + "；".join(f"{w}/{t} {_r1[w][t]}≠{_r2[w][t]}"
+                                for w in _r1 for t in _r1[w] if _r1[w][t] != _r2[w][t])[:200])
     return mech, cal
 
 
@@ -220,7 +243,9 @@ def layer_c(mech, cal) -> None:
     per_agent = {alg: {tuple(it["post_id"] for it in arms[alg][ev]["feeds"][a][1:1 + 5])
                        for a in sorted(arms[alg][ev]["feeds"])} for alg in arms}
     all_live = [pid for pid, p in posts_i.items()
-                if not mech.is_retired(p.get("life", 1.0), 0.35) and pid not in set(arms["interest"][ev]["pinned"])]
+                if not mech.is_retired(p.get("life", 1.0), 0.35)
+                and pid not in set(arms["interest"][ev]["pinned"])
+                and mech.floor_eligible(p.get("type", ""))]   # 方案 B：候选池排除 noise
     top5 = set(sorted(all_live, key=lambda pid: (-(posts_i[pid].get("tendencies") or {}).get("mourning", 0.0), -pid))[:5])
     uniq_ok = all(len(s) == 1 for s in per_agent.values())
     seq_ok = uniq_ok and all(next(iter(s)) == tuple(arms["interest"][ev]["floor"]) for s in per_agent.values())
@@ -233,9 +258,10 @@ def layer_c(mech, cal) -> None:
     # （倾向分 = 命中数/(字数/50)，短文本密度虚高）。此处只观察不判负，供人工判断。
     comp = [posts_i[pid]["type"] for pid in arms["interest"][ev]["floor"]]
     n_noise = sum(1 for t in comp if t == "noise")
+    check(n_noise == 0, "C2b 保底候选池排除 noise（用户 2026-09-13 裁定·方案 B）",
+          f"保底类型构成 {comp}；noise {n_noise} 条（应为 0）")
     observe("W13 保底帖类型构成（裁定为「哀悼倾向分前5」，非「5 条 mourning 类型」）",
-            f"{comp}；其中 noise {n_noise} 条"
-            + ("　← 语料噪声进入全员强制位，需人工判断是否排除" if n_noise else ""))
+            f"{comp}；其中 noise {n_noise} 条")
 
     # C3 非事件周无保底 + 保底帖不与算法槽位重复
     no_floor = all(len(arms["interest"][wk]["floor"]) == 0 for wk in wk_list if wk != ev)

@@ -626,11 +626,17 @@ class CurationDynamicsSpace(EnvBase):
         用户 2026-09-12 裁定的议程设置：W13（去世周）所有 agent 的 feed 保底包含 5 条
         哀悼讯息 —— 等效"官方讣告 + 头版哀悼"的强制曝光。非事件周或 floor<=0 时返回空。
         平台级规则（三算法臂同一保底集合），保证臂间差异只来自排序/选择。
+
+        用户 2026-09-13 补裁定（方案 B）：候选池剔除语料噪声类（`mech.floor_eligible`），
+        因倾向分对短文本密度虚高，乱码噪音帖曾挤进全员强制位；不限定必须为 mourning 类型
+        （实测同 N=5 下"仅取 mourning 类型"档 W13 悼念份额 0.555，比本口径 0.515 更差）。
         """
         if self._event_week_mourning_floor <= 0 or week != self._event_week:
             return []
         pinned_set = set(self._pinned_ids)
-        pool = [pid for pid in self._live_candidates() if pid not in pinned_set]
+        pool = [pid for pid in self._live_candidates()
+                if pid not in pinned_set
+                and mech.floor_eligible(self._posts[pid].get("type", ""))]
         pool.sort(
             key=lambda pid: (-(self._posts[pid].get("tendencies") or {}).get("mourning", 0.0), -pid)
         )

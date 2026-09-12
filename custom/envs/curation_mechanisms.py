@@ -176,6 +176,31 @@ def is_retired(life: float, retire_floor: float = DEFAULT_RETIRE_FLOOR) -> bool:
     return float(life) < float(retire_floor)
 
 
+# ---------------- 议程保底候选资格 ----------------
+
+# 事件周议程保底的候选池过滤（用户 2026-09-13 裁定，方案 B）。
+# 保底按"哀悼倾向分"排序，而倾向分 = 命中数/(字数/50)，短文本密度天然偏高：
+# 实测（s0–s2）曾有 1 张 35–98 字的语料噪声帖（type=noise，乱码/广告拼接）挤进
+# 全员强制位。机制上 noise 不是"话语"，平台级议程规则不会把它推给全员。
+# 故从保底候选池中剔除 noise；其余类型（含 other/marketing 的哀悼相关帖）仍按倾向分参与。
+# 类型不硬限定为 mourning：同 N=5 下"仅取 mourning 类型"档 W13 悼念份额 0.555，
+# 比本口径 0.515 更差（Δ+0.141 vs +0.101），故不采用。
+# 效应量提示：**本条过滤几乎不影响结果**（开关对照 |Δ| ≤ 0.01 且符号不定，小于 seed 间噪声），
+# 它是口径清理（避免平台规则把语料噪声推给全员），不是标定杠杆。
+# 事件周水平几乎完全由**保底条数 N** 决定——N≥2 时 W13 悼念帖数恒为 22.0（悼念型全员发言），
+# 份额变化来自分母（非悼念类型被议程压到门槛下）；N 的取值待用户裁定（见 EXPERIMENT.md）。
+DEFAULT_EVENT_FLOOR_EXCLUDE_TYPES: tuple[str, ...] = ("noise",)
+
+
+def floor_eligible(post_type: str,
+                   exclude_types: Sequence[str] = DEFAULT_EVENT_FLOOR_EXCLUDE_TYPES) -> bool:
+    """该帖是否有资格进入事件周议程保底候选池（纯函数，env 与校准脚本同源）。
+
+    仅排除语料噪声类；不限定必须为 mourning 类型（见上方裁定说明）。
+    """
+    return str(post_type) not in tuple(exclude_types)
+
+
 # ---------------- 兴趣打分 ----------------
 
 def interest_score(

@@ -138,7 +138,10 @@ INJECTED_BY_WEEK: dict[str, list[dict]] = {}
 for _p in _sample_doc["posts"]:
     _t = str(_p.get("type", "other"))
     INJECTED_BY_WEEK.setdefault(str(_p["week"]), []).append(
-        {"type": _t if _t in TYPE_ORDER else "other",
+        # 保留原始类型（含 "noise"），与 env 同口径：env 的候选池计数把 noise 单列一类，
+        # 既不抬升"其他"型 agent 的 cum_own/气候，也是议程保底候选过滤（方案 B）的依据。
+        # 2026-09-13 前此处把非五类映射为 "other"，与 env 不同构。
+        {"type": _t,
          "official": bool(_p.get("is_official", False)),   # 官方帖在当周对全员置顶（env 同一规则）
          "tend": mech.compute_tendencies(str(_p.get("content", "")), _vocab_lists)}
     )
@@ -195,7 +198,8 @@ def simulate(
     """
     rng = random.Random(rng_seed)
     cum_own = {p["id"]: 0.0 for p in population}
-    pool: list[dict] = []           # {week, type, official, tend(dict), life, exposure}
+    pool: list[dict] = []           # {seq, week, type, official, tend(dict), life, exposure}
+    _seq = 0                        # 稳定序号：入池顺序（确定性），充当 env 里 pid 的角色
     flow_hist: dict[str, float] = {}
     prev_speak = 0.0                # 上一周 agent 发言总数（W11=0）
     result: dict[str, dict[str, int]] = {}
@@ -212,8 +216,10 @@ def simulate(
 
         # 1) 注入本周（life=1.0）。
         for rec in INJECTED_BY_WEEK[wk]:
-            pool.append({"week": wk, "type": rec["type"], "official": rec["official"],
-                         "tend": dict(rec["tend"]), "life": 1.0, "exposure": 0})
+            pool.append({"seq": _seq, "week": wk, "type": rec["type"],
+                         "official": rec["official"], "tend": dict(rec["tend"]),
+                         "life": 1.0, "exposure": 0})
+            _seq += 1
 
         # 2) 涌现环境（与 env 同式；B 的输入是 arena 供给计数，与内容无关）。
         flow_arena = INJ_ALLOC[wk] + prev_speak
@@ -238,12 +244,14 @@ def simulate(
         live = [it for it in pool if not mech.is_retired(it["life"], LIFE_RETIRE_FLOOR)]
         # 强制位①官方置顶：is_official 注入帖当周置顶（env：official_pin_extend_weeks=0 → 仅当周）。
         pinned = [it for it in live if it.get("official") and it["week"] == wk]
-        # 强制位②议程保底：事件周取全池（未退场、非置顶）哀悼倾向分最高的 N 条，全员相同。
+        # 强制位②议程保底：事件周取全池（未退场、非置顶、非语料噪声）哀悼倾向分最高的 N 条，
+        # 全员相同。候选资格与 env 同源（mech.floor_eligible，用户 2026-09-13 补裁定·方案 B）。
         forced: list[dict] = []
         if w13_floor > 0 and wk == EVENT_WEEK:
             _pin_ids = {id(x) for x in pinned}
             forced = sorted(
-                (it for it in live if id(it) not in _pin_ids),
+                (it for it in live
+                 if id(it) not in _pin_ids and mech.floor_eligible(it.get("type", ""))),
                 key=lambda it: -it["tend"].get("mourning", 0.0),
             )[:w13_floor]
         trace[wk]["pinned"], trace[wk]["forced"] = len(pinned), len(forced)
@@ -262,7 +270,9 @@ def simulate(
                                                         saturation)), it)
                 for it in live if id(it) not in head_ids
             ]
-            scored.sort(key=lambda x: (-x[0], id(x[1])))
+            # 平票次序按入池序号（env 同构：`scored.sort(key=lambda x: (-x[0], -x[1]))` 用 pid）。
+            # 不可用 id()：内存地址每次运行都变，会让同一 seed 的结果不可复现。
+            scored.sort(key=lambda x: (-x[0], x[1]["seq"]))
             picks = head + mech.weighted_sample_without_replacement(
                 [it for _, it in scored],
                 mech.softmax_weights([s for s, _ in scored], temp),
@@ -283,9 +293,10 @@ def simulate(
             u = d * r                     # U = D·R（环境因子 G 已退役，gain 仅供 trace 记录）
             if u >= prm["activity"] * base / BASE_REF:
                 counts[t] += 1
-                agent_posts.append({"week": wk, "type": t,
+                agent_posts.append({"seq": _seq, "week": wk, "type": t,
                                     "tend": dict(AGENT_TENDENCY_PROFILE[t]),
                                     "life": 1.0, "exposure": 0})
+                _seq += 1
             cum_own[ag["id"]] += own
 
         # 4) 本 tick 产出的 agent 帖滞后 1 tick 入池（下一周才可见）。
