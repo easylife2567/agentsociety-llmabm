@@ -1,9 +1,10 @@
-# 用户类型集中度：从 W11 起，只发「一种」内容类别的用户占比
+# 用户类型集中度：W12–W22 内只发「一种」内容类别的用户占比
 # 输入: 抖音微博小红书-全量已打标.xlsx（工作区根目录，用户提供）
 # 输出: type_concentration.json（控制台同表）
 #
 # 口径:
-#   时间窗 = ISO 周 >= 2026-W11（周一 2026-03-09 UTC 起，含 W11–W22；W11 为模拟基线周，W12 起为仿真窗）
+#   时间窗 = ISO 周 2026-W12 – 2026-W22（W12 周一 2026-03-16 UTC 起；与仿真 11 周窗对齐）。
+#            用户指定口径，2026-09-12 由 W11 起更正为 W12 起。
 #   行过滤 = 剔除 数据有效性=='存疑'(20 行)；'无效'(营销+噪音) 视为真实供给保留
 #   用户身份 = author 字段（主口径）；(media_type, author) 为稳健性口径
 #   类型 = 内容类别 字段
@@ -21,7 +22,7 @@ OUT = Path(__file__).resolve().parent / "type_concentration.json"
 CACHE = Path("/tmp/labeled_full.parquet")   # 列子集缓存（首次跑由 --recache 生成）
 
 COLS = ['数据有效性', '内容类别', 'author', 'author_handle', 'published_at', 'media_type']
-W_START = "2026-W11"
+W_START, W_END = "2026-W12", "2026-W22"
 DISCUSSION_TYPES = ["事件悼念讨论", "其他讨论", "教育观点讨论", "梗文化讨论"]  # 有效=真实讨论
 NOISE_TYPE = "爬取噪音"
 
@@ -73,7 +74,8 @@ def summarize(df: pd.DataFrame, user_col, types, label: str) -> dict:
 
 def main() -> None:
     df = load()
-    base = df[(df['week'] >= W_START) & (df['数据有效性'] != '存疑')].copy()
+    base = df[(df['week'] >= W_START) & (df['week'] <= W_END)
+              & (df['数据有效性'] != '存疑')].copy()
     n_author_null = int(base['author'].isna().sum())
     base = base[base['author'].notna()].copy()
     base['user'] = base['media_type'].astype(str) + "|" + base['author'].astype(str)
@@ -81,8 +83,8 @@ def main() -> None:
     res = {
         "meta": {
             "source": XLSX.name,
-            "window": f">= {W_START} (2026-03-09 UTC 起)",
-            "row_filter": "剔除 数据有效性=='存疑'(20行)；W11 前帖子不含",
+            "window": f"{W_START} – {W_END} (2026-03-16 起 UTC, 与仿真 11 周窗对齐)",
+            "row_filter": "剔除 数据有效性=='存疑'；W12 前与 W22 后的帖子不含",
             "user_identity": "author（主口径） / media_type+author（稳健性）",
             "author_null_dropped": n_author_null,
             "weeks_seen": sorted(base['week'].unique()),
