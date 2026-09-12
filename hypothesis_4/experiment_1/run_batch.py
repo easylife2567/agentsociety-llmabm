@@ -9,11 +9,17 @@
          └─ replay/ env/ agents/ …  引擎产物（monitor 数据源）
 
 幂等判定（每次调用重入安全，可反复跑"补齐缺口"）：
-    completed        SOCIETY_STEP.step_count >= 11 且 terminated，或 pid.json.status == completed
-    running          进程存活且 pid.json.status == running     → 等待，不重复启动
-    failed           pid.json.status == failed                 → 跳过（或 --force 重跑）
-    interrupted      有残留但未完结且进程已死                   → --resume-failed 时以 --resume 续跑
+    completed        SOCIETY_STEP.step_count >= 11（唯一的成功口径）
+    running          进程存活且有数据                           → 等待，不重复启动
+    failed           pid.status == failed，或自称 completed 但步数不足 → 跳过（或 --force 重跑）
+    interrupted      进程已死但有残留（含自称 running 的死进程）→ --resume-failed 时以 --resume 续跑
     pending          目录缺失/无数据                            → 正常启动
+
+    ⚠ 成功只看步数，不看 pid.status：引擎在 step 抛异常后会捕获并落盘
+      status=completed + 打印 "Experiment completed successfully"。
+      2026-09-13 实测（random_s2）：env replay writer 异常 → step 0 即退出，
+      pid.status=completed / step_count=0 / replay 表只有 core_agent_profile。
+      旧口径把它记成 completed，会让空 run 静默混进 9-run 数据集。
 
 并发：
     --concurrency N 同时运行 N 个 run。默认 1=串行（最稳，无 Ray 端口/内存/缓存竞态）。
@@ -127,12 +133,24 @@ def classify_run(run_dir: Path) -> tuple[str, dict]:
 
     has_data = bool(step_data) or bool(pid_data) or (run_dir / "SOCIETY.json").exists()
 
-    if status == "completed" or (step >= EXPECTED_STEPS and terminated):
+    # 判定 completed 必须**同时**满足步数达标：CLI 在 step 执行抛异常后仍会落盘
+    # status=completed（并打印 "Experiment completed successfully"），只认 status
+    # 会把"第 0 步就崩掉、replay 表近乎为空"的 run 记成成功——静默污染数据集。
+    if step >= EXPECTED_STEPS and (status == "completed" or terminated):
         return "completed", {"step": step, "end": pid_data.get("end_time")}
+    if status == "completed" and step < EXPECTED_STEPS:
+        return "failed", {
+            "step": step,
+            "reason": f"pid.status=completed 但 step={step} < {EXPECTED_STEPS}（中途异常退出，数据不完整）",
+        }
     if status == "failed":
         return "failed", {"step": step, "reason": pid_data.get("reason", "pid.status=failed")}
-    if status == "running" or (alive and has_data):
-        return "running", {"pid": proc_pid, "step": step, "alive": alive}
+    if alive and has_data:
+        return "running", {"pid": proc_pid, "step": step, "alive": True}
+    # 自称 running 但进程已死：上个调度器被中断留下的残留。**必须**判为 interrupted
+    # 而非 running，否则 build_plan → "wait" 会让该 run 被静默跳过、永远补不上。
+    if status == "running":
+        return "interrupted", {"step": step, "pid": proc_pid, "stale": True}
     if has_data:  # 有残留数据，但既非 running 也未正式 completed/failed
         return "interrupted", {"step": step, "pid": proc_pid}
     return "pending", {}
@@ -280,10 +298,25 @@ async def run_one(
             pid_data["reason"] = f"timeout>{timeout_h}h in run_batch"
             (run_dir / "pid.json").write_text(json.dumps(pid_data, indent=2), encoding="utf-8")
     step = _read_json(run_dir / "SOCIETY_STEP.json").get("step_count", 0)
-    pid_status = _read_json(run_dir / "pid.json").get("status")
-    outcome = "completed" if (pid_status == "completed" or int(step or 0) >= EXPECTED_STEPS) else (pid_status or "interrupted")
-    print(f"  [done]  {run_id} outcome={outcome} step={step}/11")
-    return {"run_id": run_id, "outcome": outcome, "step": step}
+    step_i = int(step or 0)
+    pid_data = _read_json(run_dir / "pid.json")
+    pid_status = pid_data.get("status")
+    # 唯一判"成功"的口径：步数达标。**不看** pid.status——CLI 中途异常退出时会
+    # 把 status 落成 completed 并打印 "Experiment completed successfully"，
+    # 只认 status 就会把第 0 步崩溃的空 run 记成成功。
+    if step_i >= EXPECTED_STEPS:
+        outcome = "completed"
+    elif pid_status == "completed":
+        outcome = "incomplete"
+        pid_data.update({
+            "status": "failed",
+            "reason": f"step={step_i} < {EXPECTED_STEPS}（中途异常退出，数据不完整）",
+        })
+        (run_dir / "pid.json").write_text(json.dumps(pid_data, indent=2), encoding="utf-8")
+    else:
+        outcome = pid_status or "interrupted"
+    print(f"  [done]  {run_id} outcome={outcome} step={step_i}/11")
+    return {"run_id": run_id, "outcome": outcome, "step": step_i}
 
 
 async def main_async(args) -> int:

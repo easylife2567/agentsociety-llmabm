@@ -18,7 +18,11 @@
      B2 群体份额 POP_SHARE：personas == agent 侧 _POP_SHARE == counts/100；
      B3 类型参数均值：personas._PARAM_SPECS[*][k][0] == agent 侧 _PARAM_DEFAULTS[type][k]；
      B4 议程保底条数：config_params == manifest == 校准脚本解析值；
-     B5 D/R 公式：三处对同一输入给出同值（共享纯函数 + cliff 边界）。
+     B5 D/R 公式：三处对同一输入给出同值（共享纯函数 + cliff 边界）；
+     B6 保底候选资格口径：仅排除 noise，不限定 mourning 类型；
+     B7 校准器确定性：同 (seed,N,scale) 两次调用逐值一致（防 id() 平票漂移）；
+     B8 调度/监视/代理脚本可编译（防语法错误静默上线）；
+     B9 批跑成功口径：步数唯一判据 + 死进程判 interrupted（防空 run 静默混入 / 静默跳过）。
 
   C. **机制层**（直接驱动 env 逐周，无 agent 产出、无 LLM、不写 replay）
      C1 W13 每条 feed 首位 = 官方讣告帖（official=True），三臂一致；
@@ -192,6 +196,44 @@ def layer_b():
           "逐周逐类型完全一致" if _same else
           "不一致：" + "；".join(f"{w}/{t} {_r1[w][t]}≠{_r2[w][t]}"
                                 for w in _r1 for t in _r1[w] if _r1[w][t] != _r2[w][t])[:200])
+    # B8 调度/监视/代理脚本可编译（防语法错误静默上线）。
+    # 回归护栏——2026-09-13 实测 monitor.py 的中文说明里混入 ASCII 双引号，
+    # `--with-monitor` 每完成一个 run 就崩一次，只有跑到那时候才暴露。
+    _syn: list[str] = []
+    for _f in ("run_batch.py", "monitor.py", "proxy_predict.py", "verify_experiment.py"):
+        _p = SCRIPT_DIR / _f
+        try:
+            compile(_p.read_text(encoding="utf-8"), str(_p), "exec")
+        except SyntaxError as _e:
+            _syn.append(f"{_f}:{_e.lineno} {_e.msg}")
+    check(not _syn, "B8 调度/监视/代理脚本可编译（防语法错误静默上线）",
+          "4 个脚本全部通过" if not _syn else "；".join(_syn))
+
+    # B9 批跑成功口径：**只看步数**，不看 pid.status；死进程判 interrupted 不判 running。
+    # 回归护栏——引擎在 step 抛异常后仍落盘 status=completed 并打印
+    # "Experiment completed successfully"。旧口径把 step=0 的空 run 记成 completed，
+    # 会让空 run 静默混进 9-run 数据集（2026-09-13 实测 random_s2）。
+    # 另一条：死进程若留在 running，build_plan→"wait" 会把它永久静默跳过、永远补不上。
+    import tempfile as _tf
+    _rb = _load("run_batch", SCRIPT_DIR / "run_batch.py")
+    _exp = _rb.EXPECTED_STEPS
+    with _tf.TemporaryDirectory() as _td:
+        _d = Path(_td)
+
+        def _stage(pid: dict, step_doc: dict) -> None:
+            (_d / "pid.json").write_text(json.dumps(pid), encoding="utf-8")
+            (_d / "SOCIETY_STEP.json").write_text(json.dumps(step_doc), encoding="utf-8")
+
+        _stage({"pid": 0, "status": "completed", "step_count": 0}, {"step_count": 0})
+        _s_short, _ = _rb.classify_run(_d)          # 自称 completed 但一步没跑
+        _stage({"pid": 0, "status": "completed", "step_count": _exp},
+               {"step_count": _exp, "terminated": True})
+        _s_full, _ = _rb.classify_run(_d)           # 真跑完
+        _stage({"pid": 999999, "status": "running", "step_count": 1}, {"step_count": 1})
+        _s_dead, _ = _rb.classify_run(_d)           # 自称 running 但进程已死
+    check(_s_short == "failed" and _s_full == "completed" and _s_dead == "interrupted",
+          "B9 批跑成功口径（步数唯一判据 + 死进程判 interrupted）",
+          f"自称completed但step=0→{_s_short}；step={_exp}+terminated→{_s_full}；死进程→{_s_dead}")
     return mech, cal
 
 
