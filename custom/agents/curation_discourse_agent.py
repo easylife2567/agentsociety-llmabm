@@ -46,6 +46,8 @@ VALID_TYPES = ("meme", "mourning", "marketing", "education", "other")
 #       （Simon 1971：信息过载时注意力是稀缺资源）、生态位/logistic 扩散（扩张需要
 #       未饱和空间）、memetics（Dawkins 1976：模因在丰宿主池中复制变异）。
 #       θ = emergence 结构性取值：仅玩梗型 >0，其余类型 0（环境不影响其决策）。
+#       θ 读自 profile params，故反事实臂可令玩梗型 θ=0（等价 G^θ≡1，大家都用 D·R）——
+#       no-G 探针配置见 hypothesis_4/experiment_1/EXPERIMENT.md「no-G 反事实探针」节。
 # 三因子全部乘法进入效用（收益侧），杜绝线性等权平均的补偿性稀释（sustained_hot 臂
 # 的操纵不会被平均稀释）。确定性决策（无随机数）：给定环境快照与参数，行为完全确定，
 # 跨 cell/seed 可比性最强。门槛基数 activity_base 为校准值（快速校准：真实周构成气候

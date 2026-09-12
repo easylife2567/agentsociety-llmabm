@@ -60,6 +60,13 @@ U = D × R × G^θ        发言当且仅当 U ≥ activity
 - **emergence θ**：结构性取值，仅玩梗型 >0（玩梗时机受涌现环境门控：洪峰期新表达被淹没、
   退潮期才被看见）；其余类型 θ=0，G^0 ≡ 1，环境不影响其决策。
 
+> **no-G 反事实探针（探索性，用户 2026-09-12 裁定「跑一次看看效果」）**：
+> `init/configs/interest_nog_s0.json` 与本表唯一差别 = 18 个玩梗 agent 的 θ 改为 **0.0**
+> （等价 G^θ≡1，大家都用 D·R），**门槛基数 0.95 与其余参数一律不动**——因基线周 W12 的
+> G 严格 =1，该臂与 `interest_normal_s0` 在 W12 逐点等价，差异纯来自 G 的逐周调制。
+> 该 run **不属于 18-run 批次**；构造、预注册预期与跑法见
+> `hypothesis_4/experiment_1/EXPERIMENT.md`「no-G 反事实探针」节。
+
 ### 1.2 个体参数抽样
 
 - 抽样时机：`build_population(counts, seed=42)` 建人设时一次性抽定，写入 `profile.params`，

@@ -21,11 +21,15 @@
   （时间冷却 + 曝光饱和 + 退场）＋ interest 臂兴趣比例抽样，修烟测暴露的"老帖霸屏"
   与"同类型 agent 共享同一份 feed → W18→W19 发言悬崖"；参数见下方
   LIFE_* / INTEREST_SAMPLE_TEMP 常量与 manifest["feed_mechanism"]。
+- 探索性反事实探针（用户 2026-09-12 裁定「跑一次看看效果」）：configs/interest_nog_s0.json
+  = interest_normal_s0 去掉玩梗型的涌现环境因子（θ=0，大家都用 D·R），门槛基数不动；
+  **不进入 18-run 批次**（见 manifest["probe_runs"] 与 EXPERIMENT.md「no-G 反事实探针」节）。
 - init/init_config.json 为标准 CLI 默认配置（= configs/interest_normal_s0.json）。
 
 仅使用标准库；由 `experiment-config run` 执行。
 """
 
+import copy
 import importlib.util
 import json
 import random
@@ -302,7 +306,8 @@ for seed in SEEDS:
 # 3. 生成 18 个 init_config 变体 + 默认 init_config.json
 # ---------------------------------------------------------------------------
 
-def make_config(algorithm: str, mode: str, seed: int) -> dict:
+def make_config(algorithm: str, mode: str, seed: int, agents: list | None = None) -> dict:
+    """组装一个 init_config 变体。agents=None 用共享群体（18 配置）；探针臂可传改写后的副本。"""
     return {
         "env_modules": [
             {
@@ -344,7 +349,7 @@ def make_config(algorithm: str, mode: str, seed: int) -> dict:
                 },
             }
         ],
-        "agents": agent_specs,
+        "agents": agent_specs if agents is None else agents,
     }
 
 
@@ -368,6 +373,46 @@ default_run_id = "interest_normal_s0"
 print(f"✓ init_config.json (= configs/{default_run_id}.json)")
 
 # ---------------------------------------------------------------------------
+# 3b. 探索性反事实探针：no-G 臂（用户 2026-09-12 裁定）
+#
+# 裁定原文：「对 G^θ 做一个反事实，去掉玩梗 agent 的这个因子，当然其门槛也要做调整，
+# 大家都用 D·R」；规模裁定：「就是跑一次看看效果」（单 run 探针，**暂不进入 18-run
+# 批次、也不进全因子设计**——是否升为第 3 水平 / 独立实验留待探针结果由用户裁定）。
+#
+# 构造：与 interest_normal_s0 **逐字段相同**，唯一差别 = 18 个玩梗 agent 的
+# params.emergence 由抖动值（均值 1.0，U[0.8,1.2]）改为 0.0；其余四类本就 θ=0。
+#
+# 等价性说明（两种实现行为完全一致，选 θ=0 是因其改动面最小）：
+#   U = D·R·G^θ，θ=0 ⟺ G^θ ≡ 1 ⟺ env 侧把 G 中和为 1.0。
+#   θ=0（agent 侧）不动 env、不动群体其余参数，且监控里 B/S/G 仍逐周记录——
+#   可看到"被解耦的环境本身"，只有 env_multiplier（G^θ）恒 1。
+#
+# 门槛口径（用户裁定：不调，沿用 0.95）：门槛基数锚定中性状态（D≈R≈1、G=1 → U≈1.0），
+# 而基线周 W12 的 G 严格 =1（B=S=1 by construction），故本臂 W12 与 normal 臂逐点等价，
+# 差异 100% 来自 G 的逐周调制——即"干净消融"的定义。代理实测：把玩梗门槛下调（0.85-0.4）
+# 对起爆时点无杠杆（区间 [0.85,1.0] 内一律 W20 起步），只有 0.4 档才会量级持平，
+# 但代价是 W14-W17 就出现玩梗（与真实基准"W12-W18 梗份额 ≤1.5%"相悖）——故不调。
+# 诊断与代理预期见 EXPERIMENT.md「no-G 反事实探针」节。
+# ---------------------------------------------------------------------------
+probe_agents_nog = copy.deepcopy(agent_specs)
+_nog_theta_flipped = 0
+for _spec in probe_agents_nog:
+    if _spec["kwargs"]["agent_type"] == "meme" and _spec["kwargs"]["params"]["emergence"] != 0.0:
+        _spec["kwargs"]["params"]["emergence"] = 0.0
+        _nog_theta_flipped += 1
+assert _nog_theta_flipped == POPULATION_COUNTS["meme"], (
+    f"no-G 探针应改写 {POPULATION_COUNTS['meme']} 个玩梗 agent 的 θ，实际 {_nog_theta_flipped}"
+)
+
+probe_run_id = "interest_nog_s0"
+(configs_dir / f"{probe_run_id}.json").write_text(
+    json.dumps(make_config("interest", "normal", 0, agents=probe_agents_nog),
+               ensure_ascii=False, indent=2),
+    encoding="utf-8",
+)
+print(f"✓ {probe_run_id}（no-G 探针：{_nog_theta_flipped} 个玩梗 agent θ=0，门槛 0.95 不变）")
+
+# ---------------------------------------------------------------------------
 # 4. steps.yaml + 批次 manifest
 # ---------------------------------------------------------------------------
 (script_dir / "steps.yaml").write_text(STEPS_YAML, encoding="utf-8")
@@ -377,6 +422,22 @@ manifest = {
     "experiment": "hypothesis_4/experiment_1",
     "design": "3 推荐算法 × 2 玩梗涌现模式 全因子，每 cell 3 seeds，共 18 runs",
     "run_ids": run_ids,
+    # 探索性探针（用户 2026-09-12 裁定「跑一次看看效果」）：**不属于上述 18-run 批次**，
+    # 不进 run_ids、不进 factors；跑法 `run_batch.py --only interest_nog_s0`。
+    "probe_runs": [
+        {
+            "run_id": probe_run_id,
+            "purpose": ("no-G 反事实探针：对 G^θ 做反事实，去掉玩梗 agent 的涌现环境因子"
+                        "（用户 2026-09-12 裁定；规模=单 run 看效果）"),
+            "base_cell": default_run_id,
+            "diff_from_base": ("仅 18 个玩梗 agent 的 params.emergence 由抖动值改为 0.0"
+                               "（θ=0 ⟺ G^θ≡1）；推荐算法/涌现模式/seed/群体/注入样本/"
+                               "门槛基数 0.95 与 feed 机制参数全部与 base cell 相同"),
+            "threshold": "不动（0.95）——W12 基线周 G≡1，本臂与 normal 臂在 W12 逐点等价",
+            "status": "探索性（未注册）；结果出来后由用户裁定是否升为第 3 水平 / 独立实验",
+            "run_cmd": f"$PYTHON_PATH hypothesis_4/experiment_1/run_batch.py --only {probe_run_id}",
+        }
+    ],
     "factors": {
         "recommendation_algorithm": ALGORITHMS,
         "meme_emergence_mode": EMERGENCE_MODES,
