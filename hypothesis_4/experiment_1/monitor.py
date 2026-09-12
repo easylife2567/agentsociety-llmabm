@@ -651,7 +651,7 @@ def render_run_status_md(data: dict, weekly: list[dict], pv: dict,
 
 def render_overview(runs: list[dict], weekly_map: dict[str, list[dict]]) -> str:
     lines = [
-        "# 多 Run 总览（CurationDynamics 3×2×3 = 18 runs + 冒烟）",
+        "# 多 Run 总览（CurationDynamics 3 臂 × 3 seed = 9 runs）",
         "",
         f"- 生成时间：{datetime.now().isoformat(timespec='seconds')}",
         "",
