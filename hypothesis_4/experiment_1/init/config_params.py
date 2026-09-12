@@ -90,6 +90,10 @@ LIFE_RETIRE_FLOOR = 0.35       # 退场线：时间生命低于此值退出候�
 #                              0.35→3 周窗口，age≥3 = 0.00、top-10% 曝光集中度 0.24、
 #                              零曝光帖 0.06、share_own 逐 agent sd 0.12（基线分别为 0.60/0.29/0.64/0.54/0.00）
 INTEREST_SAMPLE_TEMP = 4.0     # 兴趣比例抽样温度（<=0 退化为确定性 top-k 消融档）
+# 议程设置（用户 2026-09-12/13 裁定）：事件周（W13）为**每个** agent 的 feed 保底注入
+# N 条哀悼帖（按哀悼倾向分取全池前 N 条、全员相同，等效"讣告 + 头版哀悼"的强制曝光）。
+# 代理实测：加上它之后 W13 悼念份额从 0.296（低估）回到 0.42-0.46（真实 0.414）✓。
+EVENT_WEEK_MOURNING_FLOOR = 5
 
 # 250 条周分配：保底 15/周×11=165，余 85 按真实周量比例分配（和=250）。
 INJECTION_ALLOCATION = {
@@ -336,6 +340,8 @@ def make_config(algorithm: str, mode: str, seed: int, agents: list | None = None
                     "life_saturation_scale": LIFE_SATURATION_SCALE,
                     "life_retire_floor": LIFE_RETIRE_FLOOR,
                     "interest_sample_temp": INTEREST_SAMPLE_TEMP,
+                    # —— 议程设置（用户 2026-09-12/13 裁定）——
+                    "event_week_mourning_floor": EVENT_WEEK_MOURNING_FLOOR,
                     # —— 数据资产 ——
                     "injection_data_path": sample_paths[seed],
                     "vocab_path": "custom/envs/curation_assets/vocabs.json",
@@ -416,7 +422,7 @@ manifest = {
             "sample_seed": VOCAB_SAMPLE_SEED,
             "meme": "linkage 全量 + strong 抽样；mourning/marketing/education=main 抽样；other=空",
         },
-        "speak_decision": "双规则表达效用模型（无 LLM，用户 2026-09-12 裁定）：U=D·R，发言当且仅当 U≥activity（个体表达门槛，门槛低者易发言；确定性决策无随机数）。D=1+s·tanh(1.5·(share_own−base)/base)（沉默螺旋，有界无地板：D<1 即隔离成本）；R=exp(−λ·cum_own/20)（注意力衰减，半饱和尺度 20 ≈ 两周活跃曝光；2026-09-12 由 50 增强，λ 等效 ×2.5）。中性状态（D≈R≈1）下 U≈1.0，两因子乘法进入效用；门槛基数 0.95（calibrate_speak.py 同构 feed 层推演扫描定标）。公式唯一存放处 custom/envs/curation_mechanisms.py（spiral_factor / fatigue_factor，agent 与校准脚本同源）。params 随 profile 下发（activity/spiral/decay 三参数；原 emergence/θ 与 G 一并退役，env 侧 B/S/G 仅记录）",
+        "speak_decision": "双规则表达效用模型（无 LLM，用户 2026-09-12 裁定）：U=D·R，发言当且仅当 U≥activity（个体表达门槛，门槛低者易发言；确定性决策无随机数）。D=1+s·tanh(1.5·(share_own−base)/base)（沉默螺旋，有界无地板：D<1 即隔离成本）；R=exp(−λ·cum_own/15)（注意力衰减，半饱和尺度 15 ≈ 一周半活跃曝光；2026-09-12 由 50 调至 20、2026-09-13 进一步下压至 15，λ 等效 ×3.33）。中性状态（D≈R≈1）下 U≈1.0，两因子乘法进入效用；门槛基数 0.95（calibrate_speak.py 同构 feed 层推演扫描定标）。公式唯一存放处 custom/envs/curation_mechanisms.py（spiral_factor / fatigue_factor，agent 与校准脚本同源）。params 随 profile 下发（activity/spiral/decay 三参数；原 emergence/θ 与 G 一并退役，env 侧 B/S/G 仅记录）",
         "content_grounding": "发言内容须基于本周 feed 前 5 条（feed_context_n=5）：回应/讨论/二创/跟帖（用户 2026-09-10 裁定）",
     },
     "feed_mechanism": {
@@ -430,6 +436,14 @@ manifest = {
             "note": ("被实测排除的形态：硬性'每帖每周最多推给 C 个 agent'会饿死早期 feed"
                      "（W12 仅 47 帖，C=2 只供 94 槽位而当周需求 1000 槽位），故曝光上限"
                      "以饱和衰减实现同一意图；退场只按时间生命判，避免高热帖被提前踢出池子"),
+        },
+        "event_week_mourning_floor": {
+            "value": EVENT_WEEK_MOURNING_FLOOR,
+            "rule": ("事件周（W13）为每个 agent 的 feed 保底注入 N 条哀悼帖：取全池（未退场、非置顶）"
+                     "中哀悼倾向分最高的 N 条，全员相同，紧接官方置顶之后占槽位；余下槽位照常按算法"
+                     "从剩余候选池选取。平台级规则，三算法臂一致"),
+            "why": ("议程设置：讣告/头版哀悼的强制曝光 —— 让事件周全体 agent 都暴露于哀悼叙事。"
+                    "代理实测：无此规则时 W13 悼念份额被低估到 0.296（真实 0.414）；加上 5 条后 0.42-0.46"),
         },
         "interest_sampling": {
             "temperature": INTEREST_SAMPLE_TEMP,

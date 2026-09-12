@@ -270,6 +270,7 @@ class CurationDynamicsSpace(EnvBase):
         ColumnDef("exposure_slots_age1", "INTEGER", description="本 tick 曝光槽位中帖龄 1 周的槽位数"),
         ColumnDef("exposure_slots_age2", "INTEGER", description="本 tick 曝光槽位中帖龄 2 周的槽位数"),
         ColumnDef("exposure_slots_age3plus", "INTEGER", description="本 tick 曝光槽位中帖龄 ≥3 周的槽位数（老帖霸屏的直接指标）"),
+        ColumnDef("event_floor_slots", "INTEGER", description="议程设置：本 tick 事件周保底哀悼帖集合的条数（全员各占同样多槽位；非事件周=0）"),
     ]
 
     # agent 级：每 step 每 agent 一行（主键 agent_id+step），21 列。
@@ -315,6 +316,10 @@ class CurationDynamicsSpace(EnvBase):
         self._num_ticks = int(kwargs.pop("num_ticks", 11))
         self._event_week = str(kwargs.pop("event_week", "2026-W13"))
         self._official_pin_extend_weeks = int(kwargs.pop("official_pin_extend_weeks", 1))
+        # 议程设置（用户 2026-09-12/13 裁定）：事件周（event_week）为**每个** agent 的 feed
+        # 保底注入 N 条哀悼帖（按哀悼倾向分取全池前 N 条、全员相同，等效"讣告 + 头版哀悼"的
+        # 强制曝光，使事件周全体 agent 都暴露于哀悼叙事）。0=关闭。平台级规则，三臂一致。
+        self._event_week_mourning_floor = int(kwargs.pop("event_week_mourning_floor", 0))
         self._alpha = float(kwargs.pop("alpha", 1.0))
         self._beta = float(kwargs.pop("beta", 1.0))  # 废弃：倾向分替代词表重合项（2026-09-09 裁定）
         self._gamma = float(kwargs.pop("gamma", 0.5))
@@ -366,6 +371,10 @@ class CurationDynamicsSpace(EnvBase):
             raise ValueError(f"life_half_life_weeks must be > 0, got {self._life_half_life_weeks}")
         if self._life_retire_floor < 0:
             raise ValueError(f"life_retire_floor must be >= 0, got {self._life_retire_floor}")
+        if self._event_week_mourning_floor < 0:
+            raise ValueError(
+                f"event_week_mourning_floor must be >= 0, got {self._event_week_mourning_floor}"
+            )
         for aid, ttype in self._agent_types.items():
             if ttype not in TYPE_ORDER:
                 raise ValueError(f"agent_types[{aid!r}] = {ttype!r} not in {TYPE_ORDER}")
@@ -411,6 +420,7 @@ class CurationDynamicsSpace(EnvBase):
         self._flow_by_week: dict[str, int] = {}  # arena 周供给总量历史（丰沛度存量口径的输入）
         self._official_pinned: dict[str, list[int]] = {}
         self._pinned_ids: list[int] = []
+        self._event_floor_ids: list[int] = []  # 事件周保底哀悼帖（全员相同）
         self._global_landscape: dict[str, Any] = {}
         self._seen_by_agent: dict[str, set[int]] = {}
         self._cumulative_exposures: dict[str, dict[str, int]] = {}
@@ -610,6 +620,22 @@ class CurationDynamicsSpace(EnvBase):
                     ids.append(pid)
         return ids
 
+    def _compute_event_floor_ids(self, week: str) -> list[int]:
+        """事件周议程保底：取全池（未退场、非置顶）中哀悼倾向分最高的 N 条，全员相同。
+
+        用户 2026-09-12 裁定的议程设置：W13（去世周）所有 agent 的 feed 保底包含 5 条
+        哀悼讯息 —— 等效"官方讣告 + 头版哀悼"的强制曝光。非事件周或 floor<=0 时返回空。
+        平台级规则（三算法臂同一保底集合），保证臂间差异只来自排序/选择。
+        """
+        if self._event_week_mourning_floor <= 0 or week != self._event_week:
+            return []
+        pinned_set = set(self._pinned_ids)
+        pool = [pid for pid in self._live_candidates() if pid not in pinned_set]
+        pool.sort(
+            key=lambda pid: (-(self._posts[pid].get("tendencies") or {}).get("mourning", 0.0), -pid)
+        )
+        return pool[: self._event_week_mourning_floor]
+
     def _feed_item(self, pid: int) -> dict[str, Any]:
         p = self._posts[pid]
         return {
@@ -715,10 +741,19 @@ class CurationDynamicsSpace(EnvBase):
         feed: list[dict[str, Any]] = []
         for pid in self._pinned_ids[: self._feed_size]:
             feed.append(self._feed_item(pid))
+        # 事件周议程保底（用户 2026-09-12 裁定）：紧接置顶之后固定占 N 个槽位，全员相同。
+        floor_set = set(self._event_floor_ids)
+        for pid in self._event_floor_ids:
+            if len(feed) >= self._feed_size:
+                break
+            feed.append(self._feed_item(pid))
         remaining = self._feed_size - len(feed)
         if remaining <= 0:
             return feed
-        candidates = [pid for pid in self._live_candidates() if pid not in pinned_set]
+        candidates = [
+            pid for pid in self._live_candidates()
+            if pid not in pinned_set and pid not in floor_set
+        ]
         alg = self._recommendation_algorithm
         if alg == "random":
             take = min(remaining, len(candidates))
@@ -783,8 +818,9 @@ class CurationDynamicsSpace(EnvBase):
         # 2) 玩梗涌现环境（存量/流量/丰沛度/空旷度/涌现增益）。
         self._meme_env = self._compute_meme_env(week)
 
-        # 3) 官方置顶集合。
+        # 3) 官方置顶集合 + 事件周议程保底集合（全员相同，三臂一致）。
         self._pinned_ids = self._compute_pinned_ids(week)
+        self._event_floor_ids = self._compute_event_floor_ids(week)
 
         # 4) 预装配全部 feed（曝光在装配时记账：1 次/agent/tick；get_feed 只读缓存快照）。
         self._feed_live_pool = len(self._live_candidates())
@@ -911,6 +947,7 @@ class CurationDynamicsSpace(EnvBase):
         row["feed_saturation_scale"] = self._life_saturation_scale
         for bucket, cnt in self._exposure_age_buckets.items():
             row[f"exposure_slots_{bucket}"] = cnt
+        row["event_floor_slots"] = len(self._event_floor_ids)
         return row
 
     def _landscape_row(self, week: str, merged: list[dict[str, Any]]) -> dict[str, Any]:

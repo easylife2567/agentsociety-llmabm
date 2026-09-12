@@ -118,6 +118,7 @@ FIELDS: dict[str, str] = {
     "exposure_noise": "本 tick 噪音类曝光槽位数。",
     "official_posts_count": "本 tick 置顶集合中的官方帖数（仅 W13 讣告=1，其余周=0）。",
     "official_exposure_slots": "官方帖占据的 feed 槽位数。W13 应=100（全员置顶可见），其余周=0。",
+    "event_floor_slots": "事件周议程保底槽位数（用户 2026-09-12 裁定）：W13 每条 feed 在置顶之后固定 5 个槽位放全池哀悼倾向分最高的帖（全员相同、三臂一致），其余周=0。平台级规则，非算法差异。",
     # feed 机制审计（用户 2026-09-12 裁定：帖子生命周期 + 曝光饱和 + 兴趣比例抽样）
     "feed_live_pool": "本周未退场、进入候选池的帖数（跨算法臂同源的内容可得性；三臂应相等）。",
     "feed_sample_temp": "interest 臂比例抽样温度（按 exp(score/temp) 无放回抽 feed_size 条；<=0=确定性 top-k 消融档）。",
@@ -138,7 +139,7 @@ FIELDS: dict[str, str] = {
     "u": "表达效用 U = D·R（2026-09-12 起；环境增益 G^θ 退役）。发言当且仅当 U ≥ activity。中性状态（D≈R≈1）下 U≈1。",
     "threshold": "个体表达门槛 activity（= 类型均值 0.95 × U[0.8,1.2] 抖动）。门槛越低越容易发言，活跃 agent 门槛低。",
     "spiral": "沉默的螺旋因子 D = 1 + s·tanh(1.5·(share_own − base)/base)（2026-09-12 起：有界 tanh、无地板）。>1 同类气候比期望强→共鸣放大收益；<1 处于少数→抑制；<0 表达存在净成本（孤立成本）。base=本类型在 100 人群体中的份额。",
-    "decay": "注意力衰减因子 R = exp(−λ·cum_own/50)（收益侧折减）。本类累计曝光越多越低（疲劳）。",
+    "decay": "注意力衰减因子 R = exp(−λ·cum_own/15)（收益侧折减）。本类累计曝光越多越低（疲劳）。尺度沿革 50 → 20（2026-09-12）→ 15（2026-09-13 用户裁定"R 力度再大一些"）。",
     "benefit": "表达效用 U = D·R（两收益侧因子相乘）。",
     "emergence": "（已退役）涌现环境增益指数 θ：2026-09-12 用户裁定 G 退役，θ 不再进入任何决策；字段保留兼容历史 decision_log。",
     "env_abundance": "决策时所见丰沛度 B_t（快照键 meme_env.abundance；存量越丰沛越易诞生 meme）。",
@@ -147,7 +148,7 @@ FIELDS: dict[str, str] = {
     "env_multiplier": "环境乘子 G^θ（θ=emergence；玩梗型随周变化，其余类型恒 1）。",
     "share_own": "该 agent 所见信息流中本类内容占比（spiral 的输入）。",
     "share_base": "本类型在 100 人群体中的份额（spiral 的期望基线：玩梗0.19/悼念0.22/营销0.23/教育0.15/其他0.21）。",
-    "cum_own": "该 agent 累计本类曝光数（decay 的输入，尺度 50 为半饱和点）。",
+    "cum_own": "该 agent 累计本类曝光数（decay 的输入；R 的半饱和尺度为 15，即累计约 15 次本类曝光时 R≈e^(−λ)）。",
     "speak": "决策结果：是否发言（U ≥ activity）。",
     "posted": "发言是否成功发布（发言后还有 1 次内容 LLM 调用，失败/空则 posted=False）。",
     "n_decisions": "该周该类型有决策记录的 agent 数（正常=类型人数）。",
@@ -501,10 +502,10 @@ def render_weekly_md(weekly: list[dict], week_filter: str | None) -> str:
         cells += [_pct(r.get(f"exposure_share_{t}")) for t in TYPE_ALL]
         out.append("| " + " | ".join(str(c) if c is not None else "—" for c in cells) + " |")
     out.append(_docs_block(["total_exposures", "exposure_meme", "exposure_share_meme"]))
-    # 表B2 feed 机制审计（生命周期 / 曝光年龄结构 / 抽样参数）
-    out.append("\n### 表B2 feed 机制审计（帖子生命周期与候选取样）\n")
-    head = "| 周 | 活池 | 曝光龄0 | 龄1 | 龄2 | 龄≥3 | 龄≥3占比 | 抽样温度 | 半衰期 | 饱和尺度 |"
-    out += [head, "|---" * 10 + "|"]
+    # 表B2 feed 机制审计（生命周期 / 曝光年龄结构 / 抽样参数 / 强制槽位）
+    out.append("\n### 表B2 feed 机制审计（帖子生命周期、候选取样与强制槽位）\n")
+    head = "| 周 | 活池 | 曝光龄0 | 龄1 | 龄2 | 龄≥3 | 龄≥3占比 | 议程保底 | 抽样温度 | 半衰期 | 饱和尺度 |"
+    out += [head, "|---" * 11 + "|"]
     for r in rows:
         a = [r.get(f"exposure_slots_age{k}") for k in (0, 1, 2)]
         old = r.get("exposure_slots_age3plus")
@@ -512,12 +513,13 @@ def render_weekly_md(weekly: list[dict], week_filter: str | None) -> str:
         cells = [r.get("week"), r.get("feed_live_pool")] + [x if x is not None else "—" for x in a] + [
             old if old is not None else "—",
             _pct((old / tot) if (isinstance(old, (int, float)) and tot) else None),
+            r.get("event_floor_slots") if r.get("event_floor_slots") is not None else "—",
             _num(r.get("feed_sample_temp"), 2), _num(r.get("feed_half_life_weeks"), 2),
             _num(r.get("feed_saturation_scale"), 1),
         ]
         out.append("| " + " | ".join(str(c) if c is not None else "—" for c in cells) + " |")
     out.append(_docs_block(["feed_live_pool", "exposure_slots_age0", "exposure_slots_age1",
-                            "exposure_slots_age2", "exposure_slots_age3plus",
+                            "exposure_slots_age2", "exposure_slots_age3plus", "event_floor_slots",
                             "feed_sample_temp", "feed_half_life_weeks", "feed_saturation_scale"]))
     # 表C Agent 行为
     out.append("\n### 表C Agent 行为聚合（按类型）\n")

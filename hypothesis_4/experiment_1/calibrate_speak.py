@@ -123,6 +123,10 @@ INJ_ALLOC: dict[str, int] = {str(k): int(v) for k, v in manifest["injection"]["a
 FLOW_WORLD: dict[str, int] = {str(k): int(v) for k, v in manifest["emergence_env"]["flow_schedule"].items()}
 assert sorted(INJ_ALLOC) == sorted(FLOW_WORLD) == sorted(WEEKS), "manifest 周集合与 WEEKS 不一致"
 
+# 议程设置（与 env / config_params 同源）：事件周每 agent feed 保底 N 条哀悼帖。
+_event_floor_meta = (manifest.get("feed_mechanism") or {}).get("event_week_mourning_floor") or {}
+EVENT_WEEK_MOURNING_FLOOR = int(_event_floor_meta.get("value", 0))
+
 K_F_DEFAULT = FLOW_WORLD[START_WEEK]                          # env 默认 emergence_kf（1246）
 K_A_DEFAULT = INJ_ALLOC[START_WEEK] + INJ_ALLOC[EVENT_WEEK]   # env 默认 emergence_ka（17+35=52）
 STOCK_BASE = INJ_ALLOC[START_WEEK]                            # W12 arena 流量（17，agent 帖滞后入池）
@@ -135,6 +139,7 @@ for _p in _sample_doc["posts"]:
     _t = str(_p.get("type", "other"))
     INJECTED_BY_WEEK.setdefault(str(_p["week"]), []).append(
         {"type": _t if _t in TYPE_ORDER else "other",
+         "official": bool(_p.get("is_official", False)),   # 官方帖在当周对全员置顶（env 同一规则）
          "tend": mech.compute_tendencies(str(_p.get("content", "")), _vocab_lists)}
     )
 assert all(len(INJECTED_BY_WEEK.get(w, [])) == INJ_ALLOC[w] for w in WEEKS), \
@@ -164,21 +169,33 @@ def simulate(
     temp: float = INTEREST_SAMPLE_TEMP,
     half_life: float = LIFE_HALF_LIFE_WEEKS,
     saturation: float = LIFE_SATURATION_SCALE,
+    r_scale: float = mech.DEFAULT_DECAY_SCALE,
+    w13_floor: int = EVENT_WEEK_MOURNING_FLOOR,
+    rng_seed: int = CALIB_SAMPLE_SEED,
 ) -> tuple[dict[str, dict[str, int]], dict[str, dict[str, float]], dict[str, dict[str, float]]]:
     """端到端代理推演 11 周，返回 ({week: {type: 发言数}}, {week: 环境轨迹}, {week: {type: 本类可见份额}})。
 
     与 env 同构（周序数/生命衰减/曝光饱和/退场/倾向分/兴趣打分/比例抽样全部走共享纯函数）：
     - 候选池：当周注入 + 上一 tick 收尾并入的 agent 帖（agent 帖滞后 1 tick 可见）；
     - 每帖 life 每周 × weekly_decay，注入/入池置 1.0；life < 退场线 → 退出候选池；
-    - feed 装配：对每个 agent 按 interest_score 打分，按 exp(score/T) 无放回抽 FEED_SIZE 条，
+    - **强制位（与 env 的平台级规则逐条对应，2026-09-13 补齐）**：
+      ① 官方置顶：is_official 注入帖在当周占全员 feed 首位（official_pin_extend_weeks=0，
+         即仅 W13 的讣告帖）；② 议程保底：事件周（W13）取全池（未退场、非置顶）哀悼倾向分
+         最高的 w13_floor 条，全员相同，紧接置顶之后占槽位（`--w13-floor`，0=关闭）；
+    - feed 余下槽位：对每个 agent 按 interest_score 打分，按 exp(score/T) 无放回抽满；
       装配时即记账曝光（曝光饱和项随之下降，抑制单帖同周垄断）；
     - share_own = 该 agent 本周 feed 中本类槽位占比（D 的气候输入，逐 agent 不同）；
     - Stock 以 6 周窗口滚动累计；S 读现实口径调度（B/S/G 仅作 trace 观测，不进入决策）。
-    - 决策 U = D·R（D 走共享 spiral_factor）；mode 仅影响 trace 里 S 是否冻结。
+    - 决策 U = D·R（D 走共享 spiral_factor，R 走共享 fatigue_factor，尺度 r_scale）；
+      mode 仅影响 trace 里 S 是否冻结。
+
+    已知未建模的 env 细节（量级 <1.5%，需判断时扣除）：interest 打分的均匀噪声
+    ±interest_noise_eps=0.05（env 的 Random(seed+2000) 流）。另 env 打分与抽样共用同一
+    RNG 流声明顺序，本脚本按 population 顺序逐 agent 消费，逐值不完全同步但分布同构。
     """
-    rng = random.Random(CALIB_SAMPLE_SEED)
+    rng = random.Random(rng_seed)
     cum_own = {p["id"]: 0.0 for p in population}
-    pool: list[dict] = []           # {week, type, tend(dict), life, exposure}
+    pool: list[dict] = []           # {week, type, official, tend(dict), life, exposure}
     flow_hist: dict[str, float] = {}
     prev_speak = 0.0                # 上一周 agent 发言总数（W11=0）
     result: dict[str, dict[str, int]] = {}
@@ -195,8 +212,8 @@ def simulate(
 
         # 1) 注入本周（life=1.0）。
         for rec in INJECTED_BY_WEEK[wk]:
-            pool.append({"week": wk, "type": rec["type"], "tend": dict(rec["tend"]),
-                         "life": 1.0, "exposure": 0})
+            pool.append({"week": wk, "type": rec["type"], "official": rec["official"],
+                         "tend": dict(rec["tend"]), "life": 1.0, "exposure": 0})
 
         # 2) 涌现环境（与 env 同式；B 的输入是 arena 供给计数，与内容无关）。
         flow_arena = INJ_ALLOC[wk] + prev_speak
@@ -219,6 +236,20 @@ def simulate(
 
         # 3) 逐 agent 装配 feed（曝光现算现记账）+ 数值决策。
         live = [it for it in pool if not mech.is_retired(it["life"], LIFE_RETIRE_FLOOR)]
+        # 强制位①官方置顶：is_official 注入帖当周置顶（env：official_pin_extend_weeks=0 → 仅当周）。
+        pinned = [it for it in live if it.get("official") and it["week"] == wk]
+        # 强制位②议程保底：事件周取全池（未退场、非置顶）哀悼倾向分最高的 N 条，全员相同。
+        forced: list[dict] = []
+        if w13_floor > 0 and wk == EVENT_WEEK:
+            _pin_ids = {id(x) for x in pinned}
+            forced = sorted(
+                (it for it in live if id(it) not in _pin_ids),
+                key=lambda it: -it["tend"].get("mourning", 0.0),
+            )[:w13_floor]
+        trace[wk]["pinned"], trace[wk]["forced"] = len(pinned), len(forced)
+        head = pinned + forced
+        head_ids = {id(x) for x in head}
+
         counts = {t: 0 for t in TYPE_ORDER}
         share_by_type: dict[str, list[float]] = {t: [] for t in TYPE_ORDER}
         agent_posts: list[dict] = []
@@ -229,20 +260,20 @@ def simulate(
                 (mech.interest_score(it["tend"].get(t, 0.0), 1.0, 0.5,
                                      mech.post_vitality(it["life"], it["exposure"],
                                                         saturation)), it)
-                for it in live
+                for it in live if id(it) not in head_ids
             ]
             scored.sort(key=lambda x: (-x[0], id(x[1])))
-            picks = mech.weighted_sample_without_replacement(
+            picks = head + mech.weighted_sample_without_replacement(
                 [it for _, it in scored],
                 mech.softmax_weights([s for s, _ in scored], temp),
-                FEED_SIZE, rng,
+                max(0, FEED_SIZE - len(head)), rng,
             )
             own = 0
             for it in picks:
                 it["exposure"] += 1
                 if it["type"] == t:
                     own += 1
-            share_own = own / FEED_SIZE
+            share_own = own / len(picks) if picks else 0.0   # env 同口径：分母 = 实际 feed 槽位数
             share_by_type[t].append(share_own)
 
             base_share = personas_mod.POP_SHARE[t]

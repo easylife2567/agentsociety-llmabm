@@ -23,6 +23,7 @@
         "life_saturation_scale": 20.0,
         "life_retire_floor": 0.35,
         "interest_sample_temp": 4.0,
+        "event_week_mourning_floor": 5,
         "injection_data_path": "hypothesis_4/experiment_1/init/injection_sample_s0.json",
         "vocab_path": "custom/envs/curation_assets/vocabs.json",
         "sampling_ratio": 1.0,

@@ -1,24 +1,22 @@
 #!/usr/bin/env python3
 """proxy_predict: 用同构代理预测「各类 agent 周发帖数」并出图（只读，不跑 LLM）。
 
-用途（用户 2026-09-12 要求）：在跑真实 run 之前，判断 R=20 之后各类 agent 的发帖趋势
-能否说得过去。做法：复用 calibrate_speak.py 的模块级对象（真实 250 条注入样本、真实 100 人
-群体）与 curation_mechanisms 的共享纯函数（与 env 同一套 feed 生命周期/曝光饱和/退场/抽样、
-同一套 D 与 R），只把 LLM 内容生成换成实测倾向分画像——即"同构代理"。
+用途（用户 2026-09-12 要求）：在跑真实 run 之前，判断 R 尺度下压后各类 agent 的发帖趋势
+能否说得过去。做法：**直接调用 calibrate_speak.simulate**（单一实现，杜绝代理与校准两份代码
+漂移），只把 LLM 内容生成换成实测倾向分画像——即"同构代理"。机制全部同源：
+feed 生命周期/曝光饱和/退场、官方置顶、事件周议程保底、兴趣比例抽样、D 与 R。
 
-跑 N 个 seed（只换 feed 抽样随机流）→ 逐周取均值/sd → 出双面板图：
+跑 N 个 seed（只换 feed 抽样随机流 seed+3000）→ 逐周取均值/sd → 出双面板图：
   面板 A：各类 agent 周发帖数（堆叠面积，均值）—— 看退潮是否合理、玩梗起爆是否突兀；
   面板 B：各类构成份额 模拟 vs 真实基准（实线=模拟、虚线=真实）—— 效标是构成份额，不是绝对量。
 
 已知偏差（图上会体现，判断时需扣除）：
-  ① 议程设置：`--w13-floor N`（默认 5）让 W13 每个 agent 的 feed 保底含 N 条哀悼帖
-     （按哀悼倾向分取全池前 N 条、全员相同），用于复现"讣告强制曝光"；设 0 可关闭（此时会低估悼念峰）；
-  ② 营销 λ=0.05（2026-09-12 由 0.1 下调，"几乎不疲劳但热点凉了会换赛道"）；
-  ③ 代理起爆略早于真实 run（形态用相对比较，绝对值以真实 run 为准）。
+  ① 代理起爆略早于真实 run（形态用相对比较，绝对值以真实 run 为准）；
+  ② LLM 内容生成的倾向分画像取自上一轮烟测实测中位数，内容生成器若有改动需回填复核。
 
 用法：
     $PYTHON_PATH hypothesis_4/experiment_1/proxy_predict.py            # 30 seed，出图 + CSV
-    $PYTHON_PATH hypothesis_4/experiment_1/proxy_predict.py --seeds 50
+    $PYTHON_PATH hypothesis_4/experiment_1/proxy_predict.py --seeds 50 --r-scale 15
 """
 
 from __future__ import annotations
@@ -27,8 +25,6 @@ import argparse
 import csv
 import importlib.util
 import json
-import math
-import random
 import statistics
 from pathlib import Path
 
@@ -47,8 +43,6 @@ cal = _load("calibrate_speak", SCRIPT_DIR / "calibrate_speak.py")
 pltmod = _load("plot_run_charts", SCRIPT_DIR / "plot_run_charts.py")
 mech = cal.mech
 W = cal.WEEKS
-POP = cal.population
-INJ = cal.INJECTED_BY_WEEK
 BENCH = json.loads((ROOT / "hypothesis_4" / "benchmark_curves.json").read_text(encoding="utf-8"))[
     "weekly_category_matrix"
 ]
@@ -62,69 +56,23 @@ BENCH_CN = {"meme": "梗文化讨论", "mourning": "事件悼念讨论", "educat
             "marketing": "借势营销", "other": "其他讨论"}
 
 
-EVENT_WEEK = "2026-W13"
+def simulate(seed: int, base: float = 0.95, r_scale: float = mech.DEFAULT_DECAY_SCALE,
+             w13_mourning_floor: int = None) -> dict[str, dict[str, int]]:
+    """interest 臂一轮推演——**直接调用 calibrate_speak.simulate（单一实现，杜绝双份漂移）**。
 
+    只换 feed 抽样随机流（seed+3000，与 env 的兴趣抽样流同偏移）与 R 半饱和尺度；
+    其余机制全部同源：帖子生命周期/曝光饱和/退场、**官方置顶 + 事件周议程保底**、
+    兴趣比例抽样、D·R 决策与门槛。2026-09-13 起代理不再自带一套装配代码——
+    W13 的"1 条官方讣告置顶 + 5 条哀悼保底"由校准器与 env 逐条对应。
 
-def simulate(seed: int, base: float = 0.95, r_scale: float = 20.0,
-             w13_mourning_floor: int = 5) -> dict[str, dict[str, int]]:
-    """interest 臂一轮推演（与 calibrate_speak.simulate 同构）。
-
-    r_scale：注意力衰减半饱和尺度（越小 R 越强；共享模块默认 20）。
-    w13_mourning_floor：议程设置——事件周（W13）每个 agent 的 feed 保底包含 N 条
-    哀悼帖（按哀悼倾向分取全池前 N 条，全员相同，等效"讣告 + 头版哀悼"的强制曝光）；
-    N<=0 表示关闭。占用槽位后其余槽位照常按兴趣抽样（不与保底帖重复）。
+    r_scale：注意力衰减半饱和尺度（越小 R 越强；共享模块默认见 mech.DEFAULT_DECAY_SCALE）。
+    w13_mourning_floor：议程设置——事件周（W13）每个 agent 的 feed 保底包含 N 条哀悼帖
+    （按哀悼倾向分取全池前 N 条，全员相同），0=关闭；默认取 manifest 值（=5）。
     """
-    rng = random.Random(seed + 3000)
-    cum = {p["id"]: 0.0 for p in POP}
-    pool: list[dict] = []
-    res: dict[str, dict[str, int]] = {}
-    for wk in W:
-        step = mech.weekly_decay(cal.LIFE_HALF_LIFE_WEEKS)
-        for it in pool:
-            it["life"] *= step
-        for rec in INJ[wk]:
-            pool.append({"week": wk, "type": rec["type"], "tend": dict(rec["tend"]),
-                         "life": 1.0, "exposure": 0})
-        live = [it for it in pool if not mech.is_retired(it["life"], cal.LIFE_RETIRE_FLOOR)]
-        cnt = {t: 0 for t in TYPE_ORDER}
-        posts: list[dict] = []
-        for ag in POP:
-            t = ag["agent_type"]
-            prm = ag["params"]
-            scored = sorted(
-                ((mech.interest_score(it["tend"].get(t, 0.0), 1.0, 0.5,
-                                      mech.post_vitality(it["life"], it["exposure"],
-                                                         cal.LIFE_SATURATION_SCALE)), it)
-                 for it in live),
-                key=lambda x: (-x[0], id(x[1])),
-            )
-            forced: list[dict] = []
-            if wk == EVENT_WEEK and w13_mourning_floor > 0:
-                top = sorted(
-                    live,
-                    key=lambda it: (-(it["tend"].get("mourning", 0.0)), id(it)),
-                )[:w13_mourning_floor]
-                forced = top
-                forced_ids = {id(x) for x in forced}
-                scored = [(s0, it) for s0, it in scored if id(it) not in forced_ids]
-            picks = forced + mech.weighted_sample_without_replacement(
-                [it for _, it in scored],
-                mech.softmax_weights([s0 for s0, _ in scored], cal.INTEREST_SAMPLE_TEMP),
-                10 - len(forced), rng,
-            )
-            own = sum(1 for it in picks if it["type"] == t)
-            for it in picks:
-                it["exposure"] += 1
-            u = mech.spiral_factor(own / 10, cal.personas_mod.POP_SHARE[t], prm["spiral"]) * \
-                mech.fatigue_factor(prm["decay"], cum[ag["id"]], r_scale)
-            if u >= prm["activity"] * base / 0.95:
-                cnt[t] += 1
-                posts.append({"week": wk, "type": t,
-                              "tend": dict(cal.AGENT_TENDENCY_PROFILE[t]),
-                              "life": 1.0, "exposure": 0})
-            cum[ag["id"]] += own
-        pool.extend(posts)
-        res[wk] = cnt
+    floor = cal.EVENT_WEEK_MOURNING_FLOOR if w13_mourning_floor is None else int(w13_mourning_floor)
+    res, _trace, _climates = cal.simulate(
+        base, "normal", r_scale=r_scale, w13_floor=floor, rng_seed=seed + 3000
+    )
     return res
 
 
@@ -132,9 +80,10 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="同构代理预测：各类 agent 周发帖数（只读）")
     ap.add_argument("--seeds", type=int, default=30)
     ap.add_argument("--out", default="PROXY_pred_agent_supply_by_type.png")
-    ap.add_argument("--r-scale", type=float, default=20.0, help="R 半饱和尺度（越小 R 越强）")
-    ap.add_argument("--w13-floor", type=int, default=5,
-                    help="议程设置：W13 每 agent feed 保底哀悼帖条数（0=关闭）")
+    ap.add_argument("--r-scale", type=float, default=mech.DEFAULT_DECAY_SCALE,
+                    help=f"R 半饱和尺度（越小 R 越强；默认 {mech.DEFAULT_DECAY_SCALE:g}，与 env 同源）")
+    ap.add_argument("--w13-floor", type=int, default=cal.EVENT_WEEK_MOURNING_FLOOR,
+                    help="议程设置：W13 每 agent feed 保底哀悼帖条数（默认取 manifest；0=关闭）")
     args = ap.parse_args()
 
     runs = [simulate(sd, r_scale=args.r_scale, w13_mourning_floor=args.w13_floor)
@@ -165,7 +114,6 @@ def main() -> int:
         diffs = [(abs(sim_share[w][t] - real_share[w][t]), w) for w in W]
         mx = max(diffs)
         print(f"{TYPE_LABEL[t]:<10}{statistics.mean(d for d, _ in diffs):>10.3f}{mx[0]:>10.3f}{mx[1]:>14}")
-    i13 = W.index("2026-W13")
     print(f"\n=== 判据 2：注册判据预测 ===")
     _m13s, _m13r = sim_share['2026-W13']['mourning'], real_share['2026-W13']['mourning']
     print(f"  W13 悼念份额：真实 {_m13r:.3f} vs 代理 {_m13s:.3f} → 差 {_m13s-_m13r:+.3f}"
@@ -176,7 +124,7 @@ def main() -> int:
     print(f"  玩梗二波 W19-22：模拟 " + "/".join(f"{x:.3f}" for x in sh)
           + " vs 真实 " + "/".join(f"{x:.3f}" for x in rh))
     print(f"  起爆段倍数（W20→W22）：模拟 ×{sh[3]/max(sh[1],1e-9):.1f} vs 真实 ×{rh[3]/max(rh[1],1e-9):.1f}"
-          f"（W19 代理为 0，故不参与比值）")
+          f"（W19 代理 {sh[0]:.3f} / 真实 {rh[0]:.3f}）")
     print(f"\n=== 判据 3：各类峰值周与参与率轨迹（峰值周 / W13 / W18 / W22 参与率）===")
     for t in TYPE_ORDER:
         vals = [mean[t][w] for w in W]
