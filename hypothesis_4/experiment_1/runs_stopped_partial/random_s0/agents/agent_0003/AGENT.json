@@ -1,0 +1,61 @@
+{
+  "id": 3,
+  "name": "路人_29",
+  "profile": {
+    "id": 3,
+    "name": "路人_29",
+    "agent_type": "other",
+    "persona": "你叫路人_29，50 岁，是一名退休职工，平时主要刷抖音。偶尔评论两句的普通用户。\n你是普通路人用户，偶尔刷到相关讨论，发表一般性看法、转述消息或随口感慨，没有固定立场与议题。\n行为特征：\n- 你是沉默螺旋最明显的群体：非常在意'大家都怎么说'，风向不明或与自己观感不符时你选择只看不说。\n- 你的兴趣来得快去得也快，同一个话题讨论几周后你就失去兴趣。\n- 你的活跃度不高且随机，兴致来了才说，多数时候是看客。",
+    "params": {
+      "activity": 0.9984,
+      "spiral": 1.6752,
+      "decay": 0.9689
+    },
+    "type_vocab": []
+  },
+  "step_count": 2,
+  "decision_log": [
+    {
+      "tick": 604800,
+      "speak": false,
+      "reason": "u=-0.516 < threshold=0.998",
+      "week": "2026-W12",
+      "posted": false,
+      "u": -0.5163,
+      "threshold": 0.9984,
+      "components": {
+        "share_own": 0.0,
+        "share_base": 0.2,
+        "spiral": -0.5163,
+        "cum_own": 0.0,
+        "decay": 1.0,
+        "benefit": -0.5163,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      }
+    },
+    {
+      "tick": 604800,
+      "speak": false,
+      "reason": "u=-0.064 < threshold=0.998",
+      "week": "2026-W13",
+      "posted": false,
+      "u": -0.064,
+      "threshold": 0.9984,
+      "components": {
+        "share_own": 0.1,
+        "share_base": 0.2,
+        "spiral": -0.064,
+        "cum_own": 0.0,
+        "decay": 1.0,
+        "benefit": -0.064,
+        "env_observed_only": true,
+        "env_abundance": 2.5069,
+        "env_emptiness": 0.1972,
+        "env_gain": 0.4942
+      }
+    }
+  ]
+}

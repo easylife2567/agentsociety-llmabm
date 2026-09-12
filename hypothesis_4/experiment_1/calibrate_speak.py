@@ -53,7 +53,6 @@ BASE_REF = 0.95         # personas 当前门槛基数（缩放锚点）
 CANDIDATE_BASES = [1.0, 0.95, 0.9, 0.85, 0.8, 0.7]
 GAIN_MIN, GAIN_MAX = 0.2, 3.0
 STOCK_WINDOW = 6        # env 默认 emergence_window_stock
-DECAY_SCALE = 50.0      # agent 侧 _DECAY_SCALE
 
 WEEKS = [f"2026-W{i}" for i in range(12, 23)]
 START_WEEK = "2026-W12"
@@ -249,7 +248,7 @@ def simulate(
             base_share = personas_mod.POP_SHARE[t]
             # D 走共享纯函数（与 agent 侧同一份实现）：有界 tanh、无地板（2026-09-12 裁定）
             d = mech.spiral_factor(share_own, base_share, prm["spiral"])
-            r = math.exp(-prm["decay"] * cum_own[ag["id"]] / DECAY_SCALE)
+            r = mech.fatigue_factor(prm["decay"], cum_own[ag["id"]])   # 与 agent 同一份实现
             u = d * r                     # U = D·R（环境因子 G 已退役，gain 仅供 trace 记录）
             if u >= prm["activity"] * base / BASE_REF:
                 counts[t] += 1

@@ -1,0 +1,102 @@
+{
+  "id": 7,
+  "name": "冲浪_12",
+  "profile": {
+    "id": 7,
+    "name": "冲浪_12",
+    "agent_type": "meme",
+    "persona": "你叫冲浪_12，28 岁，是一名研究生，平时主要刷抖音。轻度玩梗用户，看到好笑的梗会跟一下。\n你是玩梗/抽象文化爱好者，表达方式以谐音、变体称呼、emoji、反讽和圈内梗为主，追求新颖的表达形式，讨厌一本正经。\n行为特征：\n- 你对同温层极敏感：看到越多同类玩梗帖你越想玩；看到严肃内容刷屏时会觉得'现在玩不合适'。\n- 你对重复内容疲劳得很快，尤其是翻来覆去的悼念/说教内容；但梗只要有新变体你就觉得新鲜。\n- 你的发言欲望中等，但很看氛围。",
+    "params": {
+      "activity": 0.8025,
+      "spiral": 1.1342,
+      "decay": 0.9553
+    },
+    "type_vocab": [
+      "牢大",
+      "科比",
+      "五条悟",
+      "牢师",
+      "良子",
+      "墨茶",
+      "冬雪莲",
+      "霍金",
+      "火车头",
+      "See You Again",
+      "夜之城没有活着的传奇",
+      "社社达",
+      "忆漳师",
+      "博永生",
+      "張雪峯",
+      "念了张师",
+      "一根巧",
+      "LaoZhang",
+      "半程",
+      "不够强就会死",
+      "张xue峰",
+      "巧兹",
+      "崂雪",
+      "牢学",
+      "你信吗",
+      "牢封",
+      "牢蟑",
+      "你跑不过我你信吗啊",
+      "赛箔永生",
+      "塞博永生",
+      "半麻",
+      "唯效率论",
+      "banma",
+      "xuebi",
+      "巧乐兹",
+      "易张师",
+      "跑bu机",
+      "巧乐兹占神",
+      "雪峰铠甲",
+      "考盐套餐"
+    ]
+  },
+  "step_count": 2,
+  "decision_log": [
+    {
+      "tick": 604800,
+      "speak": false,
+      "reason": "u=-0.027 < threshold=0.802",
+      "week": "2026-W12",
+      "posted": false,
+      "u": -0.0266,
+      "threshold": 0.8025,
+      "components": {
+        "share_own": 0.0,
+        "share_base": 0.18,
+        "spiral": -0.0266,
+        "cum_own": 0.0,
+        "decay": 1.0,
+        "benefit": -0.0266,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      }
+    },
+    {
+      "tick": 604800,
+      "speak": false,
+      "reason": "u=-0.027 < threshold=0.802",
+      "week": "2026-W13",
+      "posted": false,
+      "u": -0.0266,
+      "threshold": 0.8025,
+      "components": {
+        "share_own": 0.0,
+        "share_base": 0.18,
+        "spiral": -0.0266,
+        "cum_own": 0.0,
+        "decay": 1.0,
+        "benefit": -0.0266,
+        "env_observed_only": true,
+        "env_abundance": 2.4954,
+        "env_emptiness": 0.1972,
+        "env_gain": 0.492
+      }
+    }
+  ]
+}

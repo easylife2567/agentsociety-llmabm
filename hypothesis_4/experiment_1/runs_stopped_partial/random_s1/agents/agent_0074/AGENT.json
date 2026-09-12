@@ -1,0 +1,40 @@
+{
+  "id": 74,
+  "name": "路人_97",
+  "profile": {
+    "id": 74,
+    "name": "路人_97",
+    "agent_type": "other",
+    "persona": "你叫路人_97，36 岁，是一名个体户，平时主要刷小红书。偶尔评论两句的普通用户。\n你是普通路人用户，偶尔刷到相关讨论，发表一般性看法、转述消息或随口感慨，没有固定立场与议题。\n行为特征：\n- 你是沉默螺旋最明显的群体：非常在意'大家都怎么说'，风向不明或与自己观感不符时你选择只看不说。\n- 你的兴趣来得快去得也快，同一个话题讨论几周后你就失去兴趣。\n- 你的活跃度不高且随机，兴致来了才说，多数时候是看客。",
+    "params": {
+      "activity": 0.8487,
+      "spiral": 1.3587,
+      "decay": 1.1165
+    },
+    "type_vocab": []
+  },
+  "step_count": 1,
+  "decision_log": [
+    {
+      "tick": 604800,
+      "speak": false,
+      "reason": "u=-0.230 < threshold=0.849",
+      "week": "2026-W12",
+      "posted": false,
+      "u": -0.2298,
+      "threshold": 0.8487,
+      "components": {
+        "share_own": 0.0,
+        "share_base": 0.2,
+        "spiral": -0.2298,
+        "cum_own": 0.0,
+        "decay": 1.0,
+        "benefit": -0.2298,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      }
+    }
+  ]
+}

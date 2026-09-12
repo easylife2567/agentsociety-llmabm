@@ -53,8 +53,10 @@ VALID_TYPES = ("meme", "mourning", "marketing", "education", "other")
 #       = 孤立成本/(收益+成本)"，与本模型 U ≥ activity 的门槛结构同构；Sohn & Geidner 2015
 #       / Cabrera et al. 2021 用 logistic 有界映射把意见气候 δ 转成表达意愿；
 #       Granovetter 1978 阈值分布对应 activity 的 U[0.8,1.2] 个体抖动。
-#   R = exp(−λ·cum_own/50)                              注意力衰减：重复曝光疲劳折减收益
-#       （Wu & Huberman 2007；Candia et al. 2019 两段式衰减）。
+#   R = exp(−λ·cum_own/20)                              注意力衰减：重复曝光疲劳折减收益
+#       （Wu & Huberman 2007；Candia et al. 2019 两段式衰减）。半饱和尺度 20 ≈ 两周
+#       活跃曝光；2026-09-12 用户裁定由 50 调至 20（依据见 SMOKE_DIAGNOSIS §五之五：
+#       真实总量深 V 而模拟近平 → 退潮未显现；且趋势变陡后锯齿相对不显眼、效标拟合改善 3 倍）。
 #
 # 2026-09-12 用户裁定：原第三因子 **玩梗涌现环境增益 G = clamp(B^β·S^σ, 0.2, 3.0)** 退役
 # （原 U = D·R·G^θ，仅玩梗型 θ>0）。依据（见 hypothesis_4/experiment_1/
@@ -81,7 +83,6 @@ _PARAM_DEFAULTS: dict[str, dict[str, float]] = {
 # 沉默螺旋的期望份额基线。用户 2026-09-10 裁定：群体按发帖人口径比例
 # 玩梗18/悼念21/营销26/教育15/其他20（不再按内容划分口径）。
 _POP_SHARE = {"meme": 0.18, "mourning": 0.21, "marketing": 0.26, "education": 0.15, "other": 0.20}
-_DECAY_SCALE = 50.0    # 注意力衰减半饱和尺度（本类型累计曝光，exp 半饱和）
 
 # 各类型内容生成指引（人设之外的具体写作约束）
 _CONTENT_GUIDE: dict[str, str] = {
@@ -254,8 +255,10 @@ class CurationDiscourseAgent(AgentBase):
           （共享实现 `curation_mechanisms.spiral_factor`，k=1.5）；base = 本类型在 100 人
           群体中的份额。同类气候强 → 共鸣放大收益；少数派 → 收益被抑制，D<0 时表达存在
           净成本（孤立成本）。有界 [1−s, 1+s]、单调、边际递减，无地板。
-        - R（注意力衰减，收益侧折减因子）: exp(−λ·cum_own/D0)，D0=50
-          （本类型累计曝光的半饱和尺度）。重复同类曝光越多，边际表达收益越低。
+        - R（注意力衰减，收益侧折减因子）: `mech.fatigue_factor(λ, cum_own)`
+          = exp(−λ·cum_own/20)（本类型累计曝光的半饱和尺度 20 ≈ 两周活跃曝光；
+          2026-09-12 用户裁定由 50 调至 20，"让退潮显现"）。重复同类曝光越多，
+          边际表达收益越低。
 
         2026-09-12 用户裁定：原第三因子 G^θ（玩梗涌现环境增益，仅玩梗型 θ>0）退役，
         理由与证据见模块头注释与 SMOKE_DIAGNOSIS_w19_cliff.md。env 快照里的
@@ -273,7 +276,7 @@ class CurationDiscourseAgent(AgentBase):
         d = mech.spiral_factor(share_own, base, prm["spiral"])   # 有界 tanh，无地板（2026-09-12）
         cum = (snap.get("personal_stats") or {}).get("cumulative_exposures") or {}
         cum_own = float(cum.get(own, 0) or 0)
-        r = math.exp(-prm["decay"] * cum_own / _DECAY_SCALE)
+        r = mech.fatigue_factor(prm["decay"], cum_own)   # 共享纯函数（尺度 DEFAULT_DECAY_SCALE=20）
         u = d * r
         meme_env = snap.get("meme_env") or {}
         comps = {

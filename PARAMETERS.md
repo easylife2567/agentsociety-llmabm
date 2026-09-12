@@ -17,7 +17,7 @@ U = D × R              发言当且仅当 U ≥ activity
 | 因子 | 公式 | 语义 | 理论锚定 |
 |---|---|---|---|
 | D | `1 + s·tanh(k·(share_own − base)/base)`，k=1.5，**有界、无地板** | 沉默的螺旋：同类气候共振放大收益；少数派处境抑制收益；**D<0 即表达存在净成本（孤立成本）** | Noelle-Neumann 1974；Blanco 2005（发言门槛 = c/(b+c)）；Sohn & Geidner 2015 / Cabrera et al. 2021（logistic 有界映射）；Granovetter 1978（阈值分布 ↔ activity 抖动） |
-| R | `exp(−λ·cum_own/50)` | 注意力衰减：重复同类曝光越多，边际表达收益越低 | Wu & Huberman 2007；Candia et al. 2019 |
+| R | `exp(−λ·cum_own/20)` | 注意力衰减：重复同类曝光越多，边际表达收益越低；**半饱和尺度 20**（≈两周活跃曝光；2026-09-12 由 50 调至 20，『让退潮显现』） | Wu & Huberman 2007；Candia et al. 2019 |
 | ~~G^θ~~ | ~~`clamp(B^β·S^σ, 0.2, 3.0)^θ`~~ | **2026-09-12 用户裁定退役**：G 与 θ 不再进入任何决策；B/S/G 仅作观测序列写入 replay 与监控（原第三因子"玩梗涌现环境增益"，经 no-G 反事实探针实测其对第二波主体无必要支撑、且量纲标定不成立） | （退役） |
 
 中性状态（D≈R≈1、G=1）下 U≈1.0。三因子全部**乘法**进入效用（收益侧），杜绝线性等权平均的补偿性稀释。
@@ -110,7 +110,7 @@ profile 未带 params 时的回退值，与 1.1 各类型均值一致
 | 常量 | 值 | 含义 |
 |---|---|---|
 | `POP_SHARE` | meme 0.18 / mourning 0.21 / marketing 0.26 / education 0.15 / other 0.20 | 沉默螺旋的"期望份额"基线 base，与 100 人群体构成一致（发帖人口径，用户 2026-09-10 裁定） |
-| `_DECAY_SCALE` | 50.0 | 注意力衰减半饱和尺度：cum_own=50 时 R≈e^(−λ) |
+| `DEFAULT_DECAY_SCALE` | **20.0** | 注意力衰减半饱和尺度（共享常量，定义于 `custom/envs/curation_mechanisms.py::fatigue_factor`）：cum_own=20 时 R≈e^(−λ)。**2026-09-12 用户裁定由 50 调至 20（λ 等效 ×2.5）**：真实平台总量是深 V（W13 11394→W18 1703→W22 5338）而模拟近平 → 退潮未显现；增强后退潮显现、锯齿相对不显眼（信噪比 0.45→0.82）、核心效标拟合误差 RMSE 0.132→**0.043** |
 | 门槛形式 | 硬阈值 `U ≥ activity` | 2026-09-12 实测：改概率式会使周间抖动 +20%、并引入 W19 前自发帖，故不采用（见 SMOKE_DIAGNOSIS §五之五） |
 | ~~D clamp~~ | ~~[0.05, 2.0]~~ | 2026-09-12 退役：D 改有界 tanh（`spiral_factor`），无地板 |
 | ~~G clamp~~ | [0.2, 3.0] | **退役（2026-09-12）**：涌现环境增益的上下限；现仅约束观测序列，不进入决策 |
@@ -271,7 +271,7 @@ config 未显式覆盖，取代码默认值。
 | 文件 | 参数内容 |
 |---|---|
 | `custom/agents/curation_personas.py` | `_PARAM_SPECS`（四参数类型规格）、`_sample_params`（抖动抽样）、`POP_SHARE`、人设文本 |
-| `custom/agents/curation_discourse_agent.py` | `_PARAM_DEFAULTS`（回退值）、`_POP_SHARE`、`_DECAY_SCALE`、决策与内容生成逻辑 |
+| `custom/agents/curation_discourse_agent.py` | `_PARAM_DEFAULTS`（回退值）、`_POP_SHARE`、决策与内容生成逻辑（D/R 公式均调用 `curation_mechanisms` 的共享纯函数） |
 | `custom/envs/curation_mechanisms.py` | **feed 机制共享纯函数**（周序数、文本归一化/词表命中/倾向分、生命周期与曝光饱和、兴趣打分、softmax 权重与加权无放回抽样）——env 与 calibrate_speak 同源 |
 | `custom/envs/curation_dynamics_space.py` | 涌现环境（窗口/K_a/K_f/β/σ/clamp）、feed 机制（生命周期/抽样/退场）、排序（alpha/gamma/noise/exposure）、feed_size、置顶延伸 |
 | `hypothesis_4/experiment_1/init/config_params.py` | 因子设计、群体种子、时间轴、注入分配、官方讣告帖、env 实验传参 |

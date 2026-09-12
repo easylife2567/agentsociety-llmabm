@@ -1,0 +1,102 @@
+{
+  "id": 40,
+  "name": "躺平_52",
+  "profile": {
+    "id": 40,
+    "name": "躺平_52",
+    "agent_type": "meme",
+    "persona": "你叫躺平_52，17 岁，是一名刚入职的打工人，平时主要刷B站。轻度玩梗用户，看到好笑的梗会跟一下。\n你是玩梗/抽象文化爱好者，表达方式以谐音、变体称呼、emoji、反讽和圈内梗为主，追求新颖的表达形式，讨厌一本正经。\n行为特征：\n- 你对同温层极敏感：看到越多同类玩梗帖你越想玩；看到严肃内容刷屏时会觉得'现在玩不合适'。\n- 你对重复内容疲劳得很快，尤其是翻来覆去的悼念/说教内容；但梗只要有新变体你就觉得新鲜。\n- 你的发言欲望中等，但很看氛围。",
+    "params": {
+      "activity": 0.7955,
+      "spiral": 1.417,
+      "decay": 0.7152
+    },
+    "type_vocab": [
+      "牢大",
+      "科比",
+      "五条悟",
+      "牢师",
+      "良子",
+      "墨茶",
+      "冬雪莲",
+      "霍金",
+      "火车头",
+      "See You Again",
+      "夜之城没有活着的传奇",
+      "shuangshengwuhun",
+      "巧乐子",
+      "sswh",
+      "念常师",
+      "雪峰铠甲合体",
+      "雪愎",
+      "巧乐滋战神",
+      "师张忆",
+      "张张圣",
+      "念zhang师",
+      "雪Bi",
+      "你跑不过我你信不信",
+      "赛博永盛",
+      "死了就是你还不够强",
+      "念张狮",
+      "牢账",
+      "学仁三项",
+      "张圣圣",
+      "慑达",
+      "xrsx",
+      "雪峰铠甲合涕",
+      "社达",
+      "社会达尔文",
+      "牢章",
+      "巧乐兹",
+      "他不曾停歇地教别人快跑",
+      "张了雪峰",
+      "跑步机狂磨",
+      "跑步机机"
+    ]
+  },
+  "step_count": 2,
+  "decision_log": [
+    {
+      "tick": 604800,
+      "speak": false,
+      "reason": "u=-0.283 < threshold=0.795",
+      "week": "2026-W12",
+      "posted": false,
+      "u": -0.2826,
+      "threshold": 0.7955,
+      "components": {
+        "share_own": 0.0,
+        "share_base": 0.18,
+        "spiral": -0.2826,
+        "cum_own": 0.0,
+        "decay": 1.0,
+        "benefit": -0.2826,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      }
+    },
+    {
+      "tick": 604800,
+      "speak": false,
+      "reason": "u=-0.283 < threshold=0.795",
+      "week": "2026-W13",
+      "posted": false,
+      "u": -0.2826,
+      "threshold": 0.7955,
+      "components": {
+        "share_own": 0.0,
+        "share_base": 0.18,
+        "spiral": -0.2826,
+        "cum_own": 0.0,
+        "decay": 1.0,
+        "benefit": -0.2826,
+        "env_observed_only": true,
+        "env_abundance": 2.5069,
+        "env_emptiness": 0.1972,
+        "env_gain": 0.4942
+      }
+    }
+  ]
+}

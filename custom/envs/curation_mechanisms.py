@@ -226,6 +226,35 @@ def spiral_factor(
     return 1.0 + float(spiral) * math.tanh(float(k) * gap)
 
 
+# ---------------- 注意力衰减（R 因子） ----------------
+
+# R = exp(−λ·cum_own/scale)：重复同类曝光带来的边际表达收益递减（疲劳）。
+# 2026-09-12 用户裁定：半饱和尺度 50 → **20**（λ 等效 ×2.5，"让退潮显现"）。依据：
+#   ① 真实平台总量是深 V（W13 11394 → W18 1703，6.7 倍衰减 → W22 5338），而模拟的周总产量
+#      几乎平（52→45→44）—— R 太弱、事件后疲劳退潮没显现；
+#   ② 增强 R 让趋势变陡，锯齿（抽样噪声，绝对幅度不变）相对不显眼：信噪比 0.45 → 0.82；
+#   ③ 核心效标（combined 口径玩梗份额 W19–W22 vs 真实）拟合误差 RMSE 0.132 → **0.043**（最优档），
+#      ×3 及以上会在 W22 过冲。
+# 机制：R 增强 → 其他类型更快退潮 → 份额分母缩小 → 玩梗份额被动抬升；玩梗型累计曝光起步晚，
+# 二波不受损。详见 hypothesis_4/experiment_1/SMOKE_DIAGNOSIS_w19_cliff.md §五之五。
+# 注：scale 是模型级形状常数（非 agent 参数）；λ=decay 仍是每 agent 一份的个体参数。
+DEFAULT_DECAY_SCALE = 20.0
+
+
+def fatigue_factor(
+    decay: float,
+    cum_own: float,
+    scale: float = DEFAULT_DECAY_SCALE,
+) -> float:
+    """注意力衰减因子 R（收益侧折减），用户 2026-09-12 裁定尺度 50 → 20。
+
+    decay(λ) = 该 agent 的疲劳速度（个体参数）；cum_own = 该 agent 累计见到的本类型曝光数。
+    cum_own ≈ scale 时 R ≈ e^(−λ)。尺度 20 ≈ "两周活跃曝光"即进入明显疲劳。
+    纯函数：agent 与 calibrate_speak.py 共用同一实现，保证校准-仿真同构。
+    """
+    return math.exp(-float(decay) * float(cum_own) / float(scale))
+
+
 # ---------------- 比例抽样（选择步骤） ----------------
 
 def softmax_weights(scores: Sequence[float], temperature: float) -> list[float]:
