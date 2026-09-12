@@ -1,8 +1,9 @@
 """舆论场数字表征转移模拟环境（CurationDynamicsSpace）。
 
-实验背景：张雪峰 2026-03-24（2026-W13）去世后，三种推荐算法 × 两种玩梗涌现环境
-（3×2 全因子 6 cells）下，100 个固定类型 Agent 的差异化激活与公共表征构成变化
-（W12→W22 共 11 周）。Agent 每 tick 先通过 **get_feed(agent_id)** 读取本周推荐信息流
+实验背景：张雪峰 2026-03-24（2026-W13）去世后，三种推荐算法（random / chronological /
+interest，单因子 3 臂 × 3 seeds = 9 runs；2026-09-12 用户裁定：玩梗涌现环境增益 G 退役，
+原 3×2 全因子的第二因子随之失效）下，100 个固定类型 Agent 的差异化激活与公共表征构成
+变化（W12→W22 共 11 周）。Agent 每 tick 先通过 **get_feed(agent_id)** 读取本周推荐信息流
 （feed）、意见气候、玩梗涌现环境与全局供给/曝光份额，再决定是否发言；发言通过
 **create_post(agent_id, content)** 发布一篇类型由其固定 Agent 类型决定的内容（每 tick
 至多 1 帖，重复调用无效）。
@@ -219,7 +220,7 @@ class CurationDynamicsSpace(EnvBase):
         ColumnDef("meme_env_flow_world", "INTEGER", description="涌现环境流量（现实口径）：本周真实新增帖量镜像调度值"),
         ColumnDef("meme_env_abundance", "REAL", description="丰沛度 B_t = f(Stock_t)/f(Stock_base)，f(x)=x/(x+K_a)；基线周=1"),
         ColumnDef("meme_env_emptiness", "REAL", description="空旷度 S_t = h(Flow_t)/h(Flow_base)，h(x)=K_f/(K_f+x)；基线周=1；sustained_hot 臂事件周后冻结"),
-        ColumnDef("meme_env_gain", "REAL", description="涌现增益 G_t = clamp(B_t^β·S_t^σ, gain_min, gain_max)；经 agent 侧 θ 进入表达效用"),
+        ColumnDef("meme_env_gain", "REAL", description="涌现增益 G_t = clamp(B_t^β·S_t^σ, gain_min, gain_max)；**观测序列**（2026-09-12 起不进入任何类型的决策）"),
         ColumnDef("total_supply", "INTEGER", description="本 tick 新增供给总数（agent 产出+注入）"),
         ColumnDef("agent_supply", "INTEGER", description="本 tick Agent 产出帖数"),
         ColumnDef("injected_count", "INTEGER", description="本 tick 注入帖数"),
@@ -552,8 +553,9 @@ class CurationDynamicsSpace(EnvBase):
         的完整对比度，见 EXPERIMENT.md）。两序列均以基线周（start_week）为 1：
         B_t = f(Stock_t)/f(Stock_base)，f(x)=x/(x+K_a)（存量越丰沛越易诞生 meme）；
         S_t = h(Flow_t)/h(Flow_base)，h(x)=K_f/(K_f+x)（单期新增越少越空旷、越宜传播）。
-        涌现增益 G_t = clamp(B_t^β·S_t^σ, gain_min, gain_max)，经 agent 侧 θ 进入表达
-        效用（U = D·R·G^θ，仅玩梗型 θ=1，其余类型 θ=0 不受环境影响）。
+        涌现增益 G_t = clamp(B_t^β·S_t^σ, gain_min, gain_max)。**2026-09-12 用户裁定：
+        G 与 agent 侧 θ 一并退役，本函数结果仅作为观测序列写入 replay 与监控（描述性
+        时间轴 + 审计线索），不进入任何类型的决策**（agent 侧现为 U = D·R）。
         sustained_hot 模式（反事实臂「维持高热」）：W12/W13 正常计算，W13 记录 S
         （事件周空旷度），此后冻结为该值；B 保持内生演化（用户裁定）。"""
         flow_sim = sum(self._injected_this_week.values()) + len(

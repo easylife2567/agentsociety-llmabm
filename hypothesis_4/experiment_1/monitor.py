@@ -75,9 +75,9 @@ FIELDS: dict[str, str] = {
     "meme_env_stock": "舆论场存量 Stock_t = 过去 6 周 arena 供给总数（注入 + agent 帖，内生）。玩梗涌现环境丰沛度 B_t 的输入：总帖子越丰沛越易诞生 meme（用户 2026-09-10 裁定）。",
     "meme_env_flow": "本周 arena 新增供给数（注入 + 上一周并入的 agent 帖）。存量的滚动窗口输入。",
     "meme_env_flow_world": "本周现实口径新增帖量（外生调度 emergence_flow_by_week = 真实数据各周全量帖数）。空旷度 S_t 的输入：当期新增越少越空旷越宜传播。sim arena 流量被注入预算压缩（峰谷比 ~1.6× vs 现实 ~9×），故 S 读现实口径。",
-    "meme_env_abundance": "丰沛度 B_t = f(Stock_t)/f(Stock_base)，f(x)=x/(x+K_a)；基线周（W12）=1。K_a 默认=注入计划事件周窗口存量（17+35=52）。",
-    "meme_env_emptiness": "空旷度 S_t = h(Flow_t)/h(Flow_base)，h(x)=K_f/(K_f+x)；基线周=1。sustained_hot 反事实臂：事件周（W13）记录、之后冻结（B 保持内生）。",
-    "meme_env_gain": "涌现增益 G_t = clamp(B^β·S^σ, 0.2, 3.0)，β=σ=1 起步。仅经玩梗型效用（θ=1.0）影响决策：洪峰期新表达被淹没（G<1）、退潮期才被看见（G>1）。",
+    "meme_env_abundance": "[仅观测·不参与决策] 丰沛度 B_t = f(Stock_t)/f(Stock_base)，f(x)=x/(x+K_a)；基线周（W12）=1。K_a 默认=注入计划事件周窗口存量（17+35=52）。",
+    "meme_env_emptiness": "[仅观测·不参与决策] 空旷度 S_t = h(Flow_t)/h(Flow_base)，h(x)=K_f/(K_f+x)；基线周=1。sustained_hot 反事实臂：事件周（W13）记录、之后冻结（B 保持内生）。",
+    "meme_env_gain": "[仅观测·不参与决策] 涌现增益 G_t = clamp(B^β·S^σ, 0.2, 3.0)，β=σ=1 起步。2026-09-12 用户裁定：G 与 agent 侧 θ 一并退役（原经玩梗型效用影响决策），本序列仅作描述性时间轴与审计。",
     "total_supply": "本 tick 新增供给总数 = Agent 产出 + 注入帖。",
     "agent_supply": "本 tick Agent 产出帖数（合计）。",
     "injected_count": "本 tick 注入的真实数据帖数（W13 含官方讣告 1 条）。",
@@ -135,12 +135,12 @@ FIELDS: dict[str, str] = {
     "mean_exposure_own": "该类型 agent 本 tick 本类内容的人均曝光数（注意力衰减的输入）。",
     "mean_feed_slots": "该类型 agent 本周信息流平均长度（正常=10）。",
     # 机制透视（涌现增益表达效用模型，用户 2026-09-10 裁定）
-    "u": "表达效用 U = D·R·G^θ。发言当且仅当 U ≥ activity。中性状态（D≈R≈1、G=1）下 U≈1。",
+    "u": "表达效用 U = D·R（2026-09-12 起；环境增益 G^θ 退役）。发言当且仅当 U ≥ activity。中性状态（D≈R≈1）下 U≈1。",
     "threshold": "个体表达门槛 activity（= 类型均值 0.95 × U[0.8,1.2] 抖动）。门槛越低越容易发言，活跃 agent 门槛低。",
-    "spiral": "沉默的螺旋共振因子 D = 1 + s·(share_own − base)/base，截断[0.05,2]（收益侧）。>1：同类气候比期望强→共鸣放大收益；<1：处于少数→抑制收益。base=本类型在 100 人群体中的份额。",
+    "spiral": "沉默的螺旋因子 D = 1 + s·tanh(1.5·(share_own − base)/base)（2026-09-12 起：有界 tanh、无地板）。>1 同类气候比期望强→共鸣放大收益；<1 处于少数→抑制；<0 表达存在净成本（孤立成本）。base=本类型在 100 人群体中的份额。",
     "decay": "注意力衰减因子 R = exp(−λ·cum_own/50)（收益侧折减）。本类累计曝光越多越低（疲劳）。",
-    "benefit": "表达收益 = D·R（两收益侧因子相乘）。",
-    "emergence": "涌现环境增益指数 θ（结构取值：仅玩梗型 1.0，其余类型 0 = G 不影响其决策，G^0≡1）。",
+    "benefit": "表达效用 U = D·R（两收益侧因子相乘）。",
+    "emergence": "（已退役）涌现环境增益指数 θ：2026-09-12 用户裁定 G 退役，θ 不再进入任何决策；字段保留兼容历史 decision_log。",
     "env_abundance": "决策时所见丰沛度 B_t（快照键 meme_env.abundance；存量越丰沛越易诞生 meme）。",
     "env_emptiness": "决策时所见空旷度 S_t（快照键 meme_env.emptiness；当期新增越少越空旷越宜传播；sustained_hot 臂 W13 后冻结）。",
     "env_gain": "决策时所见涌现增益 G_t（快照键 meme_env.gain）。",
@@ -469,6 +469,7 @@ def render_weekly_md(weekly: list[dict], week_filter: str | None) -> str:
     out = []
     # 表A 供给与玩梗涌现环境
     out.append("### 表A 周度供给与玩梗涌现环境\n")
+    out.append("> B/S/G 为**观测序列**（2026-09-12 起不进入任何类型的决策，agent 侧为 U = D·R）；保留用于描述性时间轴与审计。\n")
     head = ("| 周 | 存量 | arena新增 | 现实新增 | B丰沛 | S空旷 | G增益 | 供给总 | Agent帖 | 注入 | "
             + " | ".join(f"供给{TYPE_LABEL[t]}" for t in TYPE_ORDER)
             + " | 供给噪音 | 官方帖 | 官方槽位 |")

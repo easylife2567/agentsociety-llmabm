@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""run_batch: CurationDynamics H4E1 18-run 批量调度器（幂等 + 可选并发 + 崩溃续跑）。
+"""run_batch: CurationDynamics H4E1 9-run 批量调度器（幂等 + 可选并发 + 崩溃续跑）。
 
 布局约定（与 monitor.py 的 runs/* 自动发现对齐）：
     runs/<run_id>/           每个 run 独立目录
@@ -21,11 +21,11 @@
     16GB 机器建议 ≤3；cache.pkl 已按 run 隔离（AGENTSOCIETY_HOME_DIR=agentsociety_data/runs/<id>）。
 
 用法：
-    # 串行补齐全部 18（已完成的自动跳过；可反复执行）
+    # 串行补齐全部 9（已完成的自动跳过；可反复执行）
     $PYTHON_PATH hypothesis_4/experiment_1/run_batch.py
     # 并发 2；只跑指定 run；演练不启动
     $PYTHON_PATH hypothesis_4/experiment_1/run_batch.py --concurrency 2
-    $PYTHON_PATH hypothesis_4/experiment_1/run_batch.py --only random_normal_s0,interest_sustained_hot_s2
+    $PYTHON_PATH hypothesis_4/experiment_1/run_batch.py --only random_s0,interest_s2
     $PYTHON_PATH hypothesis_4/experiment_1/run_batch.py --dry-run
     # 中断残留续跑
     $PYTHON_PATH hypothesis_4/experiment_1/run_batch.py --resume-failed
@@ -139,7 +139,7 @@ def classify_run(run_dir: Path) -> tuple[str, dict]:
 
 
 def list_run_ids() -> list[str]:
-    """按 manifest 顺序返回 18 个 run_id；manifest 缺失时按 configs/*.json 排序兜底。"""
+    """按 manifest 顺序返回 run_id（当前 9 个）；manifest 缺失时按 configs/*.json 排序兜底。"""
     manifest = _read_json(CONFIGS_DIR / "manifest.json")
     ids = manifest.get("run_ids") or []
     if not ids:
@@ -179,7 +179,7 @@ def _spawn_cli(
     run_dir.mkdir(parents=True, exist_ok=True)
     cfg = CONFIGS_DIR / f"{run_id}.json"
     if not cfg.exists():
-        raise FileNotFoundError(f"{cfg} 不存在（configs/ 应含全部 18 cell 配置）")
+        raise FileNotFoundError(f"{cfg} 不存在（configs/ 应含全部 9 个臂配置）")
     cmd = [
         py, "-m", "agentsociety2.society.cli",
         "--config", str(cfg),
@@ -352,7 +352,7 @@ async def main_async(args) -> int:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="H4E1 18-run 幂等批量调度器")
+    ap = argparse.ArgumentParser(description="H4E1 9-run 幂等批量调度器")
     ap.add_argument("--concurrency", type=int, default=1, help="并发 run 数（默认 1=串行；建议 ≤3）")
     ap.add_argument("--only", nargs="?", help="只跑指定 run_ids，逗号分隔")
     ap.add_argument("--skip", nargs="?", help="跳过指定 run_ids，逗号分隔")

@@ -2,18 +2,21 @@
 
 生成 CurationDynamicsSpace × CurationDiscourseAgent 的全因子实验配置：
 
-- 3 推荐算法（random / chronological / interest）× 2 玩梗涌现模式（normal / sustained_hot）
-  = 6 cells，每 cell 3 seeds（0/1/2）= 18 个 init_config 变体，写入 init/configs/。
+- **单因子 3 臂**：推荐算法（random / chronological / interest）× 3 seeds（0/1/2）
+  = 9 个 init_config 变体，写入 init/configs/。
+  （2026-09-12 用户裁定：玩梗涌现环境增益 G 退役 → 第二因子 sustained_hot 无行为差异，
+  3×2 全因子降为单因子；Agent 只由沉默螺旋 D 与注意力衰减 R 两条规则约束，
+  U = D·R ≥ activity。env 侧 B/S/G 仍逐周计算并写 replay，作为描述性时间轴与审计线索。）
 - 100 个 agent（用户 2026-09-10 裁定按发帖人口径：玩梗18/悼念21/营销26/教育15/其他20），
   群体由 custom/agents/curation_personas.build_population(seed=42) 生成，**18 个配置完全共享**。
 - 真实帖子注入：按用户裁定「全程约 250 条」，从 custom/envs/curation_assets/
   injection_posts.json 的 W12–W22 池中按 seed 预抽样 3 份样本文件（每份 250 条，
   保底+按真实周量比例分配），env 侧 sampling_ratio=1.0 全量注入当周样本。
-- 玩梗涌现环境（用户 2026-09-10 裁定的存量/流量语义）：Stock_t = 过去 6 周 arena
-  供给总数（内生：注入 + agent 帖）→ 丰沛度 B_t；Flow_t 读取现实口径周新增帖量调度
-  emergence_flow_by_week（真实数据各周全量帖数，缺周回退内生计数）→ 空旷度 S_t。
-  G_t = clamp(B^β·S^σ, 0.2, 3.0)，仅进入玩梗型效用（θ=emergence=1.0）。
-  sustained_hot 反事实臂：事件周（W13）后 S 冻结在事件周值，B 保持内生。
+- 玩梗涌现环境**观测序列**（2026-09-10 定义的存量/流量语义，2026-09-12 起仅记录）：
+  Stock_t = 过去 6 周 arena 供给总数（内生：注入 + agent 帖）→ 丰沛度 B_t；
+  Flow_t 读取现实口径周新增帖量调度 emergence_flow_by_week → 空旷度 S_t；
+  G_t = clamp(B^β·S^σ, 0.2, 3.0)。**不进入任何类型的决策**（θ 随 G 一并退役），
+  仅写入 replay 与监控，供"退潮期"等描述性叙述引用。meme_emergence_mode 固定 normal。
 - 议程设置（用户 2026-09-10 裁定）：官方媒体全程仅 W13 一条讣告帖（原文给定），
   注入并对全员置顶可见；其余真实数据帖一律按普通内容处理（is_official=False），
   官方置顶不延伸（official_pin_extend_weeks=0）。
@@ -21,15 +24,15 @@
   （时间冷却 + 曝光饱和 + 退场）＋ interest 臂兴趣比例抽样，修烟测暴露的"老帖霸屏"
   与"同类型 agent 共享同一份 feed → W18→W19 发言悬崖"；参数见下方
   LIFE_* / INTEREST_SAMPLE_TEMP 常量与 manifest["feed_mechanism"]。
-- 探索性反事实探针（用户 2026-09-12 裁定「跑一次看看效果」）：configs/interest_nog_s0.json
+- （已作废）探索性反事实探针 interest_nog_s0：G 退役后该探针即正式模型，配置移入
+  configs_retired_2factor/
   = interest_normal_s0 去掉玩梗型的涌现环境因子（θ=0，大家都用 D·R），门槛基数不动；
-  **不进入 18-run 批次**（见 manifest["probe_runs"] 与 EXPERIMENT.md「no-G 反事实探针」节）。
+  作为历史证据保留（见 EXPERIMENT.md「no-G 探针 → 已升格为正式模型」节）。
 - init/init_config.json 为标准 CLI 默认配置（= configs/interest_normal_s0.json）。
 
 仅使用标准库；由 `experiment-config run` 执行。
 """
 
-import copy
 import importlib.util
 import json
 import random
@@ -53,7 +56,9 @@ configs_dir.mkdir(parents=True, exist_ok=True)
 # 实验结构常量（用户 2026-09-08 裁定）
 # ---------------------------------------------------------------------------
 ALGORITHMS = ["random", "chronological", "interest"]
-EMERGENCE_MODES = ["normal", "sustained_hot"]
+# 2026-09-12 用户裁定：玩梗涌现模式（normal / sustained_hot）随 G 退役——θ≡0 时冻结 S
+# 不产生任何行为差异，故设计降为单因子。保留常量以固定配置里的 meme_emergence_mode。
+EMERGENCE_MODES = ["normal"]
 SEEDS = [0, 1, 2]
 
 # 用户 2026-09-10 裁定：按发帖人类型占比（不再按内容划分）——
@@ -357,7 +362,7 @@ run_ids: list[str] = []
 for algorithm in ALGORITHMS:
     for mode in EMERGENCE_MODES:
         for seed in SEEDS:
-            run_id = f"{algorithm}_{mode}_s{seed}"
+            run_id = f"{algorithm}_s{seed}"
             cfg = make_config(algorithm, mode, seed)
             (configs_dir / f"{run_id}.json").write_text(
                 json.dumps(cfg, ensure_ascii=False, indent=2), encoding="utf-8"
@@ -365,52 +370,21 @@ for algorithm in ALGORITHMS:
             run_ids.append(run_id)
             print(f"✓ {run_id}")
 
-# 默认 init_config.json = 核心处理 cell（interest × normal, seed 0），供标准 CLI / 冒烟。
-default_run_id = "interest_normal_s0"
+# 默认 init_config.json = 核心处理臂（interest, seed 0），供标准 CLI / 冒烟。
+default_run_id = "interest_s0"
 (script_dir / "init_config.json").write_text(
     (configs_dir / f"{default_run_id}.json").read_text(encoding="utf-8"), encoding="utf-8"
 )
 print(f"✓ init_config.json (= configs/{default_run_id}.json)")
 
 # ---------------------------------------------------------------------------
-# 3b. 探索性反事实探针：no-G 臂（用户 2026-09-12 裁定）
+# 3b.（已作废）no-G 探针配置
 #
-# 裁定原文：「对 G^θ 做一个反事实，去掉玩梗 agent 的这个因子，当然其门槛也要做调整，
-# 大家都用 D·R」；规模裁定：「就是跑一次看看效果」（单 run 探针，**暂不进入 18-run
-# 批次、也不进全因子设计**——是否升为第 3 水平 / 独立实验留待探针结果由用户裁定）。
-#
-# 构造：与 interest_normal_s0 **逐字段相同**，唯一差别 = 18 个玩梗 agent 的
-# params.emergence 由抖动值（均值 1.0，U[0.8,1.2]）改为 0.0；其余四类本就 θ=0。
-#
-# 等价性说明（两种实现行为完全一致，选 θ=0 是因其改动面最小）：
-#   U = D·R·G^θ，θ=0 ⟺ G^θ ≡ 1 ⟺ env 侧把 G 中和为 1.0。
-#   θ=0（agent 侧）不动 env、不动群体其余参数，且监控里 B/S/G 仍逐周记录——
-#   可看到"被解耦的环境本身"，只有 env_multiplier（G^θ）恒 1。
-#
-# 门槛口径（用户裁定：不调，沿用 0.95）：门槛基数锚定中性状态（D≈R≈1、G=1 → U≈1.0），
-# 而基线周 W12 的 G 严格 =1（B=S=1 by construction），故本臂 W12 与 normal 臂逐点等价，
-# 差异 100% 来自 G 的逐周调制——即"干净消融"的定义。代理实测：把玩梗门槛下调（0.85-0.4）
-# 对起爆时点无杠杆（区间 [0.85,1.0] 内一律 W20 起步），只有 0.4 档才会量级持平，
-# 但代价是 W14-W17 就出现玩梗（与真实基准"W12-W18 梗份额 ≤1.5%"相悖）——故不调。
-# 诊断与代理预期见 EXPERIMENT.md「no-G 反事实探针」节。
+# 2026-09-12 用户裁定「G 没有生效，直接去掉 G —— 只由沉默螺旋和注意力衰减两条规则约束
+# Agent」之后，探针即成为正式模型（U = D·R），故不再单独生成 interest_nog_s0.json：
+# 它对应的 run 已跑完并作为 G 退役的证据留痕（configs_retired_2factor/interest_nog_s0.json，
+# 结果见 SMOKE_DIAGNOSIS_w19_cliff.md §五之三）。
 # ---------------------------------------------------------------------------
-probe_agents_nog = copy.deepcopy(agent_specs)
-_nog_theta_flipped = 0
-for _spec in probe_agents_nog:
-    if _spec["kwargs"]["agent_type"] == "meme" and _spec["kwargs"]["params"]["emergence"] != 0.0:
-        _spec["kwargs"]["params"]["emergence"] = 0.0
-        _nog_theta_flipped += 1
-assert _nog_theta_flipped == POPULATION_COUNTS["meme"], (
-    f"no-G 探针应改写 {POPULATION_COUNTS['meme']} 个玩梗 agent 的 θ，实际 {_nog_theta_flipped}"
-)
-
-probe_run_id = "interest_nog_s0"
-(configs_dir / f"{probe_run_id}.json").write_text(
-    json.dumps(make_config("interest", "normal", 0, agents=probe_agents_nog),
-               ensure_ascii=False, indent=2),
-    encoding="utf-8",
-)
-print(f"✓ {probe_run_id}（no-G 探针：{_nog_theta_flipped} 个玩梗 agent θ=0，门槛 0.95 不变）")
 
 # ---------------------------------------------------------------------------
 # 4. steps.yaml + 批次 manifest
@@ -420,29 +394,17 @@ print("✓ steps.yaml (start_t=2026-03-16, 11 × 604800s)")
 
 manifest = {
     "experiment": "hypothesis_4/experiment_1",
-    "design": "3 推荐算法 × 2 玩梗涌现模式 全因子，每 cell 3 seeds，共 18 runs",
+    "design": ("单因子 3 臂：推荐算法（random/chronological/interest）× 3 seeds = 9 runs"
+               "（2026-09-12 用户裁定：玩梗涌现环境增益 G 退役，第二因子 sustained_hot 随之失效；"
+               "Agent 只由沉默螺旋 D 与注意力衰减 R 约束，U = D·R ≥ activity）"),
     "run_ids": run_ids,
-    # 探索性探针（用户 2026-09-12 裁定「跑一次看看效果」）：**不属于上述 18-run 批次**，
-    # 不进 run_ids、不进 factors；跑法 `run_batch.py --only interest_nog_s0`。
-    "probe_runs": [
-        {
-            "run_id": probe_run_id,
-            "purpose": ("no-G 反事实探针：对 G^θ 做反事实，去掉玩梗 agent 的涌现环境因子"
-                        "（用户 2026-09-12 裁定；规模=单 run 看效果）"),
-            "base_cell": default_run_id,
-            "diff_from_base": ("仅 18 个玩梗 agent 的 params.emergence 由抖动值改为 0.0"
-                               "（θ=0 ⟺ G^θ≡1）；推荐算法/涌现模式/seed/群体/注入样本/"
-                               "门槛基数 0.95 与 feed 机制参数全部与 base cell 相同"),
-            "threshold": "不动（0.95）——W12 基线周 G≡1，本臂与 normal 臂在 W12 逐点等价",
-            "status": "探索性（未注册）；结果出来后由用户裁定是否升为第 3 水平 / 独立实验",
-            "run_cmd": f"$PYTHON_PATH hypothesis_4/experiment_1/run_batch.py --only {probe_run_id}",
-        }
-    ],
-    "factors": {
-        "recommendation_algorithm": ALGORITHMS,
-        "meme_emergence_mode": EMERGENCE_MODES,
-        "random_seed": SEEDS,
+    "retired_probe": {
+        "note": ("interest_nog_s0（no-G 探针）已跑完并升格为正式模型的等价物——"
+                 "G 退役后正式模型即 U = D·R。配置移入 configs_retired_2factor/，"
+                 "实测结果见 SMOKE_DIAGNOSIS_w19_cliff.md §五之三"),
     },
+    "factors": {"recommendation_algorithm": ALGORITHMS, "random_seed": SEEDS},
+    "fixed_kwargs": {"meme_emergence_mode": EMERGENCE_MODES[0], "note": "退役因子，固定 normal"},
     "population": {
         "counts": POPULATION_COUNTS,
         "seed": POPULATION_SEED,
@@ -454,7 +416,7 @@ manifest = {
             "sample_seed": VOCAB_SAMPLE_SEED,
             "meme": "linkage 全量 + strong 抽样；mourning/marketing/education=main 抽样；other=空",
         },
-        "speak_decision": "涌现增益表达效用模型（无 LLM，用户 2026-09-10 裁定）：U=D·R·G^θ，发言当且仅当 U≥activity（个体表达门槛，门槛低者易发言；确定性决策无随机数）。D=1+s·(share_own−base)/base clamp[0.05,2]（沉默螺旋）；R=exp(−λ·cum_own/50)（注意力衰减）；G=clamp(B^β·S^σ,0.2,3.0)（玩梗涌现环境增益，env 侧逐周计算：B=存量丰沛度=过去6周arena供给/基线、S=流量空旷度=现实口径新增/基线，两者以基线周W12=1；θ=emergence 结构系数，仅玩梗型 1.0，其余 0）。中性状态（D≈R≈1、G=1）下 U≈1.0，三因子乘法进入效用；门槛基数 0.95 校准（calibrate_speak.py 真实 Stock/Flow 涌现环境代理）；params 随 profile 下发",
+        "speak_decision": "双规则表达效用模型（无 LLM，用户 2026-09-12 裁定）：U=D·R，发言当且仅当 U≥activity（个体表达门槛，门槛低者易发言；确定性决策无随机数）。D=1+s·(share_own−base)/base clamp[0.05,2]（沉默螺旋）；R=exp(−λ·cum_own/50)（注意力衰减）。中性状态（D≈R≈1）下 U≈1.0，两因子乘法进入效用；门槛基数 0.95（calibrate_speak.py 同构 feed 层推演扫描定标）。params 随 profile 下发（activity/spiral/decay 三参数；原 emergence/θ 与 G 一并退役，env 侧 B/S/G 仅记录）",
         "content_grounding": "发言内容须基于本周 feed 前 5 条（feed_context_n=5）：回应/讨论/二创/跟帖（用户 2026-09-10 裁定）",
     },
     "feed_mechanism": {
@@ -497,6 +459,7 @@ manifest = {
         "sample_files": {str(s): sample_paths[s] for s in SEEDS},
     },
     "emergence_env": {
+        "status": "2026-09-12 退役：仅作为观测序列写入 replay 与监控，不进入任何类型的决策",
         "semantics": "存量/流量（用户 2026-09-10 裁定）：总帖子越丰沛越易诞生 meme（B_t），当期新增越少越空旷越宜传播（S_t）",
         "stock": "Stock_t = 过去 emergence_window_stock=6 周 arena 供给总数（内生：注入+agent 帖），B_t=f(Stock_t)/f(Stock_base)，f(x)=x/(x+K_a)，K_a 默认=注入计划事件周窗口存量",
         "flow": "Flow_t = 现实口径周新增帖量调度（真实数据各周全量帖数，sim arena 流量被注入预算压缩故 S 读外生调度），S_t=h(Flow_t)/h(Flow_base)，h(x)=K_f/(K_f+x)，K_f 默认=调度基线周值",
@@ -529,4 +492,4 @@ manifest = {
 )
 print("✓ configs/manifest.json")
 
-print(f"\n配置生成完成：18 runs（6 cells × 3 seeds），100 agents，{NUM_TICKS} ticks。")
+print(f"\n配置生成完成：{len(run_ids)} runs（3 臂 × 3 seeds），100 agents，{NUM_TICKS} ticks。")

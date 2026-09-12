@@ -194,6 +194,38 @@ def interest_score(
     return (float(alpha) * float(tendency_value) + float(gamma)) * float(vitality)
 
 
+# ---------------- 沉默螺旋（D 因子） ----------------
+
+# 有界共振因子：D = 1 + s·tanh(k·(share − base)/base)。
+# 2026-09-12 用户裁定（依据见 hypothesis_4/experiment_1/SMOKE_DIAGNOSIS_w19_cliff.md §五之四）：
+# 原实现 `clamp(1 + s·x, 0.05, 2.0)` 的线性 + 地板是自造的，且地板在行为上不可观测
+# （抬到 0.3/0.5/0.7 结果逐周相同），真实副作用是"气候不利时把所有类型压成同一个值、
+# 抹掉 spiral 参数的类间差异"。改为有界 tanh 后：
+#   * 无地板、有界 [1−s, 1+s]、单调、边际效应递减；
+#   * 负值段 = 表达净成本（"孤立成本"，对应 Blanco 2005 博弈式中的 −c；发言门槛
+#     = c/(b+c) 的门槛结构与本模型 U ≥ activity 同构）；
+#   * 有界平滑的映射与文献里的 logistic 传统一致（Sohn & Geidner 2015 的 δ 逻辑式、
+#     Cabrera et al. 2021 的置信度 logistic 更新），且个体阈值抖动对应 Granovetter 阈值分布。
+DEFAULT_SPIRAL_K = 1.5
+
+
+def spiral_factor(
+    share_own: float,
+    base: float,
+    spiral: float,
+    k: float = DEFAULT_SPIRAL_K,
+) -> float:
+    """沉默螺旋共振/抑制因子 D（用户 2026-09-12 裁定：有界 tanh，无地板）。
+
+    share_own = agent 本周 feed 中本类内容占比（**感知**气候，符合"感知气候与实际意见
+    分开测量"的规范）；base = 本类型在群体中的份额（参照点）；spiral = 个体敏感度 s。
+    D > 1 表示同类气候共振放大表达收益，D < 1 表示少数派处境抑制收益，D < 0 表示
+    表达存在净成本（孤立成本）。k 控制过渡陡度（默认 1.5）。
+    """
+    gap = (float(share_own) - float(base)) / max(float(base), 0.05)
+    return 1.0 + float(spiral) * math.tanh(float(k) * gap)
+
+
 # ---------------- 比例抽样（选择步骤） ----------------
 
 def softmax_weights(scores: Sequence[float], temperature: float) -> list[float]:

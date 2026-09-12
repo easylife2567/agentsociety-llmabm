@@ -16,15 +16,13 @@ sim 却一步到顶"的来源。本版直接推演 feed：候选池 = 真实注�
   K_f = 调度基线周值（W12）。sustained_hot 反事实臂：事件周（W13）记录 S，之后冻结。
 - B_t（存量丰沛度）：env 内生——Stock_t = 过去 6 周 arena 供给总数（注入 + 滞后 1 tick 的
   agent 帖），B_t = f(Stock_t)/f(Stock_base)，f(x)=x/(x+K_a)，K_a = 注入计划事件周窗口存量。
-- G_t = clamp(B_t^β · S_t^σ, 0.2, 3.0)。
-- 决策：U = D·R·G^θ，发言当且仅当 U ≥ activity_i；θ = params["emergence"]（仅玩梗型 >0）。
-  D/R 公式与 agent 实现一致；R 的 cum_own 用推演中该 agent 实际见到的本类槽位数累计。
-
-**no-G 反事实探针（用户 2026-09-12 裁定，`--nog`）**：`mode="nog"` 把玩梗型 θ 置 0
-（等价 G^θ≡1），大家都用 D·R，门槛基数不动（0.95）。因基线周 W12 的 G 严格 =1，
-该臂与 normal 臂在 W12 逐点等价，差异 100% 来自 G 的逐周调制。代理实测：门槛下调
-（0.85-0.4）对起爆时点无杠杆——区间 [0.85,1.0] 内一律 W20 起步，只有 0.4 档量级持平
-但 W14-W17 就出现玩梗（与真实基准 W12-W18 梗份额 ≤1.5% 相悖）；故门槛不调。
+- G_t = clamp(B_t^β · S_t^σ, 0.2, 3.0)（**观测序列**，2026-09-12 起不进入决策）。
+- 决策：**U = D·R**，发言当且仅当 U ≥ activity_i（用户 2026-09-12 裁定：环境增益 G^θ 退役，
+  Agent 只由沉默螺旋与注意力衰减两条规则约束）。D 走共享纯函数
+  `mech.spiral_factor`（有界 tanh，无地板）；R 的 cum_own 用推演中该 agent 实际见到的
+  本类槽位数累计。代理实测：门槛下调（0.85-0.4）对起爆时点无杠杆——区间 [0.85,1.0] 内
+  一律 W20 起步，只有 0.4 档量级持平但 W14-W17 就出现玩梗（与真实基准 W12-W18
+  梗份额 ≤1.5% 相悖）；故门槛维持 0.95。
 
 选点标准（2026-09-12 更新）：agent 供给 > 注入 250 且总量在可接受预算内 ＋ 形态合理
 （W13 悼念冲击、**玩梗 W18-W19 温和起步 → W20-W22 起量**、营销/教育稳定供给）＋
@@ -176,10 +174,8 @@ def simulate(
     - feed 装配：对每个 agent 按 interest_score 打分，按 exp(score/T) 无放回抽 FEED_SIZE 条，
       装配时即记账曝光（曝光饱和项随之下降，抑制单帖同周垄断）；
     - share_own = 该 agent 本周 feed 中本类槽位占比（D 的气候输入，逐 agent 不同）；
-    - Stock 以 6 周窗口滚动累计；S 读现实口径调度；sustained_hot 在事件周记录 S 并冻结。
-
-    mode="nog"（no-G 反事实探针，用户 2026-09-12 裁定）：玩梗型 θ 置 0（等价 G^θ≡1），
-    大家都用 D·R；env 轨迹照常推演（与 env 侧记录 B/S/G 的做法一致），只是不再进入效用。
+    - Stock 以 6 周窗口滚动累计；S 读现实口径调度（B/S/G 仅作 trace 观测，不进入决策）。
+    - 决策 U = D·R（D 走共享 spiral_factor）；mode 仅影响 trace 里 S 是否冻结。
     """
     rng = random.Random(CALIB_SAMPLE_SEED)
     cum_own = {p["id"]: 0.0 for p in population}
@@ -251,11 +247,10 @@ def simulate(
             share_by_type[t].append(share_own)
 
             base_share = personas_mod.POP_SHARE[t]
-            d = 1.0 + prm["spiral"] * (share_own - base_share) / max(base_share, 0.05)
-            d = max(0.05, min(2.0, d))
+            # D 走共享纯函数（与 agent 侧同一份实现）：有界 tanh、无地板（2026-09-12 裁定）
+            d = mech.spiral_factor(share_own, base_share, prm["spiral"])
             r = math.exp(-prm["decay"] * cum_own[ag["id"]] / DECAY_SCALE)
-            theta = 0.0 if mode == "nog" else prm["emergence"]   # no-G 探针：θ 置 0
-            u = d * r * (gain ** theta)
+            u = d * r                     # U = D·R（环境因子 G 已退役，gain 仅供 trace 记录）
             if u >= prm["activity"] * base / BASE_REF:
                 counts[t] += 1
                 agent_posts.append({"week": wk, "type": t,
@@ -372,8 +367,6 @@ def main() -> None:
                     help="给定 run 目录，先做涌现环境公式同构断言再继续（如 hypothesis_4/experiment_1/runs/interest_normal_s0）")
     ap.add_argument("--bases", type=float, nargs="*", default=CANDIDATE_BASES,
                     help="待扫的门槛基数（默认 1.0/0.95/0.9/0.85/0.8/0.7）")
-    ap.add_argument("--nog", action="store_true",
-                    help="额外打印 no-G 反事实探针（θ=0，大家都用 D·R；门槛不调）的预期形态")
     args = ap.parse_args()
 
     if args.assert_replay is not None and not assert_emergence_isomorphic(args.assert_replay):
@@ -397,24 +390,6 @@ def main() -> None:
         for base in args.bases:
             res, trace, climates = simulate(base, mode)
             summarize(f"门槛基数 base={base:.2f}", res, trace, climates)
-
-    if args.nog:
-        # no-G 反事实探针（用户 2026-09-12 裁定「跑一次看看效果」）：预注册预期形态。
-        # 对照口径：唯一差别 = 玩梗型 θ 由抖动值（均值 1.0）改为 0，门槛基数同为 0.95。
-        print("\n===== no-G 反事实探针（θ=0，大家都用 D·R；门槛 0.95 不动）=====")
-        print("对照：normal 臂（θ=1）vs no-G 臂（θ=0）——其余（算法/群体/样本/feed 机制）全同")
-        res_o, trace_o, cl_o = simulate(0.95, "normal")
-        res_n, trace_n, cl_n = simulate(0.95, "nog")
-        summarize("normal 臂 base=0.95（θ 抖动，现状）", res_o, trace_o, cl_o)
-        summarize("no-G 臂 base=0.95（θ=0）", res_n, trace_n, cl_n)
-        print("\n探针对照 | 玩梗轨迹（W12→W22）| W18-19 | W20-22 | 玩梗总 | 全类型总")
-        for lbl, res in (("normal", res_o), ("no-G  ", res_n)):
-            traj = "/".join(str(res[wk]["meme"]) for wk in WEEKS)
-            onset = sum(res[wk]["meme"] for wk in ("2026-W18", "2026-W19"))
-            late = sum(res[wk]["meme"] for wk in ("2026-W20", "2026-W21", "2026-W22"))
-            tot = {t: sum(res[wk][t] for wk in WEEKS) for t in TYPE_ORDER}
-            print(f"{lbl} | {traj} | {onset:>6} | {late:>6} | {tot['meme']:>6} | {sum(tot.values()):>8}")
-        print("注：代理对起爆速度偏乐观（见 EXPERIMENT.md），形态以真实 run 为准。")
 
     print("\n===== OAT 敏感性（base=0.95，其余参数保持默认）=====")
     print("参数           | 取值  | normal 总/玩梗起步W18-19/玩梗W20-22/悼念W13-15 | sustained_hot 同口径")

@@ -3,18 +3,19 @@
   "workspace": {
     "topic": "公众人物去世后，算法策展如何塑造舆论场对其的数字表征",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "experiment_config",
+    "current_stage": "hypothesis",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
-    "revision_round": 3,
+    "revision_round": 4,
     "active_reroute": {
-      "revision_round": 3,
-      "requested_at": "2026-09-11T17:31:11.657899+00:00",
-      "from_stage": "run_experiment",
-      "target_stage": "experiment_config",
-      "reason": "烟测暴露 feed 排序无新鲜度（老帖霸屏）且同类型 agent 共享同一份 top-10 导致 D 输入退化→W18-W19 发言悬崖；需重设计 feed 机制（生命周期+曝光饱和+比例抽样）后重跑",
+      "revision_round": 4,
+      "requested_at": "2026-09-12T09:51:00.996933+00:00",
+      "from_stage": "experiment_config",
+      "target_stage": "hypothesis",
+      "reason": "no-G 反事实探针实测（W20-22：noG 38 vs normal 47 = 0.81）证实环境因子 G 对行为无必要支撑、且 G 的量纲不成立（B 恒等 3.6、K_a 与内生存量尺度不匹配、变相把玩梗型门槛打 3 折）；用户裁定：G 退役、Agent 只由沉默螺旋与注意力衰减两条规则约束，实验组由 3×2 全因子 18 runs 降为单因子 3 臂 × 3 seeds = 9 runs",
       "source_artifact": "hypothesis_4/experiment_1/SMOKE_DIAGNOSIS_w19_cliff.md",
       "pending_stages": [
+        "hypothesis",
         "experiment_config"
       ]
     }
@@ -48,17 +49,14 @@
       "revision_round": 0
     },
     "hypothesis": {
-      "status": "completed",
+      "status": "needs_revision",
       "started_at": null,
-      "completed_at": "2026-09-08T10:47:55.478194+00:00",
+      "completed_at": null,
       "attempts": 2,
       "error": null,
-      "metadata": {
-        "hypotheses_count": 1,
-        "revision_note": "2026-09-08 用户裁定: 研究焦点从认知偏移改为推荐算法选择性放大已有玩梗群体→改变公共表征; H4 已修订, SIM_SETTINGS 重置为内置 PersonAgent+SocialMediaSpace, ABM 实现待 experiment_config 重设计"
-      },
+      "metadata": {},
       "verification_status": "not_started",
-      "revision_round": 2
+      "revision_round": 4
     },
     "experiment_config": {
       "status": "needs_revision",
@@ -68,7 +66,7 @@
       "error": null,
       "metadata": {},
       "verification_status": "not_started",
-      "revision_round": 3
+      "revision_round": 4
     },
     "run_experiment": {
       "status": "not_started",
@@ -279,6 +277,49 @@
           "metadata": {},
           "verification_status": "not_started",
           "revision_round": 2
+        }
+      }
+    },
+    {
+      "sequence": 11,
+      "timestamp": "2026-09-12T09:51:00.996937+00:00",
+      "kind": "reroute",
+      "revision_round": 4,
+      "from_stage": "experiment_config",
+      "to_stage": "hypothesis",
+      "reason": "no-G 反事实探针实测（W20-22：noG 38 vs normal 47 = 0.81）证实环境因子 G 对行为无必要支撑、且 G 的量纲不成立（B 恒等 3.6、K_a 与内生存量尺度不匹配、变相把玩梗型门槛打 3 折）；用户裁定：G 退役、Agent 只由沉默螺旋与注意力衰减两条规则约束，实验组由 3×2 全因子 18 runs 降为单因子 3 臂 × 3 seeds = 9 runs",
+      "source_artifact": "hypothesis_4/experiment_1/SMOKE_DIAGNOSIS_w19_cliff.md",
+      "invalidated_stages": [
+        "hypothesis",
+        "experiment_config"
+      ],
+      "previous_statuses": {
+        "hypothesis": "completed",
+        "experiment_config": "needs_revision"
+      },
+      "previous_stage_states": {
+        "hypothesis": {
+          "status": "completed",
+          "started_at": null,
+          "completed_at": "2026-09-08T10:47:55.478194+00:00",
+          "attempts": 2,
+          "error": null,
+          "metadata": {
+            "hypotheses_count": 1,
+            "revision_note": "2026-09-08 用户裁定: 研究焦点从认知偏移改为推荐算法选择性放大已有玩梗群体→改变公共表征; H4 已修订, SIM_SETTINGS 重置为内置 PersonAgent+SocialMediaSpace, ABM 实现待 experiment_config 重设计"
+          },
+          "verification_status": "not_started",
+          "revision_round": 2
+        },
+        "experiment_config": {
+          "status": "needs_revision",
+          "started_at": null,
+          "completed_at": null,
+          "attempts": 3,
+          "error": null,
+          "metadata": {},
+          "verification_status": "not_started",
+          "revision_round": 3
         }
       }
     }

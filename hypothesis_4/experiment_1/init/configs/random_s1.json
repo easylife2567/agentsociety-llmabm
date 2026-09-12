@@ -3,9 +3,9 @@
     {
       "module_type": "CurationDynamicsSpace",
       "kwargs": {
-        "recommendation_algorithm": "interest",
+        "recommendation_algorithm": "random",
         "meme_emergence_mode": "normal",
-        "random_seed": 0,
+        "random_seed": 1,
         "emergence_flow_by_week": {
           "2026-W12": 1246,
           "2026-W13": 11394,
@@ -23,7 +23,7 @@
         "life_saturation_scale": 20.0,
         "life_retire_floor": 0.35,
         "interest_sample_temp": 4.0,
-        "injection_data_path": "hypothesis_4/experiment_1/init/injection_sample_s0.json",
+        "injection_data_path": "hypothesis_4/experiment_1/init/injection_sample_s1.json",
         "vocab_path": "custom/envs/curation_assets/vocabs.json",
         "sampling_ratio": 1.0,
         "agent_types": {

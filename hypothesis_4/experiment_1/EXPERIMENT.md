@@ -1,18 +1,19 @@
-# Experiment 1：算法策展 × 玩梗涌现环境对逝者数字表征转移的影响
+# Experiment 1：算法策展对逝者数字表征转移的影响
 
 ## 设计
 
-全因子 **3 × 2 = 6 cells，每 cell 3 seeds，共 18 runs**：
+**单因子 3 臂 × 3 seeds = 9 runs**（用户 2026-09-12 裁定：玩梗涌现环境增益 G 退役，
+原 3×2 全因子的第二因子随之失效 → 降为单因子；见 `SMOKE_DIAGNOSIS_w19_cliff.md` §五之三/§五之四）：
 
 | 因子 | 水平 |
 |------|------|
 | 推荐算法 `recommendation_algorithm` | random / chronological / interest（纯兴趣匹配，无热度项） |
-| 玩梗涌现模式 `meme_emergence_mode` | normal（S 逐周调度）/ sustained_hot（事件周后冻结 S） |
 | 种子 `random_seed` | 0 / 1 / 2 |
 
 - 环境：`CurationDynamicsSpace`（custom/envs/curation_dynamics_space.py）
 - Agent：`CurationDiscourseAgent`（custom/agents/，固定内容类型，0-1 次 LLM 调用/agent-tick）
-- 规模：100 agents × 11 ticks（2026-W12→W22，事件周 W13）× 18 runs ≈ 1.98 万 agent-ticks
+- 规模：100 agents × 11 ticks（2026-W12→W22，事件周 W13）× **9 runs ≈ 0.99 万 agent-ticks**
+- run_id 命名：`{algorithm}_s{seed}`（原 `{algorithm}_{mode}_s{seed}` 随第二因子退役）
 
 ## 发言决策数字化与帖子倾向分（用户 2026-09-09 裁定）
 
@@ -23,18 +24,28 @@ meme = linkage + 死因词替换「□」后的 strong 命中）。用于 intere
 旧加性时新项 `γ·max(0,1−age/8)` 退役，见"feed 机制"节）
 并随 feed item 下发。不使用 LLM 解析帖子类型。
 
-**发言决策**（数值算法，无 LLM；2026-09-10 机制重设计裁定：**涌现增益表达效用模型**，
-取代悼念规范成本项；锚定注意力经济——Simon 1971「信息的丰裕造成注意力的稀缺」、
-生态位/logistic 增长——meme 需要未饱和空间才能指数扩张、模因论——Dawkins 1976
-模因在丰宿主池中复制变异）：
+**发言决策**（数值算法，无 LLM；**2026-09-12 用户裁定：双规则表达效用模型** ——
+原第三因子"玩梗涌现环境增益 G"退役，Agent 只由沉默螺旋与注意力衰减两条规则约束）：
 
 ```
-U = D·R·G^θ                                        （表达效用 = 三因子乘法）
-D = 1 + s·(share_own − base)/base, clamp[0.05,2]   （沉默的螺旋：收益侧气候共振）
-R = exp(−λ·cum_own/50)                             （注意力衰减：收益侧疲劳折减）
-G = clamp(B^β·S^σ, 0.2, 3.0)                       （玩梗涌现环境增益，env 侧逐周计算）
+U = D·R                                                  （表达效用 = 两因子乘法）
+D = 1 + s·tanh(k·(share_own − base)/base), k=1.5         （沉默的螺旋：有界、无地板）
+R = exp(−λ·cum_own/50)                                   （注意力衰减：收益侧疲劳折减）
 发言当且仅当 U ≥ activity
 ```
+
+D 的形式化依据（文献检索，2026-09-12）：Blanco 2005 的博弈模型给出"发言门槛 =
+孤立成本/(收益+成本)"，与本模型 U ≥ activity 的门槛结构同构（D<0 即表达存在净成本
+= 孤立成本）；Sohn & Geidner 2015 / Cabrera et al. 2021 用 logistic 有界映射把意见气候
+δ 转成表达意愿（其 δ 以 50% 为参照，五类场需改以"本类型期望占比"为参照）；Granovetter
+1978 阈值分布对应 activity 的 U[0.8,1.2] 个体抖动。原 `clamp(1+s·x, 0.05, 2.0)` 的地板
+经实测**在行为上不可观测**（抬到 0.7 结果不变），其真实副作用是把"气候不利"时的所有
+类型压成同一个值、抹掉 spiral 的类间差异。实现见共享纯函数
+`custom/envs/curation_mechanisms.py::spiral_factor`（agent 与校准脚本同源）。
+
+**玩梗涌现环境已降为观测序列**：env 侧仍逐周计算 B（存量丰沛度）/ S（流量空旷度）/
+G = clamp(B^β·S^σ, 0.2, 3.0) 并写入 replay 与监控，作为描述性时间轴与审计线索，
+**不进入任何类型的决策**。
 
 **玩梗涌现环境的存量/流量语义（用户 2026-09-10 裁定）**：总帖子越丰沛越易诞生 meme
 （存量 B），当期新增帖子越少越空旷、越宜 meme 传播（流量 S）：
@@ -54,7 +65,7 @@ K_a 默认 = 注入计划事件周窗口存量（17+35=52）；K_f 默认 = 调�
 反哺存量、G 回落自限的反馈回路）。`θ` = emergence 结构系数：仅玩梗型 1.0
 （洪峰期新表达被淹没、退潮期才被看见），其余类型 0（G^0≡1，环境不影响其决策）。
 
-**反事实臂 sustained_hot（用户 2026-09-10 裁定）**：事件周（W13）记录 S，之后冻结
+**~~反事实臂 sustained_hot~~（2026-09-12 退役：θ≡0 时冻结 S 无行为差异；原语义如下）**：事件周（W13）记录 S，之后冻结
 （维持高热 = 洪峰不退）；B 保持内生。normal 臂 S 随现实调度逐周回落 → 玩梗 W19-20
 起量；sustained_hot 臂 S 压在 W13 洪峰的低空旷值 → 玩梗起量被推迟/抑制。两臂与三种
 算法全因子交叉：interest 臂的选择性曝光可让玩梗 agent 在同温层内部分突破环境压制
@@ -115,7 +126,7 @@ D 的输入退化（share_own 只能取 {0,1} → D 成为 40 倍开关 → 全�
 share_own 逐 agent 有梯度（sd ≈0.05-0.16），门槛的确定性不再导致同步翻转；但仍存在
 "高分组先越过门槛、组内随后全员饱和"的台阶性质，其陡度由 G 的量级（本轮未动）决定。
 
-反事实臂 sustained_hot（S 冻结在 W13 值 0.20）：G 压平在 0.50-0.72，代理玩梗轨迹
+~~反事实臂 sustained_hot~~（已退役，以下为历史记录；S 冻结在 W13 值 0.20）：G 压平在 0.50-0.72，代理玩梗轨迹
 0/0/0/0/1/3/1/2/14/27/41 vs normal 的 0/0/0/0/1/3/9/17/18/18/18 —— **臂间差集中在
 W18 起的起量时点与幅度**（W20-22 代理总量 27 vs 54）；两臂总供应接近（523 vs 580），
 更强的对比预期出现在算法 × 涌现交互（interest 选择性曝光的同温层突破）。
@@ -123,7 +134,7 @@ W18 起的起量时点与幅度**（W20-22 代理总量 27 vs 54）；两臂总�
 OAT 敏感性（base=0.95，代理）：normal 臂总量对 K_a/K_f/β/σ/抽样温度/半衰期总体稳健
 （545-590），但**玩梗起步幅度（W18-W19）对 K_a 与 β/σ 敏感**（K_a×0.5 → 起步 5 帖、
 K_a×2 → 35 帖；β=0.5 → 起步 0 帖）——因为起步期 G 由 B^β·S^σ 决定、而玩梗 U 恰在
-门槛附近；sustained_hot 臂对同一组参数更敏感（S 冻结后 G 常年贴近玩梗 U 门槛）。
+门槛附近；sustained_hot 臂对同一组参数更敏感（S 冻结后 G 常年贴近玩梗 U 门槛）——该敏感性随 G 退役一并作废。
 起步值维持 env 默认（β=σ=1、K_a/K_f 自动），留待 U2 敏感性分析统一处理。
 
 ### feed 机制（用户 2026-09-12 裁定，诊断见 `SMOKE_DIAGNOSIS_w19_cliff.md`）
@@ -154,25 +165,23 @@ agent"会饿死早期 feed（W12 仅 47 帖，C=2 只供 94 槽位而当周需�
 "取分数最高的 k 条"这个操作还在、而高分帖数量 ≥ k（W20 有 19 条、W22 有 68 条），
 选出的集合就与 agent 无关。
 
-## no-G 反事实探针（用户 2026-09-12 裁定，**探索性**）
+## no-G 探针 → 已升格为正式模型（用户 2026-09-12 裁定）
 
-**裁定**：「对 G^θ 做一个反事实，去掉玩梗 agent 的这个因子，当然其门槛也要做调整，
-大家都用 D·R」；规模二次裁定：「**就是跑一次看看效果**」。
-因此本轮**不改注册设计**（仍是 3 算法 × 2 涌现模式 × 3 seeds = 18 runs），
-只跑一个探针 run 看效果；是否升为第 3 水平（→ 3×3 全因子）或独立实验，留待结果由用户裁定。
+**裁定**：「G 没有生效，直接去掉 G 反而好解释 —— 只由沉默螺旋和注意力衰减两条规则
+约束 Agent」；并连带裁定实验组降为**单因子 3 臂 × 3 seeds = 9 runs**。
+本节保留该探针的构造与**实测结果**，作为"G 退役"这一改动的证据留痕。
 
 **构造**：`init/configs/interest_nog_s0.json` —— 与 `interest_normal_s0` **逐字段相同**，
-唯一差别 = 18 个玩梗 agent 的 `params.emergence` 由抖动值（均值 1.0、U[0.8,1.2]）改为 **0.0**
+唯一差别 = 18 个玩梗 agent 的 `params.emergence`（该参数现已退役） 由抖动值（均值 1.0、U[0.8,1.2]）改为 **0.0**
 （其余四类本就 θ=0，共 82 个 agent 不变）。env 段逐字节相同、注入样本相同、群体 seed 相同。
 
-**实现选择**：θ=0（agent 侧）而非 env 侧 G≡1 —— 两者行为完全等价
-（`U = D·R·G^θ`，θ=0 ⟺ G^θ≡1），但 θ=0 不动 env、不动群体其余参数，
-且监控里 B/S/G 仍逐周记录（能看到"被解耦的环境本身"），只有 `env_multiplier`（G^θ）恒 1。
+**实现选择（当时）**：θ=0（agent 侧）而非 env 侧 G≡1 —— 两者行为完全等价
+（θ=0 ⟺ G^θ≡1）；θ=0 不动 env、不动群体其余参数，且监控里 B/S/G 仍逐周记录
+（能看到"被解耦的环境本身"）。**正式模型进一步把 U 的表达式直接改为 U = D·R**
+（不再保留 G^θ 项），B/S/G 作为观测序列保留。
 
-**门槛口径（用户裁定：不调，沿用 0.95）**：门槛基数锚定中性状态
-（D≈R≈1、G=1 → U≈1.0），而基线周 W12 的 G 严格 =1（B=S=1 by construction），
-故本臂 **W12 与 normal 臂逐点等价**、差异 100% 来自 G 的逐周调制——即干净消融的定义。
-代理复扫佐证（`calibrate_speak.py --nog`，玩梗门槛单独下调）：**门槛对起爆时点无杠杆** ——
+**门槛口径（用户裁定：不调，沿用 0.95）**：门槛基数锚定中性状态（D≈R≈1 → U≈1.0）。
+代理复扫佐证：**门槛对起爆时点无杠杆** ——
 区间 [0.85, 1.0] 内一律 W20 起步（8-10 帖、总量 39-43），
 只有降到 0.4 档才量级持平（119 帖）但 W14-W17 就出现玩梗（2/5/9/14/17 帖），
 与真实基准「W12-W18 梗份额 ≤1.5%」相悖；故不调。
@@ -189,11 +198,9 @@ agent"会饿死早期 feed（W12 仅 47 帖，C=2 只供 94 槽位而当周需�
 而全类型总供给几乎不变（560→531）——差异集中在玩梗型的**时序与量级**，
 不在总供给，与"G 是 W18-19 温和起步的驱动"一致。
 
-> **代理基线口径提示**：本节 normal 臂数字为**画像复填后**重印（`AGENT_TENDENCY_PROFILE`
-> 按烟测 run 的 agent 帖 tendency 中位数更新后，玩梗起步提前到 W16：3/7）。
-> 上文「normal 臂形态（base=0.95，代理）」段落的轨迹 0/0/0/0/1/3/9/17/18/18/18 系复填前记录，
-> 与当前脚本输出不一致——以本节（脚本实跑）为准，待统一重印。
-> 代理对起爆速度仍偏乐观，**形态以真实 run 为准**。
+> **口径提示**：本节的代理数字记录于"G 退役前"（U = D·R·G^θ 时代），仅作历史对照；
+> D 改有界 tanh、U 改为 D·R 之后，代理的玩梗轨迹为 W20 起量（W20-22 约 42 帖），
+> 与 no-G 臂实测（38 帖）同量级。代理对起爆速度仍偏乐观，**形态以真实 run 为准**。
 
 **跑法**（单 run，约 2.3h、约 507 次 LLM 调用）：
 
@@ -259,7 +266,7 @@ combined 玩梗供给份额（`supply_share_all_meme`）对读真实基准
 
 **产物**：`runs/interest_nog_s0/`（+ `monitor/interest_nog_s0/`、`monitor/overview.md` 已刷新）。
 
-## 群体（全部 18 runs 共享）
+## 群体（全部 9 runs 共享）
 
 用户 2026-09-10 裁定：按**发帖人类型占比**统计（不再按内容划分口径）——
 **玩梗 18 / 悼念 21 / 营销 26 / 讨论教育 15 / 其他 20**（100 人）。
@@ -303,8 +310,8 @@ combined 玩梗供给份额（`supply_share_all_meme`）对读真实基准
 
 - `config_params.py` — 生成脚本（stdlib-only），`experiment-config run` 执行；
   内含涌现流量调度 `EMERGENCE_FLOW_BY_WEEK`（= 真实数据各周全量帖数，与注入同源）
-- `configs/{algorithm}_{mode}_s{seed}.json` — 18 个 init_config 变体
-  （mode ∈ normal / sustained_hot）
+- `configs/{algorithm}_s{seed}.json` — 9 个 init_config 变体
+  （单因子 3 臂）
 - `configs/manifest.json` — 批次清单（因子、共享群体、样本、涌现环境语义与调度、运行命令）
 - `init_config.json` — 默认配置（= interest_normal_s0，供标准 CLI / 冒烟）
 - `steps.yaml` — start_t=2026-03-16（W12 周一），11 steps × 604800s（1 tick = 1 周）
@@ -322,9 +329,9 @@ emergence_kf / emergence_beta=1.0 / emergence_sigma=1.0 / gain clamp[0.2,3.0]）
 **多 run 编排（2026-09-10 源码核实）**：平台约定一个 experiment 只有一个固定 `run/`
 槽位（`agentsociety2/skills/experiment/config.py:96`），扩展 skill 的 `--run-id` 不影响
 run 目录且重复跑同一 `run/` 会把 replay 追加混写（`replay_sink.py` O_APPEND）。
-引擎 CLI 原生支持任意 `--run-dir`（`agentsociety2/society/cli.py`），故 18 个 run
+引擎 CLI 原生支持任意 `--run-dir`（`agentsociety2/society/cli.py`），故各 run
 各自独立目录放在 `runs/<run_id>/`；`ags.py run-experiment status` 只看固定 `run/`，
-18 个 run 的状态由监视器总览承担。
+各 run 的状态由监视器总览承担。
 
 ```bash
 # 冒烟 1 run（标准入口，落固定 run/）
@@ -332,8 +339,8 @@ $PYTHON_PATH .agentsociety/bin/ags.py run-experiment start \
   --hypothesis-id 4 --experiment-id 1 \
   --init-config hypothesis_4/experiment_1/init/configs/interest_normal_s0.json
 
-# 18 runs（引擎 CLI 直启，各自独立 run 目录；顺序或 ≤3 并发，控 LLM 速率）
-for cfg in hypothesis_4/experiment_1/init/configs/{random,chronological,interest}_{normal,sustained_hot}_s{0,1,2}.json; do
+# 9 runs（引擎 CLI 直启，各自独立 run 目录；顺序或 ≤3 并发，控 LLM 速率）
+for cfg in hypothesis_4/experiment_1/init/configs/{random,chronological,interest}_s{0,1,2}.json; do
   run_id=$(basename "$cfg" .json)
   $PYTHON_PATH -m agentsociety2.society.cli \
     --config "$cfg" \
@@ -366,7 +373,7 @@ $PYTHON_PATH hypothesis_4/experiment_1/monitor.py --week 2026-W13  # 只看某�
 - 每张表附字段说明，`status.json` 内嵌 `field_docs` 全量词汇表
 
 先冒烟 1 run（interest_normal_s0）确认管线与 LLM 预算（≈460 次内容调用/run），
-再跑全部 18 runs。
+再跑全部 9 runs。
 
 ## 判类与指标口径
 
