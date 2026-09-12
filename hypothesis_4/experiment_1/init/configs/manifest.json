@@ -41,14 +41,14 @@
     },
     "seed": 42,
     "caliber": "按发帖人类型占比统计（用户 2026-09-10 裁定，不再按内容划分）",
-    "note": "18 个配置共享同一群体（id-类型打散，人设含三机制类型化表现 + 发言决策数值参数 params）",
+    "note": "18 个配置共享同一群体（id-类型打散，人设含两机制类型化表现 + 发言决策数值参数 params）",
     "type_vocab": {
       "rule": "agent 发言用本类型词表词组织语言（用户 2026-09-09 裁定）；词源=env 判类器同口径 main/meme 列表",
       "per_agent_n": 40,
       "sample_seed": 43,
       "meme": "linkage 全量 + strong 抽样；mourning/marketing/education=main 抽样；other=空"
     },
-    "speak_decision": "双规则表达效用模型（无 LLM，用户 2026-09-12 裁定）：U=D·R，发言当且仅当 U≥activity（个体表达门槛，门槛低者易发言；确定性决策无随机数）。D=1+s·(share_own−base)/base clamp[0.05,2]（沉默螺旋）；R=exp(−λ·cum_own/50)（注意力衰减）。中性状态（D≈R≈1）下 U≈1.0，两因子乘法进入效用；门槛基数 0.95（calibrate_speak.py 同构 feed 层推演扫描定标）。params 随 profile 下发（activity/spiral/decay 三参数；原 emergence/θ 与 G 一并退役，env 侧 B/S/G 仅记录）",
+    "speak_decision": "双规则表达效用模型（无 LLM，用户 2026-09-12 裁定）：U=D·R，发言当且仅当 U≥activity（个体表达门槛，门槛低者易发言；确定性决策无随机数）。D=1+s·tanh(1.5·(share_own−base)/base)（沉默螺旋，有界无地板：D<1 即隔离成本）；R=exp(−λ·cum_own/20)（注意力衰减，半饱和尺度 20 ≈ 两周活跃曝光；2026-09-12 由 50 增强，λ 等效 ×2.5）。中性状态（D≈R≈1）下 U≈1.0，两因子乘法进入效用；门槛基数 0.95（calibrate_speak.py 同构 feed 层推演扫描定标）。公式唯一存放处 custom/envs/curation_mechanisms.py（spiral_factor / fatigue_factor，agent 与校准脚本同源）。params 随 profile 下发（activity/spiral/decay 三参数；原 emergence/θ 与 G 一并退役，env 侧 B/S/G 仅记录）",
     "content_grounding": "发言内容须基于本周 feed 前 5 条（feed_context_n=5）：回应/讨论/二创/跟帖（用户 2026-09-10 裁定）"
   },
   "feed_mechanism": {

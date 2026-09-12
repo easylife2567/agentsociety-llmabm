@@ -1,0 +1,62 @@
+[2026-09-12 22:41:34] INFO    Environment validation passed
+[2026-09-12 22:41:34] INFO    Loading config from /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/init/configs/interest_s0.json
+[2026-09-12 22:41:34] INFO    Loading steps from /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/init/steps.yaml
+[2026-09-12 22:41:34] INFO    Scanning custom modules from /Users/easylife/Project/AgentSociety
+[2026-09-12 22:41:34] INFO    ModuleRegistry initialized (lazy loading enabled)
+[2026-09-12 22:41:34] INFO    Cleared 0 custom modules
+[2026-09-12 22:41:34] INFO    Registered 1 custom env modules and 1 custom agents
+2026-09-12 22:41:36,655	INFO worker.py:2012 -- Started a local Ray instance.
+/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/lib/python3.13/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[2026-09-12 22:41:37] INFO    LLM dispatchers ready (per-process, no central pool)
+[2026-09-12 22:41:37] INFO    Replay proxy initialized (enabled=True, dir=/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/interest_s0/replay)
+[2026-09-12 22:41:37] INFO    Registered 16 env modules and 7 agents from built-in modules
+[2026-09-12 22:41:37] INFO    Cleared 1 custom modules
+[2026-09-12 22:41:37] INFO    Registered 1 custom env modules and 1 custom agents
+[2026-09-12 22:41:37] INFO    Building 100 agent specs (record-based)...
+[2026-09-12 22:41:37] INFO    Creating AgentSociety instance (record-based, no agent objects)...
+[2026-09-12 22:41:37] INFO    LLM dispatchers ready (per-process, no central pool)
+[36m(create_agents_batch pid=34235)[0m [2026-09-12 22:41:40] INFO    ModuleRegistry initialized (lazy loading enabled)
+[36m(create_agents_batch pid=34235)[0m [2026-09-12 22:41:41] INFO    Registered 16 env modules and 7 agents from built-in modules
+[36m(create_agents_batch pid=34235)[0m [2026-09-12 22:41:41] INFO    Cleared 0 custom modules
+[36m(create_agents_batch pid=34235)[0m [2026-09-12 22:41:41] INFO    Registered 1 custom env modules and 1 custom agents
+[36m(EnvRouterActor pid=34231)[0m [2026-09-12 22:41:42] INFO    Loaded 2 cache entries (env=[["CurationDynamicsSpace", "custom_env_CurationDynamicsSpace.CurationDynamicsSpa...), FAISS index size: 2
+[36m(EnvRouterActor pid=34231)[0m [2026-09-12 22:42:20] INFO    Generated observe code using LLM
+[36m(EnvRouterActor pid=34231)[0m [2026-09-12 22:41:40] INFO    ModuleRegistry initialized (lazy loading enabled)
+[36m(EnvRouterActor pid=34231)[0m [2026-09-12 22:41:42] INFO    Registered 16 env modules and 7 agents from built-in modules
+[36m(EnvRouterActor pid=34231)[0m [2026-09-12 22:41:42] INFO    Cleared 0 custom modules
+[36m(EnvRouterActor pid=34231)[0m [2026-09-12 22:41:42] INFO    Registered 1 custom env modules and 1 custom agents
+[2026-09-12 22:42:58] INFO    AgentSociety initialized
+[2026-09-12 22:42:58] INFO    Executing 1 steps...
+[2026-09-12 22:42:58] INFO    Running 11/11 steps with tick=604800
+[36m(EnvRouterActor pid=34231)[0m [2026-09-12 22:42:58] INFO    Generated statistics code using LLM
+*** SIGTERM received at time=1789224233 ***
+PC: @        0x18f75bfc4  (unknown)  kevent
+    @        0x11884b9a8  (unknown)  absl::lts_20230802::AbslFailureSignalHandler()
+    @        0x18f7a3744  (unknown)  _sigtramp
+    @        0x104183fa4  (unknown)  select_kqueue_control_impl
+    @        0x10390f7b0  (unknown)  _PyEval_EvalFrameDefault
+    @        0x1038b643c  (unknown)  PyEval_EvalCode
+    @        0x103b14180  (unknown)  builtin_exec
+    @        0x103b95b10  (unknown)  cfunction_vectorcall_FASTCALL_KEYWORDS.llvm.11106119402670940193
+    @        0x103907c28  (unknown)  _PyEval_EvalFrameDefault
+    @        0x103ae2210  (unknown)  pymain_run_module
+    @        0x103a75db8  (unknown)  Py_RunMain
+    @        0x103a6d2bc  (unknown)  pymain_main
+    @        0x103a6d0dc  (unknown)  Py_BytesMain
+    @        0x18f3dbe00  (unknown)  start
+[2026-09-12 22:43:53,630 E 34197 2067729] logging.cc:474: *** SIGTERM received at time=1789224233 ***
+[2026-09-12 22:43:53,630 E 34197 2067729] logging.cc:474: PC: @        0x18f75bfc4  (unknown)  kevent
+[2026-09-12 22:43:53,631 E 34197 2067729] logging.cc:474:     @        0x11884bac8  (unknown)  absl::lts_20230802::AbslFailureSignalHandler()
+[2026-09-12 22:43:53,631 E 34197 2067729] logging.cc:474:     @        0x18f7a3744  (unknown)  _sigtramp
+[2026-09-12 22:43:53,632 E 34197 2067729] logging.cc:474:     @        0x104183fa4  (unknown)  select_kqueue_control_impl
+[2026-09-12 22:43:53,632 E 34197 2067729] logging.cc:474:     @        0x10390f7b0  (unknown)  _PyEval_EvalFrameDefault
+[2026-09-12 22:43:53,632 E 34197 2067729] logging.cc:474:     @        0x1038b643c  (unknown)  PyEval_EvalCode
+[2026-09-12 22:43:53,632 E 34197 2067729] logging.cc:474:     @        0x103b14180  (unknown)  builtin_exec
+[2026-09-12 22:43:53,632 E 34197 2067729] logging.cc:474:     @        0x103b95b10  (unknown)  cfunction_vectorcall_FASTCALL_KEYWORDS.llvm.11106119402670940193
+[2026-09-12 22:43:53,632 E 34197 2067729] logging.cc:474:     @        0x103907c28  (unknown)  _PyEval_EvalFrameDefault
+[2026-09-12 22:43:53,632 E 34197 2067729] logging.cc:474:     @        0x103ae2210  (unknown)  pymain_run_module
+[2026-09-12 22:43:53,632 E 34197 2067729] logging.cc:474:     @        0x103a75db8  (unknown)  Py_RunMain
+[2026-09-12 22:43:53,633 E 34197 2067729] logging.cc:474:     @        0x103a6d2bc  (unknown)  pymain_main
+[2026-09-12 22:43:53,633 E 34197 2067729] logging.cc:474:     @        0x103a6d0dc  (unknown)  Py_BytesMain
+[2026-09-12 22:43:53,633 E 34197 2067729] logging.cc:474:     @        0x18f3dbe00  (unknown)  start
