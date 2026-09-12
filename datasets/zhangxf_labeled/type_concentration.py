@@ -60,6 +60,14 @@ def summarize(df: pd.DataFrame, user_col, types, label: str) -> dict:
         "多类型用户数": n_users - n_single,
         "类型数分布": {int(k): int(v) for k, v in t.value_counts().sort_index().items()},
         "单类型用户类型构成": {k: int(v) for k, v in comp.items()},
+        # 构成占比：分母分别为 单类型用户数 / 全部用户数 / 剔除爬取噪音后的五类合计
+        "单类型用户构成占比": {
+            "占单类型用户": {k: round(v / n_single, 4) for k, v in comp.items()} if n_single else {},
+            "占全部用户": {k: round(v / n_users, 4) for k, v in comp.items()} if n_users else {},
+            "占五类(不含爬取噪音)": {
+                k: round(v / sum(x for kk, x in comp.items() if kk != NOISE_TYPE), 4)
+                for k, v in comp.items() if k != NOISE_TYPE},
+        },
     }
 
 
@@ -102,6 +110,10 @@ def main() -> None:
     print(f"单类型用户 {p['单类型用户数']:,} / {p['用户数']:,} = {p['单类型用户占比']:.2%}")
     print("类型数分布:", p["类型数分布"])
     print("单类型用户构成:", p["单类型用户类型构成"])
+    sh = p["单类型用户构成占比"]
+    for k, v in sorted(sh["占五类(不含爬取噪音)"].items(), key=lambda x: -x[1]):
+        print(f"    {k}: 占五类 {v:.2%} | 占单类型 {sh['占单类型用户'][k]:.2%}"
+              f" | 占全用户 {sh['占全部用户'][k]:.2%}")
     print(f"单类型用户覆盖帖子 {p['单类型用户帖子数']:,} / {p['帖子数']:,} = {p['单类型用户帖子占比']:.2%}")
     for v in res["variants"] + [dict(x, 口径=f"[平台] {k}") for k, x in res["by_platform"].items()]:
         print(f"  - {v['口径']}: {v['单类型用户数']:,}/{v['用户数']:,} = {v['单类型用户占比']:.2%}")
