@@ -20,5 +20,7 @@ AgentSociety_*.tar.gz
 agentsociety_data/
 hypothesis_4/experiment_1/run/
 hypothesis_4/experiment_1/runs/
+hypothesis_4/experiment_1/runs_retired_pre_batch/*/
+!hypothesis_4/experiment_1/runs_retired_pre_batch/README.md
 hypothesis_4/experiment_1/monitor/
 hypothesis_4/experiment_1/*.log
