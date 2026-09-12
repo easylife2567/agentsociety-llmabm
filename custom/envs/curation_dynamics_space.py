@@ -19,6 +19,7 @@ import importlib.util
 import json
 import random
 import re
+import traceback
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any, ClassVar, Optional
@@ -1225,6 +1226,36 @@ class CurationDynamicsSpace(EnvBase):
     async def close(self) -> None:
         """收尾：把残留 pending agent 帖并入池（11 步后正常应无残留）。"""
         self._flush_pending_to_pool()
+
+    def set_replay_writer(self, writer: Any) -> None:
+        """只接受真正的 replay 写入器；其余一律拒绝并大声报错。
+
+        背景：2026-09-13 的 9-run 批跑中，random_s2 与 interest_s1 两次出现
+        ``AttributeError: 'dict' object has no attribute 'write'``（env/base.py:836）。
+        引擎把该 run 在 step 0 就申报成 completed，而 curation_dynamics 两张表**全空**——
+        既不报错也不留行。排查已排除 Ray 往返（``ReplayProxy.__getstate__`` /
+        ``__setstate__`` 往返正常），只剩「迟到的 set_replay_writer 覆盖」一条路径：
+        ``EnvBase.set_replay_writer`` 先赋值再 ``create_task`` 异步注册表，注册过程中
+        若再来一次覆盖，表已注册（``_state_tables_registered=True``）而写入器已换人，
+        于是 ``_write_env_state`` 跳过注册守卫、直接对非写入器调 ``.write``。
+
+        这里的处理是**拒绝坏写入器、保留原有好写入器**：宁可少一次覆盖，也不能让一个
+        非写入器对象把整张 replay 表写空——那种失败不报错、不留行，只能靠 step 数之外的
+        独立校验（verify B10 / plot_arm_charts.check_replay）事后才发现。
+        """
+        if writer is not None and not all(
+            callable(getattr(writer, m, None))
+            for m in ("write", "write_batch", "register_table")
+        ):
+            logger.error(
+                "拒绝非写入器对象，保留原写入器：传入 type=%s%s；原写入器 type=%s。调用栈：\n%s",
+                type(writer).__name__,
+                f" keys={sorted(writer)}" if isinstance(writer, dict) else "",
+                type(getattr(self, "_replay_writer", None)).__name__,
+                "".join(traceback.format_stack()[-6:-1]),
+            )
+            return
+        super().set_replay_writer(writer)
 
     # ---------------- 描述（P2：散文+加粗函数名，面向中文 LLM Agent） ----------------
 

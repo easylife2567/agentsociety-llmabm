@@ -1,0 +1,89 @@
+[2026-09-13 03:25:46] INFO    Environment validation passed
+[2026-09-13 03:25:46] INFO    Loading config from /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/init/configs/interest_s1.json
+[2026-09-13 03:25:46] INFO    Loading steps from /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/init/steps.yaml
+[2026-09-13 03:25:46] INFO    Scanning custom modules from /Users/easylife/Project/AgentSociety
+[2026-09-13 03:25:46] INFO    ModuleRegistry initialized (lazy loading enabled)
+[2026-09-13 03:25:46] INFO    Cleared 0 custom modules
+[2026-09-13 03:25:47] INFO    Registered 1 custom env modules and 1 custom agents
+2026-09-13 03:25:49,081	INFO worker.py:2012 -- Started a local Ray instance.
+/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/lib/python3.13/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[2026-09-13 03:25:50] INFO    LLM dispatchers ready (per-process, no central pool)
+[2026-09-13 03:25:50] INFO    Replay proxy initialized (enabled=True, dir=/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/interest_s1/replay)
+[2026-09-13 03:25:50] INFO    Registered 16 env modules and 7 agents from built-in modules
+[2026-09-13 03:25:50] INFO    Cleared 1 custom modules
+[2026-09-13 03:25:50] INFO    Registered 1 custom env modules and 1 custom agents
+[2026-09-13 03:25:50] INFO    Building 100 agent specs (record-based)...
+[2026-09-13 03:25:50] INFO    Creating AgentSociety instance (record-based, no agent objects)...
+[2026-09-13 03:25:50] INFO    LLM dispatchers ready (per-process, no central pool)
+[36m(create_agents_batch pid=83993)[0m [2026-09-13 03:25:52] INFO    ModuleRegistry initialized (lazy loading enabled)
+[36m(create_agents_batch pid=83993)[0m [2026-09-13 03:25:53] INFO    Registered 16 env modules and 7 agents from built-in modules
+[36m(create_agents_batch pid=83993)[0m [2026-09-13 03:25:53] INFO    Cleared 0 custom modules
+[36m(create_agents_batch pid=83993)[0m [2026-09-13 03:25:53] INFO    Registered 1 custom env modules and 1 custom agents
+[36m(EnvRouterActor pid=83991)[0m [2026-09-13 03:25:53] INFO    Loaded 0 cache entries (env=[["CurationDynamicsSpace", "custom_env_CurationDynamicsSpace.CurationDynamicsSpa...), FAISS index size: 0
+[36m(EnvRouterActor pid=83991)[0m [2026-09-13 03:25:57] INFO    Generated observe code using LLM
+[2026-09-13 03:26:16] INFO    AgentSociety initialized
+[2026-09-13 03:26:16] INFO    Executing 1 steps...
+[2026-09-13 03:26:16] INFO    Running 11/11 steps with tick=604800
+[36m(EnvRouterActor pid=83991)[0m [2026-09-13 03:26:16] INFO    Generated statistics code using LLM
+[36m(EnvRouterActor pid=83991)[0m [2026-09-13 03:25:52] INFO    ModuleRegistry initialized (lazy loading enabled)
+[36m(EnvRouterActor pid=83991)[0m [2026-09-13 03:25:53] INFO    Registered 16 env modules and 7 agents from built-in modules
+[36m(EnvRouterActor pid=83991)[0m [2026-09-13 03:25:53] INFO    Cleared 0 custom modules
+[36m(EnvRouterActor pid=83991)[0m [2026-09-13 03:25:53] INFO    Registered 1 custom env modules and 1 custom agents
+[36m(EnvRouterActor pid=83991)[0m [2026-09-13 03:26:53] INFO    [AdaptiveSem] INCREASE: 16 -> 17 (next_step=2)
+[36m(EnvRouterActor pid=83991)[0m [2026-09-13 03:27:31] INFO    [AdaptiveSem] INCREASE: 17 -> 19 (next_step=4)
+[36m(step_agent_batch pid=83993)[0m [2026-09-13 03:28:02] INFO    [AdaptiveSem] INCREASE: 16 -> 17 (next_step=2)
+[36m(EnvRouterActor pid=83991)[0m [2026-09-13 03:28:09] INFO    [AdaptiveSem] INCREASE: 19 -> 23 (next_step=8)
+[36m(EnvRouterActor pid=83991)[0m [2026-09-13 03:28:54] INFO    [AdaptiveSem] INCREASE: 23 -> 31 (next_step=16)
+[36m(EnvRouterActor pid=83991)[0m [2026-09-13 03:29:42] INFO    [AdaptiveSem] INCREASE: 31 -> 47 (next_step=16)
+[2026-09-13 03:30:03] ERROR   Error executing step 0 (run): [36mray::EnvRouterActor.step()[39m (pid=83991, ip=127.0.0.1, actor_id=edc9ade4b78a8d35e3d76dbd01000000, repr=<agentsociety2.env.env_router_actor.EnvRouterActor object at 0x10bba30e0>)
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/env/env_router_actor.py", line 171, in step
+    await self._router.step(tick, t)
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/env/router_codegen.py", line 1731, in step
+    await super().step(tick, t)
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/env/router_base.py", line 383, in step
+    await asyncio.gather(*[m.step(tick, self.t) for m in self.env_modules])
+  File "/Users/easylife/Project/AgentSociety/custom/envs/curation_dynamics_space.py", line 1209, in step
+    await self._write_env_state(self._step_index, t, **self._env_row(week, merged))
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/env/base.py", line 836, in _write_env_state
+    await self._replay_writer.write(table_name, {"step": step, "t": t, **data})
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'write'
+Traceback (most recent call last):
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/society/cli.py", line 646, in run
+    await self.society.run(
+        num_steps=remaining, tick=step.tick
+    )
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/society/society.py", line 646, in run
+    await self.step(tick)
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/society/society.py", line 631, in step
+    await self._env_router.step(tick, self._t)
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/env/env_router_proxy.py", line 86, in step
+    return await self._actor.step.remote(tick, t)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ray.exceptions.RayTaskError(AttributeError): [36mray::EnvRouterActor.step()[39m (pid=83991, ip=127.0.0.1, actor_id=edc9ade4b78a8d35e3d76dbd01000000, repr=<agentsociety2.env.env_router_actor.EnvRouterActor object at 0x10bba30e0>)
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/env/env_router_actor.py", line 171, in step
+    await self._router.step(tick, t)
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/env/router_codegen.py", line 1731, in step
+    await super().step(tick, t)
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/env/router_base.py", line 383, in step
+    await asyncio.gather(*[m.step(tick, self.t) for m in self.env_modules])
+  File "/Users/easylife/Project/AgentSociety/custom/envs/curation_dynamics_space.py", line 1209, in step
+    await self._write_env_state(self._step_index, t, **self._env_row(week, merged))
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/env/base.py", line 836, in _write_env_state
+    await self._replay_writer.write(table_name, {"step": step, "t": t, **data})
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'write'
+[2026-09-13 03:30:03] INFO    Experiment completed successfully
