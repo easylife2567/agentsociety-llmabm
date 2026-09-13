@@ -63,8 +63,17 @@ uv sync && npm --prefix extension install && npm --prefix frontend install
 处理：裁剪版已将 `easypaper_config.yaml` 一并剔除。全树复扫（`sk-` 模式 + 6383 个小配置文件的
 凭据字段扫描）确认**再无其他副本**（另有 1 处 `sk-` 命中是文献正文里的 `algorithm-task-...`，误报）。
 
-> **建议**：该 Key 已被 git 跟踪，若要彻底断掉，需轮换 `LITERATURE_SEARCH_API_KEY`
-> 并把 `easypaper_config.yaml` 加入 `.gitignore`（历史对象中的旧值仍需 `filter-repo` 才能清除）。
+**已处置（提交 `a992daa`）**：`.env` 与 `easypaper_config.yaml` 均已 `git rm --cached` 退出跟踪，
+`.gitignore` 新增凭据段（磁盘文件保留，运行时不受影响），并新增无密钥的 `env.template`。
+
+> **仍未消除的风险**：退出跟踪只影响**后续**提交。旧值仍在历史对象里
+> ——`.env` 自首个提交 `f545289`（2026-08-18 bootstrap）起就在库中，共 14 个提交涉及。
+> 彻底断掉需二选一或都做：**① 轮换 `LITERATURE_SEARCH_API_KEY`**（推荐，最省事且不动审计线索）；
+> **② `git filter-repo` 改写历史**（会重写全部 98 个提交的 SHA，本包正文中引用的
+> `ef29767` 等提交号将失效，需同步重新打包）。
+>
+> **另注**：完整版 `AgentSociety_H4E1_formal_20260913.tar.gz` 内含 `.git/`（6818 条目），
+> 因此**该压缩包本身携带密钥历史**，不可外发。
 
 ## 五、校验（均实测，非推断）
 
