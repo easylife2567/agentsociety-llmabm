@@ -3,7 +3,7 @@
   "workspace": {
     "topic": "公众人物去世后，算法策展如何塑造舆论场对其的数字表征",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "run_experiment",
+    "current_stage": "analysis",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
     "revision_round": 4,
@@ -67,14 +67,24 @@
       "revision_round": 4
     },
     "run_experiment": {
-      "status": "not_started",
-      "started_at": null,
-      "completed_at": null,
-      "attempts": 0,
+      "status": "completed",
+      "started_at": "2026-09-13T17:36:58.954858+00:00",
+      "completed_at": "2026-09-13T18:23:22.799809+00:00",
+      "attempts": 1,
       "error": null,
-      "metadata": {},
-      "verification_status": "not_started",
-      "revision_round": 0
+      "metadata": {
+        "run_id": "anchored_v1_interest_s0_smoke",
+        "kind": "baseline_smoke",
+        "config": "anchored_v1_interest_s0",
+        "run_dir": "hypothesis_4/experiment_1/run",
+        "step_count": 11,
+        "env_rows": 11,
+        "agent_rows": 1100,
+        "charts_dir": "hypothesis_4/experiment_1/charts/smoke",
+        "scope": "single-seed diagnostic smoke test"
+      },
+      "verification_status": "complete",
+      "revision_round": 4
     },
     "analysis": {
       "status": "not_started",
@@ -342,6 +352,28 @@
       "to_status": "completed",
       "from_stage": "experiment_config",
       "to_stage": "run_experiment"
+    },
+    {
+      "sequence": 14,
+      "timestamp": "2026-09-13T17:36:58.954865+00:00",
+      "kind": "stage_update",
+      "revision_round": 4,
+      "stage": "run_experiment",
+      "from_status": "not_started",
+      "to_status": "in_progress",
+      "from_stage": "run_experiment",
+      "to_stage": "run_experiment"
+    },
+    {
+      "sequence": 15,
+      "timestamp": "2026-09-13T18:23:22.799820+00:00",
+      "kind": "stage_update",
+      "revision_round": 4,
+      "stage": "run_experiment",
+      "from_status": "in_progress",
+      "to_status": "completed",
+      "from_stage": "run_experiment",
+      "to_stage": "analysis"
     }
   ]
 }
