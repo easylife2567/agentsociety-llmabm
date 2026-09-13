@@ -1,0 +1,103 @@
+{
+  "artifact_status": "numerical_proxy_prediction_not_simulation",
+  "formula": "R=exp(-lambda_i*cum_own/15)",
+  "scale_fixed": 15.0,
+  "calibration_source": "interest_s0..s2 replay; frozen observed feed/climate histories",
+  "prediction_source": "isomorphic dynamic proxy; 100 feed-sampling seeds; injection_sample_s0; no LLM",
+  "training_weeks": [
+    "2026-W13",
+    "2026-W14",
+    "2026-W15",
+    "2026-W16",
+    "2026-W17",
+    "2026-W18"
+  ],
+  "validation_weeks_not_used_for_fit": [
+    "2026-W19",
+    "2026-W20",
+    "2026-W21",
+    "2026-W22"
+  ],
+  "real_to_agent_scale": {
+    "rule": "W13 real mourning posts 4714 map to all 22 mourning agents speaking once",
+    "multiplier": 0.004666949512091642
+  },
+  "current_lambda_mean": {
+    "meme": 0.8189947368421052,
+    "mourning": 1.1855954545454546,
+    "marketing": 0.05061304347826087,
+    "education": 0.41152,
+    "other": 0.9768714285714286
+  },
+  "recalibrated_lambda_mean": {
+    "meme": 0.8242610928134365,
+    "mourning": 1.2051027399120533,
+    "marketing": 0.21483691714605863,
+    "education": 1.0182032295637786,
+    "other": 1.5140052221912348
+  },
+  "lambda_ratio_new_over_current": {
+    "meme": 1.0064302683941992,
+    "mourning": 1.0164535763795397,
+    "marketing": 4.244694694922557,
+    "education": 2.4742496830379537,
+    "other": 1.5498510632103426
+  },
+  "dynamic_proxy_rate_rmse": {
+    "train_current": 0.31378263524478234,
+    "train_recalibrated": 0.1285070633851458,
+    "validation_current": 0.25518174175478164,
+    "validation_recalibrated": 0.1535483467955759
+  },
+  "key_totals": {
+    "2026-W13": {
+      "real_scaled": 50.40305473058973,
+      "current_mean": 43.08,
+      "current_sd": 2.9754999579902535,
+      "recalibrated_mean": 37.36,
+      "recalibrated_sd": 2.7258760059841314
+    },
+    "2026-W18": {
+      "real_scaled": 7.289775137887145,
+      "current_mean": 32.22,
+      "current_sd": 2.893371735536241,
+      "recalibrated_mean": 7.08,
+      "recalibrated_sd": 2.4069898213328615
+    },
+    "2026-W19": {
+      "real_scaled": 7.5651251591005515,
+      "current_mean": 27.86,
+      "current_sd": 2.668407764941483,
+      "recalibrated_mean": 3.62,
+      "recalibrated_sd": 2.2661862235924035
+    },
+    "2026-W20": {
+      "real_scaled": 10.962664403903267,
+      "current_mean": 27.27,
+      "current_sd": 2.7851570871317115,
+      "recalibrated_mean": 11.31,
+      "recalibrated_sd": 2.621812350264603
+    },
+    "2026-W21": {
+      "real_scaled": 18.770470937632584,
+      "current_mean": 32.73,
+      "current_sd": 2.253242108607062,
+      "recalibrated_mean": 18.79,
+      "recalibrated_sd": 0.5156549233741495
+    },
+    "2026-W22": {
+      "real_scaled": 23.838778107764107,
+      "current_mean": 31.14,
+      "current_sd": 1.7030560765870277,
+      "recalibrated_mean": 18.3,
+      "recalibrated_sd": 1.4594519519326423
+    }
+  },
+  "limitations": [
+    "Real benchmark rows are post counts, not active-author counts; the scale is an explicit mapping assumption.",
+    "Lambda was fitted on frozen replay feed histories, then evaluated in a dynamic numerical proxy; this is not a rerun simulation.",
+    "Meme lambda is weakly identified in W13-W18 because meme agents receive almost no same-type exposure and rarely speak.",
+    "A cumulative-only fatigue term cannot restore a normal baseline, so late non-meme supply is likely underpredicted.",
+    "The dynamic proxy uses injection_sample_s0 and 100 feed RNG seeds, not three independently sampled injection pools."
+  ]
+}
