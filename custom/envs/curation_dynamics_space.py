@@ -209,8 +209,8 @@ def _rng_state_from_json(v: Any) -> Any:
 
 
 class CurationDynamicsSpace(EnvBase):
-    """舆论场数字表征转移模拟环境：三种推荐算法 × 两种玩梗涌现环境（3×2 全因子 6 cells），
-    100 个固定类型 Agent 的差异化激活与公共表征构成变化（张雪峰 2026-03-24 去世 W13，W12→W22 共 11 周）。"""
+    """舆论场数字表征转移模拟环境：推荐算法单因子三臂，100 个固定类型 Agent，
+    W12→W22 共 11 周；环境 B_t/S_t/G_t 只记录、不进入 Agent 决策。"""
 
     # ---------------- Replay 列声明 ----------------
     # env 级：每 step 一行（主键 step=_step_index），55 列。
@@ -566,7 +566,8 @@ class CurationDynamicsSpace(EnvBase):
         S_t = h(Flow_t)/h(Flow_base)，h(x)=K_f/(K_f+x)（单期新增越少越空旷、越宜传播）。
         涌现增益 G_t = clamp(B_t^β·S_t^σ, gain_min, gain_max)。**2026-09-12 用户裁定：
         G 与 agent 侧 θ 一并退役，本函数结果仅作为观测序列写入 replay 与监控（描述性
-        时间轴 + 审计线索），不进入任何类型的决策**（agent 侧现为 U = D·R）。
+        时间轴 + 审计线索），不进入任何类型的决策**（agent 侧现为
+        U = B_i + R·(D−B_i)；这里的常态锚点 B_i 不同于环境丰沛度 B_t）。
         sustained_hot 模式（反事实臂「维持高热」）：W12/W13 正常计算，W13 记录 S
         （事件周空旷度），此后冻结为该值；B 保持内生演化（用户裁定）。"""
         flow_sim = sum(self._injected_this_week.values()) + len(
@@ -1262,8 +1263,8 @@ class CurationDynamicsSpace(EnvBase):
     @classmethod
     def description(cls) -> str:
         return (
-            "舆论场数字表征转移模拟环境（CurationDynamicsSpace）：三种推荐算法 × 两种玩梗"
-            "涌现环境（3×2 全因子 6 cells）下，100 个固定类型 Agent 的差异化激活与公共表征构成"
+            "舆论场数字表征转移模拟环境（CurationDynamicsSpace）：推荐算法单因子三臂"
+            "（random / chronological / interest）下，100 个固定类型 Agent 的差异化激活与公共表征构成"
             "变化（张雪峰 2026-03-24 去世 W13，W12→W22 共 11 周）。Agent 每周通过 "
             "**get_feed(agent_id)** 查看本周推荐信息流、意见气候、玩梗涌现环境与全局供给/曝光"
             "份额，再决定是否发言；发言通过 **create_post(agent_id, content)** 发布一篇类型由"

@@ -1,19 +1,20 @@
 {
   "experiment": "hypothesis_4/experiment_1",
-  "design": "单因子 3 臂：推荐算法（random/chronological/interest）× 3 seeds = 9 runs（2026-09-12 用户裁定：玩梗涌现环境增益 G 退役，第二因子 sustained_hot 随之失效；Agent 只由沉默螺旋 D 与注意力衰减 R 约束，U = D·R ≥ activity）",
+  "round": "anchored_v1",
+  "design": "锚定式效用新一轮：单因子 3 臂（random/chronological/interest）× 3 seeds = 9 runs；（2026-09-12 用户裁定：玩梗涌现环境增益 G 退役，第二因子 sustained_hot 随之失效；2026-09-14 用户裁定：U = B_i + R·(D−B_i) ≥ activity，疲劳使事件冲击回归常态锚点而非归零）",
   "run_ids": [
-    "random_s0",
-    "random_s1",
-    "random_s2",
-    "chronological_s0",
-    "chronological_s1",
-    "chronological_s2",
-    "interest_s0",
-    "interest_s1",
-    "interest_s2"
+    "anchored_v1_random_s0",
+    "anchored_v1_random_s1",
+    "anchored_v1_random_s2",
+    "anchored_v1_chronological_s0",
+    "anchored_v1_chronological_s1",
+    "anchored_v1_chronological_s2",
+    "anchored_v1_interest_s0",
+    "anchored_v1_interest_s1",
+    "anchored_v1_interest_s2"
   ],
   "retired_probe": {
-    "note": "interest_nog_s0（no-G 探针）已跑完并升格为正式模型的等价物——G 退役后正式模型即 U = D·R。配置移入 configs_retired_2factor/，实测结果见 SMOKE_DIAGNOSIS_w19_cliff.md §五之三"
+    "note": "interest_nog_s0（no-G 探针）已跑完并升格为正式模型的等价物——G 退役后的上一轮模型为 U = D·R；配置移入 configs_retired_2factor/，实测结果见 SMOKE_DIAGNOSIS_w19_cliff.md §五之三"
   },
   "factors": {
     "recommendation_algorithm": [
@@ -41,14 +42,33 @@
     },
     "seed": 42,
     "caliber": "按发帖人类型占比统计（用户 2026-09-10 裁定，不再按内容划分）",
-    "note": "18 个配置共享同一群体（id-类型打散，人设含两机制类型化表现 + 发言决策数值参数 params）",
+    "note": "9 个配置共享同一群体（id-类型打散，人设含两机制类型化表现 + 发言决策数值参数 params）",
     "type_vocab": {
       "rule": "agent 发言用本类型词表词组织语言（用户 2026-09-09 裁定）；词源=env 判类器同口径 main/meme 列表",
       "per_agent_n": 40,
       "sample_seed": 43,
       "meme": "linkage 全量 + strong 抽样；mourning/marketing/education=main 抽样；other=空"
     },
-    "speak_decision": "双规则表达效用模型（无 LLM，用户 2026-09-12 裁定）：U=D·R，发言当且仅当 U≥activity（个体表达门槛，门槛低者易发言；确定性决策无随机数）。D=1+s·tanh(1.5·(share_own−base)/base)（沉默螺旋，有界无地板：D<1 即隔离成本）；R=exp(−λ·cum_own/15)（注意力衰减，半饱和尺度 15 ≈ 一周半活跃曝光；2026-09-12 由 50 调至 20、2026-09-13 进一步下压至 15，λ 等效 ×3.33）。中性状态（D≈R≈1）下 U≈1.0，两因子乘法进入效用；门槛基数 0.95（calibrate_speak.py 同构 feed 层推演扫描定标）。公式唯一存放处 custom/envs/curation_mechanisms.py（spiral_factor / fatigue_factor，agent 与校准脚本同源）。params 随 profile 下发（activity/spiral/decay 三参数；原 emergence/θ 与 G 一并退役，env 侧 B/S/G 仅记录）",
+    "speak_decision": "锚定式表达效用模型（无 LLM，用户 2026-09-14 裁定）：U=B_i+R·(D−B_i)，发言当且仅当 U≥activity。D=1+(alpha_D·s_i)·tanh(1.5·(share_own−base)/base)；alpha_D=0.4296954756，只缩放s而不移动D=1的中性中心。R=exp(−λ_i·cum_own/15)。B_i固定自W05-W12常态供给映射，alpha_D和五类λ只用W13-W18统一标定，W19-W22留出。R=1时U=D，R→0时U→B_i，故衰减有常态下限而不归零。params随profile显式下发activity/spiral/spiral_scale/decay/baseline_utility；共享公式位于curation_mechanisms.anchored_utility。原emergence/θ与G维持退役，env侧B_t/S_t/G_t仅记录。",
+    "anchored_calibration": {
+      "selection": "B_i fixed from W05-W12; alpha_D and lambda selected on W13-W18 only; W19-W22 held out",
+      "alpha_D": 0.4296954755626446,
+      "baseline_utility": {
+        "meme": 0.7755,
+        "mourning": 0.7678,
+        "marketing": 0.82515,
+        "education": 0.7412,
+        "other": 0.7686
+      },
+      "lambda_mean": {
+        "meme": 1.2430377762128202,
+        "mourning": 2.2820352013850083,
+        "marketing": 1.0192411149739293,
+        "education": 2.4936143467584957,
+        "other": 4.429457710113387
+      },
+      "source": "data/anchored_utility_prediction.json"
+    },
     "content_grounding": "发言内容须基于本周 feed 前 5 条（feed_context_n=5）：回应/讨论/二创/跟帖（用户 2026-09-10 裁定）"
   },
   "feed_mechanism": {
@@ -151,6 +171,6 @@
       3.0
     ]
   },
-  "default_init_config": "interest_s0",
+  "default_init_config": "anchored_v1_interest_s0",
   "run_command": "$PYTHON_PATH .agentsociety/bin/ags.py run-experiment start --hypothesis-id 4 --experiment-id 1 --init-config hypothesis_4/experiment_1/init/configs/<run_id>.json --run-id <run_id>"
 }

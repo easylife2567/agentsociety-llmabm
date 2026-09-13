@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """verify_experiment.py: 全链路离线核验（不跑 LLM、不写 replay、不写任何实验产物；秒级）。
 
-动机（用户 2026-09-13 要求"再核实一遍整体实验"）：R 尺度 15 与事件周议程保底（W13 保底 5 条
+动机：锚定式效用、R 尺度 15 与事件周议程保底（W13 保底 5 条
 哀悼帖 + 官方讣告置顶）是**平台级**改动，一旦 env / agent / 校准脚本 / 代理 / 配置五处口径漂移，
 真实 run 跑完 8-9 小时才发现代价极高。本脚本把可离线判定的部分全部断言化，作为跑批前的门禁。
 
@@ -16,9 +16,9 @@
   B. **同构层**（公式与常数跨模块逐值一致）
      B1 R 半饱和尺度：env/agent/校准/代理四处都取共享模块的 DEFAULT_DECAY_SCALE，无独立常量；
      B2 群体份额 POP_SHARE：personas == agent 侧 _POP_SHARE == counts/100；
-     B3 类型参数均值：personas._PARAM_SPECS[*][k][0] == agent 侧 _PARAM_DEFAULTS[type][k]；
+     B3 锚定参数：配置内五类 λ 实际均值、B_i、alpha_D 与权威常数逐值一致；
      B4 议程保底条数：config_params == manifest == 校准脚本解析值；
-     B5 D/R 公式：三处对同一输入给出同值（共享纯函数 + cliff 边界）；
+     B5 锚定式公式边界：R=1⇒U=D、R=0⇒U=B、D=B⇒U=B；
      B6 保底候选资格口径：仅排除 noise，不限定 mourning 类型；
      B7 校准器确定性：同 (seed,N,scale) 两次调用逐值一致（防 id() 平票漂移）；
      B8 调度/监视/出图脚本可编译（防语法错误静默上线）；
@@ -76,7 +76,9 @@ def _load(name: str, path: Path):
 # A. 配置层
 # ---------------------------------------------------------------------------
 def layer_a() -> None:
-    tracked = [CONFIGS_DIR / f"{a}_s{s}.json" for a in ("random", "chronological", "interest")
+    round_tag = "anchored_v1"
+    tracked = [CONFIGS_DIR / f"{round_tag}_{a}_s{s}.json"
+               for a in ("random", "chronological", "interest")
                for s in (0, 1, 2)]
     tracked += [CONFIGS_DIR / "manifest.json", SCRIPT_DIR / "init" / "steps.yaml",
                 SCRIPT_DIR / "init" / "init_config.json"]
@@ -143,20 +145,34 @@ def layer_b():
     check(personas.POP_SHARE == share and agent._POP_SHARE == share, "B2 群体份额四处一致",
           f"personas={personas.POP_SHARE}；agent={agent._POP_SHARE}")
 
+    population = personas.build_population(
+        {"meme": 19, "mourning": 22, "marketing": 23, "education": 15, "other": 21},
+        seed=42,
+    )
     param_ok, bad = True, []
-    for t, spec in personas._PARAM_SPECS.items():
-        for k, v in agent._PARAM_DEFAULTS[t].items():
-            mean = spec[k][0] if isinstance(spec[k], (tuple, list)) else spec[k]
-            if abs(float(mean) - float(v)) > 1e-9:
+    for t, target_lambda in personas.CALIBRATED_LAMBDA_MEAN.items():
+        members = [p for p in population if p["agent_type"] == t]
+        actual_lambda = sum(p["params"]["decay"] for p in members) / len(members)
+        checks = {
+            "lambda_mean": (actual_lambda, target_lambda),
+            "baseline": (agent._PARAM_DEFAULTS[t]["baseline_utility"],
+                         personas.BASELINE_UTILITY[t]),
+            "spiral_scale": (agent._PARAM_DEFAULTS[t]["spiral_scale"],
+                             personas.CALIBRATED_ALPHA_D),
+        }
+        for key, (got, expected) in checks.items():
+            if abs(float(got) - float(expected)) > 1e-12:
                 param_ok = False
-                bad.append(f"{t}.{k}: personas {mean} vs agent {v}")
-    check(param_ok, "B3 类型参数均值 personas == agent 回退值", "；".join(bad) or "activity/spiral/decay 全对齐")
+                bad.append(f"{t}.{key}: {got} != {expected}")
+    check(param_ok, "B3 锚定参数均值/B_i/alpha_D 与权威常数一致",
+          "；".join(bad) or "五类 λ 实际均值、B_i、alpha_D 全对齐")
 
     floor_ok = (cal.EVENT_WEEK_MOURNING_FLOOR == 5)
     cfg = json.loads((CONFIGS_DIR / "manifest.json").read_text(encoding="utf-8"))
     floor_ok &= cfg["feed_mechanism"]["event_week_mourning_floor"]["value"] == 5
     floors: set[int] = set()
-    for p in CONFIGS_DIR.glob("*_s*.json"):
+    for run_id in cfg["run_ids"]:
+        p = CONFIGS_DIR / f"{run_id}.json"
         floors.add(json.loads(p.read_text(encoding="utf-8"))["env_modules"][0]["kwargs"]
                    ["event_week_mourning_floor"])
     floor_ok &= floors == {5}
@@ -169,18 +185,21 @@ def layer_b():
     check("noise" in raw_types, "B4b 校准器保留注入帖原始类型（与 env 同口径，含 noise）",
           f"注入池出现类型 {sorted(raw_types)}")
 
-    # B5 公式同值：D 与 R 对同一输入与解析式逐值一致
+    # B5 锚定式公式同值与边界。
     import math
-    px = mech.spiral_factor(0.30, 0.19, 1.2)
-    py = mech.spiral_factor(0.0, 0.19, 1.2)          # 完全看不到本类 → 净成本段
-    rz = mech.fatigue_factor(0.8, 30.0)
-    # D<0 的临界占比：s·tanh(k·gap) < −1 ⟺ share < base·(1 + atanh(−1/s)/k)
-    crit = 0.19 * (1 + math.atanh(-1 / 1.2) / 1.5)
-    check(abs(px - (1 + 1.2 * math.tanh(1.5 * ((0.30 - 0.19) / 0.19)))) < 1e-12
-          and py < 0 < px and abs(rz - math.exp(-0.8 * 30.0 / 15.0)) < 1e-12,
-          "B5 D/R 公式（含 D<0 的净成本段与 R 尺度 15）",
-          f"D(0.30)={px:.4f} >0；D(share=0)={py:.4f} <0（孤立成本；s=1.2 时占比需低于 "
-          f"{crit:.3f} 才转负）；R(λ=0.8,cum=30)={rz:.4f}")
+    d = mech.spiral_factor(0.30, 0.19, 1.2 * personas.CALIBRATED_ALPHA_D)
+    r = mech.fatigue_factor(1.2430377762128202, 15.0)
+    b = personas.BASELINE_UTILITY["meme"]
+    u = mech.anchored_utility(b, d, r)
+    expected = b + math.exp(-1.2430377762128202) * (d - b)
+    boundaries = (
+        mech.anchored_utility(b, d, 1.0) == d
+        and mech.anchored_utility(b, d, 0.0) == b
+        and mech.anchored_utility(b, b, r) == b
+    )
+    check(abs(u - expected) < 1e-12 and boundaries,
+          "B5 锚定式 U=B_i+R(D−B_i) 与三条边界",
+          f"U={u:.6f}；R=1⇒U=D、R=0⇒U=B、D=B⇒U=B 全通过")
 
     # B6 保底候选资格口径：noise 出局、其余类型（含 other/marketing）按倾向分参与。
     check(not mech.floor_eligible("noise") and mech.floor_eligible("mourning")
@@ -287,7 +306,7 @@ def layer_c(mech, cal) -> None:
     wk_list = [f"2026-W{i}" for i in range(12, 23)]
     arms = {}
     for alg in ("random", "chronological", "interest"):
-        kw = json.loads((CONFIGS_DIR / f"{alg}_s0.json").read_text(encoding="utf-8"))
+        kw = json.loads((CONFIGS_DIR / f"anchored_v1_{alg}_s0.json").read_text(encoding="utf-8"))
         kw = dict(kw["env_modules"][0]["kwargs"])
         kw["injection_data_path"] = str(ROOT / kw["injection_data_path"])
         kw["vocab_path"] = str(ROOT / kw["vocab_path"])

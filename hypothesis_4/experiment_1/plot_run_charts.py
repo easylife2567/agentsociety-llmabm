@@ -159,9 +159,11 @@ def export_csv(weekly: list[dict], out_dir: Path) -> list[Path]:
     # 表D 机制透视（长表）
     write("weekly_mechanism.csv",
           ["week", "type", "n_decisions", "n_speak", "n_posted", "mean_u",
-           "mean_threshold", "mean_benefit", "mean_env_gain", "mean_env_multiplier"],
+           "mean_threshold", "mean_baseline", "mean_spiral", "mean_fatigue",
+           "mean_env_gain"],
           [[w["week"], t, m["n_decisions"], m["n_speak"], m["n_posted"], m["mean_u"],
-            m["mean_threshold"], m["mean_benefit"], m["mean_env_gain"], m["mean_env_multiplier"]]
+            m["mean_threshold"], m.get("mean_baseline"), m.get("mean_spiral"),
+            m.get("mean_fatigue"), m["mean_env_gain"]]
            for w in weekly for t, m in sorted(w["mech_agg"].items())])
 
     # 模拟 vs 真实基准

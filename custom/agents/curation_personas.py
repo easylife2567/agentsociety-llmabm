@@ -120,16 +120,18 @@ _NAME_FLAVOR: dict[str, list[str]] = {
 }
 
 # ---------------- 发言决策数值参数（用户 2026-09-09 数字化；2026-09-10 涌现增益模型） ----------------
-# 表达效用 U = D·R·G^θ（agent 侧实现，见 CurationDiscourseAgent._speak_stimulus）；
-# 发言当且仅当 U ≥ activity。个体参数 = 均值 × U[0.8, 1.2] 抖动后截断。
+# 表达效用 U = B_i + R·(D−B_i)（agent 侧实现，见
+# CurationDiscourseAgent._speak_stimulus）；发言当且仅当 U ≥ activity。
+# activity/spiral/旧 λ 个体参数先按均值 × U[0.8, 1.2] 抖动；随后 λ 在类型内同比
+# 缩放到新标定均值，保留 100-seed 数值代理使用的个体相对异质性。
 #
 # - activity: 个体表达门槛（越低越容易发言——用户 2026-09-10 裁定）。
 #   类型均值统一：发帖人口径下各类型人均发帖强度（内容份额/作者份额）实证
 #   meme 0.82 / mourning 0.89 / marketing 1.00 / education 1.02 / other 0.88
 #   （W12-W22 注入池 48,360 帖）≈ 1，无类型差异依据；类型行为分化由两机制参数承载。
 #   门槛基数为校准值（calibrate_speak.py：同构 feed 层推演 + 效用模型扫描定标）。
-# - spiral:   沉默螺旋敏感度 s（路人最强；营销商业动机稳定最弱）
-# - decay:    注意力衰减系数 λ（悼念情感疲劳最快；营销近乎无疲劳）
+# - spiral:   沉默螺旋敏感度 s 的原始个体值；正式计算时统一乘 alpha_D。
+# - decay:    注意力衰减系数 λ；五类实际均值按 W13-W18 统一目标函数标定。
 # 注：第四个参数 emergence(θ) 与玩梗涌现环境增益 G 已于 2026-09-12 用户裁定退役
 # （依据见 hypothesis_4/experiment_1/SMOKE_DIAGNOSIS_w19_cliff.md §五之二/§五之三）；
 # env 侧 B/S/G 仍逐周计算并写入 replay，作为描述性时间轴与审计线索。
@@ -149,6 +151,25 @@ _PARAM_SPECS: dict[str, dict[str, tuple[float, float, float]]] = {
                   "decay": (0.4, 0.1, 1.2)},
     "other":     {"activity": (0.95, 0.5, 1.5), "spiral": (1.5, 0.5, 3.0),
                   "decay": (1.0, 0.3, 2.2)},
+}
+
+# 锚定式效用标定（参数选择只使用 W13-W18；W19-W22 严格留出）。B_i 来自
+# W05-W12 常态供给映射到既有 activity 分布的效用分位点，不参与拟合。
+# alpha_D 只缩放 spiral 敏感度 s，使 D=1+s*tanh(...) 的中性中心仍严格为 1。
+CALIBRATED_ALPHA_D = 0.4296954755626446
+BASELINE_UTILITY: dict[str, float] = {
+    "meme": 0.7755,
+    "mourning": 0.7678,
+    "marketing": 0.82515,
+    "education": 0.7412,
+    "other": 0.7686,
+}
+CALIBRATED_LAMBDA_MEAN: dict[str, float] = {
+    "meme": 1.2430377762128202,
+    "mourning": 2.2820352013850083,
+    "marketing": 1.0192411149739293,
+    "education": 2.4936143467584957,
+    "other": 4.429457710113387,
 }
 
 # 群体类型份额（发言决策中沉默螺旋的"期望份额"基线，与 100 人群体构成一致）。
@@ -173,6 +194,9 @@ def _sample_params(agent_type: str, rng: random.Random) -> dict[str, float]:
         params[name] = round(min(hi, max(lo, mean * rng.uniform(0.8, 1.2))), 4)
     for _ in range(_RETIRED_PARAM_DRAWS):   # 保序消耗（见上方说明），值不存储、不使用
         rng.uniform(0.8, 1.2)
+    # 不消耗随机数：B_i 与 alpha_D 是本轮预注册的类型/全局常数。
+    params["baseline_utility"] = BASELINE_UTILITY[agent_type]
+    params["spiral_scale"] = CALIBRATED_ALPHA_D
     return params
 
 
@@ -224,6 +248,16 @@ def build_population(counts: dict[str, int], seed: int = 0) -> list[dict]:
         profiles.append(
             {"id": i, "name": name, "agent_type": t, "persona": persona, "params": params}
         )
+    # 与数值代理完全同口径：先保留旧群体的 λ 相对异质性，再按类型实际均值同比缩放。
+    # 不在 _PARAM_SPECS 中直接替换均值，避免旧上下界截断 marketing/education/other。
+    for agent_type, target_mean in CALIBRATED_LAMBDA_MEAN.items():
+        members = [p for p in profiles if p["agent_type"] == agent_type]
+        if not members:
+            continue
+        current_mean = sum(p["params"]["decay"] for p in members) / len(members)
+        ratio = target_mean / current_mean
+        for profile in members:
+            profile["params"]["decay"] *= ratio
     return profiles
 
 

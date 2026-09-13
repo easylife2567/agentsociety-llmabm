@@ -5,10 +5,11 @@
 - **单因子 3 臂**：推荐算法（random / chronological / interest）× 3 seeds（0/1/2）
   = 9 个 init_config 变体，写入 init/configs/。
   （2026-09-12 用户裁定：玩梗涌现环境增益 G 退役 → 第二因子 sustained_hot 无行为差异，
-  3×2 全因子降为单因子；Agent 只由沉默螺旋 D 与注意力衰减 R 两条规则约束，
-  U = D·R ≥ activity。env 侧 B/S/G 仍逐周计算并写 replay，作为描述性时间轴与审计线索。）
+  3×2 全因子降为单因子；2026-09-14 新一轮采用锚定式表达效用
+  U = B_i + R·(D−B_i) ≥ activity。env 侧 B/S/G 仍逐周计算并写 replay，
+  作为描述性时间轴与审计线索。）
 - 100 个 agent（用户 2026-09-13 更正按发帖人口径：营销23/悼念22/其他21/玩梗19/教育15），
-  群体由 custom/agents/curation_personas.build_population(seed=42) 生成，**18 个配置完全共享**。
+  群体由 custom/agents/curation_personas.build_population(seed=42) 生成，**9 个配置完全共享**。
 - 真实帖子注入：按用户裁定「全程约 250 条」，从 custom/envs/curation_assets/
   injection_posts.json 的 W12–W22 池中按 seed 预抽样 3 份样本文件（每份 250 条，
   保底+按真实周量比例分配），env 侧 sampling_ratio=1.0 全量注入当周样本。
@@ -28,7 +29,7 @@
   configs_retired_2factor/
   = interest_normal_s0 去掉玩梗型的涌现环境因子（θ=0，大家都用 D·R），门槛基数不动；
   作为历史证据保留（见 EXPERIMENT.md「no-G 探针 → 已升格为正式模型」节）。
-- init/init_config.json 为标准 CLI 默认配置（= configs/interest_normal_s0.json）。
+- init/init_config.json 为标准 CLI 默认配置（= configs/anchored_v1_interest_s0.json）。
 
 仅使用标准库；由 `experiment-config run` 执行。
 """
@@ -60,11 +61,12 @@ ALGORITHMS = ["random", "chronological", "interest"]
 # 不产生任何行为差异，故设计降为单因子。保留常量以固定配置里的 meme_emergence_mode。
 EMERGENCE_MODES = ["normal"]
 SEEDS = [0, 1, 2]
+ROUND_TAG = "anchored_v1"  # 新一轮独立命名，避免与历史 U=D·R run/config 混淆
 
 # 用户 2026-09-10 裁定：按发帖人类型占比（不再按内容划分）——
 # 用户 2026-09-13 更正：营销23% / 悼念22% / 其他21% / 玩梗19% / 讨论教育15%。
 POPULATION_COUNTS = {"meme": 19, "mourning": 22, "marketing": 23, "education": 15, "other": 21}
-POPULATION_SEED = 42          # 群体生成种子：全 18 配置共享同一群体
+POPULATION_SEED = 42          # 群体生成种子：全 9 配置共享同一群体
 VOCAB_SAMPLE_SEED = POPULATION_SEED + 1  # 各 agent 类型词表抽样子种子（独立于群体 rng）
 TYPE_VOCAB_N = 40             # 每个 agent 注入其类型词表的词数（用户裁定：发言用词表词组织语言）
 SAMPLE_SEED_OFFSET = 777      # 注入样本抽样种子 = seed + 777
@@ -160,7 +162,7 @@ agent_types_map = {str(p["id"]): p["agent_type"] for p in population}
 # 1b. 类型词表注入（用户裁定：agent 发言须用本类型词表中的词组织语言）
 # 词源与 env 判类器一致（仅 main + meme 四列表；aux/pruned 不参与）：
 # meme = linkage 全量 + strong 抽样；其余主类 = main 抽样；other = 空。
-# 每个 agent 抽 40 词作为"个人常用词库"，确定性（Random(43)），全 18 配置共享。
+# 每个 agent 抽 40 词作为"个人常用词库"，确定性（Random(43)），全 9 配置共享。
 # ---------------------------------------------------------------------------
 vocab_doc = json.loads(VOCAB_PATH.read_text(encoding="utf-8"))
 vocab_rng = random.Random(VOCAB_SAMPLE_SEED)
@@ -316,11 +318,11 @@ for seed in SEEDS:
     print(f"✓ 注入样本 s{seed}: {len(sampled)} 条 -> {rel}")
 
 # ---------------------------------------------------------------------------
-# 3. 生成 18 个 init_config 变体 + 默认 init_config.json
+# 3. 生成新一轮 9 个 init_config 变体 + 默认 init_config.json
 # ---------------------------------------------------------------------------
 
 def make_config(algorithm: str, mode: str, seed: int, agents: list | None = None) -> dict:
-    """组装一个 init_config 变体。agents=None 用共享群体（18 配置）；探针臂可传改写后的副本。"""
+    """组装一个 init_config 变体。agents=None 使用新一轮 9 配置的共享群体。"""
     return {
         "env_modules": [
             {
@@ -372,7 +374,7 @@ run_ids: list[str] = []
 for algorithm in ALGORITHMS:
     for mode in EMERGENCE_MODES:
         for seed in SEEDS:
-            run_id = f"{algorithm}_s{seed}"
+            run_id = f"{ROUND_TAG}_{algorithm}_s{seed}"
             cfg = make_config(algorithm, mode, seed)
             (configs_dir / f"{run_id}.json").write_text(
                 json.dumps(cfg, ensure_ascii=False, indent=2), encoding="utf-8"
@@ -381,7 +383,7 @@ for algorithm in ALGORITHMS:
             print(f"✓ {run_id}")
 
 # 默认 init_config.json = 核心处理臂（interest, seed 0），供标准 CLI / 冒烟。
-default_run_id = "interest_s0"
+default_run_id = f"{ROUND_TAG}_interest_s0"
 (script_dir / "init_config.json").write_text(
     (configs_dir / f"{default_run_id}.json").read_text(encoding="utf-8"), encoding="utf-8"
 )
@@ -404,13 +406,15 @@ print("✓ steps.yaml (start_t=2026-03-16, 11 × 604800s)")
 
 manifest = {
     "experiment": "hypothesis_4/experiment_1",
-    "design": ("单因子 3 臂：推荐算法（random/chronological/interest）× 3 seeds = 9 runs"
+    "round": ROUND_TAG,
+    "design": ("锚定式效用新一轮：单因子 3 臂（random/chronological/interest）× 3 seeds = 9 runs；"
                "（2026-09-12 用户裁定：玩梗涌现环境增益 G 退役，第二因子 sustained_hot 随之失效；"
-               "Agent 只由沉默螺旋 D 与注意力衰减 R 约束，U = D·R ≥ activity）"),
+               "2026-09-14 用户裁定：U = B_i + R·(D−B_i) ≥ activity，疲劳使事件冲击回归"
+               "常态锚点而非归零）"),
     "run_ids": run_ids,
     "retired_probe": {
         "note": ("interest_nog_s0（no-G 探针）已跑完并升格为正式模型的等价物——"
-                 "G 退役后正式模型即 U = D·R。配置移入 configs_retired_2factor/，"
+                 "G 退役后的上一轮模型为 U = D·R；配置移入 configs_retired_2factor/，"
                  "实测结果见 SMOKE_DIAGNOSIS_w19_cliff.md §五之三"),
     },
     "factors": {"recommendation_algorithm": ALGORITHMS, "random_seed": SEEDS},
@@ -419,14 +423,21 @@ manifest = {
         "counts": POPULATION_COUNTS,
         "seed": POPULATION_SEED,
         "caliber": "按发帖人类型占比统计（用户 2026-09-10 裁定，不再按内容划分）",
-        "note": "18 个配置共享同一群体（id-类型打散，人设含两机制类型化表现 + 发言决策数值参数 params）",
+        "note": "9 个配置共享同一群体（id-类型打散，人设含两机制类型化表现 + 发言决策数值参数 params）",
         "type_vocab": {
             "rule": "agent 发言用本类型词表词组织语言（用户 2026-09-09 裁定）；词源=env 判类器同口径 main/meme 列表",
             "per_agent_n": TYPE_VOCAB_N,
             "sample_seed": VOCAB_SAMPLE_SEED,
             "meme": "linkage 全量 + strong 抽样；mourning/marketing/education=main 抽样；other=空",
         },
-        "speak_decision": "双规则表达效用模型（无 LLM，用户 2026-09-12 裁定）：U=D·R，发言当且仅当 U≥activity（个体表达门槛，门槛低者易发言；确定性决策无随机数）。D=1+s·tanh(1.5·(share_own−base)/base)（沉默螺旋，有界无地板：D<1 即隔离成本）；R=exp(−λ·cum_own/15)（注意力衰减，半饱和尺度 15 ≈ 一周半活跃曝光；2026-09-12 由 50 调至 20、2026-09-13 进一步下压至 15，λ 等效 ×3.33）。中性状态（D≈R≈1）下 U≈1.0，两因子乘法进入效用；门槛基数 0.95（calibrate_speak.py 同构 feed 层推演扫描定标）。公式唯一存放处 custom/envs/curation_mechanisms.py（spiral_factor / fatigue_factor，agent 与校准脚本同源）。params 随 profile 下发（activity/spiral/decay 三参数；原 emergence/θ 与 G 一并退役，env 侧 B/S/G 仅记录）",
+        "speak_decision": "锚定式表达效用模型（无 LLM，用户 2026-09-14 裁定）：U=B_i+R·(D−B_i)，发言当且仅当 U≥activity。D=1+(alpha_D·s_i)·tanh(1.5·(share_own−base)/base)；alpha_D=0.4296954756，只缩放s而不移动D=1的中性中心。R=exp(−λ_i·cum_own/15)。B_i固定自W05-W12常态供给映射，alpha_D和五类λ只用W13-W18统一标定，W19-W22留出。R=1时U=D，R→0时U→B_i，故衰减有常态下限而不归零。params随profile显式下发activity/spiral/spiral_scale/decay/baseline_utility；共享公式位于curation_mechanisms.anchored_utility。原emergence/θ与G维持退役，env侧B_t/S_t/G_t仅记录。",
+        "anchored_calibration": {
+            "selection": "B_i fixed from W05-W12; alpha_D and lambda selected on W13-W18 only; W19-W22 held out",
+            "alpha_D": personas_mod.CALIBRATED_ALPHA_D,
+            "baseline_utility": personas_mod.BASELINE_UTILITY,
+            "lambda_mean": personas_mod.CALIBRATED_LAMBDA_MEAN,
+            "source": "data/anchored_utility_prediction.json",
+        },
         "content_grounding": "发言内容须基于本周 feed 前 5 条（feed_context_n=5）：回应/讨论/二创/跟帖（用户 2026-09-10 裁定）",
     },
     "feed_mechanism": {

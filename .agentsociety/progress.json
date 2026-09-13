@@ -3,22 +3,11 @@
   "workspace": {
     "topic": "公众人物去世后，算法策展如何塑造舆论场对其的数字表征",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "hypothesis",
+    "current_stage": "run_experiment",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
     "revision_round": 4,
-    "active_reroute": {
-      "revision_round": 4,
-      "requested_at": "2026-09-12T09:51:00.996933+00:00",
-      "from_stage": "experiment_config",
-      "target_stage": "hypothesis",
-      "reason": "no-G 反事实探针实测（W20-22：noG 38 vs normal 47 = 0.81）证实环境因子 G 对行为无必要支撑、且 G 的量纲不成立（B 恒等 3.6、K_a 与内生存量尺度不匹配、变相把玩梗型门槛打 3 折）；用户裁定：G 退役、Agent 只由沉默螺旋与注意力衰减两条规则约束，实验组由 3×2 全因子 18 runs 降为单因子 3 臂 × 3 seeds = 9 runs",
-      "source_artifact": "hypothesis_4/experiment_1/SMOKE_DIAGNOSIS_w19_cliff.md",
-      "pending_stages": [
-        "hypothesis",
-        "experiment_config"
-      ]
-    }
+    "active_reroute": null
   },
   "stages": {
     "literature_search": {
@@ -49,22 +38,31 @@
       "revision_round": 0
     },
     "hypothesis": {
-      "status": "needs_revision",
+      "status": "completed",
       "started_at": null,
-      "completed_at": null,
-      "attempts": 2,
+      "completed_at": "2026-09-13T17:36:22.132112+00:00",
+      "attempts": 3,
       "error": null,
-      "metadata": {},
+      "metadata": {
+        "revision_round": 5,
+        "mechanism": "anchored_v1",
+        "formula": "U=B_i+R*(D-B_i)"
+      },
       "verification_status": "not_started",
       "revision_round": 4
     },
     "experiment_config": {
-      "status": "needs_revision",
+      "status": "completed",
       "started_at": null,
-      "completed_at": null,
-      "attempts": 3,
+      "completed_at": "2026-09-13T17:36:22.204325+00:00",
+      "attempts": 4,
       "error": null,
-      "metadata": {},
+      "metadata": {
+        "configs": 9,
+        "agents": 100,
+        "ticks": 11,
+        "verification": "25/25"
+      },
       "verification_status": "not_started",
       "revision_round": 4
     },
@@ -322,6 +320,28 @@
           "revision_round": 3
         }
       }
+    },
+    {
+      "sequence": 12,
+      "timestamp": "2026-09-13T17:36:22.132126+00:00",
+      "kind": "stage_update",
+      "revision_round": 4,
+      "stage": "hypothesis",
+      "from_status": "needs_revision",
+      "to_status": "completed",
+      "from_stage": "hypothesis",
+      "to_stage": "experiment_config"
+    },
+    {
+      "sequence": 13,
+      "timestamp": "2026-09-13T17:36:22.204334+00:00",
+      "kind": "stage_update",
+      "revision_round": 4,
+      "stage": "experiment_config",
+      "from_status": "needs_revision",
+      "to_status": "completed",
+      "from_stage": "experiment_config",
+      "to_stage": "run_experiment"
     }
   ]
 }

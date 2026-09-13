@@ -283,6 +283,26 @@ def fatigue_factor(
     return math.exp(-float(decay) * float(cum_own) / float(scale))
 
 
+def anchored_utility(
+    baseline_utility: float,
+    spiral_factor_value: float,
+    fatigue_factor_value: float,
+) -> float:
+    """锚定式表达效用 ``U = B + R * (D - B)``。
+
+    ``B`` 是事件前常态表达效用锚点，区别于环境观测量中的存量丰沛度 ``B_t``；
+    ``D`` 是沉默螺旋形成的当周意见气候效用；``R`` 是注意力衰减因子。因而
+    ``R=1`` 时 ``U=D``，``R=0`` 时 ``U=B``，疲劳只让事件冲击回归常态锚点，
+    不再把表达效用机械压到零。
+
+    该纯函数由正式 Agent 与数值校准器共用，防止代理和仿真实现漂移。
+    """
+    baseline = float(baseline_utility)
+    spiral = float(spiral_factor_value)
+    fatigue = float(fatigue_factor_value)
+    return baseline + fatigue * (spiral - baseline)
+
+
 # ---------------- 比例抽样（选择步骤） ----------------
 
 def softmax_weights(scores: Sequence[float], temperature: float) -> list[float]:

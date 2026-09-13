@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """快速测试：逐 Agent 类型 × 时段的发帖数（代理推演，多 seed）。
 
-复用 calibrate_speak.simulate()（与 env 同构的 feed 推演 + U=D·R 数值决策），
+复用 calibrate_speak.simulate()（与 env 同构的 feed 推演 +
+U=B_i+R·(D−B_i) 锚定式数值决策），
 只把兴趣抽样的 RNG 种子扫一遍（对应 env 的 seed+3000 流），
 对 100 人群体（meme19/mourning22/marketing23/education15/other21）出：
 

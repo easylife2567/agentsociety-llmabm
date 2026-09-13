@@ -135,12 +135,14 @@ FIELDS: dict[str, str] = {
     "mean_climate_own": "该类型 agent 所见信息流中本类内容的平均占比（意见气候；沉默螺旋的输入）。",
     "mean_exposure_own": "该类型 agent 本 tick 本类内容的人均曝光数（注意力衰减的输入）。",
     "mean_feed_slots": "该类型 agent 本周信息流平均长度（正常=10）。",
-    # 机制透视（涌现增益表达效用模型，用户 2026-09-10 裁定）
-    "u": "表达效用 U = D·R（2026-09-12 起；环境增益 G^θ 退役）。发言当且仅当 U ≥ activity。中性状态（D≈R≈1）下 U≈1。",
+    # 机制透视（锚定式表达效用模型，用户 2026-09-14 裁定）
+    "u": "表达效用 U = B_i + R·(D−B_i)。发言当且仅当 U ≥ activity；R→0 时回归常态锚点 B_i，不机械归零。",
     "threshold": "个体表达门槛 activity（= 类型均值 0.95 × U[0.8,1.2] 抖动）。门槛越低越容易发言，活跃 agent 门槛低。",
-    "spiral": "沉默的螺旋因子 D = 1 + s·tanh(1.5·(share_own − base)/base)（2026-09-12 起：有界 tanh、无地板）。>1 同类气候比期望强→共鸣放大收益；<1 处于少数→抑制；<0 表达存在净成本（孤立成本）。base=本类型在 100 人群体中的份额。",
+    "spiral": "沉默的螺旋因子 D = 1 + (alpha_D·s_i)·tanh(1.5·(share_own−base)/base)；alpha_D=0.429695，只缩放敏感度，不改变D=1的中性中心。",
+    "spiral_scale": "沉默螺旋全局强度 alpha_D=0.429695（仅用W13-W18标定）。",
     "decay": "注意力衰减因子 R = exp(−λ·cum_own/15)（收益侧折减）。本类累计曝光越多越低（疲劳）。尺度沿革 50 → 20（2026-09-12）→ 15（2026-09-13 用户裁定「R 力度再大一些」）。",
-    "benefit": "表达效用 U = D·R（两收益侧因子相乘）。",
+    "baseline_utility": "常态表达效用锚点 B_i；由W05-W12事件前供给映射固定，不参与W13-W18拟合。注意它不同于环境丰沛度B_t。",
+    "benefit": "表达效用 U = B_i + R·(D−B_i)。",
     "emergence": "（已退役）涌现环境增益指数 θ：2026-09-12 用户裁定 G 退役，θ 不再进入任何决策；字段保留兼容历史 decision_log。",
     "env_abundance": "决策时所见丰沛度 B_t（快照键 meme_env.abundance；存量越丰沛越易诞生 meme）。",
     "env_emptiness": "决策时所见空旷度 S_t（快照键 meme_env.emptiness；当期新增越少越空旷越宜传播；sustained_hot 臂 W13 后冻结）。",
@@ -156,7 +158,10 @@ FIELDS: dict[str, str] = {
     "n_posted": "实际成功发布的人数。",
     "mean_u": "U 的类型内均值。",
     "mean_threshold": "activity 的类型内均值（个体间有 U[0.8,1.2] 抖动）。",
-    "mean_benefit": "表达收益 D·R 的类型内均值。",
+    "mean_benefit": "锚定式表达效用 U 的类型内均值。",
+    "mean_baseline": "常态表达效用锚点 B_i 的类型内均值。",
+    "mean_spiral": "当周沉默螺旋因子 D 的类型内均值。",
+    "mean_fatigue": "当周注意力衰减因子 R 的类型内均值。",
     "mean_env_gain": "决策时所见涌现增益 G 的类型内均值。",
     "mean_env_multiplier": "环境乘子 G^θ 的类型内均值（仅玩梗型随周变化，其余恒 1）。",
     # 帖子流
@@ -367,6 +372,9 @@ def aggregate_weekly(data: dict) -> list[dict]:
                 "mean_u": _mean_of("u"),
                 "mean_threshold": _mean_of("threshold"),
                 "mean_benefit": _mean_of("benefit", "components"),
+                "mean_baseline": _mean_of("baseline_utility", "components"),
+                "mean_spiral": _mean_of("spiral", "components"),
+                "mean_fatigue": _mean_of("decay", "components"),
                 "mean_env_gain": _mean_of("env_gain", "components"),
                 "mean_env_multiplier": _mean_of("env_multiplier", "components"),
             }
@@ -470,7 +478,7 @@ def render_weekly_md(weekly: list[dict], week_filter: str | None) -> str:
     out = []
     # 表A 供给与玩梗涌现环境
     out.append("### 表A 周度供给与玩梗涌现环境\n")
-    out.append("> B/S/G 为**观测序列**（2026-09-12 起不进入任何类型的决策，agent 侧为 U = D·R）；保留用于描述性时间轴与审计。\n")
+    out.append("> 环境 B_t/S_t/G_t 为**观测序列**，不进入决策；agent 侧常态锚点 B_i 是另一参数，效用为 U = B_i + R·(D−B_i)。\n")
     head = ("| 周 | 存量 | arena新增 | 现实新增 | B丰沛 | S空旷 | G增益 | 供给总 | Agent帖 | 注入 | "
             + " | ".join(f"供给{TYPE_LABEL[t]}" for t in TYPE_ORDER)
             + " | 供给噪音 | 官方帖 | 官方槽位 |")
@@ -538,9 +546,9 @@ def render_weekly_md(weekly: list[dict], week_filter: str | None) -> str:
     out.append(_docs_block(["n_agents", "spoke_rate", "mismatch_rate", "mean_exposure_own",
                             "mean_climate_own", "mean_feed_slots"]))
     # 表D 机制透视
-    out.append("\n### 表D 机制透视（涌现增益表达效用模型：U = D·R·G^θ，发言当且仅当 U ≥ activity）\n")
-    head = ("| 周 | 类型 | 决策数 | 发言 | 发布 | mean U | mean门槛 | mean收益 | mean G | mean G^θ |")
-    out += [head, "|---" * 10 + "|"]
+    out.append("\n### 表D 机制透视（锚定式效用：U = B_i + R·(D−B_i)，U ≥ activity 时发言）\n")
+    head = ("| 周 | 类型 | 决策数 | 发言 | 发布 | mean U | mean门槛 | mean B_i | mean D | mean R | mean G(仅观测) |")
+    out += [head, "|---" * 11 + "|"]
     for r in rows:
         for t in TYPE_ORDER:
             m = (r.get("mech_agg") or {}).get(t)
@@ -549,9 +557,9 @@ def render_weekly_md(weekly: list[dict], week_filter: str | None) -> str:
             out.append(
                 f"| {r.get('week')} | {TYPE_LABEL[t]} | {m['n_decisions']} | {m['n_speak']} | "
                 f"{m['n_posted']} | {_num(m['mean_u'])} | {_num(m['mean_threshold'])} | "
-                f"{_num(m['mean_benefit'])} | {_num(m['mean_env_gain'])} | "
-                f"{_num(m['mean_env_multiplier'])} |")
-    out.append(_docs_block(["u", "threshold", "spiral", "decay", "benefit", "emergence",
+                f"{_num(m['mean_baseline'])} | {_num(m['mean_spiral'])} | "
+                f"{_num(m['mean_fatigue'])} | {_num(m['mean_env_gain'])} |")
+    out.append(_docs_block(["u", "threshold", "baseline_utility", "spiral_scale", "spiral", "decay", "benefit", "emergence",
                             "env_abundance", "env_emptiness", "env_gain", "env_multiplier",
                             "share_own", "share_base", "cum_own", "speak",
                             "posted", "n_decisions", "n_speak", "n_posted", "mean_u",

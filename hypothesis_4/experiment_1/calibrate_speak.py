@@ -17,10 +17,11 @@ sim 却一步到顶"的来源。本版直接推演 feed：候选池 = 真实注�
 - B_t（存量丰沛度）：env 内生——Stock_t = 过去 6 周 arena 供给总数（注入 + 滞后 1 tick 的
   agent 帖），B_t = f(Stock_t)/f(Stock_base)，f(x)=x/(x+K_a)，K_a = 注入计划事件周窗口存量。
 - G_t = clamp(B_t^β · S_t^σ, 0.2, 3.0)（**观测序列**，2026-09-12 起不进入决策）。
-- 决策：**U = D·R**，发言当且仅当 U ≥ activity_i（用户 2026-09-12 裁定：环境增益 G^θ 退役，
-  Agent 只由沉默螺旋与注意力衰减两条规则约束）。D 走共享纯函数
+- 决策：**U = B_i + R·(D−B_i)**，发言当且仅当 U ≥ activity_i（2026-09-14
+  锚定式修订；环境增益 G^θ 维持退役）。D、R、U 均走共享纯函数
   `mech.spiral_factor`（有界 tanh，无地板）；R 的 cum_own 用推演中该 agent 实际见到的
-  本类槽位数累计。代理实测：门槛下调（0.85-0.4）对起爆时点无杠杆——区间 [0.85,1.0] 内
+  本类槽位数累计；R→0 时回到事件前常态锚点 B_i。旧纯乘法代理实测：门槛下调
+  （0.85-0.4）对起爆时点无杠杆——区间 [0.85,1.0] 内
   一律 W20 起步，只有 0.4 档量级持平但 W14-W17 就出现玩梗（与真实基准 W12-W18
   梗份额 ≤1.5% 相悖）；故门槛维持 0.95。
 
@@ -175,9 +176,9 @@ def simulate(
     r_scale: float = mech.DEFAULT_DECAY_SCALE,
     w13_floor: int = EVENT_WEEK_MOURNING_FLOOR,
     rng_seed: int = CALIB_SAMPLE_SEED,
-    spiral_mult: float = 1.0,
+    spiral_mult: float | None = None,
     decay_mult: float = 1.0,
-    utility_mode: str = "multiplicative",
+    utility_mode: str = "anchored",
     baseline_utility: dict[str, float] | None = None,
 ) -> tuple[dict[str, dict[str, int]], dict[str, dict[str, float]], dict[str, dict[str, float]]]:
     """端到端代理推演 11 周，返回 ({week: {type: 发言数}}, {week: 环境轨迹}, {week: {type: 本类可见份额}})。
@@ -193,13 +194,14 @@ def simulate(
       装配时即记账曝光（曝光饱和项随之下降，抑制单帖同周垄断）；
     - share_own = 该 agent 本周 feed 中本类槽位占比（D 的气候输入，逐 agent 不同）；
     - Stock 以 6 周窗口滚动累计；S 读现实口径调度（B/S/G 仅作 trace 观测，不进入决策）。
-    - 决策 U = D·R（D 走共享 spiral_factor，R 走共享 fatigue_factor，尺度 r_scale）；
+    - 决策默认 U = B_i+R·(D−B_i)（D/R/U 均走共享纯函数）；
       mode 仅影响 trace 里 S 是否冻结。
-    - **效用形式**：默认 `multiplicative` 保持现状 `U=D·R`；`anchored` 使用
+    - **效用形式**：默认 `anchored` 使用
       `U=B_i+R·(D−B_i)`，其中 `baseline_utility` 可按 agent id 或类型提供锚点。
-      该参数只服务数值代理；默认值保证既有调用与结果不变。
+      `multiplicative` 仅保留为旧机制历史对照。
     - **反事实开关**（默认 1.0 = 现状，即两条机制全开，不影响既有任何结论）：
-      spiral_mult 乘在每个 agent 的 s 上（0 → D≡1，沉默螺旋关闭）；
+      spiral_mult 显式传入时覆盖 profile 的 spiral_scale，并乘在每个 agent 的 s 上
+      （0 → D≡1，沉默螺旋关闭）；缺省读取本轮标定的 alpha_D；
       decay_mult  乘在每个 agent 的 λ 上（0 → R≡1，注意力衰减关闭）。
       置零为**精确消融**（1 + 0·tanh ≡ 1、exp(−0·x) ≡ 1），不是近似档；
       与真机反事实同构：真机即把 profile 下发的 params.spiral / params.decay 整体缩放同一倍数。
@@ -302,17 +304,22 @@ def simulate(
 
             base_share = personas_mod.POP_SHARE[t]
             # D 走共享纯函数（与 agent 侧同一份实现）：有界 tanh、无地板（2026-09-12 裁定）
-            d = mech.spiral_factor(share_own, base_share, prm["spiral"] * spiral_mult)
+            effective_spiral_scale = (
+                float(spiral_mult) if spiral_mult is not None
+                else float(prm.get("spiral_scale", 1.0))
+            )
+            d = mech.spiral_factor(share_own, base_share,
+                                   prm["spiral"] * effective_spiral_scale)
             r = mech.fatigue_factor(prm["decay"] * decay_mult, cum_own[ag["id"]])   # 与 agent 同一份实现
             if utility_mode == "multiplicative":
                 u = d * r                 # U = D·R（环境因子 G 已退役，gain 仅供 trace 记录）
             elif utility_mode == "anchored":
-                if baseline_utility is None:
-                    raise ValueError("utility_mode='anchored' requires baseline_utility")
-                b = baseline_utility.get(str(ag["id"]), baseline_utility.get(t))
+                baseline_map = baseline_utility or personas_mod.BASELINE_UTILITY
+                b = baseline_map.get(str(ag["id"]),
+                                     baseline_map.get(t, prm.get("baseline_utility")))
                 if b is None:
                     raise ValueError(f"missing baseline utility for agent={ag['id']} type={t}")
-                u = float(b) + r * (d - float(b))
+                u = mech.anchored_utility(float(b), d, r)
             else:
                 raise ValueError(f"unknown utility_mode: {utility_mode!r}")
             if u >= prm["activity"] * base / BASE_REF:
