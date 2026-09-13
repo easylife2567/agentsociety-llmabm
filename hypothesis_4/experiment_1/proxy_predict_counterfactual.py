@@ -147,7 +147,9 @@ def main() -> int:
                    for w in W}
 
     # ---------- CSV ----------
-    csv_path = SCRIPT_DIR / "data" / "proxy_pred_counterfactual.csv"
+    # 文件名跟随 --prefix：两套（30 seed / 100 seed 稳健性）各留一份，互不覆盖
+    _sfx = args.prefix.replace("PROXY_cf", "")
+    csv_path = SCRIPT_DIR / "data" / f"proxy_pred_counterfactual{_sfx}.csv"
     csv_path.parent.mkdir(parents=True, exist_ok=True)
     with open(csv_path, "w", newline="", encoding="utf-8-sig") as f:
         wtr = csv.writer(f)
@@ -243,7 +245,8 @@ def main() -> int:
     axA.yaxis.set_major_formatter(pltmod.PercentFormatter(1.0))
     axA.set_ylabel("玩梗份额（agent 产出口径）")
     axA.set_title(f"反事实预测 · 玩梗份额（{args.seeds} seed 均值）", fontweight="bold", fontsize=12)
-    axA.legend(loc="upper left", frameon=False, fontsize=8)
+    # 下压到 0.86：给顶部的世逝周标注让位（同 plot_run_charts 的做法）
+    axA.legend(loc="upper left", frameon=False, fontsize=8, bbox_to_anchor=(0.0, 0.86))
     axA.set_axisbelow(True)
 
     # 图 A 右：周总产量
@@ -256,7 +259,8 @@ def main() -> int:
     axB.set_xticks(x, W, rotation=45)
     axB.set_ylabel("周总产量（agent 帖）")
     axB.set_title("反事实预测 · 周总产量（退潮与否的直接读数）", fontweight="bold", fontsize=12)
-    axB.legend(loc="upper right", frameon=False, fontsize=8)
+    # 放左下：双关 cell 恒在顶部 63 帖，右上角会压在它上面
+    axB.legend(loc="lower left", frameon=False, fontsize=8)
     axB.set_axisbelow(True)
     fig.tight_layout()
     outA = SCRIPT_DIR / PRED_DIR / f"{args.prefix}_A_meme_share_and_volume.png"
@@ -310,7 +314,60 @@ def main() -> int:
     fig.savefig(outC, dpi=200)
     plt.close(fig)
 
-    for p in (outA, outB, outC):
+    # 图 D：双重分离三联图 —— 分子（玩梗帖数）/ 分母（总产量）/ 比值（玩梗份额）。
+    # 这是本预测最核心的读数，必须并排看：关 R 后前两者一平一涨、第三者腰斩。
+    fig, axesD = plt.subplots(1, 3, figsize=(16.5, 5.0))
+    _panels = [
+        ("分子：玩梗帖数", {cid: [mean[cid]["meme"][w] for w in W] for cid in CELL_IDS},
+         "周玩梗帖数（agent 帖）", False),
+        ("分母：周总产量", {cid: tot[cid] for cid in CELL_IDS},
+         "周总产量（agent 帖）", False),
+        ("比值：玩梗份额", {cid: [s[cid][w] for w in W] for cid in CELL_IDS},
+         "玩梗份额", True),
+    ]
+    for ax, (ptitle, series, ylab, is_pct) in zip(axesD, _panels):
+        for sm, dm, cid, cn, col in CELLS:
+            ax.plot(x, series[cid], color=col, linewidth=2.2, marker="o",
+                    markersize=3.6, label=cn)
+        pltmod._death_line(ax, W)
+        ax.set_xticks(x, W, rotation=45)
+        if is_pct:
+            ax.yaxis.set_major_formatter(pltmod.PercentFormatter(1.0))
+        ax.set_ylabel(ylab)
+        ax.set_title(ptitle, fontweight="bold", fontsize=12)
+        ax.set_axisbelow(True)
+    # 三栏共用一套色标：图例提到图级，避免与标注打架
+    _h, _l = axesD[0].get_legend_handles_labels()
+    fig.legend(_h, _l, loc="upper center", bbox_to_anchor=(0.5, 0.935),
+               ncol=4, frameon=False, fontsize=9)
+    # 关键对比标注：用 axes fraction 定位，避免文本落到坐标轴外
+    axesD[0].annotate(
+        f"关 R 后 W22 玩梗 {mean['D1R0']['meme'][W[-1]]:.1f} vs 基线 {mean['D1R1']['meme'][W[-1]]:.1f}\n"
+        f"→ 分子几乎不动（差 {abs(mean['D1R0']['meme'][W[-1]]-mean['D1R1']['meme'][W[-1]]):.1f} 帖）",
+        xy=(len(W) - 1, mean["D1R0"]["meme"][W[-1]]),
+        xytext=(0.30, 0.72), textcoords="axes fraction",
+        fontsize=8.5, color="#d62728",
+        arrowprops=dict(arrowstyle="->", color="#d62728", linewidth=1.1))
+    axesD[1].annotate(
+        f"关 R 后 W22 总量 {tot['D1R0'][-1]:.0f} vs 基线 {tot['D1R1'][-1]:.0f}（≈1.8×）",
+        xy=(len(W) - 1, tot["D1R0"][-1]),
+        xytext=(0.30, 0.10), textcoords="axes fraction",
+        fontsize=8.5, color="#d62728",
+        arrowprops=dict(arrowstyle="->", color="#d62728", linewidth=1.1))
+    axesD[2].annotate(
+        f"份额 W22 {s['D1R0'][W[-1]]:.3f} vs {s['D1R1'][W[-1]]:.3f}\n→ 比值腰斩",
+        xy=(len(W) - 1, s["D1R0"][W[-1]]),
+        xytext=(0.13, 0.66), textcoords="axes fraction",
+        fontsize=8.5, color="#d62728",
+        arrowprops=dict(arrowstyle="->", color="#d62728", linewidth=1.1))
+    fig.suptitle(f"反事实预测 · 双重分离：沉默螺旋管「分子」，注意力衰减管「分母」"
+                 f"（{args.seeds} seed 均值）", fontweight="bold", fontsize=13, y=0.995)
+    fig.tight_layout(rect=(0, 0, 1, 0.90))
+    outD = SCRIPT_DIR / PRED_DIR / f"{args.prefix}_D_double_dissociation.png"
+    fig.savefig(outD, dpi=200)
+    plt.close(fig)
+
+    for p in (outA, outB, outC, outD):
         print(f"✓ 图  {p.relative_to(SCRIPT_DIR)}")
     print(f"✓ CSV {csv_path.relative_to(SCRIPT_DIR)}")
     return 0

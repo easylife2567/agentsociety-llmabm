@@ -24,8 +24,10 @@
 
 - `PROXY_pred_REGRESSION_CHECK.png` —— 反事实开关改动后的**默认路径回归检验**
   （比对确认与改动前逐值一致，见 `../pred_*_log.txt`）。
-- `counterfactual_2mech/`（6 张）—— **本轮两机制反事实预测**
+- `counterfactual_2mech/`（8 张）—— **本轮两机制反事实预测**
   （沉默螺旋 D × 注意力衰减 R 的 2×2 消融）。
+  每套四张：`A` 份额+总量、`B` 各 cell 构成、`C` 消融效应柱状图、
+  **`D` 双重分离三联图（分子/分母/比值并排 —— 本轮最核心的一张）**。
   30 seed 与 100 seed 两套：`PROXY_cf_*` / `PROXY_cf_s100_*`（两者几乎逐值相同）。
   预登记读数与可证伪判据见 **`../PREDICTION_counterfactual_2mech.md`**。
 - `early_tuning/`（10 张）—— 定标阶段的探索性预测
