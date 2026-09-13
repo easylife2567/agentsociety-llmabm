@@ -114,7 +114,7 @@ uv sync && npm --prefix extension install && npm --prefix frontend install
 | `gzip -t` CRC | ✅ | ✅ |
 | 压缩包体积 | ≈383 MiB | ≈252 MiB |
 | 解包体积 | 569 MB | 428 MB |
-| 归档条目 | 23,389 | 23,312 |
+| 归档条目 | ≈23.4 千（含 `.git/` 内部对象，随提交数微幅浮动） | 23,312 |
 | 非 `.git` 文件数 | 19,770 | 19,768 |
 | `git log` 可溯源 | ✅（包内 `.git`，`git log -1` 可得 HEAD） | —（无 `.git/`） |
 | 引擎源码残留 | 0 | 0 |
