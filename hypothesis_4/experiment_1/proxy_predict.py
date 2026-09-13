@@ -171,7 +171,7 @@ def main() -> int:
                bbox_to_anchor=(1.0, 0.02))
     axB.set_axisbelow(True)
     fig.tight_layout()
-    out = SCRIPT_DIR / "charts" / args.out
+    out = SCRIPT_DIR / "charts" / "prediction" / args.out   # 预测图单独一桶（2026-09-13 用户要求）
     out.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out, dpi=200)
     plt.close(fig)

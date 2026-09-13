@@ -159,7 +159,7 @@ $PYTHON_PATH verify_experiment.py
 # 快照（写 monitor/）
 $PYTHON_PATH monitor.py
 
-# 出图（逐 run → charts/，臂级 → charts/ARM_*）
+# 出图（逐 run → charts/formal/，臂级 → charts/formal/ARM_*）
 for r in random_s{0,1,2} chronological_s{0,1,2} interest_s{0,1,2}; do
   $PYTHON_PATH plot_run_charts.py --status monitor/$r/status.json --run-id $r
 done
@@ -168,3 +168,5 @@ $PYTHON_PATH plot_arm_charts.py
 
 > `results/` 是**冻结快照**（对应 git `82fdc3c`，改写前为 `c2d8fb9`），不是脚本的输出目录。
 > 脚本仍写 `charts/`、`data/`、`monitor/`；重跑后需重新生成本包。
+> 出图分桶（2026-09-13 用户要求）：主脚本写 `charts/formal/`（本包 charts/ 即其冻结快照），
+> 预测写 `charts/prediction/`，烟测须显式 `--charts-dir charts/smoke`；约定见 `../charts/README.md`。

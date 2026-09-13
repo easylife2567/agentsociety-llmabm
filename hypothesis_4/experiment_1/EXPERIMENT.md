@@ -352,7 +352,7 @@ combined 玩梗供给份额（`supply_share_all_meme`）对读真实基准
 | W22 玩梗份额 | 0.625 | 0.616 | 0.611 | 0.609 | 0.605 | 0.605 |
 
 （口径：30 seed，R=15，营销 λ=0.05，非五类 noise 单列——即**当前机制代码**下的重跑，
-与 `charts/PROXY_pred_R15_floor{3,5}_mkt05_noisefree.png` 同一次运行。
+与 `charts/prediction/early_tuning/PROXY_pred_R15_floor{3,5}_mkt05_noisefree.png` 同一次运行。
 **该表已可复现**：B7 断言同一 seed 两次调用逐值一致；此前"平票次序用 `id()`"使
 每次运行漂移 ±0.01，表内旧值与旧图均已作废重算。）
 

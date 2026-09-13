@@ -13,10 +13,16 @@
 同时把周度指标导出为 CSV（data/<run_id>/weekly_*.csv），作为 run/（已 gitignore）
 之外的持久数据副本；按 run 分目录，避免多 run 批跑时互相覆盖。
 
+出图分桶（用户 2026-09-13 要求：烟测 / 预测 / 正式实验分开放）：
+    默认写 charts/formal/（正式 9-run 批跑）；烟测/预跑单 run 须显式传
+    `--charts-dir charts/smoke`。预测图不归本脚本（见 proxy_predict*.py）。
+
 用法：
-    $PYTHON_PATH hypothesis_4/experiment_1/plot_run_charts.py                  # 烟测（monitor/run/status.json）
     $PYTHON_PATH hypothesis_4/experiment_1/plot_run_charts.py \
-        --status hypothesis_4/experiment_1/monitor/<run_id>/status.json        # 任意 run
+        --status hypothesis_4/experiment_1/monitor/<run_id>/status.json        # 正式 run（→ charts/formal/）
+    $PYTHON_PATH hypothesis_4/experiment_1/plot_run_charts.py \
+        --status hypothesis_4/experiment_1/monitor/<run_id>/status.json \
+        --charts-dir hypothesis_4/experiment_1/charts/smoke                    # 烟测 run
     $PYTHON_PATH hypothesis_4/experiment_1/plot_run_charts.py --no-charts     # 只导出 CSV
 """
 
@@ -34,7 +40,26 @@ from matplotlib.ticker import PercentFormatter
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 DATA_DIR = SCRIPT_DIR / "data"
-CHARTS_DIR = SCRIPT_DIR / "charts"
+# 出图分桶（用户 2026-09-13 要求：烟测 / 预测 / 正式实验分开放）：
+#   charts/formal/  正式 9-run 批跑的逐 run 图（本脚本主用途）
+#   charts/smoke/   烟测与预跑单 run —— 须显式传 --charts-dir charts/smoke
+# 本脚本不产出预测图（那是 proxy_predict*.py 的职责，写 charts/prediction/）。
+CHARTS_DIR = SCRIPT_DIR / "charts" / "formal"
+
+
+def _rel(p: Path) -> str:
+    """尽量相对 SCRIPT_DIR 显示；树外路径（--charts-dir 指到项目外）原样返回。"""
+    try:
+        return str(Path(p).relative_to(SCRIPT_DIR))
+    except ValueError:
+        return str(p)
+
+
+def _resolve_dir(d: str) -> Path:
+    """--charts-dir 解析：相对路径按 SCRIPT_DIR 解释（与帮助文本 `charts/smoke` 一致），
+    不按 CWD——否则从别处调用会静默写到意外位置。"""
+    p = Path(d)
+    return p if p.is_absolute() else (SCRIPT_DIR / p)
 
 # ---------------- 样式（对齐《图表解读.docx》） ----------------
 
@@ -320,7 +345,11 @@ def main() -> int:
                     help="覆盖 run_id（默认取 status.json 内值，再退回快照目录名）")
     ap.add_argument("--no-charts", action="store_true", help="只导出 CSV 不画图")
     ap.add_argument("--no-csv", action="store_true", help="只画图不导出 CSV")
+    ap.add_argument("--charts-dir", default=str(CHARTS_DIR),
+                    help=f"出图目录（默认 {CHARTS_DIR.relative_to(SCRIPT_DIR)}；"
+                         f"烟测/预跑单 run 请传 charts/smoke）")
     args = ap.parse_args()
+    charts_dir = _resolve_dir(args.charts_dir)
 
     status_path = Path(args.status)
     data = json.loads(status_path.read_text(encoding="utf-8"))
@@ -333,7 +362,7 @@ def main() -> int:
             print(f"✓ CSV {p.relative_to(SCRIPT_DIR)}")
 
     if not args.no_charts:
-        CHARTS_DIR.mkdir(parents=True, exist_ok=True)
+        charts_dir.mkdir(parents=True, exist_ok=True)
         for fn, name in (
             (chart1_meme_share, "chart1_meme_share_sim_vs_real.png"),
             (chart2_supply_volume, "chart2_weekly_supply_volume.png"),
@@ -341,9 +370,9 @@ def main() -> int:
             (chart3b_agent_supply_stacked_area, "chart3b_agent_supply_stacked_area.png"),
             (chart4_meme_speaking, "chart4_meme_speaking_rate.png"),
         ):
-            out = CHARTS_DIR / f"{run_id}__{name}"
+            out = charts_dir / f"{run_id}__{name}"
             fn(weekly, run_id, out)
-            print(f"✓ 图  {out.relative_to(SCRIPT_DIR)}")
+            print(f"✓ 图  {_rel(out)}")
     return 0
 
 

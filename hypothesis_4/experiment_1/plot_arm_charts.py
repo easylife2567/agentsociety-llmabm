@@ -12,7 +12,7 @@
        （口径：mean ± min–max 包络，n=3；n 这么小时用包络比 sd 带诚实）
 
 输入：monitor/<run_id>/status.json（由 monitor.py 生成）
-输出：charts/ARM_*.png  +  data/arm/weekly_*.csv（聚合数值，供复核）
+输出：charts/formal/ARM_*.png  +  data/arm/weekly_*.csv（聚合数值，供复核）
 
 用法：
     $PYTHON_PATH hypothesis_4/experiment_1/plot_arm_charts.py
@@ -40,7 +40,7 @@ from matplotlib.ticker import PercentFormatter
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 DATA_DIR = SCRIPT_DIR / "data" / "arm"
-CHARTS_DIR = SCRIPT_DIR / "charts"
+CHARTS_DIR = SCRIPT_DIR / "charts" / "formal"   # 出图分桶：臂级图属正式实验（2026-09-13 用户要求分开放）
 MONITOR_DIR = SCRIPT_DIR / "monitor"
 
 EXPECTED_WEEKS = 11

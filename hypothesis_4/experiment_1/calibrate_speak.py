@@ -175,6 +175,8 @@ def simulate(
     r_scale: float = mech.DEFAULT_DECAY_SCALE,
     w13_floor: int = EVENT_WEEK_MOURNING_FLOOR,
     rng_seed: int = CALIB_SAMPLE_SEED,
+    spiral_mult: float = 1.0,
+    decay_mult: float = 1.0,
 ) -> tuple[dict[str, dict[str, int]], dict[str, dict[str, float]], dict[str, dict[str, float]]]:
     """端到端代理推演 11 周，返回 ({week: {type: 发言数}}, {week: 环境轨迹}, {week: {type: 本类可见份额}})。
 
@@ -191,6 +193,13 @@ def simulate(
     - Stock 以 6 周窗口滚动累计；S 读现实口径调度（B/S/G 仅作 trace 观测，不进入决策）。
     - 决策 U = D·R（D 走共享 spiral_factor，R 走共享 fatigue_factor，尺度 r_scale）；
       mode 仅影响 trace 里 S 是否冻结。
+    - **反事实开关**（默认 1.0 = 现状，即两条机制全开，不影响既有任何结论）：
+      spiral_mult 乘在每个 agent 的 s 上（0 → D≡1，沉默螺旋关闭）；
+      decay_mult  乘在每个 agent 的 λ 上（0 → R≡1，注意力衰减关闭）。
+      置零为**精确消融**（1 + 0·tanh ≡ 1、exp(−0·x) ≡ 1），不是近似档；
+      与真机反事实同构：真机即把 profile 下发的 params.spiral / params.decay 整体缩放同一倍数。
+      注意 D、R 非独立——基线里正是 D 的共振放大把 agent 抬过 R 衰减后的门槛，
+      故两机制同时关闭（U≡1，纯门槛）是必须单列的一档。
 
     已知未建模的 env 细节（量级 <1.5%，需判断时扣除）：interest 打分的均匀噪声
     ±interest_noise_eps=0.05（env 的 Random(seed+2000) 流）。另 env 打分与抽样共用同一
@@ -288,8 +297,8 @@ def simulate(
 
             base_share = personas_mod.POP_SHARE[t]
             # D 走共享纯函数（与 agent 侧同一份实现）：有界 tanh、无地板（2026-09-12 裁定）
-            d = mech.spiral_factor(share_own, base_share, prm["spiral"])
-            r = mech.fatigue_factor(prm["decay"], cum_own[ag["id"]])   # 与 agent 同一份实现
+            d = mech.spiral_factor(share_own, base_share, prm["spiral"] * spiral_mult)
+            r = mech.fatigue_factor(prm["decay"] * decay_mult, cum_own[ag["id"]])   # 与 agent 同一份实现
             u = d * r                     # U = D·R（环境因子 G 已退役，gain 仅供 trace 记录）
             if u >= prm["activity"] * base / BASE_REF:
                 counts[t] += 1
