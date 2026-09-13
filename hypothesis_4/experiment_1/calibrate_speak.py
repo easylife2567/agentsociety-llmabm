@@ -177,6 +177,8 @@ def simulate(
     rng_seed: int = CALIB_SAMPLE_SEED,
     spiral_mult: float = 1.0,
     decay_mult: float = 1.0,
+    utility_mode: str = "multiplicative",
+    baseline_utility: dict[str, float] | None = None,
 ) -> tuple[dict[str, dict[str, int]], dict[str, dict[str, float]], dict[str, dict[str, float]]]:
     """端到端代理推演 11 周，返回 ({week: {type: 发言数}}, {week: 环境轨迹}, {week: {type: 本类可见份额}})。
 
@@ -193,6 +195,9 @@ def simulate(
     - Stock 以 6 周窗口滚动累计；S 读现实口径调度（B/S/G 仅作 trace 观测，不进入决策）。
     - 决策 U = D·R（D 走共享 spiral_factor，R 走共享 fatigue_factor，尺度 r_scale）；
       mode 仅影响 trace 里 S 是否冻结。
+    - **效用形式**：默认 `multiplicative` 保持现状 `U=D·R`；`anchored` 使用
+      `U=B_i+R·(D−B_i)`，其中 `baseline_utility` 可按 agent id 或类型提供锚点。
+      该参数只服务数值代理；默认值保证既有调用与结果不变。
     - **反事实开关**（默认 1.0 = 现状，即两条机制全开，不影响既有任何结论）：
       spiral_mult 乘在每个 agent 的 s 上（0 → D≡1，沉默螺旋关闭）；
       decay_mult  乘在每个 agent 的 λ 上（0 → R≡1，注意力衰减关闭）。
@@ -299,7 +304,17 @@ def simulate(
             # D 走共享纯函数（与 agent 侧同一份实现）：有界 tanh、无地板（2026-09-12 裁定）
             d = mech.spiral_factor(share_own, base_share, prm["spiral"] * spiral_mult)
             r = mech.fatigue_factor(prm["decay"] * decay_mult, cum_own[ag["id"]])   # 与 agent 同一份实现
-            u = d * r                     # U = D·R（环境因子 G 已退役，gain 仅供 trace 记录）
+            if utility_mode == "multiplicative":
+                u = d * r                 # U = D·R（环境因子 G 已退役，gain 仅供 trace 记录）
+            elif utility_mode == "anchored":
+                if baseline_utility is None:
+                    raise ValueError("utility_mode='anchored' requires baseline_utility")
+                b = baseline_utility.get(str(ag["id"]), baseline_utility.get(t))
+                if b is None:
+                    raise ValueError(f"missing baseline utility for agent={ag['id']} type={t}")
+                u = float(b) + r * (d - float(b))
+            else:
+                raise ValueError(f"unknown utility_mode: {utility_mode!r}")
             if u >= prm["activity"] * base / BASE_REF:
                 counts[t] += 1
                 agent_posts.append({"seq": _seq, "week": wk, "type": t,

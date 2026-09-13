@@ -1,0 +1,418 @@
+{
+  "artifact_status": "numerical_proxy_prediction_not_simulation",
+  "formula": "U_i=B_i+R_i*(D_i-B_i)",
+  "selection_rule": "B fixed from W05-W12; alpha_D and lambdas selected only on W13-W18; W19-W22 held out",
+  "real_to_agent_scale": {
+    "rule": "W13 real mourning posts map to all 22 mourning agents speaking once",
+    "multiplier": 0.004666949512091642
+  },
+  "baseline_prior": {
+    "weeks": [
+      "2026-W05",
+      "2026-W06",
+      "2026-W07",
+      "2026-W08",
+      "2026-W09",
+      "2026-W10",
+      "2026-W11",
+      "2026-W12"
+    ],
+    "real_scaled_weekly_mean": {
+      "meme": 0.009333899024183284,
+      "mourning": 0.0005833686890114552,
+      "marketing": 2.6251591005515484,
+      "education": 0.2852672889266016,
+      "other": 0.071754348748409
+    },
+    "utility_prior_from_activity_quantile": {
+      "meme": 0.7755,
+      "mourning": 0.7677999999999999,
+      "marketing": 0.82515,
+      "education": 0.7412,
+      "other": 0.7686
+    }
+  },
+  "parameters": {
+    "alpha_D": 0.4296954755626446,
+    "baseline_utility": {
+      "meme": 0.7755,
+      "mourning": 0.7677999999999999,
+      "marketing": 0.82515,
+      "education": 0.7412,
+      "other": 0.7686
+    },
+    "lambda_mean": {
+      "meme": 1.2430377762128202,
+      "mourning": 2.2820352013850083,
+      "marketing": 1.0192411149739293,
+      "education": 2.4936143467584957,
+      "other": 4.429457710113387
+    },
+    "lambda_current_mean": {
+      "meme": 0.8189947368421052,
+      "mourning": 1.1855954545454546,
+      "marketing": 0.05061304347826087,
+      "education": 0.41152,
+      "other": 0.9768714285714286
+    },
+    "decay_scale": 15.0
+  },
+  "search": {
+    "coarse_candidates": 1024,
+    "coarse_seed_count": 1,
+    "reviewed_candidates": 32,
+    "review_seed_count": 8,
+    "local_candidates": 768,
+    "local_seed_count": 2,
+    "finalists": 24,
+    "finalist_seed_count": 20,
+    "final_prediction_seed_count": 100,
+    "regularized_training_score": 0.1053531783038111,
+    "unregularized_training_rate_rmse": 0.09323353573630251
+  },
+  "metrics": {
+    "type_rate_rmse_fit_W13_W18": 0.09287335082017216,
+    "type_rate_rmse_validation_W19_W22": 0.12761608432935867,
+    "total_shape_rmse_fit_W13_W18": 0.08726159931633648,
+    "total_shape_rmse_validation_W19_W22": 0.09124583233880051,
+    "current_type_rate_rmse_fit": 0.31378263524478234,
+    "current_type_rate_rmse_validation": 0.25518174175478164
+  },
+  "weekly": {
+    "2026-W12": {
+      "real_scaled": {
+        "meme": 0.0,
+        "mourning": 0.0,
+        "marketing": 4.526941026728893,
+        "education": 0.6533729316928298,
+        "other": 0.10733983877810777
+      },
+      "current_mean": {
+        "meme": 0,
+        "mourning": 0,
+        "marketing": 23,
+        "education": 5.35,
+        "other": 0
+      },
+      "anchored_mean": {
+        "meme": 0,
+        "mourning": 0,
+        "marketing": 19,
+        "education": 7.71,
+        "other": 0
+      },
+      "anchored_sd": {
+        "meme": 0.0,
+        "mourning": 0.0,
+        "marketing": 0.0,
+        "education": 1.6510299815569673,
+        "other": 0.0
+      }
+    },
+    "2026-W13": {
+      "real_scaled": {
+        "meme": 0.6813746287653797,
+        "mourning": 22.0,
+        "marketing": 9.473907509546033,
+        "education": 6.258379295714891,
+        "other": 11.989393296563428
+      },
+      "current_mean": {
+        "meme": 0,
+        "mourning": 22,
+        "marketing": 15.18,
+        "education": 2.28,
+        "other": 3.62
+      },
+      "anchored_mean": {
+        "meme": 0,
+        "mourning": 22,
+        "marketing": 10.53,
+        "education": 5.69,
+        "other": 4.52
+      },
+      "anchored_sd": {
+        "meme": 0.0,
+        "mourning": 0.0,
+        "marketing": 1.117631424039249,
+        "education": 1.3243488966280752,
+        "other": 1.6092234151913152
+      }
+    },
+    "2026-W14": {
+      "real_scaled": {
+        "meme": 0.6907085277895629,
+        "mourning": 6.753075943996605,
+        "marketing": 11.438693254136615,
+        "education": 7.47645311837081,
+        "other": 10.80398812049215
+      },
+      "current_mean": {
+        "meme": 0,
+        "mourning": 9.71,
+        "marketing": 20.76,
+        "education": 6.8,
+        "other": 3.06
+      },
+      "anchored_mean": {
+        "meme": 0,
+        "mourning": 9.1,
+        "marketing": 11.2,
+        "education": 8.21,
+        "other": 5.03
+      },
+      "anchored_sd": {
+        "meme": 0.0,
+        "mourning": 1.711724276862369,
+        "marketing": 0.8246211251235321,
+        "education": 1.5119193100162456,
+        "other": 1.6819928656210168
+      }
+    },
+    "2026-W15": {
+      "real_scaled": {
+        "meme": 0.6673737802291048,
+        "mourning": 3.4348748408994485,
+        "marketing": 6.4217225286380994,
+        "education": 5.5256682223165035,
+        "other": 5.240984302078914
+      },
+      "current_mean": {
+        "meme": 0.12,
+        "mourning": 3.19,
+        "marketing": 18.42,
+        "education": 7.5,
+        "other": 4.42
+      },
+      "anchored_mean": {
+        "meme": 0.06,
+        "mourning": 5.35,
+        "marketing": 7.79,
+        "education": 5.72,
+        "other": 5.59
+      },
+      "anchored_sd": {
+        "meme": 0.27640549922170504,
+        "mourning": 1.2196310917650468,
+        "marketing": 1.070467187726929,
+        "education": 1.175414820393209,
+        "other": 1.9292226413765727
+      }
+    },
+    "2026-W16": {
+      "real_scaled": {
+        "meme": 0.3593551124310564,
+        "mourning": 2.314806957997454,
+        "marketing": 5.366991938905388,
+        "education": 4.204921510394569,
+        "other": 3.5375477301654645
+      },
+      "current_mean": {
+        "meme": 0.3,
+        "mourning": 0.11,
+        "marketing": 19.47,
+        "education": 10.11,
+        "other": 4.38
+      },
+      "anchored_mean": {
+        "meme": 0.28,
+        "mourning": 1.89,
+        "marketing": 6.35,
+        "education": 5.03,
+        "other": 4.52
+      },
+      "anchored_sd": {
+        "meme": 0.530659966456864,
+        "mourning": 1.0667239567948215,
+        "marketing": 0.9630680142129111,
+        "education": 1.081249277456406,
+        "other": 1.5967466924969658
+      }
+    },
+    "2026-W17": {
+      "real_scaled": {
+        "meme": 0.24268137462876538,
+        "mourning": 1.3207467119219347,
+        "marketing": 4.251591005515485,
+        "education": 2.2821383114128126,
+        "other": 2.1141281289775136
+      },
+      "current_mean": {
+        "meme": 0.25,
+        "mourning": 0,
+        "marketing": 19.39,
+        "education": 10.25,
+        "other": 4.4
+      },
+      "anchored_mean": {
+        "meme": 0.22,
+        "mourning": 0.66,
+        "marketing": 4.86,
+        "education": 3.41,
+        "other": 2.73
+      },
+      "anchored_sd": {
+        "meme": 0.5929586832149437,
+        "mourning": 0.6814690014960328,
+        "marketing": 0.7748548251124207,
+        "education": 1.1233432244866215,
+        "other": 1.5482570845954493
+      }
+    },
+    "2026-W18": {
+      "real_scaled": {
+        "meme": 0.20534577853203223,
+        "mourning": 0.7373780229104794,
+        "marketing": 3.0568519304200255,
+        "education": 1.5214255409418753,
+        "other": 1.7687738650827323
+      },
+      "current_mean": {
+        "meme": 0.17,
+        "mourning": 0,
+        "marketing": 18.62,
+        "education": 9.85,
+        "other": 3.58
+      },
+      "anchored_mean": {
+        "meme": 0.22,
+        "mourning": 0.21,
+        "marketing": 4.17,
+        "education": 2.59,
+        "other": 1.3
+      },
+      "anchored_sd": {
+        "meme": 0.7426977851050857,
+        "mourning": 0.431161222746202,
+        "marketing": 0.6489221833163049,
+        "education": 0.9283856957105705,
+        "other": 1.1704699910719625
+      }
+    },
+    "2026-W19": {
+      "real_scaled": {
+        "meme": 0.6487059821807382,
+        "mourning": 0.6487059821807382,
+        "marketing": 3.2855324565125157,
+        "education": 1.7127704709376326,
+        "other": 1.2694102672889265
+      },
+      "current_mean": {
+        "meme": 0.15,
+        "mourning": 0,
+        "marketing": 17.54,
+        "education": 7.14,
+        "other": 3.03
+      },
+      "anchored_mean": {
+        "meme": 0.51,
+        "mourning": 0.09,
+        "marketing": 3.8,
+        "education": 1.58,
+        "other": 0.36
+      },
+      "anchored_sd": {
+        "meme": 1.7691523393987303,
+        "mourning": 0.2861817604250837,
+        "marketing": 0.4898979485566356,
+        "education": 0.8268010643437755,
+        "other": 0.5919459434779497
+      }
+    },
+    "2026-W20": {
+      "real_scaled": {
+        "meme": 3.8082308018667796,
+        "mourning": 0.8307170131523123,
+        "marketing": 3.710224862112855,
+        "education": 1.6427662282562578,
+        "other": 0.9707254985150615
+      },
+      "current_mean": {
+        "meme": 6.27,
+        "mourning": 0,
+        "marketing": 15.5,
+        "education": 4.44,
+        "other": 1.06
+      },
+      "anchored_mean": {
+        "meme": 9.83,
+        "mourning": 0.01,
+        "marketing": 3.29,
+        "education": 0.86,
+        "other": 0.04
+      },
+      "anchored_sd": {
+        "meme": 2.4659886455537463,
+        "mourning": 0.099498743710662,
+        "marketing": 0.47528938553264577,
+        "education": 0.7351190379795642,
+        "other": 0.19595917942265426
+      }
+    },
+    "2026-W21": {
+      "real_scaled": {
+        "meme": 11.037335596096733,
+        "mourning": 2.0954603309291473,
+        "marketing": 3.1828595672464997,
+        "education": 1.5820958845990665,
+        "other": 0.872719558761137
+      },
+      "current_mean": {
+        "meme": 16.63,
+        "mourning": 0,
+        "marketing": 13.64,
+        "education": 2.2,
+        "other": 0.26
+      },
+      "anchored_mean": {
+        "meme": 18.57,
+        "mourning": 0.01,
+        "marketing": 3.07,
+        "education": 0.44,
+        "other": 0
+      },
+      "anchored_sd": {
+        "meme": 0.5874521257089806,
+        "mourning": 0.099498743710662,
+        "marketing": 0.2551470164434615,
+        "education": 0.6053098380168622,
+        "other": 0.0
+      }
+    },
+    "2026-W22": {
+      "real_scaled": {
+        "meme": 15.027577428935086,
+        "mourning": 1.7361052184980907,
+        "marketing": 4.209588459906661,
+        "education": 1.7687738650827323,
+        "other": 1.0967331353415357
+      },
+      "current_mean": {
+        "meme": 18.78,
+        "mourning": 0,
+        "marketing": 11.66,
+        "education": 0.69,
+        "other": 0.01
+      },
+      "anchored_mean": {
+        "meme": 17.61,
+        "mourning": 0.04,
+        "marketing": 3,
+        "education": 0.12,
+        "other": 0
+      },
+      "anchored_sd": {
+        "meme": 1.5613775968675867,
+        "mourning": 0.19595917942265426,
+        "marketing": 0.0,
+        "education": 0.354400902933387,
+        "other": 0.0
+      }
+    }
+  },
+  "limitations": [
+    "Real benchmark rows are post counts, not active-author counts; scaling is an explicit proxy assumption.",
+    "Numerical proxy reuses the existing feed mechanism and sampled injection pool s0; it is not a formal simulation run.",
+    "Parameter selection uses W13-W18 only; W19-W22 metrics are genuine held-out diagnostics."
+  ]
+}
