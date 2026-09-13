@@ -1,0 +1,171 @@
+{
+  "artifact_status": "numerical_proxy_prediction_not_simulation",
+  "lambda_policy": "unchanged",
+  "scale": 15.0,
+  "floor_formula": "R=max(R_min, exp(-lambda_i*cum_own/15))",
+  "selected_floor": 0.7,
+  "selection_note": "Exploratory elbow: <=0.60 barely changes the tail; >=0.75 strongly flattens W13-W18. Not a fitted final value.",
+  "prediction": "100 feed-sampling seeds; current type-specific lambdas; injection_sample_s0; no LLM",
+  "totals": {
+    "2026-W12": {
+      "no_floor_mean": 28.35,
+      "floor_mean": 28.35,
+      "floor_sd": 2.03654118544163,
+      "real_index_w13": 0.10935580129892926,
+      "floor_index_w13": 0.6580779944289694,
+      "floor_by_type": {
+        "meme": 0,
+        "mourning": 0,
+        "education": 5.35,
+        "marketing": 23,
+        "other": 0
+      }
+    },
+    "2026-W13": {
+      "no_floor_mean": 43.08,
+      "floor_mean": 43.08,
+      "floor_sd": 2.9754999579902535,
+      "real_index_w13": 1.0,
+      "floor_index_w13": 1.0,
+      "floor_by_type": {
+        "meme": 0,
+        "mourning": 22,
+        "education": 2.28,
+        "marketing": 15.18,
+        "other": 3.62
+      }
+    },
+    "2026-W14": {
+      "no_floor_mean": 40.33,
+      "floor_mean": 43.02,
+      "floor_sd": 3.3733662712489436,
+      "real_index_w13": 0.7616289275057048,
+      "floor_index_w13": 0.998607242339833,
+      "floor_by_type": {
+        "meme": 0,
+        "mourning": 12.4,
+        "education": 6.8,
+        "marketing": 20.76,
+        "other": 3.06
+      }
+    },
+    "2026-W15": {
+      "no_floor_mean": 33.65,
+      "floor_mean": 44.41,
+      "floor_sd": 4.256982499376759,
+      "real_index_w13": 0.44321572757591715,
+      "floor_index_w13": 1.0308727948003713,
+      "floor_by_type": {
+        "meme": 0.08,
+        "mourning": 14.32,
+        "education": 7.53,
+        "marketing": 18.03,
+        "other": 4.45
+      }
+    },
+    "2026-W16": {
+      "no_floor_mean": 34.37,
+      "floor_mean": 42.02,
+      "floor_sd": 3.936953136627359,
+      "real_index_w13": 0.32964718272775145,
+      "floor_index_w13": 0.9753946146703808,
+      "floor_by_type": {
+        "meme": 0.23,
+        "mourning": 9.37,
+        "education": 9.48,
+        "marketing": 19.09,
+        "other": 3.85
+      }
+    },
+    "2026-W17": {
+      "no_floor_mean": 34.29,
+      "floor_mean": 38.66,
+      "floor_sd": 3.8320229644405837,
+      "real_index_w13": 0.2120414253115675,
+      "floor_index_w13": 0.8974001857010213,
+      "floor_by_type": {
+        "meme": 0.2,
+        "mourning": 7.68,
+        "education": 9.22,
+        "marketing": 18.38,
+        "other": 3.18
+      }
+    },
+    "2026-W18": {
+      "no_floor_mean": 32.22,
+      "floor_mean": 35.34,
+      "floor_sd": 3.53332704401956,
+      "real_index_w13": 0.14946463050728453,
+      "floor_index_w13": 0.8203342618384403,
+      "floor_by_type": {
+        "meme": 0.08,
+        "mourning": 5.21,
+        "education": 9,
+        "marketing": 17.86,
+        "other": 3.19
+      }
+    },
+    "2026-W19": {
+      "no_floor_mean": 27.86,
+      "floor_mean": 30.77,
+      "floor_sd": 3.2368348737617123,
+      "real_index_w13": 0.15727575917149378,
+      "floor_index_w13": 0.7142525533890437,
+      "floor_by_type": {
+        "meme": 0.08,
+        "mourning": 2.99,
+        "education": 7.43,
+        "marketing": 17.3,
+        "other": 2.97
+      }
+    },
+    "2026-W20": {
+      "no_floor_mean": 27.27,
+      "floor_mean": 32.03,
+      "floor_sd": 3.3509849298377934,
+      "real_index_w13": 0.240038616815868,
+      "floor_index_w13": 0.7435004642525535,
+      "floor_by_type": {
+        "meme": 5.93,
+        "mourning": 1.44,
+        "education": 6.62,
+        "marketing": 15.87,
+        "other": 2.17
+      }
+    },
+    "2026-W21": {
+      "no_floor_mean": 32.73,
+      "floor_mean": 36.39,
+      "floor_sd": 2.572527939595603,
+      "real_index_w13": 0.37317886606986134,
+      "floor_index_w13": 0.8447075208913649,
+      "floor_by_type": {
+        "meme": 15.98,
+        "mourning": 0.52,
+        "education": 5.19,
+        "marketing": 13.81,
+        "other": 0.89
+      }
+    },
+    "2026-W22": {
+      "no_floor_mean": 31.14,
+      "floor_mean": 33.65,
+      "floor_sd": 2.5233905761891084,
+      "real_index_w13": 0.4684921888713358,
+      "floor_index_w13": 0.781104921077066,
+      "floor_by_type": {
+        "meme": 18.74,
+        "mourning": 0.3,
+        "education": 3.27,
+        "marketing": 11.2,
+        "other": 0.14
+      }
+    }
+  },
+  "diagnosis": [
+    "The floor prevents some late extinction only after about 0.70.",
+    "At 0.70 the W18 trough remains far too shallow relative to the real W13-normalized curve.",
+    "A floor on R does not guarantee posts because D*R must still exceed activity.",
+    "Keeping current lambdas leaves the original marketing over-supply largely intact."
+  ]
+}
