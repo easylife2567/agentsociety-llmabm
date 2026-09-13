@@ -1,3 +1,9 @@
+# ── 凭据：一律不入库（2026-09-13 起）────────────────────────────
+# 真实凭据只放 .env（见 env.template）；easypaper_config.yaml 曾内嵌
+# 9 处与 .env 同值的 API Key，故一并排除。
+.env
+easypaper_config.yaml
+
 __pycache__/
 *.pyc
 .playwright-mcp/
