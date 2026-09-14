@@ -69,7 +69,8 @@ W21/W22 玩梗绝对产出为 19/16 条，但因其他类型总量退潮，Agent
 interest 对玩梗的选择性激活最强。
 
 图的纵轴固定为 0–80，与基线
-`charts/smoke/anchored_v1_interest_s0_smoke__chart3_supply_stacked_area.png` 完全相同。
+`runs/anchored_v1/_derived/charts/anchored_v1_interest_s0__chart3_supply_stacked_area.png`
+完全相同。
 
 ## 5. 产物
 

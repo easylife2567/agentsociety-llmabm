@@ -12,13 +12,13 @@
 - <run>/agents/agent_*/AGENT.json                    agent 元数据 + decision_log（u/门槛/机制分量）
 - <run>/env/*/state/ENV_STATE.json                   env 全量动态状态（帖池/feeds/玩梗涌现环境/当前周）
 
-输出（原子写，均落本实验目录 monitor/ 下）：
-- monitor/<run_id>/status.md + status.json   单 run 快照（周度指标 / Agent 行为 / 机制透视 /
-                                             帖子流 / 派生视图 / 进程信息；每个字段含义内嵌）
-- monitor/overview.md + overview.json        多 run 总览
+输出（原子写，均落本轮 runs/anchored_v1/_derived/monitor/ 下）：
+- <run_id>/status.md + status.json   单 run 快照（周度指标 / Agent 行为 / 机制透视 /
+                                     帖子流 / 派生视图 / 进程信息；每个字段含义内嵌）
+- overview.md + overview.json        本轮多 run 总览
 
 用法：
-    $PYTHON_PATH hypothesis_4/experiment_1/monitor.py                 # 刷新全部快照（自动发现 run/ 与 runs/*）
+    $PYTHON_PATH hypothesis_4/experiment_1/monitor.py                 # 刷新本轮已有 run 快照
     $PYTHON_PATH hypothesis_4/experiment_1/monitor.py --week 2026-W13 # 只看某周
     $PYTHON_PATH hypothesis_4/experiment_1/monitor.py --run-dir path/to/run [--label 名字]
     $PYTHON_PATH hypothesis_4/experiment_1/monitor.py --overview-only
@@ -40,6 +40,8 @@ from statistics import fmean
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 BENCH_PATH = SCRIPT_DIR.parent / "benchmark_curves.json"  # hypothesis_4/benchmark_curves.json
+ROUND_ROOT = SCRIPT_DIR / "runs" / "anchored_v1"
+MONITOR_OUT = ROUND_ROOT / "_derived" / "monitor"
 
 
 def _expected_engine_steps(run_id: str) -> int:
@@ -720,7 +722,7 @@ def render_overview(runs: list[dict], weekly_map: dict[str, list[dict]]) -> str:
 # ---------------- 主流程 ----------------
 
 def discover_runs(args) -> list[tuple[Path, str]]:
-    """显式 --run-dir 优先；否则自动发现 runs/* 与固定 run/。"""
+    """显式 --run-dir 优先；否则只自动发现 anchored_v1 本轮的 9 个 run。"""
     out: list[tuple[Path, str]] = []
     if args.run_dir:
         labels = args.label or []
@@ -729,12 +731,15 @@ def discover_runs(args) -> list[tuple[Path, str]]:
             out.append((p, labels[i] if i < len(labels) else p.name))
     else:
         candidates: list[Path] = []
-        runs_root = SCRIPT_DIR / "runs"
-        if runs_root.is_dir():
-            candidates += sorted(d for d in runs_root.iterdir() if d.is_dir())
-        fixed = SCRIPT_DIR / "run"
-        if fixed.is_dir():
-            candidates.append(fixed)
+        manifest = _read_json(SCRIPT_DIR / "init" / "configs" / "manifest.json") or {}
+        run_ids = manifest.get("run_ids") or []
+        if run_ids:
+            candidates = [ROUND_ROOT / rid for rid in run_ids if (ROUND_ROOT / rid).is_dir()]
+        elif ROUND_ROOT.is_dir():
+            candidates = sorted(
+                d for d in ROUND_ROOT.iterdir()
+                if d.is_dir() and not d.name.startswith("_")
+            )
         for d in candidates:
             looks_like_run = (d / "pid.json").exists() or (d / "SOCIETY.json").exists() \
                 or (d / "replay").is_dir() or _find_env_state(d) is not None
@@ -745,11 +750,11 @@ def discover_runs(args) -> list[tuple[Path, str]]:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="CurationDynamics 推演监视器（落盘快照，零侵入）")
-    ap.add_argument("--run-dir", action="append", help="显式指定 run 目录（可重复；默认自动发现 runs/* 与 run/）")
+    ap.add_argument("--run-dir", action="append", help="显式指定 run 目录（可重复；默认只发现 runs/anchored_v1/ 下的本轮 run）")
     ap.add_argument("--label", action="append", help="与 --run-dir 顺序配对的显示名")
     ap.add_argument("--week", help="只看某周（如 2026-W13）")
     ap.add_argument("--posts-limit", type=int, default=30, help="帖子流摘录条数上限（默认 30）")
-    ap.add_argument("--out-dir", default=str(SCRIPT_DIR / "monitor"), help="快照输出目录")
+    ap.add_argument("--out-dir", default=str(MONITOR_OUT), help="快照输出目录")
     ap.add_argument("--overview-only", action="store_true", help="只刷新多 run 总览")
     args = ap.parse_args()
 
@@ -758,7 +763,7 @@ def main() -> None:
 
     run_dirs = discover_runs(args)
     if not run_dirs:
-        print("未发现任何 run 目录（等待 runs/* 或 run/ 出现；也可用 --run-dir 指定）。")
+        print("未发现本轮 run 目录（等待 runs/anchored_v1/<run_id> 出现；也可用 --run-dir 指定）。")
 
     weekly_map: dict[str, list[dict]] = {}
     collected: list[dict] = []

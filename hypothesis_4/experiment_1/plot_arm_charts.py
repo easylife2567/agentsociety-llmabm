@@ -11,8 +11,9 @@
     2. 臂间差异有多大、是否超过 seed 内噪声？
        （口径：mean ± min–max 包络，n=3；n 这么小时用包络比 sd 带诚实）
 
-输入：monitor/<run_id>/status.json（由 monitor.py 生成）
-输出：charts/formal/ARM_*.png  +  data/arm/weekly_*.csv（聚合数值，供复核）
+输入：runs/anchored_v1/_derived/monitor/<run_id>/status.json（由 monitor.py 生成）
+输出：runs/anchored_v1/_derived/charts/ARM_*.png
+    + runs/anchored_v1/_derived/data/arm/weekly_*.csv（聚合数值，供复核）
 
 用法：
     $PYTHON_PATH hypothesis_4/experiment_1/plot_arm_charts.py
@@ -39,9 +40,11 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-DATA_DIR = SCRIPT_DIR / "data" / "arm"
-CHARTS_DIR = SCRIPT_DIR / "charts" / "formal"   # 出图分桶：臂级图属正式实验（2026-09-13 用户要求分开放）
-MONITOR_DIR = SCRIPT_DIR / "monitor"
+ROUND_ROOT = SCRIPT_DIR / "runs" / "anchored_v1"
+DERIVED_ROOT = ROUND_ROOT / "_derived"
+DATA_DIR = DERIVED_ROOT / "data" / "arm"
+CHARTS_DIR = DERIVED_ROOT / "charts"
+MONITOR_DIR = DERIVED_ROOT / "monitor"
 
 EXPECTED_WEEKS = 11
 ARMS = ["random", "chronological", "interest"]
@@ -58,7 +61,7 @@ TYPE_COLOR = {"mourning": "#4C72B0", "meme": "#DD8452", "education": "#55A868",
 DEATH_WEEK = "2026-W13"
 DEATH_LABEL = "去世 3-24 (W13)"
 
-RUN_ID_RE = re.compile(r"^(random|chronological|interest)_s(\d+)$")
+RUN_ID_RE = re.compile(r"^(?:anchored_v1_)?(random|chronological|interest)_s(\d+)$")
 
 # 缺字告警升级为错误：matplotlib 遇到字体缺字时只发 UserWarning，图上表现为空白/方框，
 # 图仍会正常落盘——属静默产出坏图。图是本实验的交付物，宁可炸也不要错。
@@ -134,7 +137,7 @@ def load_runs(explicit: list[tuple[Path, str]], strict: bool = True) -> list[dic
     else:
         sources = []
         for arm in ARMS:
-            for d in sorted(MONITOR_DIR.glob(f"{arm}_s*/status.json")):
+            for d in sorted(MONITOR_DIR.glob(f"anchored_v1_{arm}_s*/status.json")):
                 sources.append((d, d.parent.name))
         if not sources:
             raise SystemExit(

@@ -190,7 +190,7 @@ def simulate() -> tuple[list[dict], dict]:
             "source": "W05-W12 empirical weekday-hour joint distribution, Asia/Shanghai",
             "seed": 44,
         },
-        "y_axis_template": "anchored_v1_interest_s0_smoke__chart3_supply_stacked_area.png (0-80)",
+        "y_axis_template": "runs/anchored_v1/_derived/charts/anchored_v1_interest_s0__chart3_supply_stacked_area.png (0-80)",
     }
     return rows, meta
 

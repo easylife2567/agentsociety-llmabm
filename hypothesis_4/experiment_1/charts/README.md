@@ -1,10 +1,15 @@
-# charts/ 目录约定
+# charts/ 历史目录约定
 
 **规则（用户 2026-09-13 要求）：烟测实验、预测、正式实验的图表分开放。**
 
+> 2026-09-14 起，新公式 `anchored_v1` 的9-run原始数据与正式派生结果统一收纳在
+> `../runs/anchored_v1/`；其正式图表位于
+> `../runs/anchored_v1/_derived/charts/`。本目录继续保存旧公式正式结果、历史烟测和
+> 代理预测，避免新旧实验混放。
+
 | 桶 | 内容 | 谁写 | 权威性 |
 |---|---|---|---|
-| `formal/` | **正式 9-run 批跑**（3 推荐算法臂 × 3 seed，2026-09-13）的逐 run 图 + 臂级图 | `plot_run_charts.py`（默认）、`plot_arm_charts.py`（默认） | 主判据来源 |
+| `formal/` | **旧公式正式 9-run 批跑**（3 推荐算法臂 × 3 seed，2026-09-13）的逐 run 图 + 臂级图 | 历史冻结结果 | 旧轮主判据来源 |
 | `prediction/` | **代理预测**（只读数值推演，不跑 LLM） | `proxy_predict*.py` | 预测，非结果 |
 | `smoke/` | **烟测 / 预跑单 run**（正式批跑前） | `plot_run_charts.py --charts-dir charts/smoke` | 仅追溯/诊断 |
 
@@ -50,14 +55,16 @@
 
 ---
 
-## 出图命令（重跑时）
+## anchored_v1 出图命令（9 run 完成后）
 
 ```bash
 PYTHON_PATH=$(grep "^PYTHON_PATH=" ../../.env | cut -d'=' -f2)
 
-# 正式：逐 run → charts/formal/，臂级 → charts/formal/
-for r in random_s{0,1,2} chronological_s{0,1,2} interest_s{0,1,2}; do
-  $PYTHON_PATH plot_run_charts.py --status monitor/$r/status.json --run-id $r
+# 正式：逐 run 与臂级结果均写入 runs/anchored_v1/_derived/
+$PYTHON_PATH monitor.py
+for r in anchored_v1_random_s{0,1,2} anchored_v1_chronological_s{0,1,2} anchored_v1_interest_s{0,1,2}; do
+  $PYTHON_PATH plot_run_charts.py \
+    --status runs/anchored_v1/_derived/monitor/$r/status.json --run-id $r
 done
 $PYTHON_PATH plot_arm_charts.py
 

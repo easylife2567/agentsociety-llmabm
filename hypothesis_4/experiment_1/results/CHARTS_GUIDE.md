@@ -87,7 +87,8 @@ $PYTHON_PATH plot_run_charts.py --status monitor/<run>/status.json --run-id <run
 
 > **统一纵轴比例尺（用户 2026-09-14 裁定并澄清）**：此后所有可比的 random /
 > chronological / interest 绝对供给堆叠图，均以
-> `anchored_v1_interest_s0_smoke__chart3_supply_stacked_area.png` 为比例尺模板：范围固定为
+> `runs/anchored_v1/_derived/charts/anchored_v1_interest_s0__chart3_supply_stacked_area.png`
+> 为比例尺模板：范围固定为
 > **0–80 帖**、每 10 帖一格。统一的是显示比例尺，**不得改变原图的数据口径或重新预测**：
 > `chart3` 仍为“注入 + Agent”，`chart3b` 及相应 Agent 预测图仍只画 Agent 产出。
 > 若未来结果超过 80，须先报告，不能静默改轴或裁切。

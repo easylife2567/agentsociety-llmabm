@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """run_batch: CurationDynamics H4E1 9-run 批量调度器（幂等 + 可选并发 + 崩溃续跑）。
 
-布局约定（与 monitor.py 的 runs/* 自动发现对齐）：
-    runs/<run_id>/           每个 run 独立目录
+布局约定（与 monitor.py 的本轮目录自动发现对齐）：
+    runs/anchored_v1/<run_id>/    本轮每个 run 的独立原始目录
          ├─ pid.json            引擎 CLI 接管：status(running/completed/failed)/step_count/simulation_time
          ├─ SOCIETY_STEP.json   每 step 原子重写（周级臂11步；chronological为693小时批次）
          ├─ stdout.log stderr.log   调度器重定向（同现有 ags.py 惯例）
@@ -35,7 +35,7 @@
     $PYTHON_PATH hypothesis_4/experiment_1/run_batch.py --dry-run
     # 中断残留续跑
     $PYTHON_PATH hypothesis_4/experiment_1/run_batch.py --resume-failed
-    # 每个 run 完成后刷新 monitor 快照
+    # 每个 run 完成后刷新 monitor 快照并生成本轮 CSV/图表
     $PYTHON_PATH hypothesis_4/experiment_1/run_batch.py --with-monitor
 """
 
@@ -59,7 +59,8 @@ WORKSPACE = SCRIPT_DIR.parents[1]                     # 仓库根
 CONFIGS_DIR = SCRIPT_DIR / "init" / "configs"
 WEEKLY_STEPS_PATH = SCRIPT_DIR / "init" / "steps.yaml"
 CHRONOLOGICAL_STEPS_PATH = SCRIPT_DIR / "init" / "steps_chronological_hourly.yaml"
-RUNS_ROOT = SCRIPT_DIR / "runs"
+ROUND_ID = "anchored_v1"
+RUNS_ROOT = SCRIPT_DIR / "runs" / ROUND_ID
 DATA_ROOT = WORKSPACE / "agentsociety_data" / "runs"  # 每个 run 隔离的 cache.home
 
 EXP_ID_PREFIX = "h4e1_"
@@ -390,9 +391,22 @@ async def main_async(args) -> int:
             results.append(r)
             if args.with_monitor:
                 subprocess.run(
-                    [py, str(SCRIPT_DIR / "monitor.py"), "--overview-only"],
+                    [py, str(SCRIPT_DIR / "monitor.py")],
                     cwd=str(WORKSPACE), env=env, timeout=600,
                 )
+                if r.get("outcome") == "completed":
+                    status_path = (
+                        RUNS_ROOT / "_derived" / "monitor" /
+                        rid / "status.json"
+                    )
+                    subprocess.run(
+                        [
+                            py, str(SCRIPT_DIR / "plot_run_charts.py"),
+                            "--status", str(status_path),
+                            "--run-id", rid,
+                        ],
+                        cwd=str(WORKSPACE), env=env, timeout=600,
+                    )
             return r
 
     tasks = [asyncio.create_task(worker(rid, action)) for rid, action in to_run]
@@ -416,7 +430,10 @@ def main() -> int:
     ap.add_argument("--resume-failed", action="store_true", help="中断残留以 --resume 续跑")
     ap.add_argument("--timeout-h", type=float, default=6.0, help="单 run 超时上限（小时，默认 6）")
     ap.add_argument("--interval", type=float, default=20.0, help="轮询间隔秒（默认 20）")
-    ap.add_argument("--with-monitor", action="store_true", help="每完成一个 run 后刷新 monitor 总览")
+    ap.add_argument(
+        "--with-monitor", action="store_true",
+        help="每完成一个 run 后刷新本轮监控快照，并生成该 run 的 CSV 与图表",
+    )
     ap.add_argument("--without-confirm", action="store_true", help="启动前不询问（无人值守）")
     ap.add_argument("--dry-run", action="store_true", help="只打印计划不启动")
     args = ap.parse_args()

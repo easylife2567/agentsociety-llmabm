@@ -27,10 +27,17 @@ datasets/zhangxf_labeled/valid_posts_clusters.parquet
 # 归档压缩包（体积大，由打包流程生成，不入库）
 AgentSociety_*.tar.gz
 
-# CurationDynamics H4E1 引擎产物与监视快照（由 run_batch / monitor 自动生成，脚本可复现，不入库）
+# CurationDynamics H4E1 引擎原始产物（由 run_batch 自动生成，不入库）。
+# anchored_v1 本轮用独立目录收纳 9 个 raw run；其中 README 与 _derived/ 下的
+# 持久 CSV/图表需要入库，raw run 目录本身仍保持忽略。
 agentsociety_data/
 hypothesis_4/experiment_1/run/
-hypothesis_4/experiment_1/runs/
+hypothesis_4/experiment_1/runs/*
+!hypothesis_4/experiment_1/runs/anchored_v1/
+hypothesis_4/experiment_1/runs/anchored_v1/*
+!hypothesis_4/experiment_1/runs/anchored_v1/README.md
+!hypothesis_4/experiment_1/runs/anchored_v1/_derived/
+!hypothesis_4/experiment_1/runs/anchored_v1/_derived/**
 hypothesis_4/experiment_1/runs_retired_pre_batch/*/
 !hypothesis_4/experiment_1/runs_retired_pre_batch/README.md
 hypothesis_4/experiment_1/monitor/

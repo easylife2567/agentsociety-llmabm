@@ -10,19 +10,16 @@
     chart3b 各内容类型 Agent 发帖量堆叠面积    （图3 的 Agent 侧变体，不含注入帖）
     chart4  玩梗型 Agent 发言率 + 涌现增益 G  （对应 docx 图4 玩梗率，副轴加机制量）
 
-同时把周度指标导出为 CSV（data/<run_id>/weekly_*.csv），作为 run/（已 gitignore）
+同时把周度指标导出为 CSV
+（runs/anchored_v1/_derived/data/<run_id>/weekly_*.csv），作为 raw run（已 gitignore）
 之外的持久数据副本；按 run 分目录，避免多 run 批跑时互相覆盖。
 
-出图分桶（用户 2026-09-13 要求：烟测 / 预测 / 正式实验分开放）：
-    默认写 charts/formal/（正式 9-run 批跑）；烟测/预跑单 run 须显式传
-    `--charts-dir charts/smoke`。预测图不归本脚本（见 proxy_predict*.py）。
+本轮正式图默认写入 runs/anchored_v1/_derived/charts/。预测图不归本脚本
+（见 proxy_predict*.py，仍保留在历史 charts/prediction/）。
 
 用法：
     $PYTHON_PATH hypothesis_4/experiment_1/plot_run_charts.py \
-        --status hypothesis_4/experiment_1/monitor/<run_id>/status.json        # 正式 run（→ charts/formal/）
-    $PYTHON_PATH hypothesis_4/experiment_1/plot_run_charts.py \
-        --status hypothesis_4/experiment_1/monitor/<run_id>/status.json \
-        --charts-dir hypothesis_4/experiment_1/charts/smoke                    # 烟测 run
+        --status hypothesis_4/experiment_1/runs/anchored_v1/_derived/monitor/<run_id>/status.json
     $PYTHON_PATH hypothesis_4/experiment_1/plot_run_charts.py --no-charts     # 只导出 CSV
 """
 
@@ -39,12 +36,10 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-DATA_DIR = SCRIPT_DIR / "data"
-# 出图分桶（用户 2026-09-13 要求：烟测 / 预测 / 正式实验分开放）：
-#   charts/formal/  正式 9-run 批跑的逐 run 图（本脚本主用途）
-#   charts/smoke/   烟测与预跑单 run —— 须显式传 --charts-dir charts/smoke
-# 本脚本不产出预测图（那是 proxy_predict*.py 的职责，写 charts/prediction/）。
-CHARTS_DIR = SCRIPT_DIR / "charts" / "formal"
+ROUND_ROOT = SCRIPT_DIR / "runs" / "anchored_v1"
+DERIVED_ROOT = ROUND_ROOT / "_derived"
+DATA_DIR = DERIVED_ROOT / "data"
+CHARTS_DIR = DERIVED_ROOT / "charts"
 
 
 def _rel(p: Path) -> str:
@@ -360,15 +355,17 @@ def chart4_meme_speaking(weekly: list[dict], run_id: str, out: Path) -> Path:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description="CurationDynamics 周度关键图绘制（对齐图表解读.docx 样式）")
-    ap.add_argument("--status", default=str(SCRIPT_DIR / "monitor" / "run" / "status.json"),
-                    help="monitor 快照 status.json（默认烟测 monitor/run/）")
+    ap.add_argument(
+        "--status",
+        default=str(DERIVED_ROOT / "monitor" / "anchored_v1_interest_s0" / "status.json"),
+        help="monitor 快照 status.json（默认本轮 interest s0）",
+    )
     ap.add_argument("--run-id", default=None,
                     help="覆盖 run_id（默认取 status.json 内值，再退回快照目录名）")
     ap.add_argument("--no-charts", action="store_true", help="只导出 CSV 不画图")
     ap.add_argument("--no-csv", action="store_true", help="只画图不导出 CSV")
     ap.add_argument("--charts-dir", default=str(CHARTS_DIR),
-                    help=f"出图目录（默认 {CHARTS_DIR.relative_to(SCRIPT_DIR)}；"
-                         f"烟测/预跑单 run 请传 charts/smoke）")
+                    help=f"出图目录（默认 {CHARTS_DIR.relative_to(SCRIPT_DIR)}）")
     args = ap.parse_args()
     charts_dir = _resolve_dir(args.charts_dir)
 
