@@ -4,12 +4,12 @@
 布局约定（与 monitor.py 的 runs/* 自动发现对齐）：
     runs/<run_id>/           每个 run 独立目录
          ├─ pid.json            引擎 CLI 接管：status(running/completed/failed)/step_count/simulation_time
-         ├─ SOCIETY_STEP.json   每 step 原子重写（本实验 11 步=11 周）
+         ├─ SOCIETY_STEP.json   每 step 原子重写（周级臂11步；chronological为693小时批次）
          ├─ stdout.log stderr.log   调度器重定向（同现有 ags.py 惯例）
          └─ replay/ env/ agents/ …  引擎产物（monitor 数据源）
 
 幂等判定（每次调用重入安全，可反复跑"补齐缺口"）：
-    completed        SOCIETY_STEP.step_count >= 11（唯一的成功口径）
+    completed        step_count 达到该 run 的预期值（11或693；唯一成功口径）
     running          进程存活且有数据                           → 等待，不重复启动
     failed           pid.status == failed，或自称 completed 但步数不足 → 跳过（或 --force 重跑）
     interrupted      进程已死但有残留（含自称 running 的死进程）→ --resume-failed 时以 --resume 续跑
@@ -57,12 +57,33 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).resolve().parent          # hypothesis_4/experiment_1
 WORKSPACE = SCRIPT_DIR.parents[1]                     # 仓库根
 CONFIGS_DIR = SCRIPT_DIR / "init" / "configs"
-STEPS_PATH = SCRIPT_DIR / "init" / "steps.yaml"
+WEEKLY_STEPS_PATH = SCRIPT_DIR / "init" / "steps.yaml"
+CHRONOLOGICAL_STEPS_PATH = SCRIPT_DIR / "init" / "steps_chronological_hourly.yaml"
 RUNS_ROOT = SCRIPT_DIR / "runs"
 DATA_ROOT = WORKSPACE / "agentsociety_data" / "runs"  # 每个 run 隔离的 cache.home
 
 EXP_ID_PREFIX = "h4e1_"
-EXPECTED_STEPS = 11                                   # W12 → W22，11 ticks
+EXPECTED_STEPS = 11                                   # 周级臂：W12 → W22
+
+
+def expected_steps_for(run_id: str) -> int:
+    """引擎步数：chronological 为有人行动的小时批次；其余为 11 个周级 step。"""
+    if "_chronological_" not in str(run_id):
+        return EXPECTED_STEPS
+    manifest = _read_json(CONFIGS_DIR / "manifest.json")
+    return int(
+        (((manifest.get("steps") or {}).get("chronological_hourly") or {})
+         .get("engine_batches", 0))
+        or EXPECTED_STEPS
+    )
+
+
+def steps_path_for(run_id: str) -> Path:
+    return (
+        CHRONOLOGICAL_STEPS_PATH
+        if "_chronological_" in str(run_id)
+        else WEEKLY_STEPS_PATH
+    )
 
 # ---------------- .env ----------------
 
@@ -119,13 +140,14 @@ def _pid_alive(pid: int) -> bool:
     return True
 
 
-def classify_run(run_dir: Path) -> tuple[str, dict]:
+def classify_run(run_dir: Path, run_id: str | None = None) -> tuple[str, dict]:
     """返回 (state, detail)。state ∈ completed/running/failed/interrupted/pending。"""
     if not run_dir.is_dir():
         return "pending", {}
     pid_data = _read_json(run_dir / "pid.json")
     step_data = _read_json(run_dir / "SOCIETY_STEP.json")
     step = int(step_data.get("step_count", 0) or 0)
+    expected = expected_steps_for(run_id or run_dir.name)
     terminated = bool(step_data.get("terminated"))
     status = pid_data.get("status")
     proc_pid = int(pid_data.get("pid") or 0)
@@ -136,12 +158,12 @@ def classify_run(run_dir: Path) -> tuple[str, dict]:
     # 判定 completed 必须**同时**满足步数达标：CLI 在 step 执行抛异常后仍会落盘
     # status=completed（并打印 "Experiment completed successfully"），只认 status
     # 会把"第 0 步就崩掉、replay 表近乎为空"的 run 记成成功——静默污染数据集。
-    if step >= EXPECTED_STEPS and (status == "completed" or terminated):
+    if step >= expected and (status == "completed" or terminated):
         return "completed", {"step": step, "end": pid_data.get("end_time")}
-    if status == "completed" and step < EXPECTED_STEPS:
+    if status == "completed" and step < expected:
         return "failed", {
             "step": step,
-            "reason": f"pid.status=completed 但 step={step} < {EXPECTED_STEPS}（中途异常退出，数据不完整）",
+            "reason": f"pid.status=completed 但 step={step} < {expected}（中途异常退出，数据不完整）",
         }
     if status == "failed":
         return "failed", {"step": step, "reason": pid_data.get("reason", "pid.status=failed")}
@@ -169,7 +191,7 @@ def build_plan(run_ids: list[str], args) -> list[tuple[str, str, str]]:
     """返回 [(run_id, state, action)]。action ∈ start/resume/wait/skip/force。"""
     plan: list[tuple[str, str, str]] = []
     for rid in run_ids:
-        state, _ = classify_run(RUNS_ROOT / rid)
+        state, _ = classify_run(RUNS_ROOT / rid, rid)
         if args.force and state in ("completed", "failed"):
             plan.append((rid, state, "force"))
         elif state == "completed":
@@ -201,7 +223,7 @@ def _spawn_cli(
     cmd = [
         py, "-m", "agentsociety2.society.cli",
         "--config", str(cfg),
-        "--steps", str(STEPS_PATH),
+        "--steps", str(steps_path_for(run_id)),
         "--run-dir", str(run_dir),
         "--experiment-id", f"{EXP_ID_PREFIX}{run_id}",
         "--log-level", "INFO",
@@ -237,13 +259,13 @@ def _spawn_cli(
     return proc
 
 
-def _run_finished(run_dir: Path, timeout_h: float) -> tuple[bool, dict]:
+def _run_finished(run_dir: Path, run_id: str) -> tuple[bool, dict]:
     """run 是否已结束。返回 (finished, detail)。"""
     pid_data = _read_json(run_dir / "pid.json")
     step_data = _read_json(run_dir / "SOCIETY_STEP.json")
     step = int(step_data.get("step_count", 0) or 0)
     done = bool(pid_data.get("status") in ("completed", "failed"))
-    done = done or (step >= EXPECTED_STEPS and bool(step_data.get("terminated")))
+    done = done or (step >= expected_steps_for(run_id) and bool(step_data.get("terminated")))
     return done, {"step": step, "pid_status": pid_data.get("status")}
 
 
@@ -254,6 +276,7 @@ async def run_one(
 ) -> dict:
     """启动一个 run 并阻塞至结束（或超时）。返回结束 meta。"""
     run_dir = RUNS_ROOT / run_id
+    expected = expected_steps_for(run_id)
     try:
         proc = _spawn_cli(py, run_id, env, resume=resume, timeout_h=timeout_h)
     except FileNotFoundError as e:
@@ -263,23 +286,23 @@ async def run_one(
     deadline = time.monotonic() + timeout_h * 3600
     last_log_ts = 0.0
     while time.monotonic() < deadline:
-        finished, meta = _run_finished(run_dir, timeout_h)
+        finished, meta = _run_finished(run_dir, run_id)
         if finished:
             break
         # 进程已死但状态未写 completed：按残留处理（超时窗口内给 CLI 时间落盘）
         if not _pid_alive(proc.pid):
             await asyncio.sleep(3)
-            finished, meta = _run_finished(run_dir, timeout_h)
+            finished, meta = _run_finished(run_dir, run_id)
             if not finished:
                 break
         now = time.time()
         if now - last_log_ts >= 120:
             last_log_ts = now
-            print(f"  [tick]  {run_id} step={meta.get('step','?')}/11")
+            print(f"  [tick]  {run_id} step={meta.get('step','?')}/{expected}")
         await asyncio.sleep(interval)
 
     # 最终状态
-    finished, meta = _run_finished(run_dir, timeout_h)
+    finished, meta = _run_finished(run_dir, run_id)
     if _pid_alive(proc.pid):
         pid_data = _read_json(run_dir / "pid.json")
         if not finished:
@@ -304,18 +327,18 @@ async def run_one(
     # 唯一判"成功"的口径：步数达标。**不看** pid.status——CLI 中途异常退出时会
     # 把 status 落成 completed 并打印 "Experiment completed successfully"，
     # 只认 status 就会把第 0 步崩溃的空 run 记成成功。
-    if step_i >= EXPECTED_STEPS:
+    if step_i >= expected:
         outcome = "completed"
     elif pid_status == "completed":
         outcome = "incomplete"
         pid_data.update({
             "status": "failed",
-            "reason": f"step={step_i} < {EXPECTED_STEPS}（中途异常退出，数据不完整）",
+            "reason": f"step={step_i} < {expected}（中途异常退出，数据不完整）",
         })
         (run_dir / "pid.json").write_text(json.dumps(pid_data, indent=2), encoding="utf-8")
     else:
         outcome = pid_status or "interrupted"
-    print(f"  [done]  {run_id} outcome={outcome} step={step_i}/11")
+    print(f"  [done]  {run_id} outcome={outcome} step={step_i}/{expected}")
     return {"run_id": run_id, "outcome": outcome, "step": step_i}
 
 

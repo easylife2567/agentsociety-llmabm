@@ -6,6 +6,109 @@
         "recommendation_algorithm": "chronological",
         "meme_emergence_mode": "normal",
         "random_seed": 0,
+        "chronological_action_hours": {
+          "1": 67,
+          "2": 88,
+          "3": 141,
+          "4": 35,
+          "5": 40,
+          "6": 10,
+          "7": 21,
+          "8": 7,
+          "9": 33,
+          "10": 86,
+          "11": 166,
+          "12": 111,
+          "13": 64,
+          "14": 67,
+          "15": 111,
+          "16": 58,
+          "17": 15,
+          "18": 137,
+          "19": 103,
+          "20": 20,
+          "21": 15,
+          "22": 18,
+          "23": 161,
+          "24": 20,
+          "25": 105,
+          "26": 163,
+          "27": 11,
+          "28": 65,
+          "29": 82,
+          "30": 155,
+          "31": 36,
+          "32": 44,
+          "33": 42,
+          "34": 13,
+          "35": 110,
+          "36": 134,
+          "37": 70,
+          "38": 11,
+          "39": 113,
+          "40": 116,
+          "41": 107,
+          "42": 59,
+          "43": 136,
+          "44": 105,
+          "45": 94,
+          "46": 88,
+          "47": 41,
+          "48": 79,
+          "49": 131,
+          "50": 111,
+          "51": 61,
+          "52": 134,
+          "53": 137,
+          "54": 12,
+          "55": 33,
+          "56": 40,
+          "57": 9,
+          "58": 119,
+          "59": 107,
+          "60": 88,
+          "61": 166,
+          "62": 62,
+          "63": 37,
+          "64": 20,
+          "65": 60,
+          "66": 137,
+          "67": 96,
+          "68": 14,
+          "69": 70,
+          "70": 12,
+          "71": 104,
+          "72": 21,
+          "73": 35,
+          "74": 106,
+          "75": 137,
+          "76": 104,
+          "77": 48,
+          "78": 106,
+          "79": 45,
+          "80": 6,
+          "81": 45,
+          "82": 111,
+          "83": 105,
+          "84": 37,
+          "85": 137,
+          "86": 136,
+          "87": 46,
+          "88": 162,
+          "89": 44,
+          "90": 14,
+          "91": 86,
+          "92": 141,
+          "93": 95,
+          "94": 89,
+          "95": 82,
+          "96": 47,
+          "97": 55,
+          "98": 67,
+          "99": 89,
+          "100": 159
+        },
+        "chronological_total_batches": 693,
         "emergence_flow_by_week": {
           "2026-W12": 1246,
           "2026-W13": 11394,
@@ -23,7 +126,7 @@
         "life_saturation_scale": 20.0,
         "life_retire_floor": 0.35,
         "interest_sample_temp": 4.0,
-        "event_week_mourning_floor": 5,
+        "event_week_mourning_floor": 0,
         "injection_data_path": "hypothesis_4/experiment_1/init/injection_sample_s0.json",
         "vocab_path": "custom/envs/curation_assets/vocabs.json",
         "sampling_ratio": 1.0,
@@ -194,7 +297,8 @@
           "小学数学",
           "销量第一",
           "章节练习"
-        ]
+        ],
+        "chronological_action_hour": 67
       }
     },
     {
@@ -253,7 +357,8 @@
           "课程",
           "提高",
           "评论区扣1"
-        ]
+        ],
+        "chronological_action_hour": 88
       }
     },
     {
@@ -271,7 +376,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 141
       }
     },
     {
@@ -330,7 +436,8 @@
           "三口一头猪",
           "赛搏永生",
           "牢勋"
-        ]
+        ],
+        "chronological_action_hour": 35
       }
     },
     {
@@ -389,7 +496,8 @@
           "精英主义",
           "大学",
           "专升本"
-        ]
+        ],
+        "chronological_action_hour": 40
       }
     },
     {
@@ -448,7 +556,8 @@
           "引流",
           "思维导图",
           "限量"
-        ]
+        ],
+        "chronological_action_hour": 10
       }
     },
     {
@@ -507,7 +616,8 @@
           "巧乐兹占神",
           "雪峰铠甲",
           "考盐套餐"
-        ]
+        ],
+        "chronological_action_hour": 21
       }
     },
     {
@@ -566,7 +676,8 @@
           "孩子",
           "基础医学",
           "电气"
-        ]
+        ],
+        "chronological_action_hour": 7
       }
     },
     {
@@ -625,7 +736,8 @@
           "张雪峰死了",
           "zhang雪峰",
           "雪人三xiang"
-        ]
+        ],
+        "chronological_action_hour": 33
       }
     },
     {
@@ -684,7 +796,8 @@
           "唯成功论",
           "预推免",
           "制造业"
-        ]
+        ],
+        "chronological_action_hour": 86
       }
     },
     {
@@ -743,7 +856,8 @@
           "综合评价",
           "国家专项",
           "十推"
-        ]
+        ],
+        "chronological_action_hour": 166
       }
     },
     {
@@ -802,7 +916,8 @@
           "赛铂永生",
           "sileshangresou",
           "双生武阍"
-        ]
+        ],
+        "chronological_action_hour": 111
       }
     },
     {
@@ -861,7 +976,8 @@
           "折扣",
           "方法",
           "专项训练"
-        ]
+        ],
+        "chronological_action_hour": 64
       }
     },
     {
@@ -920,7 +1036,8 @@
           "直降",
           "课程",
           "手抄笔记"
-        ]
+        ],
+        "chronological_action_hour": 67
       }
     },
     {
@@ -979,7 +1096,8 @@
           "学习",
           "父母期望",
           "成人高考"
-        ]
+        ],
+        "chronological_action_hour": 111
       }
     },
     {
@@ -1038,7 +1156,8 @@
           "二本",
           "高职",
           "211"
-        ]
+        ],
+        "chronological_action_hour": 58
       }
     },
     {
@@ -1097,7 +1216,8 @@
           "高中语文",
           "体验",
           "等级赋分"
-        ]
+        ],
+        "chronological_action_hour": 15
       }
     },
     {
@@ -1115,7 +1235,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 137
       }
     },
     {
@@ -1174,7 +1295,8 @@
           "志愿",
           "批判性思维",
           "专业大于学校"
-        ]
+        ],
+        "chronological_action_hour": 103
       }
     },
     {
@@ -1233,7 +1355,8 @@
           "寒门贵子",
           "周年祭",
           "黑桃心"
-        ]
+        ],
+        "chronological_action_hour": 20
       }
     },
     {
@@ -1292,7 +1415,8 @@
           "Rest in Peace",
           "先生",
           "讣告"
-        ]
+        ],
+        "chronological_action_hour": 15
       }
     },
     {
@@ -1351,7 +1475,8 @@
           "工作狂",
           "哽咽",
           "郑州大学校友"
-        ]
+        ],
+        "chronological_action_hour": 18
       }
     },
     {
@@ -1410,7 +1535,8 @@
           "猝不及防",
           "讣告",
           "周年祭"
-        ]
+        ],
+        "chronological_action_hour": 161
       }
     },
     {
@@ -1428,7 +1554,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 20
       }
     },
     {
@@ -1446,7 +1573,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 105
       }
     },
     {
@@ -1505,7 +1633,8 @@
           "思维导图",
           "报考",
           "引流"
-        ]
+        ],
+        "chronological_action_hour": 163
       }
     },
     {
@@ -1523,7 +1652,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 11
       }
     },
     {
@@ -1582,7 +1712,8 @@
           "rest in peace",
           "英年早逝",
           "年轻轻"
-        ]
+        ],
+        "chronological_action_hour": 65
       }
     },
     {
@@ -1600,7 +1731,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 82
       }
     },
     {
@@ -1659,7 +1791,8 @@
           "脱口秀式讲课",
           "积劳成疾",
           "病逝"
-        ]
+        ],
+        "chronological_action_hour": 155
       }
     },
     {
@@ -1718,7 +1851,8 @@
           "社了达",
           "qiao乐兹",
           "跑部机"
-        ]
+        ],
+        "chronological_action_hour": 36
       }
     },
     {
@@ -1777,7 +1911,8 @@
           "折扣",
           "基础班",
           "培训班"
-        ]
+        ],
+        "chronological_action_hour": 44
       }
     },
     {
@@ -1836,7 +1971,8 @@
           "一本",
           "限时",
           "权威"
-        ]
+        ],
+        "chronological_action_hour": 42
       }
     },
     {
@@ -1895,7 +2031,8 @@
           "热销",
           "核心考点",
           "建议收藏"
-        ]
+        ],
+        "chronological_action_hour": 13
       }
     },
     {
@@ -1954,7 +2091,8 @@
           "出人头地",
           "电大",
           "社会资源"
-        ]
+        ],
+        "chronological_action_hour": 110
       }
     },
     {
@@ -2013,7 +2151,8 @@
           "优惠",
           "单元测试",
           "重点"
-        ]
+        ],
+        "chronological_action_hour": 134
       }
     },
     {
@@ -2031,7 +2170,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 70
       }
     },
     {
@@ -2090,7 +2230,8 @@
           "亲测有效",
           "综合",
           "扫码领取"
-        ]
+        ],
+        "chronological_action_hour": 11
       }
     },
     {
@@ -2108,7 +2249,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 113
       }
     },
     {
@@ -2167,7 +2309,8 @@
           "张了雪峰",
           "跑步机狂磨",
           "跑步机机"
-        ]
+        ],
+        "chronological_action_hour": 116
       }
     },
     {
@@ -2226,7 +2369,8 @@
           "流泪",
           "身体是革命的本钱",
           "全网哀悼"
-        ]
+        ],
+        "chronological_action_hour": 107
       }
     },
     {
@@ -2285,7 +2429,8 @@
           "蜡烛",
           "摆渡人",
           "拼命三郎"
-        ]
+        ],
+        "chronological_action_hour": 59
       }
     },
     {
@@ -2344,7 +2489,8 @@
           "公司跑步机",
           "辞世",
           "心源性"
-        ]
+        ],
+        "chronological_action_hour": 136
       }
     },
     {
@@ -2403,7 +2549,8 @@
           "身体健康最重要",
           "难以置信",
           "拼命三郎"
-        ]
+        ],
+        "chronological_action_hour": 105
       }
     },
     {
@@ -2462,7 +2609,8 @@
           "巧乐资",
           "雪峰铠甲合醍",
           "璋雪峰"
-        ]
+        ],
+        "chronological_action_hour": 94
       }
     },
     {
@@ -2521,7 +2669,8 @@
           "志愿",
           "社会达尔文",
           "终身学习"
-        ]
+        ],
+        "chronological_action_hour": 88
       }
     },
     {
@@ -2580,7 +2729,8 @@
           "模拟",
           "核心考点",
           "专项训练"
-        ]
+        ],
+        "chronological_action_hour": 41
       }
     },
     {
@@ -2639,7 +2789,8 @@
           "赠送",
           "链接",
           "冲刺"
-        ]
+        ],
+        "chronological_action_hour": 79
       }
     },
     {
@@ -2698,7 +2849,8 @@
           "义张师",
           "社鞑",
           "牢仗"
-        ]
+        ],
+        "chronological_action_hour": 131
       }
     },
     {
@@ -2757,7 +2909,8 @@
           "苏州殡仪馆",
           "痛悼",
           "用健康换钱"
-        ]
+        ],
+        "chronological_action_hour": 111
       }
     },
     {
@@ -2775,7 +2928,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 61
       }
     },
     {
@@ -2834,7 +2988,8 @@
           "开箱",
           "二本",
           "考前冲刺"
-        ]
+        ],
+        "chronological_action_hour": 134
       }
     },
     {
@@ -2893,7 +3048,8 @@
           "机步跑",
           "张声",
           "雪避"
-        ]
+        ],
+        "chronological_action_hour": 137
       }
     },
     {
@@ -2952,7 +3108,8 @@
           "保过",
           "小学数学",
           "即将售罄"
-        ]
+        ],
+        "chronological_action_hour": 12
       }
     },
     {
@@ -3011,7 +3168,8 @@
           "牢雪儿",
           "双生武魂儿",
           "忆嶂师"
-        ]
+        ],
+        "chronological_action_hour": 33
       }
     },
     {
@@ -3070,7 +3228,8 @@
           "缅怀",
           "父亲",
           "逝者"
-        ]
+        ],
+        "chronological_action_hour": 40
       }
     },
     {
@@ -3129,7 +3288,8 @@
           "暑期特惠",
           "打开京东",
           "录取分数线"
-        ]
+        ],
+        "chronological_action_hour": 9
       }
     },
     {
@@ -3188,7 +3348,8 @@
           "高考分数线",
           "公共事业管理",
           "选择比努力重要"
-        ]
+        ],
+        "chronological_action_hour": 119
       }
     },
     {
@@ -3247,7 +3408,8 @@
           "健康第一",
           "珍惜当下",
           "惋惜"
-        ]
+        ],
+        "chronological_action_hour": 107
       }
     },
     {
@@ -3306,7 +3468,8 @@
           "分享",
           "背书",
           "雪峰甄选"
-        ]
+        ],
+        "chronological_action_hour": 88
       }
     },
     {
@@ -3365,7 +3528,8 @@
           "千古",
           "郑大",
           "白菊"
-        ]
+        ],
+        "chronological_action_hour": 166
       }
     },
     {
@@ -3424,7 +3588,8 @@
           "死后更火",
           "跑步稽",
           "XueBi"
-        ]
+        ],
+        "chronological_action_hour": 62
       }
     },
     {
@@ -3483,7 +3648,8 @@
           "双生了武魂",
           "赛博永声",
           "漳雪峰"
-        ]
+        ],
+        "chronological_action_hour": 37
       }
     },
     {
@@ -3542,7 +3708,8 @@
           "省控线",
           "未来专业",
           "原生家庭"
-        ]
+        ],
+        "chronological_action_hour": 20
       }
     },
     {
@@ -3560,7 +3727,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 60
       }
     },
     {
@@ -3619,7 +3787,8 @@
           "惋惜",
           "谢世",
           "猝不及防"
-        ]
+        ],
+        "chronological_action_hour": 137
       }
     },
     {
@@ -3637,7 +3806,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 96
       }
     },
     {
@@ -3696,7 +3866,8 @@
           "爆款",
           "商品链接",
           "志愿填报"
-        ]
+        ],
+        "chronological_action_hour": 14
       }
     },
     {
@@ -3714,7 +3885,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 70
       }
     },
     {
@@ -3773,7 +3945,8 @@
           "伤心",
           "送别队伍",
           "摆渡人"
-        ]
+        ],
+        "chronological_action_hour": 12
       }
     },
     {
@@ -3832,7 +4005,8 @@
           "雪人3x",
           "跑机",
           "sheda"
-        ]
+        ],
+        "chronological_action_hour": 104
       }
     },
     {
@@ -3850,7 +4024,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 21
       }
     },
     {
@@ -3909,7 +4084,8 @@
           "逆袭",
           "历年真题",
           "学习桌"
-        ]
+        ],
+        "chronological_action_hour": 35
       }
     },
     {
@@ -3927,7 +4103,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 106
       }
     },
     {
@@ -3986,7 +4163,8 @@
           "商品链接",
           "复制链接",
           "提升"
-        ]
+        ],
+        "chronological_action_hour": 137
       }
     },
     {
@@ -4004,7 +4182,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 104
       }
     },
     {
@@ -4063,7 +4242,8 @@
           "黑桃心",
           "难过",
           "寒门贵子"
-        ]
+        ],
+        "chronological_action_hour": 48
       }
     },
     {
@@ -4122,7 +4302,8 @@
           "鸡娃",
           "信息差",
           "稳定"
-        ]
+        ],
+        "chronological_action_hour": 106
       }
     },
     {
@@ -4140,7 +4321,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 45
       }
     },
     {
@@ -4199,7 +4381,8 @@
           "报考",
           "本科",
           "知识分子家庭"
-        ]
+        ],
+        "chronological_action_hour": 6
       }
     },
     {
@@ -4258,7 +4441,8 @@
           "家庭条件",
           "稳定",
           "冷门专业"
-        ]
+        ],
+        "chronological_action_hour": 45
       }
     },
     {
@@ -4317,7 +4501,8 @@
           "提灯人",
           "不舍",
           "为普通家庭指路"
-        ]
+        ],
+        "chronological_action_hour": 111
       }
     },
     {
@@ -4376,7 +4561,8 @@
           "佩服",
           "凋谢",
           "铭记"
-        ]
+        ],
+        "chronological_action_hour": 105
       }
     },
     {
@@ -4394,7 +4580,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 37
       }
     },
     {
@@ -4412,7 +4599,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 137
       }
     },
     {
@@ -4471,7 +4659,8 @@
           "牢缝",
           "10分钟6根巧乐兹",
           "跑机"
-        ]
+        ],
+        "chronological_action_hour": 136
       }
     },
     {
@@ -4530,7 +4719,8 @@
           "科学",
           "必藏",
           "弹幕"
-        ]
+        ],
+        "chronological_action_hour": 46
       }
     },
     {
@@ -4589,7 +4779,8 @@
           "综合评价",
           "土木是天坑",
           "高考改革"
-        ]
+        ],
+        "chronological_action_hour": 162
       }
     },
     {
@@ -4648,7 +4839,8 @@
           "双牲武魂",
           "雪峰kjht",
           "红眼特效"
-        ]
+        ],
+        "chronological_action_hour": 44
       }
     },
     {
@@ -4707,7 +4899,8 @@
           "经济条件",
           "环境",
           "教育焦虑"
-        ]
+        ],
+        "chronological_action_hour": 14
       }
     },
     {
@@ -4725,7 +4918,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 86
       }
     },
     {
@@ -4784,7 +4978,8 @@
           "张牢",
           "社达言论",
           "寒门引路人"
-        ]
+        ],
+        "chronological_action_hour": 141
       }
     },
     {
@@ -4843,7 +5038,8 @@
           "张雪砜",
           "魂武生双",
           "社答"
-        ]
+        ],
+        "chronological_action_hour": 95
       }
     },
     {
@@ -4902,7 +5098,8 @@
           "家长悼念",
           "愿天堂",
           "珍惜当下"
-        ]
+        ],
+        "chronological_action_hour": 89
       }
     },
     {
@@ -4961,7 +5158,8 @@
           "遗体告别仪式",
           "弃世",
           "百日"
-        ]
+        ],
+        "chronological_action_hour": 82
       }
     },
     {
@@ -5020,7 +5218,8 @@
           "🕊️",
           "花圈",
           "哀悼"
-        ]
+        ],
+        "chronological_action_hour": 47
       }
     },
     {
@@ -5038,7 +5237,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 55
       }
     },
     {
@@ -5097,7 +5297,8 @@
           "霜生武魂",
           "赦达",
           "lao雪"
-        ]
+        ],
+        "chronological_action_hour": 67
       }
     },
     {
@@ -5156,7 +5357,8 @@
           "三圣跳舞",
           "强者是不会死的了",
           "雪峰上岸taocan"
-        ]
+        ],
+        "chronological_action_hour": 89
       }
     },
     {
@@ -5174,7 +5376,8 @@
           "baseline_utility": 0.7686,
           "spiral_scale": 0.4296954755626446
         },
-        "type_vocab": []
+        "type_vocab": [],
+        "chronological_action_hour": 159
       }
     }
   ]

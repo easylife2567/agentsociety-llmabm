@@ -7,7 +7,9 @@
   其中配置键仍写 `random`，但其操作语义为 **random_global 强反事实**：每个 Agent
   每周从截至当周 Env 已出现的全部帖子中全 10 槽均匀无放回抽样；不使用生命周期、
   发布时间、兴趣、热度、累计曝光，也不执行官方置顶或 W13 哀悼保底。未来帖子因尚未
-  进入 Env 而不可能被抽到。chronological 与 interest 的既有机制保持不变。
+  进入 Env 而不可能被抽到。chronological 独立改为小时级同步微批次：精确时间到达、
+  同小时互不可见、跨小时可见、取行动时刻前最新 10 条，且不使用生命周期/置顶/保底；
+  interest 保持既有机制。
   （2026-09-12 用户裁定：玩梗涌现环境增益 G 退役 → 第二因子 sustained_hot 无行为差异，
   3×2 全因子降为单因子；2026-09-14 新一轮采用锚定式表达效用
   U = B_i + R·(D−B_i) ≥ activity。env 侧 B/S/G 仍逐周计算并写 replay，
@@ -23,11 +25,12 @@
   G_t = clamp(B^β·S^σ, 0.2, 3.0)。**不进入任何类型的决策**（θ 随 G 一并退役），
   仅写入 replay 与监控，供"退潮期"等描述性叙述引用。meme_emergence_mode 固定 normal。
 - 议程设置（用户 2026-09-10 裁定）：官方媒体全程仅 W13 一条讣告帖（原文给定）。
-  chronological / interest 臂在 W13 对全员置顶且不延伸；random 臂不置顶，讣告与
+  仅 interest 臂在 W13 对全员置顶且不延伸；random / chronological 都不置顶，讣告与
   其他截至当周已出现的帖子一样进入全历史均匀抽样池。其余真实数据帖均按普通内容处理
   （is_official=False）。
-- feed 机制：chronological / interest 保持 2026-09-12 裁定的帖子生命周期（时间冷却
-  + 曝光饱和 + 退场），interest 另用兴趣比例抽样；random 按本轮裁定忽略这些机制，
+- feed 机制：interest 保持 2026-09-12 裁定的帖子生命周期（时间冷却 + 曝光饱和 +
+  退场）并用兴趣比例抽样；random 与 chronological 都忽略生命周期，但前者全历史均匀
+  抽样、后者按精确发布时间取行动时刻前最新 10 条。random 按本轮裁定
   直接从截至当周 Env 已出现的全部帖子中均匀抽满 10 槽。参数仍统一写入配置，random
   分支由 env 明确忽略，详见 manifest["feed_mechanism"]。
 - （已作废）探索性反事实探针 interest_nog_s0：G 退役后该探针即正式模型，配置移入
@@ -39,9 +42,11 @@
 仅使用标准库；由 `experiment-config run` 执行。
 """
 
+import copy
 import importlib.util
 import json
 import random
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 # ---------------------------------------------------------------------------
@@ -73,6 +78,7 @@ ROUND_TAG = "anchored_v1"  # 新一轮独立命名，避免与历史 U=D·R run/
 POPULATION_COUNTS = {"meme": 19, "mourning": 22, "marketing": 23, "education": 15, "other": 21}
 POPULATION_SEED = 42          # 群体生成种子：全 9 配置共享同一群体
 VOCAB_SAMPLE_SEED = POPULATION_SEED + 1  # 各 agent 类型词表抽样子种子（独立于群体 rng）
+ACTION_SCHEDULE_SEED = POPULATION_SEED + 2  # chronological 行动时刻种子，三 seed 冻结共享
 TYPE_VOCAB_N = 40             # 每个 agent 注入其类型词表的词数（用户裁定：发言用词表词组织语言）
 SAMPLE_SEED_OFFSET = 777      # 注入样本抽样种子 = seed + 777
 
@@ -124,7 +130,7 @@ INJECTION_ALLOCATION = {
 assert sum(INJECTION_ALLOCATION.values()) == 250
 
 # 议程设置重设计（用户 2026-09-10 裁定）：官方媒体全程仅此一条帖子，W13 注入；
-# chronological / interest 臂对全员置顶且不延伸，random 臂不置顶并把它当作普通历史帖
+# 仅 interest 臂对全员置顶且不延伸，random / chronological 不置顶
 # 等概率抽取。除此之外官方媒体无任何其他作用——其余真实数据帖一律按普通内容处理
 # （is_official=False）。
 # W13 配额 = 34 条普通抽样 + 1 条讣告帖 = 35（总注入量维持 250）。
@@ -143,8 +149,8 @@ ANNOUNCEMENT_POST: dict = {
     ),
 }
 
-# steps.yaml：1 tick = 1 周 = 604800 秒；start_t = W12 周一。
-STEPS_YAML = """\
+# steps.yaml：random / interest 的周级时钟。
+WEEKLY_STEPS_YAML = """\
 start_t: "2026-03-16T00:00:00"
 steps:
   - type: run
@@ -220,6 +226,88 @@ all_posts = full_data["posts"]
 by_week: dict[str, list[dict]] = {}
 for rec in all_posts:
     by_week.setdefault(str(rec["week"]), []).append(rec)
+
+# ---------------------------------------------------------------------------
+# 2a. chronological 冻结行动时间表（小时级同步微批次）
+#
+# 从事件前 W05-W12 真实帖的「星期×小时」联合分布抽取每个 Agent 每周唯一行动小时。
+# 三个 chronological seed 共用同一表；random / interest 不携带该字段、也不按此表行动。
+# 时间统一换算为 Asia/Shanghai，再移除时区写入本地模拟时钟。
+# ---------------------------------------------------------------------------
+_SHANGHAI = timezone(timedelta(hours=8))
+
+
+def _parse_local_time(raw: str) -> datetime:
+    dt = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
+    if dt.tzinfo is not None:
+        dt = dt.astimezone(_SHANGHAI).replace(tzinfo=None)
+    return dt
+
+
+hour_weights = [0] * 168
+for rec in all_posts:
+    week = str(rec.get("week", ""))
+    try:
+        week_n = int(week.split("-W", 1)[1])
+    except (IndexError, ValueError):
+        continue
+    raw_time = rec.get("published_at")
+    if 5 <= week_n <= 12 and raw_time:
+        dt = _parse_local_time(str(raw_time))
+        hour_weights[dt.weekday() * 24 + dt.hour] += 1
+if not any(hour_weights):
+    raise RuntimeError("W05-W12 published_at 无有效记录，无法冻结 chronological 行动表")
+
+action_rng = random.Random(ACTION_SCHEDULE_SEED)
+sampled_action_hours = action_rng.choices(
+    range(168), weights=hour_weights, k=len(population)
+)
+ACTION_HOURS_BY_AGENT = {
+    str(agent["id"]): int(hour)
+    for agent, hour in zip(population, sampled_action_hours)
+}
+UNIQUE_ACTION_HOURS = sorted(set(ACTION_HOURS_BY_AGENT.values()))
+
+
+def _week_monday_datetime(week: str) -> datetime:
+    year, week_no = week.split("-W")
+    return datetime.fromisocalendar(int(year), int(week_no), 1)
+
+
+CHRONOLOGICAL_EVENT_TIMES = sorted(
+    _week_monday_datetime(week) + timedelta(hours=hour)
+    for week in sorted(INJECTION_ALLOCATION)
+    for hour in UNIQUE_ACTION_HOURS
+)
+CHRONOLOGICAL_TOTAL_BATCHES = len(CHRONOLOGICAL_EVENT_TIMES)
+
+
+def _hourly_steps_yaml() -> str:
+    lines = [
+        f'start_t: "{CHRONOLOGICAL_EVENT_TIMES[0].isoformat(timespec="seconds")}"',
+        "steps:",
+    ]
+    for i, event_time in enumerate(CHRONOLOGICAL_EVENT_TIMES):
+        next_time = (
+            CHRONOLOGICAL_EVENT_TIMES[i + 1]
+            if i + 1 < len(CHRONOLOGICAL_EVENT_TIMES)
+            else event_time + timedelta(hours=1)
+        )
+        tick_seconds = int((next_time - event_time).total_seconds())
+        lines.extend([
+            "  - type: run",
+            "    num_steps: 1",
+            f"    tick: {tick_seconds}",
+        ])
+    return "\n".join(lines) + "\n"
+
+
+CHRONOLOGICAL_STEPS_YAML = _hourly_steps_yaml()
+print(
+    f"✓ chronological 行动表：seed={ACTION_SCHEDULE_SEED}，"
+    f"每周 {len(UNIQUE_ACTION_HOURS)} 个有人行动小时，"
+    f"11 周共 {CHRONOLOGICAL_TOTAL_BATCHES} 个同步批次"
+)
 
 # ---------------------------------------------------------------------------
 # 2b. 玩梗涌现环境流量调度（emergence_flow_by_week；用户 2026-09-10 存量/流量语义）
@@ -329,7 +417,34 @@ for seed in SEEDS:
 # 3. 生成新一轮 9 个 init_config 变体 + 默认 init_config.json
 # ---------------------------------------------------------------------------
 
-def make_config(algorithm: str, mode: str, seed: int, agents: list | None = None) -> dict:
+def _agents_for(algorithm: str, ablation: str | None = None) -> list[dict]:
+    specs = copy.deepcopy(agent_specs)
+    for spec in specs:
+        kwargs = spec["kwargs"]
+        if algorithm == "chronological":
+            kwargs["chronological_action_hour"] = ACTION_HOURS_BY_AGENT[str(kwargs["id"])]
+        params = kwargs["params"]
+        if ablation == "no_b":
+            params["baseline_utility"] = 0.0
+        elif ablation == "no_d":
+            # D 的中性中心是 1；令 alpha_D=0，使 D≡1，而不是错误地令 D=0。
+            params["spiral_scale"] = 0.0
+        elif ablation == "no_r":
+            # 关闭「衰减」令 lambda=0，因此 R=exp(0)≡1，而不是令 R=0。
+            params["decay"] = 0.0
+        elif ablation is not None:
+            raise ValueError(f"unknown ablation: {ablation}")
+    return specs
+
+
+def make_config(
+    algorithm: str,
+    mode: str,
+    seed: int,
+    agents: list | None = None,
+    *,
+    ablation: str | None = None,
+) -> dict:
     """组装一个 init_config 变体。agents=None 使用新一轮 9 配置的共享群体。"""
     return {
         "env_modules": [
@@ -340,6 +455,12 @@ def make_config(algorithm: str, mode: str, seed: int, agents: list | None = None
                     "recommendation_algorithm": algorithm,
                     "meme_emergence_mode": mode,  # normal / sustained_hot（W13 后冻结 S）
                     "random_seed": seed,
+                    # chronological 专用：固定的周内行动小时与总同步批次数。
+                    # random / interest 不读取该制度，维持各自独立定义。
+                    **({
+                        "chronological_action_hours": ACTION_HOURS_BY_AGENT,
+                        "chronological_total_batches": CHRONOLOGICAL_TOTAL_BATCHES,
+                    } if algorithm == "chronological" else {}),
                     # —— 玩梗涌现环境（用户 2026-09-10 存量/流量语义）——
                     "emergence_flow_by_week": EMERGENCE_FLOW_BY_WEEK,
                     # 其余涌现参数（emergence_window_stock=6 / emergence_ka /
@@ -356,7 +477,9 @@ def make_config(algorithm: str, mode: str, seed: int, agents: list | None = None
                     "life_retire_floor": LIFE_RETIRE_FLOOR,
                     "interest_sample_temp": INTEREST_SAMPLE_TEMP,
                     # —— 议程设置（用户 2026-09-12/13 裁定；random 分支忽略）——
-                    "event_week_mourning_floor": EVENT_WEEK_MOURNING_FLOOR,
+                    "event_week_mourning_floor": (
+                        0 if algorithm == "chronological" else EVENT_WEEK_MOURNING_FLOOR
+                    ),
                     # —— 数据资产 ——
                     "injection_data_path": sample_paths[seed],
                     "vocab_path": "custom/envs/curation_assets/vocabs.json",
@@ -375,7 +498,9 @@ def make_config(algorithm: str, mode: str, seed: int, agents: list | None = None
                 },
             }
         ],
-        "agents": agent_specs if agents is None else agents,
+        "agents": (
+            _agents_for(algorithm, ablation=ablation) if agents is None else agents
+        ),
     }
 
 
@@ -390,6 +515,18 @@ for algorithm in ALGORITHMS:
             )
             run_ids.append(run_id)
             print(f"✓ {run_id}")
+
+# 新公式 U=B+R(D-B) 的三个单因素机制消融（均挂在 interest s0 基线上）。
+# 完整模型本身已由 anchored_v1_interest_s0 提供，因此这里只新增 3 个 run。
+ablation_run_ids: list[str] = []
+for ablation in ("no_b", "no_d", "no_r"):
+    run_id = f"{ROUND_TAG}_ablation_{ablation}_s0"
+    cfg = make_config("interest", "normal", 0, ablation=ablation)
+    (configs_dir / f"{run_id}.json").write_text(
+        json.dumps(cfg, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    ablation_run_ids.append(run_id)
+    print(f"✓ {run_id}")
 
 # 默认 init_config.json = 核心处理臂（interest, seed 0），供标准 CLI / 冒烟。
 default_run_id = f"{ROUND_TAG}_interest_s0"
@@ -408,10 +545,17 @@ print(f"✓ init_config.json (= configs/{default_run_id}.json)")
 # ---------------------------------------------------------------------------
 
 # ---------------------------------------------------------------------------
-# 4. steps.yaml + 批次 manifest
+# 4. 周级 steps + chronological 小时批次 steps + 批次 manifest
 # ---------------------------------------------------------------------------
-(script_dir / "steps.yaml").write_text(STEPS_YAML, encoding="utf-8")
+(script_dir / "steps.yaml").write_text(WEEKLY_STEPS_YAML, encoding="utf-8")
 print("✓ steps.yaml (start_t=2026-03-16, 11 × 604800s)")
+(script_dir / "steps_chronological_hourly.yaml").write_text(
+    CHRONOLOGICAL_STEPS_YAML, encoding="utf-8"
+)
+print(
+    "✓ steps_chronological_hourly.yaml "
+    f"({CHRONOLOGICAL_TOTAL_BATCHES} 个有人行动小时；空小时事件驱动跳过)"
+)
 
 manifest = {
     "experiment": "hypothesis_4/experiment_1",
@@ -419,11 +563,31 @@ manifest = {
     "design": ("锚定式效用新一轮：单因子 3 臂（random/chronological/interest）× 3 seeds = 9 runs；"
                "random 配置键的操作语义为 random_global 强反事实：从截至当周 Env 已出现的"
                "全部帖子中全 10 槽均匀无放回抽样，不使用生命周期、时间、兴趣、热度、累计曝光，"
-               "且不执行官方置顶或 W13 哀悼保底；chronological 与 interest 保持原定义；"
+               "且不执行官方置顶或 W13 哀悼保底；chronological 为独立小时级最新10条制度；"
+               "interest 保持生命周期与兴趣比例抽样；"
                "（2026-09-12 用户裁定：玩梗涌现环境增益 G 退役，第二因子 sustained_hot 随之失效；"
                "2026-09-14 用户裁定：U = B_i + R·(D−B_i) ≥ activity，疲劳使事件冲击回归"
                "常态锚点而非归零）"),
     "run_ids": run_ids,
+    "ablation_run_ids": ablation_run_ids,
+    "ablation_design": {
+        "baseline": f"{ROUND_TAG}_interest_s0",
+        "formula": "U = B_i + R(D-B_i)",
+        "cells": {
+            f"{ROUND_TAG}_ablation_no_b_s0": {
+                "operation": "baseline_utility=0",
+                "formula": "U=RD",
+            },
+            f"{ROUND_TAG}_ablation_no_d_s0": {
+                "operation": "spiral_scale=0 => D≡1",
+                "formula": "U=B+R(1-B)",
+            },
+            f"{ROUND_TAG}_ablation_no_r_s0": {
+                "operation": "decay=0 => R≡1",
+                "formula": "U=D",
+            },
+        },
+    },
     "retired_probe": {
         "note": ("interest_nog_s0（no-G 探针）已跑完并升格为正式模型的等价物——"
                  "G 退役后的上一轮模型为 U = D·R；配置移入 configs_retired_2factor/，"
@@ -468,8 +632,8 @@ manifest = {
         },
         "event_week_mourning_floor": {
             "value": EVENT_WEEK_MOURNING_FLOOR,
-            "scope": "仅 chronological / interest；random_global 不执行保底",
-            "rule": ("chronological / interest 臂在事件周（W13）为每个 agent 的 feed 保底注入 N 条哀悼帖：取全池（未退场、非置顶、"
+            "scope": "仅 interest；random_global / chronological 不执行保底",
+            "rule": ("interest 臂在事件周（W13）为每个 agent 的 feed 保底注入 N 条哀悼帖：取全池（未退场、非置顶、"
                      "**非 noise 语料噪声**）中哀悼倾向分最高的 N 条，全员相同，紧接官方置顶之后占槽位；"
                      "余下槽位照常按算法从剩余候选池选取。random 臂不执行该规则。"
                      "候选资格见共享纯函数 curation_mechanisms.floor_eligible（env 与校准同源）"),
@@ -499,14 +663,17 @@ manifest = {
             "random_global": ("配置键为 random；候选池=截至当周 Env 已出现的全部帖子；全 10 槽"
                               "均匀无放回抽样；忽略 life/退场、发布时间、兴趣、热度、累计曝光、"
                               "官方置顶与 W13 哀悼保底"),
-            "chronological": "保持原定义：从未退场活帖池中按时间倒序取最新，并保留共同议程槽位",
+            "chronological": ("独立小时级制度：每个 Agent 每周按事件前真实的星期×小时分布行动一次；"
+                              "同小时共享批次前快照且互不可见，跨小时可见；候选池=行动时刻前已发布"
+                              "的全部帖子，按精确 event_time 倒序取最新10条；无生命周期/退场、"
+                              "兴趣、热度、曝光饱和、官方置顶或W13保底"),
             "interest": "保持原定义：从未退场活帖池中按兴趣分比例抽样，并保留共同议程槽位",
             "identification_note": ("random_global 是同时移除时间性可得性与强制议程设置的强反事实；"
                                     "因此 random 与另两臂的差异是整体策展制度效应，不宜仅解释为"
                                     "候选池相同条件下的排序效应"),
             "acceptance_note": ("同周三臂不再要求 feed_live_pool 或置顶槽位数相等；应分别检查："
                                 "random 的候选池等于截至当周全部已出现帖子且强制槽位为 0，"
-                                "chronological / interest 继续遵守生命周期与原议程规则"),
+                                "chronological 遵守精确时间最新10条规则，interest 遵守生命周期与原议程规则"),
         },
         "replay_columns": [
             "feed_live_pool", "feed_sample_temp", "feed_half_life_weeks",
@@ -533,7 +700,19 @@ manifest = {
         "sustained_hot": "反事实臂：事件周（W13）后 S 冻结在事件周记录值，B 保持内生",
         "flow_schedule": EMERGENCE_FLOW_BY_WEEK,
     },
-    "steps": {"start_t": "2026-03-16T00:00:00", "num_steps": NUM_TICKS, "tick_seconds": 604800},
+    "steps": {
+        "weekly": {"path": "init/steps.yaml", "start_t": "2026-03-16T00:00:00",
+                   "num_steps": NUM_TICKS, "tick_seconds": 604800,
+                   "scope": ["random", "interest", "ablation"]},
+        "chronological_hourly": {
+            "path": "init/steps_chronological_hourly.yaml",
+            "action_schedule_seed": ACTION_SCHEDULE_SEED,
+            "distribution_source": "W05-W12真实帖Asia/Shanghai星期×小时联合分布",
+            "unique_action_hours_per_week": len(UNIQUE_ACTION_HOURS),
+            "engine_batches": CHRONOLOGICAL_TOTAL_BATCHES,
+            "replay_rows": NUM_TICKS,
+        },
+    },
     "deferred_defaults": {
         "note": ("interest 臂 α/γ 取 DesignSpec 默认值；涌现窗口/αβσ 与 K_a/K_f 用 env 默认，"
                  "待校准与敏感性分析（U2）。β 已废弃（2026-09-09 裁定：倾向分替代硬类型命中+词表重合项），"
@@ -558,4 +737,7 @@ manifest = {
 )
 print("✓ configs/manifest.json")
 
-print(f"\n配置生成完成：{len(run_ids)} runs（3 臂 × 3 seeds），100 agents，{NUM_TICKS} ticks。")
+print(
+    f"\n配置生成完成：{len(run_ids)} 个主实验 runs（3 臂 × 3 seeds）+ "
+    f"{len(ablation_run_ids)} 个单因素消融，100 agents。"
+)

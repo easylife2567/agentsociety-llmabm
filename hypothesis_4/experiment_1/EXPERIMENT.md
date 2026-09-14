@@ -12,10 +12,10 @@
 
 - 环境：`CurationDynamicsSpace`（custom/envs/curation_dynamics_space.py）
 - Agent：`CurationDiscourseAgent`（custom/agents/，固定内容类型，0-1 次 LLM 调用/agent-tick）
-- 规模：100 agents × 11 ticks（2026-W12→W22，事件周 W13）× **9 runs ≈ 0.99 万 agent-ticks**
+- 规模：每个 Agent 每周 1 次决策，100 agents × 11 周（2026-W12→W22，事件周 W13）× **9 runs ≈ 0.99 万有效 agent-decisions**；random/interest 各 11 个周级 step，chronological 为每周 63 个非空小时同步批次、11 周共 693 个引擎 step
 - 本轮版本：`anchored_v1`；run_id 命名：`anchored_v1_{algorithm}_s{seed}`，与旧公式run隔离
 
-> **2026-09-14 当前修订**：D/R 组合改为锚定式效用；随后按用户裁定把 random 改为 random-global 强反事实（截至当周全部历史帖、全 10 槽均匀抽样、无生命周期/置顶/保底），chronological 与 interest 不变。下文关于旧 `U=D·R` 或旧 random-live 的代理与烟测结果只作历史诊断，不作为本轮正式证据。
+> **2026-09-14 当前修订**：D/R 组合改为锚定式效用；random 改为 random-global 强反事实；chronological 改为独立的小时级同步微批次（精确时间到达、同小时互不可见、跨小时可见、最新10条、无生命周期/置顶/保底）；interest 保持原定义。下文关于旧 `U=D·R`、旧 random-live 或旧周级 chronological 的代理与烟测结果只作历史诊断，不作为本轮正式证据。完整时序设计见 `CHRONOLOGICAL_hourly_design.md`；新版三项消融见 `ABLATION_anchored_v1.md`。
 
 ## 发言决策数字化与帖子倾向分（用户 2026-09-09 裁定）
 
@@ -172,7 +172,7 @@ K_a×2 → 35 帖；β=0.5 → 起步 0 帖）——因为起步期 G 由 B^β·
 烟测暴露两个机制缺陷，修复集中在"**内容可得性 + 选择**"两步，**打分函数本身不变**
 （仍无帖子级热度/互动项，纯兴趣匹配的最小机制）：
 
-1. **帖子生命周期**（仅 chronological / interest 保持原实现）：
+1. **帖子生命周期**（仅 interest 使用）：
    每帖 `life`（创建 1.0，每周 × `0.5**(1/half_life)`，half_life=1.5 周）；
    打分用 `生命力 = life × 0.5**(累计曝光 / saturation_scale)`（尺度 20，
    即"被推给约 20 人后吸引力减半"）；`life < retire_floor`（0.35 ≈ **3 周流通窗口**）
@@ -183,8 +183,9 @@ K_a×2 → 35 帖；β=0.5 → 起步 0 帖）——因为起步期 G 由 B^β·
 
 **random-global 修订（2026-09-14 用户裁定）**：random 不再使用上述活帖池，也不应用
 官方置顶或 W13 哀悼保底；每个 Agent 每周从截至当周 Env 已出现的全部帖子中，全 10 槽
-均匀无放回抽样。未来帖子尚未进入 Env，不能被抽到。chronological 与 interest 保持原候选池、
-生命周期、置顶和保底机制。因此 random 与另两臂的对比识别的是**整体策展制度效应**，
+均匀无放回抽样。未来帖子尚未进入 Env，不能被抽到。chronological 另行采用精确发布时间
+的小时级最新10条制度，interest 独自保留生命周期、置顶和保底。因此三臂对比识别的是
+**完整策展制度效应**，
 不能缩窄解释为同候选池下的纯排序效应。
 
 **为什么"曝光上限"以饱和衰减落地而非硬上限**：预飞实测硬性"每帖每周最多推给 C 个
@@ -331,7 +332,7 @@ combined 玩梗供给份额（`supply_share_all_meme`）对读真实基准
 ## 议程设置（用户 2026-09-10 裁定：官方媒体全程仅一条帖子）
 
 - 官方媒体在 **W13 注入唯一一条讣告帖**（原文给定，pid=official_w13_announcement，
-  type=mourning）；chronological / interest 对全员置顶，random 不置顶、仅把它作为普通历史帖抽样
+  type=mourning）；仅 interest 对全员置顶，random / chronological 不置顶、只按各自规则处理
 - **除此之外官方媒体无任何其他作用**：
   - 其余真实数据帖一律按普通内容处理（`is_official=False`，不再有官方/非官方分层）
   - 官方置顶不延伸（`official_pin_extend_weeks=0`）：讣告帖仅 W13 置顶，W14 起按算法自然竞争
@@ -340,7 +341,7 @@ combined 玩梗供给份额（`supply_share_all_meme`）对读真实基准
 
 ### 事件周议程保底（用户 2026-09-12 裁定，2026-09-13 落地）
 
-- chronological / interest 的 **W13 每条 feed 在置顶之后固定占 5 个槽位**放"全池（未退场、非置顶）
+- interest 的 **W13 每条 feed 在置顶之后固定占 5 个槽位**放"全池（未退场、非置顶）
   哀悼倾向分最高的 5 条"（`event_week_mourning_floor=5`）；random 不执行该规则
 - 非事件周保底集合为空；保底帖同样计入曝光记账与气候统计
 - **候选池口径（用户 2026-09-13 裁定·方案 B）**：排名口径是"哀悼**倾向分**前 N"，不是
@@ -412,11 +413,13 @@ D<1 抑制越强（沉默螺旋被议程规则放大）；③ 排除 noise 本�
 
 - `config_params.py` — 生成脚本（stdlib-only），`experiment-config run` 执行；
   内含涌现流量调度 `EMERGENCE_FLOW_BY_WEEK`（= 真实数据各周全量帖数，与注入同源）
-- `configs/{algorithm}_s{seed}.json` — 9 个 init_config 变体
+- `configs/anchored_v1_{algorithm}_s{seed}.json` — 9 个主实验 init_config 变体
   （单因子 3 臂）
+- `configs/anchored_v1_ablation_{no_b,no_d,no_r}_s0.json` — 新公式三个单因素消融
 - `configs/manifest.json` — 批次清单（因子、共享群体、样本、涌现环境语义与调度、运行命令）
 - `init_config.json` — 默认配置（= interest_normal_s0，供标准 CLI / 冒烟）
-- `steps.yaml` — start_t=2026-03-16（W12 周一），11 steps × 604800s（1 tick = 1 周）
+- `steps.yaml` — random / interest / 消融的 11 个周级 step
+- `steps_chronological_hourly.yaml` — chronological 的 693 个非空小时同步批次；周度 replay 仍为 11 行
 
 固定 kwargs：feed_size=10（用户 2026-09-10 裁定，每 agent 每周 10 条信息流），
 start_week=2026-W12，event_week=2026-W13，num_ticks=11，

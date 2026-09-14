@@ -3,7 +3,8 @@
 实验背景：张雪峰 2026-03-24（2026-W13）去世后，三种推荐算法（random / chronological /
 interest，单因子 3 臂 × 3 seeds = 9 runs；2026-09-12 用户裁定：玩梗涌现环境增益 G 退役，
 原 3×2 全因子的第二因子随之失效）下，100 个固定类型 Agent 的差异化激活与公共表征构成
-变化（W12→W22 共 11 周）。Agent 每 tick 先通过 **get_feed(agent_id)** 读取本周推荐信息流
+变化（W12→W22 共 11 周）。random / interest 按周行动；chronological 按冻结行动表使用
+小时级同步微批次。Agent 在自己的行动批次先通过 **get_feed(agent_id)** 读取推荐信息流
 （feed）、意见气候、玩梗涌现环境与全局供给/曝光份额，再决定是否发言；发言通过
 **create_post(agent_id, content)** 发布一篇类型由其固定 Agent 类型决定的内容（每 tick
 至多 1 帖，重复调用无效）。
@@ -20,7 +21,7 @@ import json
 import random
 import re
 import traceback
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, ClassVar, Optional
 
@@ -109,7 +110,7 @@ agent_id = ctx['variables']['agent_id']
 response = await modules['CurationDynamicsSpace'].get_feed(agent_id)
 if isinstance(response, dict) and response.get('status') == 'success':
     results['status'] = 'success'
-    for _k in ('week', 'meme_env', 'own_spoke', 'own_last_post', 'feed',
+    for _k in ('week', 'event_time', 'meme_env', 'own_spoke', 'own_last_post', 'feed',
                'feed_type_distribution', 'global_supply_shares',
                'global_exposure_shares', 'personal_stats'):
         results[_k] = response.get(_k)
@@ -263,7 +264,7 @@ class CurationDynamicsSpace(EnvBase):
         ColumnDef("official_posts_count", "INTEGER", description="本 tick 置顶集合中的官方帖数"),
         ColumnDef("official_exposure_slots", "INTEGER", description="本 tick 官方帖占据的 feed 槽位数"),
         # —— feed 机制审计（用户 2026-09-12 裁定：帖子生命周期 + 曝光饱和 + 比例抽样）——
-        ColumnDef("feed_live_pool", "INTEGER", description="本周算法实际候选池帖数：random=截至当周全部历史帖；chronological/interest=未退场活帖"),
+        ColumnDef("feed_live_pool", "INTEGER", description="算法实际候选池帖数：random=截至当周全部历史帖；chronological=截至行动时刻全部已发布帖；interest=未退场活帖"),
         ColumnDef("feed_sample_temp", "REAL", description="interest 臂比例抽样的温度（<=0 表示确定性 top-k 消融档）"),
         ColumnDef("feed_half_life_weeks", "REAL", description="帖子时间生命的半衰期（周）"),
         ColumnDef("feed_saturation_scale", "REAL", description="曝光饱和尺度：累计曝光达该值时生命折半"),
@@ -317,9 +318,17 @@ class CurationDynamicsSpace(EnvBase):
         self._num_ticks = int(kwargs.pop("num_ticks", 11))
         self._event_week = str(kwargs.pop("event_week", "2026-W13"))
         self._official_pin_extend_weeks = int(kwargs.pop("official_pin_extend_weeks", 1))
-        # 议程设置（用户 2026-09-12/13 裁定）：事件周（event_week）为**每个** agent 的 feed
+        raw_action_hours = kwargs.pop("chronological_action_hours", None) or {}
+        self._chronological_action_hours: dict[str, int] = {
+            str(k): int(v) for k, v in raw_action_hours.items()
+        }
+        self._chronological_total_batches = int(
+            kwargs.pop("chronological_total_batches", 0)
+        )
+        # interest 议程设置（用户 2026-09-12/13 裁定）：事件周（event_week）为每个 agent 的 feed
         # 保底注入 N 条哀悼帖（按哀悼倾向分取全池前 N 条、全员相同，等效"讣告 + 头版哀悼"的
-        # 强制曝光，使事件周全体 agent 都暴露于哀悼叙事）。0=关闭。平台级规则，三臂一致。
+        # 强制曝光，使事件周全体 agent 都暴露于哀悼叙事）。0=关闭；random / chronological
+        # 均绕过该机制。
         self._event_week_mourning_floor = int(kwargs.pop("event_week_mourning_floor", 0))
         self._alpha = float(kwargs.pop("alpha", 1.0))
         self._beta = float(kwargs.pop("beta", 1.0))  # 废弃：倾向分替代词表重合项（2026-09-09 裁定）
@@ -376,6 +385,15 @@ class CurationDynamicsSpace(EnvBase):
             raise ValueError(
                 f"event_week_mourning_floor must be >= 0, got {self._event_week_mourning_floor}"
             )
+        if any(not 0 <= h < 168 for h in self._chronological_action_hours.values()):
+            raise ValueError("chronological_action_hours values must be in [0, 167]")
+        if self._recommendation_algorithm == "chronological":
+            missing = set(self._agent_types) - set(self._chronological_action_hours)
+            if missing:
+                raise ValueError(
+                    "chronological_action_hours missing agents: "
+                    + ", ".join(sorted(missing)[:10])
+                )
         for aid, ttype in self._agent_types.items():
             if ttype not in TYPE_ORDER:
                 raise ValueError(f"agent_types[{aid!r}] = {ttype!r} not in {TYPE_ORDER}")
@@ -436,8 +454,16 @@ class CurationDynamicsSpace(EnvBase):
         self._injected_count_by_week: dict[str, int] = {}
         self._event_week_injected_count = 0
         # feed 机制审计（用户 2026-09-12 裁定后的新增观测量）：
-        self._feed_live_pool = 0            # 实际候选池帖数：random 全历史；其余两臂未退场活帖
+        self._feed_live_pool = 0            # random全历史；chronological已发布全池；interest活帖池
         self._exposure_age_buckets: dict[str, int] = {"age0": 0, "age1": 0, "age2": 0, "age3plus": 0}
+        # chronological 专用小时批次状态。精确时序只属于 chronological；random / interest
+        # 完全不读取这些字段，继续使用各自的周级制度。
+        self._current_event_time: Optional[datetime] = None
+        self._chronological_batch_index = 0
+        self._chronological_active_agents: set[str] = set()
+        self._chronological_week_agent_posts: list[dict[str, Any]] = []
+        self._chronological_injection_cursor = 0
+        self._chronological_timed_injection = self._build_timed_injection()
 
         # 周窗口 + 确定性注入量（k_w = round(池大小 × ratio)，与 RNG 无关，init 即可得，
         # 供 volume 比 V_t 与 replay 的 injected_count 使用；采样本身在每 tick 打开时进行）。
@@ -508,6 +534,40 @@ class CurationDynamicsSpace(EnvBase):
                 continue
             by_week.setdefault(str(rec["week"]), []).append(rec)
         return by_week
+
+    @staticmethod
+    def _local_event_time(value: Any, week: str, source_pid: Any = None) -> datetime:
+        """把帖子时间统一为 Asia/Shanghai 的无时区 datetime，供小时批次严格比较。
+
+        原始真实帖的 ``published_at`` 带 UTC offset；官方讣告由配置生成器显式给出时间。
+        仅为兼容旧资产，缺时间时回退到该周周一 12:00，并不用于新版正式配置。
+        """
+        raw = str(value or "").strip()
+        if not raw:
+            if str(source_pid) == "official_w13_announcement":
+                # 讣告正文只给出「今晚」，没有抓取时间；预登记一个不早于文中死亡时刻
+                # （15:50）的 20:00 本地发布时间，避免用 pid 或执行顺序制造时序。
+                return datetime(2026, 3, 24, 20, 0, 0)
+            return datetime.combine(_week_monday(week), datetime.min.time()) + timedelta(hours=12)
+        dt = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+        if dt.tzinfo is not None:
+            dt = dt.astimezone(timezone(timedelta(hours=8))).replace(tzinfo=None)
+        return dt
+
+    def _build_timed_injection(self) -> list[tuple[datetime, dict[str, Any]]]:
+        timed: list[tuple[datetime, dict[str, Any]]] = []
+        for week, records in self._injection_by_week.items():
+            for rec in records:
+                timed.append((self._local_event_time(
+                    rec.get("published_at"), week, rec.get("pid")
+                ), rec))
+        timed.sort(key=lambda x: (x[0], str(x[1].get("pid", ""))))
+        return timed
+
+    @staticmethod
+    def _week_for_time(t: datetime) -> str:
+        iso = t.isocalendar()
+        return f"{iso.year}-W{iso.week:02d}"
 
     # ---------------- 判类器（逐字移植 build_assets.py Tagger 判定语义） ----------------
 
@@ -653,6 +713,7 @@ class CurationDynamicsSpace(EnvBase):
             "type": p["type"],
             "tendencies": p.get("tendencies") or {},
             "week": p["week"],
+            "event_time": p.get("event_time"),
             "is_official": p["is_official"],
         }
 
@@ -674,8 +735,8 @@ class CurationDynamicsSpace(EnvBase):
     def _live_candidates(self) -> list[int]:
         """候选池 = 全池中未退场的帖（生命周期机制）。
 
-        chronological / interest 共用此活帖池：帖的时间生命低于退场线即退出视野，
-        同时取代"候选窗口"这一独立旋钮。random 强反事实不调用本候选池。
+        仅 interest 使用此活帖池：帖的时间生命低于退场线即退出视野，同时取代
+        "候选窗口"这一独立旋钮。random 与 chronological 都不调用本候选池。
         """
         return [
             pid
@@ -750,8 +811,8 @@ class CurationDynamicsSpace(EnvBase):
         也不应用官方置顶或事件周哀悼保底。未来帖子尚未进入 ``self._posts``，因此不会
         发生时间穿越。
 
-        ``chronological`` 与 ``interest`` 保持原实现：先应用官方置顶和事件周保底，
-        再从未退场活帖池中按各自逻辑填充剩余槽位。
+        ``chronological`` 是独立的精确时间最新10条制度；``interest`` 才应用官方置顶、
+        事件周保底与未退场活帖池。
         """
         alg = self._recommendation_algorithm
         if alg == "random":
@@ -759,6 +820,21 @@ class CurationDynamicsSpace(EnvBase):
             take = min(self._feed_size, len(candidates))
             chosen = self._rng_feed_random.sample(candidates, take) if take > 0 else []
             return [self._feed_item(pid) for pid in chosen]
+
+        if alg == "chronological":
+            # 纯时序制度：候选资格只由「在行动时刻之前已经发布」决定；帖子不退场，
+            # 不读取生命周期、累计曝光、兴趣或热度，也没有官方置顶/W13 保底槽位。
+            # 小时批次打开前只把 event_time <= 当前时刻的真实帖和更早批次 Agent 帖
+            # 并入 self._posts；因此这里对全池按精确 event_time 倒序即可。
+            candidates = sorted(
+                self._posts,
+                key=lambda pid: (
+                    str(self._posts[pid].get("event_time", "")),
+                    int(pid),
+                ),
+                reverse=True,
+            )
+            return [self._feed_item(pid) for pid in candidates[: self._feed_size]]
 
         pinned_set = set(self._pinned_ids)
         feed: list[dict[str, Any]] = []
@@ -777,11 +853,7 @@ class CurationDynamicsSpace(EnvBase):
             pid for pid in self._live_candidates()
             if pid not in pinned_set and pid not in floor_set
         ]
-        if alg == "chronological":
-            candidates.sort(key=lambda pid: (_week_ord(self._posts[pid]["week"]), pid), reverse=True)
-            chosen = candidates[:remaining]
-        else:  # interest
-            chosen = self._select_slots(self._interest_rank(aid, week, candidates), remaining)
+        chosen = self._select_slots(self._interest_rank(aid, week, candidates), remaining)
         for pid in chosen:
             feed.append(self._feed_item(pid))
         return feed
@@ -823,6 +895,9 @@ class CurationDynamicsSpace(EnvBase):
                     "type_mismatch": False,
                     "tendencies": self._compute_tendencies(content),
                     "week": str(rec.get("week", week)),
+                    "event_time": self._local_event_time(
+                        rec.get("published_at"), str(rec.get("week", week)), rec.get("pid")
+                    ).isoformat(timespec="seconds"),
                     "is_official": bool(rec.get("is_official", False)),
                     "exposure_count": 0,
                     "life": 1.0,  # 生命周期起点（用户 2026-09-12 裁定）
@@ -837,10 +912,10 @@ class CurationDynamicsSpace(EnvBase):
         # 2) 玩梗涌现环境（存量/流量/丰沛度/空旷度/涌现增益）。
         self._meme_env = self._compute_meme_env(week)
 
-        # 3) 策展臂的官方置顶 + 事件周议程保底；random 强反事实不应用。
+        # 3) interest 的官方置顶 + 事件周议程保底；random 不应用。
         # random 是全历史、全槽位均匀抽样的强去策展反事实：官方帖仍作为普通帖子存在于
         # self._posts，但不置顶，也不应用 W13 哀悼保底。其余两臂保持原平台议程设置。
-        if self._recommendation_algorithm == "random":
+        if self._recommendation_algorithm in ("random", "chronological"):
             self._pinned_ids = []
             self._event_floor_ids = []
         else:
@@ -850,7 +925,7 @@ class CurationDynamicsSpace(EnvBase):
         # 4) 预装配全部 feed（曝光在装配时记账：1 次/agent/tick；get_feed 只读缓存快照）。
         self._feed_live_pool = (
             len(self._posts)
-            if self._recommendation_algorithm == "random"
+            if self._recommendation_algorithm in ("random", "chronological")
             else len(self._live_candidates())
         )
         for aid in sorted(self._agent_types):
@@ -897,6 +972,7 @@ class CurationDynamicsSpace(EnvBase):
                 "type_mismatch": rec["type_mismatch"],
                 "tendencies": rec.get("tendencies") or {},
                 "week": rec["week"],
+                "event_time": rec.get("event_time"),
                 "is_official": False,
                 "exposure_count": 0,
                 "life": 1.0,  # 生命周期起点（用户 2026-09-12 裁定）
@@ -1096,11 +1172,19 @@ class CurationDynamicsSpace(EnvBase):
         official_note = (
             f"官方来源 {official_count} 条（random 无置顶）"
             if self._recommendation_algorithm == "random"
-            else f"官方置顶 {official_count} 条"
+            else (
+                f"官方来源 {official_count} 条（chronological 无置顶）"
+                if self._recommendation_algorithm == "chronological"
+                else f"官方置顶 {official_count} 条"
+            )
         )
         return {
             "status": "success",
             "week": self._current_week,
+            "event_time": (
+                self._current_event_time.isoformat(timespec="seconds")
+                if self._current_event_time is not None else None
+            ),
             "meme_env": {
                 "stock": int(env["stock"]),
                 "flow": int(env["flow"]),
@@ -1193,11 +1277,20 @@ class CurationDynamicsSpace(EnvBase):
                     "type_mismatch": assigned != pool_type,
                     "tendencies": self._compute_tendencies(text),
                     "week": self._current_week,
+                    "event_time": (
+                        self._current_event_time.isoformat(timespec="seconds")
+                        if self._current_event_time is not None else None
+                    ),
                 }
             )
             self._spoke_this_tick[aid] = True
             self._posted_this_step.add(aid)
             mismatch_note = "（判类结果与您的类型不一致，仅供参考）" if assigned != pool_type else ""
+            availability = (
+                "将在下一小时批次进入信息流传播"
+                if self._recommendation_algorithm == "chronological"
+                else "将在下一周进入信息流传播"
+            )
             return {
                 "status": "success",
                 "post_id": pid,
@@ -1206,8 +1299,153 @@ class CurationDynamicsSpace(EnvBase):
                 "type_mismatch": assigned != pool_type,
                 "already_posted": False,
                 "week": self._current_week,
-                "response": f"发布成功：帖子 post_id={pid} 将在下一周进入信息流传播{mismatch_note}。",
+                "response": f"发布成功：帖子 post_id={pid} {availability}{mismatch_note}。",
             }
+
+    # ---------------- chronological 小时级同步微批次 ----------------
+
+    def _start_chronological_week(self, week: str) -> None:
+        """初始化一周的聚合容器；该周只在结束时写一行 replay。"""
+        self._current_week = week
+        self._tick_index = _week_ord(week) - _week_ord(self._start_week) + 1
+        self._spoke_this_tick = {}
+        self._posted_this_step = set()
+        self._pending_agent_posts = []
+        self._feeds = {}
+        self._chronological_week_agent_posts = []
+        self._exposure_counts_tick = {}
+        self._climate_shares = {}
+        self._injected_this_week = {t: 0 for t in TYPE_ORDER_ALL}
+        for rec in self._injection_by_week.get(week, []):
+            ttype = str(rec.get("type", "other"))
+            self._injected_this_week[ttype if ttype in TYPE_ORDER_ALL else "other"] += 1
+        self._injected_this_week_ids = []
+        self._official_injected_this_week = 0
+        self._exposure_age_buckets = {"age0": 0, "age1": 0, "age2": 0, "age3plus": 0}
+        self._pinned_ids = []
+        self._event_floor_ids = []
+        # B_t/S_t/G_t 已退役为观测量；按完整周注入计划与上一周 Agent 供给计算，
+        # 不参与任何 Agent 的 U 决策。
+        self._meme_env = self._compute_meme_env(week)
+
+    def _inject_chronological_until(self, cutoff: datetime) -> None:
+        """按 published_at 把不晚于 cutoff 的真实帖一次性并入时间轴。"""
+        items = self._chronological_timed_injection
+        while self._chronological_injection_cursor < len(items):
+            event_time, rec = items[self._chronological_injection_cursor]
+            if event_time > cutoff:
+                break
+            self._chronological_injection_cursor += 1
+            pid = self._next_post_id
+            self._next_post_id += 1
+            ttype = str(rec.get("type", "other"))
+            if ttype not in TYPE_ORDER_ALL:
+                ttype = "other"
+            author = str(rec.get("author", "unknown"))
+            content = str(rec.get("content", ""))
+            rec_week = str(rec.get("week", self._week_for_time(event_time)))
+            self._posts[pid] = {
+                "post_id": pid,
+                "source_pid": rec.get("pid"),
+                "author_id": "ext_" + author,
+                "author_handle": author,
+                "content": content,
+                "type": ttype,
+                "assigned_type": ttype,
+                "type_mismatch": False,
+                "tendencies": self._compute_tendencies(content),
+                "week": rec_week,
+                "event_time": event_time.isoformat(timespec="seconds"),
+                "is_official": bool(rec.get("is_official", False)),
+                "exposure_count": 0,
+                "life": 1.0,  # 仅为统一 schema；chronological 从不读取 life。
+                "tick_produced": self._chronological_batch_index,
+            }
+            if rec_week == self._current_week:
+                self._injected_this_week_ids.append(pid)
+                if self._posts[pid]["is_official"]:
+                    self._official_injected_this_week += 1
+
+    def _open_chronological_batch(self, event_time: datetime) -> None:
+        """为某个有人行动的小时建立同步快照；同小时 Agent 互不可见。"""
+        self._current_event_time = event_time
+        self._current_week = self._week_for_time(event_time)
+        self._posted_this_step = set()
+        self._pending_agent_posts = []
+        hour_of_week = event_time.weekday() * 24 + event_time.hour
+        self._chronological_active_agents = {
+            aid for aid, hour in self._chronological_action_hours.items()
+            if hour == hour_of_week
+        }
+        self._feed_live_pool = len(self._posts)
+        for aid in sorted(self._chronological_active_agents):
+            feed = self._assemble_feed(aid, self._current_week)
+            self._feeds[aid] = feed
+            seen = self._seen_by_agent.setdefault(aid, set())
+            counts = {t: 0 for t in TYPE_ORDER_ALL}
+            for item in feed:
+                pid = item["post_id"]
+                seen.add(pid)
+                self._posts[pid]["exposure_count"] += 1
+                counts[item["type"]] += 1
+                age = _post_age_weeks(self._current_week, self._posts[pid]["week"])
+                self._exposure_age_buckets["age3plus" if age >= 3 else f"age{age}"] += 1
+            self._exposure_counts_tick[aid] = counts
+            n = len(feed)
+            self._climate_shares[aid] = {
+                t: (counts[t] / n if n else 0.0) for t in TYPE_ORDER_ALL
+            }
+
+    async def _finish_chronological_week(self, t: datetime) -> None:
+        """把本周所有小时批次聚合成与其他两臂同口径的一行周度 replay。"""
+        week = self._current_week
+        merged = list(self._chronological_week_agent_posts)
+        self._step_index += 1
+        await self._write_env_state(self._step_index, t, **self._env_row(week, merged))
+        await self._write_agent_state_batch(
+            self._step_index, t, self._agent_rows(week, merged)
+        )
+        self._global_landscape = self._landscape_row(week, merged)
+        self._agent_posts_pooled_prev = {rec["post_id"] for rec in merged}
+
+    async def _step_chronological(self, tick: int, t: datetime) -> None:
+        """收尾当前小时批次，并推进到下一个有人行动的小时。"""
+        merged = self._flush_pending_to_pool()
+        self._chronological_week_agent_posts.extend(merged)
+        for rec in merged:
+            aid = rec["agent_id"]
+            self._total_posts_by_agent[aid] = self._total_posts_by_agent.get(aid, 0) + 1
+        for aid in self._chronological_active_agents:
+            cum = self._cumulative_exposures.setdefault(aid, {t: 0 for t in TYPE_ORDER_ALL})
+            for ttype in TYPE_ORDER_ALL:
+                cum[ttype] = cum.get(ttype, 0) + self._exposure_counts_tick.get(aid, {}).get(ttype, 0)
+
+        self._chronological_batch_index += 1
+        final_batch = (
+            self._chronological_total_batches > 0
+            and self._chronological_batch_index >= self._chronological_total_batches
+        )
+        current_week = self._current_week
+        if final_batch:
+            next_monday = datetime.combine(
+                _week_monday(current_week) + timedelta(days=7), datetime.min.time()
+            )
+            self._inject_chronological_until(next_monday - timedelta(microseconds=1))
+            await self._finish_chronological_week(t)
+            self._chronological_active_agents = set()
+            return
+
+        next_time = t + timedelta(seconds=tick)
+        next_week = self._week_for_time(next_time)
+        if next_week != current_week:
+            next_monday = datetime.combine(
+                _week_monday(current_week) + timedelta(days=7), datetime.min.time()
+            )
+            self._inject_chronological_until(next_monday - timedelta(microseconds=1))
+            await self._finish_chronological_week(t)
+            self._start_chronological_week(next_week)
+        self._inject_chronological_until(next_time)
+        self._open_chronological_batch(next_time)
 
     # ---------------- 生命周期 ----------------
 
@@ -1215,13 +1453,23 @@ class CurationDynamicsSpace(EnvBase):
         """打开 tick 1（W12）：注入本周内容、计算玩梗涌现环境、预装配全部 Agent 的 feed，并
         以 W12 注入池构成建立全局份额基线快照（U4）。无 replay 写入。"""
         self.t = start_datetime
-        self._open_tick(self._weeks[0])
-        self._set_baseline_landscape()
+        if self._recommendation_algorithm == "chronological":
+            self._start_chronological_week(self._week_for_time(start_datetime))
+            self._inject_chronological_until(start_datetime)
+            self._open_chronological_batch(start_datetime)
+            self._set_baseline_landscape()
+        else:
+            self._open_tick(self._weeks[0])
+            self._set_baseline_landscape()
 
     async def step(self, tick: int, t: datetime) -> None:
         """每 tick 恰执行一次：先收尾当前 tick k（pending agent 帖并入池、写 env 1 行 +
         agent batch 行、更新全局份额快照、清空每 tick 状态），再预卷打开 tick k+1
         （注入、涌现环境、装配 feed）；step(11) 只收尾不打开 W23。replay 主键 = 内部 _step_index。"""
+        if self._recommendation_algorithm == "chronological":
+            await self._step_chronological(tick, t)
+            return
+
         self._step_index += 1
         week = self._current_week
         merged = self._flush_pending_to_pool()
@@ -1367,6 +1615,7 @@ class CurationDynamicsSpace(EnvBase):
             "_rng_interest_sample": self._rng_interest_sample.getstate(),
             "_official_pinned": {w: list(ids) for w, ids in self._official_pinned.items()},
             "_pinned_ids": list(self._pinned_ids),
+            "_event_floor_ids": list(self._event_floor_ids),
             "_agent_posts_pooled_prev": sorted(self._agent_posts_pooled_prev),
             "_injected_count_by_week": {w: int(c) for w, c in self._injected_count_by_week.items()},
             "_injected_this_week": dict(self._injected_this_week),
@@ -1374,6 +1623,14 @@ class CurationDynamicsSpace(EnvBase):
             "_official_injected_this_week": self._official_injected_this_week,
             "_exposure_counts_tick": self._exposure_counts_tick,
             "_climate_shares": self._climate_shares,
+            "_current_event_time": (
+                self._current_event_time.isoformat(timespec="seconds")
+                if self._current_event_time is not None else None
+            ),
+            "_chronological_batch_index": self._chronological_batch_index,
+            "_chronological_active_agents": sorted(self._chronological_active_agents),
+            "_chronological_week_agent_posts": self._chronological_week_agent_posts,
+            "_chronological_injection_cursor": self._chronological_injection_cursor,
         }
         atomic_write_text(
             self._workspace_root / _STATE_REL,
@@ -1430,6 +1687,7 @@ class CurationDynamicsSpace(EnvBase):
                 getattr(self, key).setstate(_rng_state_from_json(st))
         self._official_pinned = {str(w): list(ids) for w, ids in (d.get("_official_pinned") or {}).items()}
         self._pinned_ids = [int(pid) for pid in (d.get("_pinned_ids") or [])]
+        self._event_floor_ids = [int(pid) for pid in (d.get("_event_floor_ids") or [])]
         self._agent_posts_pooled_prev = set(int(pid) for pid in (d.get("_agent_posts_pooled_prev") or []))
         loaded_ic = d.get("_injected_count_by_week")
         if isinstance(loaded_ic, dict):
@@ -1447,6 +1705,20 @@ class CurationDynamicsSpace(EnvBase):
             str(aid): {t: float(v.get(t, 0.0)) for t in TYPE_ORDER_ALL}
             for aid, v in (d.get("_climate_shares") or {}).items()
         }
+        raw_event_time = d.get("_current_event_time")
+        self._current_event_time = (
+            datetime.fromisoformat(str(raw_event_time)) if raw_event_time else None
+        )
+        self._chronological_batch_index = int(d.get("_chronological_batch_index", 0))
+        self._chronological_active_agents = set(
+            str(aid) for aid in (d.get("_chronological_active_agents") or [])
+        )
+        self._chronological_week_agent_posts = list(
+            d.get("_chronological_week_agent_posts") or []
+        )
+        self._chronological_injection_cursor = int(
+            d.get("_chronological_injection_cursor", 0)
+        )
         # 容错：老 checkpoint 缺每 tick 导出数据时，由已持久化的 feed 重建（不重复计 post 曝光）。
         if not self._exposure_counts_tick:
             for aid, feed in self._feeds.items():

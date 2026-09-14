@@ -220,6 +220,18 @@ class CurationDiscourseAgent(AgentBase):
             k: float(raw_params.get(k, defaults.get(k, 0.0)))
             for k in ("activity", "spiral", "spiral_scale", "decay", "baseline_utility")
         }
+        # chronological 专用行动时刻：Asia/Shanghai 本地周内小时（周一 00:00=0，
+        # 周日 23:00=167）。该字段只写入 chronological 配置；random / interest
+        # 不携带它，仍按各自的周级 step 行动，三种推荐制度互不借用机制。
+        action_hour = self.get_profile().get("chronological_action_hour")
+        self._chronological_action_hour: int | None = (
+            int(action_hour) if action_hour is not None else None
+        )
+        if self._chronological_action_hour is not None and not 0 <= self._chronological_action_hour < 168:
+            raise ValueError(
+                "chronological_action_hour must be in [0, 167], got "
+                f"{self._chronological_action_hour}"
+            )
 
     async def to_workspace(self, workspace_path: Path) -> None:
         workspace_path = Path(workspace_path)
@@ -371,7 +383,19 @@ class CurationDiscourseAgent(AgentBase):
             return f"[error] {exc}"
 
     async def step(self, tick: int, t: datetime) -> str:
-        """一周行为：读 feed → 数值决策 → （若发言）生成并发布一条本类型帖子。"""
+        """行动批次：读 feed → 数值决策 → （若发言）生成并发布一条本类型帖子。
+
+        random / interest 每个引擎 step 都是一个周级行动批次。chronological 的引擎
+        step 是「本周有人行动的小时」；非本小时 Agent 在任何 Env/LLM 调用之前返回，
+        因而每个 Agent 每周仍恰有一次决策机会。
+        """
+        if self._chronological_action_hour is not None:
+            hour_of_week = int(t.weekday()) * 24 + int(t.hour)
+            if hour_of_week != self._chronological_action_hour:
+                return (
+                    f"{self.name}: inactive chronological batch "
+                    f"({hour_of_week} != {self._chronological_action_hour})"
+                )
         self._step_count += 1
         agent_id = str(self._id)
         record: dict[str, Any] = {"tick": tick, "speak": False, "reason": "",

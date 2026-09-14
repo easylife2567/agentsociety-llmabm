@@ -41,6 +41,17 @@ from statistics import fmean
 SCRIPT_DIR = Path(__file__).resolve().parent
 BENCH_PATH = SCRIPT_DIR.parent / "benchmark_curves.json"  # hypothesis_4/benchmark_curves.json
 
+
+def _expected_engine_steps(run_id: str) -> int:
+    if "_chronological_" not in run_id:
+        return 11
+    manifest = _read_json(SCRIPT_DIR / "init" / "configs" / "manifest.json") or {}
+    return int(
+        (((manifest.get("steps") or {}).get("chronological_hourly") or {})
+         .get("engine_batches", 0))
+        or 11
+    )
+
 # ---------------- 类型标签与顺序 ----------------
 
 TYPE_ORDER = ["meme", "mourning", "education", "marketing", "other"]
@@ -68,7 +79,7 @@ FIELDS: dict[str, str] = {
     "start_time": "run 启动时间（UTC ISO）。",
     "end_time": "run 结束时间（UTC ISO；completed/failed 时写入）。",
     "simulation_time": "引擎模拟时钟（pid.json 心跳；step 进行中约每秒刷新）。",
-    "step_count": "引擎已完成 step 数（SOCIETY_STEP.json；本实验 11 步=11 周）。",
+    "step_count": "引擎已完成批次数（random/interest=11周级step；chronological=693个非空小时批次）。",
     "completed_step_count": "已完成的前置 step 数（含 Ask/Intervene 等非仿真步；本实验无）。",
     "terminated": "引擎是否已判定终止（SOCIETY_STEP.json）。",
     # env 周度（47 列）
@@ -116,11 +127,11 @@ FIELDS: dict[str, str] = {
     "exposure_marketing": "本 tick 营销类曝光槽位数。",
     "exposure_other": "本 tick 其他类曝光槽位数。",
     "exposure_noise": "本 tick 噪音类曝光槽位数。",
-    "official_posts_count": "本 tick 置顶集合中的官方帖数（仅 W13 讣告=1，其余周=0）。",
-    "official_exposure_slots": "官方帖占据的 feed 槽位数。W13 应=100（全员置顶可见），其余周=0。",
-    "event_floor_slots": "事件周议程保底槽位数（用户 2026-09-12 裁定）：W13 每条 feed 在置顶之后固定 5 个槽位放全池哀悼倾向分最高的帖（全员相同、三臂一致），其余周=0。平台级规则，非算法差异。",
+    "official_posts_count": "置顶集合中的官方帖数；仅 interest 的 W13 为1，random/chronological恒为0。",
+    "official_exposure_slots": "官方帖占据的 feed 槽位数；interest W13因置顶通常为100，其他两臂只可能按各自算法自然出现。",
+    "event_floor_slots": "事件周议程保底槽位数；仅 interest W13 为5，random/chronological恒为0。",
     # feed 机制审计（用户 2026-09-12 裁定：帖子生命周期 + 曝光饱和 + 兴趣比例抽样）
-    "feed_live_pool": "本周未退场、进入候选池的帖数（跨算法臂同源的内容可得性；三臂应相等）。",
+    "feed_live_pool": "候选池规模：random=截至当周全历史；chronological=截至该行动时刻全部已发布；interest=未退场活帖池。三臂不要求相等。",
     "feed_sample_temp": "interest 臂比例抽样温度（按 exp(score/temp) 无放回抽 feed_size 条；<=0=确定性 top-k 消融档）。",
     "feed_half_life_weeks": "帖子时间生命的半衰期（周）：1.5 周龄生命力折半。",
     "feed_saturation_scale": "曝光饱和尺度：累计曝光达该值时生命力折半（默认 20）。",
@@ -464,10 +475,11 @@ def _docs_block(keys: list[str]) -> str:
 def render_process_md(data: dict) -> str:
     p = data["process"]
     alive = "✅ 存活" if p["alive"] else "否"
+    expected = _expected_engine_steps(data["run_id"])
     lines = [
         f"- **状态**：{p['status']}　**pid**：{p['pid'] or '—'}　**进程存活**：{alive}",
         f"- **启动**：{p['start_time'] or '—'}　**结束**：{p['end_time'] or '—'}",
-        f"- **进度**：step_count={p['step_count'] if p['step_count'] is not None else '—'} / 11　**terminated**：{p['terminated']}",
+        f"- **引擎批次进度**：step_count={p['step_count'] if p['step_count'] is not None else '—'} / {expected}　**terminated**：{p['terminated']}",
         f"- **模拟时钟**：{p['simulation_time'] or '—'}",
     ]
     return "\n".join(lines)

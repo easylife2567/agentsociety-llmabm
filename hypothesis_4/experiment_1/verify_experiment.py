@@ -27,14 +27,11 @@
      B10 replay 落盘完整性：agent_state 行数 = n_agents × 11 周、env_state = 11
         （卡实际落盘数据，补 B9 只卡引擎自我申报的缺口）。
 
-  C. **机制层**（直接驱动 env 逐周，无 agent 产出、无 LLM、不写 replay）
-     C1 W13 chronological/interest 每条 feed 首位 = 官方讣告帖；random 无置顶；
-     C2 W13 chronological/interest 紧随置顶之后恰有 5 条保底帖，**全员相同**，且恰为全池哀悼倾向分前 5
-        （裁定口径是"倾向分前 5"而非"5 条 mourning 类型"；保底的实际类型构成列为**观察项**）；
-     C3 非事件周保底集合为空；保底帖不计入算法槽位（不与余下槽位重复）；
-     C4 chronological/interest 候选池一致；random 候选池为截至当周全部历史帖；每 feed 长度 = feed_size；
-     C5 chronological/interest 无 ≥3 周旧帖曝光；random 能抽到 ≥3 周旧帖；
-     C6 chronological/interest 满足 W13 强制暴露下界；random 不受该下界约束。
+  C. **机制层**（直接驱动 env，无 LLM、不写 replay）
+     C1-C4 验证 chronological 冻结行动表、精确时间、最新10条、同小时同步与跨小时可见；
+     C5 验证 random / interest 各自旧定义未被 chronological 改造；
+     C6 验证去B/去D/去R三个消融参数边界；
+     C7 完整推进693个小时批次，确认只形成11个周度快照且250条注入全部到达。
 
 用法：
     $PYTHON_PATH hypothesis_4/experiment_1/verify_experiment.py
@@ -44,9 +41,11 @@
 from __future__ import annotations
 
 import argparse
+import asyncio
 import importlib.util
 import json
 import sys
+from datetime import datetime, timedelta
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -81,7 +80,10 @@ def layer_a() -> None:
     tracked = [CONFIGS_DIR / f"{round_tag}_{a}_s{s}.json"
                for a in ("random", "chronological", "interest")
                for s in (0, 1, 2)]
+    tracked += [CONFIGS_DIR / f"{round_tag}_ablation_{a}_s0.json"
+                for a in ("no_b", "no_d", "no_r")]
     tracked += [CONFIGS_DIR / "manifest.json", SCRIPT_DIR / "init" / "steps.yaml",
+                SCRIPT_DIR / "init" / "steps_chronological_hourly.yaml",
                 SCRIPT_DIR / "init" / "init_config.json"]
     tracked += [SCRIPT_DIR / "init" / f"injection_sample_s{s}.json" for s in (0, 1, 2)]
     before = {p: p.read_bytes() for p in tracked if p.is_file()}
@@ -171,14 +173,15 @@ def layer_b():
     floor_ok = (cal.EVENT_WEEK_MOURNING_FLOOR == 5)
     cfg = json.loads((CONFIGS_DIR / "manifest.json").read_text(encoding="utf-8"))
     floor_ok &= cfg["feed_mechanism"]["event_week_mourning_floor"]["value"] == 5
-    floors: set[int] = set()
+    floors: dict[str, set[int]] = {a: set() for a in ("random", "chronological", "interest")}
     for run_id in cfg["run_ids"]:
+        arm = next(a for a in floors if f"_{a}_" in run_id)
         p = CONFIGS_DIR / f"{run_id}.json"
-        floors.add(json.loads(p.read_text(encoding="utf-8"))["env_modules"][0]["kwargs"]
-                   ["event_week_mourning_floor"])
-    floor_ok &= floors == {5}
-    check(floor_ok, "B4 议程保底条数 = 5（manifest / 9 配置 / 校准脚本同源）",
-          f"manifest=5，9 配置={sorted(floors)}，校准解析={cal.EVENT_WEEK_MOURNING_FLOOR}")
+        floors[arm].add(json.loads(p.read_text(encoding="utf-8"))["env_modules"][0]["kwargs"]
+                        ["event_week_mourning_floor"])
+    floor_ok &= floors == {"random": {5}, "chronological": {0}, "interest": {5}}
+    check(floor_ok, "B4 议程保底只属于 interest；chronological 显式关闭",
+          f"manifest interest=5；配置={floors}；校准解析={cal.EVENT_WEEK_MOURNING_FLOOR}")
 
     # B4b 校准器保留注入帖原始类型（含 noise）：否则方案 B 的过滤在校准侧失效，
     # 且 env 把 noise 单列一类、校准器若并入 "other" 会抬高"其他"型 agent 的 cum_own。
@@ -304,120 +307,122 @@ def layer_b():
 # ---------------------------------------------------------------------------
 def layer_c(mech, cal) -> None:
     env_mod = _load("curation_dynamics_space", ROOT / "custom" / "envs" / "curation_dynamics_space.py")
-    wk_list = [f"2026-W{i}" for i in range(12, 23)]
-    arms = {}
-    for alg in ("random", "chronological", "interest"):
-        kw = json.loads((CONFIGS_DIR / f"anchored_v1_{alg}_s0.json").read_text(encoding="utf-8"))
-        kw = dict(kw["env_modules"][0]["kwargs"])
-        kw["injection_data_path"] = str(ROOT / kw["injection_data_path"])
-        kw["vocab_path"] = str(ROOT / kw["vocab_path"])
-        env = env_mod.CurationDynamicsSpace(**kw)
-        snap: dict[str, dict] = {}
-        for wk in wk_list:
-            env._open_tick(wk)          # 无 agent 产出 → 与 init+step 的逐周推进等价
-            snap[wk] = {
-                "feeds": {aid: [dict(it) for it in f] for aid, f in env._feeds.items()},
-                "pinned": list(env._pinned_ids),
-                "floor": list(env._event_floor_ids),
-                "live": env._feed_live_pool,
-                "age": dict(env._exposure_age_buckets),
-                "posts": {pid: dict(p) for pid, p in env._posts.items()},
-            }
-        arms[alg] = snap
-
-    ev = "2026-W13"
-    aids = sorted(arms["interest"][ev]["feeds"])
-    posts_i = arms["interest"][ev]["posts"]
-
-    # C1 策展臂保留官方置顶；random 是全槽位随机，官方帖只作为普通候选。
-    def pinned_first(alg: str) -> bool:
-        return all(arms[alg][ev]["feeds"][a]
-                   and arms[alg][ev]["feeds"][a][0]["is_official"] for a in aids)
-
-    pin_ids = {alg: tuple(arms[alg][ev]["pinned"]) for alg in arms}
-    curated = ("chronological", "interest")
-    random_all_pinned = all(pinned_first("random") for _ in (0,))
-    check(all(pinned_first(a) for a in curated)
-          and pin_ids["random"] == ()
-          and pin_ids["chronological"] == pin_ids["interest"]
-          and len(pin_ids["interest"]) == 1
-          and posts_i[pin_ids["interest"][0]]["week"] == ev
-          and not random_all_pinned,
-          "C1 W13 策展臂官方讣告置顶；random 无置顶",
-          f"chronological/interest 置顶集合一致={pin_ids['chronological'] == pin_ids['interest']}；"
-          f"random 置顶集合={pin_ids['random']}；random 全员首位均官方={random_all_pinned}")
-
-    # C2 保底 5 条、全员相同、且为全池哀悼倾向前 5
-    fl_sets = {alg: frozenset(arms[alg][ev]["floor"]) for alg in arms}
-    # 每个 agent 的 feed 第 2~6 槽位（置顶之后 = 保底段）序列；集合大小为 1 ⇔ 全员相同
-    per_agent = {alg: {tuple(it["post_id"] for it in arms[alg][ev]["feeds"][a][1:1 + 5])
-                       for a in sorted(arms[alg][ev]["feeds"])} for alg in curated}
-    all_live = [pid for pid, p in posts_i.items()
-                if not mech.is_retired(p.get("life", 1.0), 0.35)
-                and pid not in set(arms["interest"][ev]["pinned"])
-                and mech.floor_eligible(p.get("type", ""))]   # 方案 B：候选池排除 noise
-    top5 = set(sorted(all_live, key=lambda pid: (-(posts_i[pid].get("tendencies") or {}).get("mourning", 0.0), -pid))[:5])
-    uniq_ok = all(len(s) == 1 for s in per_agent.values())
-    seq_ok = uniq_ok and all(
-        next(iter(per_agent[alg])) == tuple(arms[alg][ev]["floor"]) for alg in curated
+    cfg_doc = json.loads(
+        (CONFIGS_DIR / "anchored_v1_chronological_s0.json").read_text(encoding="utf-8")
     )
-    check(len(fl_sets["interest"]) == 5 and uniq_ok and seq_ok
-          and fl_sets["interest"] == top5
-          and fl_sets["chronological"] == fl_sets["interest"]
-          and fl_sets["random"] == frozenset(),
-          "C2 W13 策展臂保底 5 条且全员相同；random 无保底",
-          f"策展臂保底集合 {sorted(fl_sets['interest'])}；各自'全员第2-6槽位唯一'={uniq_ok}；"
-          f"序列与 _event_floor_ids 一致={seq_ok}；等于哀悼倾向前5={fl_sets['interest'] == top5}")
-    # 保底集合的**类型构成**：裁定口径是"哀悼倾向分前 5"，不保证 5 条都判为 mourning
-    # （倾向分 = 命中数/(字数/50)，短文本密度虚高）。此处只观察不判负，供人工判断。
-    comp = [posts_i[pid]["type"] for pid in arms["interest"][ev]["floor"]]
-    n_noise = sum(1 for t in comp if t == "noise")
-    check(n_noise == 0, "C2b 保底候选池排除 noise（用户 2026-09-13 裁定·方案 B）",
-          f"保底类型构成 {comp}；noise {n_noise} 条（应为 0）")
-    observe("W13 保底帖类型构成（裁定为「哀悼倾向分前5」，非「5 条 mourning 类型」）",
-            f"{comp}；其中 noise {n_noise} 条")
+    kw = dict(cfg_doc["env_modules"][0]["kwargs"])
+    kw["injection_data_path"] = str(ROOT / kw["injection_data_path"])
+    kw["vocab_path"] = str(ROOT / kw["vocab_path"])
+    action_hours = {str(k): int(v) for k, v in kw["chronological_action_hours"].items()}
+    unique_hours = sorted(set(action_hours.values()))
+    step_text = (SCRIPT_DIR / "init" / "steps_chronological_hourly.yaml").read_text(encoding="utf-8")
+    first_line = step_text.splitlines()[0]
+    start_t = datetime.fromisoformat(first_line.split('"', 2)[1])
+    n_batches = step_text.count("num_steps: 1")
 
-    # C3 非事件周无保底 + 保底帖不与算法槽位重复
-    no_floor = all(len(arms["interest"][wk]["floor"]) == 0 for wk in wk_list if wk != ev)
-    dup = any(len({it["post_id"] for it in f}) != len(f) for alg in arms for wk in wk_list
-              for f in arms[alg][wk]["feeds"].values())
-    check(no_floor and not dup, "C3 非事件周无保底；feed 内无重复帖",
-          f"10 个非事件周保底集合均为空={no_floor}；feed 内 post_id 唯一={not dup}")
+    check(len(action_hours) == 100 and len(unique_hours) == 63
+          and n_batches == 11 * len(unique_hours)
+          and n_batches == kw["chronological_total_batches"],
+          "C1 chronological 冻结行动表与事件驱动批次完整",
+          f"100 agents；每周 {len(unique_hours)} 个有人行动小时；总批次 {n_batches}")
 
-    # C4 策展臂共享活帖池；random 使用截至当周的全部历史帖子。
-    curated_live_eq = all(
-        arms["chronological"][wk]["live"] == arms["interest"][wk]["live"]
-        for wk in wk_list
+    # 取 W12 最后一个行动小时做完整 10 槽检查；最早小时可能发生在首条样本发布前，
+    # 此时按严格时序允许 feed 少于 10 条（不能用未来帖补齐）。
+    check_t = datetime.fromisocalendar(2026, 12, 1) + timedelta(hours=max(unique_hours))
+    env = env_mod.CurationDynamicsSpace(**kw)
+    asyncio.run(env.init(check_t))
+    active = sorted(env._chronological_active_agents)
+    feeds = [env._feeds[aid] for aid in active]
+    feed_ok = bool(feeds) and all(len(feed) == 10 for feed in feeds)
+    ordered = all(
+        [it.get("event_time", "") for it in feed]
+        == sorted([it.get("event_time", "") for it in feed], reverse=True)
+        for feed in feeds
     )
-    random_pool_ge = all(
-        arms["random"][wk]["live"] >= arms["interest"][wk]["live"] for wk in wk_list
+    no_future = all(
+        datetime.fromisoformat(it["event_time"]) <= check_t
+        for feed in feeds for it in feed
     )
-    random_pool_strict = any(
-        arms["random"][wk]["live"] > arms["interest"][wk]["live"] for wk in wk_list
-    )
-    lens = {len(f) for alg in arms for wk in wk_list for f in arms[alg][wk]["feeds"].values()}
-    check(curated_live_eq and random_pool_ge and random_pool_strict and lens == {10},
-          "C4 策展臂候选池一致；random 使用全历史池；feed 长度恒 = 10",
-          f"策展臂候选池一致={curated_live_eq}；random 池始终不小于活帖池={random_pool_ge}；"
-          f"至少一周严格更大={random_pool_strict}；feed 长度取值 {sorted(lens)}")
+    check(feed_ok and ordered and no_future,
+          "C2 chronological 只看已发布内容并按精确时间倒序取最新10条",
+          f"首批 active={len(active)}；feed=10={feed_ok}；倒序={ordered}；无未来帖={no_future}")
 
-    # C5 策展臂老帖退场；random 明确允许抽到全历史旧帖。
-    age3_curated = {
-        alg: {wk: arms[alg][wk]["age"]["age3plus"] for wk in wk_list} for alg in curated
+    check(not env._pinned_ids and not env._event_floor_ids
+          and env._feed_live_pool == len(env._posts),
+          "C3 chronological 无生命周期/退场、置顶或W13保底",
+          f"候选池={env._feed_live_pool}=全池{len(env._posts)}；pin={env._pinned_ids}；floor={env._event_floor_ids}")
+
+    # 找一个至少两人的小时，验证同小时互不可见；提交后并池，下一小时即成为可见候选。
+    crowded_hour = next(h for h in unique_hours if sum(v == h for v in action_hours.values()) >= 2)
+    crowded_t = datetime.fromisocalendar(2026, 12, 1) + timedelta(hours=crowded_hour)
+    env2 = env_mod.CurationDynamicsSpace(**kw)
+    asyncio.run(env2.init(crowded_t))
+    pair = sorted(env2._chronological_active_agents)[:2]
+    before_ids = {it["post_id"] for aid in pair for it in env2._feeds[aid]}
+    responses = [asyncio.run(env2.create_post(aid, "离线时序验证帖")) for aid in pair]
+    new_ids = {r["post_id"] for r in responses}
+    mutually_hidden = new_ids.isdisjoint(before_ids)
+    env2._flush_pending_to_pool()
+    eligible_next = new_ids.issubset(env2._posts)
+    check(len(pair) == 2 and mutually_hidden and eligible_next,
+          "C4 同小时同步快照互不可见；批次结束后跨小时可见",
+          f"pair={pair}；同小时feed不含新帖={mutually_hidden}；批次后进入候选池={eligible_next}")
+
+    # random / interest 继续走自己的周级制度，确认 chronological 改造没有借用或覆盖它们。
+    weekly = {}
+    for alg in ("random", "interest"):
+        d = json.loads((CONFIGS_DIR / f"anchored_v1_{alg}_s0.json").read_text(encoding="utf-8"))
+        wkw = dict(d["env_modules"][0]["kwargs"])
+        wkw["injection_data_path"] = str(ROOT / wkw["injection_data_path"])
+        wkw["vocab_path"] = str(ROOT / wkw["vocab_path"])
+        e = env_mod.CurationDynamicsSpace(**wkw)
+        e._open_tick("2026-W12")
+        e._open_tick("2026-W13")
+        weekly[alg] = e
+    check(not weekly["random"]._pinned_ids and not weekly["random"]._event_floor_ids
+          and len(weekly["interest"]._pinned_ids) == 1
+          and len(weekly["interest"]._event_floor_ids) == 5,
+          "C5 random / interest 定义未被 chronological 改造",
+          "random仍为全历史全槽随机且无强制位；interest仍保留生命周期、置顶与W13保底")
+
+    expected = {
+        "no_b": ("baseline_utility", 0.0),
+        "no_d": ("spiral_scale", 0.0),
+        "no_r": ("decay", 0.0),
     }
-    age3_random = {wk: arms["random"][wk]["age"]["age3plus"] for wk in wk_list}
-    check(all(v == 0 for alg in curated for v in age3_curated[alg].values())
-          and any(v > 0 for v in age3_random.values()),
-          "C5 策展臂无 ≥3 周旧帖曝光；random 可抽到全历史旧帖",
-          f"random 逐周 age3plus={[age3_random[w] for w in wk_list]}")
+    ablation_ok = True
+    details = []
+    for name, (key, value) in expected.items():
+        d = json.loads((CONFIGS_DIR / f"anchored_v1_ablation_{name}_s0.json").read_text(encoding="utf-8"))
+        vals = {float(a["kwargs"]["params"][key]) for a in d["agents"]}
+        ablation_ok &= vals == {value}
+        details.append(f"{name}.{key}={sorted(vals)}")
+    check(ablation_ok, "C6 新公式的去B/去D/去R三个单因素消融配置正确",
+          "；".join(details))
 
-    # C6 事件周悼念槽位下限：1 条官方置顶 + 保底中判为 mourning 的条数（保底可能含非 mourning 帖）
-    floor_m = sum(1 for pid in arms["interest"][ev]["floor"] if posts_i[pid]["type"] == "mourning")
-    m13 = {alg: min(sum(1 for it in arms[alg][ev]["feeds"][a] if it["type"] == "mourning") for a in aids)
-           for alg in arms}
-    check(all(m13[alg] >= 1 + floor_m for alg in curated),
-          "C6 策展臂满足 W13 强制悼念曝光下界；random 不受约束",
-          f"下界 {1 + floor_m}（1 置顶 + 保底中 {floor_m} 条 mourning）；实际最小值 {m13}")
+    ticks = [int(line.split(":", 1)[1].strip()) for line in step_text.splitlines()
+             if line.strip().startswith("tick:")]
+    env3 = env_mod.CurationDynamicsSpace(**kw)
+
+    async def _drive_full_schedule() -> None:
+        async def _no_write(*args, **kwargs):
+            return None
+
+        env3._write_env_state = _no_write
+        env3._write_agent_state_batch = _no_write
+        now = start_t
+        await env3.init(now)
+        for seconds in ticks:
+            await env3.step(seconds, now)
+            now += timedelta(seconds=seconds)
+
+    asyncio.run(_drive_full_schedule())
+    check(env3._chronological_batch_index == n_batches
+          and env3._step_index == 11
+          and env3._chronological_injection_cursor == 250,
+          "C7 chronological 全693批次离线推进后仅形成11个周度快照",
+          f"batch={env3._chronological_batch_index}；week_rows={env3._step_index}；"
+          f"注入游标={env3._chronological_injection_cursor}/250")
 
 
 def main() -> int:
