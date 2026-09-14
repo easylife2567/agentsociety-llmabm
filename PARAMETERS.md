@@ -351,7 +351,7 @@ RNG 独立流（第 385–388 行）：注入=`Random(seed)`、随机臂选址=`
 | run | 状态 | 备注 |
 |---|---|---|
 | `anchored_v1_random_s0` | **completed**（11/11 ticks，W22，2026-09-14） | 基线 run（random_global 强去策展反事实）。周度数据 `data/anchored_v1_random_s0/`（weekly_supply / behavior / exposure / mechanism / bias / benchmark 六表），正式图 `charts/formal/anchored_v1_random_s0__chart1–4`（玩梗份额 sim vs real、周供给量、供给堆叠面积、玩梗发言率）；W22 玩梗供给份额 0.552（真实 0.603） |
-| `anchored_v1_interest_s0/s1/s2` | failed（3/11，W15 中断） | 待诊断后重跑（run 目录 `runs/anchored_v1_interest_s*`） |
+| `anchored_v1_interest_s0/s1/s2` | 已清理 | 曾失败于 W15（3/11 ticks）；失败 run 目录与监视快照经用户 2026-09-14 裁定删除（runs/monitor 本就不入库），待重跑 |
 | `anchored_v1_chronological_*` | 未开跑 | — |
 | （上一轮 U=D·R）`random/chronological/interest_s0–2` | completed | 历史对照，不属于本轮 9-run 批次 |
 
