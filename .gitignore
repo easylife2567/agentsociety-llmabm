@@ -4,6 +4,11 @@
 .env
 easypaper_config.yaml
 
+# AgentSociety2 引擎源码（上游 fork，3.9G）：一律不导出/不入库。
+# 引擎版本已钉在 ARCHIVE_MANIFEST_H4E1_formal_20260913.md
+# （gitlink commit 13e28b5e67a2a8f2f43d640ebf27859126da622e）。
+AgentSociety2/
+
 __pycache__/
 *.pyc
 .playwright-mcp/
