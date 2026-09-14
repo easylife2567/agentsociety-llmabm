@@ -3,11 +3,21 @@
   "workspace": {
     "topic": "公众人物去世后，算法策展如何塑造舆论场对其的数字表征",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "analysis",
+    "current_stage": "run_experiment",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
-    "revision_round": 4,
-    "active_reroute": null
+    "revision_round": 5,
+    "active_reroute": {
+      "revision_round": 5,
+      "requested_at": "2026-09-14T04:59:26.662415+00:00",
+      "from_stage": "analysis",
+      "target_stage": "run_experiment",
+      "reason": "anchored_v1 当前只有 interest_s0 单 seed 诊断烟测；为回答不同推荐算法在该事件中的策展作用，须先完成三 interest seeds 的事实基线门控，再执行冻结参数下的三算法正式反事实比较",
+      "source_artifact": "change/anchored_utility_smoke_summary.md",
+      "pending_stages": [
+        "run_experiment"
+      ]
+    }
   },
   "stages": {
     "literature_search": {
@@ -67,24 +77,14 @@
       "revision_round": 4
     },
     "run_experiment": {
-      "status": "completed",
-      "started_at": "2026-09-13T17:36:58.954858+00:00",
-      "completed_at": "2026-09-13T18:23:22.799809+00:00",
+      "status": "needs_revision",
+      "started_at": null,
+      "completed_at": null,
       "attempts": 1,
       "error": null,
-      "metadata": {
-        "run_id": "anchored_v1_interest_s0_smoke",
-        "kind": "baseline_smoke",
-        "config": "anchored_v1_interest_s0",
-        "run_dir": "hypothesis_4/experiment_1/run",
-        "step_count": 11,
-        "env_rows": 11,
-        "agent_rows": 1100,
-        "charts_dir": "hypothesis_4/experiment_1/charts/smoke",
-        "scope": "single-seed diagnostic smoke test"
-      },
-      "verification_status": "complete",
-      "revision_round": 4
+      "metadata": {},
+      "verification_status": "not_started",
+      "revision_round": 5
     },
     "analysis": {
       "status": "not_started",
@@ -374,6 +374,44 @@
       "to_status": "completed",
       "from_stage": "run_experiment",
       "to_stage": "analysis"
+    },
+    {
+      "sequence": 16,
+      "timestamp": "2026-09-14T04:59:26.662418+00:00",
+      "kind": "reroute",
+      "revision_round": 5,
+      "from_stage": "analysis",
+      "to_stage": "run_experiment",
+      "reason": "anchored_v1 当前只有 interest_s0 单 seed 诊断烟测；为回答不同推荐算法在该事件中的策展作用，须先完成三 interest seeds 的事实基线门控，再执行冻结参数下的三算法正式反事实比较",
+      "source_artifact": "change/anchored_utility_smoke_summary.md",
+      "invalidated_stages": [
+        "run_experiment"
+      ],
+      "previous_statuses": {
+        "run_experiment": "completed"
+      },
+      "previous_stage_states": {
+        "run_experiment": {
+          "status": "completed",
+          "started_at": "2026-09-13T17:36:58.954858+00:00",
+          "completed_at": "2026-09-13T18:23:22.799809+00:00",
+          "attempts": 1,
+          "error": null,
+          "metadata": {
+            "run_id": "anchored_v1_interest_s0_smoke",
+            "kind": "baseline_smoke",
+            "config": "anchored_v1_interest_s0",
+            "run_dir": "hypothesis_4/experiment_1/run",
+            "step_count": 11,
+            "env_rows": 11,
+            "agent_rows": 1100,
+            "charts_dir": "hypothesis_4/experiment_1/charts/smoke",
+            "scope": "single-seed diagnostic smoke test"
+          },
+          "verification_status": "complete",
+          "revision_round": 4
+        }
+      }
     }
   ]
 }
