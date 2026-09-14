@@ -11,6 +11,7 @@ reference. All outputs are labelled as proxy expectations, never experimental re
 
 from __future__ import annotations
 
+import argparse
 import copy
 import csv
 import json
@@ -40,14 +41,13 @@ OUT_SVG = SCRIPT_DIR / "charts" / "prediction" / "PROXY_random_global_expected.s
 
 WEEKS = cal.WEEKS
 TYPES = cal.TYPE_ORDER
-DISPLAY_TYPES = ["meme", "mourning", "education", "marketing", "other", "noise"]
+DISPLAY_TYPES = ["meme", "mourning", "education", "marketing", "other"]
 TYPE_LABEL = {
     "meme": "Meme",
     "mourning": "Mourning",
     "marketing": "Marketing",
     "education": "Education",
     "other": "Other",
-    "noise": "Noise",
 }
 TYPE_COLOR = {
     "meme": "#DD8452",
@@ -55,7 +55,6 @@ TYPE_COLOR = {
     "education": "#55A868",
     "marketing": "#CCB974",
     "other": "#64B5CD",
-    "noise": "#B07AA1",
 }
 BASELINE_SUPPLY_YLIM = (0, 80)
 
@@ -89,7 +88,7 @@ def injected_counts() -> dict[str, dict[str, int]]:
     return {
         week: {
             t: sum(1 for post in cal.INJECTED_BY_WEEK[week] if post["type"] == t)
-            for t in DISPLAY_TYPES
+            for t in TYPES
         }
         for week in WEEKS
     }
@@ -221,13 +220,6 @@ def write_outputs(seed_count: int = 100) -> tuple[Path, Path]:
     random_share = combined_shares(random_mean, injected)
     interest_share = combined_shares(interest_mean, injected)
     real_share = benchmark_shares()
-    random_total = {
-        w: {
-            t: random_mean[w].get(t, 0.0) + injected[w][t]
-            for t in DISPLAY_TYPES
-        }
-        for w in WEEKS
-    }
     random_climate = {
         w: {t: statistics.mean(run[w][t] for run in climate_runs) for t in TYPES}
         for w in WEEKS
@@ -240,7 +232,6 @@ def write_outputs(seed_count: int = 100) -> tuple[Path, Path]:
         for prefix in ("random_agent", "random_agent_sd", "random_combined_share",
                        "interest_combined_share", "real_share", "random_feed_share"):
             fields.extend(f"{prefix}_{t}" for t in TYPES)
-        fields.extend(f"random_total_count_{t}" for t in DISPLAY_TYPES)
         writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         for w in WEEKS:
@@ -252,8 +243,6 @@ def write_outputs(seed_count: int = 100) -> tuple[Path, Path]:
                 row[f"interest_combined_share_{t}"] = interest_share[w][t]
                 row[f"real_share_{t}"] = real_share[w][t]
                 row[f"random_feed_share_{t}"] = random_climate[w][t]
-            for t in DISPLAY_TYPES:
-                row[f"random_total_count_{t}"] = random_total[w][t]
             writer.writerow(row)
 
     meta = {
@@ -266,13 +255,6 @@ def write_outputs(seed_count: int = 100) -> tuple[Path, Path]:
         "feed_size": cal.FEED_SIZE,
         "seed_count": seed_count,
         "formula": "U_i=B_i+R_i*(D_i-B_i)",
-        "chart_y_axis_contract": {
-            "reference": "charts/smoke/anchored_v1_interest_s0_smoke__chart3_supply_stacked_area.png",
-            "metric": "absolute weekly supply = injected posts + agent posts",
-            "types": DISPLAY_TYPES,
-            "ylim": list(BASELINE_SUPPLY_YLIM),
-            "tick_interval": 10,
-        },
         "parameters": {"alpha_D": alpha_d, "baseline_utility": baseline, "lambda_mean": lambdas},
         "input": {
             "injection_sample": str(cal.INJECTION_SAMPLE_PATH.relative_to(cal.workspace_root)),
@@ -292,13 +274,33 @@ def write_outputs(seed_count: int = 100) -> tuple[Path, Path]:
                 "interest_combined_share": interest_share[w],
                 "real_share": real_share[w],
                 "random_feed_share": random_climate[w],
-                "random_total_count": random_total[w],
             }
             for w in WEEKS
         },
     }
     OUT_META.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+    return plot_random_agent_supply(random_mean, seed_count)
 
+
+def load_existing_random_mean() -> dict[str, dict[str, float]]:
+    """读取既有 CSV 中的原 random 预测均值，不重新计算预测。"""
+    rows: dict[str, dict[str, float]] = {}
+    with OUT_DATA.open(newline="", encoding="utf-8-sig") as handle:
+        for row in csv.DictReader(handle):
+            week = str(row["week"])
+            rows[week] = {t: float(row[f"random_agent_{t}"]) for t in TYPES}
+    missing = [week for week in WEEKS if week not in rows]
+    if missing:
+        raise ValueError(f"existing proxy CSV is missing weeks: {missing}")
+    return rows
+
+
+def plot_random_agent_supply(
+    random_mean: dict[str, dict[str, float]],
+    seed_count: int = 100,
+) -> tuple[Path, Path]:
+    """仅重绘既有的 Agent 产出预测，并套用基线图的 0–80 纵轴比例尺。"""
+    OUT_PNG.parent.mkdir(parents=True, exist_ok=True)
     plt.rcParams.update({
         "font.sans-serif": ["Hiragino Sans GB", "PingFang SC", "Arial Unicode MS", "DejaVu Sans"],
         "axes.unicode_minus": False,
@@ -312,11 +314,11 @@ def write_outputs(seed_count: int = 100) -> tuple[Path, Path]:
     })
     x = list(range(len(WEEKS)))
     fig, ax = plt.subplots(figsize=(10, 5.4))
-    stack = [[random_total[w][t] for w in WEEKS] for t in DISPLAY_TYPES]
-    totals = [sum(random_total[w].values()) for w in WEEKS]
+    stack = [[random_mean[w][t] for w in WEEKS] for t in DISPLAY_TYPES]
+    totals = [sum(random_mean[w][t] for t in DISPLAY_TYPES) for w in WEEKS]
     if max(totals, default=0.0) > BASELINE_SUPPLY_YLIM[1]:
         raise ValueError(
-            "random-global proxy exceeds the registered 0–80 baseline y-axis; "
+            "random-global agent proxy exceeds the registered 0–80 baseline y-axis; "
             "report the overflow instead of clipping or silently changing the scale"
         )
     ax.stackplot(
@@ -354,11 +356,11 @@ def write_outputs(seed_count: int = 100) -> tuple[Path, Path]:
             zorder=5,
         )
     ax.set_xticks(x, WEEKS, rotation=45)
-    ax.set_ylabel("帖数（绝对数量）")
+    ax.set_ylabel("Agent 发帖数（帖）")
     ax.set_ylim(*BASELINE_SUPPLY_YLIM)
     ax.set_yticks(range(BASELINE_SUPPLY_YLIM[0], BASELINE_SUPPLY_YLIM[1] + 1, 10))
     ax.set_title(
-        "各内容类型供给量变化（堆叠面积 · 绝对数量，random-global 数值代理 · 非实验结果）",
+        "random-global 各类型 Agent 发帖量预测（原预测数据 · 基线纵轴 · 非实验结果）",
         fontweight="bold",
         fontsize=12,
     )
@@ -368,7 +370,7 @@ def write_outputs(seed_count: int = 100) -> tuple[Path, Path]:
     fig.text(
         0.5,
         0.012,
-        "纵轴固定复用基线 chart3：0–80 帖；绝对供给 = 注入帖 + Agent 产出；100 个 feed 抽样种子。",
+        f"仅重绘：仍为原 {seed_count} 个 feed 抽样种子的 Agent 产出均值；纵轴复用基线 chart3 的 0–80 比例尺。",
         ha="center",
         fontsize=8.5,
         color="#555555",
@@ -388,11 +390,24 @@ def write_outputs(seed_count: int = 100) -> tuple[Path, Path]:
 
 
 def main() -> int:
-    png, svg = write_outputs()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--plot-only",
+        action="store_true",
+        help="只读取现有 CSV 重绘图片，不重新运行数值代理",
+    )
+    args = parser.parse_args()
+    if args.plot_only:
+        png, svg = plot_random_agent_supply(load_existing_random_mean())
+    else:
+        png, svg = write_outputs()
     print(f"PNG: {png}")
     print(f"SVG: {svg}")
-    print(f"CSV: {OUT_DATA}")
-    print(f"META: {OUT_META}")
+    if args.plot_only:
+        print(f"SOURCE CSV (unchanged): {OUT_DATA}")
+    else:
+        print(f"CSV: {OUT_DATA}")
+        print(f"META: {OUT_META}")
     return 0
 
 

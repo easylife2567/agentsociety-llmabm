@@ -5,23 +5,6 @@
   "feed_size": 10,
   "seed_count": 100,
   "formula": "U_i=B_i+R_i*(D_i-B_i)",
-  "chart_y_axis_contract": {
-    "reference": "charts/smoke/anchored_v1_interest_s0_smoke__chart3_supply_stacked_area.png",
-    "metric": "absolute weekly supply = injected posts + agent posts",
-    "types": [
-      "meme",
-      "mourning",
-      "education",
-      "marketing",
-      "other",
-      "noise"
-    ],
-    "ylim": [
-      0,
-      80
-    ],
-    "tick_interval": 10
-  },
   "parameters": {
     "alpha_D": 0.4296954755626446,
     "baseline_utility": {
@@ -92,14 +75,6 @@
         "marketing": 0.7665652173913043,
         "education": 0.11426666666666667,
         "other": 0.0
-      },
-      "random_total_count": {
-        "meme": 0,
-        "mourning": 0,
-        "education": 9.43,
-        "marketing": 32,
-        "other": 0,
-        "noise": 2.0
       }
     },
     "2026-W13": {
@@ -144,14 +119,6 @@
         "marketing": 0.49034782608695654,
         "education": 0.17266666666666666,
         "other": 0.10257142857142858
-      },
-      "random_total_count": {
-        "meme": 0,
-        "mourning": 24.91,
-        "education": 12.78,
-        "marketing": 19.119999999999997,
-        "other": 11.77,
-        "noise": 2.0
       }
     },
     "2026-W14": {
@@ -196,14 +163,6 @@
         "marketing": 0.4101304347826087,
         "education": 0.19606666666666667,
         "other": 0.13704761904761906
-      },
-      "random_total_count": {
-        "meme": 1,
-        "mourning": 14.27,
-        "education": 13.04,
-        "marketing": 17.7,
-        "other": 13.280000000000001,
-        "noise": 2.0
       }
     },
     "2026-W15": {
@@ -248,14 +207,6 @@
         "marketing": 0.3823913043478261,
         "education": 0.2038,
         "other": 0.15023809523809525
-      },
-      "random_total_count": {
-        "meme": 1.04,
-        "mourning": 9.74,
-        "education": 11.440000000000001,
-        "marketing": 13.92,
-        "other": 9.73,
-        "noise": 2.0
       }
     },
     "2026-W16": {
@@ -300,14 +251,6 @@
         "marketing": 0.3739130434782609,
         "education": 0.21733333333333335,
         "other": 0.15833333333333333
-      },
-      "random_total_count": {
-        "meme": 1.11,
-        "mourning": 7.62,
-        "education": 8.98,
-        "marketing": 12.05,
-        "other": 7.33,
-        "noise": 2.0
       }
     },
     "2026-W17": {
@@ -352,14 +295,6 @@
         "marketing": 0.36030434782608695,
         "education": 0.21333333333333335,
         "other": 0.16338095238095238
-      },
-      "random_total_count": {
-        "meme": 0.06,
-        "mourning": 5.12,
-        "education": 6.8100000000000005,
-        "marketing": 11.309999999999999,
-        "other": 6.29,
-        "noise": 2.0
       }
     },
     "2026-W18": {
@@ -404,14 +339,6 @@
         "marketing": 0.36721739130434783,
         "education": 0.20893333333333333,
         "other": 0.17033333333333334
-      },
-      "random_total_count": {
-        "meme": 0.03,
-        "mourning": 4.13,
-        "education": 5.109999999999999,
-        "marketing": 10.83,
-        "other": 5.58,
-        "noise": 2.0
       }
     },
     "2026-W19": {
@@ -456,14 +383,6 @@
         "marketing": 0.36286956521739133,
         "education": 0.20646666666666666,
         "other": 0.16947619047619047
-      },
-      "random_total_count": {
-        "meme": 1.06,
-        "mourning": 2.59,
-        "education": 5.55,
-        "marketing": 10.31,
-        "other": 3.8,
-        "noise": 2.0
       }
     },
     "2026-W20": {
@@ -508,14 +427,6 @@
         "marketing": 0.3642608695652174,
         "education": 0.21380000000000002,
         "other": 0.15595238095238095
-      },
-      "random_total_count": {
-        "meme": 6.31,
-        "mourning": 2.06,
-        "education": 4.2,
-        "marketing": 9.129999999999999,
-        "other": 1.37,
-        "noise": 3.0
       }
     },
     "2026-W21": {
@@ -560,14 +471,6 @@
         "marketing": 0.35291304347826086,
         "education": 0.1974,
         "other": 0.1490952380952381
-      },
-      "random_total_count": {
-        "meme": 14.74,
-        "mourning": 2.73,
-        "education": 2.7,
-        "marketing": 7.07,
-        "other": 1.15,
-        "noise": 1.0
       }
     },
     "2026-W22": {
@@ -612,14 +515,6 @@
         "marketing": 0.3463913043478261,
         "education": 0.19140000000000001,
         "other": 0.1417142857142857
-      },
-      "random_total_count": {
-        "meme": 17.14,
-        "mourning": 2.39,
-        "education": 2.37,
-        "marketing": 7,
-        "other": 1.04,
-        "noise": 1.0
       }
     }
   }

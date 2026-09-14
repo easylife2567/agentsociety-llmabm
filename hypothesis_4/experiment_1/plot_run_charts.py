@@ -87,8 +87,8 @@ TYPE_LABEL = {"meme": "玩梗", "mourning": "悼念", "education": "教育",
 # 图3 堆叠面积配色（对齐 docx image3：悼念蓝 / 玩梗橙 / 教育绿 / 营销黄 / 其他浅蓝 / 噪音灰紫）
 TYPE_COLOR = {"mourning": "#4C72B0", "meme": "#DD8452", "education": "#55A868",
               "marketing": "#CCB974", "other": "#64B5CD", "noise": "#B07AA1"}
-# 用户 2026-09-14 裁定：所有可比的 chart3 供给堆叠图统一复用基线纵轴。
-# 纵轴口径固定为“注入 + Agent 产出”的绝对帖数，显示范围 0–80、每 10 帖一格。
+# 用户 2026-09-14 裁定并澄清：可比的绝对供给堆叠图统一复用基线纵轴比例尺。
+# 只统一显示范围 0–80、每 10 帖一格；chart3 与 chart3b 各自的数据口径保持不变。
 BASELINE_SUPPLY_YLIM = (0, 80)
 
 
@@ -286,6 +286,12 @@ def chart3b_agent_supply_stacked_area(weekly: list[dict], run_id: str, out: Path
     x = list(range(len(weeks)))
     agent_types = [t for t in TYPE_ORDER if t != "noise"]
     series = {t: [w.get(f"agent_supply_{t}", 0) for w in weekly] for t in agent_types}
+    totals = [sum(series[t][i] for t in agent_types) for i in range(len(weeks))]
+    if max(totals, default=0.0) > BASELINE_SUPPLY_YLIM[1]:
+        raise ValueError(
+            "chart3b agent supply exceeds the registered 0–80 baseline y-axis; "
+            "report the overflow instead of clipping or silently changing the scale"
+        )
 
     fig, ax = plt.subplots(figsize=(10, 5.4))
     _death_line(ax, weeks)
@@ -295,6 +301,8 @@ def chart3b_agent_supply_stacked_area(weekly: list[dict], run_id: str, out: Path
                  edgecolor="white", linewidth=0.6, alpha=0.92, zorder=2)
     ax.set_xticks(x, weeks, rotation=45)
     ax.set_ylabel("Agent 发帖数（帖）")
+    ax.set_ylim(*BASELINE_SUPPLY_YLIM)
+    ax.set_yticks(range(BASELINE_SUPPLY_YLIM[0], BASELINE_SUPPLY_YLIM[1] + 1, 10))
     ax.set_title(f"Agent 发帖量变化（堆叠面积 · 仅 Agent 产出 · 不含注入帖，{run_id}）",
                  fontweight="bold", fontsize=13)
     ax.legend(loc="upper right", frameon=False, fontsize=9)
