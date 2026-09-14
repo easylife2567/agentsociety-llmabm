@@ -77,12 +77,21 @@
       "revision_round": 4
     },
     "run_experiment": {
-      "status": "needs_revision",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-09-14T05:00:30.831156+00:00",
       "completed_at": null,
-      "attempts": 1,
+      "attempts": 2,
       "error": null,
-      "metadata": {},
+      "metadata": {
+        "round": "anchored_v1",
+        "phase": "baseline_gate",
+        "runs": [
+          "anchored_v1_interest_s0",
+          "anchored_v1_interest_s1",
+          "anchored_v1_interest_s2"
+        ],
+        "parameters": "frozen"
+      },
       "verification_status": "not_started",
       "revision_round": 5
     },
@@ -412,6 +421,17 @@
           "revision_round": 4
         }
       }
+    },
+    {
+      "sequence": 17,
+      "timestamp": "2026-09-14T05:00:30.831228+00:00",
+      "kind": "stage_update",
+      "revision_round": 5,
+      "stage": "run_experiment",
+      "from_status": "needs_revision",
+      "to_status": "in_progress",
+      "from_stage": "run_experiment",
+      "to_stage": "run_experiment"
     }
   ]
 }
