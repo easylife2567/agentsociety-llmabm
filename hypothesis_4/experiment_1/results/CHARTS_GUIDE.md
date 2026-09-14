@@ -85,6 +85,12 @@ $PYTHON_PATH plot_run_charts.py --status monitor/<run>/status.json --run-id <run
 
 ### chart3 — 各内容类型供给量（堆叠面积 · 绝对数量） `chart3_supply_stacked_area.png`
 
+> **统一纵轴合同（用户 2026-09-14 裁定）**：此后所有可比的 random / chronological /
+> interest 供给堆叠图，均以 `anchored_v1_interest_s0_smoke__chart3_supply_stacked_area.png`
+> 为模板：纵轴必须是“注入帖 + Agent 产出”的绝对供给量，范围固定为 **0–80 帖**、
+> 每 10 帖一格，并保留六类内容（含仅来自注入侧的 noise）。不得用仅 Agent 产出的
+> `chart3b` 纵轴冒充完整供给口径；若未来结果超过 80，须先报告而不能静默改轴或裁切。
+
 | 项 | 内容 |
 |---|---|
 | 画的是什么 | 6 类型堆叠面积（玩梗/悼念/教育/营销/其他/噪音），**绝对帖数** |

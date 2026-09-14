@@ -27,7 +27,6 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.ticker import PercentFormatter
 
 import calibrate_speak as cal
 
@@ -41,20 +40,24 @@ OUT_SVG = SCRIPT_DIR / "charts" / "prediction" / "PROXY_random_global_expected.s
 
 WEEKS = cal.WEEKS
 TYPES = cal.TYPE_ORDER
+DISPLAY_TYPES = ["meme", "mourning", "education", "marketing", "other", "noise"]
 TYPE_LABEL = {
     "meme": "Meme",
     "mourning": "Mourning",
     "marketing": "Marketing",
     "education": "Education",
     "other": "Other",
+    "noise": "Noise",
 }
 TYPE_COLOR = {
-    "meme": "#D55E00",
-    "mourning": "#0072B2",
-    "marketing": "#E69F00",
-    "education": "#009E73",
-    "other": "#56B4E9",
+    "meme": "#DD8452",
+    "mourning": "#4C72B0",
+    "education": "#55A868",
+    "marketing": "#CCB974",
+    "other": "#64B5CD",
+    "noise": "#B07AA1",
 }
+BASELINE_SUPPLY_YLIM = (0, 80)
 
 
 def load_parameters() -> tuple[float, dict[str, float], dict[str, float]]:
@@ -86,7 +89,7 @@ def injected_counts() -> dict[str, dict[str, int]]:
     return {
         week: {
             t: sum(1 for post in cal.INJECTED_BY_WEEK[week] if post["type"] == t)
-            for t in TYPES
+            for t in DISPLAY_TYPES
         }
         for week in WEEKS
     }
@@ -218,6 +221,13 @@ def write_outputs(seed_count: int = 100) -> tuple[Path, Path]:
     random_share = combined_shares(random_mean, injected)
     interest_share = combined_shares(interest_mean, injected)
     real_share = benchmark_shares()
+    random_total = {
+        w: {
+            t: random_mean[w].get(t, 0.0) + injected[w][t]
+            for t in DISPLAY_TYPES
+        }
+        for w in WEEKS
+    }
     random_climate = {
         w: {t: statistics.mean(run[w][t] for run in climate_runs) for t in TYPES}
         for w in WEEKS
@@ -230,7 +240,8 @@ def write_outputs(seed_count: int = 100) -> tuple[Path, Path]:
         for prefix in ("random_agent", "random_agent_sd", "random_combined_share",
                        "interest_combined_share", "real_share", "random_feed_share"):
             fields.extend(f"{prefix}_{t}" for t in TYPES)
-        writer = csv.DictWriter(handle, fieldnames=fields)
+        fields.extend(f"random_total_count_{t}" for t in DISPLAY_TYPES)
+        writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         for w in WEEKS:
             row = {"week": w}
@@ -241,6 +252,8 @@ def write_outputs(seed_count: int = 100) -> tuple[Path, Path]:
                 row[f"interest_combined_share_{t}"] = interest_share[w][t]
                 row[f"real_share_{t}"] = real_share[w][t]
                 row[f"random_feed_share_{t}"] = random_climate[w][t]
+            for t in DISPLAY_TYPES:
+                row[f"random_total_count_{t}"] = random_total[w][t]
             writer.writerow(row)
 
     meta = {
@@ -253,6 +266,13 @@ def write_outputs(seed_count: int = 100) -> tuple[Path, Path]:
         "feed_size": cal.FEED_SIZE,
         "seed_count": seed_count,
         "formula": "U_i=B_i+R_i*(D_i-B_i)",
+        "chart_y_axis_contract": {
+            "reference": "charts/smoke/anchored_v1_interest_s0_smoke__chart3_supply_stacked_area.png",
+            "metric": "absolute weekly supply = injected posts + agent posts",
+            "types": DISPLAY_TYPES,
+            "ylim": list(BASELINE_SUPPLY_YLIM),
+            "tick_interval": 10,
+        },
         "parameters": {"alpha_D": alpha_d, "baseline_utility": baseline, "lambda_mean": lambdas},
         "input": {
             "injection_sample": str(cal.INJECTION_SAMPLE_PATH.relative_to(cal.workspace_root)),
@@ -272,6 +292,7 @@ def write_outputs(seed_count: int = 100) -> tuple[Path, Path]:
                 "interest_combined_share": interest_share[w],
                 "real_share": real_share[w],
                 "random_feed_share": random_climate[w],
+                "random_total_count": random_total[w],
             }
             for w in WEEKS
         },
@@ -290,46 +311,79 @@ def write_outputs(seed_count: int = 100) -> tuple[Path, Path]:
         "font.size": 10,
     })
     x = list(range(len(WEEKS)))
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5.8), gridspec_kw={"width_ratios": [1.05, 1]})
-
-    ax1.plot(x, [real_share[w]["meme"] for w in WEEKS], color="#111111", linewidth=2.5,
-             marker="s", markersize=4.5, label="Real benchmark")
-    ax1.plot(x, [interest_share[w]["meme"] for w in WEEKS], color="#D55E00", linewidth=2.3,
-             marker="o", markersize=4, label="Interest proxy")
-    ax1.plot(x, [random_share[w]["meme"] for w in WEEKS], color="#7F7F7F", linewidth=2.3,
-             marker="o", markersize=4, label="Random-global proxy")
-    ax1.yaxis.set_major_formatter(PercentFormatter(1.0))
-    ax1.set_ylabel("Meme share of combined supply")
-    ax1.set_title("Expected meme-share trajectory", fontweight="bold")
-    ax1.legend(frameon=False, loc="upper left")
-
-    stack = [[random_mean[w][t] for w in WEEKS] for t in TYPES]
-    ax2.stackplot(x, *stack, labels=[TYPE_LABEL[t] for t in TYPES],
-                  colors=[TYPE_COLOR[t] for t in TYPES], alpha=0.9,
-                  linewidth=0.6, edgecolor="white")
-    ax2.set_ylabel("Agent posts per week (100-seed proxy mean)")
-    ax2.set_title("Expected random-global agent supply", fontweight="bold")
-    ax2.legend(frameon=False, loc="upper right", fontsize=8)
-
-    for ax in (ax1, ax2):
-        ax.axvline(1, color="#D62728", linestyle="--", linewidth=1.2, alpha=0.8)
-        ax.axvline(7, color="#9467BD", linestyle=":", linewidth=1.2, alpha=0.8)
-        ax.set_xticks(x, [w.replace("2026-", "") for w in WEEKS], rotation=45)
-        ax.set_axisbelow(True)
-    ax2.annotate("Death event", xy=(1, 1), xycoords=("data", "axes fraction"),
-                 xytext=(5, -18), textcoords="offset points", color="#D62728", fontsize=8)
-    ax1.annotate("Meme-wave window", xy=(7, 1), xycoords=("data", "axes fraction"),
-                 xytext=(5, -32), textcoords="offset points", color="#6A3D9A", fontsize=8)
-
-    fig.suptitle("PROXY EXPECTATION — REVISED RANDOM-GLOBAL ARM — NOT EXPERIMENT RESULTS",
-                 fontsize=13, fontweight="bold", y=0.99)
-    fig.text(0.5, 0.012,
-             "Frozen anchored utility; 100 feed-sampling seeds; all historical posts remain equally eligible in random-global.",
-             ha="center", fontsize=8.5, color="#555555")
-    fig.tight_layout(rect=(0, 0.04, 1, 0.95))
+    fig, ax = plt.subplots(figsize=(10, 5.4))
+    stack = [[random_total[w][t] for w in WEEKS] for t in DISPLAY_TYPES]
+    totals = [sum(random_total[w].values()) for w in WEEKS]
+    if max(totals, default=0.0) > BASELINE_SUPPLY_YLIM[1]:
+        raise ValueError(
+            "random-global proxy exceeds the registered 0–80 baseline y-axis; "
+            "report the overflow instead of clipping or silently changing the scale"
+        )
+    ax.stackplot(
+        x,
+        *stack,
+        labels=[TYPE_LABEL[t] for t in DISPLAY_TYPES],
+        colors=[TYPE_COLOR[t] for t in DISPLAY_TYPES],
+        alpha=0.92,
+        linewidth=0.6,
+        edgecolor="white",
+        zorder=2,
+    )
+    ax.axvline(1, color="#D62728", linestyle="--", linewidth=1.4, alpha=0.85, zorder=3)
+    ax.annotate(
+        "去世 3-24 (W13)",
+        xy=(1, 1.0),
+        xycoords=("data", "axes fraction"),
+        xytext=(6, -4),
+        textcoords="offset points",
+        color="#D62728",
+        fontsize=10,
+        va="top",
+        bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=0.85),
+    )
+    for index, total in enumerate(totals):
+        ax.annotate(
+            f"{total:.1f}",
+            xy=(index, total),
+            xytext=(0, 5),
+            textcoords="offset points",
+            ha="center",
+            va="bottom",
+            fontsize=7.5,
+            color="#333333",
+            zorder=5,
+        )
+    ax.set_xticks(x, WEEKS, rotation=45)
+    ax.set_ylabel("帖数（绝对数量）")
+    ax.set_ylim(*BASELINE_SUPPLY_YLIM)
+    ax.set_yticks(range(BASELINE_SUPPLY_YLIM[0], BASELINE_SUPPLY_YLIM[1] + 1, 10))
+    ax.set_title(
+        "各内容类型供给量变化（堆叠面积 · 绝对数量，random-global 数值代理 · 非实验结果）",
+        fontweight="bold",
+        fontsize=12,
+    )
+    ax.legend(frameon=False, loc="upper right", fontsize=9)
+    ax.set_axisbelow(True)
+    ax.margins(x=0)
+    fig.text(
+        0.5,
+        0.012,
+        "纵轴固定复用基线 chart3：0–80 帖；绝对供给 = 注入帖 + Agent 产出；100 个 feed 抽样种子。",
+        ha="center",
+        fontsize=8.5,
+        color="#555555",
+    )
+    fig.tight_layout(rect=(0, 0.05, 1, 1))
     fig.savefig(OUT_PNG, dpi=300, bbox_inches="tight")
     fig.savefig(OUT_SVG, bbox_inches="tight")
     plt.close(fig)
+    # Matplotlib SVG path data conventionally ends lines with spaces; normalize generated
+    # text so repository whitespace checks remain useful for the hand-written sources.
+    svg_text = OUT_SVG.read_text(encoding="utf-8")
+    OUT_SVG.write_text(
+        "\n".join(line.rstrip() for line in svg_text.splitlines()) + "\n",
+        encoding="utf-8",
+    )
     return OUT_PNG, OUT_SVG
 
 
