@@ -4,6 +4,10 @@
 
 - **单因子 3 臂**：推荐算法（random / chronological / interest）× 3 seeds（0/1/2）
   = 9 个 init_config 变体，写入 init/configs/。
+  其中配置键仍写 `random`，但其操作语义为 **random_global 强反事实**：每个 Agent
+  每周从截至当周 Env 已出现的全部帖子中全 10 槽均匀无放回抽样；不使用生命周期、
+  发布时间、兴趣、热度、累计曝光，也不执行官方置顶或 W13 哀悼保底。未来帖子因尚未
+  进入 Env 而不可能被抽到。chronological 与 interest 的既有机制保持不变。
   （2026-09-12 用户裁定：玩梗涌现环境增益 G 退役 → 第二因子 sustained_hot 无行为差异，
   3×2 全因子降为单因子；2026-09-14 新一轮采用锚定式表达效用
   U = B_i + R·(D−B_i) ≥ activity。env 侧 B/S/G 仍逐周计算并写 replay，
@@ -18,13 +22,14 @@
   Flow_t 读取现实口径周新增帖量调度 emergence_flow_by_week → 空旷度 S_t；
   G_t = clamp(B^β·S^σ, 0.2, 3.0)。**不进入任何类型的决策**（θ 随 G 一并退役），
   仅写入 replay 与监控，供"退潮期"等描述性叙述引用。meme_emergence_mode 固定 normal。
-- 议程设置（用户 2026-09-10 裁定）：官方媒体全程仅 W13 一条讣告帖（原文给定），
-  注入并对全员置顶可见；其余真实数据帖一律按普通内容处理（is_official=False），
-  官方置顶不延伸（official_pin_extend_weeks=0）。
-- feed 机制（用户 2026-09-12 裁定，见 SMOKE_DIAGNOSIS_w19_cliff.md）：帖子生命周期
-  （时间冷却 + 曝光饱和 + 退场）＋ interest 臂兴趣比例抽样，修烟测暴露的"老帖霸屏"
-  与"同类型 agent 共享同一份 feed → W18→W19 发言悬崖"；参数见下方
-  LIFE_* / INTEREST_SAMPLE_TEMP 常量与 manifest["feed_mechanism"]。
+- 议程设置（用户 2026-09-10 裁定）：官方媒体全程仅 W13 一条讣告帖（原文给定）。
+  chronological / interest 臂在 W13 对全员置顶且不延伸；random 臂不置顶，讣告与
+  其他截至当周已出现的帖子一样进入全历史均匀抽样池。其余真实数据帖均按普通内容处理
+  （is_official=False）。
+- feed 机制：chronological / interest 保持 2026-09-12 裁定的帖子生命周期（时间冷却
+  + 曝光饱和 + 退场），interest 另用兴趣比例抽样；random 按本轮裁定忽略这些机制，
+  直接从截至当周 Env 已出现的全部帖子中均匀抽满 10 槽。参数仍统一写入配置，random
+  分支由 env 明确忽略，详见 manifest["feed_mechanism"]。
 - （已作废）探索性反事实探针 interest_nog_s0：G 退役后该探针即正式模型，配置移入
   configs_retired_2factor/
   = interest_normal_s0 去掉玩梗型的涌现环境因子（θ=0，大家都用 D·R），门槛基数不动；
@@ -92,8 +97,9 @@ LIFE_RETIRE_FLOOR = 0.35       # 退场线：时间生命低于此值退出候�
 #                              0.35→3 周窗口，age≥3 = 0.00、top-10% 曝光集中度 0.24、
 #                              零曝光帖 0.06、share_own 逐 agent sd 0.12（基线分别为 0.60/0.29/0.64/0.54/0.00）
 INTEREST_SAMPLE_TEMP = 4.0     # 兴趣比例抽样温度（<=0 退化为确定性 top-k 消融档）
-# 议程设置（用户 2026-09-12/13 裁定）：事件周（W13）为**每个** agent 的 feed 保底注入
-# N 条哀悼帖（按哀悼倾向分取全池前 N 条、全员相同，等效"讣告 + 头版哀悼"的强制曝光）。
+# 议程设置（用户 2026-09-12/13 裁定）：chronological / interest 臂在事件周（W13）
+# 为每个 agent 的 feed 保底注入 N 条哀悼帖（按哀悼倾向分取全池前 N 条、全员相同，
+# 等效"讣告 + 头版哀悼"的强制曝光）。random_global 强反事实明确忽略该参数。
 # 代理实测（2026-09-13 修正同构缺口与代理不可复现后，30 seed，真实 W13 悼念份额 0.414）：
 #   N=0 → 0.310（Δ−0.104 ❌，规则必要性）/ N=2 → 0.431 ✅ / N=3 → 0.462 ✅ /
 #   N=4 → 0.455 ✅ / **N=5（当前值）→ 0.515（Δ+0.101 ❌）** / N=6 → 0.581 ❌
@@ -117,9 +123,10 @@ INJECTION_ALLOCATION = {
 }
 assert sum(INJECTION_ALLOCATION.values()) == 250
 
-# 议程设置重设计（用户 2026-09-10 裁定）：官方媒体全程仅此一条帖子，W13 注入并对
-# 全员置顶可见；除此之外官方媒体无任何其他作用——其余真实数据帖一律按普通内容处理
-# （is_official=False），官方置顶不延伸周。
+# 议程设置重设计（用户 2026-09-10 裁定）：官方媒体全程仅此一条帖子，W13 注入；
+# chronological / interest 臂对全员置顶且不延伸，random 臂不置顶并把它当作普通历史帖
+# 等概率抽取。除此之外官方媒体无任何其他作用——其余真实数据帖一律按普通内容处理
+# （is_official=False）。
 # W13 配额 = 34 条普通抽样 + 1 条讣告帖 = 35（总注入量维持 250）。
 ANNOUNCEMENT_WEEK = "2026-W13"
 ANNOUNCEMENT_POST: dict = {
@@ -300,7 +307,8 @@ for seed in SEEDS:
                 "pid": ANNOUNCEMENT_POST["pid"],
                 "week": ANNOUNCEMENT_WEEK,
                 "type": ANNOUNCEMENT_POST["type"],
-                "note": "官方媒体全程唯一帖子（讣告，原文给定），env 内对全员置顶 W13",
+                "note": ("官方媒体全程唯一帖子（讣告，原文给定）；chronological / interest "
+                         "臂 W13 对全员置顶，random 臂不置顶而作为普通历史帖参与均匀抽样"),
             },
             "rows_total": len(sampled),
             "weekly_counts": weekly_counts,
@@ -339,14 +347,15 @@ def make_config(algorithm: str, mode: str, seed: int, agents: list | None = None
                     # gain_min=0.2 / gain_max=3.0）用 env 默认值，
                     # 待校准与敏感性分析（U2）统一处理。
                     # —— feed 机制（用户 2026-09-12 裁定，见 SMOKE_DIAGNOSIS_w19_cliff.md）——
-                    # 帖子生命周期：老帖随时间冷却、被推得多也冷却、寿终退场；
+                    # chronological / interest：老帖随时间冷却、被推得多也冷却、寿终退场；
+                    # random：这些参数仍为跨配置 schema 一致性而写入，但 env 分支明确忽略。
                     # 兴趣比例抽样：把"取分数最高的 feed_size 条"换成"按 exp(score/temp)
                     # 无放回抽 feed_size 条"，使每个 agent 的 feed 各不相同（修 W19 悬崖）。
                     "life_half_life_weeks": LIFE_HALF_LIFE_WEEKS,
                     "life_saturation_scale": LIFE_SATURATION_SCALE,
                     "life_retire_floor": LIFE_RETIRE_FLOOR,
                     "interest_sample_temp": INTEREST_SAMPLE_TEMP,
-                    # —— 议程设置（用户 2026-09-12/13 裁定）——
+                    # —— 议程设置（用户 2026-09-12/13 裁定；random 分支忽略）——
                     "event_week_mourning_floor": EVENT_WEEK_MOURNING_FLOOR,
                     # —— 数据资产 ——
                     "injection_data_path": sample_paths[seed],
@@ -359,8 +368,8 @@ def make_config(algorithm: str, mode: str, seed: int, agents: list | None = None
                     "num_ticks": NUM_TICKS,
                     "event_week": EVENT_WEEK,
                     "feed_size": FEED_SIZE,
-                    # —— 议程设置（用户 2026-09-10 裁定）——
-                    "official_pin_extend_weeks": 0,  # 讣告帖仅事件周（W13）置顶，不延伸
+                    # —— 议程设置（用户 2026-09-10 裁定；random 分支忽略）——
+                    "official_pin_extend_weeks": 0,  # chrono/interest：仅 W13 置顶，不延伸
                     # 其余 kwargs（alpha / beta / gamma / interest_noise_eps /
                     # exposure_mode）用 spec 默认值。
                 },
@@ -408,6 +417,9 @@ manifest = {
     "experiment": "hypothesis_4/experiment_1",
     "round": ROUND_TAG,
     "design": ("锚定式效用新一轮：单因子 3 臂（random/chronological/interest）× 3 seeds = 9 runs；"
+               "random 配置键的操作语义为 random_global 强反事实：从截至当周 Env 已出现的"
+               "全部帖子中全 10 槽均匀无放回抽样，不使用生命周期、时间、兴趣、热度、累计曝光，"
+               "且不执行官方置顶或 W13 哀悼保底；chronological 与 interest 保持原定义；"
                "（2026-09-12 用户裁定：玩梗涌现环境增益 G 退役，第二因子 sustained_hot 随之失效；"
                "2026-09-14 用户裁定：U = B_i + R·(D−B_i) ≥ activity，疲劳使事件冲击回归"
                "常态锚点而非归零）"),
@@ -443,20 +455,23 @@ manifest = {
     "feed_mechanism": {
         "adopted_from": "hypothesis_4/experiment_1/SMOKE_DIAGNOSIS_w19_cliff.md（用户 2026-09-12 裁定）",
         "post_lifecycle": {
+            "scope": "仅 chronological / interest 臂用于候选资格与打分；random 臂明确忽略",
             "state": "每帖 life（时间生命，创建时 1.0，每周 × weekly_decay）",
             "vitality": "vitality = life × 0.5**(累计曝光 / life_saturation_scale)，打分用",
             "life_half_life_weeks": LIFE_HALF_LIFE_WEEKS,
             "life_saturation_scale": LIFE_SATURATION_SCALE,
             "life_retire_floor": LIFE_RETIRE_FLOOR,
-            "note": ("被实测排除的形态：硬性'每帖每周最多推给 C 个 agent'会饿死早期 feed"
+            "note": ("以下诊断与退场规则只约束 chronological / interest。被实测排除的形态："
+                     "硬性'每帖每周最多推给 C 个 agent'会饿死早期 feed"
                      "（W12 仅 47 帖，C=2 只供 94 槽位而当周需求 1000 槽位），故曝光上限"
                      "以饱和衰减实现同一意图；退场只按时间生命判，避免高热帖被提前踢出池子"),
         },
         "event_week_mourning_floor": {
             "value": EVENT_WEEK_MOURNING_FLOOR,
-            "rule": ("事件周（W13）为每个 agent 的 feed 保底注入 N 条哀悼帖：取全池（未退场、非置顶、"
+            "scope": "仅 chronological / interest；random_global 不执行保底",
+            "rule": ("chronological / interest 臂在事件周（W13）为每个 agent 的 feed 保底注入 N 条哀悼帖：取全池（未退场、非置顶、"
                      "**非 noise 语料噪声**）中哀悼倾向分最高的 N 条，全员相同，紧接官方置顶之后占槽位；"
-                     "余下槽位照常按算法从剩余候选池选取。平台级规则，三算法臂一致。"
+                     "余下槽位照常按算法从剩余候选池选取。random 臂不执行该规则。"
                      "候选资格见共享纯函数 curation_mechanisms.floor_eligible（env 与校准同源）"),
             "why": ("议程设置：讣告/头版哀悼的强制曝光 —— 让事件周全体 agent 都暴露于哀悼叙事。"
                     "代理实测（2026-09-13 修正同构缺口 + 修复代理平票次序不可复现后，30 seed）："
@@ -479,9 +494,19 @@ manifest = {
                     "（同类型 18 人 share_own 的逐 agent sd = 0）→ D 的输入退化成 {0,1}"),
         },
         "cross_arm_comparability": {
-            "platform_level": "候选池 = 未退场的活帖（生命周期/退场），三算法臂完全相同",
-            "arm_specific": "只在于如何从同一候选池中选 feed_size 条：random=均匀抽样；chronological=时间倒序取最新；interest=按兴趣分比例抽样",
-            "note": "同周 feed_live_pool 与置顶槽位数三臂必须相等（冒烟验收项 7）",
+            "shared": ("三臂共享相同的 Agent 群体、当周及此前已注入/内生产生的帖子历史、"
+                       "时间轴、表达效用与每周 feed_size=10；均不得访问未来帖子"),
+            "random_global": ("配置键为 random；候选池=截至当周 Env 已出现的全部帖子；全 10 槽"
+                              "均匀无放回抽样；忽略 life/退场、发布时间、兴趣、热度、累计曝光、"
+                              "官方置顶与 W13 哀悼保底"),
+            "chronological": "保持原定义：从未退场活帖池中按时间倒序取最新，并保留共同议程槽位",
+            "interest": "保持原定义：从未退场活帖池中按兴趣分比例抽样，并保留共同议程槽位",
+            "identification_note": ("random_global 是同时移除时间性可得性与强制议程设置的强反事实；"
+                                    "因此 random 与另两臂的差异是整体策展制度效应，不宜仅解释为"
+                                    "候选池相同条件下的排序效应"),
+            "acceptance_note": ("同周三臂不再要求 feed_live_pool 或置顶槽位数相等；应分别检查："
+                                "random 的候选池等于截至当周全部已出现帖子且强制槽位为 0，"
+                                "chronological / interest 继续遵守生命周期与原议程规则"),
         },
         "replay_columns": [
             "feed_live_pool", "feed_sample_temp", "feed_half_life_weeks",
@@ -493,7 +518,9 @@ manifest = {
         "allocation": INJECTION_ALLOCATION,
         "sample_seed_offset": SAMPLE_SEED_OFFSET,
         "sampling_method": "每周池内类型分层比例抽样（最大余数法），按当周帖子（内容）类型占比分配配额，构成确定性贴合当周真实分布；与 agent 群体的发帖人口径比例（19/22/23/15/21）相互独立、互不混用（用户 2026-09-10 确认）；真实数据帖一律按普通内容处理",
-        "official_announcement": "官方媒体全程仅 W13 一条讣告帖（原文给定），全员置顶可见，官方无其他作用（置顶不延伸）",
+        "official_announcement": ("官方媒体全程仅 W13 一条讣告帖（原文给定）；chronological / "
+                                  "interest 臂 W13 全员置顶且不延伸，random 臂不置顶而与其他"
+                                  "截至当周已出现帖子等概率参与全历史抽样；官方无其他作用"),
         "sampling_ratio": 1.0,
         "sample_files": {str(s): sample_paths[s] for s in SEEDS},
     },

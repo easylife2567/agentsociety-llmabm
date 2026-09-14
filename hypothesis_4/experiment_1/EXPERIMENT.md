@@ -7,7 +7,7 @@
 
 | 因子 | 水平 |
 |------|------|
-| 推荐算法 `recommendation_algorithm` | random / chronological / interest（纯兴趣匹配，无热度项） |
+| 推荐算法 `recommendation_algorithm` | random-global（配置值仍为 random）/ chronological / interest（纯兴趣匹配，无热度项） |
 | 种子 `random_seed` | 0 / 1 / 2 |
 
 - 环境：`CurationDynamicsSpace`（custom/envs/curation_dynamics_space.py）
@@ -15,7 +15,7 @@
 - 规模：100 agents × 11 ticks（2026-W12→W22，事件周 W13）× **9 runs ≈ 0.99 万 agent-ticks**
 - 本轮版本：`anchored_v1`；run_id 命名：`anchored_v1_{algorithm}_s{seed}`，与旧公式run隔离
 
-> **2026-09-14 当前修订**：实验因子、群体、信息流、注入和时序全部保持不变，只把现有 D/R 的组合从纯乘法改为锚定式效用。下文关于旧 `U=D·R` 的代理与烟测结果作为历史诊断保留，不作为本轮运行公式。
+> **2026-09-14 当前修订**：D/R 组合改为锚定式效用；随后按用户裁定把 random 改为 random-global 强反事实（截至当周全部历史帖、全 10 槽均匀抽样、无生命周期/置顶/保底），chronological 与 interest 不变。下文关于旧 `U=D·R` 或旧 random-live 的代理与烟测结果只作历史诊断，不作为本轮正式证据。
 
 ## 发言决策数字化与帖子倾向分（用户 2026-09-09 裁定）
 
@@ -172,7 +172,7 @@ K_a×2 → 35 帖；β=0.5 → 起步 0 帖）——因为起步期 G 由 B^β·
 烟测暴露两个机制缺陷，修复集中在"**内容可得性 + 选择**"两步，**打分函数本身不变**
 （仍无帖子级热度/互动项，纯兴趣匹配的最小机制）：
 
-1. **帖子生命周期**（平台级内容可得性，**三算法臂共用同一候选池**）：
+1. **帖子生命周期**（仅 chronological / interest 保持原实现）：
    每帖 `life`（创建 1.0，每周 × `0.5**(1/half_life)`，half_life=1.5 周）；
    打分用 `生命力 = life × 0.5**(累计曝光 / saturation_scale)`（尺度 20，
    即"被推给约 20 人后吸引力减半"）；`life < retire_floor`（0.35 ≈ **3 周流通窗口**）
@@ -181,10 +181,11 @@ K_a×2 → 35 帖；β=0.5 → 起步 0 帖）——因为起步期 G 由 B^β·
    "按 `exp(score/temperature)`（温度 4.0）**无放回抽** feed_size 条"，
    独立 RNG 流 `Random(seed+3000)`；`temperature<=0` 退化为确定性 top-k（消融档）。
 
-**三臂可比性约定**：生命周期/退场是**平台级**规则（三臂候选池完全相同、同周
-`feed_live_pool` 与置顶槽位数必须相等），算法差异只体现在"如何从同一候选池选出
-feed_size 条"：random = 均匀抽样；chronological = 时间倒序取最新；interest = 按兴趣分
-比例抽样。此约定使"interest vs random"的差异可归因于**排序/选择**而非池子不同。
+**random-global 修订（2026-09-14 用户裁定）**：random 不再使用上述活帖池，也不应用
+官方置顶或 W13 哀悼保底；每个 Agent 每周从截至当周 Env 已出现的全部帖子中，全 10 槽
+均匀无放回抽样。未来帖子尚未进入 Env，不能被抽到。chronological 与 interest 保持原候选池、
+生命周期、置顶和保底机制。因此 random 与另两臂的对比识别的是**整体策展制度效应**，
+不能缩窄解释为同候选池下的纯排序效应。
 
 **为什么"曝光上限"以饱和衰减落地而非硬上限**：预飞实测硬性"每帖每周最多推给 C 个
 agent"会饿死早期 feed（W12 仅 47 帖，C=2 只供 94 槽位而当周需求 1000 槽位），
@@ -330,7 +331,7 @@ combined 玩梗供给份额（`supply_share_all_meme`）对读真实基准
 ## 议程设置（用户 2026-09-10 裁定：官方媒体全程仅一条帖子）
 
 - 官方媒体在 **W13 注入唯一一条讣告帖**（原文给定，pid=official_w13_announcement，
-  type=mourning），并对**全员置顶可见**（feed 前部，所有 Agent、所有算法臂一致）
+  type=mourning）；chronological / interest 对全员置顶，random 不置顶、仅把它作为普通历史帖抽样
 - **除此之外官方媒体无任何其他作用**：
   - 其余真实数据帖一律按普通内容处理（`is_official=False`，不再有官方/非官方分层）
   - 官方置顶不延伸（`official_pin_extend_weeks=0`）：讣告帖仅 W13 置顶，W14 起按算法自然竞争
@@ -339,9 +340,8 @@ combined 玩梗供给份额（`supply_share_all_meme`）对读真实基准
 
 ### 事件周议程保底（用户 2026-09-12 裁定，2026-09-13 落地）
 
-- **W13 每条 feed 在置顶之后固定占 5 个槽位**放"全池（未退场、非置顶）哀悼倾向分最高的 5 条"
-  （`event_week_mourning_floor=5`）：**全员相同、三臂一致**，是平台级议程规则而非算法差异，
-  故不破坏三臂可比性（三臂同周 `feed_live_pool` 与置顶/保底槽位必须相等）
+- chronological / interest 的 **W13 每条 feed 在置顶之后固定占 5 个槽位**放"全池（未退场、非置顶）
+  哀悼倾向分最高的 5 条"（`event_week_mourning_floor=5`）；random 不执行该规则
 - 非事件周保底集合为空；保底帖同样计入曝光记账与气候统计
 - **候选池口径（用户 2026-09-13 裁定·方案 B）**：排名口径是"哀悼**倾向分**前 N"，不是
   "N 条 mourning **类型**帖"；但候选池**剔除 `noise` 语料噪声**（`mech.floor_eligible`）。

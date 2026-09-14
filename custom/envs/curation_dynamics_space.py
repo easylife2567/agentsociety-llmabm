@@ -263,7 +263,7 @@ class CurationDynamicsSpace(EnvBase):
         ColumnDef("official_posts_count", "INTEGER", description="本 tick 置顶集合中的官方帖数"),
         ColumnDef("official_exposure_slots", "INTEGER", description="本 tick 官方帖占据的 feed 槽位数"),
         # —— feed 机制审计（用户 2026-09-12 裁定：帖子生命周期 + 曝光饱和 + 比例抽样）——
-        ColumnDef("feed_live_pool", "INTEGER", description="本周未退场、进入候选池的帖数（三臂同源的内容可得性）"),
+        ColumnDef("feed_live_pool", "INTEGER", description="本周算法实际候选池帖数：random=截至当周全部历史帖；chronological/interest=未退场活帖"),
         ColumnDef("feed_sample_temp", "REAL", description="interest 臂比例抽样的温度（<=0 表示确定性 top-k 消融档）"),
         ColumnDef("feed_half_life_weeks", "REAL", description="帖子时间生命的半衰期（周）"),
         ColumnDef("feed_saturation_scale", "REAL", description="曝光饱和尺度：累计曝光达该值时生命折半"),
@@ -436,7 +436,7 @@ class CurationDynamicsSpace(EnvBase):
         self._injected_count_by_week: dict[str, int] = {}
         self._event_week_injected_count = 0
         # feed 机制审计（用户 2026-09-12 裁定后的新增观测量）：
-        self._feed_live_pool = 0            # 本周未退场、进入候选池的帖数（三臂同源可得性）
+        self._feed_live_pool = 0            # 实际候选池帖数：random 全历史；其余两臂未退场活帖
         self._exposure_age_buckets: dict[str, int] = {"age0": 0, "age1": 0, "age2": 0, "age3plus": 0}
 
         # 周窗口 + 确定性注入量（k_w = round(池大小 × ratio)，与 RNG 无关，init 即可得，
@@ -627,7 +627,7 @@ class CurationDynamicsSpace(EnvBase):
 
         用户 2026-09-12 裁定的议程设置：W13（去世周）所有 agent 的 feed 保底包含 5 条
         哀悼讯息 —— 等效"官方讣告 + 头版哀悼"的强制曝光。非事件周或 floor<=0 时返回空。
-        平台级规则（三算法臂同一保底集合），保证臂间差异只来自排序/选择。
+        该规则仅供 chronological / interest 使用；random 强反事实不调用本函数。
 
         用户 2026-09-13 补裁定（方案 B）：候选池剔除语料噪声类（`mech.floor_eligible`），
         因倾向分对短文本密度虚高，乱码噪音帖曾挤进全员强制位；不限定必须为 mourning 类型
@@ -674,8 +674,8 @@ class CurationDynamicsSpace(EnvBase):
     def _live_candidates(self) -> list[int]:
         """候选池 = 全池中未退场的帖（生命周期机制）。
 
-        平台级内容可得性规则，**三算法臂共用同一候选池**（保证臂间差异只来自排序/选择）：
-        帖的时间生命低于退场线即退出视野 —— 这同时取代了"候选窗口"这一独立旋钮。
+        chronological / interest 共用此活帖池：帖的时间生命低于退场线即退出视野，
+        同时取代"候选窗口"这一独立旋钮。random 强反事实不调用本候选池。
         """
         return [
             pid
@@ -743,8 +743,23 @@ class CurationDynamicsSpace(EnvBase):
         )
 
     def _assemble_feed(self, aid: str, week: str) -> list[dict[str, Any]]:
-        """为单个 Agent 装配本周 feed：官方置顶帖占前部槽位（各算法臂一致），
-        算法填充余下槽位并排除已置顶 id；候选 = 未退场的活帖池（三臂同源可得性）。"""
+        """为单个 Agent 装配本周 feed。
+
+        ``random`` 是强去策展反事实：从截至本周已经进入 Env 的**全部历史帖子**中
+        等概率无放回抽取 ``feed_size`` 条，不读取帖子年龄、生命力、累计曝光、内容类型，
+        也不应用官方置顶或事件周哀悼保底。未来帖子尚未进入 ``self._posts``，因此不会
+        发生时间穿越。
+
+        ``chronological`` 与 ``interest`` 保持原实现：先应用官方置顶和事件周保底，
+        再从未退场活帖池中按各自逻辑填充剩余槽位。
+        """
+        alg = self._recommendation_algorithm
+        if alg == "random":
+            candidates = sorted(self._posts)
+            take = min(self._feed_size, len(candidates))
+            chosen = self._rng_feed_random.sample(candidates, take) if take > 0 else []
+            return [self._feed_item(pid) for pid in chosen]
+
         pinned_set = set(self._pinned_ids)
         feed: list[dict[str, Any]] = []
         for pid in self._pinned_ids[: self._feed_size]:
@@ -762,11 +777,7 @@ class CurationDynamicsSpace(EnvBase):
             pid for pid in self._live_candidates()
             if pid not in pinned_set and pid not in floor_set
         ]
-        alg = self._recommendation_algorithm
-        if alg == "random":
-            take = min(remaining, len(candidates))
-            chosen = self._rng_feed_random.sample(candidates, take) if take > 0 else []
-        elif alg == "chronological":
+        if alg == "chronological":
             candidates.sort(key=lambda pid: (_week_ord(self._posts[pid]["week"]), pid), reverse=True)
             chosen = candidates[:remaining]
         else:  # interest
@@ -826,12 +837,22 @@ class CurationDynamicsSpace(EnvBase):
         # 2) 玩梗涌现环境（存量/流量/丰沛度/空旷度/涌现增益）。
         self._meme_env = self._compute_meme_env(week)
 
-        # 3) 官方置顶集合 + 事件周议程保底集合（全员相同，三臂一致）。
-        self._pinned_ids = self._compute_pinned_ids(week)
-        self._event_floor_ids = self._compute_event_floor_ids(week)
+        # 3) 策展臂的官方置顶 + 事件周议程保底；random 强反事实不应用。
+        # random 是全历史、全槽位均匀抽样的强去策展反事实：官方帖仍作为普通帖子存在于
+        # self._posts，但不置顶，也不应用 W13 哀悼保底。其余两臂保持原平台议程设置。
+        if self._recommendation_algorithm == "random":
+            self._pinned_ids = []
+            self._event_floor_ids = []
+        else:
+            self._pinned_ids = self._compute_pinned_ids(week)
+            self._event_floor_ids = self._compute_event_floor_ids(week)
 
         # 4) 预装配全部 feed（曝光在装配时记账：1 次/agent/tick；get_feed 只读缓存快照）。
-        self._feed_live_pool = len(self._live_candidates())
+        self._feed_live_pool = (
+            len(self._posts)
+            if self._recommendation_algorithm == "random"
+            else len(self._live_candidates())
+        )
         for aid in sorted(self._agent_types):
             feed = self._assemble_feed(aid, week)
             self._feeds[aid] = feed
@@ -1047,7 +1068,8 @@ class CurationDynamicsSpace(EnvBase):
         **get_feed(agent_id)** 返回：当前周标签 **week**；本周玩梗涌现环境 **meme_env**
         （stock/flow=arena 存量与本周新增、flow_world=现实口径新增、abundance=丰沛度、
         emptiness=空旷度、gain=涌现增益）；您本周是否已发言 **own_spoke**；您最近一帖
-        **own_last_post**；您的本周推荐信息流 **feed**（长度 = feed_size，官方置顶帖在前，
+        **own_last_post**；您的本周推荐信息流 **feed**（长度 = feed_size；chronological /
+        interest 的官方置顶帖在前，random 无置顶，
         每条含 post_id / author_handle / content / type / week / is_official）；您所见意见气候
         **feed_type_distribution**（feed 中六类内容占比，六类=玩梗/悼念/教育/营销/其他/噪音）；
         最近完结 tick 的全局供给份额 **global_supply_shares** 与曝光份额 **global_exposure_shares**
@@ -1070,6 +1092,12 @@ class CurationDynamicsSpace(EnvBase):
             ),
         }
         env = self._meme_env
+        official_count = sum(1 for it in feed if it["is_official"])
+        official_note = (
+            f"官方来源 {official_count} 条（random 无置顶）"
+            if self._recommendation_algorithm == "random"
+            else f"官方置顶 {official_count} 条"
+        )
         return {
             "status": "success",
             "week": self._current_week,
@@ -1090,7 +1118,7 @@ class CurationDynamicsSpace(EnvBase):
             "personal_stats": stats,
             "response": (
                 f"您在本周（{self._current_week}）的推荐信息流共 {len(feed)} 条"
-                f"（官方置顶 {sum(1 for it in feed if it['is_official'])} 条），"
+                f"（{official_note}），"
                 f"本周舆论场存量 {env['stock']} 帖、新增 {env['flow']} 帖"
                 f"（现实口径新增 {env['flow_world']} 帖），"
                 f"您本周已发言：{'是' if self._spoke_this_tick.get(aid, False) else '否'}。"
@@ -1277,8 +1305,9 @@ class CurationDynamicsSpace(EnvBase):
     def init_description(cls) -> str:
         return (
             "CurationDynamicsSpace：舆论场数字表征转移模拟环境。全部构造参数均为关键字参数且含"
-            "默认值（cls() 无必填参数）：**recommendation_algorithm** 推荐算法（random 全池均匀"
-            "随机 / chronological 时间倒序 / interest 纯兴趣匹配，默认 random）；"
+            "默认值（cls() 无必填参数）：**recommendation_algorithm** 推荐算法（random 从截至当周"
+            "全部历史帖中全槽位均匀随机且无置顶/保底 / chronological 活帖池时间倒序 / interest "
+            "活帖池纯兴趣匹配，默认 random）；"
             "**meme_emergence_mode** 玩梗涌现环境模式（normal 正常演化 / sustained_hot 反事实臂："
             "空旷度 S 冻结在事件周值、丰沛度 B 保持内生，默认 normal）；**random_seed** cell 种子"
             "（注入/随机臂/兴趣噪声三条 RNG 流由同一种子加固定偏移派生，默认 0）；"
@@ -1292,7 +1321,8 @@ class CurationDynamicsSpace(EnvBase):
             "周数（默认 1）；interest 臂权重 **alpha**/**beta**/**gamma**、噪声幅度 "
             "**interest_noise_eps**、已曝光处理 "
             "**exposure_mode**（none/penalize/exclude）与 **exposure_penalty_weight**；"
-            "**帖子生命周期**（用户 2026-09-12 裁定）：**life_half_life_weeks** 时间冷却半衰期"
+            "**帖子生命周期**（仅 chronological / interest 使用；random 忽略）："
+            "**life_half_life_weeks** 时间冷却半衰期"
             "（默认 1.5）、**life_saturation_scale** 曝光饱和尺度（累计曝光达该值生命折半，"
             "默认 20）、**life_retire_floor** 退场线（时间生命低于此值退出候选池，默认 0.05"
             "≈6.5 周龄）；**interest_sample_temp** interest 臂比例抽样温度（按 "

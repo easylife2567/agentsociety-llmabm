@@ -1,0 +1,521 @@
+{
+  "artifact_status": "numerical_proxy_expectation_not_experiment_result",
+  "random_definition": "uniform sample without replacement from all posts present in Env by current week; no lifecycle, recency, interest, popularity, exposure penalty, official pin, or W13 floor",
+  "future_posts_visible": false,
+  "feed_size": 10,
+  "seed_count": 100,
+  "formula": "U_i=B_i+R_i*(D_i-B_i)",
+  "parameters": {
+    "alpha_D": 0.4296954755626446,
+    "baseline_utility": {
+      "meme": 0.7755,
+      "mourning": 0.7677999999999999,
+      "marketing": 0.82515,
+      "education": 0.7412,
+      "other": 0.7686
+    },
+    "lambda_mean": {
+      "meme": 1.2430377762128202,
+      "mourning": 2.2820352013850083,
+      "marketing": 1.0192411149739293,
+      "education": 2.4936143467584957,
+      "other": 4.429457710113387
+    }
+  },
+  "input": {
+    "injection_sample": "hypothesis_4/experiment_1/init/injection_sample_s0.json",
+    "agent_tendency_profile": "not used by random-global; used by interest reference proxy"
+  },
+  "limitations": [
+    "This is a deterministic numerical proxy over 100 feed-sampling seeds, not an LLM ABM run.",
+    "All proxy seeds reuse injection sample s0; uncertainty reflects feed sampling, not injection-sample variation.",
+    "Agent post semantic variation is replaced by the registered median type tendency profile in the interest reference.",
+    "The random-global arm intentionally changes candidate eligibility and agenda forcing as well as ranking, so its contrast is an overall curation-regime effect."
+  ],
+  "weekly": {
+    "2026-W12": {
+      "random_agent_mean": {
+        "meme": 0,
+        "mourning": 0,
+        "marketing": 19,
+        "education": 7.43,
+        "other": 0
+      },
+      "random_agent_sd": {
+        "meme": 0.0,
+        "mourning": 0.0,
+        "marketing": 0.0,
+        "education": 1.626376340211576,
+        "other": 0.0
+      },
+      "random_combined_share": {
+        "meme": 0.0,
+        "mourning": 0.0,
+        "marketing": 0.7723871590634805,
+        "education": 0.22761284093651943,
+        "other": 0.0
+      },
+      "interest_combined_share": {
+        "meme": 0.0,
+        "mourning": 0.0,
+        "marketing": 0.767202109805802,
+        "education": 0.23279789019419805,
+        "other": 0.0
+      },
+      "real_share": {
+        "meme": 0.0,
+        "mourning": 0.0,
+        "marketing": 0.8561341571050309,
+        "education": 0.1235657546337158,
+        "other": 0.02030008826125331
+      },
+      "random_feed_share": {
+        "meme": 0.0,
+        "mourning": 0.0,
+        "marketing": 0.7665652173913043,
+        "education": 0.11426666666666667,
+        "other": 0.0
+      }
+    },
+    "2026-W13": {
+      "random_agent_mean": {
+        "meme": 0,
+        "mourning": 9.91,
+        "marketing": 13.12,
+        "education": 8.78,
+        "other": 3.77
+      },
+      "random_agent_sd": {
+        "meme": 0.0,
+        "mourning": 2.3456129262945327,
+        "marketing": 0.6523802572120037,
+        "education": 1.5657586020839867,
+        "other": 1.6962016389568784
+      },
+      "random_combined_share": {
+        "meme": 0.0,
+        "mourning": 0.36322543015456404,
+        "marketing": 0.27879848352289294,
+        "education": 0.1863517060367454,
+        "other": 0.1716243802857976
+      },
+      "interest_combined_share": {
+        "meme": 0.0,
+        "mourning": 0.4885133350937417,
+        "marketing": 0.21824663321890678,
+        "education": 0.12793768154211776,
+        "other": 0.16530235014523367
+      },
+      "real_share": {
+        "meme": 0.013518518518518518,
+        "mourning": 0.43648148148148147,
+        "marketing": 0.18796296296296297,
+        "education": 0.12416666666666666,
+        "other": 0.23787037037037037
+      },
+      "random_feed_share": {
+        "meme": 0.0,
+        "mourning": 0.19422727272727272,
+        "marketing": 0.49034782608695654,
+        "education": 0.17266666666666666,
+        "other": 0.10257142857142858
+      }
+    },
+    "2026-W14": {
+      "random_agent_mean": {
+        "meme": 0,
+        "mourning": 9.27,
+        "marketing": 9.7,
+        "education": 7.04,
+        "other": 5.28
+      },
+      "random_agent_sd": {
+        "meme": 0.0,
+        "mourning": 2.23094150528426,
+        "marketing": 0.9433981132056604,
+        "education": 1.4207040508142432,
+        "other": 1.9291448882859992
+      },
+      "random_combined_share": {
+        "meme": 0.016866250632484397,
+        "mourning": 0.24068139652555237,
+        "marketing": 0.29853263619497383,
+        "education": 0.21993590824759654,
+        "other": 0.22398380839939283
+      },
+      "interest_combined_share": {
+        "meme": 0.016249593760155997,
+        "mourning": 0.22911927201819954,
+        "marketing": 0.31199220019499513,
+        "education": 0.23090672733181672,
+        "other": 0.21173220669483264
+      },
+      "real_share": {
+        "meme": 0.018585960065302023,
+        "mourning": 0.1817154338817029,
+        "marketing": 0.30779856837875175,
+        "education": 0.2011804596257692,
+        "other": 0.2907195780484742
+      },
+      "random_feed_share": {
+        "meme": 0.007105263157894737,
+        "mourning": 0.20900000000000002,
+        "marketing": 0.4101304347826087,
+        "education": 0.19606666666666667,
+        "other": 0.13704761904761906
+      }
+    },
+    "2026-W15": {
+      "random_agent_mean": {
+        "meme": 0.04,
+        "mourning": 6.74,
+        "marketing": 6.92,
+        "education": 5.44,
+        "other": 4.73
+      },
+      "random_agent_sd": {
+        "meme": 0.19595917942265426,
+        "mourning": 2.0524132137559437,
+        "marketing": 1.092520022699813,
+        "education": 1.2109500402576483,
+        "other": 1.7254274832632057
+      },
+      "random_combined_share": {
+        "meme": 0.02267277087420972,
+        "mourning": 0.21233921953346413,
+        "marketing": 0.30346631785480704,
+        "education": 0.24940047961630696,
+        "other": 0.2121212121212121
+      },
+      "interest_combined_share": {
+        "meme": 0.02279079767791873,
+        "mourning": 0.17953128359492582,
+        "marketing": 0.31799612986454523,
+        "education": 0.2519888196086863,
+        "other": 0.2276929692539239
+      },
+      "real_share": {
+        "meme": 0.03134590092064884,
+        "mourning": 0.16133274879438841,
+        "marketing": 0.3016220955721175,
+        "education": 0.2595352915387988,
+        "other": 0.24616396317404646
+      },
+      "random_feed_share": {
+        "meme": 0.009631578947368422,
+        "mourning": 0.2151818181818182,
+        "marketing": 0.3823913043478261,
+        "education": 0.2038,
+        "other": 0.15023809523809525
+      }
+    },
+    "2026-W16": {
+      "random_agent_mean": {
+        "meme": 0.11,
+        "mourning": 4.62,
+        "marketing": 5.05,
+        "education": 3.98,
+        "other": 3.33
+      },
+      "random_agent_sd": {
+        "meme": 0.31288975694324034,
+        "mourning": 1.6957594168985175,
+        "marketing": 0.7123903424387503,
+        "education": 1.1043550153822819,
+        "other": 1.625146147274146
+      },
+      "random_combined_share": {
+        "meme": 0.02992720409813966,
+        "mourning": 0.20544621191695872,
+        "marketing": 0.3248854138581828,
+        "education": 0.24211377729846317,
+        "other": 0.1976273928282556
+      },
+      "interest_combined_share": {
+        "meme": 0.03362227475702653,
+        "mourning": 0.1284475965327029,
+        "marketing": 0.35066981875492514,
+        "education": 0.2634620436038876,
+        "other": 0.22379826635145783
+      },
+      "real_share": {
+        "meme": 0.022767593140153756,
+        "mourning": 0.14665878178592548,
+        "marketing": 0.34003548196333533,
+        "education": 0.2664104080425784,
+        "other": 0.2241277350680071
+      },
+      "random_feed_share": {
+        "meme": 0.012578947368421052,
+        "mourning": 0.2131818181818182,
+        "marketing": 0.3739130434782609,
+        "education": 0.21733333333333335,
+        "other": 0.15833333333333333
+      }
+    },
+    "2026-W17": {
+      "random_agent_mean": {
+        "meme": 0.06,
+        "mourning": 3.12,
+        "marketing": 4.31,
+        "education": 2.81,
+        "other": 2.29
+      },
+      "random_agent_sd": {
+        "meme": 0.27640549922170504,
+        "mourning": 1.4510685717773644,
+        "marketing": 0.6433506042586733,
+        "education": 1.0648474069086142,
+        "other": 1.5052906696050434
+      },
+      "random_combined_share": {
+        "meme": 0.002027712064886786,
+        "mourning": 0.17303142953700576,
+        "marketing": 0.38222372423115913,
+        "education": 0.23014531936465024,
+        "other": 0.2125718148022981
+      },
+      "interest_combined_share": {
+        "meme": 0.007617728531855956,
+        "mourning": 0.09210526315789475,
+        "marketing": 0.41066481994459836,
+        "education": 0.2565789473684211,
+        "other": 0.23303324099722994
+      },
+      "real_share": {
+        "meme": 0.02376599634369287,
+        "mourning": 0.1293418647166362,
+        "marketing": 0.4163619744058501,
+        "education": 0.22349177330895795,
+        "other": 0.2070383912248629
+      },
+      "random_feed_share": {
+        "meme": 0.011210526315789475,
+        "mourning": 0.21322727272727274,
+        "marketing": 0.36030434782608695,
+        "education": 0.21333333333333335,
+        "other": 0.16338095238095238
+      }
+    },
+    "2026-W18": {
+      "random_agent_mean": {
+        "meme": 0.03,
+        "mourning": 2.13,
+        "marketing": 3.83,
+        "education": 2.11,
+        "other": 1.58
+      },
+      "random_agent_sd": {
+        "meme": 0.1705872210923198,
+        "mourning": 1.2381841543163117,
+        "marketing": 0.4910193478876367,
+        "education": 0.835404093837228,
+        "other": 1.201499063670047
+      },
+      "random_combined_share": {
+        "meme": 0.0011682242990654205,
+        "mourning": 0.16082554517133957,
+        "marketing": 0.4217289719626168,
+        "education": 0.19898753894080995,
+        "other": 0.21728971962616822
+      },
+      "interest_combined_share": {
+        "meme": 0.00898325847284606,
+        "mourning": 0.09024091465904452,
+        "marketing": 0.4561045324622295,
+        "education": 0.2282564311964067,
+        "other": 0.21641486320947326
+      },
+      "real_share": {
+        "meme": 0.028169014084507043,
+        "mourning": 0.10115236875800256,
+        "marketing": 0.4193341869398207,
+        "education": 0.2087067861715749,
+        "other": 0.24263764404609475
+      },
+      "random_feed_share": {
+        "meme": 0.010210526315789474,
+        "mourning": 0.20577272727272727,
+        "marketing": 0.36721739130434783,
+        "education": 0.20893333333333333,
+        "other": 0.17033333333333334
+      }
+    },
+    "2026-W19": {
+      "random_agent_mean": {
+        "meme": 0.06,
+        "mourning": 1.59,
+        "marketing": 3.31,
+        "education": 1.55,
+        "other": 0.8
+      },
+      "random_agent_sd": {
+        "meme": 0.23748684174075835,
+        "mourning": 1.0304853225543777,
+        "marketing": 0.4624932431938871,
+        "education": 0.8645808232895291,
+        "other": 0.848528137423857
+      },
+      "random_combined_share": {
+        "meme": 0.04547404547404548,
+        "mourning": 0.1111111111111111,
+        "marketing": 0.44229944229944235,
+        "education": 0.2380952380952381,
+        "other": 0.16302016302016303
+      },
+      "interest_combined_share": {
+        "meme": 0.06759176365264101,
+        "mourning": 0.048791405550581916,
+        "marketing": 0.4834377797672337,
+        "education": 0.24977618621307074,
+        "other": 0.1504028648164727
+      },
+      "real_share": {
+        "meme": 0.08574953732264035,
+        "mourning": 0.08574953732264035,
+        "marketing": 0.4342998149290561,
+        "education": 0.22640345465761874,
+        "other": 0.16779765576804442
+      },
+      "random_feed_share": {
+        "meme": 0.012789473684210526,
+        "mourning": 0.20145454545454547,
+        "marketing": 0.36286956521739133,
+        "education": 0.20646666666666666,
+        "other": 0.16947619047619047
+      }
+    },
+    "2026-W20": {
+      "random_agent_mean": {
+        "meme": 0.31,
+        "mourning": 1.06,
+        "marketing": 3.13,
+        "education": 1.2,
+        "other": 0.37
+      },
+      "random_agent_sd": {
+        "meme": 0.6737210105080589,
+        "mourning": 0.8224354077980836,
+        "marketing": 0.33630343441600474,
+        "education": 0.8944271909999159,
+        "other": 0.5771481612203231
+      },
+      "random_combined_share": {
+        "meme": 0.27351538794971825,
+        "mourning": 0.08929345470307759,
+        "marketing": 0.3957520589510186,
+        "education": 0.1820546163849155,
+        "other": 0.05938448201127005
+      },
+      "interest_combined_share": {
+        "meme": 0.5101514663229133,
+        "mourning": 0.03254914598775379,
+        "marketing": 0.29938768933290366,
+        "education": 0.12439574605220755,
+        "other": 0.033515952304221726
+      },
+      "real_share": {
+        "meme": 0.34738186462324394,
+        "mourning": 0.07577692635163899,
+        "marketing": 0.3384418901660281,
+        "education": 0.14985100042571306,
+        "other": 0.0885483184333759
+      },
+      "random_feed_share": {
+        "meme": 0.027263157894736843,
+        "mourning": 0.18904545454545454,
+        "marketing": 0.3642608695652174,
+        "education": 0.21380000000000002,
+        "other": 0.15595238095238095
+      }
+    },
+    "2026-W21": {
+      "random_agent_mean": {
+        "meme": 1.74,
+        "mourning": 0.73,
+        "marketing": 3.07,
+        "education": 0.7,
+        "other": 0.15
+      },
+      "random_agent_sd": {
+        "meme": 1.1101351269102333,
+        "mourning": 0.73287106642301,
+        "marketing": 0.2551470164434615,
+        "education": 0.7280109889280518,
+        "other": 0.3840572873934304
+      },
+      "random_combined_share": {
+        "meme": 0.519196900317013,
+        "mourning": 0.09616061993659739,
+        "marketing": 0.24903134906657273,
+        "education": 0.09510390982740402,
+        "other": 0.04050722085241282
+      },
+      "interest_combined_share": {
+        "meme": 0.7160353821728282,
+        "mourning": 0.04558856883647085,
+        "marketing": 0.16035382172828305,
+        "education": 0.05534134724427307,
+        "other": 0.0226808800181447
+      },
+      "real_share": {
+        "meme": 0.5880159124813525,
+        "mourning": 0.11163600198906017,
+        "marketing": 0.16956737941322725,
+        "education": 0.08428642466434609,
+        "other": 0.046494281452013925
+      },
+      "random_feed_share": {
+        "meme": 0.06263157894736843,
+        "mourning": 0.18786363636363637,
+        "marketing": 0.35291304347826086,
+        "education": 0.1974,
+        "other": 0.1490952380952381
+      }
+    },
+    "2026-W22": {
+      "random_agent_mean": {
+        "meme": 3.14,
+        "mourning": 0.39,
+        "marketing": 3,
+        "education": 0.37,
+        "other": 0.04
+      },
+      "random_agent_sd": {
+        "meme": 1.6554153557340223,
+        "mourning": 0.5982474404458409,
+        "marketing": 0.0,
+        "education": 0.5942221806698232,
+        "other": 0.19595917942265426
+      },
+      "random_combined_share": {
+        "meme": 0.5724782899131596,
+        "mourning": 0.07982631930527723,
+        "marketing": 0.23380093520374082,
+        "education": 0.07915831663326653,
+        "other": 0.03473613894455578
+      },
+      "interest_combined_share": {
+        "meme": 0.7221841443911355,
+        "mourning": 0.04660726525017136,
+        "marketing": 0.15992689056431347,
+        "education": 0.04843500114233494,
+        "other": 0.02284669865204478
+      },
+      "real_share": {
+        "meme": 0.6303837118245889,
+        "mourning": 0.07282693813625685,
+        "marketing": 0.17658574784651526,
+        "education": 0.07419733750978856,
+        "other": 0.046006264682850434
+      },
+      "random_feed_share": {
+        "meme": 0.09105263157894737,
+        "mourning": 0.17663636363636365,
+        "marketing": 0.3463913043478261,
+        "education": 0.19140000000000001,
+        "other": 0.1417142857142857
+      }
+    }
+  }
+}

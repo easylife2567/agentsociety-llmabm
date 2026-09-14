@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """verify_experiment.py: 全链路离线核验（不跑 LLM、不写 replay、不写任何实验产物；秒级）。
 
-动机：锚定式效用、R 尺度 15 与事件周议程保底（W13 保底 5 条
-哀悼帖 + 官方讣告置顶）是**平台级**改动，一旦 env / agent / 校准脚本 / 代理 / 配置五处口径漂移，
+动机：锚定式效用、R 尺度 15 与策展臂的事件周议程保底（W13 保底 5 条
+哀悼帖 + 官方讣告置顶）是关键机制；random 则是全历史、全槽位均匀抽样的强去策展反事实。
+一旦 env / agent / 校准脚本 / 代理 / 配置五处口径漂移，
 真实 run 跑完 8-9 小时才发现代价极高。本脚本把可离线判定的部分全部断言化，作为跑批前的门禁。
 
 三层检查（任一不过 → 退出码 1）：
@@ -27,13 +28,13 @@
         （卡实际落盘数据，补 B9 只卡引擎自我申报的缺口）。
 
   C. **机制层**（直接驱动 env 逐周，无 agent 产出、无 LLM、不写 replay）
-     C1 W13 每条 feed 首位 = 官方讣告帖（official=True），三臂一致；
-     C2 W13 紧随置顶之后恰有 5 条保底帖，**全员相同**、三臂一致，且恰为全池哀悼倾向分前 5
+     C1 W13 chronological/interest 每条 feed 首位 = 官方讣告帖；random 无置顶；
+     C2 W13 chronological/interest 紧随置顶之后恰有 5 条保底帖，**全员相同**，且恰为全池哀悼倾向分前 5
         （裁定口径是"倾向分前 5"而非"5 条 mourning 类型"；保底的实际类型构成列为**观察项**）；
      C3 非事件周保底集合为空；保底帖不计入算法槽位（不与余下槽位重复）；
-     C4 同周 feed_live_pool / 置顶槽位数三臂相等（跨臂可比性）；每 feed 长度 = feed_size；
-     C5 曝光槽位帖龄 ≥3 周恒为 0（生命周期退场生效）；
-     C6 W13 每条 feed 的悼念槽位 ≥ 1 置顶 + 保底中判为 mourning 的条数（事件周强制暴露下界）。
+     C4 chronological/interest 候选池一致；random 候选池为截至当周全部历史帖；每 feed 长度 = feed_size；
+     C5 chronological/interest 无 ≥3 周旧帖曝光；random 能抽到 ≥3 周旧帖；
+     C6 chronological/interest 满足 W13 强制暴露下界；random 不受该下界约束。
 
 用法：
     $PYTHON_PATH hypothesis_4/experiment_1/verify_experiment.py
@@ -328,34 +329,44 @@ def layer_c(mech, cal) -> None:
     aids = sorted(arms["interest"][ev]["feeds"])
     posts_i = arms["interest"][ev]["posts"]
 
-    # C1 官方置顶首位 + 三臂一致
+    # C1 策展臂保留官方置顶；random 是全槽位随机，官方帖只作为普通候选。
     def pinned_first(alg: str) -> bool:
         return all(arms[alg][ev]["feeds"][a]
                    and arms[alg][ev]["feeds"][a][0]["is_official"] for a in aids)
 
     pin_ids = {alg: tuple(arms[alg][ev]["pinned"]) for alg in arms}
-    check(all(pinned_first(a) for a in arms) and len(set(pin_ids.values())) == 1
-          and len(pin_ids["interest"]) == 1 and posts_i[pin_ids["interest"][0]]["week"] == ev,
-          "C1 W13 每条 feed 首位 = 官方讣告帖（三臂同一集合）",
-          f"置顶槽位 {len(pin_ids['interest'])} 条/feed，三臂 id 集合一致；"
-          f"非事件周置顶数 W12={len(arms['interest']['2026-W12']['pinned'])}")
+    curated = ("chronological", "interest")
+    random_all_pinned = all(pinned_first("random") for _ in (0,))
+    check(all(pinned_first(a) for a in curated)
+          and pin_ids["random"] == ()
+          and pin_ids["chronological"] == pin_ids["interest"]
+          and len(pin_ids["interest"]) == 1
+          and posts_i[pin_ids["interest"][0]]["week"] == ev
+          and not random_all_pinned,
+          "C1 W13 策展臂官方讣告置顶；random 无置顶",
+          f"chronological/interest 置顶集合一致={pin_ids['chronological'] == pin_ids['interest']}；"
+          f"random 置顶集合={pin_ids['random']}；random 全员首位均官方={random_all_pinned}")
 
     # C2 保底 5 条、全员相同、且为全池哀悼倾向前 5
     fl_sets = {alg: frozenset(arms[alg][ev]["floor"]) for alg in arms}
     # 每个 agent 的 feed 第 2~6 槽位（置顶之后 = 保底段）序列；集合大小为 1 ⇔ 全员相同
     per_agent = {alg: {tuple(it["post_id"] for it in arms[alg][ev]["feeds"][a][1:1 + 5])
-                       for a in sorted(arms[alg][ev]["feeds"])} for alg in arms}
+                       for a in sorted(arms[alg][ev]["feeds"])} for alg in curated}
     all_live = [pid for pid, p in posts_i.items()
                 if not mech.is_retired(p.get("life", 1.0), 0.35)
                 and pid not in set(arms["interest"][ev]["pinned"])
                 and mech.floor_eligible(p.get("type", ""))]   # 方案 B：候选池排除 noise
     top5 = set(sorted(all_live, key=lambda pid: (-(posts_i[pid].get("tendencies") or {}).get("mourning", 0.0), -pid))[:5])
     uniq_ok = all(len(s) == 1 for s in per_agent.values())
-    seq_ok = uniq_ok and all(next(iter(s)) == tuple(arms["interest"][ev]["floor"]) for s in per_agent.values())
+    seq_ok = uniq_ok and all(
+        next(iter(per_agent[alg])) == tuple(arms[alg][ev]["floor"]) for alg in curated
+    )
     check(len(fl_sets["interest"]) == 5 and uniq_ok and seq_ok
-          and fl_sets["interest"] == top5 and len({frozenset(v) for v in fl_sets.values()}) == 1,
-          "C2 W13 保底 5 条：全员相同、三臂一致，且 = 全池哀悼倾向分前 5（用户裁定口径）",
-          f"保底集合 {sorted(fl_sets['interest'])}；三臂各自'全员第2-6槽位唯一'={uniq_ok}；"
+          and fl_sets["interest"] == top5
+          and fl_sets["chronological"] == fl_sets["interest"]
+          and fl_sets["random"] == frozenset(),
+          "C2 W13 策展臂保底 5 条且全员相同；random 无保底",
+          f"策展臂保底集合 {sorted(fl_sets['interest'])}；各自'全员第2-6槽位唯一'={uniq_ok}；"
           f"序列与 _event_floor_ids 一致={seq_ok}；等于哀悼倾向前5={fl_sets['interest'] == top5}")
     # 保底集合的**类型构成**：裁定口径是"哀悼倾向分前 5"，不保证 5 条都判为 mourning
     # （倾向分 = 命中数/(字数/50)，短文本密度虚高）。此处只观察不判负，供人工判断。
@@ -373,26 +384,40 @@ def layer_c(mech, cal) -> None:
     check(no_floor and not dup, "C3 非事件周无保底；feed 内无重复帖",
           f"10 个非事件周保底集合均为空={no_floor}；feed 内 post_id 唯一={not dup}")
 
-    # C4 跨臂可比性 + feed 长度
-    live_eq = all(len({arms[alg][wk]["live"] for alg in arms}) == 1 for wk in wk_list)
-    pin_eq = all(len({tuple(arms[alg][wk]["pinned"]) for alg in arms}) == 1 for wk in wk_list)
+    # C4 策展臂共享活帖池；random 使用截至当周的全部历史帖子。
+    curated_live_eq = all(
+        arms["chronological"][wk]["live"] == arms["interest"][wk]["live"]
+        for wk in wk_list
+    )
+    random_pool_ge = all(
+        arms["random"][wk]["live"] >= arms["interest"][wk]["live"] for wk in wk_list
+    )
+    random_pool_strict = any(
+        arms["random"][wk]["live"] > arms["interest"][wk]["live"] for wk in wk_list
+    )
     lens = {len(f) for alg in arms for wk in wk_list for f in arms[alg][wk]["feeds"].values()}
-    check(live_eq and pin_eq and lens == {10},
-          "C4 三臂同周活池/置顶相等（跨臂可比）；feed 长度恒 = 10",
-          f"feed_live_pool 三臂相等={live_eq}；置顶相等={pin_eq}；feed 长度取值 {sorted(lens)}")
+    check(curated_live_eq and random_pool_ge and random_pool_strict and lens == {10},
+          "C4 策展臂候选池一致；random 使用全历史池；feed 长度恒 = 10",
+          f"策展臂候选池一致={curated_live_eq}；random 池始终不小于活帖池={random_pool_ge}；"
+          f"至少一周严格更大={random_pool_strict}；feed 长度取值 {sorted(lens)}")
 
-    # C5 老帖退场生效
-    age3 = {wk: arms["interest"][wk]["age"]["age3plus"] for wk in wk_list}
-    check(all(v == 0 for v in age3.values()), "C5 曝光槽位帖龄 ≥3 周恒为 0（生命周期退场）",
-          f"逐周 {[age3[w] for w in wk_list]}")
+    # C5 策展臂老帖退场；random 明确允许抽到全历史旧帖。
+    age3_curated = {
+        alg: {wk: arms[alg][wk]["age"]["age3plus"] for wk in wk_list} for alg in curated
+    }
+    age3_random = {wk: arms["random"][wk]["age"]["age3plus"] for wk in wk_list}
+    check(all(v == 0 for alg in curated for v in age3_curated[alg].values())
+          and any(v > 0 for v in age3_random.values()),
+          "C5 策展臂无 ≥3 周旧帖曝光；random 可抽到全历史旧帖",
+          f"random 逐周 age3plus={[age3_random[w] for w in wk_list]}")
 
     # C6 事件周悼念槽位下限：1 条官方置顶 + 保底中判为 mourning 的条数（保底可能含非 mourning 帖）
     floor_m = sum(1 for pid in arms["interest"][ev]["floor"] if posts_i[pid]["type"] == "mourning")
     m13 = {alg: min(sum(1 for it in arms[alg][ev]["feeds"][a] if it["type"] == "mourning") for a in aids)
            for alg in arms}
-    check(all(v >= 1 + floor_m for v in m13.values()),
-          "C6 W13 每条 feed 悼念槽位 ≥ 1 置顶 + 保底 mourning 数（强制暴露下界）",
-          f"下界 {1 + floor_m}（1 置顶 + 保底中 {floor_m} 条 mourning）；三臂实际最小值 {m13}")
+    check(all(m13[alg] >= 1 + floor_m for alg in curated),
+          "C6 策展臂满足 W13 强制悼念曝光下界；random 不受约束",
+          f"下界 {1 + floor_m}（1 置顶 + 保底中 {floor_m} 条 mourning）；实际最小值 {m13}")
 
 
 def main() -> int:
