@@ -38,7 +38,7 @@ seed 配对计算。
 - 模板同构的三张 Full-vs-ablation 对比图与 2×2 总览：`charts/template_stacked_area/`
 - 逐 seed × 周 × 类型长表：`data/drb_ablation_seed_week_type.csv`
 - 周度均值、SD 与 95% CI：`data/drb_ablation_weekly_summary.csv`
-- Agent 均值加固定注入供给的绘图数据：`data/drb_ablation_combined_supply_summary.csv`
+- 纯 Agent 供给绘图数据（不含固定注入帖）：`data/drb_ablation_agent_supply_summary.csv`
 - 参数、配对效应与局限：`data/drb_ablation_summary.json`
 - 可复现脚本：`../../simulate_drb_numerical_ablation.py`
 - 模板同构绘图脚本：`../../plot_drb_numerical_ablation_stacked_area.py`

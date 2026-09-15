@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Render template-matched D/R/B comparisons from existing numerical proxy data.
 
-This script does not read any formal run/replay output. Agent supply comes only
-from the 100-seed numerical ablation CSV, while injected supply is counted from
-the fixed numerical-proxy input exposed by ``calibrate_speak.INJECTED_BY_WEEK``.
+This script does not read any formal run/replay output. It plots only the
+100-seed mean of agent-generated supply from the numerical ablation CSV. Fixed
+injected posts are intentionally excluded, matching the historical ``U=D*R``
+proxy chart's agent-supply scope.
 """
 
 from __future__ import annotations
@@ -12,7 +13,7 @@ import csv
 import math
 import os
 import sys
-from collections import Counter, defaultdict
+from collections import defaultdict
 from pathlib import Path
 
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/agentsociety-mpl")
@@ -31,16 +32,16 @@ import calibrate_speak as cal
 
 OUT_ROOT = SCRIPT_DIR / "results" / "numerical_ablation_drb"
 INPUT_CSV = OUT_ROOT / "data" / "drb_ablation_seed_week_type.csv"
-SUMMARY_CSV = OUT_ROOT / "data" / "drb_ablation_combined_supply_summary.csv"
+SUMMARY_CSV = OUT_ROOT / "data" / "drb_ablation_agent_supply_summary.csv"
 CHART_DIR = OUT_ROOT / "charts" / "template_stacked_area"
 
 WEEKS = list(cal.WEEKS)
 CONDITION_ORDER = ["full", "no_B", "no_D", "no_R"]
 CONDITION_LABEL = {
-    "full": "完整模型 (B + D + R)",
-    "no_B": "去 B",
-    "no_D": "去 D",
-    "no_R": "去 R",
+    "full": "完整模型（U = B + R(D − B)）",
+    "no_B": "去 B（U = D × R）",
+    "no_D": "去 D（D ≡ 1）",
+    "no_R": "去 R（R ≡ 1）",
 }
 PAIR_TITLES = {
     "no_B": "D/R/B 数值消融：完整模型 vs 去 B",
@@ -53,15 +54,14 @@ PAIR_FILES = {
     "no_R": "figure_04_full_vs_no_r_supply_stacked_area.png",
 }
 
-# Exact stack order and colors from the user-specified formal chart template.
-STACK_ORDER = ["meme", "mourning", "education", "marketing", "other", "noise"]
+# Exact agent-type stack order and colors from the user-specified chart template.
+STACK_ORDER = ["meme", "mourning", "education", "marketing", "other"]
 STACK_LABEL = {
     "meme": "Meme",
     "mourning": "Mourning",
     "education": "Education",
     "marketing": "Marketing",
     "other": "Other",
-    "noise": "Noise",
 }
 STACK_COLORS = {
     "meme": "#DD8452",
@@ -69,11 +69,10 @@ STACK_COLORS = {
     "education": "#55A868",
     "marketing": "#CCB974",
     "other": "#64B5CD",
-    "noise": "#B07AA1",
 }
 
 CAPTION = (
-    "100-seed numerical proxy mean + fixed injected supply from the numerical-proxy input. "
+    "100-seed numerical proxy mean of agent-generated supply; fixed injected posts are excluded. "
     "No formal replay or LLM run was used."
 )
 
@@ -151,64 +150,47 @@ def load_agent_means() -> tuple[dict[tuple[str, str, str], float], int]:
     return means, seed_count
 
 
-def injected_counts() -> dict[tuple[str, str], int]:
-    counts: dict[tuple[str, str], int] = {}
-    for week in WEEKS:
-        week_counts = Counter(str(post.get("type", "other")) for post in cal.INJECTED_BY_WEEK[week])
-        unknown = set(week_counts) - set(STACK_ORDER)
-        if unknown:
-            raise ValueError(f"Unexpected injected post types in {week}: {sorted(unknown)}")
-        for category in STACK_ORDER:
-            counts[(week, category)] = int(week_counts.get(category, 0))
-    return counts
-
-
-def build_combined_series(
+def build_agent_series(
     means: dict[tuple[str, str, str], float],
-    injections: dict[tuple[str, str], int],
     seed_count: int,
 ) -> dict[str, dict[str, np.ndarray]]:
-    combined: dict[str, dict[str, np.ndarray]] = {}
+    agent_supply: dict[str, dict[str, np.ndarray]] = {}
     rows: list[dict[str, str]] = []
     for condition in CONDITION_ORDER:
-        combined[condition] = {}
+        agent_supply[condition] = {}
         for category in STACK_ORDER:
             values: list[float] = []
             for week in WEEKS:
-                agent_mean = means[(condition, week, category)] if category in cal.TYPE_ORDER else 0.0
-                injected = injections[(week, category)]
-                total = agent_mean + injected
-                values.append(total)
+                agent_mean = means[(condition, week, category)]
+                values.append(agent_mean)
                 rows.append(
                     {
                         "condition": condition,
                         "week": week,
                         "category": category,
                         "mean_agent_supply": f"{agent_mean:.6f}",
-                        "fixed_injected_supply": str(injected),
-                        "mean_combined_supply": f"{total:.6f}",
                         "paired_seed_count": str(seed_count),
-                        "source": "numerical_proxy_only_no_formal_replay_or_llm_run",
+                        "source": "numerical_proxy_agent_supply_only_no_injected_posts_no_formal_replay_or_llm_run",
                     }
                 )
-            combined[condition][category] = np.asarray(values, dtype=float)
+            agent_supply[condition][category] = np.asarray(values, dtype=float)
 
     SUMMARY_CSV.parent.mkdir(parents=True, exist_ok=True)
     with SUMMARY_CSV.open("w", encoding="utf-8-sig", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
-    return combined
+    return agent_supply
 
 
 def add_stack_panel(
     ax: plt.Axes,
     condition: str,
-    combined: dict[str, dict[str, np.ndarray]],
+    agent_supply: dict[str, dict[str, np.ndarray]],
     y_max: float,
 ) -> None:
     x = np.arange(len(WEEKS))
-    series = [combined[condition][category] for category in STACK_ORDER]
+    series = [agent_supply[condition][category] for category in STACK_ORDER]
     ax.stackplot(
         x,
         *series,
@@ -251,13 +233,13 @@ def save_figure(fig: plt.Figure, output: Path) -> None:
 
 def plot_pairwise(
     ablation: str,
-    combined: dict[str, dict[str, np.ndarray]],
+    agent_supply: dict[str, dict[str, np.ndarray]],
     y_max: float,
 ) -> Path:
     fig, axes = plt.subplots(1, 2, figsize=(15.5, 6.0), sharex=True, sharey=True)
-    add_stack_panel(axes[0], "full", combined, y_max)
-    add_stack_panel(axes[1], ablation, combined, y_max)
-    axes[0].set_ylabel("帖数（绝对供给量）")
+    add_stack_panel(axes[0], "full", agent_supply, y_max)
+    add_stack_panel(axes[1], ablation, agent_supply, y_max)
+    axes[0].set_ylabel("Agent 周发帖数（100 seeds 均值）")
     handles, labels = axes[1].get_legend_handles_labels()
     fig.legend(handles, labels, loc="center right", bbox_to_anchor=(0.985, 0.53), ncol=1)
     fig.suptitle(PAIR_TITLES[ablation], fontsize=16, fontweight="bold", y=0.985)
@@ -268,10 +250,10 @@ def plot_pairwise(
     return output
 
 
-def plot_overview(combined: dict[str, dict[str, np.ndarray]], y_max: float) -> Path:
+def plot_overview(agent_supply: dict[str, dict[str, np.ndarray]], y_max: float) -> Path:
     fig, axes = plt.subplots(2, 2, figsize=(15.7, 10.2), sharex=True, sharey=True)
     for ax, condition, label in zip(axes.flat, CONDITION_ORDER, ("a", "b", "c", "d")):
-        add_stack_panel(ax, condition, combined, y_max)
+        add_stack_panel(ax, condition, agent_supply, y_max)
         ax.text(
             -0.075,
             1.04,
@@ -282,8 +264,8 @@ def plot_overview(combined: dict[str, dict[str, np.ndarray]], y_max: float) -> P
             ha="left",
             va="bottom",
         )
-    axes[0, 0].set_ylabel("帖数（绝对供给量）")
-    axes[1, 0].set_ylabel("帖数（绝对供给量）")
+    axes[0, 0].set_ylabel("Agent 周发帖数（100 seeds 均值）")
+    axes[1, 0].set_ylabel("Agent 周发帖数（100 seeds 均值）")
     handles, labels = axes[0, 0].get_legend_handles_labels()
     fig.legend(handles, labels, loc="center right", bbox_to_anchor=(0.985, 0.52), ncol=1)
     fig.suptitle(
@@ -302,19 +284,18 @@ def plot_overview(combined: dict[str, dict[str, np.ndarray]], y_max: float) -> P
 def main() -> None:
     apply_style()
     means, seed_count = load_agent_means()
-    injections = injected_counts()
-    combined = build_combined_series(means, injections, seed_count)
+    agent_supply = build_agent_series(means, seed_count)
     maximum = max(
-        float(sum(combined[condition][category][i] for category in STACK_ORDER))
+        float(sum(agent_supply[condition][category][i] for category in STACK_ORDER))
         for condition in CONDITION_ORDER
         for i in range(len(WEEKS))
     )
     y_max = max(80.0, math.ceil(maximum / 10.0) * 10.0)
     outputs = [
-        plot_pairwise(condition, combined, y_max)
+        plot_pairwise(condition, agent_supply, y_max)
         for condition in ("no_B", "no_D", "no_R")
     ]
-    outputs.append(plot_overview(combined, y_max))
+    outputs.append(plot_overview(agent_supply, y_max))
     print(f"source={INPUT_CSV}")
     print(f"paired_seeds={seed_count}")
     print(f"shared_y_axis=0-{y_max:g}")
