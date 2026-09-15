@@ -1,0 +1,425 @@
+{
+  "artifact_status": "numerical_proxy_ablation_not_formal_abm_or_llm_run",
+  "generated_by": "simulate_drb_numerical_ablation.py",
+  "formula": "U=B+R(D-B)",
+  "conditions": {
+    "full": {
+      "label": "Full (B+D+R)",
+      "formula": "U=B+R(D-B)",
+      "spiral_mult": null,
+      "decay_mult": 1.0,
+      "baseline": "calibrated"
+    },
+    "no_B": {
+      "label": "No B",
+      "formula": "U=RD",
+      "spiral_mult": null,
+      "decay_mult": 1.0,
+      "baseline": "zero"
+    },
+    "no_D": {
+      "label": "No D (D=1)",
+      "formula": "U=B+R(1-B)",
+      "spiral_mult": 0.0,
+      "decay_mult": 1.0,
+      "baseline": "calibrated"
+    },
+    "no_R": {
+      "label": "No R (R=1)",
+      "formula": "U=D",
+      "spiral_mult": null,
+      "decay_mult": 0.0,
+      "baseline": "calibrated"
+    }
+  },
+  "design": {
+    "paired_seed_count": 100,
+    "seed_start": 3000,
+    "seed_end": 3099,
+    "weeks": [
+      "2026-W12",
+      "2026-W13",
+      "2026-W14",
+      "2026-W15",
+      "2026-W16",
+      "2026-W17",
+      "2026-W18",
+      "2026-W19",
+      "2026-W20",
+      "2026-W21",
+      "2026-W22"
+    ],
+    "agent_count": 100,
+    "agent_type_counts": {
+      "meme": 19,
+      "mourning": 22,
+      "marketing": 23,
+      "education": 15,
+      "other": 21
+    },
+    "recommendation_regime": "interest numerical proxy",
+    "llm_calls": 0
+  },
+  "frozen_parameters": {
+    "alpha_D": 0.4296954755626446,
+    "baseline_utility": {
+      "meme": 0.7755,
+      "mourning": 0.7677999999999999,
+      "marketing": 0.82515,
+      "education": 0.7412,
+      "other": 0.7686
+    },
+    "lambda_mean": {
+      "meme": 1.2430377762128202,
+      "mourning": 2.2820352013850083,
+      "marketing": 1.0192411149739293,
+      "education": 2.4936143467584957,
+      "other": 4.429457710113387
+    },
+    "decay_scale": 15.0
+  },
+  "paired_effects": {
+    "no_B": {
+      "Event W13-W15": {
+        "meme": {
+          "mean_rate_difference": 0.0010526315789473684,
+          "sd": 0.006938147345012346,
+          "ci95_low": -0.0003072453006750515,
+          "ci95_high": 0.0024125084585697883
+        },
+        "mourning": {
+          "mean_rate_difference": -0.21893939393939393,
+          "sd": 0.030255644769266447,
+          "ci95_low": -0.22486950031417016,
+          "ci95_high": -0.2130092875646177
+        },
+        "marketing": {
+          "mean_rate_difference": -0.42782608695652175,
+          "sd": 0.02472108644663234,
+          "ci95_low": -0.4326714199000617,
+          "ci95_high": -0.4229807540129818
+        },
+        "education": {
+          "mean_rate_difference": -0.3244444444444444,
+          "sd": 0.06539528430916516,
+          "ci95_low": -0.3372619201690408,
+          "ci95_high": -0.3116269687198481
+        },
+        "other": {
+          "mean_rate_difference": -0.1211111111111111,
+          "sd": 0.05022775038304218,
+          "ci95_low": -0.13095575018618738,
+          "ci95_high": -0.11126647203603483
+        }
+      },
+      "Transition W16-W19": {
+        "meme": {
+          "mean_rate_difference": 0.03276315789473684,
+          "sd": 0.08137697834079437,
+          "ci95_low": 0.016813270139941144,
+          "ci95_high": 0.048713045649532535
+        },
+        "mourning": {
+          "mean_rate_difference": -0.03238636363636364,
+          "sd": 0.016100712858300857,
+          "ci95_low": -0.0355421033565906,
+          "ci95_high": -0.029230623916136667
+        },
+        "marketing": {
+          "mean_rate_difference": -0.20847826086956522,
+          "sd": 0.018017267499994324,
+          "ci95_low": -0.21200964529956412,
+          "ci95_high": -0.20494687643956633
+        },
+        "education": {
+          "mean_rate_difference": -0.20733333333333334,
+          "sd": 0.039603591307411055,
+          "ci95_low": -0.2150956372295859,
+          "ci95_high": -0.19957102943708077
+        },
+        "other": {
+          "mean_rate_difference": -0.10428571428571427,
+          "sd": 0.03405344605482118,
+          "ci95_low": -0.11096018971245923,
+          "ci95_high": -0.09761123885896932
+        }
+      },
+      "Late W20-W22": {
+        "meme": {
+          "mean_rate_difference": -0.4414035087719298,
+          "sd": 0.12126145222971961,
+          "ci95_low": -0.46517075340895486,
+          "ci95_high": -0.41763626413490473
+        },
+        "mourning": {
+          "mean_rate_difference": -0.0009090909090909091,
+          "sd": 0.0035982854809205812,
+          "ci95_low": -0.001614354863351343,
+          "ci95_high": -0.00020382695483047515
+        },
+        "marketing": {
+          "mean_rate_difference": -0.1356521739130435,
+          "sd": 0.008074427986773405,
+          "ci95_low": -0.13723476179845107,
+          "ci95_high": -0.1340695860276359
+        },
+        "education": {
+          "mean_rate_difference": -0.03155555555555556,
+          "sd": 0.02796470438531444,
+          "ci95_low": -0.03703663761507719,
+          "ci95_high": -0.02607447349603393
+        },
+        "other": {
+          "mean_rate_difference": -0.0006349206349206349,
+          "sd": 0.0031104631654389563,
+          "ci95_low": -0.0012445714153466703,
+          "ci95_high": -2.52698544945995e-05
+        }
+      }
+    },
+    "no_D": {
+      "Event W13-W15": {
+        "meme": {
+          "mean_rate_difference": 0.5349122807017543,
+          "sd": 0.022806342770044983,
+          "ci95_low": 0.5304422375188256,
+          "ci95_high": 0.5393823238846831
+        },
+        "mourning": {
+          "mean_rate_difference": -0.2727272727272727,
+          "sd": 0.03149183286488868,
+          "ci95_low": -0.2788996719687909,
+          "ci95_high": -0.2665548734857545
+        },
+        "marketing": {
+          "mean_rate_difference": -0.03884057971014492,
+          "sd": 0.030598592974832802,
+          "ci95_low": -0.04483790393321215,
+          "ci95_high": -0.03284325548707769
+        },
+        "education": {
+          "mean_rate_difference": -0.017555555555555543,
+          "sd": 0.06295559869787125,
+          "ci95_low": -0.029894852900338307,
+          "ci95_high": -0.005216258210772779
+        },
+        "other": {
+          "mean_rate_difference": 0.2866666666666667,
+          "sd": 0.06395939124865845,
+          "ci95_low": 0.2741306259819296,
+          "ci95_high": 0.29920270735140375
+        }
+      },
+      "Transition W16-W19": {
+        "meme": {
+          "mean_rate_difference": 0.22315789473684208,
+          "sd": 0.053412625728919354,
+          "ci95_low": 0.2126890200939739,
+          "ci95_high": 0.23362676937971028
+        },
+        "mourning": {
+          "mean_rate_difference": 0.02159090909090909,
+          "sd": 0.021650635094610966,
+          "ci95_low": 0.017347384612365343,
+          "ci95_high": 0.02583443356945284
+        },
+        "marketing": {
+          "mean_rate_difference": -0.002282608695652175,
+          "sd": 0.020294092466427684,
+          "ci95_low": -0.0062602508190720005,
+          "ci95_high": 0.0016950334277676506
+        },
+        "education": {
+          "mean_rate_difference": -0.023333333333333334,
+          "sd": 0.04371625682868001,
+          "ci95_low": -0.03190171967175462,
+          "ci95_high": -0.014764946994912053
+        },
+        "other": {
+          "mean_rate_difference": -0.07130952380952381,
+          "sd": 0.0436596491738813,
+          "ci95_low": -0.07986681504760454,
+          "ci95_high": -0.06275223257144308
+        }
+      },
+      "Late W20-W22": {
+        "meme": {
+          "mean_rate_difference": -0.7035087719298245,
+          "sd": 0.04406967258624726,
+          "ci95_low": -0.712146427756729,
+          "ci95_high": -0.6948711161029201
+        },
+        "mourning": {
+          "mean_rate_difference": 0.025454545454545455,
+          "sd": 0.020871727706330383,
+          "ci95_low": 0.0213636868241047,
+          "ci95_high": 0.02954540408498621
+        },
+        "marketing": {
+          "mean_rate_difference": -0.0008695652173913044,
+          "sd": 0.008891514000103169,
+          "ci95_low": -0.0026123019614115255,
+          "ci95_high": 0.0008731715266289166
+        },
+        "education": {
+          "mean_rate_difference": 0.007333333333333333,
+          "sd": 0.036657237844929795,
+          "ci95_low": 0.00014851471572709368,
+          "ci95_high": 0.014518151950939574
+        },
+        "other": {
+          "mean_rate_difference": 0.00031746031746031746,
+          "sd": 0.007438333024673004,
+          "ci95_low": -0.0011404529553755913,
+          "ci95_high": 0.0017753735902962262
+        }
+      }
+    },
+    "no_R": {
+      "Event W13-W15": {
+        "meme": {
+          "mean_rate_difference": 0.0,
+          "sd": 0.006564311204866564,
+          "ci95_low": -0.0012866049961538465,
+          "ci95_high": 0.0012866049961538465
+        },
+        "mourning": {
+          "mean_rate_difference": 0.328030303030303,
+          "sd": 0.04582550646920186,
+          "ci95_low": 0.31904850376233945,
+          "ci95_high": 0.33701210229826656
+        },
+        "marketing": {
+          "mean_rate_difference": 0.28159420289855075,
+          "sd": 0.03673591444632813,
+          "ci95_low": 0.2743939636670704,
+          "ci95_high": 0.2887944421300311
+        },
+        "education": {
+          "mean_rate_difference": 0.18933333333333333,
+          "sd": 0.08125436360552135,
+          "ci95_low": 0.17340747806665113,
+          "ci95_high": 0.20525918860001552
+        },
+        "other": {
+          "mean_rate_difference": 0.05095238095238095,
+          "sd": 0.06916319464188524,
+          "ci95_low": 0.03739639480257144,
+          "ci95_high": 0.06450836710219046
+        }
+      },
+      "Transition W16-W19": {
+        "meme": {
+          "mean_rate_difference": -0.01118421052631579,
+          "sd": 0.0460855145760532,
+          "ci95_low": -0.020216971383222218,
+          "ci95_high": -0.0021514496694093627
+        },
+        "mourning": {
+          "mean_rate_difference": 0.6934090909090909,
+          "sd": 0.0687848333994139,
+          "ci95_low": 0.6799272635628058,
+          "ci95_high": 0.706890918255376
+        },
+        "marketing": {
+          "mean_rate_difference": 0.538804347826087,
+          "sd": 0.032472723758252456,
+          "ci95_low": 0.5324396939694696,
+          "ci95_high": 0.5451690016827044
+        },
+        "education": {
+          "mean_rate_difference": 0.5995,
+          "sd": 0.07847345623415179,
+          "ci95_low": 0.5841192025781062,
+          "ci95_high": 0.6148807974218938
+        },
+        "other": {
+          "mean_rate_difference": 0.32035714285714284,
+          "sd": 0.09786691817702951,
+          "ci95_low": 0.30117522689444504,
+          "ci95_high": 0.33953905881984064
+        }
+      },
+      "Late W20-W22": {
+        "meme": {
+          "mean_rate_difference": -0.18526315789473685,
+          "sd": 0.05940714592858954,
+          "ci95_low": -0.1969069584967404,
+          "ci95_high": -0.1736193572927333
+        },
+        "mourning": {
+          "mean_rate_difference": 0.5746969696969697,
+          "sd": 0.09477281810910551,
+          "ci95_low": 0.556121497347585,
+          "ci95_high": 0.5932724420463544
+        },
+        "marketing": {
+          "mean_rate_difference": 0.6069565217391304,
+          "sd": 0.030967050264085385,
+          "ci95_low": 0.6008869798873696,
+          "ci95_high": 0.6130260635908912
+        },
+        "education": {
+          "mean_rate_difference": 0.7417777777777778,
+          "sd": 0.07281161215216658,
+          "ci95_low": 0.7275067017959531,
+          "ci95_high": 0.7560488537596024
+        },
+        "other": {
+          "mean_rate_difference": 0.2614285714285714,
+          "sd": 0.10331992208096084,
+          "ci95_low": 0.24117786670070307,
+          "ci95_high": 0.28167927615643973
+        }
+      }
+    }
+  },
+  "key_diagnostics": {
+    "no_B_late_total_rate": {
+      "condition": "no_B",
+      "weeks": [
+        "2026-W20",
+        "2026-W21",
+        "2026-W22"
+      ],
+      "metric": "total_rate",
+      "mean_difference": -0.12013333333333334,
+      "sd": 0.023734269644451998,
+      "ci95_low": -0.12478525018364593,
+      "ci95_high": -0.11548141648302075
+    },
+    "no_D_late_meme_rate": {
+      "condition": "no_D",
+      "weeks": [
+        "2026-W20",
+        "2026-W21",
+        "2026-W22"
+      ],
+      "metric": "meme_rate",
+      "mean_difference": -0.7035087719298245,
+      "sd": 0.04406967258624726,
+      "ci95_low": -0.712146427756729,
+      "ci95_high": -0.6948711161029201
+    },
+    "no_R_transition_total_rate": {
+      "condition": "no_R",
+      "weeks": [
+        "2026-W16",
+        "2026-W17",
+        "2026-W18",
+        "2026-W19"
+      ],
+      "metric": "total_rate",
+      "mean_difference": 0.43155,
+      "sd": 0.022863125333164758,
+      "ci95_low": 0.4270688274346997,
+      "ci95_high": 0.4360311725653003
+    }
+  },
+  "limitations": [
+    "This is a mechanism-isomorphic numerical proxy, not a formal AgentSociety/LLM run.",
+    "Agent post type is proxied by the author's fixed type, so representation share is a supply-composition proxy.",
+    "Normal-approximation 95% CIs quantify Monte Carlo uncertainty across paired seeds, not population sampling uncertainty.",
+    "One-at-a-time ablations estimate total changes after endogenous feed feedback; they do not identify higher-order interactions."
+  ]
+}
