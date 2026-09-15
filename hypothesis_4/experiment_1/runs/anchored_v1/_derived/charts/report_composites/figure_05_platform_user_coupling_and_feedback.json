@@ -1,0 +1,29 @@
+{
+  "figure_contract": {
+    "core_finding": "Platform visibility configuration and user expression jointly shape content feedback.",
+    "evidence": "anchored_v1 3 arms x 3 seeds; formal W12-W22 runs",
+    "panels": {
+      "a": "W20 four-stage platform-user chain",
+      "b": "W22 four-stage platform-user chain",
+      "c-e": "Agent-only weekly supply by content type and arm"
+    },
+    "caveat": "Connected percentages use different denominators; curation gaps are descriptive, not net causal amplification estimates."
+  },
+  "descriptive_curation_gap_pp": {
+    "2026-W20": {
+      "random": -20.833048433048432,
+      "chronological": -17.037789661319074,
+      "interest": -34.696358543417375
+    },
+    "2026-W22": {
+      "random": -46.69259671239649,
+      "chronological": 1.6724990771502468,
+      "interest": -10.218181818181815
+    }
+  },
+  "outputs": {
+    "png": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/_derived/charts/report_composites/figure_05_platform_user_coupling_and_feedback.png",
+    "svg": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/_derived/charts/report_composites/figure_05_platform_user_coupling_and_feedback.svg",
+    "csv": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/_derived/data/arm/arm_platform_user_chain.csv"
+  }
+}
