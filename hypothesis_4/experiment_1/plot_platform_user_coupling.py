@@ -48,15 +48,19 @@ OUTPUT_DIR = (
 DATA_DIR = SCRIPT_DIR / "runs" / "anchored_v1" / "_derived" / "data" / "arm"
 PNG_OUT = OUTPUT_DIR / "figure_05_platform_user_coupling_and_feedback.png"
 SVG_OUT = OUTPUT_DIR / "figure_05_platform_user_coupling_and_feedback.svg"
+CHAIN_PNG_OUT = OUTPUT_DIR / "figure_05a_platform_user_mechanism_chain.png"
+CHAIN_SVG_OUT = OUTPUT_DIR / "figure_05a_platform_user_mechanism_chain.svg"
+FEEDBACK_PNG_OUT = OUTPUT_DIR / "figure_05b_agent_content_feedback.png"
+FEEDBACK_SVG_OUT = OUTPUT_DIR / "figure_05b_agent_content_feedback.svg"
 JSON_OUT = OUTPUT_DIR / "figure_05_platform_user_coupling_and_feedback.json"
 CSV_OUT = DATA_DIR / "arm_platform_user_chain.csv"
 
 CHAIN_WEEKS = ["2026-W20", "2026-W22"]
 STAGES = [
     ("mixed_supply_share", "混合供给\n玩梗份额"),
-    ("exposure_share", "$\\Gamma$输出\n玩梗曝光份额"),
-    ("speaking_rate", "$U$响应\n玩梗型Agent发言率"),
-    ("agent_supply_share", "内容回流\nAgent-only玩梗份额"),
+    ("exposure_share", "$\\Gamma$输出\n玩梗曝光"),
+    ("speaking_rate", "$U$响应\n玩梗型发言率"),
+    ("agent_supply_share", "内容回流\n玩梗供给份额"),
 ]
 VALID_TYPES = ["meme", "mourning", "education", "marketing", "other"]
 TYPE_LABELS = {
@@ -104,7 +108,14 @@ def panel_label(ax, label: str) -> None:
     )
 
 
-def draw_chain_panel(ax, by_arm: dict, week: str, title: str, label: str, records: list[dict]) -> None:
+def draw_chain_panel(
+    ax,
+    by_arm: dict,
+    week: str,
+    title: str,
+    label: str | None,
+    records: list[dict],
+) -> None:
     x = np.arange(len(STAGES))
     for arm in armplot.ARMS:
         means, lows, highs = [], [], []
@@ -148,16 +159,23 @@ def draw_chain_panel(ax, by_arm: dict, week: str, title: str, label: str, record
 
     ax.set_title(title, fontsize=12, fontweight="bold", pad=8)
     ax.set_xticks(x, [stage_label for _, stage_label in STAGES])
-    ax.set_xlim(-0.18, len(STAGES) - 0.82)
+    ax.set_xlim(-0.30, len(STAGES) - 0.70)
     ax.set_ylim(0, 1.02)
     ax.yaxis.set_major_formatter(PercentFormatter(1.0))
     ax.set_yticks([0, 0.25, 0.5, 0.75, 1.0])
     ax.grid(axis="y", color="#E2E2E2", linewidth=0.8)
     ax.set_axisbelow(True)
-    panel_label(ax, label)
+    if label:
+        panel_label(ax, label)
 
 
-def draw_supply_panel(ax, by_arm: dict, weeks: list[str], arm: str, label: str) -> None:
+def draw_supply_panel(
+    ax,
+    by_arm: dict,
+    weeks: list[str],
+    arm: str,
+    label: str | None,
+) -> None:
     x = np.arange(len(weeks))
     series = []
     for content_type in VALID_TYPES:
@@ -187,7 +205,7 @@ def draw_supply_panel(ax, by_arm: dict, weeks: list[str], arm: str, label: str) 
             linewidth=1.1,
             alpha=0.82,
         )
-    tick_indices = [0, 1, 4, 7, 10]
+    tick_indices = [0, 4, 7, 10]
     ax.set_xticks(tick_indices, [weeks[i].replace("2026-", "") for i in tick_indices])
     ax.set_ylim(0, 45)
     ax.set_yticks([0, 10, 20, 30, 40])
@@ -195,7 +213,63 @@ def draw_supply_panel(ax, by_arm: dict, weeks: list[str], arm: str, label: str) 
     ax.set_xlabel("周次")
     ax.grid(axis="y", color="#E2E2E2", linewidth=0.7)
     ax.set_axisbelow(True)
-    panel_label(ax, label)
+    if label:
+        panel_label(ax, label)
+
+
+def save_chain_figure(by_arm: dict) -> None:
+    """Export the mechanism chain as a full-width standalone figure for Word."""
+    fig, axes = plt.subplots(1, 2, figsize=(11.2, 4.65), sharey=True)
+    split_records: list[dict] = []
+    draw_chain_panel(
+        axes[0], by_arm, CHAIN_WEEKS[0], "W20：二次增长启动", None, split_records
+    )
+    draw_chain_panel(
+        axes[1], by_arm, CHAIN_WEEKS[1], "W22：后段终点", None, split_records
+    )
+    axes[0].set_ylabel("比例")
+    arm_handles = [
+        Line2D(
+            [0],
+            [0],
+            color=armplot.ARM_COLOR[arm],
+            marker="o",
+            linewidth=2.5,
+            label=armplot.ARM_LABEL_EN[arm],
+        )
+        for arm in armplot.ARMS
+    ]
+    axes[0].legend(handles=arm_handles, loc="upper left", fontsize=9.5)
+    fig.text(
+        0.5,
+        0.025,
+        "连线表示模型中的机制顺序；各指标分母不同，不表示同一数量的转化率。误差线为seed间min–max范围。",
+        ha="center",
+        va="bottom",
+        fontsize=9.2,
+        color="#444444",
+    )
+    fig.subplots_adjust(top=0.91, bottom=0.22, left=0.08, right=0.98, wspace=0.16)
+    fig.savefig(CHAIN_PNG_OUT, dpi=300, facecolor="white")
+    fig.savefig(CHAIN_SVG_OUT, facecolor="white")
+    plt.close(fig)
+
+
+def save_feedback_figure(by_arm: dict, weeks: list[str]) -> None:
+    """Export Agent-only weekly supply as a second full-width Word figure."""
+    fig, axes = plt.subplots(1, 3, figsize=(11.4, 4.25), sharey=True)
+    for ax, arm in zip(axes, armplot.ARMS):
+        draw_supply_panel(ax, by_arm, weeks, arm, None)
+    axes[0].set_ylabel("Agent自主发帖量（条/周，3-seed均值）")
+    type_handles = [
+        Patch(facecolor=armplot.TYPE_COLOR[t], edgecolor="none", label=TYPE_LABELS[t])
+        for t in VALID_TYPES
+    ]
+    axes[-1].legend(handles=type_handles, loc="upper right", fontsize=8.5)
+    fig.subplots_adjust(top=0.91, bottom=0.17, left=0.075, right=0.985, wspace=0.16)
+    fig.savefig(FEEDBACK_PNG_OUT, dpi=300, facecolor="white")
+    fig.savefig(FEEDBACK_SVG_OUT, facecolor="white")
+    plt.close(fig)
 
 
 def main() -> int:
@@ -284,6 +358,9 @@ def main() -> int:
     fig.savefig(SVG_OUT, facecolor="white")
     plt.close(fig)
 
+    save_chain_figure(by_arm)
+    save_feedback_figure(by_arm, weeks)
+
     with CSV_OUT.open("w", newline="", encoding="utf-8-sig") as handle:
         writer = csv.DictWriter(handle, fieldnames=["week", "arm", "stage", "mean", "min", "max"])
         writer.writeheader()
@@ -316,6 +393,10 @@ def main() -> int:
                 "outputs": {
                     "png": str(PNG_OUT),
                     "svg": str(SVG_OUT),
+                    "chain_png": str(CHAIN_PNG_OUT),
+                    "chain_svg": str(CHAIN_SVG_OUT),
+                    "feedback_png": str(FEEDBACK_PNG_OUT),
+                    "feedback_svg": str(FEEDBACK_SVG_OUT),
                     "csv": str(CSV_OUT),
                 },
             },
@@ -326,6 +407,8 @@ def main() -> int:
     )
 
     print(PNG_OUT)
+    print(CHAIN_PNG_OUT)
+    print(FEEDBACK_PNG_OUT)
     print(JSON_OUT)
     print(CSV_OUT)
     return 0
