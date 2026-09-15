@@ -4,9 +4,9 @@
 
 ## 目录
 
-- `manuscript/source/`：作者提供的原始 DOCX 与 PDF，只作留档，不直接改写。
+- `manuscript/source/`：作者提供的各版原始 DOCX 与 PDF，按版本和接收时间留档，不直接改写；当前版本为 `v3_20260915_2306_*`。
 - `manuscript/manuscript.accepted.md`：从 DOCX 接受修订后导出的可检索文本，便于证据核对；它不是新的权威排版稿。
-- `manuscript/media/`：DOCX 中嵌入的图件。
+- `manuscript/media/`：当前 v3 DOCX 中嵌入的图件；`media_v1/`、`media_v2/` 保存历史版本图件。
 - `manuscript/INTAKE_AUDIT.md`：本次正文接入、版本关系与待修订项。
 - `appendices/`：作者维护的论文附录；保持现状，不由本次接入覆盖。
 - `reviews/`：历史或进行中的审阅材料；不等同于已完成的官方 paper review。
@@ -34,6 +34,6 @@ hypothesis_4/experiment_1/runs/anchored_v1/_derived/monitor/overview.json
 
 1. 修改正文前，先阅读 `manuscript/INTAKE_AUDIT.md`。
 2. 任何数值性结论优先回查 `_derived/data/arm/`，并明确真实数据、模拟数据与混合数据口径。
-3. 原始 DOCX 含修订与批注。需要形成新版本时，应基于 DOCX 做显式版本化，不覆盖 `source/` 中的原件。
-4. PDF 是提交时点的版面快照；DOCX 修改时间更晚，两者不能默认完全一致。
+3. 当前 v3 DOCX 已无修订标记和批注。需要形成新版本时，仍应显式版本化，不覆盖 `source/` 中的原件。
+4. 当前 v3 DOCX 与 PDF 接收时间相邻，PDF 已通过 20 页渲染检查；内容修订后仍需重新导出并复核 PDF。
 5. 附录和审阅记录存在用户维护中的改动，正文整理不得顺手覆盖或清理。
