@@ -61,6 +61,23 @@ U_{it}=B_i+R_{it}(D_{it}-B_i),\qquad U_{it}\ge a_i \Rightarrow 发言
 W16–W19 多数类型长期保持高表达。完整数值、置信区间和解释边界见该目录下
 `RESULTS.md`。这些结果标记为 numerical proxy，不替代本文件预登记的正式消融 run。
 
+## 3.2 正式 replay 离线门控消融图（2026-09-15）
+
+为把消融建立在正式实验的实际机制路径上，另读取 `anchored_v1_interest_s0` 的 100 个
+Agent × 11 周 decision log，固定逐 Agent 当周落盘的 B、D、R 和阈值，离线重算 no B / no D /
+no R。三张模板同构图与一张 2×2 对比图位于：
+
+`runs/anchored_v1/_derived/charts/ablation_replay_interest_s0/`
+
+逐决策数据、周度供给表、完整性审计和解释边界位于：
+
+`runs/anchored_v1/_derived/data/ablation_replay_interest_s0/`
+
+完整模型 1100 个门控重算与正式 decision log 全部一致。由于事实路径有 1 次“判定发言但
+未成功落帖”，所有面板统一采用门控隐含供给（一次反事实发言按一帖计）以保持消融口径
+一致。该分析固定事实 D/R 路径，不让反事实发言回写后续 feed，因此属于 offline replay
+counterfactual，不替代反馈重新演化的正式动态消融 run。
+
 ## 4. 与旧文档的关系
 
 `PREDICTION_counterfactual_2mech.md` 记录的是旧公式 \(U=D\cdot R\) 下的历史预测，
