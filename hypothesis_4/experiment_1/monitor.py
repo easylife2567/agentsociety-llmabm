@@ -99,12 +99,12 @@ FIELDS: dict[str, str] = {
     "supply_share_education": "Agent 产出口径的教育帖供给份额（分母=五类 agent 帖）。",
     "supply_share_marketing": "Agent 产出口径的营销帖供给份额（分母=五类 agent 帖）。",
     "supply_share_other": "Agent 产出口径的其他帖供给份额（分母=五类 agent 帖）。",
-    "supply_share_all_meme": "combined 口径（注入+产出）玩梗供给份额，分母含噪音，与真实基准对齐。",
-    "supply_share_all_mourning": "combined 口径（注入+产出）悼念供给份额，分母含噪音。",
-    "supply_share_all_education": "combined 口径（注入+产出）教育供给份额，分母含噪音。",
-    "supply_share_all_marketing": "combined 口径（注入+产出）营销供给份额，分母含噪音。",
-    "supply_share_all_other": "combined 口径（注入+产出）其他供给份额，分母含噪音。",
-    "supply_share_all_noise": "combined 口径（注入+产出）噪音供给份额（噪音只来自注入）。",
+    "supply_share_all_meme": "环境混合口径（真实注入+Agent产出）玩梗份额，分母含噪音；仅作环境描述，因注入按同源真实周构成分层抽样，不得用作生成性拟合。",
+    "supply_share_all_mourning": "环境混合口径（真实注入+Agent产出）悼念份额，分母含噪音；仅作环境描述，不作生成性拟合。",
+    "supply_share_all_education": "环境混合口径（真实注入+Agent产出）教育份额，分母含噪音；仅作环境描述，不作生成性拟合。",
+    "supply_share_all_marketing": "环境混合口径（真实注入+Agent产出）营销份额，分母含噪音；仅作环境描述，不作生成性拟合。",
+    "supply_share_all_other": "环境混合口径（真实注入+Agent产出）其他份额，分母含噪音；仅作环境描述，不作生成性拟合。",
+    "supply_share_all_noise": "环境混合口径中的噪音份额（噪音仅来自真实注入）；仅作环境描述，不作生成性拟合。",
     "agent_supply_meme": "本 tick 玩梗型 Agent 产出帖数。",
     "agent_supply_mourning": "本 tick 悼念型 Agent 产出帖数。",
     "agent_supply_education": "本 tick 教育型 Agent 产出帖数。",
@@ -187,9 +187,9 @@ FIELDS: dict[str, str] = {
     "tick_produced": "该帖产生的 step 序号。",
     "source": "帖子来源：injected=真实数据注入 / agent=模拟 agent 产出。",
     # 派生视图
-    "bias": "策展偏差 = exposure_share − supply_share_all（按类型按周）。>0 算法放大该类，<0 压制。全因子对比的核心量。",
-    "bench_share": "真实基准周度份额（hypothesis_4/benchmark_curves.json weekly_category_matrix，combined 口径）。",
-    "delta": "模拟 − 真实（combined 口径供给份额差，百分点）。衡量模拟对真实周度构成的贴合度。",
+    "bias": "描述性差值 = exposure_share − 当周环境混合新增供给份额。它不是相对候选池的算法放大量，不得据此判定放大/压制。",
+    "bench_share": "全平台真实基准周度份额（hypothesis_4/benchmark_curves.json weekly_category_matrix；含采集噪音）。",
+    "delta": "环境混合供给 − 真实基准的描述性差值；因真实注入与基准同源，不是独立的生成性验证指标。",
 }
 
 

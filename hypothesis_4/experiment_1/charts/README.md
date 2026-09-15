@@ -15,10 +15,11 @@
 
 ---
 
-## formal/ — 正式实验（49 张）
+## formal/ — 正式实验（50 张）
 
-- `ARM_A1..A4_*.png`（4 张）—— **臂级 3-seed 均值，主判据图**。
-  `ARM_A1_meme_share_arms_vs_real.png` 是头图。
+- `ARM_A1..A5_*.png`（5 张）—— **臂级 3-seed 均值，主判据图**。
+  `ARM_A1_meme_share_arms_vs_real.png` 改用 Agent-only 供给，杜绝同源注入造成的假贴合；
+  `ARM_A5_five_type_fit_mae.png` 汇总五类有效内容的整体拟合误差。
 - `<run>__chart{1,2,3,3b,4}_*.png`（45 张 = 9 run × 5 图型）—— 逐 run 诊断/QC 图。
 
 > 单 run 锯齿不作形态证据（`EXPERIMENT.md:294` 用户裁定）；判读以 `ARM_*` 为准。

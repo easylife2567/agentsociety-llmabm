@@ -4,7 +4,7 @@
 图表样式对齐仓库根目录《图表解读.docx》的真实数据分析图（结论式标题、
 去世事件红虚线、末端终值标注、%刻度），用于模拟 run 的同等解读：
 
-    chart1  玩梗供给份额 — 模拟 vs 真实基准   （对应 docx 图1 双线对比）
+    chart1  玩梗 Agent-only 供给份额 — 模拟 vs 真实基准（排除同源注入泄漏）
     chart2  周度供给量 — 注入+Agent 产出堆叠柱（对应 docx 图2 总量柱状）
     chart3  各内容类型供给量堆叠面积          （对应 docx 图3 绝对数量堆叠）
     chart3b 各内容类型 Agent 发帖量堆叠面积    （图3 的 Agent 侧变体，不含注入帖）
@@ -28,6 +28,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 from pathlib import Path
 
 import matplotlib
@@ -70,6 +71,8 @@ plt.rcParams.update({
     "axes.spines.top": False,
     "axes.spines.right": False,
     "font.size": 11,
+    "svg.fonttype": "none",
+    "pdf.fonttype": 42,
 })
 
 # 事件周：W13（去世 2026-03-24，官方讣告置顶周）
@@ -79,12 +82,41 @@ DEATH_LABEL = "去世 3-24 (W13)"
 TYPE_ORDER = ["meme", "mourning", "education", "marketing", "other", "noise"]
 TYPE_LABEL = {"meme": "玩梗", "mourning": "悼念", "education": "教育",
               "marketing": "营销", "other": "其他", "noise": "噪音"}
+TYPE_LABEL_EN = {"meme": "Meme", "mourning": "Mourning", "education": "Education",
+                 "marketing": "Marketing", "other": "Other", "noise": "Noise"}
 # 图3 堆叠面积配色（对齐 docx image3：悼念蓝 / 玩梗橙 / 教育绿 / 营销黄 / 其他浅蓝 / 噪音灰紫）
 TYPE_COLOR = {"mourning": "#4C72B0", "meme": "#DD8452", "education": "#55A868",
               "marketing": "#CCB974", "other": "#64B5CD", "noise": "#B07AA1"}
 # 用户 2026-09-14 裁定并澄清：可比的绝对供给堆叠图统一复用基线纵轴比例尺。
 # 只统一显示范围 0–80、每 10 帖一格；chart3 与 chart3b 各自的数据口径保持不变。
 BASELINE_SUPPLY_YLIM = (0, 80)
+
+
+def _clean_benchmark_share(w: dict, t: str) -> float:
+    """真实五类有效内容份额；排除 Agent 不会生成的采集噪音后重新归一化。"""
+    valid = [k for k in TYPE_ORDER if k != "noise" and k in w.get("benchmark", {})]
+    denom = sum(w["benchmark"][k]["bench_share"] for k in valid)
+    return w["benchmark"][t]["bench_share"] / denom if denom else 0.0
+
+
+def _agent_share(w: dict, t: str) -> float:
+    """Agent 自主产出构成；不含作为环境输入的真实注入帖。"""
+    return w.get(f"supply_share_{t}", 0.0)
+
+
+def _injected_share(w: dict, t: str) -> float:
+    total = w.get("injected_count", 0) or 0
+    return w.get(f"injected_{t}", 0) / total if total else 0.0
+
+
+def _supply_axis(max_value: float) -> tuple[tuple[int, int], str | None]:
+    """优先使用注册的 0–80 模板；若真实值越界，显式扩到下一 10 而不裁剪。"""
+    if max_value <= BASELINE_SUPPLY_YLIM[1]:
+        return BASELINE_SUPPLY_YLIM, None
+    upper = int(math.ceil(max_value / 10.0) * 10)
+    return (BASELINE_SUPPLY_YLIM[0], upper), (
+        f"数据峰值 {max_value:.0f} 超出基线 0–80，纵轴显式扩展至 {upper}"
+    )
 
 
 def _death_line(ax, weeks: list[str], label: str = DEATH_LABEL) -> None:
@@ -121,7 +153,7 @@ def export_csv(weekly: list[dict], out_dir: Path) -> list[Path]:
     def write(name: str, header: list[str], rows: list[list]) -> None:
         p = out_dir / name
         with open(p, "w", newline="", encoding="utf-8-sig") as f:
-            w = csv.writer(f)
+            w = csv.writer(f, lineterminator="\n")
             w.writerow(header)
             w.writerows(rows)
         paths.append(p)
@@ -164,11 +196,17 @@ def export_csv(weekly: list[dict], out_dir: Path) -> list[Path]:
             m.get("mean_fatigue"), m["mean_env_gain"]]
            for w in weekly for t, m in sorted(w["mech_agg"].items())])
 
-    # 模拟 vs 真实基准
+    # 生成性验证：Agent-only 是主口径；combined 与注入侧只作泄漏审计。
     write("weekly_benchmark.csv",
-          ["week", "type", "sim_share_all", "bench_share", "delta"],
-          [[w["week"], t, w[f"supply_share_all_{t}"],
-            w["benchmark"][t]["bench_share"], w["benchmark"][t]["delta"]]
+          ["week", "type", "sim_agent_share", "bench_share_clean",
+           "delta_agent_vs_clean_benchmark", "sim_combined_share_descriptive",
+           "injected_share_descriptive", "bench_share_raw"],
+          [[w["week"], t,
+            _agent_share(w, t) if t != "noise" else 0.0,
+            _clean_benchmark_share(w, t) if t != "noise" else 0.0,
+            (_agent_share(w, t) - _clean_benchmark_share(w, t)) if t != "noise" else 0.0,
+            w[f"supply_share_all_{t}"], _injected_share(w, t),
+            w["benchmark"][t]["bench_share"]]
            for w in weekly for t in TYPE_ORDER if t in w.get("benchmark", {})])
 
     # 策展偏差
@@ -182,17 +220,17 @@ def export_csv(weekly: list[dict], out_dir: Path) -> list[Path]:
 # ---------------- 图表 ----------------
 
 def chart1_meme_share(weekly: list[dict], run_id: str, out: Path) -> Path:
-    """玩梗 combined 供给份额：模拟 vs 真实基准（对应 docx 图1 双平台对比）。"""
+    """玩梗 Agent-only 供给份额：模拟 vs 排除噪音后的全平台真实基准。"""
     weeks = [w["week"] for w in weekly]
-    sim = [w["supply_share_all_meme"] for w in weekly]
-    real = [w["benchmark"]["meme"]["bench_share"] for w in weekly]
+    sim = [_agent_share(w, "meme") for w in weekly]
+    real = [_clean_benchmark_share(w, "meme") for w in weekly]
 
     fig, ax = plt.subplots(figsize=(10, 5.2))
     _death_line(ax, weeks)
     ax.plot(weeks, real, color="#1F77B4", marker="s", markersize=5, linewidth=2,
-            label="真实基准（抖音）", zorder=3)
+            label="Observed all-platform benchmark (noise excluded)", zorder=3)
     ax.plot(weeks, sim, color="#D95F02", marker="o", markersize=5, linewidth=2.4,
-            label=f"模拟（{run_id}）", zorder=4)
+            label="Agent-only simulation", zorder=4)
     ax.annotate(f"{real[-1]*100:.1f}%", xy=(len(weeks) - 1, real[-1]),
                 xytext=(0, 8), textcoords="offset points", ha="center",
                 color="#1F77B4", fontweight="bold")
@@ -200,8 +238,11 @@ def chart1_meme_share(weekly: list[dict], run_id: str, out: Path) -> Path:
                 xytext=(0, -14), textcoords="offset points", ha="center",
                 color="#D95F02", fontweight="bold")
     ax.yaxis.set_major_formatter(PercentFormatter(1.0))
-    ax.set_ylabel("玩梗供给份额（combined 口径）")
-    ax.set_title("玩梗份额 — 模拟复现「事件压抑 → W19+ 涌现浪潮」形态", fontweight="bold", fontsize=13)
+    ax.set_ylim(0, 1.0)
+    ax.set_yticks([i / 10 for i in range(11)])
+    ax.set_ylabel("玩梗供给份额（仅 Agent 产出）")
+    ax.set_title(f"玩梗 Agent 自主产出 vs 全平台真实基准（{run_id}）\n"
+                 "注入帖仅作为环境输入，不进入模拟拟合曲线", fontweight="bold", fontsize=13)
     ax.legend(loc="upper left", frameon=False, bbox_to_anchor=(0.0, 0.90))
     _tidy(ax)
     fig.tight_layout()
@@ -219,14 +260,14 @@ def chart2_supply_volume(weekly: list[dict], run_id: str, out: Path) -> Path:
 
     fig, ax = plt.subplots(figsize=(10, 5.2))
     _death_line(ax, weeks)
-    ax.bar(weeks, injected, color="#9ECBE8", edgecolor="white", label="注入（真实数据）", zorder=2)
+    ax.bar(weeks, injected, color="#9ECBE8", edgecolor="white", label="Observed input posts", zorder=2)
     ax.bar(weeks, agent, bottom=injected, color="#2166AC", edgecolor="white",
-           label="Agent 产出", zorder=2)
+           label="Agent-generated posts", zorder=2)
     for i, tv in enumerate(totals):
         ax.annotate(str(tv), xy=(i, tv), xytext=(0, 4), textcoords="offset points",
                     ha="center", fontsize=9, color="#333333")
     ax.set_ylabel("周供给量（帖）")
-    ax.set_title(f"周度供给量 — 事件尖峰与玩梗第二波（{run_id}，arena 口径）",
+    ax.set_title(f"周度供给量：环境输入与 Agent 自主产出（{run_id}）",
                  fontweight="bold", fontsize=13)
     ax.legend(loc="upper right", frameon=False)
     ax.margins(y=0.12)
@@ -245,25 +286,25 @@ def chart3_stacked_area(weekly: list[dict], run_id: str, out: Path) -> Path:
     series = {t: [w.get(f"agent_supply_{t}", 0) + w.get(f"injected_{t}", 0) for w in weekly]
               for t in TYPE_ORDER}
     totals = [sum(series[t][i] for t in TYPE_ORDER) for i in range(len(weeks))]
-    if max(totals, default=0.0) > BASELINE_SUPPLY_YLIM[1]:
-        raise ValueError(
-            "chart3 supply exceeds the registered 0–80 baseline y-axis; "
-            "report the overflow instead of clipping or silently changing the scale"
-        )
+    y_axis, overflow_note = _supply_axis(max(totals, default=0.0))
 
     fig, ax = plt.subplots(figsize=(10, 5.4))
     _death_line(ax, weeks)
     ax.stackplot(x, *[series[t] for t in TYPE_ORDER],
-                 labels=[TYPE_LABEL[t] for t in TYPE_ORDER],
+                 labels=[TYPE_LABEL_EN[t] for t in TYPE_ORDER],
                  colors=[TYPE_COLOR[t] for t in TYPE_ORDER],
                  edgecolor="white", linewidth=0.6, alpha=0.92, zorder=2)
     ax.set_xticks(x, weeks, rotation=45)
     ax.set_ylabel("帖数（绝对数量）")
-    ax.set_ylim(*BASELINE_SUPPLY_YLIM)
-    ax.set_yticks(range(BASELINE_SUPPLY_YLIM[0], BASELINE_SUPPLY_YLIM[1] + 1, 10))
-    ax.set_title(f"各内容类型供给量变化（堆叠面积 · 绝对数量，{run_id}）",
+    ax.set_ylim(*y_axis)
+    ax.set_yticks(range(y_axis[0], y_axis[1] + 1, 10))
+    ax.set_title(f"环境混合供给量（真实注入 + Agent 产出，描述性，{run_id}）",
                  fontweight="bold", fontsize=13)
     ax.legend(loc="upper right", frameon=False, fontsize=9)
+    if overflow_note:
+        ax.text(0.01, 0.96, overflow_note, transform=ax.transAxes, ha="left", va="top",
+                fontsize=9, color="#B64342",
+                bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="#B64342", alpha=0.92))
     ax.margins(y=0.05)
     _tidy(ax)
     fig.tight_layout()
@@ -291,7 +332,7 @@ def chart3b_agent_supply_stacked_area(weekly: list[dict], run_id: str, out: Path
     fig, ax = plt.subplots(figsize=(10, 5.4))
     _death_line(ax, weeks)
     ax.stackplot(x, *[series[t] for t in agent_types],
-                 labels=[TYPE_LABEL[t] for t in agent_types],
+                 labels=[TYPE_LABEL_EN[t] for t in agent_types],
                  colors=[TYPE_COLOR[t] for t in agent_types],
                  edgecolor="white", linewidth=0.6, alpha=0.92, zorder=2)
     ax.set_xticks(x, weeks, rotation=45)
@@ -319,7 +360,7 @@ def chart4_meme_speaking(weekly: list[dict], run_id: str, out: Path) -> Path:
     fig, ax = plt.subplots(figsize=(10, 5.2))
     _death_line(ax, weeks)
     line_rate, = ax.plot(x, rate, color="#2E9E6B", marker="o", markersize=5,
-                         linewidth=2.4, zorder=4, label="玩梗型 Agent 发言率")
+                         linewidth=2.4, zorder=4, label="Meme-agent speaking rate")
     ax.fill_between(x, rate, color="#2E9E6B", alpha=0.15, zorder=2)
     ax.annotate(f"{rate[-1]*100:.0f}%", xy=(len(weeks) - 1, rate[-1]),
                 xytext=(0, 8), textcoords="offset points", ha="center",
@@ -330,8 +371,8 @@ def chart4_meme_speaking(weekly: list[dict], run_id: str, out: Path) -> Path:
 
     ax2 = ax.twinx()
     line_gain, = ax2.plot(x, gain, color="#8172B3", linestyle=":", marker="",
-                          linewidth=1.8, zorder=3, label="涌现增益 G（右轴）")
-    ax2.set_ylabel("涌现增益 G = clamp(B·S, 0.2, 3.0)", color="#8172B3")
+                          linewidth=1.8, zorder=3, label="Environmental G (observed only)")
+    ax2.set_ylabel("环境观测量 G（不进入决策）", color="#8172B3")
     ax2.tick_params(axis="y", colors="#8172B3")
     ax2.spines["right"].set_visible(True)
     ax2.spines["right"].set_color("#8172B3")

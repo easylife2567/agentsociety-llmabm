@@ -6,9 +6,9 @@
 
 故本脚本不做逐 run 展示（那是 plot_run_charts.py 的职责，用于诊断/QC），
 只回答实验层的两个问题：
-    1. 三个推荐算法臂是否复现真实基准的「事件压抑 → W19+ 玩梗涌现」形态？
-       （口径：combined 供给份额，与真实基准同分母）
-    2. 臂间差异有多大、是否超过 seed 内噪声？
+    1. 三个推荐算法臂的 Agent 自主产出是否复现真实周度构成？
+       （主口径：Agent-only；真实 benchmark 排除 Agent 不生成的 noise 后重归一化）
+    2. 哪个算法对五类内容整体构成的拟合误差最低？
        （口径：mean ± min–max 包络，n=3；n 这么小时用包络比 sd 带诚实）
 
 输入：runs/anchored_v1/_derived/monitor/<run_id>/status.json（由 monitor.py 生成）
@@ -49,14 +49,17 @@ MONITOR_DIR = DERIVED_ROOT / "monitor"
 EXPECTED_WEEKS = 11
 ARMS = ["random", "chronological", "interest"]
 ARM_LABEL = {"random": "随机推荐", "chronological": "时序推荐", "interest": "兴趣推荐"}
+ARM_LABEL_EN = {"random": "Random", "chronological": "Chronological", "interest": "Interest"}
 # 臂配色：与 run 图区分开，三臂固定色以便跨图对照
-ARM_COLOR = {"random": "#7F7F7F", "chronological": "#1F77B4", "interest": "#D95F02"}
+ARM_COLOR = {"random": "#6B6B6B", "chronological": "#0072B2", "interest": "#D55E00"}
 
 TYPE_ORDER = ["meme", "mourning", "education", "marketing", "other", "noise"]
 TYPE_LABEL = {"meme": "玩梗", "mourning": "悼念", "education": "教育",
               "marketing": "营销", "other": "其他", "noise": "噪音"}
-TYPE_COLOR = {"mourning": "#4C72B0", "meme": "#DD8452", "education": "#55A868",
-              "marketing": "#CCB974", "other": "#64B5CD", "noise": "#B07AA1"}
+TYPE_LABEL_EN = {"meme": "Meme", "mourning": "Mourning", "education": "Education",
+                 "marketing": "Marketing", "other": "Other", "noise": "Noise"}
+TYPE_COLOR = {"mourning": "#0072B2", "meme": "#D55E00", "education": "#009E73",
+              "marketing": "#E69F00", "other": "#56B4E9", "noise": "#CC79A7"}
 
 DEATH_WEEK = "2026-W13"
 DEATH_LABEL = "去世 3-24 (W13)"
@@ -81,7 +84,12 @@ plt.rcParams.update({
     "axes.spines.top": False,
     "axes.spines.right": False,
     "font.size": 11,
+    "svg.fonttype": "none",
+    "pdf.fonttype": 42,
 })
+
+BASELINE_SUPPLY_YLIM = (0, 80)
+VALID_TYPES = [t for t in TYPE_ORDER if t != "noise"]
 
 
 # ---------------- 载入与校验 ----------------
@@ -213,6 +221,24 @@ def agg(runs_of_arm: list[dict], getter) -> tuple[list[float], list[float], list
     return mean, lo, hi
 
 
+def agent_share(w: dict, t: str) -> float:
+    return w.get(f"supply_share_{t}", 0.0)
+
+
+def clean_benchmark_share(w: dict, t: str) -> float:
+    denom = sum(w["benchmark"][k]["bench_share"] for k in VALID_TYPES)
+    return w["benchmark"][t]["bench_share"] / denom if denom else 0.0
+
+
+def fit_mae(run: dict, *, types: list[str] = VALID_TYPES) -> float:
+    """一个 seed 的周×类型平均绝对误差；先逐格取绝对值，避免 seed 间抵消。"""
+    errors = [
+        abs(agent_share(w, t) - clean_benchmark_share(w, t))
+        for w in run["weekly"] for t in types
+    ]
+    return statistics.fmean(errors)
+
+
 # ---------------- 绘图工具 ----------------
 
 def _death_line(ax, weeks: list[str]) -> None:
@@ -234,25 +260,26 @@ def _tidy(ax) -> None:
 # ---------------- 图 A1：玩梗供给份额（头图） ----------------
 
 def chart_a1_meme_share(by_arm: dict, weeks: list[str], out: Path) -> Path:
-    """三臂 3-seed 平均玩梗份额 vs 真实基准 —— 复现性判定的头图。"""
+    """三臂 Agent-only 玩梗份额 vs 排除噪音后的真实基准。"""
     x = list(range(len(weeks)))
     fig, ax = plt.subplots(figsize=(11, 5.8))
     _death_line(ax, weeks)
 
-    real = [w["benchmark"]["meme"]["bench_share"] for w in _ref_weeks(by_arm)]
+    real = [clean_benchmark_share(w, "meme") for w in _ref_weeks(by_arm)]
     ax.plot(x, real, color="#111111", marker="s", markersize=6, linewidth=2.6,
-            label="真实基准（抖音）", zorder=5)
+            label="Observed all-platform benchmark (noise excluded)", zorder=5)
 
     for arm in ARMS:
         if arm not in by_arm:
             continue
-        mean, lo, hi = agg(by_arm[arm], lambda w: w["supply_share_all_meme"])
+        mean, lo, hi = agg(by_arm[arm], lambda w: agent_share(w, "meme"))
         c = ARM_COLOR[arm]
         ax.fill_between(x, lo, hi, color=c, alpha=0.16, linewidth=0, zorder=2)
         ax.plot(x, mean, color=c, marker="o", markersize=5, linewidth=2.4,
-                label=f"{ARM_LABEL[arm]}（n={len(by_arm[arm])} seed 均值）", zorder=4)
+                label=f"{ARM_LABEL_EN[arm]} (mean, n={len(by_arm[arm])})", zorder=4)
+        y_offsets = {"random": -2, "chronological": 10, "interest": -14}
         ax.annotate(f"{mean[-1]*100:.1f}%", xy=(x[-1], mean[-1]),
-                    xytext=(8, -2), textcoords="offset points",
+                    xytext=(8, y_offsets[arm]), textcoords="offset points",
                     color=c, fontweight="bold", va="center")
 
     ax.annotate(f"{real[-1]*100:.1f}%", xy=(x[-1], real[-1]),
@@ -261,9 +288,11 @@ def chart_a1_meme_share(by_arm: dict, weeks: list[str], out: Path) -> Path:
 
     ax.yaxis.set_major_formatter(PercentFormatter(1.0))
     ax.set_xticks(x, weeks, rotation=45)
-    ax.set_ylabel("玩梗供给份额（combined 口径）")
-    ax.set_title("玩梗份额 · 三推荐算法臂 3-seed 平均 vs 真实基准\n"
-                 "阴影 = 同臂 seed 间 min–max 包络（n=3）",
+    ax.set_ylim(0, 1.0)
+    ax.set_yticks([i / 10 for i in range(11)])
+    ax.set_ylabel("玩梗供给份额（仅 Agent 自主产出）")
+    ax.set_title("玩梗 Agent 自主产出 · 三算法 3-seed 平均 vs 全平台真实基准\n"
+                 "注入帖不进入拟合；阴影 = seed 间 min–max（n=3）",
                  fontweight="bold", fontsize=13)
     # 图例下移：4 条图例若贴顶会压住 W13 的去世标注（该标注固定在轴顶部）
     ax.legend(loc="upper left", frameon=False, fontsize=10, bbox_to_anchor=(0.0, 0.82))
@@ -293,11 +322,13 @@ def chart_a2_agent_supply(by_arm: dict, weeks: list[str], out: Path) -> Path:
         for t in agent_types:
             mean, _, _ = agg(by_arm[arm], lambda w, t=t: w.get(f"agent_supply_{t}", 0))
             series.append(mean)
-        ax.stackplot(x, *series, labels=[TYPE_LABEL[t] for t in agent_types],
+        ax.stackplot(x, *series, labels=[TYPE_LABEL_EN[t] for t in agent_types],
                      colors=[TYPE_COLOR[t] for t in agent_types],
                      edgecolor="white", linewidth=0.6, alpha=0.92, zorder=2)
         ax.set_xticks(x, weeks, rotation=45)
         ax.set_title(f"{ARM_LABEL[arm]}（n={len(by_arm[arm])}）", fontweight="bold", fontsize=12)
+        ax.set_ylim(*BASELINE_SUPPLY_YLIM)
+        ax.set_yticks(range(BASELINE_SUPPLY_YLIM[0], BASELINE_SUPPLY_YLIM[1] + 1, 10))
         ax.margins(y=0.05)
         _tidy(ax)
     axes[0].set_ylabel("Agent 发帖数 / 周（3-seed 平均）")
@@ -324,8 +355,9 @@ def chart_a3_meme_speaking(by_arm: dict, weeks: list[str], out: Path) -> Path:
         c = ARM_COLOR[arm]
         ax.fill_between(x, lo, hi, color=c, alpha=0.16, linewidth=0, zorder=2)
         ax.plot(x, mean, color=c, marker="o", markersize=5, linewidth=2.4,
-                label=f"{ARM_LABEL[arm]}（n={len(by_arm[arm])}）", zorder=4)
+                label=f"{ARM_LABEL_EN[arm]} (mean, n={len(by_arm[arm])})", zorder=4)
     ax.yaxis.set_major_formatter(PercentFormatter(1.0))
+    ax.set_ylim(0, 1.0)
     ax.set_xticks(x, weeks, rotation=45)
     ax.set_ylabel("玩梗型 Agent 发言率")
     ax.set_title("玩梗型 Agent 发言率 · 三臂 3-seed 平均\n阴影 = seed 间 min–max 包络",
@@ -340,35 +372,68 @@ def chart_a3_meme_speaking(by_arm: dict, weeks: list[str], out: Path) -> Path:
     return out
 
 
-# ---------------- 图 A4：策展偏差 ----------------
+# ---------------- 图 A4：推荐曝光中的玩梗可见度 ----------------
 
-def chart_a4_bias(by_arm: dict, weeks: list[str], out: Path) -> Path:
-    """策展偏差 bias_t = 平台曝光份额 − 真实供给份额（按类型，三臂）。
-
-    这是**机制层的直接后果量**：算法把哪些内容推多/推少了。
-    """
+def chart_a4_meme_exposure(by_arm: dict, weeks: list[str], out: Path) -> Path:
+    """直接展示算法输出的玩梗曝光份额；不伪装成候选池放大量。"""
     x = list(range(len(weeks)))
-    types = ["meme", "mourning", "education", "marketing", "other"]
-    present = [a for a in ARMS if a in by_arm]
-    ncol = len(present)
-    fig, axes = plt.subplots(1, ncol, figsize=(5.0 * ncol, 4.6), sharey=True)
-    if ncol == 1:
-        axes = [axes]
+    fig, ax = plt.subplots(figsize=(11, 5.6))
+    _death_line(ax, weeks)
+    real = [w["benchmark"]["meme"]["bench_share"] for w in _ref_weeks(by_arm)]
+    ax.plot(x, real, color="#111111", marker="s", markersize=5, linewidth=2.2,
+            linestyle="--", label="Observed content benchmark (reference only)", zorder=4)
+    for arm in ARMS:
+        if arm not in by_arm:
+            continue
+        mean, lo, hi = agg(by_arm[arm], lambda w: w["exposure_share_meme"])
+        c = ARM_COLOR[arm]
+        ax.fill_between(x, lo, hi, color=c, alpha=0.14, linewidth=0, zorder=2)
+        ax.plot(x, mean, color=c, marker="o", markersize=5, linewidth=2.4,
+                label=f"{ARM_LABEL_EN[arm]} exposure", zorder=3)
+    ax.yaxis.set_major_formatter(PercentFormatter(1.0))
+    ax.set_ylim(0, 0.8)
+    ax.set_yticks([i / 10 for i in range(9)])
+    ax.set_xticks(x, weeks, rotation=45)
+    ax.set_ylabel("推荐曝光中的玩梗份额")
+    ax.set_title("推荐算法输出的玩梗可见度（3-seed 平均）\n"
+                 "真实线是内容构成参照，并非真实曝光日志", fontweight="bold", fontsize=13)
+    ax.legend(loc="upper left", frameon=False, fontsize=10, bbox_to_anchor=(0.0, 0.86))
+    _tidy(ax)
+    fig.tight_layout()
+    fig.savefig(out, dpi=300)
+    plt.close(fig)
+    return out
 
-    for ax, arm in zip(axes, present):
-        _death_line(ax, weeks)
-        for t in types:
-            mean, _, _ = agg(by_arm[arm], lambda w, t=t: w["bias"][t])
-            ax.plot(x, mean, color=TYPE_COLOR[t], linewidth=2,
-                    marker="o", markersize=3.4, label=TYPE_LABEL[t], zorder=3)
-        ax.axhline(0, color="#666666", linewidth=1, zorder=1)
-        ax.set_xticks(x, weeks, rotation=45)
-        ax.set_title(f"{ARM_LABEL[arm]}（n={len(by_arm[arm])}）", fontweight="bold", fontsize=12)
-        _tidy(ax)
-    axes[0].set_ylabel("策展偏差 = 曝光份额 - 真实供给份额")
-    axes[-1].legend(loc="upper left", frameon=False, fontsize=9, ncol=2)
-    fig.suptitle("策展偏差 · 按内容类型（3-seed 平均；>0 表示被算法多推）",
+
+# ---------------- 图 A5：五类整体构成拟合误差 ----------------
+
+def chart_a5_fit_mae(by_arm: dict, out: Path) -> Path:
+    """五类有效内容的周×类型 MAE；柱为 seed 均值，点为每个 seed。"""
+    present = [a for a in ARMS if a in by_arm]
+    xs = list(range(len(present)))
+    values = {a: [fit_mae(r) * 100 for r in by_arm[a]] for a in present}
+    means = [statistics.fmean(values[a]) for a in present]
+    lo = [m - min(values[a]) for m, a in zip(means, present)]
+    hi = [max(values[a]) - m for m, a in zip(means, present)]
+
+    fig, ax = plt.subplots(figsize=(8.2, 5.2))
+    ax.bar(xs, means, width=0.58, color=[ARM_COLOR[a] for a in present], alpha=0.88,
+           yerr=[lo, hi], capsize=6, edgecolor="white", linewidth=0.8, zorder=2)
+    jitters = [-0.08, 0.0, 0.08]
+    for x, arm in zip(xs, present):
+        for j, v in zip(jitters, values[arm]):
+            ax.scatter(x + j, v, s=34, color="#222222", edgecolor="white",
+                       linewidth=0.5, zorder=4)
+        ax.text(x, max(values[arm]) + 0.35, f"{statistics.fmean(values[arm]):.1f} pp",
+                ha="center", va="bottom", fontweight="bold", color=ARM_COLOR[arm])
+    ax.set_xticks(xs, [ARM_LABEL_EN[a] for a in present])
+    ax.set_ylim(0, max(13.0, max(max(v) for v in values.values()) + 1.5))
+    ax.set_ylabel("五类构成平均绝对误差（百分点，越低越好）")
+    ax.set_title("兴趣推荐的整体五类内容构成误差最低\n"
+                 "柱 = 3-seed 均值；点 = 各 seed；误差线 = min–max",
                  fontweight="bold", fontsize=13)
+    ax.yaxis.grid(True, color="#E2E8F0", linewidth=0.8)
+    ax.set_axisbelow(True)
     fig.tight_layout()
     fig.savefig(out, dpi=300)
     plt.close(fig)
@@ -384,14 +449,16 @@ def export_csv(by_arm: dict, weeks: list[str], data_dir: Path) -> list[Path]:
     def write(name: str, header: list[str], rows: list[list]) -> None:
         p = data_dir / name
         with open(p, "w", newline="", encoding="utf-8-sig") as f:
-            w = csv.writer(f)
+            w = csv.writer(f, lineterminator="\n")
             w.writerow(header)
             w.writerows(rows)
         paths.append(p)
 
     # 臂级周度汇总：每臂每指标 mean/sd/min/max，便于复核与二次统计
     metrics = {
-        "meme_share": lambda w: w["supply_share_all_meme"],
+        "meme_share_agent_only": lambda w: agent_share(w, "meme"),
+        "meme_share_combined_descriptive": lambda w: w["supply_share_all_meme"],
+        "meme_exposure_share": lambda w: w["exposure_share_meme"],
         "agent_supply": lambda w: w["agent_supply"],
         "total_supply": lambda w: w["total_supply"],
         "meme_speaking_rate": lambda w: w["agent_agg"]["meme"]["spoke_rate"],
@@ -410,7 +477,7 @@ def export_csv(by_arm: dict, weeks: list[str], data_dir: Path) -> list[Path]:
     write("arm_weekly_summary.csv",
           ["arm", "week", "metric", "n_seeds", "mean", "sd", "min", "max"], rows)
 
-    # 每类型：Agent 发帖量与策展偏差
+    # 每类型：把 Agent 自主产出、曝光和环境混合供给分列，禁止再把三者混称为拟合。
     rows = []
     for arm in ARMS:
         if arm not in by_arm:
@@ -418,10 +485,15 @@ def export_csv(by_arm: dict, weeks: list[str], data_dir: Path) -> list[Path]:
         for i, wk in enumerate(weeks):
             for t in TYPE_ORDER:
                 a = [getattr_supply(r["weekly"][i], t) for r in by_arm[arm]]
-                b = [r["weekly"][i]["bias"][t] for r in by_arm[arm]]
-                rows.append([arm, wk, t, statistics.fmean(a), statistics.fmean(b)])
+                agent_s = [agent_share(r["weekly"][i], t) if t != "noise" else 0.0
+                           for r in by_arm[arm]]
+                exposure_s = [r["weekly"][i][f"exposure_share_{t}"] for r in by_arm[arm]]
+                combined_s = [r["weekly"][i][f"supply_share_all_{t}"] for r in by_arm[arm]]
+                rows.append([arm, wk, t, statistics.fmean(a), statistics.fmean(agent_s),
+                             statistics.fmean(exposure_s), statistics.fmean(combined_s)])
     write("arm_weekly_by_type.csv",
-          ["arm", "week", "type", "mean_agent_supply", "mean_bias"], rows)
+          ["arm", "week", "type", "mean_agent_supply", "mean_agent_supply_share",
+           "mean_exposure_share", "mean_combined_supply_share_descriptive"], rows)
 
     # 真实基准（各臂相同，单列一次）
     ref = _ref_weeks(by_arm)
@@ -429,6 +501,16 @@ def export_csv(by_arm: dict, weeks: list[str], data_dir: Path) -> list[Path]:
           ["week", "type", "bench_share"],
           [[wk["week"], t, wk["benchmark"][t]["bench_share"]]
            for wk in ref for t in TYPE_ORDER if t in wk.get("benchmark", {})])
+
+    # 每 seed 的拟合误差，供 A5 和后续统计复核。
+    fit_rows = []
+    for arm in ARMS:
+        if arm not in by_arm:
+            continue
+        for r in by_arm[arm]:
+            fit_rows.append([arm, r["seed"], "agent_only_5type_clean", fit_mae(r)])
+            fit_rows.append([arm, r["seed"], "agent_only_meme_clean", fit_mae(r, types=["meme"])])
+    write("arm_fit_summary.csv", ["arm", "seed", "metric_scope", "mae"], fit_rows)
     return paths
 
 
@@ -489,22 +571,26 @@ def main() -> int:
             (chart_a1_meme_share, "A1_meme_share_arms_vs_real.png"),
             (chart_a2_agent_supply, "A2_agent_supply_by_type_arms.png"),
             (chart_a3_meme_speaking, "A3_meme_speaking_rate_arms.png"),
-            (chart_a4_bias, "A4_curation_bias_arms.png"),
+            (chart_a4_meme_exposure, "A4_meme_exposure_arms.png"),
         ):
             out = charts_dir / f"ARM_{name}"
             fn(by_arm, weeks, out)
             print(f"✓ 图  {out}")
+        out = charts_dir / "ARM_A5_five_type_fit_mae.png"
+        chart_a5_fit_mae(by_arm, out)
+        print(f"✓ 图  {out}")
 
     # 图旁判据：臂间差 vs seed 内噪声，直接支撑「差异是否真实」
-    print("\n臂间对比（与真实基准的逐周绝对差，combined 玩梗份额）：")
+    print("\n臂间对比（Agent-only；真实 benchmark 排除 noise 后重归一化）：")
     for arm in ARMS:
         if arm not in by_arm:
             continue
-        mean, _, _ = agg(by_arm[arm], lambda w: w["supply_share_all_meme"])
-        real = [w["benchmark"]["meme"]["bench_share"] for w in by_arm[arm][0]["weekly"]]
+        mean, _, _ = agg(by_arm[arm], lambda w: agent_share(w, "meme"))
+        real = [clean_benchmark_share(w, "meme") for w in by_arm[arm][0]["weekly"]]
         d = [abs(a - b) for a, b in zip(mean, real)]
         print(f"  {arm:14s} 均值绝对差={statistics.fmean(d):.4f}  最大={max(d):.4f} "
-              f"@ {weeks[d.index(max(d))]}  W22={mean[-1]:.4f} vs 真实 {real[-1]:.4f}")
+              f"@ {weeks[d.index(max(d))]}  W22={mean[-1]:.4f} vs 真实 {real[-1]:.4f}  "
+              f"五类MAE(seed均值)={statistics.fmean(fit_mae(r) for r in by_arm[arm]):.4f}")
     return 0
 
 
