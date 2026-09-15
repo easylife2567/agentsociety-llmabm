@@ -1,0 +1,41 @@
+{
+  "output": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/_derived/charts/report_composites/figure_04_validation_and_fit.png",
+  "canvas": {
+    "width": 3300,
+    "height": 3910,
+    "background": "#FFFFFF"
+  },
+  "layout": {
+    "type": "manual"
+  },
+  "panels": [
+    {
+      "label": "a",
+      "source": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/_derived/charts/ARM_A1_meme_share_arms_vs_real.png",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 3300,
+        "height": 1740
+      },
+      "rendered_size": {
+        "width": 3300,
+        "height": 1740
+      }
+    },
+    {
+      "label": "b",
+      "source": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/_derived/charts/ARM_A5_five_type_fit_mae.png",
+      "box": {
+        "x": 0,
+        "y": 1820,
+        "width": 3300,
+        "height": 2090
+      },
+      "rendered_size": {
+        "width": 2460,
+        "height": 1560
+      }
+    }
+  ]
+}

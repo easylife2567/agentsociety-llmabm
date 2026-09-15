@@ -1,0 +1,55 @@
+{
+  "output": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/_derived/charts/report_composites/figure_05_platform_user_loop.png",
+  "canvas": {
+    "width": 3300,
+    "height": 4460,
+    "background": "#FFFFFF"
+  },
+  "layout": {
+    "type": "manual"
+  },
+  "panels": [
+    {
+      "label": "a",
+      "source": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/_derived/charts/ARM_A4_meme_exposure_arms.png",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 3300,
+        "height": 1680
+      },
+      "rendered_size": {
+        "width": 3300,
+        "height": 1680
+      }
+    },
+    {
+      "label": "b",
+      "source": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/_derived/charts/ARM_A3_meme_speaking_rate_arms.png",
+      "box": {
+        "x": 0,
+        "y": 1750,
+        "width": 3300,
+        "height": 1620
+      },
+      "rendered_size": {
+        "width": 3300,
+        "height": 1620
+      }
+    },
+    {
+      "label": "c",
+      "source": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/_derived/charts/ARM_A2_agent_supply_by_type_arms.png",
+      "box": {
+        "x": 0,
+        "y": 3440,
+        "width": 3300,
+        "height": 1020
+      },
+      "rendered_size": {
+        "width": 3295,
+        "height": 1020
+      }
+    }
+  ]
+}
