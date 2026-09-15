@@ -1,6 +1,6 @@
 # Run 监视快照：anchored_v1_random_s0
 
-- 生成时间：2026-09-14T23:09:51
+- 生成时间：2026-09-15T14:31:57
 - run 目录：`/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_random_s0`
 - **最近完结周**：2026-W22（step 11）　涌现环境 B=3.183 S=0.379 G=1.205　Agent 帖 5 / 注入 24
 

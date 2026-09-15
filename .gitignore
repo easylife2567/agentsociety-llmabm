@@ -19,6 +19,7 @@ datasets/zhangxf_labeled/valid_posts_clusters.parquet
 
 # CCB agent 运行时状态与缓存（含嵌套 git 仓库，不入库）
 .ccb/
+.agentsociety/analysis/locks/
 
 # 临时下载物与系统文件
 *.tar_*.gz
@@ -33,6 +34,7 @@ AgentSociety_*.tar.gz
 agentsociety_data/
 hypothesis_4/experiment_1/run/
 hypothesis_4/experiment_1/runs/*
+!hypothesis_4/experiment_1/runs/README.md
 !hypothesis_4/experiment_1/runs/anchored_v1/
 hypothesis_4/experiment_1/runs/anchored_v1/*
 !hypothesis_4/experiment_1/runs/anchored_v1/README.md
@@ -40,5 +42,7 @@ hypothesis_4/experiment_1/runs/anchored_v1/*
 !hypothesis_4/experiment_1/runs/anchored_v1/_derived/**
 hypothesis_4/experiment_1/runs_retired_pre_batch/*/
 !hypothesis_4/experiment_1/runs_retired_pre_batch/README.md
+hypothesis_4/experiment_1/runs_stopped_partial/*/
+!hypothesis_4/experiment_1/runs_stopped_partial/README.md
 hypothesis_4/experiment_1/monitor/
 hypothesis_4/experiment_1/*.log

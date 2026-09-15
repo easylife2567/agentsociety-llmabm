@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "batch_id": "anchored_v1",
+  "classification": "latest_formal",
+  "design": "3 recommendation algorithms x 3 seeds",
+  "status": "completed",
+  "official_single_run_compatibility": {
+    "path": "hypothesis_4/experiment_1/run",
+    "target": "runs/anchored_v1/anchored_v1_interest_s0",
+    "role": "generative-validation anchor for AgentSociety status and analysis intake",
+    "limitation": "The official harness accepts one replay path. Cross-arm claims must use all nine sources and the arm-level aggregates below."
+  },
+  "formal_runs": [
+    {
+      "run_id": "anchored_v1_random_s0",
+      "algorithm": "random",
+      "seed": 0,
+      "engine_batches": 11,
+      "weekly_points": 11,
+      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_random_s0/replay"
+    },
+    {
+      "run_id": "anchored_v1_random_s1",
+      "algorithm": "random",
+      "seed": 1,
+      "engine_batches": 11,
+      "weekly_points": 11,
+      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_random_s1/replay"
+    },
+    {
+      "run_id": "anchored_v1_random_s2",
+      "algorithm": "random",
+      "seed": 2,
+      "engine_batches": 11,
+      "weekly_points": 11,
+      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_random_s2/replay"
+    },
+    {
+      "run_id": "anchored_v1_chronological_s0",
+      "algorithm": "chronological",
+      "seed": 0,
+      "engine_batches": 693,
+      "weekly_points": 11,
+      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_chronological_s0/replay"
+    },
+    {
+      "run_id": "anchored_v1_chronological_s1",
+      "algorithm": "chronological",
+      "seed": 1,
+      "engine_batches": 693,
+      "weekly_points": 11,
+      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_chronological_s1/replay"
+    },
+    {
+      "run_id": "anchored_v1_chronological_s2",
+      "algorithm": "chronological",
+      "seed": 2,
+      "engine_batches": 693,
+      "weekly_points": 11,
+      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_chronological_s2/replay"
+    },
+    {
+      "run_id": "anchored_v1_interest_s0",
+      "algorithm": "interest",
+      "seed": 0,
+      "engine_batches": 11,
+      "weekly_points": 11,
+      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_interest_s0/replay"
+    },
+    {
+      "run_id": "anchored_v1_interest_s1",
+      "algorithm": "interest",
+      "seed": 1,
+      "engine_batches": 11,
+      "weekly_points": 11,
+      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_interest_s1/replay"
+    },
+    {
+      "run_id": "anchored_v1_interest_s2",
+      "algorithm": "interest",
+      "seed": 2,
+      "engine_batches": 11,
+      "weekly_points": 11,
+      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_interest_s2/replay"
+    }
+  ],
+  "formal_aggregates": {
+    "monitor": "hypothesis_4/experiment_1/runs/anchored_v1/_derived/monitor/overview.json",
+    "arm_tables": "hypothesis_4/experiment_1/runs/anchored_v1/_derived/data/arm",
+    "per_run_tables": "hypothesis_4/experiment_1/runs/anchored_v1/_derived/data",
+    "charts": "hypothesis_4/experiment_1/runs/anchored_v1/_derived/charts"
+  },
+  "excluded_from_current_analysis": [
+    {
+      "path": "hypothesis_4/experiment_1/runs/{random,chronological,interest}_s{0,1,2}",
+      "classification": "historical_formal_old_formula"
+    },
+    {
+      "path": "hypothesis_4/experiment_1/results",
+      "classification": "historical_frozen_results_old_formula"
+    },
+    {
+      "path": "hypothesis_4/experiment_1/runs_retired_pre_batch",
+      "classification": "smoke_probe_or_prebatch_history"
+    },
+    {
+      "path": "hypothesis_4/experiment_1/runs_retired_writer_bug",
+      "classification": "invalid_writer_incident"
+    },
+    {
+      "path": "hypothesis_4/experiment_1/runs_stopped_partial",
+      "classification": "invalid_or_partial"
+    }
+  ]
+}
