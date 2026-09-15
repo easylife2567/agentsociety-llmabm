@@ -172,7 +172,7 @@ def run_simulation(seeds: list[int]) -> tuple[list[dict], dict]:
 def write_long_csv(rows: list[dict]) -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     with LONG_CSV.open("w", newline="", encoding="utf-8-sig") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -221,7 +221,7 @@ def summarize(rows: list[dict], simulation: dict, seeds: list[int]) -> dict:
                 )
 
     with SUMMARY_CSV.open("w", newline="", encoding="utf-8-sig") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(weekly[0]))
+        writer = csv.DictWriter(handle, fieldnames=list(weekly[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(weekly)
 
@@ -431,6 +431,13 @@ def plot(summary: dict) -> None:
     CHART_DIR.mkdir(parents=True, exist_ok=True)
     fig.savefig(FIGURE_PNG, dpi=240, bbox_inches="tight", facecolor="white")
     fig.savefig(FIGURE_SVG, bbox_inches="tight", facecolor="white")
+    # Matplotlib writes path commands with trailing spaces. Normalize the generated
+    # text artifact so repository whitespace checks stay useful.
+    svg_text = FIGURE_SVG.read_text(encoding="utf-8")
+    FIGURE_SVG.write_text(
+        "\n".join(line.rstrip() for line in svg_text.splitlines()) + "\n",
+        encoding="utf-8",
+    )
     plt.close(fig)
 
 
