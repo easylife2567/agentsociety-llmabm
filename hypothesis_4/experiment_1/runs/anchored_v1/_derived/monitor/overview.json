@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T23:09:51",
+  "generated_at": "2026-09-15T14:31:57",
   "runs": [
     {
       "label": "anchored_v1_random_s0",
@@ -21,6 +21,101 @@
       "posts_in_pool": 443
     },
     {
+      "label": "anchored_v1_random_s1",
+      "path": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_random_s1",
+      "process": {
+        "status": "completed",
+        "pid": 67324,
+        "alive": false,
+        "start_time": "2026-09-15T04:19:34.959521+00:00",
+        "end_time": "2026-09-15T06:31:46.015066+00:00",
+        "simulation_time": "2026-06-01T00:00:00",
+        "step_count": 11,
+        "completed_step_count": 1,
+        "terminated": false,
+        "experiment_id": "h4e1_anchored_v1_random_s1"
+      },
+      "current_week": "2026-W22",
+      "weeks_done": 11,
+      "posts_in_pool": 443
+    },
+    {
+      "label": "anchored_v1_random_s2",
+      "path": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_random_s2",
+      "process": {
+        "status": "completed",
+        "pid": 88615,
+        "alive": false,
+        "start_time": "2026-09-14T15:31:29.442934+00:00",
+        "end_time": "2026-09-14T17:46:29.565163+00:00",
+        "simulation_time": "2026-06-01T00:00:00",
+        "step_count": 11,
+        "completed_step_count": 1,
+        "terminated": false,
+        "experiment_id": "h4e1_anchored_v1_random_s2"
+      },
+      "current_week": "2026-W22",
+      "weeks_done": 11,
+      "posts_in_pool": 430
+    },
+    {
+      "label": "anchored_v1_chronological_s0",
+      "path": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_chronological_s0",
+      "process": {
+        "status": "completed",
+        "pid": 88616,
+        "alive": false,
+        "start_time": "2026-09-14T15:31:29.446703+00:00",
+        "end_time": "2026-09-14T18:13:12.729552+00:00",
+        "simulation_time": "2026-05-31T23:00:00",
+        "step_count": 693,
+        "completed_step_count": 693,
+        "terminated": false,
+        "experiment_id": "h4e1_anchored_v1_chronological_s0"
+      },
+      "current_week": "2026-W22",
+      "weeks_done": 11,
+      "posts_in_pool": 462
+    },
+    {
+      "label": "anchored_v1_chronological_s1",
+      "path": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_chronological_s1",
+      "process": {
+        "status": "completed",
+        "pid": 3631,
+        "alive": false,
+        "start_time": "2026-09-14T17:46:33.767457+00:00",
+        "end_time": "2026-09-14T20:15:01.565329+00:00",
+        "simulation_time": "2026-05-31T23:00:00",
+        "step_count": 693,
+        "completed_step_count": 693,
+        "terminated": false,
+        "experiment_id": "h4e1_anchored_v1_chronological_s1"
+      },
+      "current_week": "2026-W22",
+      "weeks_done": 11,
+      "posts_in_pool": 469
+    },
+    {
+      "label": "anchored_v1_chronological_s2",
+      "path": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_chronological_s2",
+      "process": {
+        "status": "completed",
+        "pid": 3769,
+        "alive": false,
+        "start_time": "2026-09-14T17:47:33.423039+00:00",
+        "end_time": "2026-09-14T20:14:49.333119+00:00",
+        "simulation_time": "2026-05-31T23:00:00",
+        "step_count": 693,
+        "completed_step_count": 693,
+        "terminated": false,
+        "experiment_id": "h4e1_anchored_v1_chronological_s2"
+      },
+      "current_week": "2026-W22",
+      "weeks_done": 11,
+      "posts_in_pool": 468
+    },
+    {
       "label": "anchored_v1_interest_s0",
       "path": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_interest_s0",
       "process": {
@@ -38,6 +133,44 @@
       "current_week": "2026-W22",
       "weeks_done": 11,
       "posts_in_pool": 500
+    },
+    {
+      "label": "anchored_v1_interest_s1",
+      "path": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_interest_s1",
+      "process": {
+        "status": "completed",
+        "pid": 6421,
+        "alive": false,
+        "start_time": "2026-09-14T18:13:15.444175+00:00",
+        "end_time": "2026-09-14T20:17:22.876535+00:00",
+        "simulation_time": "2026-06-01T00:00:00",
+        "step_count": 11,
+        "completed_step_count": 1,
+        "terminated": false,
+        "experiment_id": "h4e1_anchored_v1_interest_s1"
+      },
+      "current_week": "2026-W22",
+      "weeks_done": 11,
+      "posts_in_pool": 478
+    },
+    {
+      "label": "anchored_v1_interest_s2",
+      "path": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_interest_s2",
+      "process": {
+        "status": "completed",
+        "pid": 18718,
+        "alive": false,
+        "start_time": "2026-09-14T20:14:58.252346+00:00",
+        "end_time": "2026-09-14T22:02:02.260199+00:00",
+        "simulation_time": "2026-06-01T00:00:00",
+        "step_count": 11,
+        "completed_step_count": 1,
+        "terminated": false,
+        "experiment_id": "h4e1_anchored_v1_interest_s2"
+      },
+      "current_week": "2026-W22",
+      "weeks_done": 11,
+      "posts_in_pool": 478
     }
   ],
   "field_docs": {

@@ -1,11 +1,18 @@
 # 多 Run 总览（CurationDynamics 3 臂 × 3 seed = 9 runs）
 
-- 生成时间：2026-09-14T23:09:51
+- 生成时间：2026-09-15T14:31:57
 
 | run | 状态 | 进程 | 周进度 | 当前周 | 涌现G | Agent帖累计 | 供给前二(combined) | 帖池 |
 |---|---|---|---|---|---|---|---|---|
+| anchored_v1_chronological_s0 | completed |  | 11/11 | 2026-W22 | 1.213 | 212 | 玩梗69.8%、营销16.3% | 462 |
+| anchored_v1_chronological_s1 | completed |  | 11/11 | 2026-W22 | 1.219 | 219 | 玩梗69.0%、营销16.7% | 469 |
+| anchored_v1_chronological_s2 | completed |  | 11/11 | 2026-W22 | 1.209 | 218 | 玩梗69.8%、营销16.3% | 468 |
 | anchored_v1_interest_s0 | completed |  | 11/11 | 2026-W22 | 1.229 | 233 | 玩梗68.9%、营销15.6% | 500 |
+| anchored_v1_interest_s1 | completed |  | 11/11 | 2026-W22 | 1.231 | 228 | 玩梗70.5%、营销15.9% | 478 |
+| anchored_v1_interest_s2 | completed |  | 11/11 | 2026-W22 | 1.224 | 228 | 玩梗71.1%、营销15.6% | 478 |
 | anchored_v1_random_s0 | completed |  | 11/11 | 2026-W22 | 1.205 | 193 | 玩梗55.2%、营销24.1% | 443 |
+| anchored_v1_random_s1 | completed |  | 11/11 | 2026-W22 | 1.192 | 193 | 玩梗54.8%、营销22.6% | 443 |
+| anchored_v1_random_s2 | completed |  | 11/11 | 2026-W22 | 1.192 | 180 | 玩梗56.7%、营销23.3% | 430 |
 
 **字段说明**：
 - `status`：run 当前状态（pid.json 心跳）：running=运行中 / completed=完成 / failed=失败。
