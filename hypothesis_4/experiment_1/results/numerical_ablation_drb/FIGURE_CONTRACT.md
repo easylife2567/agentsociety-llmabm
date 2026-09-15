@@ -8,3 +8,13 @@
 - **视觉中心**：下方面板展示三项消融相对完整模型的类型发言率百分点差。
 - **输出文件**：`charts/figure_01_drb_numerical_ablation.png` 与同名 SVG。
 - **审稿风险检查**：必须标注这是 numerical proxy 而非正式 ABM/LLM run；误差带仅表示 Monte Carlo 不确定性；表征份额以 Agent 固定类型的供给构成为代理。
+
+## 模板同构堆叠面积对比图
+
+- **核心发现**：Full 与 No B / No D / No R 在周度绝对供给构成上呈现不同的时间签名。
+- **证据来源**：`data/drb_ablation_seed_week_type.csv` 中 100 个配对 seed 的 Agent 供给均值，加上 `calibrate_speak.INJECTED_BY_WEEK` 的固定数值代理注入供给；不读取正式 run、replay 或 decision log。
+- **图件范围**：三张 Full-vs-ablation 并排对比图，以及一张 Full + 三消融的 2×2 总览图。
+- **图件结构**：沿用用户指定模板的六类绝对供给堆叠面积、颜色、顺序及 W13 事件线；四条件统一纵轴 0–100。
+- **分析范围**：100 个配对 seed（3000–3099），W12–W22，full / no B / no D / no R。
+- **输出文件夹**：`charts/template_stacked_area/`。
+- **审稿风险检查**：图中必须直接标注“100-seed numerical proxy mean”和“No formal replay or LLM run was used”；固定注入供给不随消融条件变化。
