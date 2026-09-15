@@ -51,7 +51,13 @@ WINDOW = 1
 VALID_TYPES = ["meme", "mourning", "education", "marketing", "other"]
 STACK_TYPES = ["meme", "mourning", "education", "marketing", "other"]
 TYPE_COLORS = {t: armplot.TYPE_COLOR[t] for t in STACK_TYPES}
-TYPE_LABELS = {t: armplot.TYPE_LABEL_EN[t] for t in STACK_TYPES}
+TYPE_LABELS = {
+    "meme": "玩梗",
+    "mourning": "悼念",
+    "education": "教育",
+    "marketing": "营销",
+    "other": "其他",
+}
 
 
 def constrained_multivariate_dtw(
@@ -230,13 +236,13 @@ def main() -> int:
         }
     )
 
-    fig = plt.figure(figsize=(11.8, 11.1))
+    fig = plt.figure(figsize=(11.8, 10.6))
     grid = fig.add_gridspec(3, 2, height_ratios=[1, 1, 0.88], hspace=0.43, wspace=0.18)
     panels = [
-        ("Observed benchmark", observed, "a"),
-        ("Random (3-seed mean)", mean_matrices["random"], "b"),
-        ("Chronological (3-seed mean)", mean_matrices["chronological"], "c"),
-        ("Interest (3-seed mean)", mean_matrices["interest"], "d"),
+        ("现实基准", observed, "a"),
+        ("Random（3-seed均值）", mean_matrices["random"], "b"),
+        ("Chronological（3-seed均值）", mean_matrices["chronological"], "c"),
+        ("Interest（3-seed均值）", mean_matrices["interest"], "d"),
     ]
     axes = []
     for index, (title, values, label) in enumerate(panels):
@@ -244,18 +250,18 @@ def main() -> int:
         plot_composition_panel(ax, values, weeks, title, label)
         axes.append(ax)
     for ax in (axes[0], axes[2]):
-        ax.set_ylabel("Content composition")
+        ax.set_ylabel("内容构成")
     for ax in (axes[1], axes[3]):
         ax.tick_params(labelleft=False)
     for ax in (axes[2], axes[3]):
-        ax.set_xlabel("Week")
+        ax.set_xlabel("周次")
 
     handles, labels = axes[0].get_legend_handles_labels()
     fig.legend(
         handles,
         labels,
         loc="upper center",
-        bbox_to_anchor=(0.5, 0.905),
+        bbox_to_anchor=(0.5, 0.985),
         ncol=5,
         fontsize=9.5,
     )
@@ -293,7 +299,7 @@ def main() -> int:
         ax.text(
             max(scores[arm]) + 0.55,
             yi,
-            f"{mean:.1f} pp",
+            f"{mean:.1f}",
             color=color,
             fontweight="bold",
             va="center",
@@ -303,7 +309,7 @@ def main() -> int:
     ax.text(
         means[best_index] * 0.50,
         best_index,
-        "Lowest mean",
+        "均值最低",
         color="white",
         fontweight="bold",
         va="center",
@@ -314,10 +320,10 @@ def main() -> int:
     ax.set_yticks(y, [armplot.ARM_LABEL_EN[arm] for arm in present])
     ax.invert_yaxis()
     ax.set_xlim(0, max(max(values) for values in scores.values()) + 5.0)
-    ax.set_xlabel("Path-normalized multivariate DTW distance (percentage points; lower is better)")
+    ax.set_xlabel("路径长度归一化的多变量DTW距离（×100；数值越低，拟合越好）")
     ax.set_title(
-        "Constrained DTW fit across five content types (window = +/- 1 week)\n"
-        "Bars = 3-seed mean; points = seeds; error bars = min--max",
+        "五类内容构成的受限多变量DTW拟合（窗口 = ±1周）\n"
+        "条形 = 3-seed均值；点 = 各seed；误差线 = min–max范围",
         fontsize=11.5,
         fontweight="bold",
         pad=6,
@@ -335,22 +341,7 @@ def main() -> int:
         va="bottom",
     )
 
-    fig.suptitle(
-        "五类表征轨迹的现实复现与受限多变量DTW拟合",
-        fontsize=15,
-        fontweight="bold",
-        y=0.982,
-    )
-    fig.text(
-        0.5,
-        0.952,
-        "W12--W22；Agent-only供给对照排除噪音并重归一化的现实基准",
-        ha="center",
-        va="center",
-        fontsize=10.5,
-        color="#444444",
-    )
-    fig.subplots_adjust(top=0.855, bottom=0.075, left=0.085, right=0.965)
+    fig.subplots_adjust(top=0.925, bottom=0.075, left=0.085, right=0.965)
     fig.savefig(PNG_OUT, dpi=300, facecolor="white")
     fig.savefig(SVG_OUT, facecolor="white")
     plt.close(fig)
