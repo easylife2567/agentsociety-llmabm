@@ -92,24 +92,38 @@
   },
   "excluded_from_current_analysis": [
     {
-      "path": "hypothesis_4/experiment_1/runs/{random,chronological,interest}_s{0,1,2}",
+      "path": "archive/hypothesis_4_experiment_1_history_20260915/hypothesis_4/experiment_1/runs/{random,chronological,interest}_s{0,1,2}",
+      "original_path": "hypothesis_4/experiment_1/runs/{random,chronological,interest}_s{0,1,2}",
       "classification": "historical_formal_old_formula"
     },
     {
-      "path": "hypothesis_4/experiment_1/results",
+      "path": "archive/hypothesis_4_experiment_1_history_20260915/hypothesis_4/experiment_1/results",
+      "original_path": "hypothesis_4/experiment_1/results/{charts,snapshots,tables}",
       "classification": "historical_frozen_results_old_formula"
     },
     {
-      "path": "hypothesis_4/experiment_1/runs_retired_pre_batch",
+      "path": "archive/hypothesis_4_experiment_1_history_20260915/hypothesis_4/experiment_1/runs_retired_pre_batch",
+      "original_path": "hypothesis_4/experiment_1/runs_retired_pre_batch",
       "classification": "smoke_probe_or_prebatch_history"
     },
     {
-      "path": "hypothesis_4/experiment_1/runs_retired_writer_bug",
+      "path": "archive/hypothesis_4_experiment_1_history_20260915/hypothesis_4/experiment_1/runs_retired_writer_bug",
+      "original_path": "hypothesis_4/experiment_1/runs_retired_writer_bug",
       "classification": "invalid_writer_incident"
     },
     {
-      "path": "hypothesis_4/experiment_1/runs_stopped_partial",
+      "path": "archive/hypothesis_4_experiment_1_history_20260915/hypothesis_4/experiment_1/runs_stopped_partial",
+      "original_path": "hypothesis_4/experiment_1/runs_stopped_partial",
       "classification": "invalid_or_partial"
+    },
+    {
+      "path": "archive/hypothesis_4_experiment_1_history_20260915/hypothesis_4/experiment_1/init",
+      "original_path": "hypothesis_4/experiment_1/init/{configs_retired_2factor,configs/*_s*.json without anchored_v1 prefix}",
+      "classification": "historical_or_retired_config"
+    },
+    {
+      "path": "archive/hypothesis_4_experiment_1_history_20260915/hypothesis_4/experiment_1/{charts,data,monitor,runtime_logs,historical_code_and_docs}",
+      "classification": "historical_derived_or_diagnostic_artifacts"
     }
   ]
 }

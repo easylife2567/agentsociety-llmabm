@@ -75,7 +75,7 @@ interest 对玩梗的选择性激活最强。
 ## 5. 产物
 
 - `init/steps_chronological_hourly.yaml`：693 个事件驱动小时批次；
-- `data/chronological_hourly_prediction.csv`：周度代理明细；
-- `data/chronological_hourly_prediction.json`：设计元数据与周度代理结果；
-- `charts/prediction/PROXY_chronological_hourly_expected.png`；
-- `charts/prediction/PROXY_chronological_hourly_expected.svg`。
+- 正式 3-seed 结果：`runs/anchored_v1/_derived/data/anchored_v1_chronological_s{0,1,2}/`；
+- 正式聚合结果：`runs/anchored_v1/_derived/data/arm/`；
+- 设计阶段的周度代理 CSV/JSON 和预期图已移至工作区根目录
+  `archive/hypothesis_4_experiment_1_history_20260915/`，不进入正式分析。

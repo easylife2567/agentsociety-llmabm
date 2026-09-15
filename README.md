@@ -157,15 +157,13 @@ hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_*
 
 | 路径或类型 | 分类 | 当前用途 |
 |---|---|---|
-| `runs/{random,chronological,interest}_s{0,1,2}` | 历史正式批，旧公式 `U=D·R` | 版本审计，不进入最新分析 |
-| `runs_retired_pre_batch/` | 历史烟测与早期探针 | 诊断历史 |
-| `runs_retired_writer_bug/` | replay 写入器事故样本 | 无效 run |
-| `runs_stopped_partial/` | 停止、中断或混跑残留 | 无效或不完整 run |
-| `results/` | 旧冻结结果或代理分析 | 不作为最新 9-run 结果 |
-| `init/configs_retired_2factor/` | 已退役的两因子配置 | 版本审计 |
-| `init/configs/{random,chronological,interest}_s*.json` | 旧公式配置 | 不用于 `anchored_v1` |
+| 旧公式 9-run 与旧冻结图表/CSV | 历史正式批，旧公式 `U=D·R` | 已移出 `hypothesis_4/`，仅作版本审计 |
+| 历史烟测与早期探针 | `smoke/probe` | 已移出 `hypothesis_4/` |
+| replay 写入器事故样本 | `invalid` | 已移出 `hypothesis_4/` |
+| 停止、中断或混跑残留 | `invalid/partial` | 已移出 `hypothesis_4/` |
+| 退役两因子配置与旧公式配置 | `historical_config` | 已移出 `hypothesis_4/` |
 
-历史材料如果因审计要求必须随包提供，应放在明确标注的历史附件中；不得移动到 `anchored_v1/`，也不得修改 `analysis_sources.json` 将其列为正式数据源。
+上述材料已备份到本地 `archive/hypothesis_4_experiment_1_history_20260915/`，不属于比赛提交内容；索引见根目录 `ARCHIVE_MANIFEST_H4E1_history_20260915.md`。不得将其放回 `anchored_v1/`，也不得修改 `analysis_sources.json` 将其列为正式数据源。
 
 ## 7. 消融结果说明
 
@@ -203,6 +201,7 @@ hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_*
 - `agentsociety_data/` 等可重建运行缓存；
 - 未完成的 `paper/`；
 - 全量文献 PDF 和重复研究档案。
+- `archive/` 下的本地历史实验备份。
 
 上游 AgentSociety2 不随包复制；请使用前述版本号和 revision 复现依赖环境。
 

@@ -28,6 +28,9 @@ datasets/zhangxf_labeled/valid_posts_clusters.parquet
 # 归档压缩包（体积大，由打包流程生成，不入库）
 AgentSociety_*.tar.gz
 
+# 本地历史实验备份（不进入比赛提交与 Git；索引见根目录 ARCHIVE_MANIFEST_*）
+archive/
+
 # CurationDynamics H4E1 引擎原始产物（由 run_batch 自动生成，不入库）。
 # anchored_v1 本轮用独立目录收纳 9 个 raw run；其中 README 与 _derived/ 下的
 # 持久 CSV/图表需要入库，raw run 目录本身仍保持忽略。

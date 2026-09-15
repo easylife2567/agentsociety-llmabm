@@ -37,7 +37,7 @@
     }
   },
   "retired_probe": {
-    "note": "interest_nog_s0（no-G 探针）已跑完并升格为正式模型的等价物——G 退役后的上一轮模型为 U = D·R；配置移入 configs_retired_2factor/，实测结果见 SMOKE_DIAGNOSIS_w19_cliff.md §五之三"
+    "note": "interest_nog_s0（no-G 探针）已跑完并升格为正式模型的等价物——G 退役后的上一轮模型为 U = D·R；配置已移至工作区根目录本地历史归档，实测结果见 SMOKE_DIAGNOSIS_w19_cliff.md §五之三"
   },
   "factors": {
     "recommendation_algorithm": [

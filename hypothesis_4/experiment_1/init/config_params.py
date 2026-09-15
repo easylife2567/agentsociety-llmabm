@@ -33,8 +33,8 @@
   抽样、后者按精确发布时间取行动时刻前最新 10 条。random 按本轮裁定
   直接从截至当周 Env 已出现的全部帖子中均匀抽满 10 槽。参数仍统一写入配置，random
   分支由 env 明确忽略，详见 manifest["feed_mechanism"]。
-- （已作废）探索性反事实探针 interest_nog_s0：G 退役后该探针即正式模型，配置移入
-  configs_retired_2factor/
+- （已作废）探索性反事实探针 interest_nog_s0：G 退役后该探针即正式模型，配置已移出
+  hypothesis_4 并保存于工作区根目录的本地历史归档
   = interest_normal_s0 去掉玩梗型的涌现环境因子（θ=0，大家都用 D·R），门槛基数不动；
   作为历史证据保留（见 EXPERIMENT.md「no-G 探针 → 已升格为正式模型」节）。
 - init/init_config.json 为标准 CLI 默认配置（= configs/anchored_v1_interest_s0.json）。
@@ -540,8 +540,9 @@ print(f"✓ init_config.json (= configs/{default_run_id}.json)")
 #
 # 2026-09-12 用户裁定「G 没有生效，直接去掉 G —— 只由沉默螺旋和注意力衰减两条规则约束
 # Agent」之后，探针即成为正式模型（U = D·R），故不再单独生成 interest_nog_s0.json：
-# 它对应的 run 已跑完并作为 G 退役的证据留痕（configs_retired_2factor/interest_nog_s0.json，
-# 结果见 SMOKE_DIAGNOSIS_w19_cliff.md §五之三）。
+# 它对应的 run 已跑完并作为 G 退役的证据留痕（配置与 run 位于工作区根目录
+# archive/hypothesis_4_experiment_1_history_20260915/，结果见
+# SMOKE_DIAGNOSIS_w19_cliff.md §五之三）。
 # ---------------------------------------------------------------------------
 
 # ---------------------------------------------------------------------------
@@ -590,7 +591,7 @@ manifest = {
     },
     "retired_probe": {
         "note": ("interest_nog_s0（no-G 探针）已跑完并升格为正式模型的等价物——"
-                 "G 退役后的上一轮模型为 U = D·R；配置移入 configs_retired_2factor/，"
+                 "G 退役后的上一轮模型为 U = D·R；配置已移至工作区根目录本地历史归档，"
                  "实测结果见 SMOKE_DIAGNOSIS_w19_cliff.md §五之三"),
     },
     "factors": {"recommendation_algorithm": ALGORITHMS, "random_seed": SEEDS},

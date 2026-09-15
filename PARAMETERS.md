@@ -140,8 +140,9 @@ marketing/education/other（如营销标定均值 1.019 远超旧上限 0.2）�
 > 选点标准：agent 供给 ≈300–350 帖/run、W13 悼念冲击与玩梗 W20–22 回潮形态合理）。
 > 该脚本现为同构数值代理底座：`simulate()` 已支持 `utility_mode="anchored"|"multiplicative"`、
 > `baseline_utility` 锚点与 `spiral_mult` 覆盖，并保留 `--assert-replay` 涌现环境公式断言。
-> random-global 臂的代理预测另见 `predict_random_global.py`
-> （冻结锚定参数 + 全历史均匀抽样；产物 `data/random_global_proxy_prediction.{json,csv}`）。
+> random-global 臂的历史代理预测与脚本已移至根目录本地归档
+> `archive/hypothesis_4_experiment_1_history_20260915/`；正式结论以
+> `runs/anchored_v1/` 的真实 run 为准。
 
 ### 1.4 回退默认值 `_PARAM_DEFAULTS`
 
@@ -308,7 +309,8 @@ RNG 独立流（第 385–388 行）：注入=`Random(seed)`、随机臂选址=`
   `anchored_v1_{algorithm}_s{seed}`，与旧公式（U=D·R）轮的 run/配置隔离。
 - 群体 100 人全 9 配置共享。默认 `init_config.json` = `anchored_v1_interest_s0`。
 - ~~no-G 反事实探针~~：已作废升格——G 退役后探针即正式模型；历史配置移入
-  `configs_retired_2factor/`，证据留痕见 `SMOKE_DIAGNOSIS_w19_cliff.md` §五之三。
+  根目录本地归档 `archive/hypothesis_4_experiment_1_history_20260915/`，证据留痕见
+  `SMOKE_DIAGNOSIS_w19_cliff.md` §五之三。
 
 ### 5.2 群体与随机种子
 
@@ -346,14 +348,17 @@ RNG 独立流（第 385–388 行）：注入=`Random(seed)`、随机臂选址=`
 - `EMERGENCE_FLOW_BY_WEEK` = 真实数据各周全量帖数（W12–W22：1246/11394/8678/5050/
   3756/2416/1703/1792/2735/4252/5338），作为空旷度 S 的现实口径流量调度。
 
-### 5.5 本轮运行状态（2026-09-14）
+### 5.5 本轮运行状态（2026-09-15）
 
 | run | 状态 | 备注 |
 |---|---|---|
-| `anchored_v1_random_s0` | **completed**（11/11 ticks，W22，2026-09-14） | 基线 run（random_global 强去策展反事实）。周度数据 `data/anchored_v1_random_s0/`（weekly_supply / behavior / exposure / mechanism / bias / benchmark 六表），正式图 `charts/formal/anchored_v1_random_s0__chart1–4`（玩梗份额 sim vs real、周供给量、供给堆叠面积、玩梗发言率）；W22 玩梗供给份额 0.552（真实 0.603） |
-| `anchored_v1_interest_s0/s1/s2` | 已清理 | 曾失败于 W15（3/11 ticks）；失败 run 目录与监视快照经用户 2026-09-14 裁定删除（runs/monitor 本就不入库），待重跑 |
-| `anchored_v1_chronological_*` | 未开跑 | — |
-| （上一轮 U=D·R）`random/chronological/interest_s0–2` | completed | 历史对照，不属于本轮 9-run 批次 |
+| `anchored_v1_random_s0/s1/s2` | **completed，3/3** | 每 run 11/11 周级批次，覆盖 W12–W22 |
+| `anchored_v1_chronological_s0/s1/s2` | **completed，3/3** | 每 run 693/693 小时级批次，汇总为 W12–W22 的 11 个周点 |
+| `anchored_v1_interest_s0/s1/s2` | **completed，3/3** | 每 run 11/11 周级批次，覆盖 W12–W22；`interest_s0` 为官方单-run兼容入口 |
+| （上一轮 `U=D·R`）旧 9-run | 已归档 | 不属于本轮正式批次，不进入 monitor、聚合表或分析输入 |
+
+最新周度六表位于 `runs/anchored_v1/_derived/data/<run_id>/`，三臂聚合位于
+`runs/anchored_v1/_derived/data/arm/`，正式图位于 `runs/anchored_v1/_derived/charts/`。
 
 ---
 
@@ -382,8 +387,8 @@ config 未显式覆盖，取代码默认值。
 | `custom/envs/curation_mechanisms.py` | **feed 机制与决策共享纯函数**（周序数、文本归一化/词表命中/倾向分、生命周期与曝光饱和、`floor_eligible` 保底资格、兴趣打分、`spiral_factor` / `fatigue_factor` / `anchored_utility`、softmax 权重与加权无放回抽样）——agent / env / 校准脚本三处同源 |
 | `custom/envs/curation_dynamics_space.py` | 涌现环境（观测序列：窗口/K_a/K_f/β/σ/clamp）、feed 机制（random-global 全历史均匀抽样 / 生命周期 / 退场 / 保底 / 置顶）、排序（alpha/gamma/noise/exposure）、feed_size |
 | `hypothesis_4/experiment_1/init/config_params.py` | 因子设计（anchored_v1 单因子 9 配置）、群体种子、时间轴、注入分配、官方讣告帖、env 实验传参、manifest（含 `anchored_calibration` 标定备案） |
-| `hypothesis_4/experiment_1/predict_anchored_utility.py` | 锚定式效用标定与代理预测（B_i/alpha_D/λ；W13–W18 拟合、W19–W22 留出）；产物 `data/anchored_utility_prediction.{json,csv}`、`charts/prediction/PROXY_anchored_utility_prediction.png` |
-| `hypothesis_4/experiment_1/predict_random_global.py` | random-global 臂代理预测（冻结锚定参数 + 全历史均匀抽样，无生命周期/置顶/保底）；产物 `data/random_global_proxy_prediction.{json,csv}` |
+| `hypothesis_4/experiment_1/predict_anchored_utility.py` | 锚定式效用标定与代理预测（B_i/alpha_D/λ；W13–W18 拟合、W19–W22 留出）；保留产物 `data/anchored_utility_prediction.{json,csv}` |
+| 根目录 `archive/hypothesis_4_experiment_1_history_20260915/` | random-global、chronological 与旧两机制等历史代理脚本/产物；不进入当前正式分析 |
 | `hypothesis_4/experiment_1/calibrate_speak.py` | 同构数值代理底座（`simulate` 支持 anchored/multiplicative）、门槛基数 0.95 扫描史、`--assert-replay` 涌现环境公式断言 |
 | `锚定式事件表达激活模型.md` | 理论冻结讨论稿（2026-09-14）：构念（事件表达激活势能）、核心方程、理论锚点（Noelle-Neumann/Blanco/Sohn & Geidner/Cabrera/Granovetter）、命题 1–6、可证伪条件 |
 | `hypothesis_4/experiment_1/SMOKE_DIAGNOSIS_w19_cliff.md` | 2026-09-12 烟测诊断（W19 悬崖与老帖霸屏的因果链、G 退役、D 改 tanh、R 尺度沿革、被实测排除的改法、用户裁定） |

@@ -65,5 +65,6 @@ W16–W19 多数类型长期保持高表达。完整数值、置信区间和解�
 
 ## 4. 与旧文档的关系
 
-`PREDICTION_counterfactual_2mech.md` 记录的是旧公式 \(U=D\cdot R\) 下的历史预测，
-仅保留作版本审计，不再作为 anchored_v1 的消融预登记或跑批依据。本文件覆盖其当前效力。
+旧公式 \(U=D\cdot R\) 下的预测文档和代理脚本已移至工作区根目录
+`archive/hypothesis_4_experiment_1_history_20260915/`，仅保留作版本审计，不再作为
+anchored_v1 的消融预登记或跑批依据。本文件覆盖其当前效力。

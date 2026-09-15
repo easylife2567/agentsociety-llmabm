@@ -14,8 +14,8 @@
 （runs/anchored_v1/_derived/data/<run_id>/weekly_*.csv），作为 raw run（已 gitignore）
 之外的持久数据副本；按 run 分目录，避免多 run 批跑时互相覆盖。
 
-本轮正式图默认写入 runs/anchored_v1/_derived/charts/。预测图不归本脚本
-（见 proxy_predict*.py，仍保留在历史 charts/prediction/）。
+本轮正式图默认写入 runs/anchored_v1/_derived/charts/。历史预测脚本与
+charts/prediction/ 已移至工作区根目录的本地归档，不参与正式分析。
 
 用法：
     $PYTHON_PATH hypothesis_4/experiment_1/plot_run_charts.py \
