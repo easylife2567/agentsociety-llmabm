@@ -102,7 +102,8 @@ def extract_array(txt, expect):
 
 
 def label_batch(row_nums, posts):
-    """posts=[(title,content,media)]，返回 [(row_num,cat,reason,valid,failed)]。"""
+    """posts=[(title,content,media)]，返回 [{"row_num","category","reason","valid","failed"}]。
+    注意：必须返回 dict 而非元组——append_jsonl 按字典序列化，元组会被写成数组行导致断点解析失败。"""
     n = len(posts)
     user_msg = f"请依次判定以下 {n} 条帖子：\n\n" + "\n\n".join(
         fmt_post(i + 1, *posts[i]) for i in range(n))
@@ -123,13 +124,17 @@ def label_batch(row_nums, posts):
             recs = []
             for k, rn in enumerate(row_nums):
                 cat, reason, valid = got[k + 1]
-                recs.append((rn, cat, reason, valid, False))
+                recs.append({"row_num": rn, "category": cat, "reason": reason,
+                             "valid": valid, "failed": False})
             return recs
         except Exception as e:
             if attempt == 2:
-                return [(rn, "其他讨论", f"[API失败:{str(e)[:80]}]", "无效", True) for rn in row_nums]
+                return [{"row_num": rn, "category": "其他讨论",
+                         "reason": f"[API失败:{str(e)[:80]}]", "valid": "无效", "failed": True}
+                        for rn in row_nums]
             time.sleep(2 ** attempt)
-    return [(rn, "其他讨论", "[重试失败]", "无效", True) for rn in row_nums]
+    return [{"row_num": rn, "category": "其他讨论", "reason": "[重试失败]",
+             "valid": "无效", "failed": True} for rn in row_nums]
 
 
 def load_done():
