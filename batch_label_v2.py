@@ -33,6 +33,9 @@ print(f"[配置] 输出={OUT}", flush=True)
 
 CLIENT = OpenAI(api_key=API_KEY, base_url=API_BASE, timeout=120)
 
+# 源表列索引，main() 读取表头后填充，run_pool() 使用
+IDX = {}
+
 SYSTEM_PROMPT = """你是一个中文社交媒体内容分析助手。请对每条帖子进行三方面判定。
 
 【内容类别 - 六选一，不允许自创】
@@ -134,8 +137,8 @@ def run_pool(jobs, done_count, total, t0):
     appended = 0
     batch_buf = []
     with ThreadPoolExecutor(max_workers=WORKERS) as ex:
-        futs = [ex.submit(label_one, rn, row[idx["title"]], row[idx["content"]] or row[idx["full_content"]],
-                          row[idx["media_type"]]) for rn, row in jobs]
+        futs = [ex.submit(label_one, rn, row[IDX["title"]], row[IDX["content"]] or row[IDX["full_content"]],
+                          row[IDX["media_type"]]) for rn, row in jobs]
         for fut in as_completed(futs):
             row_num, cat, reason, valid, failed = fut.result()
             batch_buf.append({"row_num": row_num, "category": cat, "reason": reason,
@@ -167,7 +170,7 @@ def main():
     ws = wb["Sheet1"]
     it = ws.iter_rows(values_only=True)
     header = list(next(it))
-    idx = {name: header.index(name) for name in ["title", "content", "full_content", "media_type"]}
+    IDX.update({name: header.index(name) for name in ["title", "content", "full_content", "media_type"]})
     rows = {}
     rn = 1
     for row in it:
