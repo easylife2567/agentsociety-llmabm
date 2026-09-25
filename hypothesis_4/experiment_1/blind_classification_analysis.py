@@ -80,13 +80,13 @@ def cohen_kappa(pairs: list[tuple[str, str]]) -> float:
     return (po - pe) / (1 - pe) if pe < 1 else 0.0
 
 
-def weekly_shares(rows: list[dict], key: str) -> dict[tuple[str, str], dict[str, float]]:
-    """(arm, week) -> 五类供给份额（排除噪音后归一）。"""
-    buckets: dict[tuple[str, str], Counter] = defaultdict(Counter)
+def weekly_shares(rows: list[dict], key: str) -> dict[tuple[str, int, str], dict[str, float]]:
+    """(arm, seed, week) -> 五类供给份额（排除噪音后归一）。"""
+    buckets: dict[tuple[str, int, str], Counter] = defaultdict(Counter)
     for r in rows:
         t = r.get(key)
         if t in VALID_TYPES:
-            buckets[(r["arm"], r["week"])][t] += 1
+            buckets[(r["arm"], int(r["seed"]), r["week"])][t] += 1
     out = {}
     for k, counter in buckets.items():
         total = sum(counter.values())
@@ -101,7 +101,7 @@ def run_dtw(rows: list[dict], key: str, observed: np.ndarray, weeks: list[str]) 
     for arm in ARMS:
         for seed in (0, 1, 2):
             mat = np.asarray(
-                [[shares.get((arm, wk), {}).get(t, 0.0) for t in VALID_TYPES] for wk in weeks],
+                [[shares.get((arm, seed, wk), {}).get(t, 0.0) for t in VALID_TYPES] for wk in weeks],
                 dtype=float,
             )
             score, _ = constrained_multivariate_dtw(mat, observed, window=WINDOW)
@@ -188,15 +188,19 @@ def main() -> int:
         lines.append(f"| {TYPE_CN[pt]} | " + " | ".join(cells) + f" | {row_total} |")
 
     # 周级轨迹
-    lines += ["", "## 3. 周级玩梗供给份额：身份口径 vs 文本口径", ""]
+    def seed_mean(shares: dict, arm: str, wk: str, t: str) -> float:
+        vals = [shares[(arm, s, wk)][t] for s in (0, 1, 2) if (arm, s, wk) in shares]
+        return statistics.fmean(vals) if vals else 0.0
+
+    lines += ["", "## 3. 周级玩梗供给份额：身份口径 vs 文本口径（3 seed 均值）", ""]
     lines.append("| 臂 | 周 | 身份口径 | 文本口径 |")
     lines.append("|---|---|---|---|")
     for arm in ARMS:
         for wk in weeks:
             lines.append(
                 f"| {arm} | {wk.replace('2026-', '')} | "
-                f"{pool_shares.get((arm, wk), {}).get('meme', 0.0):.1%} | "
-                f"{blind_shares.get((arm, wk), {}).get('meme', 0.0):.1%} |"
+                f"{seed_mean(pool_shares, arm, wk, 'meme'):.1%} | "
+                f"{seed_mean(blind_shares, arm, wk, 'meme'):.1%} |"
             )
 
     # DTW 比较
