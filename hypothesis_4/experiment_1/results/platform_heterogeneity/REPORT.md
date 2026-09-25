@@ -12,9 +12,12 @@
 | doubao-seed | gsdata | 16602 | W13 | 0.4% | W19 | W22 | 58.3% |
 | doubao-seed | sinamidu | 33328 | W13 | 0.3% | W22 | W22 | 11.3% |
 | doubao-seed | weibo | 2806 | W21 | 2.4% | W22 | W22 | 30.2% |
-| GLM | gsdata | 16602 | W13 | 1.5% | W19 | W21 | 61.3% |
-| GLM | sinamidu | 33328 | W13 | 0.3% | W22 | W22 | 14.2% |
-| GLM | weibo | 2806 | W13 | 6.0% | W22 | W22 | 35.6% |
+| GLM | gsdata | 16602 | W13 | 1.5% | W19 | W22 | 70.6% |
+| GLM | sinamidu | 33328 | W13 | 0.3% | W22 | W22 | 15.4% |
+| GLM | weibo | 2806 | W21 | 6.0% | W22 | W22 | 37.9% |
+| DeepSeek-V4.1 | gsdata | 16602 | W13 | 0.6% | W19 | W22 | 62.9% |
+| DeepSeek-V4.1 | sinamidu | 33328 | W13 | 0.4% | W22 | W22 | 13.5% |
+| DeepSeek-V4.1 | weibo | 2806 | W21 | 4.2% | W22 | W22 | 35.3% |
 
 ## 2. 各平台周级玩梗份额（DeepSeek 标注）
 

@@ -35,6 +35,7 @@ LABELERS = {
     "DeepSeek": SOURCE_XLSX,
     "doubao-seed": ROOT / "抖音微博小红书-独立重打标_Seed2_1_lite.xlsx",
     "GLM": ROOT / "抖音微博小红书-独立重打标_GLM5_3flash.xlsx",
+    "DeepSeek-V4.1": ROOT / "抖音微博小红书-独立重打标_DSv4_1_flash.xlsx",
 }
 CAT2TYPE = {
     "借势营销": "marketing",

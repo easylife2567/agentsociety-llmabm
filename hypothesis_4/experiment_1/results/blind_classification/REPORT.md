@@ -88,6 +88,13 @@
 
 | 口径 | 排序（由优到劣） | random 均值±sd [min,max] | chronological 均值±sd [min,max] | interest 均值±sd [min,max] |
 |---|---|---|---|---|
-| 身份 pool_type | random > interest > chronological | 26.79±0.62 [26.42, 27.51] | 33.62±1.71 [31.96, 35.37] | 29.24±1.49 [27.52, 30.18] |
-| 文本 blind_type | random > interest > chronological | 29.16±1.48 [27.63, 30.59] | 34.26±2.56 [31.42, 36.41] | 31.81±4.97 [26.11, 35.27] |
+| 身份 pool_type | random > interest > chronological | 25.65±0.83 [25.06, 26.60] | 31.20±2.45 [29.18, 33.92] | 25.98±2.66 [23.38, 28.69] |
+| 文本 blind_type | random > interest > chronological | 27.82±1.39 [26.42, 29.20] | 31.77±4.12 [27.07, 34.76] | 30.27±4.86 [24.69, 33.56] |
+
+### 效标 = DeepSeek-V4.1
+
+| 口径 | 排序（由优到劣） | random 均值±sd [min,max] | chronological 均值±sd [min,max] | interest 均值±sd [min,max] |
+|---|---|---|---|---|
+| 身份 pool_type | random > interest > chronological | 25.60±0.57 [25.11, 26.22] | 33.78±1.73 [32.15, 35.60] | 27.97±2.41 [25.58, 30.40] |
+| 文本 blind_type | random > interest > chronological | 27.34±1.41 [25.76, 28.49] | 34.06±2.76 [30.97, 36.27] | 32.07±4.94 [26.41, 35.50] |
 
