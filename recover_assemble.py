@@ -1,24 +1,25 @@
 #!/usr/bin/env python3
 """
-从 JSONL 恢复 GLM 批量轮判定结果并装配成品 xlsx（一次性恢复工具）。
+从 JSONL 恢复判定结果并装配成品 xlsx（通用版，任意模型轮次可用）。
 
-背景：batch_label_v3.py 的 label_batch 返回元组、append_jsonl 按 dict 序列化，
-导致批量阶段所有记录被写成数组行 [row_num, category, reason, valid, failed]，
-装配阶段 load_done() 按 dict 解析全部丢弃而中止。判定数据本身可完整恢复：
-本脚本同时兼容 dict 行（v2 逐条阶段）与数组行（v3 批量阶段），按 last-wins 去重后装配。
+背景：batch_label_v3.py 早期版本的 label_batch 返回元组、append_jsonl 按 dict 序列化，
+导致批量阶段记录被写成数组行 [row_num, category, reason, valid, failed]。
+本脚本同时兼容 dict 行与数组行；每行取"最新一条成功记录"（无成功记录才兜底）。
+经逐条重试后仍无成功判定的行按真实失败类型兜底标记：
+category=其他讨论, valid=无效, reason=[内容审核拒绝|模型拒答|API无有效输出,需人工复核]
 
-8 条方舟内容审核拒绝行（SensitiveContentDetected，重试不可恢复）标记为：
-category=其他讨论, valid=无效, reason=[内容审核拒绝,需人工复核]
+用法: python recover_assemble.py <slug>
 """
 import json, sys
 from collections import Counter
 import openpyxl
 from openpyxl import Workbook
 
+SLUG = sys.argv[1] if len(sys.argv) > 1 else "GLM5_3flash"
 ROOT = "/Users/easylife/Project/AgentSociety"
 SRC = f"{ROOT}/抖音微博小红书-全量已打标.xlsx"
-JSONL = f"{ROOT}/.label_results_GLM5_3flash.jsonl"
-OUT = f"{ROOT}/抖音微博小红书-独立重打标_GLM5_3flash.xlsx"
+JSONL = f"{ROOT}/.label_results_{SLUG}.jsonl"
+OUT = f"{ROOT}/抖音微博小红书-独立重打标_{SLUG}.xlsx"
 
 # 1) 解析 JSONL（两种行格式兼容，按行号聚合）
 recs_by_row = {}
