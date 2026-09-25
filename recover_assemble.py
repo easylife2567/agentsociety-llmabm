@@ -83,9 +83,15 @@ print(f"完全缺失 {len(missing)} 条")
 if missing:
     print("❌ 存在完全缺失的行，中止装配")
     sys.exit(2)
-MOD_REASON = "[内容审核拒绝,需人工复核]"
 for n in still_failed:
-    labels[n] = {"row_num": n, "category": "其他讨论", "reason": MOD_REASON,
+    reasons = " || ".join(r.get("reason", "") for r in recs_by_row.get(n, []))
+    if "SensitiveContentDetected" in reasons:
+        mod = "[内容审核拒绝,需人工复核]"
+    elif "无法回答" in reasons:
+        mod = "[模型拒答,需人工复核]"
+    else:
+        mod = "[API无有效输出,需人工复核]"
+    labels[n] = {"row_num": n, "category": "其他讨论", "reason": mod,
                  "valid": "无效", "failed": False}
 
 # 4) 装配（结构=原表57列，前三列替换为新判定）
