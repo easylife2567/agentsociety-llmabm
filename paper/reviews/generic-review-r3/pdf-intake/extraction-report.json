@@ -1,0 +1,493 @@
+{
+  "artifacts": [
+    {
+      "path": "source.sha256",
+      "role": "source_digest",
+      "sha256": "42259bfbd984a83dde4ca397364b81fd74fc67ad13689676adb0f5629ed13552",
+      "size_bytes": 65
+    },
+    {
+      "path": "document.txt",
+      "role": "full_text",
+      "sha256": "2f5f47c74f02ef5d5026e0781f4d9b9df573cc0bdad7bd8af1ad586fab0f7e99",
+      "size_bytes": 51756
+    },
+    {
+      "path": "layout.xml",
+      "role": "bbox_layout",
+      "sha256": "8fc991b1c3fca218c3b131f3a3e736b6ae268f5db227568e3a875ae91361dd32",
+      "size_bytes": 378860
+    },
+    {
+      "path": "images-list.txt",
+      "role": "embedded_image_inventory",
+      "sha256": "8d21f6cbb5b87ac24b478271ee80d4d3c47cb9c257f85e09bc87b42c21b2aea3",
+      "size_bytes": 651
+    },
+    {
+      "path": "pages/page-001.txt",
+      "role": "page_text",
+      "sha256": "4cd8903c87cafbfef28516f483f2c2ec2dd6cd949b05b0438366cfda825bb16a",
+      "size_bytes": 3264
+    },
+    {
+      "path": "pages/page-001.png",
+      "role": "page_render",
+      "sha256": "0d22b76e0288c17e58ef2715aaeb33646d7f7945ee71ab9959e988d77653fcf7",
+      "size_bytes": 916425
+    },
+    {
+      "path": "pages/page-002.txt",
+      "role": "page_text",
+      "sha256": "3ecd67ae4e55a1e1d9695d3f3b44eef80c7bfb1f732a4215de5fb3fd9a3d4759",
+      "size_bytes": 3164
+    },
+    {
+      "path": "pages/page-002.png",
+      "role": "page_render",
+      "sha256": "57b444fd8eaecdf8adb8c11c10998a5a03309fcdda25db52af8b75fa45af3738",
+      "size_bytes": 866053
+    },
+    {
+      "path": "pages/page-003.txt",
+      "role": "page_text",
+      "sha256": "90a7ff5eef2e1d27fc71e81ce9ce554680649e9472cff76efe23ece9b6723f85",
+      "size_bytes": 3259
+    },
+    {
+      "path": "pages/page-003.png",
+      "role": "page_render",
+      "sha256": "bddfa9120407920bcdf2f0298f8a051c08653f1baf3d4067ba3320cfbca0bf1f",
+      "size_bytes": 863157
+    },
+    {
+      "path": "pages/page-004.txt",
+      "role": "page_text",
+      "sha256": "a70178403334c01d8a7c5fa55c060f08ccf129c7990a7dec07676a5fcf116aac",
+      "size_bytes": 3046
+    },
+    {
+      "path": "pages/page-004.png",
+      "role": "page_render",
+      "sha256": "528d78f217abc1e8e567a4b14825789a763056f70d14b5a393ede9c0a33c9c40",
+      "size_bytes": 840857
+    },
+    {
+      "path": "pages/page-005.txt",
+      "role": "page_text",
+      "sha256": "cd5de159a2a2b9b74cb25cb5b2846d6aa034118cbb7564c8e638ae6230d45c31",
+      "size_bytes": 2349
+    },
+    {
+      "path": "pages/page-005.png",
+      "role": "page_render",
+      "sha256": "5833a207603f7caf5ce26b46cfa316c6d93c1661f67329a2be9336ce17be8219",
+      "size_bytes": 637324
+    },
+    {
+      "path": "pages/page-006.txt",
+      "role": "page_text",
+      "sha256": "bcb8f697d805ebb5f7d61454747e8980d79955f58a34eed03419069d207ffa8a",
+      "size_bytes": 2091
+    },
+    {
+      "path": "pages/page-006.png",
+      "role": "page_render",
+      "sha256": "8ac224e9f29ea3f7dc6a5c61340255f9190577104e62991515feccb037d1f2a1",
+      "size_bytes": 697909
+    },
+    {
+      "path": "pages/page-007.txt",
+      "role": "page_text",
+      "sha256": "a329ca9a6f3992d8bd238750af156ed539aa83d20e4eef2ae77f8c629e528845",
+      "size_bytes": 3003
+    },
+    {
+      "path": "pages/page-007.png",
+      "role": "page_render",
+      "sha256": "20dc019174ed4f42abea7a2d11bbcd102ec6957a3edbb566f624639e5b7a85fc",
+      "size_bytes": 773734
+    },
+    {
+      "path": "pages/page-008.txt",
+      "role": "page_text",
+      "sha256": "0990551c758617b0dfba6fdc75035099959284573b4092863cd666d232657f9c",
+      "size_bytes": 2903
+    },
+    {
+      "path": "pages/page-008.png",
+      "role": "page_render",
+      "sha256": "55db664f13a04e4408952307e4472136093db2c6c8419e25617ddaa95cdea862",
+      "size_bytes": 639896
+    },
+    {
+      "path": "pages/page-009.txt",
+      "role": "page_text",
+      "sha256": "0b28c50288ed9151a902a202d0ec6b9359cc792fb0b5cce984e578432bb6b134",
+      "size_bytes": 2928
+    },
+    {
+      "path": "pages/page-009.png",
+      "role": "page_render",
+      "sha256": "1fae1f168a1afb2fd999d8dca7b4cc2808ffd194095459e15b940fd6e3ab377a",
+      "size_bytes": 791334
+    },
+    {
+      "path": "pages/page-010.txt",
+      "role": "page_text",
+      "sha256": "066482e7e8a294367e40cbf663649645aba1143f3ab2ff04ed7f8cdeebfeddfb",
+      "size_bytes": 2583
+    },
+    {
+      "path": "pages/page-010.png",
+      "role": "page_render",
+      "sha256": "2b0245246e6f40fcc8117fda768fa7da5ff533c057fbc7c01caf9a73c11052ae",
+      "size_bytes": 438374
+    },
+    {
+      "path": "pages/page-011.txt",
+      "role": "page_text",
+      "sha256": "7b842eff30fdd2515633b9e778fe58349952c8bf682fe620f51b4343a3a08dd9",
+      "size_bytes": 2540
+    },
+    {
+      "path": "pages/page-011.png",
+      "role": "page_render",
+      "sha256": "ddc1466bc5499c36b90ba5be3ec0db0d3d9a1a6c24f72a165cf59a74cf00245d",
+      "size_bytes": 543145
+    },
+    {
+      "path": "pages/page-012.txt",
+      "role": "page_text",
+      "sha256": "a9ecd8d948274892a88141123eee654be399a3496f05db106dc657377ebff413",
+      "size_bytes": 2586
+    },
+    {
+      "path": "pages/page-012.png",
+      "role": "page_render",
+      "sha256": "838e1ea476fd064a71d1d284b67f6edb8d5f98e496193fa7dbb708b72ab9e336",
+      "size_bytes": 650248
+    },
+    {
+      "path": "pages/page-013.txt",
+      "role": "page_text",
+      "sha256": "becee1aa2fec85db1206799b80006f6015a5de3f14f294b9989be5e81ff58e5e",
+      "size_bytes": 936
+    },
+    {
+      "path": "pages/page-013.png",
+      "role": "page_render",
+      "sha256": "56c303df44b74ccf6ea2704609a653afaaa7f34235063b360ba4c048b8a9279f",
+      "size_bytes": 702606
+    },
+    {
+      "path": "pages/page-014.txt",
+      "role": "page_text",
+      "sha256": "c45def44419ad10e8b4721ecbb85b3e3c13bf5fe5ecf42c500fa8c2708f37146",
+      "size_bytes": 1497
+    },
+    {
+      "path": "pages/page-014.png",
+      "role": "page_render",
+      "sha256": "94e619febb8f8fb5a5e68faa19d5c7db5eaabda4c222b3ee0f81d8f03b40ad06",
+      "size_bytes": 830733
+    },
+    {
+      "path": "pages/page-015.txt",
+      "role": "page_text",
+      "sha256": "414848635297d37d71ac2c78c0d3729f7b53e3ff92c68af5a3553698d9b375cf",
+      "size_bytes": 1793
+    },
+    {
+      "path": "pages/page-015.png",
+      "role": "page_render",
+      "sha256": "91ca513be7ad5d27e3af5b96d96b2ab8c4764942bb87d0ea00071b434a049d12",
+      "size_bytes": 854139
+    },
+    {
+      "path": "pages/page-016.txt",
+      "role": "page_text",
+      "sha256": "0c63ad40feeab390fafa8023969559ddb24e664f52574c1c0b102cb7cc5faef4",
+      "size_bytes": 3267
+    },
+    {
+      "path": "pages/page-016.png",
+      "role": "page_render",
+      "sha256": "b76130c0c6ed8b4c366e45ac353ab89ab180f121ddae3f43e75d6f4cc6f318cf",
+      "size_bytes": 872951
+    },
+    {
+      "path": "pages/page-017.txt",
+      "role": "page_text",
+      "sha256": "5de3f1f7bb07885e81af18932fb36713e8b45637c8e2993f30ecfc7a4918f1db",
+      "size_bytes": 3359
+    },
+    {
+      "path": "pages/page-017.png",
+      "role": "page_render",
+      "sha256": "38d733e6037b4e877723d4ee72cb6cb94e42dc9f5952a2ca3c67b8d9f46a246a",
+      "size_bytes": 903133
+    },
+    {
+      "path": "pages/page-018.txt",
+      "role": "page_text",
+      "sha256": "e2a53259d4a64b55d5fa5835662112393991cbf53eaeb3a2593d5f1f182729b9",
+      "size_bytes": 1905
+    },
+    {
+      "path": "pages/page-018.png",
+      "role": "page_render",
+      "sha256": "1d530ad4d323dbb03be51d8f75d79e42264c4fdd813c5d78753e4fd6d29e3b7a",
+      "size_bytes": 539513
+    },
+    {
+      "path": "pages/page-019.txt",
+      "role": "page_text",
+      "sha256": "febb1153532a1d886d329d47be31a2d2dcc87263978ca1ad216c8a108ef023e0",
+      "size_bytes": 2978
+    },
+    {
+      "path": "pages/page-019.png",
+      "role": "page_render",
+      "sha256": "acc946be238c92fd45565fc679e90a552243dc60ceeeabc1371b37a5b0709828",
+      "size_bytes": 647558
+    },
+    {
+      "path": "pages/page-020.txt",
+      "role": "page_text",
+      "sha256": "2b99f63678dba26cbf441486e0eabaff53e61ccac17fefec77e48233b58a961a",
+      "size_bytes": 2305
+    },
+    {
+      "path": "pages/page-020.png",
+      "role": "page_render",
+      "sha256": "21c7c16b60474a725931fc11ba494bc609506e2fedadfb4e19577e85f220dc78",
+      "size_bytes": 484066
+    }
+  ],
+  "document": {
+    "bbox_page_count": 20,
+    "encrypted": false,
+    "page_count": 20,
+    "rendered_page_count": 20,
+    "sparse_page_ratio": 0.0,
+    "sparse_pages": [],
+    "total_non_whitespace_characters": 19328
+  },
+  "errors": [],
+  "pages": [
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-001.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 1071,
+      "page": 1,
+      "text_is_sparse": false,
+      "text_path": "pages/page-001.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-002.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 1063,
+      "page": 2,
+      "text_is_sparse": false,
+      "text_path": "pages/page-002.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-003.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 1157,
+      "page": 3,
+      "text_is_sparse": false,
+      "text_path": "pages/page-003.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-004.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 1023,
+      "page": 4,
+      "text_is_sparse": false,
+      "text_path": "pages/page-004.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-005.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 826,
+      "page": 5,
+      "text_is_sparse": false,
+      "text_path": "pages/page-005.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-006.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 709,
+      "page": 6,
+      "text_is_sparse": false,
+      "text_path": "pages/page-006.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-007.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 988,
+      "page": 7,
+      "text_is_sparse": false,
+      "text_path": "pages/page-007.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-008.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 850,
+      "page": 8,
+      "text_is_sparse": false,
+      "text_path": "pages/page-008.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-009.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 998,
+      "page": 9,
+      "text_is_sparse": false,
+      "text_path": "pages/page-009.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-010.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 738,
+      "page": 10,
+      "text_is_sparse": false,
+      "text_path": "pages/page-010.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-011.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 751,
+      "page": 11,
+      "text_is_sparse": false,
+      "text_path": "pages/page-011.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-012.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 894,
+      "page": 12,
+      "text_is_sparse": false,
+      "text_path": "pages/page-012.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-013.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 353,
+      "page": 13,
+      "text_is_sparse": false,
+      "text_path": "pages/page-013.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-014.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 515,
+      "page": 14,
+      "text_is_sparse": false,
+      "text_path": "pages/page-014.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-015.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 636,
+      "page": 15,
+      "text_is_sparse": false,
+      "text_path": "pages/page-015.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-016.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 1102,
+      "page": 16,
+      "text_is_sparse": false,
+      "text_path": "pages/page-016.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-017.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 1100,
+      "page": 17,
+      "text_is_sparse": false,
+      "text_path": "pages/page-017.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-018.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 627,
+      "page": 18,
+      "text_is_sparse": false,
+      "text_path": "pages/page-018.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-019.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 2123,
+      "page": 19,
+      "text_is_sparse": false,
+      "text_path": "pages/page-019.txt"
+    },
+    {
+      "image_height": 2339,
+      "image_path": "pages/page-020.png",
+      "image_width": 1654,
+      "non_whitespace_characters": 1804,
+      "page": 20,
+      "text_is_sparse": false,
+      "text_path": "pages/page-020.txt"
+    }
+  ],
+  "quality_policy": {
+    "command_timeout_seconds": 300,
+    "maximum_sparse_page_ratio": 0.8,
+    "minimum_non_whitespace_characters_per_page": 80,
+    "ocr_policy": "fail_closed_when_required",
+    "render_dpi": 200
+  },
+  "schema": "agentsociety.paper-review.pdf-intake/v1",
+  "source": {
+    "path": "/Users/easylife/Project/AgentSociety/paper/manuscript/source/v3_20260915_2306_悼念退潮之后.pdf",
+    "sha256": "48a4111f22b7b8952d591e2e61721a1382b73e7c4579e4f0da25558cd2aa7340",
+    "size_bytes": 1250193
+  },
+  "status": "pass",
+  "tools": {
+    "pdfimages": {
+      "path": "/Users/easylife/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/poppler/bin/pdfimages",
+      "version": "pdfimages version 26.05.0"
+    },
+    "pdfinfo": {
+      "path": "/Users/easylife/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/poppler/bin/pdfinfo",
+      "version": "pdfinfo version 26.05.0"
+    },
+    "pdftoppm": {
+      "path": "/Users/easylife/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/poppler/bin/pdftoppm",
+      "version": "pdftoppm version 26.05.0"
+    },
+    "pdftotext": {
+      "path": "/Users/easylife/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/poppler/bin/pdftotext",
+      "version": "pdftotext version 26.05.0"
+    }
+  },
+  "warnings": []
+}

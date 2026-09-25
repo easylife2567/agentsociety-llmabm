@@ -1,0 +1,40 @@
+{
+  "artifacts": [
+    {
+      "path": "source.sha256",
+      "role": "partial_output",
+      "sha256": "42259bfbd984a83dde4ca397364b81fd74fc67ad13689676adb0f5629ed13552",
+      "size_bytes": 65
+    }
+  ],
+  "document": {},
+  "errors": [
+    "missing required Poppler tools: pdftotext"
+  ],
+  "pages": [],
+  "quality_policy": {
+    "command_timeout_seconds": 300,
+    "maximum_sparse_page_ratio": 0.8,
+    "minimum_non_whitespace_characters_per_page": 80,
+    "ocr_policy": "fail_closed_when_required",
+    "render_dpi": 200
+  },
+  "schema": "agentsociety.paper-review.pdf-intake/v1",
+  "source": {
+    "path": "/Users/easylife/Project/AgentSociety/paper/manuscript/source/v3_20260915_2306_悼念退潮之后.pdf",
+    "sha256": "48a4111f22b7b8952d591e2e61721a1382b73e7c4579e4f0da25558cd2aa7340",
+    "size_bytes": 1250193
+  },
+  "status": "failed",
+  "tools": {
+    "pdfinfo": {
+      "path": "/Users/easylife/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdfinfo",
+      "version": "pdfinfo version 26.05.0"
+    },
+    "pdftoppm": {
+      "path": "/Users/easylife/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm",
+      "version": "pdftoppm version 26.05.0"
+    }
+  },
+  "warnings": []
+}
