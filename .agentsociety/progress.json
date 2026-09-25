@@ -3,11 +3,23 @@
   "workspace": {
     "topic": "公众人物去世后，算法策展如何塑造舆论场对其的数字表征",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "analysis",
+    "current_stage": "experiment_config",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
-    "revision_round": 5,
-    "active_reroute": null
+    "revision_round": 6,
+    "active_reroute": {
+      "revision_round": 6,
+      "requested_at": "2026-09-25T13:37:44.927489+00:00",
+      "from_stage": "analysis",
+      "target_stage": "experiment_config",
+      "reason": "r3 三位内审一致判定 primary reroute=experiment_config：W19-W22 真实帖在判定前进入候选池（目标泄漏），三臂同时改动候选池/时间尺度/个性化（不可识别）；另经标注器敏感性分析确认 interest 拟合最优在 doubao/GLM 两轮标注下方向反转为 random 最优，中心比较结论不成立。需重设计为结果盲臂+正交化对照后重跑。",
+      "source_artifact": "paper/reviews/generic-review-r3/reviewer-1.md",
+      "pending_stages": [
+        "experiment_config",
+        "run_experiment",
+        "analysis"
+      ]
+    }
   },
   "stages": {
     "literature_search": {
@@ -52,78 +64,34 @@
       "revision_round": 4
     },
     "experiment_config": {
-      "status": "completed",
+      "status": "needs_revision",
       "started_at": null,
-      "completed_at": "2026-09-13T17:36:22.204325+00:00",
+      "completed_at": null,
       "attempts": 4,
       "error": null,
-      "metadata": {
-        "configs": 9,
-        "agents": 100,
-        "ticks": 11,
-        "verification": "25/25"
-      },
+      "metadata": {},
       "verification_status": "not_started",
-      "revision_round": 4
+      "revision_round": 6
     },
     "run_experiment": {
-      "status": "completed",
-      "started_at": "2026-09-14T05:00:30.831156+00:00",
-      "completed_at": "2026-09-15T13:04:39.714663+00:00",
+      "status": "needs_revision",
+      "started_at": null,
+      "completed_at": null,
       "attempts": 2,
       "error": null,
-      "metadata": {
-        "round": "anchored_v1",
-        "phase": "formal_9_run_complete",
-        "runs": [
-          "anchored_v1_random_s0",
-          "anchored_v1_random_s1",
-          "anchored_v1_random_s2",
-          "anchored_v1_chronological_s0",
-          "anchored_v1_chronological_s1",
-          "anchored_v1_chronological_s2",
-          "anchored_v1_interest_s0",
-          "anchored_v1_interest_s1",
-          "anchored_v1_interest_s2"
-        ],
-        "parameters": "frozen",
-        "execution_status": "completed",
-        "authorization_required": false,
-        "stopped_runs": {
-          "anchored_v1_interest_s0": 3,
-          "anchored_v1_interest_s1": 3,
-          "anchored_v1_interest_s2": 3
-        },
-        "note": "9 个正式 runs 已全部完成并通过完成性复核；早先 3 个 stopped partial runs 仅保留为历史残留，不纳入正式结果。",
-        "design": "3 algorithms x 3 seeds",
-        "completed_runs": 9,
-        "expected_runs": 9,
-        "weeks_per_run": 11,
-        "completion_evidence": "hypothesis_4/experiment_1/runs/anchored_v1/_derived/monitor/overview.json",
-        "derived_outputs": "per-run CSV/charts and arm-level summaries present",
-        "verified_at": "2026-09-15"
-      },
-      "verification_status": "complete",
-      "revision_round": 5
+      "metadata": {},
+      "verification_status": "not_started",
+      "revision_round": 6
     },
     "analysis": {
-      "status": "in_progress",
-      "started_at": "2026-09-15T13:10:23.948014+00:00",
+      "status": "needs_revision",
+      "started_at": null,
       "completed_at": null,
       "attempts": 1,
       "error": null,
-      "metadata": {
-        "source_batch": "anchored_v1",
-        "formal_runs": 9,
-        "design": "3 algorithms x 3 seeds",
-        "official_run_compatibility": "hypothesis_4/experiment_1/run -> runs/anchored_v1/anchored_v1_interest_s0",
-        "multi_run_evidence": "hypothesis_4/experiment_1/runs/anchored_v1/_derived/data/arm",
-        "historical_inputs_excluded": true,
-        "analysis_harness": "initialized",
-        "current_phase": "frame"
-      },
+      "metadata": {},
       "verification_status": "not_started",
-      "revision_round": 5
+      "revision_round": 6
     },
     "generate_paper": {
       "status": "not_started",
@@ -496,6 +464,102 @@
       "to_status": "in_progress",
       "from_stage": "analysis",
       "to_stage": "analysis"
+    },
+    {
+      "sequence": 22,
+      "timestamp": "2026-09-25T13:37:44.927494+00:00",
+      "kind": "reroute",
+      "revision_round": 6,
+      "from_stage": "analysis",
+      "to_stage": "experiment_config",
+      "reason": "r3 三位内审一致判定 primary reroute=experiment_config：W19-W22 真实帖在判定前进入候选池（目标泄漏），三臂同时改动候选池/时间尺度/个性化（不可识别）；另经标注器敏感性分析确认 interest 拟合最优在 doubao/GLM 两轮标注下方向反转为 random 最优，中心比较结论不成立。需重设计为结果盲臂+正交化对照后重跑。",
+      "source_artifact": "paper/reviews/generic-review-r3/reviewer-1.md",
+      "invalidated_stages": [
+        "experiment_config",
+        "run_experiment",
+        "analysis"
+      ],
+      "previous_statuses": {
+        "experiment_config": "completed",
+        "run_experiment": "completed",
+        "analysis": "in_progress"
+      },
+      "previous_stage_states": {
+        "experiment_config": {
+          "status": "completed",
+          "started_at": null,
+          "completed_at": "2026-09-13T17:36:22.204325+00:00",
+          "attempts": 4,
+          "error": null,
+          "metadata": {
+            "configs": 9,
+            "agents": 100,
+            "ticks": 11,
+            "verification": "25/25"
+          },
+          "verification_status": "not_started",
+          "revision_round": 4
+        },
+        "run_experiment": {
+          "status": "completed",
+          "started_at": "2026-09-14T05:00:30.831156+00:00",
+          "completed_at": "2026-09-15T13:04:39.714663+00:00",
+          "attempts": 2,
+          "error": null,
+          "metadata": {
+            "round": "anchored_v1",
+            "phase": "formal_9_run_complete",
+            "runs": [
+              "anchored_v1_random_s0",
+              "anchored_v1_random_s1",
+              "anchored_v1_random_s2",
+              "anchored_v1_chronological_s0",
+              "anchored_v1_chronological_s1",
+              "anchored_v1_chronological_s2",
+              "anchored_v1_interest_s0",
+              "anchored_v1_interest_s1",
+              "anchored_v1_interest_s2"
+            ],
+            "parameters": "frozen",
+            "execution_status": "completed",
+            "authorization_required": false,
+            "stopped_runs": {
+              "anchored_v1_interest_s0": 3,
+              "anchored_v1_interest_s1": 3,
+              "anchored_v1_interest_s2": 3
+            },
+            "note": "9 个正式 runs 已全部完成并通过完成性复核；早先 3 个 stopped partial runs 仅保留为历史残留，不纳入正式结果。",
+            "design": "3 algorithms x 3 seeds",
+            "completed_runs": 9,
+            "expected_runs": 9,
+            "weeks_per_run": 11,
+            "completion_evidence": "hypothesis_4/experiment_1/runs/anchored_v1/_derived/monitor/overview.json",
+            "derived_outputs": "per-run CSV/charts and arm-level summaries present",
+            "verified_at": "2026-09-15"
+          },
+          "verification_status": "complete",
+          "revision_round": 5
+        },
+        "analysis": {
+          "status": "in_progress",
+          "started_at": "2026-09-15T13:10:23.948014+00:00",
+          "completed_at": null,
+          "attempts": 1,
+          "error": null,
+          "metadata": {
+            "source_batch": "anchored_v1",
+            "formal_runs": 9,
+            "design": "3 algorithms x 3 seeds",
+            "official_run_compatibility": "hypothesis_4/experiment_1/run -> runs/anchored_v1/anchored_v1_interest_s0",
+            "multi_run_evidence": "hypothesis_4/experiment_1/runs/anchored_v1/_derived/data/arm",
+            "historical_inputs_excluded": true,
+            "analysis_harness": "initialized",
+            "current_phase": "frame"
+          },
+          "verification_status": "not_started",
+          "revision_round": 5
+        }
+      }
     }
   ]
 }
