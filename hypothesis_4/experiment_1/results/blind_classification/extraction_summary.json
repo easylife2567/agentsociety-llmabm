@@ -1,0 +1,85 @@
+{
+  "runs": {
+    "anchored_v1_chronological_s0": {
+      "agent_posts": 212,
+      "content_len_min": 54,
+      "content_len_max": 400,
+      "content_len_mean": 223.0,
+      "truncated_at_1000": 0
+    },
+    "anchored_v1_chronological_s1": {
+      "agent_posts": 219,
+      "content_len_min": 60,
+      "content_len_max": 379,
+      "content_len_mean": 220.8,
+      "truncated_at_1000": 0
+    },
+    "anchored_v1_chronological_s2": {
+      "agent_posts": 218,
+      "content_len_min": 40,
+      "content_len_max": 358,
+      "content_len_mean": 214.4,
+      "truncated_at_1000": 0
+    },
+    "anchored_v1_interest_s0": {
+      "agent_posts": 233,
+      "content_len_min": 46,
+      "content_len_max": 353,
+      "content_len_mean": 203.1,
+      "truncated_at_1000": 0
+    },
+    "anchored_v1_interest_s1": {
+      "agent_posts": 228,
+      "content_len_min": 44,
+      "content_len_max": 388,
+      "content_len_mean": 219.5,
+      "truncated_at_1000": 0
+    },
+    "anchored_v1_interest_s2": {
+      "agent_posts": 228,
+      "content_len_min": 49,
+      "content_len_max": 400,
+      "content_len_mean": 220.8,
+      "truncated_at_1000": 0
+    },
+    "anchored_v1_random_s0": {
+      "agent_posts": 193,
+      "content_len_min": 45,
+      "content_len_max": 271,
+      "content_len_mean": 190.4,
+      "truncated_at_1000": 0
+    },
+    "anchored_v1_random_s1": {
+      "agent_posts": 193,
+      "content_len_min": 65,
+      "content_len_max": 394,
+      "content_len_mean": 248.0,
+      "truncated_at_1000": 0
+    },
+    "anchored_v1_random_s2": {
+      "agent_posts": 180,
+      "content_len_min": 100,
+      "content_len_max": 372,
+      "content_len_mean": 254.5,
+      "truncated_at_1000": 0
+    }
+  },
+  "total_agent_posts": 1904,
+  "pool_type_dist": {
+    "marketing": 693,
+    "education": 363,
+    "mourning": 318,
+    "other": 239,
+    "meme": 291
+  },
+  "env_assigned_type_dist": {
+    "marketing": 753,
+    "mourning": 1097,
+    "meme": 38,
+    "education": 14,
+    "other": 2
+  },
+  "env_type_mismatch": 1101,
+  "env_type_mismatch_rate": 0.5783,
+  "note": "pool_type=Agent 固定类型（by construction）；env_assigned_type=环境四词表复核。"
+}
