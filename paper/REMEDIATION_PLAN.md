@@ -147,12 +147,44 @@ W19–W22 的真实帖（含玩梗类别构成）在每个 Agent 当周决策前
           删除"语义涌现/形象生成"类措辞
 - 验收：所有轨迹图给出身份口径与文本口径两版；结论措辞与之一致
 
-### 动作 3（需新实验，reroute 到 `experiment_config`）：结果盲验证
+### 动作 3（配置已实现并自校验，待授权开跑）：结果盲验证
 
-- [ ] 最小成对对照 **`interest_holdout`**：W12–W18 照常注入，**W19–W22 不做任何真实注入**，
-      由 Agent↔Agent 循环自维持。若玩梗仍在 W20 前后起爆，即为真正的生成性证据
-- [ ] 平行再加 **`random_holdout`** 以保持组间可比（共 2 臂 × 3 seed = 6 个新 run）
-- [ ] 用**事前口径**（W05–W12 发帖类型）重新导出 Agent 群体比例，做一次群体定义敏感性重跑
+**已实现：嵌套 holdout（nested holdout）**——比"遮蔽"更干净，因为可归因。
+
+- 新增脚本 `hypothesis_4/experiment_1/init/holdout_config.py`（**不修改** `config_params.py`，
+  只新增文件；导入前后对 19 个已冻结产物做 SHA-256 守卫，已确认全部未被改动）。
+- holdout 臂的注入帖 = 对应全臂 `week < 2026-W19` 的**严格子集**（逐 pid 相同）：
+  250 条 → 165 条，去掉 W19–W22 的 85 条。因此 W12–W18 外部输入逐条一致，
+  W19–W22 轨迹的任何差异只能来自"是否注入后段真实帖"。
+- 自校验已通过：6 个配置均无 W19–W22 注入帖、W12–W18 注入与全臂逐 pid 一致、
+  除 `injection_data_path` 外与全臂配置完全相同。
+- 已排除其他行为性泄漏通道：涌现环境 G 自 2026-09-12 起为**纯观测、不进入决策**
+  （`custom/envs/curation_dynamics_space.py:225`），故 `emergence_flow_by_week` 保持原值以与全臂可比。
+- 新增 run：`anchored_v1_holdout_{interest,random}_s{0,1,2}`，共 6 个（2 臂 × 3 seeds，
+  100 agents × 11 ticks，与既有批次同规模）。
+
+**开跑命令**（待授权；串行约 20 小时量级，可 `--concurrency 2` 缩短）：
+
+```bash
+PY=$(grep "^PYTHON_PATH=" .env | cut -d'=' -f2); PY=${PY:-python3}
+# 1) 冒烟：只跑 interest holdout s0，确认 W19–W22 无注入且池自维持
+$PY hypothesis_4/experiment_1/run_batch.py --only anchored_v1_holdout_interest_s0
+# 2) 补齐其余 5 个
+$PY hypothesis_4/experiment_1/run_batch.py \
+    --only anchored_v1_holdout_interest_s1,anchored_v1_holdout_interest_s2,anchored_v1_holdout_random_s0,anchored_v1_holdout_random_s1,anchored_v1_holdout_random_s2
+# 3) 逐 run 快照（holdout 不在 manifest.run_ids 内，需显式指定）
+$PY hypothesis_4/experiment_1/monitor.py --run-dir hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_holdout_interest_s0 \
+    --label anchored_v1_holdout_interest_s0
+```
+
+**判定标准**（写进论文前先定好，避免事后挑结果）：
+- 若 holdout 臂在 W19–W22 仍出现玩梗份额抬升、且 W20 前后出现相位转折 → 生成性证据成立；
+- 若抬升消失或相位后移 → 现有"模型复现现实轨迹"的说法撤销，仿真降为"给定后段输入条件下的
+  情景推演"，主张收窄到"构成效应在模型内的可实现性"。
+- 同时报告 holdout 与全臂在 W12–W18 的轨迹一致性（应几乎重合，作为设计有效性的安慰剂检验）。
+
+- [ ] 用**事前口径**（W05–W12 发帖类型）重新导出 Agent 群体比例，做群体定义敏感性重跑
+      （r3 W1 第二问：现有 100 人比例由 W12–W22 发帖口径导出，属事后定义）
 - [ ] 冻结参数表、搜索空间、停止规则与 seed 方案（当前 α_D/k/s_i/λ/scale 的标定过程不可审计）
 - 验收：无泄漏臂的转折周与构成替代报告（含相对有注入基线的误差与不确定性）；群体比例对事前口径稳健
 
