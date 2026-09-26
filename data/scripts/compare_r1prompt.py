@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
 """
-「第1轮口径 × DeepSeek-V4.1」与 原标 / 第4轮 的三方对比 —— 把口径差异与判定质量差异分离。
+「第1轮口径 × <模型>」与 原标 / 该模型「后三轮口径」归档轮 的三方对比 —— 分离口径差异与判定质量差异。
 
-设计（2×2 对照，本次补上左下格）：
-                    第1轮口径                    后三轮口径
-  原标模型(v4-flash) 已有（=原标，agentic 150行/批）  —
-  V4.1              **本次（R1prompt_V4_1，API 8条/批）**  已有（=第4轮，API 8条/批）
+设计（2×2 对照，用第1轮口径补上缺的那一格）：
+                     第1轮口径                         后三轮口径
+  原标模型(v4-flash)  已有（=原标，agentic 150行/批）    —
+  <模型>             **本次（<slug>，API 8条/批）**    该模型自己的归档轮（见 COUNTERPART）
 
-  · 本次 vs 第4轮：同模型、同调用结构，仅口径不同 → **纯口径效应（提示词+输入字段）**
-  · 本次 vs 原标  ：同提示词、同输入字段，模型与调用结构不同 → **模型+调用结构效应**
-  · 原标 vs 第4轮：两者都不同（基准参照）
+  · 本次 vs 该模型归档轮：同模型，仅口径不同 → **纯口径效应（提示词+输入字段）**
+  · 本次 vs 原标        ：同提示词、同输入字段，模型与调用结构不同 → **模型+调用结构效应**
+  · 原标 vs 该模型归档轮：两者都不同（基准参照）
 
-用法: python compare_r1prompt.py [slug]   # 默认 slug=R1prompt_V4_1
+注意：第2轮（doubao）为逐条调用，与本次的每 8 条不同，故 A 轮的「纯口径效应」还混入调用结构差异；
+第3轮（GLM）同为每 8 条，可与本次干净对比。
+
+用法: python compare_r1prompt.py <slug>
 """
 import os, sys, datetime
 from collections import Counter
@@ -21,16 +24,33 @@ import openpyxl
 
 ROOT = "/Users/easylife/Project/AgentSociety"
 DATA = f"{ROOT}/data"   # 打标工作总目录（2026-09-27 起，见 data/README.md）
-SLUG = sys.argv[1] if len(sys.argv) > 1 else "R1prompt_V4_1"
+
+# slug → (本次模型名, 同模型「后三轮口径」归档轮次名, 该轮 xlsx, 该轮调用结构)
+COUNTERPART = {
+    "R1prompt_Seed2_1_lite": (
+        "doubao-seed-2.1-lite", "第2轮(doubao,后三轮口径)",
+        f"{DATA}/archive/round2_doubao-seed-2.1-lite/抖音微博小红书-独立重打标_Seed2_1_lite.xlsx",
+        "逐条"),
+    "R1prompt_GLM5_3flash": (
+        "GLM-5.3-flash", "第3轮(GLM,后三轮口径)",
+        f"{DATA}/archive/round3_glm-5.3-flash/抖音微博小红书-独立重打标_GLM5_3flash.xlsx",
+        "每8条"),
+}
+
+if len(sys.argv) < 2 or sys.argv[1] not in COUNTERPART:
+    sys.exit(f"用法: python compare_r1prompt.py <slug>\n  slug ∈ {' / '.join(COUNTERPART)}")
+SLUG = sys.argv[1]
+MODEL_LABEL, CP_NAME, CP_PATH, CP_STRUCT = COUNTERPART[SLUG]
+
 CAT_ORDER = ["借势营销", "事件悼念讨论", "教育观点讨论", "梗文化讨论", "其他讨论", "爬取噪音", "存疑"]
 VAL_ORDER = ["有效", "无效", "存疑"]
 
 PATHS = {
     "原标(第1轮口径,v4-flash)": f"{DATA}/baseline/抖音微博小红书-全量已打标.xlsx",
-    "第4轮(后三轮口径,V4.1)": f"{DATA}/archive/round4_deepseek-v4.1/抖音微博小红书-独立重打标_DSv4_1_flash.xlsx",
-    f"本次(第1轮口径,V4.1)": f"{DATA}/runs/抖音微博小红书-独立重打标_{SLUG}.xlsx",
+    f"{CP_NAME}": CP_PATH,
+    f"本次(第1轮口径,{MODEL_LABEL})": f"{DATA}/runs/抖音微博小红书-独立重打标_{SLUG}.xlsx",
 }
-A, B, C = list(PATHS)          # 原标 / 第4轮 / 本次
+A, B, C = list(PATHS)          # 原标 / 该模型归档轮 / 本次
 
 
 def load_labels(path):
@@ -104,13 +124,14 @@ def main():
     today = datetime.date.today().strftime("%Y%m%d")
     md = [f"# 第1轮口径复现对比报告（{today}）\n",
           "**目的**：第 1 轮（原标）提示词已于 2026-09-26 恢复（`label_prompt_round1.md`）。",
-          f"本报告用该提示词 + 该轮输入字段在 DeepSeek-V4.1 上重跑全量（slug=`{SLUG}`），",
+          f"本报告用该提示词 + 该轮输入字段在 {MODEL_LABEL} 上重跑全量（slug=`{SLUG}`），",
           "补上 2×2 对照中缺失的一格，把「口径差异」与「判定质量差异」分离。\n",
           "|  | 第1轮口径 | 后三轮口径 |", "|---|---|---|",
           "| 原标模型 (v4-flash) | 原标（agentic 150行/批） | — |",
-          "| DeepSeek-V4.1 | **本次**（API 8条/批） | 第4轮（API 8条/批） |\n",
+          f"| {MODEL_LABEL} | **本次**（API 8条/批） | {CP_NAME}（{CP_STRUCT}） |\n",
           "**两个可分离的效应**：",
-          f"- **纯口径效应（提示词+输入字段）**：`{C}` vs `{B}` —— 同模型、同调用结构",
+          f"- **纯口径效应（提示词+输入字段）**：`{C}` vs `{B}` —— 同模型"
+          + ("、同调用结构" if CP_STRUCT == "每8条" else "（该轮为逐条调用，故还含调用结构差异）"),
           f"- **模型+调用结构效应**：`{C}` vs `{A}` —— 同提示词、同输入字段",
           f"- 参照（两者皆不同）：`{A}` vs `{B}`\n", ""]
 
@@ -158,11 +179,11 @@ def main():
     k_ab = kappa(cats[A], cats[B])
     md.append(f"| 对比 | 变的是什么 | 类别一致率 | κ |")
     md.append("|---|---|---|---|")
-    md.append(f"| 本次 vs 第4轮 | **仅口径**（提示词+输入字段） | "
+    md.append(f"| 本次 vs {CP_NAME} | **仅口径**（提示词+输入字段） | "
               f"{sum(x==y for x,y in zip(cats[C],cats[B]))/n*100:.2f}% | {k_bc:.4f} |")
     md.append(f"| 本次 vs 原标 | **仅模型+调用结构** | "
               f"{sum(x==y for x,y in zip(cats[C],cats[A]))/n*100:.2f}% | {k_ac:.4f} |")
-    md.append(f"| 原标 vs 第4轮 | 口径与模型皆不同 | "
+    md.append(f"| 原标 vs {CP_NAME} | 口径与模型皆不同 | "
               f"{sum(x==y for x,y in zip(cats[A],cats[B]))/n*100:.2f}% | {k_ab:.4f} |")
     md.append("")
     md.append("读法：若「仅口径」的一致率明显高于「口径与模型皆不同」，说明原标偏离主要来自口径；")
@@ -172,7 +193,7 @@ def main():
     dq = [i for i in range(n) if cats[A][i] == "存疑"]
     md.append(f"## D. 原标独有「存疑」{len(dq)} 条的归属\n")
     md.append("「存疑」是第 1 轮口径独有的类别（后三轮无此取值）。\n")
-    md.append("| 行号 | 内容摘要 | 本次 | 第4轮 |")
+    md.append(f"| 行号 | 内容摘要 | 本次 | {CP_NAME} |")
     md.append("|---|---|---|---|")
     for i in dq:
         md.append(f"| {i+2} | {data[A][i][4]} | {cats[C][i]}（{vals[C][i]}） | {cats[B][i]}（{vals[B][i]}） |")
@@ -181,7 +202,7 @@ def main():
     md.append(f"本次（第1轮口径）判为「存疑」：{nc} 条（{nc/n*100:.2f}%）；"
               f"原标 {len(dq)} 条（{len(dq)/n*100:.2f}%）\n")
 
-    path = f"{DATA}/reports/第1轮口径复现对比报告_{today}.md"
+    path = f"{DATA}/reports/第1轮口径复现对比报告_{SLUG}_{today}.md"
     open(path, "w").write("\n".join(md))
     print(f"✅ 报告：{path}")
 
