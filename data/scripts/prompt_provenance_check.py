@@ -20,8 +20,8 @@ import openpyxl
 # 脚本现位于 data/scripts/，工作区根目录为上两级
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DATA = f"{ROOT}/data"
-SCRIPTS = ["batch_label.py", "batch_label_v2.py", "batch_label_v3.py",
-           "retry_failed.py", "retry_failed_glm.py"]
+SCRIPTS = ["batch_label_r1prompt.py", "batch_label_v3.py",
+           "batch_label_v2.py", "batch_label.py"]
 
 # 第 1 轮（原标）的提示词不在工作区内：它由另一项目（~/Project/数据清洗）下的
 # Claude Code Workflow 运行，脚本与批次结果留在本机历史目录中。
@@ -50,7 +50,7 @@ def prompt_fingerprint():
     section("A. 各脚本的 SYSTEM_PROMPT 指纹与调用结构")
     out = {}
     for fn in SCRIPTS:
-        p = os.path.join(ROOT, fn)
+        p = os.path.join(DATA, "scripts", fn)
         if not os.path.exists(p):
             print(f"  {fn}: 不存在"); continue
         tree = ast.parse(open(p, encoding="utf-8").read())
@@ -69,7 +69,10 @@ def prompt_fingerprint():
         print(f"  {fn:<22} 长度={len(text) if text else 0:>4}  sha256={h}  调用={per_call}")
     uniq = {h for h in out.values() if h != "—"}
     print(f"\n  → 判定标准（六类定义/判定原则）去重后共 {len(uniq)} 个版本：{sorted(uniq)}")
-    print("  → 差异仅在【输出格式】段（单对象 vs JSON 数组），该段与调用结构（1 条/次 vs 8 条/次）耦合。")
+    print("  → 后三轮口径内部（v2/早期 与 v3）：差异仅在【输出格式】段"
+          "（单对象 vs JSON 数组），该段与调用结构（1 条/次 vs 8 条/次）耦合。")
+    print("  → batch_label_r1prompt.py 属**另一套口径**（第 1 轮），与后三轮不构成"
+          "「仅输出格式」差异；其与第 1 轮原文的对齐见 check_baseline_alignment.py §A。")
 
 
 def round1_fingerprint():

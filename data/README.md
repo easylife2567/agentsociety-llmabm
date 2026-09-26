@@ -73,13 +73,17 @@ v4-flash 本身就是第 1 轮口径，这一格已有，无需 V4.1 补。断�
 | `scripts/compare_labels4.py` | 四方一致性与 κ、多数投票 |
 | `scripts/compare_r1prompt.py` | **口径效应 vs 模型效应分解**（见下） |
 | `scripts/prompt_provenance_check.py` | 提示词溯源校验：输出端签名、批次数、行数、ctx 行数 |
+| `scripts/check_baseline_alignment.py` | **开跑前预检**：新一轮与基线在提示词 / 输入字段 / 行序 / 基线自身四层是否对齐 |
 
 ## 运行方式
 
 ```bash
 PY=$(grep "^PYTHON_PATH=" .env | cut -d'=' -f2); PY=${PY:-python3}
 
-# 全量打标：<模型ID> <slug> [并发] [每次调用条数]
+# 0. 开跑前先跑对齐预检（只读，约 1 分钟）：提示词 / 输入字段 / 行序 / 基线自身
+$PY data/scripts/check_baseline_alignment.py
+
+# 1. 全量打标：<模型ID> <slug> [并发] [每次调用条数]
 nohup $PY -u data/scripts/batch_label_r1prompt.py doubao-seed-2-1-lite-260915 \
       R1prompt_Seed2_1_lite 24 8 > /tmp/r1prompt_seed.log 2>&1 &
 
