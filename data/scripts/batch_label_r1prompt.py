@@ -56,8 +56,9 @@ print(f"[配置] 模型={MODEL} | slug={SLUG} | 并发={WORKERS} | 每次调用�
 print(f"[配置] 提示词=第1轮(原标)提示词，仅 I/O 段改为 API | 输入字段=第1轮原样", flush=True)
 print(f"[配置] 输出={OUT}", flush=True)
 
-# 超时可配：GLM 等思考型模型单次 8 条批量判定平均要 3 分钟，180 秒会误杀并触发重试。
-# 默认 180 与第 3/4 轮一致；GLM 轮用 LABEL_TIMEOUT=600。
+# 超时可配：思考型模型单次 8 条判定实测 110–430s（doubao 思考开 176s/14k tokens 属常态），
+# 180 秒会误杀本可成功的调用并触发最多 3 次重试，既空耗墙钟也重复计费 token。
+# 思考型模型（doubao / GLM）用 LABEL_TIMEOUT=600。
 TIMEOUT = float(os.environ.get("LABEL_TIMEOUT", "180"))
 CLIENT = OpenAI(api_key=API_KEY, base_url=API_BASE, timeout=TIMEOUT)
 print(f"[配置] 客户端超时={TIMEOUT:.0f}s", flush=True)
@@ -275,10 +276,10 @@ def main():
         batch_jobs.append(([n - 2 for n in chunk], [recs[n] for n in chunk]))
     print(f"待处理：{len(pending)} 条，分为 {len(batch_jobs)} 批（每批 {BSIZE} 条）", flush=True)
 
-    done_rows = 0
-    CHUNK = WORKERS * 3
-    for i in range(0, len(batch_jobs), CHUNK):
-        done_rows = run_pool(batch_jobs[i:i + CHUNK], done_rows, len(pending), t0)
+    # 一次性提交全部批次。分块（原为 WORKERS*3）会在每块末尾等最慢的那次调用，
+    # 而思考型模型的延迟长尾很长（实测单次 110–430s），块边界会整池空等：
+    # 6405 批 / 192 = 33 个边界，累计可达数小时。单池则工作线程不空转。
+    done_rows = run_pool(batch_jobs, 0, len(pending), t0)
 
     # 失败重试（最多 2 轮）
     for rnd in range(1, 3):
