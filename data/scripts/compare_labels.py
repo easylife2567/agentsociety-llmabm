@@ -15,15 +15,16 @@ import openpyxl
 from openpyxl import Workbook
 
 ROOT = "/Users/easylife/Project/AgentSociety"
+DATA = f"{ROOT}/data"   # 打标工作总目录（2026-09-27 起，见 data/README.md）
 CAT_ORDER = ["借势营销", "事件悼念讨论", "教育观点讨论", "梗文化讨论", "其他讨论", "爬取噪音", "存疑"]
 VAL_ORDER = ["有效", "无效", "存疑"]
 
 
 def default_paths():
     return {
-        "DeepSeek": f"{ROOT}/抖音微博小红书-全量已打标.xlsx",
-        "doubao-seed": f"{ROOT}/抖音微博小红书-独立重打标_Seed2_1_lite.xlsx",
-        "GLM": f"{ROOT}/抖音微博小红书-独立重打标_GLM5_3flash.xlsx",
+        "DeepSeek": f"{DATA}/baseline/抖音微博小红书-全量已打标.xlsx",
+        "doubao-seed": f"{DATA}/archive/round2_doubao-seed-2.1-lite/抖音微博小红书-独立重打标_Seed2_1_lite.xlsx",
+        "GLM": f"{DATA}/archive/round3_glm-5.3-flash/抖音微博小红书-独立重打标_GLM5_3flash.xlsx",
     }
 
 
@@ -186,8 +187,8 @@ def main():
             wsq.append([i + 2, str(data["DeepSeek"][i][3]), data["DeepSeek"][i][4], "存疑"] +
                        [cats[nm][i] for nm in names if nm != "DeepSeek"])
 
-    md_path = f"{ROOT}/标签一致性对比报告_{today}.md"
-    xlsx_path = f"{ROOT}/标签一致性对比明细_{today}.xlsx"
+    md_path = f"{DATA}/reports/标签一致性对比报告_{today}.md"
+    xlsx_path = f"{DATA}/reports/标签一致性对比明细_{today}.xlsx"
     with open(md_path, "w") as f:
         f.write("\n".join(md))
     xwb.save(xlsx_path)

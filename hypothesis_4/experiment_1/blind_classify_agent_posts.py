@@ -4,7 +4,7 @@
 设计要点（为什么这样才算"盲"）
 ------------------------------
 1. 判类模型 = GLM（`glm-5-3-flash-260828`），与生成模型 `deepseek-v4-flash` 不同族；
-2. 判定标准 = **与真实帖文打标完全相同的那套 prompt**（从 `batch_label_v3.py` 以 AST
+2. 判定标准 = **与真实帖文打标完全相同的那套 prompt**（从 `data/scripts/batch_label_v3.py` 以 AST
    原样提取，避免抄写漂移），因此生成文本与真实文本由同一把尺子度量、可直接比较；
 3. 送给模型的用户消息**只有正文**：不含 arm、不含 pool_type / 身份、不含周次、不含
    环境的四词表及倾向分。脚本启动时对此做断言。
@@ -53,14 +53,14 @@ VALID_CATS = {"借势营销", "事件悼念讨论", "教育观点讨论", "梗�
 
 def load_system_prompt() -> str:
     """用 AST 从 batch_label_v3.py 原样取出 SYSTEM_PROMPT，保证量尺与真实数据一致。"""
-    src = (ROOT / "batch_label_v3.py").read_text(encoding="utf-8")
+    src = (ROOT / "data" / "scripts" / "batch_label_v3.py").read_text(encoding="utf-8")
     tree = ast.parse(src)
     for node in tree.body:
         if isinstance(node, ast.Assign):
             for target in node.targets:
                 if isinstance(target, ast.Name) and target.id == "SYSTEM_PROMPT":
                     return ast.literal_eval(node.value)
-    raise SystemExit("未能从 batch_label_v3.py 提取 SYSTEM_PROMPT")
+    raise SystemExit("未能从 data/scripts/batch_label_v3.py 提取 SYSTEM_PROMPT")
 
 
 SYSTEM_PROMPT = load_system_prompt()

@@ -24,7 +24,7 @@ VOCAB_MD = {
     "marketing": ROOT / "词表_营销型_最终版.md",
 }
 MEME_MD = ROOT / "词表_玩梗型_最终版.md"
-XLSX = ROOT / "抖音微博小红书-全量已打标.xlsx"
+XLSX = ROOT / "data" / "baseline" / "抖音微博小红书-全量已打标.xlsx"
 
 # 判定优先级（三词表文档一致声明）
 PRECEDENCE = ["mourning", "marketing", "education", "meme"]

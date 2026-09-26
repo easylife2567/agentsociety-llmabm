@@ -55,7 +55,7 @@ def main() -> None:
     df["weak_words"] = res["weak_words"]
     df.to_parquet(OUT / "valid_posts_clusters.parquet", index=False)
 
-    full = pd.read_excel("/Users/easylife/Project/AgentSociety/抖音微博小红书-全量已打标.xlsx")
+    full = pd.read_excel("/Users/easylife/Project/AgentSociety/data/baseline/抖音微博小红书-全量已打标.xlsx")
     val = full[full["数据有效性"] == "有效"].copy()
     val["published_at"] = pd.to_datetime(val["published_at"], utc=True)
     r = val["content"].map(match).apply(pd.Series)

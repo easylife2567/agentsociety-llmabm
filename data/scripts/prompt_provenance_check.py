@@ -17,7 +17,9 @@ import ast, collections, glob, hashlib, json, os, random, re, statistics, sys
 
 import openpyxl
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+# 脚本现位于 data/scripts/，工作区根目录为上两级
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+DATA = f"{ROOT}/data"
 SCRIPTS = ["batch_label.py", "batch_label_v2.py", "batch_label_v3.py",
            "retry_failed.py", "retry_failed_glm.py"]
 
@@ -31,10 +33,10 @@ R1_BATCH_DIR = os.path.expanduser("~/Project/数据清洗/全量标注结果")
 R1 = "原标(第1轮)"
 R2, R3, R4 = "Seed(第2轮)", "GLM(第3轮)", "DSv4.1(第4轮)"
 ROUNDS = [
-    ("原标(第1轮)", f"{ROOT}/抖音微博小红书-全量已打标.xlsx"),
-    ("Seed(第2轮)", f"{ROOT}/抖音微博小红书-独立重打标_Seed2_1_lite.xlsx"),
-    ("GLM(第3轮)", f"{ROOT}/抖音微博小红书-独立重打标_GLM5_3flash.xlsx"),
-    ("DSv4.1(第4轮)", f"{ROOT}/抖音微博小红书-独立重打标_DSv4_1_flash.xlsx"),
+    ("原标(第1轮)", f"{DATA}/baseline/抖音微博小红书-全量已打标.xlsx"),
+    ("Seed(第2轮)", f"{DATA}/archive/round2_doubao-seed-2.1-lite/抖音微博小红书-独立重打标_Seed2_1_lite.xlsx"),
+    ("GLM(第3轮)", f"{DATA}/archive/round3_glm-5.3-flash/抖音微博小红书-独立重打标_GLM5_3flash.xlsx"),
+    ("DSv4.1(第4轮)", f"{DATA}/archive/round4_deepseek-v4.1/抖音微博小红书-独立重打标_DSv4_1_flash.xlsx"),
 ]
 CATS = ["借势营销", "事件悼念讨论", "教育观点讨论", "梗文化讨论", "其他讨论", "爬取噪音"]
 

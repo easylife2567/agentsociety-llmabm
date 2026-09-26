@@ -1,7 +1,7 @@
 # 投稿前整改计划：编码口径 / 目标泄漏 / 构念循环
 
 *建立于 2026-09-25。上游依据：`paper/reviews/generic-review-r3/`（三位独立内审，均为 2/5 `reject`
-"需实质性修订"，primary reroute 均为 `experiment_config`）、`标签一致性对比报告_20260925.md`、
+"需实质性修订"，primary reroute 均为 `experiment_config`）、`data/archive/reports/标签一致性对比报告_20260925.md`、
 `hypothesis_4/experiment_1/results/labeler_sensitivity/REPORT.md`。*
 
 ---
@@ -26,13 +26,13 @@ WWW 需要可识别的方法/算法贡献，CSCW 需要可迁移的社会技术�
 ### A. 编码口径：正文声称"人工编码"，实际为纯 LLM 打标（诚信风险，最高优先级）
 
 - 正文四处声称人工：摘要（`manuscript.accepted.md:3`）、方法（`:77` "经人工标注"、"三列人工编码"）、
-  数据性质（`:145`）、表 4（`:211`）、结论（`:272`、`:276`）。`ARCHIVE_MANIFEST.md`、`DATA_MINING_REVIEW.md`
-  与 `data_mining_report_*.md` 同样写作"人工打标"。
-- 实际链路：`抖音微博小红书-全量已打标.xlsx` 的六类标签由 **DeepSeek** 产出
-  （见 `compare_labels.py` 中"DeepSeek 原标"口径），随后用 doubao-seed、GLM、DeepSeek-V4.1
+  数据性质（`:145`）、表 4（`:211`）、结论（`:272`、`:276`）。`ARCHIVE_MANIFEST.md`、`data/reports/DATA_MINING_REVIEW.md`
+  与 `data/reports/data_mining_report_*.md` 同样写作"人工打标"。
+- 实际链路：`data/baseline/抖音微博小红书-全量已打标.xlsx` 的六类标签由 **DeepSeek** 产出
+  （见 `data/scripts/compare_labels.py` 中"DeepSeek 原标"口径），随后用 doubao-seed、GLM、DeepSeek-V4.1
   各做一轮独立重打标。
   **不存在人工编码环节，不存在编码手册、编码员与一致性记录。**
-- 四方一致性（`四模型标签一致性对比报告_20260926.md`，n=52,736）：
+- 四方一致性（`data/archive/reports/四模型标签一致性对比报告_20260926.md`，n=52,736）：
 
 | 比较 | 类别一致率 | Cohen's κ | 有效性一致率 | κ |
 |---|---|---|---|---|
@@ -57,7 +57,7 @@ WWW 需要可识别的方法/算法贡献，CSCW 需要可迁移的社会技术�
   证据不足。复核各轮脚本后确认：四轮编码配置并不一致——第一轮"判定依据"中位 11 字
   （99.5% ≤20 字），后三轮 27—34 字（≤20 字仅 3.6%—12.7%），输出端签名呈类别式差异，
   表明第一轮提示词与后三轮不同。**该提示词已于 2026-09-26 从本机历史 Workflow 脚本中恢复**
-  （`label_prompt_round1.md`；恢复与验证见 `prompt_provenance_check.py` §A2）：第一轮类别定义为
+  （`data/prompts/label_prompt_round1.md`；恢复与验证见 `data/scripts/prompt_provenance_check.py` §A2）：第一轮类别定义为
   本事件特化（含雪碧梗/巧乐兹梗/"牢张"/天地银行等专名），判定核心为"张雪峰在句中扮演什么角色"
   而非六步顺序判定，"判定依据"被硬性限定在 30 字以内（后三轮为 1—2 句话），有效性与类别强制
   耦合且"存疑"自成一类（后三轮两者独立、无"存疑"类别）；其子代理另可见 `match_sentence` 与
@@ -68,7 +68,7 @@ WWW 需要可识别的方法/算法贡献，CSCW 需要可迁移的社会技术�
   定量），故仍不得归因于模型判定能力；
   (c) 跨模型一致性证据限定于判定标准逐字相同的后三轮（κ = 0.668—0.767），
   原标参与的三对 κ（0.430—0.511）同时含口径差异，降级为参考上界。
-  复核脚本：`prompt_provenance_check.py`（只读）。
+  复核脚本：`data/scripts/prompt_provenance_check.py`（只读）。
 
 ### B. 核心轨迹对标注器稳健，但**主比较结论不稳健**
 
@@ -161,7 +161,7 @@ W19–W22 的真实帖（含玩梗类别构成）在每个 Agent 当周决策前
 - **稳健**：W19 回升 / W20 起爆 / W22 达峰这一**相位结构**，对标注轮与平台构成标准化都稳健；
 - **不稳健**：量级（25.6%–63.0%）；"玩梗已成为主导性公共表征"在四个标注轮中有**两轮**
   标准化后由营销反超（DeepSeek-V4.1、doubao-seed），另两轮玩梗仅以 1.2–9.8pp 领先。
-- 早期的数据挖掘审查其实已记录过平台分化（`DATA_MINING_REVIEW.md` 保留项 1：抖音 W19 30%→W22 82%，
+- 早期的数据挖掘审查其实已记录过平台分化（`data/reports/DATA_MINING_REVIEW.md` 保留项 1：抖音 W19 30%→W22 82%，
   小红书同期仅 →19%），但该信息未进入仿真设计与正文；仿真把三平台混合建模，与这一事实不符。
 
 
@@ -172,14 +172,14 @@ W19–W22 的真实帖（含玩梗类别构成）在每个 Agent 当周决策前
 
 ### 动作 1（文字已落地）：编码口径如实化
 
-- [x] 三方一致性分析（脚本 `compare_labels.py`，报告 `标签一致性对比报告_20260925.md`）
-- [x] 四方一致性分析（脚本 `compare_labels4.py`，报告 `四模型标签一致性对比报告_20260926.md`；
+- [x] 三方一致性分析（脚本 `data/scripts/compare_labels.py`，报告 `data/archive/reports/标签一致性对比报告_20260925.md`）
+- [x] 四方一致性分析（脚本 `data/scripts/compare_labels4.py`，报告 `data/archive/reports/四模型标签一致性对比报告_20260926.md`；
       新增 DeepSeek-V4.1 同族独立重打标轮，并更正正文中由 GLM 中间产物算出的陈旧数字）
 - [x] 标注器敏感性分析（脚本 `hypothesis_4/experiment_1/labeler_sensitivity.py`，报告 `results/labeler_sensitivity/REPORT.md`）
 - [x] 分平台与平台构成标准化分析（`platform_heterogeneity.py`、`platform_standardization.py`）
 - [x] 改写正文与工作区文档中的"人工编码/人工标注/人工打标"（`manuscript.accepted.md` 6 处 + 新增
-      第二章（四）"编码流程与测量不确定性"；`DATA_MINING_REVIEW.md`、`datasets/zhangxf_labeled/CLUSTERS.md`、
-      `data_mining_report_*.md`），并收窄"玩梗已成为主导性公共表征"与未经评估的治理效果表述
+      第二章（四）"编码流程与测量不确定性"；`data/reports/DATA_MINING_REVIEW.md`、`datasets/zhangxf_labeled/CLUSTERS.md`、
+      `data/reports/data_mining_report_*.md`），并收窄"玩梗已成为主导性公共表征"与未经评估的治理效果表述
 - [ ] **补人工抽检**（尚缺，唯一未完成项）：分层抽 400 条，2 名不知周次与假设的编码者独立编码，
       报类别级 κ/α 与分歧裁决；工具见 `paper/spot_check/`（抽样表 + 编码手册 + κ 计算脚本）
 - [ ] **补人工抽检**（尚缺）：分层抽 300–500 条，2 名不知周次与假设的编码者独立编码，

@@ -13,10 +13,11 @@ API_KEY = os.environ["AGENTSOCIETY_LLM_API_KEY"]
 API_BASE = os.environ["AGENTSOCIETY_LLM_API_BASE"]
 MODEL = os.environ["AGENTSOCIETY_LLM_MODEL"]
 
-SRC = "/Users/easylife/Project/AgentSociety/抖音微博小红书-全量已打标.xlsx"
-OUT = "/Users/easylife/Project/AgentSociety/抖音微博小红书-独立重打标_v1.xlsx"
-PARTIAL = "/Users/easylife/Project/AgentSociety/output_partial.xlsx"
-PROGRESS = "/Users/easylife/Project/AgentSociety/.label_progress.json"
+DATA = "/Users/easylife/Project/AgentSociety/data"   # 打标工作总目录（2026-09-27 起）
+SRC = f"{DATA}/baseline/抖音微博小红书-全量已打标.xlsx"
+OUT = f"{DATA}/runs/抖音微博小红书-独立重打标_v1.xlsx"
+PARTIAL = f"{DATA}/runs/output_partial.xlsx"
+PROGRESS = f"{DATA}/runs/.label_progress.json"
 WORKERS = 8
 
 CLIENT = OpenAI(api_key=API_KEY, base_url=API_BASE, timeout=60)

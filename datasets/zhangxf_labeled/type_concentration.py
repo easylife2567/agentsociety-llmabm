@@ -1,5 +1,5 @@
 # 用户类型集中度：W12–W22 内只发「一种」内容类别的用户占比
-# 输入: 抖音微博小红书-全量已打标.xlsx（工作区根目录，用户提供）
+# 输入: data/baseline/抖音微博小红书-全量已打标.xlsx（用户提供）
 # 输出: type_concentration.json（控制台同表）
 #
 # 口径:
@@ -17,7 +17,7 @@ from pathlib import Path
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[2]
-XLSX = ROOT / "抖音微博小红书-全量已打标.xlsx"
+XLSX = ROOT / "data" / "baseline" / "抖音微博小红书-全量已打标.xlsx"
 OUT = Path(__file__).resolve().parent / "type_concentration.json"
 CACHE = Path("/tmp/labeled_full.parquet")   # 列子集缓存（首次跑由 --recache 生成）
 

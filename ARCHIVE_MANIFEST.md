@@ -38,13 +38,13 @@
 | `hypothesis_4/SIM_SETTINGS.json` | 模块挂载声明（`CurationDiscourseAgent` / `CurationDynamicsSpace`） |
 | `hypothesis_4/benchmark_curves.json` | 真实数据基准曲线 |
 | `hypothesis_4/experiment_1/EXPERIMENT.md` | E1 实验设计 |
-| `DATA_MINING_REVIEW.md`、`data_mining_report_*.md` | 数据挖掘评审与报告 |
+| `data/reports/DATA_MINING_REVIEW.md`、`data/reports/data_mining_report_*.md` | 数据挖掘评审与报告 |
 
 ### 3. 原始资料
 
 | 路径 | 大小 | 说明 |
 |------|------|------|
-| `抖音微博小红书-全量已打标.xlsx` | 82M | 三平台全量已打标原始数据 |
+| `data/baseline/抖音微博小红书-全量已打标.xlsx` | 82M | 三平台全量已打标原始数据（第1轮基准标签） |
 | `datasets/zhangxf_labeled/` | 30M | 张雪峰事件标注数据集：`valid_posts_clusters.parquet`、`cluster_profiles.json`、`meme_stats.json`、聚类与匹配脚本、`CLUSTERS.md` |
 | `research/停止更新公众人物的算法推荐与公众认知/` | 56M | 研究档案：phase1 问题界定、phase2 文献调研（含文献全文 PDF）、phase3 综合分析、研究日志 |
 | `papers/` | 5.8M | CNKI 导出、精读笔记、`literature_index.json`、相关性分类 |

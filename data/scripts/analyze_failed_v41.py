@@ -4,9 +4,10 @@ import json, openpyxl
 from collections import defaultdict, Counter
 
 ROOT = "/Users/easylife/Project/AgentSociety"
-V41 = f"{ROOT}/.label_results_DSv4_1_flash.jsonl"
-GLM = f"{ROOT}/.label_results_GLM5_3flash.jsonl"
-SRC = f"{ROOT}/抖音微博小红书-全量已打标.xlsx"
+DATA = f"{ROOT}/data"   # 打标工作总目录（2026-09-27 起，见 data/README.md）
+V41 = f"{DATA}/archive/round4_deepseek-v4.1/.label_results_DSv4_1_flash.jsonl"
+GLM = f"{DATA}/archive/round3_glm-5.3-flash/.label_results_GLM5_3flash.jsonl"
+SRC = f"{DATA}/baseline/抖音微博小红书-全量已打标.xlsx"
 
 
 def load(path):

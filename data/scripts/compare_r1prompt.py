@@ -20,14 +20,15 @@ from itertools import combinations
 import openpyxl
 
 ROOT = "/Users/easylife/Project/AgentSociety"
+DATA = f"{ROOT}/data"   # 打标工作总目录（2026-09-27 起，见 data/README.md）
 SLUG = sys.argv[1] if len(sys.argv) > 1 else "R1prompt_V4_1"
 CAT_ORDER = ["借势营销", "事件悼念讨论", "教育观点讨论", "梗文化讨论", "其他讨论", "爬取噪音", "存疑"]
 VAL_ORDER = ["有效", "无效", "存疑"]
 
 PATHS = {
-    "原标(第1轮口径,v4-flash)": f"{ROOT}/抖音微博小红书-全量已打标.xlsx",
-    "第4轮(后三轮口径,V4.1)": f"{ROOT}/抖音微博小红书-独立重打标_DSv4_1_flash.xlsx",
-    f"本次(第1轮口径,V4.1)": f"{ROOT}/抖音微博小红书-独立重打标_{SLUG}.xlsx",
+    "原标(第1轮口径,v4-flash)": f"{DATA}/baseline/抖音微博小红书-全量已打标.xlsx",
+    "第4轮(后三轮口径,V4.1)": f"{DATA}/archive/round4_deepseek-v4.1/抖音微博小红书-独立重打标_DSv4_1_flash.xlsx",
+    f"本次(第1轮口径,V4.1)": f"{DATA}/runs/抖音微博小红书-独立重打标_{SLUG}.xlsx",
 }
 A, B, C = list(PATHS)          # 原标 / 第4轮 / 本次
 
@@ -180,7 +181,7 @@ def main():
     md.append(f"本次（第1轮口径）判为「存疑」：{nc} 条（{nc/n*100:.2f}%）；"
               f"原标 {len(dq)} 条（{len(dq)/n*100:.2f}%）\n")
 
-    path = f"{ROOT}/第1轮口径复现对比报告_{today}.md"
+    path = f"{DATA}/reports/第1轮口径复现对比报告_{today}.md"
     open(path, "w").write("\n".join(md))
     print(f"✅ 报告：{path}")
 

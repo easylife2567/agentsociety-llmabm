@@ -152,7 +152,7 @@ def main() -> int:
     lines = ["# 盲法判类分析：文本类别 vs 身份标签（W2 整改）", ""]
     lines += [
         f"- 判类模型：GLM（`{judge_path.stem.replace('judge_', '')}`），生成模型为 `deepseek-v4-flash`。",
-        f"- 判定标准：与真实帖文打标完全相同的 prompt（AST 取自 `batch_label_v3.py`）。",
+        f"- 判定标准：与真实帖文打标完全相同的 prompt（AST 取自 `data/scripts/batch_label_v3.py`）。",
         f"- 输入：仅正文；不含 arm、身份、周次、四词表。覆盖 {len(rows)}/{total_meta} 条。",
         "",
         "## 1. 三种口径下的类别分布",

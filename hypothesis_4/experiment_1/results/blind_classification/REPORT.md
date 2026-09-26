@@ -1,7 +1,7 @@
 # 盲法判类分析：文本类别 vs 身份标签（W2 整改）
 
 - 判类模型：GLM（`glm-5-3-flash-260828`），生成模型为 `deepseek-v4-flash`。
-- 判定标准：与真实帖文打标完全相同的 prompt（AST 取自 `batch_label_v3.py`）。
+- 判定标准：与真实帖文打标完全相同的 prompt（AST 取自 `data/scripts/batch_label_v3.py`）。
 - 输入：仅正文；不含 arm、身份、周次、四词表。覆盖 1887/1904 条。
 
 ## 1. 三种口径下的类别分布

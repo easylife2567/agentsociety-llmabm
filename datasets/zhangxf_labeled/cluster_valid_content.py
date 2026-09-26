@@ -1,5 +1,5 @@
 # 对打标数据的有效内容做主题聚类，产出供给主题画像（供 LLMABM 配置使用）
-# 输入: 抖音微博小红书-全量已打标.xlsx（工作区根目录，用户提供）
+# 输入: data/baseline/抖音微博小红书-全量已打标.xlsx（用户提供）
 # 输出: valid_posts_clusters.parquet / cluster_profiles.json
 # 方法: jieba 分词 → TF-IDF(1-2gram) → LSA(100) → MiniBatchKMeans(k=12, 固定种子)
 #       后处理: C3+C6 合并为「巧乐兹雪碧梗」（同梗分裂，文本多样性极低）;
@@ -21,7 +21,7 @@ from sklearn.preprocessing import Normalizer
 warnings.filterwarnings("ignore")
 
 ROOT = Path(__file__).resolve().parents[2]
-XLSX = ROOT / "抖音微博小红书-全量已打标.xlsx"
+XLSX = ROOT / "data" / "baseline" / "抖音微博小红书-全量已打标.xlsx"
 OUT = Path(__file__).resolve().parent
 
 K = 12

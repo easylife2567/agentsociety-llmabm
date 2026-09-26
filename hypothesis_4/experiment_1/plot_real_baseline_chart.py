@@ -7,7 +7,7 @@
     模拟 run（250 条注入预算）   ~50-80 帖/周
     真实基准（xlsx 全量 52,716 条） W12-W22 共 48,360 帖，W13 单周 11,394
 
-数据源：工作区根目录 `抖音微博小红书-全量已打标.xlsx`（用户提供，人工打标）。
+数据源：`data/baseline/抖音微博小红书-全量已打标.xlsx`（用户提供；LLM 打标，非人工打标）。
 口径：剔除 `数据有效性=='存疑'`（20 行）；`无效` 保留（=营销+噪音，属真实供给组成）。
      与 `hypothesis_4/benchmark_curves.json.weekly_category_matrix`、
      `custom/envs/curation_assets/injection_posts.json.meta.weekly_counts` 逐周完全一致，
@@ -36,7 +36,7 @@ from matplotlib.ticker import FuncFormatter
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT = SCRIPT_DIR.parents[1]                       # 工作区根目录
-XLSX = ROOT / "抖音微博小红书-全量已打标.xlsx"
+XLSX = ROOT / "data" / "baseline" / "抖音微博小红书-全量已打标.xlsx"
 BENCH = ROOT / "hypothesis_4" / "benchmark_curves.json"
 
 OUT_DIR = ROOT / "hypothesis_4" / "experiment_1" / "results" / "charts"

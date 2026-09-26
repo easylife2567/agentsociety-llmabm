@@ -4,7 +4,7 @@
 问题
 ----
 真实基准的六类标签来自一轮 LLM 打标（DeepSeek），而非人工编码。一致性对比
-（`四模型标签一致性对比报告_20260926.md`）显示原标与三个独立重打标轮的类别
+（`data/archive/reports/四模型标签一致性对比报告_20260926.md`）显示原标与三个独立重打标轮的类别
 一致率仅 53.9%–60.7%、Cohen's κ = 0.43–0.51，且分歧集中在「借势营销 ↔
 教育观点讨论」边界。因此必须回答：论文的核心经验结论（悼念峰值、玩梗延迟
 爆发、以及三臂拟合排序）是否依赖某一特定标注器？
@@ -48,13 +48,13 @@ OUT_DIR = SCRIPT_DIR / "results" / "labeler_sensitivity"
 CACHE = OUT_DIR / "weekly_matrices.json"
 REPORT = OUT_DIR / "REPORT.md"
 
-SOURCE_XLSX = ROOT / "抖音微博小红书-全量已打标.xlsx"
+SOURCE_XLSX = ROOT / "data" / "baseline" / "抖音微博小红书-全量已打标.xlsx"
 
 LABELERS = {
     "DeepSeek": SOURCE_XLSX,
-    "doubao-seed": ROOT / "抖音微博小红书-独立重打标_Seed2_1_lite.xlsx",
-    "GLM": ROOT / "抖音微博小红书-独立重打标_GLM5_3flash.xlsx",
-    "DeepSeek-V4.1": ROOT / "抖音微博小红书-独立重打标_DSv4_1_flash.xlsx",
+    "doubao-seed": ROOT / "data" / "archive" / "round2_doubao-seed-2.1-lite" / "抖音微博小红书-独立重打标_Seed2_1_lite.xlsx",
+    "GLM": ROOT / "data" / "archive" / "round3_glm-5.3-flash" / "抖音微博小红书-独立重打标_GLM5_3flash.xlsx",
+    "DeepSeek-V4.1": ROOT / "data" / "archive" / "round4_deepseek-v4.1" / "抖音微博小红书-独立重打标_DSv4_1_flash.xlsx",
 }
 
 CAT2TYPE = {

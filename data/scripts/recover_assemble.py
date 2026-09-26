@@ -17,9 +17,10 @@ from openpyxl import Workbook
 
 SLUG = sys.argv[1] if len(sys.argv) > 1 else "GLM5_3flash"
 ROOT = "/Users/easylife/Project/AgentSociety"
-SRC = f"{ROOT}/抖音微博小红书-全量已打标.xlsx"
-JSONL = f"{ROOT}/.label_results_{SLUG}.jsonl"
-OUT = f"{ROOT}/抖音微博小红书-独立重打标_{SLUG}.xlsx"
+DATA = f"{ROOT}/data"   # 打标工作总目录（2026-09-27 起，见 data/README.md）
+SRC = f"{DATA}/baseline/抖音微博小红书-全量已打标.xlsx"
+JSONL = f"{DATA}/runs/.label_results_{SLUG}.jsonl"
+OUT = f"{DATA}/runs/抖音微博小红书-独立重打标_{SLUG}.xlsx"
 
 # 1) 解析 JSONL（两种行格式兼容，按行号聚合）
 recs_by_row = {}

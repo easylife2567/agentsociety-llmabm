@@ -45,16 +45,22 @@ BSIZE = int(sys.argv[4]) if len(sys.argv) > 4 else 8
 MAX_TOKENS = int(os.environ.get("LABEL_MAX_TOKENS", "8000"))
 
 ROOT = "/Users/easylife/Project/AgentSociety"
-SRC = f"{ROOT}/抖音微博小红书-全量已打标.xlsx"
-OUT = f"{ROOT}/抖音微博小红书-独立重打标_{SLUG}.xlsx"
-JSONL = f"{ROOT}/.label_results_{SLUG}.jsonl"
-PROGRESS = f"{ROOT}/.label_progress_{SLUG}.json"
+DATA = f"{ROOT}/data"   # 打标工作总目录（2026-09-27 起，见 data/README.md）
+SRC = f"{DATA}/baseline/抖音微博小红书-全量已打标.xlsx"
+OUT = f"{DATA}/runs/抖音微博小红书-独立重打标_{SLUG}.xlsx"
+JSONL = f"{DATA}/runs/.label_results_{SLUG}.jsonl"
+PROGRESS = f"{DATA}/runs/.label_progress_{SLUG}.json"
+os.makedirs(os.path.dirname(OUT), exist_ok=True)
 
 print(f"[配置] 模型={MODEL} | slug={SLUG} | 并发={WORKERS} | 每次调用判定 {BSIZE} 条 | max_tokens={MAX_TOKENS}", flush=True)
 print(f"[配置] 提示词=第1轮(原标)提示词，仅 I/O 段改为 API | 输入字段=第1轮原样", flush=True)
 print(f"[配置] 输出={OUT}", flush=True)
 
-CLIENT = OpenAI(api_key=API_KEY, base_url=API_BASE, timeout=180)
+# 超时可配：GLM 等思考型模型单次 8 条批量判定平均要 3 分钟，180 秒会误杀并触发重试。
+# 默认 180 与第 3/4 轮一致；GLM 轮用 LABEL_TIMEOUT=600。
+TIMEOUT = float(os.environ.get("LABEL_TIMEOUT", "180"))
+CLIENT = OpenAI(api_key=API_KEY, base_url=API_BASE, timeout=TIMEOUT)
+print(f"[配置] 客户端超时={TIMEOUT:.0f}s", flush=True)
 
 # ── 第 1 轮提示词（label_prompt_round1.md §A）──────────────────────────────
 # 除开头与【输出格式】两段外，与恢复出的原文逐字一致。

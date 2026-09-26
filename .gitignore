@@ -29,7 +29,8 @@ datasets/zhangxf_labeled/valid_posts_clusters.parquet
 AgentSociety_*.tar.gz
 
 # 本地历史实验备份（不进入比赛提交与 Git；索引见根目录 ARCHIVE_MANIFEST_*）
-archive/
+# 锚定到根目录：否则会连带忽略 data/archive/（打标轮次归档，需入库）。
+/archive/
 
 # CurationDynamics H4E1 引擎原始产物（由 run_batch 自动生成，不入库）。
 # anchored_v1 本轮用独立目录收纳 9 个 raw run；其中 README 与 _derived/ 下的
@@ -51,7 +52,8 @@ hypothesis_4/experiment_1/runs_stopped_partial/*/
 hypothesis_4/experiment_1/monitor/
 hypothesis_4/experiment_1/*.log
 
-# 打标过程的运行期缓存与可复现派生物（原始判定已入库为 xlsx）
+# 打标过程的运行期缓存与可复现派生物（原始判定已入库为 xlsx）。
+# 下列模式不含斜杠，在任意层级生效，已覆盖 data/runs/ 与 data/archive/*/ 下的同名文件。
 .label_progress_*.json
 .label_results_*.jsonl
 标签一致性对比明细_*.xlsx

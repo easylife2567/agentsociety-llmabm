@@ -25,10 +25,11 @@ BSIZE = int(sys.argv[4]) if len(sys.argv) > 4 else 8
 MAX_TOKENS = int(os.environ.get("LABEL_MAX_TOKENS", "8000"))
 
 ROOT = "/Users/easylife/Project/AgentSociety"
-SRC = f"{ROOT}/抖音微博小红书-全量已打标.xlsx"
-OUT = f"{ROOT}/抖音微博小红书-独立重打标_{SLUG}.xlsx"
-JSONL = f"{ROOT}/.label_results_{SLUG}.jsonl"
-PROGRESS = f"{ROOT}/.label_progress_{SLUG}.json"
+DATA = f"{ROOT}/data"   # 打标工作总目录（2026-09-27 起，见 data/README.md）
+SRC = f"{DATA}/baseline/抖音微博小红书-全量已打标.xlsx"
+OUT = f"{DATA}/runs/抖音微博小红书-独立重打标_{SLUG}.xlsx"
+JSONL = f"{DATA}/runs/.label_results_{SLUG}.jsonl"
+PROGRESS = f"{DATA}/runs/.label_progress_{SLUG}.json"
 
 print(f"[配置] 模型={MODEL} | slug={SLUG} | 并发={WORKERS} | 每次调用判定 {BSIZE} 条 | max_tokens={MAX_TOKENS}", flush=True)
 print(f"[配置] 输出={OUT}", flush=True)

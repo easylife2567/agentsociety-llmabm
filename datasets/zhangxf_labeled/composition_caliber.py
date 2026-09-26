@@ -4,7 +4,7 @@
 #   用户裁定维持原口径（W12–W22 全窗 + 发帖人口径 = 19/22/23/15/21），
 #   本脚本列出的另外三种口径（W12 单周 / 事件前 / ≥2帖 complete-case）均已否决。
 #   → 本文件不再作为生产口径输入；仅作决策依据留档。见 EXPERIMENT.md「口径定档」。
-# 输入: 抖音微博小红书-全量已打标.xlsx（工作区根目录，用户提供）
+# 输入: data/baseline/抖音微博小红书-全量已打标.xlsx（用户提供）
 # 输出: composition_caliber.json + 控制台对照表
 #
 # 背景：H4E1 现行群体构成 营销23/悼念22/其他21/梗19/教育15（发帖人口径，100 agents）
@@ -21,7 +21,7 @@ from pathlib import Path
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[2]
-XLSX = ROOT / "抖音微博小红书-全量已打标.xlsx"
+XLSX = ROOT / "data" / "baseline" / "抖音微博小红书-全量已打标.xlsx"
 OUT = Path(__file__).resolve().parent / "composition_caliber.json"
 CACHE = Path("/tmp/labeled_full.parquet")
 

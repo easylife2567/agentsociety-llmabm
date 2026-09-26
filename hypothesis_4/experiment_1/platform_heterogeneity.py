@@ -30,12 +30,12 @@ ROOT = SCRIPT_DIR.parent.parent
 OUT_DIR = SCRIPT_DIR / "results" / "platform_heterogeneity"
 REPORT = OUT_DIR / "REPORT.md"
 
-SOURCE_XLSX = ROOT / "抖音微博小红书-全量已打标.xlsx"
+SOURCE_XLSX = ROOT / "data" / "baseline" / "抖音微博小红书-全量已打标.xlsx"
 LABELERS = {
     "DeepSeek": SOURCE_XLSX,
-    "doubao-seed": ROOT / "抖音微博小红书-独立重打标_Seed2_1_lite.xlsx",
-    "GLM": ROOT / "抖音微博小红书-独立重打标_GLM5_3flash.xlsx",
-    "DeepSeek-V4.1": ROOT / "抖音微博小红书-独立重打标_DSv4_1_flash.xlsx",
+    "doubao-seed": ROOT / "data" / "archive" / "round2_doubao-seed-2.1-lite" / "抖音微博小红书-独立重打标_Seed2_1_lite.xlsx",
+    "GLM": ROOT / "data" / "archive" / "round3_glm-5.3-flash" / "抖音微博小红书-独立重打标_GLM5_3flash.xlsx",
+    "DeepSeek-V4.1": ROOT / "data" / "archive" / "round4_deepseek-v4.1" / "抖音微博小红书-独立重打标_DSv4_1_flash.xlsx",
 }
 CAT2TYPE = {
     "借势营销": "marketing",

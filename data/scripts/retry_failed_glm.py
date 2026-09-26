@@ -23,8 +23,9 @@ MAX_TOKENS = 16000
 ATTEMPTS = 2
 
 ROOT = "/Users/easylife/Project/AgentSociety"
-SRC = f"{ROOT}/抖音微博小红书-全量已打标.xlsx"
-JSONL = f"{ROOT}/.label_results_GLM5_3flash.jsonl"
+DATA = f"{ROOT}/data"   # 打标工作总目录（2026-09-27 起，见 data/README.md）
+SRC = f"{DATA}/baseline/抖音微博小红书-全量已打标.xlsx"
+JSONL = f"{DATA}/runs/.label_results_GLM5_3flash.jsonl"
 
 print(f"[配置] 模型={MODEL} | 并发={WORKERS} | max_tokens={MAX_TOKENS} | 每次尝试={ATTEMPTS}", flush=True)
 

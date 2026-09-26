@@ -28,7 +28,7 @@ import openpyxl
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT = SCRIPT_DIR.parent.parent
-SOURCE = ROOT / "抖音微博小红书-全量已打标.xlsx"
+SOURCE = ROOT / "data" / "baseline" / "抖音微博小红书-全量已打标.xlsx"
 OUT_DIR = SCRIPT_DIR / "sample"
 
 WINDOW_START, WINDOW_END = "2026-W05", "2026-W22"
