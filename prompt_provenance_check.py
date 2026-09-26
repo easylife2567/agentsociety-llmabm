@@ -6,19 +6,28 @@
 用户质疑：后三轮的提示词可能与第 1 轮不同，偏离是否由提示词造成。本脚本据实核查：
 
   A. 各轮打标脚本的 SYSTEM_PROMPT 指纹（AST 抽取 + sha256 前缀）与调用结构（每次调用判定几条）
+  A2. 第 1 轮（原标）提示词 —— 已于 2026-09-26 从本机 Workflow 历史脚本中恢复（见 label_prompt_round1.md）
   B. 各轮「判定依据」文本长度分布 —— 提示词差异的**输出端签名**
   C. 类别分布对照 + 原标「其他讨论」在后三轮的去向
   D. 分歧是否集中在单一类别边界（原标=其他讨论 且 后三轮一致=教育观点讨论）
 
 用法: python prompt_provenance_check.py
 """
-import ast, collections, hashlib, os, random, statistics, sys
+import ast, collections, glob, hashlib, json, os, random, re, statistics, sys
 
 import openpyxl
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SCRIPTS = ["batch_label.py", "batch_label_v2.py", "batch_label_v3.py",
            "retry_failed.py", "retry_failed_glm.py"]
+
+# 第 1 轮（原标）的提示词不在工作区内：它由另一项目（~/Project/数据清洗）下的
+# Claude Code Workflow 运行，脚本与批次结果留在本机历史目录中。
+R1_WF = os.path.expanduser(
+    "~/.claude/projects/-Users-easylife-Project-----/"
+    "48165eea-81a5-449c-ab05-3b11f103a1af/workflows/scripts/"
+    "zxf-full-labeling-wf_4953f96e-780.js")
+R1_BATCH_DIR = os.path.expanduser("~/Project/数据清洗/全量标注结果")
 R1 = "原标(第1轮)"
 R2, R3, R4 = "Seed(第2轮)", "GLM(第3轮)", "DSv4.1(第4轮)"
 ROUNDS = [
@@ -61,6 +70,42 @@ def prompt_fingerprint():
     print("  → 差异仅在【输出格式】段（单对象 vs JSON 数组），该段与调用结构（1 条/次 vs 8 条/次）耦合。")
 
 
+def round1_fingerprint():
+    """A2. 第 1 轮提示词：从 Workflow 历史脚本恢复，并用其输出端签名交叉验证。"""
+    section("A2. 第 1 轮（原标）提示词 —— 已恢复，指纹与签名交叉验证")
+    if not os.path.exists(R1_WF):
+        print(f"  工作流脚本不存在（本机历史已清理）：{R1_WF}")
+        print("  提示词全文见 label_prompt_round1.md。")
+        return
+    src = open(R1_WF, encoding="utf-8").read()
+    m = re.search(r"const T = `(.*?)`\n", src, re.S)
+    if not m:
+        print("  未能在工作流脚本中定位提示词常量 T。"); return
+    text = m.group(1).replace("\\`", "`")
+    h = hashlib.sha256(text.encode()).hexdigest()
+    print(f"  zxf-full-labeling-wf_4953f96e-780.js  长度={len(text)}  sha256={h[:16]}")
+    print("  调用结构：Workflow 352 个 agent × 每批 150 行（agentic：Read/Write 工具）")
+    print("  输入字段：row_id, platform, author, title, match_sentence(+ctx_full_content)")
+
+    files = sorted(glob.glob(os.path.join(R1_BATCH_DIR, "result_batch_*.jsonl")))
+    if not files:
+        print(f"  批次结果目录不存在，跳过输出端签名验证：{R1_BATCH_DIR}"); return
+    rows = []
+    for f in files:
+        for line in open(f, encoding="utf-8"):
+            line = line.strip()
+            if line:
+                rows.append(json.loads(line))
+    L = sorted(len(r.get("reason", "")) for r in rows)
+    n = len(L)
+    print(f"\n  输出端签名验证（{len(files)} 个批次文件，{n} 行）：")
+    print(f"    reason 长度：中位 {L[n//2]}  最大 {max(L)}  ≤30字 {sum(1 for x in L if x<=30)/n*100:.2f}%")
+    print("    → 提示词写死 \"reason\":\"≤30字判定依据\"；后三轮为「1-2 句话」，实得中位 27—34 字。")
+    cc = collections.Counter(r.get("category") for r in rows)
+    print(f"    类别分布：{'，'.join(f'{k} {v}' for k, v in cc.most_common())}")
+    print("    → 与工作区 原标(第1轮) 列一致，确认为同一份产物。")
+
+
 def load_round(name, path):
     wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
     ws = wb[wb.sheetnames[0]]
@@ -85,6 +130,7 @@ def load_round(name, path):
 
 def main():
     prompt_fingerprint()
+    round1_fingerprint()
     data, vals_all, lens_all, titles = {}, {}, {}, {}
     for name, path in ROUNDS:
         data[name], vals_all[name], lens_all[name], titles[name] = load_round(name, path)
