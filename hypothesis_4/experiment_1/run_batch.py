@@ -382,6 +382,7 @@ async def main_async(args) -> int:
     to_run = [(rid, action) for rid, _, action in plan if action in ("start", "force", "resume")]
     results: list[dict] = []
     sem = asyncio.Semaphore(max(1, args.concurrency))
+    postprocess_lock = asyncio.Lock()
     # 先进先出，严格保持 manifest 顺序（前序 cell 优先补齐）
 
     async def worker(rid: str, action: str):
@@ -390,23 +391,38 @@ async def main_async(args) -> int:
                               timeout_h=args.timeout_h, interval=args.interval)
             results.append(r)
             if args.with_monitor:
-                subprocess.run(
-                    [py, str(SCRIPT_DIR / "monitor.py")],
-                    cwd=str(WORKSPACE), env=env, timeout=600,
-                )
-                if r.get("outcome") == "completed":
-                    status_path = (
-                        RUNS_ROOT / "_derived" / "monitor" /
-                        rid / "status.json"
-                    )
+                # monitor.py / plot_run_charts.py 的历史默认目录指向 anchored_v1。
+                # 这里始终显式传入当前批次路径，保证 wrapper 切换 ROUND_ID 后不会把
+                # weekly_lag1 的快照或图表写回旧批次。并发完成时串行化派生写入。
+                async with postprocess_lock:
+                    monitor_cmd = [
+                        py, str(SCRIPT_DIR / "monitor.py"),
+                        "--out-dir", str(RUNS_ROOT / "_derived" / "monitor"),
+                    ]
+                    for known_id in run_ids:
+                        known_dir = RUNS_ROOT / known_id
+                        if known_dir.is_dir():
+                            monitor_cmd.extend(
+                                ["--run-dir", str(known_dir), "--label", known_id]
+                            )
                     subprocess.run(
-                        [
-                            py, str(SCRIPT_DIR / "plot_run_charts.py"),
-                            "--status", str(status_path),
-                            "--run-id", rid,
-                        ],
-                        cwd=str(WORKSPACE), env=env, timeout=600,
+                        monitor_cmd, cwd=str(WORKSPACE), env=env, timeout=600, check=True,
                     )
+                    if r.get("outcome") == "completed":
+                        status_path = (
+                            RUNS_ROOT / "_derived" / "monitor" /
+                            rid / "status.json"
+                        )
+                        subprocess.run(
+                            [
+                                py, str(SCRIPT_DIR / "plot_run_charts.py"),
+                                "--status", str(status_path),
+                                "--run-id", rid,
+                                "--data-dir", str(RUNS_ROOT / "_derived" / "data"),
+                                "--charts-dir", str(RUNS_ROOT / "_derived" / "charts"),
+                            ],
+                            cwd=str(WORKSPACE), env=env, timeout=600, check=True,
+                        )
             return r
 
     tasks = [asyncio.create_task(worker(rid, action)) for rid, action in to_run]

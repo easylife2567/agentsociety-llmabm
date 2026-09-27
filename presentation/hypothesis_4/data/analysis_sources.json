@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
   "batch_id": "anchored_v1",
-  "classification": "latest_formal",
+  "classification": "superseded_formal",
   "design": "3 recommendation algorithms x 3 seeds",
-  "status": "completed",
+  "status": "completed_archived",
   "official_single_run_compatibility": {
     "path": "hypothesis_4/experiment_1/run",
-    "target": "runs/anchored_v1/anchored_v1_interest_s0",
-    "role": "generative-validation anchor for AgentSociety status and analysis intake",
-    "limitation": "The official harness accepts one replay path. Cross-arm claims must use all nine sources and the arm-level aggregates below."
+    "target": "runs/weekly_lag1/weekly_lag1_interest_s0",
+    "role": "current weekly_lag1 AgentSociety single-run compatibility entry",
+    "limitation": "The target becomes readable after the new run starts; archived anchored_v1 evidence is not the latest formal batch."
   },
   "formal_runs": [
     {
@@ -17,7 +17,7 @@
       "seed": 0,
       "engine_batches": 11,
       "weekly_points": 11,
-      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_random_s0/replay"
+      "replay": "archive/hypothesis_4_experiment_1_batches/formal_superseded/anchored_v1/raw/anchored_v1_random_s0/replay"
     },
     {
       "run_id": "anchored_v1_random_s1",
@@ -25,7 +25,7 @@
       "seed": 1,
       "engine_batches": 11,
       "weekly_points": 11,
-      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_random_s1/replay"
+      "replay": "archive/hypothesis_4_experiment_1_batches/formal_superseded/anchored_v1/raw/anchored_v1_random_s1/replay"
     },
     {
       "run_id": "anchored_v1_random_s2",
@@ -33,7 +33,7 @@
       "seed": 2,
       "engine_batches": 11,
       "weekly_points": 11,
-      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_random_s2/replay"
+      "replay": "archive/hypothesis_4_experiment_1_batches/formal_superseded/anchored_v1/raw/anchored_v1_random_s2/replay"
     },
     {
       "run_id": "anchored_v1_chronological_s0",
@@ -41,7 +41,7 @@
       "seed": 0,
       "engine_batches": 693,
       "weekly_points": 11,
-      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_chronological_s0/replay"
+      "replay": "archive/hypothesis_4_experiment_1_batches/formal_superseded/anchored_v1/raw/anchored_v1_chronological_s0/replay"
     },
     {
       "run_id": "anchored_v1_chronological_s1",
@@ -49,7 +49,7 @@
       "seed": 1,
       "engine_batches": 693,
       "weekly_points": 11,
-      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_chronological_s1/replay"
+      "replay": "archive/hypothesis_4_experiment_1_batches/formal_superseded/anchored_v1/raw/anchored_v1_chronological_s1/replay"
     },
     {
       "run_id": "anchored_v1_chronological_s2",
@@ -57,7 +57,7 @@
       "seed": 2,
       "engine_batches": 693,
       "weekly_points": 11,
-      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_chronological_s2/replay"
+      "replay": "archive/hypothesis_4_experiment_1_batches/formal_superseded/anchored_v1/raw/anchored_v1_chronological_s2/replay"
     },
     {
       "run_id": "anchored_v1_interest_s0",
@@ -65,7 +65,7 @@
       "seed": 0,
       "engine_batches": 11,
       "weekly_points": 11,
-      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_interest_s0/replay"
+      "replay": "archive/hypothesis_4_experiment_1_batches/formal_superseded/anchored_v1/raw/anchored_v1_interest_s0/replay"
     },
     {
       "run_id": "anchored_v1_interest_s1",
@@ -73,7 +73,7 @@
       "seed": 1,
       "engine_batches": 11,
       "weekly_points": 11,
-      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_interest_s1/replay"
+      "replay": "archive/hypothesis_4_experiment_1_batches/formal_superseded/anchored_v1/raw/anchored_v1_interest_s1/replay"
     },
     {
       "run_id": "anchored_v1_interest_s2",
@@ -81,16 +81,22 @@
       "seed": 2,
       "engine_batches": 11,
       "weekly_points": 11,
-      "replay": "hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_interest_s2/replay"
+      "replay": "archive/hypothesis_4_experiment_1_batches/formal_superseded/anchored_v1/raw/anchored_v1_interest_s2/replay"
     }
   ],
   "formal_aggregates": {
     "monitor": "hypothesis_4/experiment_1/runs/anchored_v1/_derived/monitor/overview.json",
     "arm_tables": "hypothesis_4/experiment_1/runs/anchored_v1/_derived/data/arm",
     "per_run_tables": "hypothesis_4/experiment_1/runs/anchored_v1/_derived/data",
-    "charts": "hypothesis_4/experiment_1/runs/anchored_v1/_derived/charts"
+    "charts": "hypothesis_4/experiment_1/runs/anchored_v1/_derived/charts",
+    "classification": "frozen_compatibility_copy_for_superseded_batch"
   },
   "excluded_from_current_analysis": [
+    {
+      "path": "archive/hypothesis_4_experiment_1_batches/formal_superseded/anchored_v1",
+      "original_path": "hypothesis_4/experiment_1/runs/anchored_v1",
+      "classification": "formal_completed_superseded_by_timing_revision"
+    },
     {
       "path": "archive/hypothesis_4_experiment_1_history_20260915/hypothesis_4/experiment_1/runs/{random,chronological,interest}_s{0,1,2}",
       "original_path": "hypothesis_4/experiment_1/runs/{random,chronological,interest}_s{0,1,2}",
@@ -125,5 +131,21 @@
       "path": "archive/hypothesis_4_experiment_1_history_20260915/hypothesis_4/experiment_1/{charts,data,monitor,runtime_logs,historical_code_and_docs}",
       "classification": "historical_derived_or_diagnostic_artifacts"
     }
-  ]
+  ],
+  "superseded_by": "weekly_lag1",
+  "superseded_reason": "weekly real-post timing changed to one-period lag",
+  "current_batch": {
+    "batch_id": "weekly_lag1",
+    "classification": "current_formal_pending_or_running",
+    "manifest": "hypothesis_4/experiment_1/init/configs/weekly_lag1_manifest.json",
+    "run_root": "hypothesis_4/experiment_1/runs/weekly_lag1",
+    "run_ids": [
+      "weekly_lag1_interest_s0",
+      "weekly_lag1_interest_s1",
+      "weekly_lag1_interest_s2",
+      "weekly_lag1_random_s0",
+      "weekly_lag1_random_s1",
+      "weekly_lag1_random_s2"
+    ]
+  }
 }

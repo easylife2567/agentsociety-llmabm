@@ -40,12 +40,6 @@ archive/hypothesis_4_experiment_1_history_20260915/
 hypothesis_4/experiment_1/runs/anchored_v1/
 ```
 
-## 当前权威结果
+## 后续状态
 
-- 批次：`anchored_v1`
-- 设计：3 推荐算法 × 3 seeds
-- 状态：9/9 completed
-- 权威配置：`hypothesis_4/experiment_1/init/configs/manifest.json`
-- 权威完成性总览：`hypothesis_4/experiment_1/runs/anchored_v1/_derived/monitor/overview.json`
-- 权威跨臂聚合表：`hypothesis_4/experiment_1/runs/anchored_v1/_derived/data/arm/`
-- 多数据源清单：`presentation/hypothesis_4/data/analysis_sources.json`
+`anchored_v1`后来完成9/9，但在2026-09-27因真实帖注入时机修订被`weekly_lag1`取代，其raw run也已归档。所有批次的当前分类与位置统一见`ARCHIVE_MANIFEST_H4E1.md`。

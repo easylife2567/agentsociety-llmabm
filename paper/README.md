@@ -14,7 +14,7 @@
 
 ## 当前证据基线
 
-论文中的正式仿真实验应以 `hypothesis_4/experiment_1/runs/anchored_v1/` 为唯一正式批次：3 种策展制度 × 3 个 seed，共 9 个完成 run。跨 run 的权威聚合位于：
+`anchored_v1`曾是论文的正式仿真批，但已因真实帖注入时机修订被取代。其原始run已归档，以下聚合路径只用于复核旧稿，不能继续作为最新结论：
 
 ```text
 hypothesis_4/experiment_1/runs/anchored_v1/_derived/data/arm/
@@ -26,7 +26,7 @@ hypothesis_4/experiment_1/runs/anchored_v1/_derived/data/arm/
 hypothesis_4/experiment_1/runs/anchored_v1/_derived/monitor/overview.json
 ```
 
-`hypothesis_4/experiment_1/run` 是官方单-run 工具所需的兼容入口，目前指向 `anchored_v1_interest_s0`。它不能替代上述 9-run 聚合目录，也不能据此把正式实验误写成单次运行。
+新的正式批为`weekly_lag1`：interest/random×3 seeds。新批完成并重新分析前，论文中的旧实验数值应标记为待更新。`hypothesis_4/experiment_1/run`现指向`weekly_lag1_interest_s0`。
 
 历史烟测、旧正式批和中止残留不进入最新正式结果；历史材料已在工作区外层归档规则下单独保存，不应复制回 `hypothesis_4/` 或混入论文证据。
 

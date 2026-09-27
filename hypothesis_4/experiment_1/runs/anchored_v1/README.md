@@ -1,4 +1,4 @@
-# anchored_v1 主实验结果包
+# anchored_v1 已取代正式批的派生结果兼容包
 
 本目录只收纳新公式
 
@@ -6,38 +6,31 @@
 U_i=B_i+R_i(D_i-B_i)
 \]
 
-下的主实验：3 种推荐算法 × 3 seeds，共 9 个 run。旧公式、旧 random、旧
-chronological、烟测失败和中断残留均不放入本目录。
+下的主实验：3种推荐算法×3 seeds，共9个完整run。2026-09-27因周级真实帖子注入时机改为一期滞后而被`weekly_lag1`取代，不再是最新正式证据。
+
+9个原始run已归档至`archive/hypothesis_4_experiment_1_batches/formal_superseded/anchored_v1/raw/`。本目录保留Git跟踪的`_derived/`冻结副本，避免旧论文、审阅记录和图表引用失效。
 
 ## 目录结构
 
 ```text
 anchored_v1/
-├── anchored_v1_random_s0/          # 原始引擎输出（raw run）
-├── anchored_v1_random_s1/          # 后续运行时自动创建
-├── ...
-├── anchored_v1_interest_s2/
-└── _derived/
+├── README.md
+└── _derived/                        # 归档时冻结的兼容副本
     ├── monitor/<run_id>/            # status.md / status.json
     ├── data/<run_id>/               # 6 张周度 CSV 表
     ├── data/arm/                    # 三臂 3-seed 汇总表（9 run 完成后生成）
     └── charts/                      # 逐 run 图与臂级汇总图
 ```
 
-原始 run 目录包含 `pid.json`、`SOCIETY*.json`、`replay/`、`agents/`、`env/`
-和日志；这些大体积可重建文件被 Git 忽略。`_derived/` 中的 CSV 与图表作为持久结果入库。
+原始run的`pid.json`、`SOCIETY*.json`、`replay/`、`agents/`、`env/`和日志均已移入本地归档。`_derived/`中的CSV与图表继续入库，只能作为旧批证据使用。
 
 ## AgentSociety 官方兼容入口
 
 AgentSociety 当前的 `run-experiment status` 与 `analysis intake` 只读取单一的
 `experiment_1/run/replay`，暂不能原生登记同一实验的 9 个 replay。为兼容官方工具，
-`../../run` 使用相对符号链接指向本批的生成性验证主 run
-`anchored_v1_interest_s0`。该入口只负责让官方完成性检查和分析 harness 找到一份
-合法 replay，**不代表三臂分析只有一个 run**。
+`../../run`现已转向当前`weekly_lag1_interest_s0`，不再指向本批。
 
-正式反事实分析的权威输入是本目录下全部 9 个 run，以及
-`_derived/data/arm/` 的 3-seed 聚合表。批次边界和历史排除规则见
-`../README.md`；不得让旧公式正式批、烟测或中断残留进入本轮输入。
+本批完整raw证据与配置见根目录归档索引。不得把本批的聚合表当作`weekly_lag1`结果。
 
 ## 9-run 状态
 
@@ -59,4 +52,4 @@ random-global 与 hourly chronological 的独立路径，因此无需重跑。�
 `_derived/monitor/overview.md`；每个 run 均已生成 6 张周度 CSV、5 张逐 run 图，三臂
 3-seed 汇总表及臂级图也已生成。
 
-权威配置与运行顺序仍以 `../../init/configs/manifest.json` 为准。
+本批历史配置副本保存在归档中；当前配置以`../../init/configs/weekly_lag1_manifest.json`为准。

@@ -2,7 +2,7 @@
 
 本仓库是一个基于 AgentSociety 的可执行社会科学研究工作区，研究问题是：**推荐算法如何通过选择性放大不同表达群体，改变公众人物去世后的公共数字表征？**
 
-当前提交版本以 `hypothesis_4/experiment_1` 为唯一主实验，采用 3 种推荐制度 × 3 个随机种子的设计，共 9 个正式 run。9 个 run 已全部完成并通过完成性复核；结果分析仍在进行。最终报告尚未完成，因此本版不把 `paper/` 作为正式成果或实验状态依据。
+当前修订以`hypothesis_4/experiment_1`为唯一主实验。原`anchored_v1`的9个run已完整归档，但因真实帖注入时机问题不再作为最新正式证据。当前`weekly_lag1`只重跑受影响的interest/random×3 seeds，共6个run；chronological保持原设计，不混入本轮完成性判定。
 
 ## 1. 研究设计概览
 
@@ -27,17 +27,18 @@
 | 阶段 | 状态 | 权威材料 |
 |---|---|---|
 | 研究问题与假设 | 已完成 | `TOPIC.md`、`hypothesis_4/HYPOTHESIS.md` |
-| 实验配置 | 已完成 | `hypothesis_4/experiment_1/init/configs/manifest.json` |
-| 正式实验 | **已完成，9/9** | `hypothesis_4/experiment_1/runs/anchored_v1/` |
-| 完成性复核 | **已通过** | `runs/anchored_v1/_derived/monitor/overview.{md,json}` |
-| 结果分析 | 进行中 | `runs/anchored_v1/_derived/`、`presentation/` |
+| 实验配置 | 已完成 | `hypothesis_4/experiment_1/init/configs/weekly_lag1_manifest.json` |
+| 旧正式批 | 已归档，9/9完整但被取代 | `ARCHIVE_MANIFEST_H4E1.md` |
+| 当前正式实验 | 待启动/运行 | `hypothesis_4/experiment_1/runs/weekly_lag1/` |
+| 当前完成性复核 | 尚未开始 | `runs/weekly_lag1/_derived/monitor/` |
+| 结果分析 | 等待新run | `runs/weekly_lag1/_derived/`、`presentation/` |
 | 最终报告 | 尚未完成，本版不纳入 | `paper/` |
 
-9 个正式 run 均覆盖 W12–W22。`random` 与 `interest` 各执行 11 个周级批次；`chronological` 为小时级微批次制度，每个 run 执行 693 个引擎批次并汇总为 11 个周点。
+当前6个计划run均覆盖W12–W22，每个run执行11个周级批次。旧`anchored_v1`中的chronological 3个run完成693个小时批次，仅保留作未改制度的历史参照。
 
 ## 3. 官方目录与权威入口
 
-工作区保持 AgentSociety 推荐的 `hypothesis_{id}/experiment_{id}/init`、`run` 与分析产物结构，同时在 `runs/anchored_v1/` 中保存多臂多 seed 扩展：
+工作区保持AgentSociety推荐的`hypothesis_{id}/experiment_{id}/init`和`run`结构，同时用`runs/weekly_lag1/`保存多臂多seed扩展：
 
 ```text
 .
@@ -55,13 +56,11 @@
 │   └── experiment_1/
 │       ├── EXPERIMENT.md
 │       ├── init/                       # 官方实验配置入口
-│       ├── run -> runs/anchored_v1/anchored_v1_interest_s0
+│       ├── run -> runs/weekly_lag1/weekly_lag1_interest_s0
 │       ├── runs/
 │       │   ├── README.md               # 批次分类与排除规则
-│       │   └── anchored_v1/
-│       │       ├── README.md           # 最新正式批说明
-│       │       ├── anchored_v1_*       # 3 arms × 3 seeds 原始 run
-│       │       └── _derived/           # CSV、图表和完成性快照
+│       │   ├── weekly_lag1/             # 当前2 arms × 3 seeds正式批
+│       │   └── anchored_v1/_derived/    # 已取代批的冻结派生结果兼容副本
 │       ├── run_batch.py
 │       ├── verify_experiment.py
 │       └── monitor.py
@@ -71,24 +70,23 @@
 
 ### 入口优先级
 
-1. 官方单-run兼容入口：`hypothesis_4/experiment_1/run/`，锚定生成性验证主 run `anchored_v1_interest_s0`。
-2. 全部正式实验：`hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_{random,chronological,interest}_s{0,1,2}`。
-3. 跨臂结论的权威数据：`hypothesis_4/experiment_1/runs/anchored_v1/_derived/data/arm/`。
-4. 9-run 机器可读清单：`presentation/hypothesis_4/data/analysis_sources.json`。
+1. 官方单-run兼容入口：`hypothesis_4/experiment_1/run/`，指向`weekly_lag1_interest_s0`。
+2. 当前正式实验：`hypothesis_4/experiment_1/runs/weekly_lag1/weekly_lag1_{interest,random}_s{0,1,2}`。
+3. 当前配置清单：`hypothesis_4/experiment_1/init/configs/weekly_lag1_manifest.json`。
+4. 历史批次分类：`ARCHIVE_MANIFEST_H4E1.md`。
 
 AgentSociety 当前官方状态检查与分析 intake 读取单一 `run/replay`，因此 `run/` 只承担官方兼容和生成性验证入口的作用。跨算法结论必须使用全部 9 个 replay 或三臂 3-seed 聚合表，不能只读取 `run/`。
 
 > 打包注意：`run` 在工作区中是相对符号链接。提交压缩包时应确认压缩格式保留符号链接，或在交付副本中将其实体化为同内容的真实目录，避免解压后丢失 `run/replay`。
 
-## 4. 最新正式实验矩阵
+## 4. 当前正式实验矩阵
 
 | 算法 | seed 0 | seed 1 | seed 2 | 状态 |
 |---|---|---|---|---|
-| random | `anchored_v1_random_s0` | `anchored_v1_random_s1` | `anchored_v1_random_s2` | 3/3 完成 |
-| chronological | `anchored_v1_chronological_s0` | `anchored_v1_chronological_s1` | `anchored_v1_chronological_s2` | 3/3 完成 |
-| interest | `anchored_v1_interest_s0` | `anchored_v1_interest_s1` | `anchored_v1_interest_s2` | 3/3 完成 |
+| random | `weekly_lag1_random_s0` | `weekly_lag1_random_s1` | `weekly_lag1_random_s2` | 待启动/运行 |
+| interest | `weekly_lag1_interest_s0` | `weekly_lag1_interest_s1` | `weekly_lag1_interest_s2` | 待启动/运行 |
 
-每个 run 均有 replay schema、6 张周度 CSV 和 5 张逐 run 图。三臂聚合目录包含 3-seed 周度汇总、拟合指标、DTW 指标、平台—用户机制链数据及汇总图。完成性详情见 [`hypothesis_4/experiment_1/runs/anchored_v1/_derived/monitor/overview.md`](hypothesis_4/experiment_1/runs/anchored_v1/_derived/monitor/overview.md)。
+完成后每个run应有replay、周度CSV和逐run图。旧`anchored_v1`的冻结派生结果仍保留在原`_derived/`路径，但已明确分类为superseded。
 
 ## 5. 环境与复现
 
@@ -133,8 +131,8 @@ $PYTHON_PATH hypothesis_4/experiment_1/run_batch.py --dry-run
 确认 API、预算和运行环境后再启动。建议并发数不超过 3：
 
 ```bash
-$PYTHON_PATH hypothesis_4/experiment_1/run_batch.py \
-  --concurrency 3 --with-monitor
+$PYTHON_PATH hypothesis_4/experiment_1/run_weekly_lag_batch.py \
+  --concurrency 2 --with-monitor
 ```
 
 该命令会产生外部 LLM 调用和相应费用。调度器具有完成检测能力，不会默认重跑已经完成的正式 run；除非明确需要重算，不要使用 `--force`。
@@ -142,28 +140,31 @@ $PYTHON_PATH hypothesis_4/experiment_1/run_batch.py \
 ### 5.3 刷新完成性总览
 
 ```bash
-$PYTHON_PATH hypothesis_4/experiment_1/monitor.py --overview-only
+$PYTHON_PATH hypothesis_4/experiment_1/monitor.py \
+  --out-dir hypothesis_4/experiment_1/runs/weekly_lag1/_derived/monitor \
+  --run-dir hypothesis_4/experiment_1/runs/weekly_lag1/weekly_lag1_interest_s0
 ```
 
 ## 6. 配置与结果边界
 
-正式批次 ID 为 `anchored_v1`。只有以下 9 个目录进入当前正式分析：
+当前正式批次ID为`weekly_lag1`。只有以下6个目录在完成性复核后可以进入新分析：
 
 ```text
-hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_*
+hypothesis_4/experiment_1/runs/weekly_lag1/weekly_lag1_*
 ```
 
 以下内容均不得并入当前统计：
 
 | 路径或类型 | 分类 | 当前用途 |
 |---|---|---|
+| `anchored_v1` 9-run | 已完成但被注入时机修订取代 | 已归档，仅用于旧结论复核和新旧配对比较 |
 | 旧公式 9-run 与旧冻结图表/CSV | 历史正式批，旧公式 `U=D·R` | 已移出 `hypothesis_4/`，仅作版本审计 |
 | 历史烟测与早期探针 | `smoke/probe` | 已移出 `hypothesis_4/` |
 | replay 写入器事故样本 | `invalid` | 已移出 `hypothesis_4/` |
 | 停止、中断或混跑残留 | `invalid/partial` | 已移出 `hypothesis_4/` |
 | 退役两因子配置与旧公式配置 | `historical_config` | 已移出 `hypothesis_4/` |
 
-上述材料已备份到本地 `archive/hypothesis_4_experiment_1_history_20260915/`，不属于比赛提交内容；索引见根目录 `ARCHIVE_MANIFEST_H4E1_history_20260915.md`。不得将其放回 `anchored_v1/`，也不得修改 `analysis_sources.json` 将其列为正式数据源。
+全部历史材料的位置和证据分类见根目录`ARCHIVE_MANIFEST_H4E1.md`。不得把归档raw run放回当前活动批，也不得把它们列为最新正式数据源。
 
 ## 7. 消融结果说明
 
@@ -175,13 +176,13 @@ hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_*
 
 ### 核心评审包
 
-包含研究说明、`hypothesis_4` 当前配置、`custom` 实现、`anchored_v1/_derived`、批次 README 和 `analysis_sources.json`。该层足以检查研究设计、程序实现、9-run 完成性与聚合结果。
+新批完成后，核心评审包应包含研究说明、`hypothesis_4`当前配置、`custom`实现、`weekly_lag1/_derived`、批次README和更新后的分析来源清单。
 
 ### 可复现数据附件
 
 在比赛规则、数据授权和隐私要求允许时，另附：
 
-- 9 个 `anchored_v1_*` 原始 replay；
+- 6个`weekly_lag1_*`原始replay；
 - `custom/envs/curation_assets/injection_posts.json`；
 - `datasets/zhangxf_labeled/valid_posts_clusters.parquet`；
 - 必要时另行受控提供原始打标 Excel。
@@ -216,14 +217,13 @@ hypothesis_4/experiment_1/runs/anchored_v1/anchored_v1_*
 | 仿真设置 | `hypothesis_4/SIM_SETTINGS.json` |
 | 真实效标 | `hypothesis_4/benchmark_curves.json` |
 | 实验设计 | `hypothesis_4/experiment_1/EXPERIMENT.md` |
-| 权威配置清单 | `hypothesis_4/experiment_1/init/configs/manifest.json` |
+| 当前配置清单 | `hypothesis_4/experiment_1/init/configs/weekly_lag1_manifest.json` |
 | 批次边界 | `hypothesis_4/experiment_1/runs/README.md` |
-| 最新正式批说明 | `hypothesis_4/experiment_1/runs/anchored_v1/README.md` |
-| 9-run 完成性总览 | `hypothesis_4/experiment_1/runs/anchored_v1/_derived/monitor/overview.md` |
-| 三臂聚合数据 | `hypothesis_4/experiment_1/runs/anchored_v1/_derived/data/arm/` |
-| 正式结果图 | `hypothesis_4/experiment_1/runs/anchored_v1/_derived/charts/` |
+| 当前正式批说明 | `hypothesis_4/experiment_1/runs/weekly_lag1/README.md` |
+| 历史归档总索引 | `ARCHIVE_MANIFEST_H4E1.md` |
+| 旧9-run冻结派生结果 | `hypothesis_4/experiment_1/runs/anchored_v1/_derived/` |
 | 多数据源清单 | `presentation/hypothesis_4/data/analysis_sources.json` |
 
 ---
 
-**本 README 对应快照：2026-09-15。** 后续最终报告完成后，应单独更新提交清单和成果状态；在此之前，以本文件列出的 `anchored_v1` 边界、`manifest.json` 和 `analysis_sources.json` 为准。
+**本README状态更新：2026-09-27。** `weekly_lag1`完成并通过复核后，还需再次更新分析来源和论文数值。

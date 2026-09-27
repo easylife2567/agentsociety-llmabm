@@ -1,28 +1,14 @@
-# H4-E1 run 批次索引
+# H4-E1 实验批次索引
 
-本文件是 experiment_1 的 run 选择入口。后续状态检查、分析与论文取数必须先按此表
-选择批次，不能按目录名模糊发现全部历史数据。
+AgentSociety官方目录约定使用`hypothesis_{id}/experiment_{id}/run`保存一个run。本研究需要多算法、多seed，因此保留官方`run`兼容入口，并用`runs/<batch_id>/<run_id>`扩展多run批次。官方文档没有规定历史批次归档格式，本项目按证据用途分类归档。
 
-| 位置 | 分类 | 当前权威性 | 是否进入最新分析 |
+| 批次或位置 | 分类 | 状态 | 最新分析资格 |
 |---|---|---|---|
-| `anchored_v1/anchored_v1_{random,chronological,interest}_s{0,1,2}` | **最新正式批**：锚定式效用，3 算法 × 3 seeds | 当前唯一权威正式实验 | **是，9/9 全部进入** |
-| 工作区根目录 `archive/hypothesis_4_experiment_1_history_20260915/` | 旧公式正式批、烟测、事故样本与中断残留 | 本地归档，不随 `hypothesis_4/` 提交 | 否 |
+| `weekly_lag1/` | 当前正式批：interest/random × 3 seeds | 配置完成，待启动/运行 | 完成性复核后进入 |
+| `anchored_v1/_derived/` | 已取代正式批的冻结派生结果兼容副本 | 9/9曾完整完成 | 否，仅用于旧结论复核和新旧比较 |
+| `archive/hypothesis_4_experiment_1_batches/formal_superseded/anchored_v1/` | `anchored_v1`原始run、自包含配置和派生结果归档 | 9/9完整，校验通过 | 否 |
+| `archive/hypothesis_4_experiment_1_history_20260915/` | 更早旧公式正式批、探针、烟测、事故和中断残留 | 已分类归档 | 否 |
 
-## 当前批次选择规则
+当前批次清单为`../init/configs/weekly_lag1_manifest.json`。`../run`指向`weekly_lag1_interest_s0`，只承担AgentSociety单run工具兼容作用；两臂结论必须读取6个正式run。
 
-- 批次 ID：`anchored_v1`。
-- 配置清单：`../init/configs/manifest.json`。
-- 完成性总览：`anchored_v1/_derived/monitor/overview.json`。
-- 正式 3-seed 聚合数据：`anchored_v1/_derived/data/arm/`。
-- AgentSociety 单-run 兼容入口：`../run` →
-  `runs/anchored_v1/anchored_v1_interest_s0`。
-- 兼容入口只锚定生成性验证主 run；跨算法结论必须使用 9-run 清单与臂级聚合表，
-  不能只读取 `../run/replay`。
-
-## 隔离约束
-
-历史正式批、烟测、预测、失败/中断残留可以用于方法审计或稳健性讨论，但必须显式标为
-`historical`、`smoke/probe` 或 `invalid/partial`。它们已经移出 `hypothesis_4/`，不得被
-当前 monitor 自动发现，不得并入 `anchored_v1/_derived/data/arm/`，也不得作为最新正式
-实验的完成依据。恢复位置与分类见工作区根目录
-`ARCHIVE_MANIFEST_H4E1_history_20260915.md`。
+归档总索引见工作区根目录[`ARCHIVE_MANIFEST_H4E1.md`](../../../ARCHIVE_MANIFEST_H4E1.md)。任何历史结果都不得被monitor自动并入`weekly_lag1/_derived/`。

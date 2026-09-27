@@ -405,9 +405,12 @@ def main() -> int:
                     help="覆盖 run_id（默认取 status.json 内值，再退回快照目录名）")
     ap.add_argument("--no-charts", action="store_true", help="只导出 CSV 不画图")
     ap.add_argument("--no-csv", action="store_true", help="只画图不导出 CSV")
+    ap.add_argument("--data-dir", default=str(DATA_DIR),
+                    help=f"CSV根目录（默认 {DATA_DIR.relative_to(SCRIPT_DIR)}）")
     ap.add_argument("--charts-dir", default=str(CHARTS_DIR),
                     help=f"出图目录（默认 {CHARTS_DIR.relative_to(SCRIPT_DIR)}）")
     args = ap.parse_args()
+    data_dir = _resolve_dir(args.data_dir)
     charts_dir = _resolve_dir(args.charts_dir)
 
     status_path = Path(args.status)
@@ -417,8 +420,8 @@ def main() -> int:
     print(f"run_id={run_id}  weeks={len(weekly)}  source={status_path}")
 
     if not args.no_csv:
-        for p in export_csv(weekly, DATA_DIR / run_id):
-            print(f"✓ CSV {p.relative_to(SCRIPT_DIR)}")
+        for p in export_csv(weekly, data_dir / run_id):
+            print(f"✓ CSV {_rel(p)}")
 
     if not args.no_charts:
         charts_dir.mkdir(parents=True, exist_ok=True)
