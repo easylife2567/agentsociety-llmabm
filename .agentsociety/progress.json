@@ -3,7 +3,7 @@
   "workspace": {
     "topic": "公众人物去世后，算法策展如何塑造舆论场对其的数字表征",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "experiment_config",
+    "current_stage": "run_experiment",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
     "revision_round": 6,
@@ -15,7 +15,6 @@
       "reason": "r3 三位内审一致判定 primary reroute=experiment_config：W19-W22 真实帖在判定前进入候选池（目标泄漏），三臂同时改动候选池/时间尺度/个性化（不可识别）；另经标注器敏感性分析确认 interest 拟合最优在 doubao/GLM 两轮标注下方向反转为 random 最优，中心比较结论不成立。需重设计为结果盲臂+正交化对照后重跑。",
       "source_artifact": "paper/reviews/generic-review-r3/reviewer-1.md",
       "pending_stages": [
-        "experiment_config",
         "run_experiment",
         "analysis"
       ]
@@ -64,13 +63,18 @@
       "revision_round": 4
     },
     "experiment_config": {
-      "status": "needs_revision",
+      "status": "completed",
       "started_at": null,
-      "completed_at": null,
-      "attempts": 4,
+      "completed_at": "2026-09-27T15:50:06.603523+00:00",
+      "attempts": 5,
       "error": null,
-      "metadata": {},
-      "verification_status": "not_started",
+      "metadata": {
+        "batch_id": "weekly_lag1",
+        "runs": 6,
+        "offline_gate": "passed",
+        "archive_manifest": "ARCHIVE_MANIFEST_H4E1.md"
+      },
+      "verification_status": "complete",
       "revision_round": 6
     },
     "run_experiment": {
@@ -560,6 +564,17 @@
           "revision_round": 5
         }
       }
+    },
+    {
+      "sequence": 23,
+      "timestamp": "2026-09-27T15:50:06.603532+00:00",
+      "kind": "stage_update",
+      "revision_round": 6,
+      "stage": "experiment_config",
+      "from_status": "needs_revision",
+      "to_status": "completed",
+      "from_stage": "experiment_config",
+      "to_stage": "run_experiment"
     }
   ]
 }
