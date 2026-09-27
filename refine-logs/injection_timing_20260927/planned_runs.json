@@ -1,82 +1,94 @@
 {
-  "status": "DESIGN_ONLY_NOT_EXECUTABLE_CONFIG",
-  "scope": "real_post_arrival_timing_only",
-  "supersedes": "planned_runs_broad_v1_superseded.json",
+  "status": "DESIGN_ONLY_AWAITING_USER_APPROVAL",
+  "scope": "weekly_real_posts_lag1_official_current_week",
+  "supersedes": "planned_runs_hourly_v2_superseded.json",
   "full_runs": 6,
-  "smokes": 2,
-  "action_opportunities": 7200,
+  "action_opportunities": 6600,
+  "official_source_week": "2026-W13",
+  "official_available_week": "2026-W13",
+  "initial_history_proposal": {
+    "source_week": "2026-W11",
+    "available_week": "2026-W12",
+    "count": 17,
+    "already_sampled": false
+  },
+  "original_sample_count": 250,
+  "original_sample_entering_window": 226,
+  "original_sample_deferred_to_W23": 24,
+  "external_entries_with_initial_history": 243,
+  "proposed_weekly_external_entries": {
+    "2026-W12": 17,
+    "2026-W13": 18,
+    "2026-W14": 34,
+    "2026-W15": 30,
+    "2026-W16": 24,
+    "2026-W17": 22,
+    "2026-W18": 19,
+    "2026-W19": 18,
+    "2026-W20": 18,
+    "2026-W21": 20,
+    "2026-W22": 23
+  },
   "runs": [
     {
-      "run_id": "arrival_timing_only_smoke_interest_s0",
-      "kind": "smoke",
-      "algorithm": "interest",
-      "seed": 0,
-      "weeks": "W12-W14",
-      "action_opportunities": 300,
-      "status": "PLANNED"
-    },
-    {
-      "run_id": "arrival_timing_only_interest_s0",
-      "kind": "full",
+      "run_id": "weekly_lag1_obituary_current_interest_s0",
       "algorithm": "interest",
       "seed": 0,
       "weeks": "W12-W22",
+      "agents": 100,
       "action_opportunities": 1100,
-      "status": "PLANNED"
+      "status": "AWAITING_USER_APPROVAL",
+      "prefix_check": "W12-W14"
     },
     {
-      "run_id": "arrival_timing_only_interest_s1",
-      "kind": "full",
+      "run_id": "weekly_lag1_obituary_current_interest_s1",
       "algorithm": "interest",
       "seed": 1,
       "weeks": "W12-W22",
+      "agents": 100,
       "action_opportunities": 1100,
-      "status": "PLANNED"
+      "status": "AWAITING_USER_APPROVAL",
+      "prefix_check": null
     },
     {
-      "run_id": "arrival_timing_only_interest_s2",
-      "kind": "full",
+      "run_id": "weekly_lag1_obituary_current_interest_s2",
       "algorithm": "interest",
       "seed": 2,
       "weeks": "W12-W22",
+      "agents": 100,
       "action_opportunities": 1100,
-      "status": "PLANNED"
+      "status": "AWAITING_USER_APPROVAL",
+      "prefix_check": null
     },
     {
-      "run_id": "arrival_timing_only_smoke_random_s0",
-      "kind": "smoke",
-      "algorithm": "random",
-      "seed": 0,
-      "weeks": "W12-W14",
-      "action_opportunities": 300,
-      "status": "PLANNED"
-    },
-    {
-      "run_id": "arrival_timing_only_random_s0",
-      "kind": "full",
+      "run_id": "weekly_lag1_obituary_current_random_s0",
       "algorithm": "random",
       "seed": 0,
       "weeks": "W12-W22",
+      "agents": 100,
       "action_opportunities": 1100,
-      "status": "PLANNED"
+      "status": "AWAITING_USER_APPROVAL",
+      "prefix_check": "W12-W14"
     },
     {
-      "run_id": "arrival_timing_only_random_s1",
-      "kind": "full",
+      "run_id": "weekly_lag1_obituary_current_random_s1",
       "algorithm": "random",
       "seed": 1,
       "weeks": "W12-W22",
+      "agents": 100,
       "action_opportunities": 1100,
-      "status": "PLANNED"
+      "status": "AWAITING_USER_APPROVAL",
+      "prefix_check": null
     },
     {
-      "run_id": "arrival_timing_only_random_s2",
-      "kind": "full",
+      "run_id": "weekly_lag1_obituary_current_random_s2",
       "algorithm": "random",
       "seed": 2,
       "weeks": "W12-W22",
+      "agents": 100,
       "action_opportunities": 1100,
-      "status": "PLANNED"
+      "status": "AWAITING_USER_APPROVAL",
+      "prefix_check": null
     }
   ]
 }

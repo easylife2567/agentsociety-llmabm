@@ -1,0 +1,82 @@
+{
+  "status": "DESIGN_ONLY_NOT_EXECUTABLE_CONFIG",
+  "scope": "real_post_arrival_timing_only",
+  "supersedes": "planned_runs_broad_v1_superseded.json",
+  "full_runs": 6,
+  "smokes": 2,
+  "action_opportunities": 7200,
+  "runs": [
+    {
+      "run_id": "arrival_timing_only_smoke_interest_s0",
+      "kind": "smoke",
+      "algorithm": "interest",
+      "seed": 0,
+      "weeks": "W12-W14",
+      "action_opportunities": 300,
+      "status": "PLANNED"
+    },
+    {
+      "run_id": "arrival_timing_only_interest_s0",
+      "kind": "full",
+      "algorithm": "interest",
+      "seed": 0,
+      "weeks": "W12-W22",
+      "action_opportunities": 1100,
+      "status": "PLANNED"
+    },
+    {
+      "run_id": "arrival_timing_only_interest_s1",
+      "kind": "full",
+      "algorithm": "interest",
+      "seed": 1,
+      "weeks": "W12-W22",
+      "action_opportunities": 1100,
+      "status": "PLANNED"
+    },
+    {
+      "run_id": "arrival_timing_only_interest_s2",
+      "kind": "full",
+      "algorithm": "interest",
+      "seed": 2,
+      "weeks": "W12-W22",
+      "action_opportunities": 1100,
+      "status": "PLANNED"
+    },
+    {
+      "run_id": "arrival_timing_only_smoke_random_s0",
+      "kind": "smoke",
+      "algorithm": "random",
+      "seed": 0,
+      "weeks": "W12-W14",
+      "action_opportunities": 300,
+      "status": "PLANNED"
+    },
+    {
+      "run_id": "arrival_timing_only_random_s0",
+      "kind": "full",
+      "algorithm": "random",
+      "seed": 0,
+      "weeks": "W12-W22",
+      "action_opportunities": 1100,
+      "status": "PLANNED"
+    },
+    {
+      "run_id": "arrival_timing_only_random_s1",
+      "kind": "full",
+      "algorithm": "random",
+      "seed": 1,
+      "weeks": "W12-W22",
+      "action_opportunities": 1100,
+      "status": "PLANNED"
+    },
+    {
+      "run_id": "arrival_timing_only_random_s2",
+      "kind": "full",
+      "algorithm": "random",
+      "seed": 2,
+      "weeks": "W12-W22",
+      "action_opportunities": 1100,
+      "status": "PLANNED"
+    }
+  ]
+}
