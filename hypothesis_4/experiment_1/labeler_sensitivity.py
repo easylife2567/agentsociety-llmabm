@@ -52,6 +52,11 @@ SOURCE_XLSX = ROOT / "data" / "baseline" / "抖音微博小红书-全量已打�
 
 LABELERS = {
     "DeepSeek": SOURCE_XLSX,
+    # 2026-09-27 新增：doubao 用**第 1 轮口径**重跑的那一轮。它与 DeepSeek 原标口径相同、
+    # 仅模型不同，故「DeepSeek vs doubao-R1口径」是干净的模型效应；
+    # 而其余三个归档轮都是后三轮口径，「DeepSeek vs 它们」的差异里混着口径效应（口径是主因，
+    # 见 data/README.md 的效应分解）。两者必须分开读。
+    "doubao-R1口径": ROOT / "data" / "runs" / "抖音微博小红书-独立重打标_R1prompt_Seed2_1_lite.xlsx",
     "doubao-seed": ROOT / "data" / "archive" / "round2_doubao-seed-2.1-lite" / "抖音微博小红书-独立重打标_Seed2_1_lite.xlsx",
     "GLM": ROOT / "data" / "archive" / "round3_glm-5.3-flash" / "抖音微博小红书-独立重打标_GLM5_3flash.xlsx",
     "DeepSeek-V4.1": ROOT / "data" / "archive" / "round4_deepseek-v4.1" / "抖音微博小红书-独立重打标_DSv4_1_flash.xlsx",
@@ -314,8 +319,14 @@ def paired_test(matrices: dict) -> dict:
 def write_report(matrices, validation, phases, robustness, paired) -> None:
     lines = ["# 标注器敏感性分析（W5 整改第一步）", ""]
     lines += [
-        "真实基准的类别标签来自一轮 LLM 打标（DeepSeek），与原标的两两 κ 仅 0.43–0.51。",
-        "本报告检验论文的核心经验结论是否依赖某一特定标注器。",
+        "真实基准的类别标签来自一轮 LLM 打标（DeepSeek，即原标）。各独立重打标轮与原标的类别一致率",
+        "仅 53.9%–60.7%、Cohen's κ = 0.43–0.51。本报告检验论文的核心经验结论是否依赖某一特定标注器。",
+        "",
+        "> **读表须知（2026-09-27 补）**：五个标注器中只有 `doubao-R1口径` 与原标**口径相同、仅模型不同**，",
+        "> 故 `DeepSeek` vs `doubao-R1口径` 是干净的模型效应；`doubao-seed` / `GLM` / `DeepSeek-V4.1` 三个",
+        "> 归档轮都是**后三轮口径**，它们与原标的差异里混着口径效应。而口径已被证明是差异主因",
+        "> （同模型换口径 κ=0.4238，换模型 κ=0.7159，见 `data/README.md`），故后三列不能读作",
+        "> 「标注器质量」。",
         "",
         "## 0. 与冻结效标的对齐校验",
         "",
