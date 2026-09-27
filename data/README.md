@@ -74,6 +74,7 @@ v4-flash 本身就是第 1 轮口径，这一格已有，无需 V4.1 补。断�
 | `scripts/compare_r1prompt.py` | **口径效应 vs 模型效应分解**（见下） |
 | `scripts/prompt_provenance_check.py` | 提示词溯源校验：输出端签名、批次数、行数、ctx 行数 |
 | `scripts/check_baseline_alignment.py` | **开跑前预检**：新一轮与基线在提示词 / 输入字段 / 行序 / 基线自身四层是否对齐 |
+| `scripts/merge_judgments.py` | **人工复核用**：基线与本轮判定并排成一张 60 列对照表，类别不一致行黄底 |
 
 ## 运行方式
 
