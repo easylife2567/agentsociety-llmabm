@@ -117,6 +117,17 @@ def main():
         assert len({str(data[nm][i][3]) for nm in names}) == 1, f"行 {i} id 不对齐"
     print(f"行数与 id 对齐校验通过（n={n}）\n")
 
+    # 服务端内容过滤拦下的行：本次以「未判定」显式留痕（见 data/README.md）。
+    # 剔除必须三个文件按同一批行索引同步进行，否则逐行对齐会被破坏。
+    drop = {i for i, r in enumerate(data[C]) if r[1] == "未判定"}
+    if drop:
+        print(f"剔除「未判定」行 {len(drop)} 条（三文件同步，行号 "
+              f"{[i + 2 for i in sorted(drop)]}），不参与任何统计")
+        for nm in names:
+            data[nm] = [r for i, r in enumerate(data[nm]) if i not in drop]
+        n = len(data[A])
+    print()
+
     cats = {nm: [r[1] for r in data[nm]] for nm in names}
     vals = {nm: [r[0] for r in data[nm]] for nm in names}
     lens = {nm: sorted(len(r[2]) for r in data[nm]) for nm in names}
@@ -134,6 +145,11 @@ def main():
           + ("、同调用结构" if CP_STRUCT == "每8条" else "（该轮为逐条调用，故还含调用结构差异）"),
           f"- **模型+调用结构效应**：`{C}` vs `{A}` —— 同提示词、同输入字段",
           f"- 参照（两者皆不同）：`{A}` vs `{B}`\n", ""]
+    if drop:
+        md.append(f"> **剔除行**：本次有 {len(drop)} 条被服务端内容过滤拦下（行号 "
+                  + "、".join(str(i + 2) for i in sorted(drop))
+                  + "），产出表中以「未判定」显式留痕；下表三个文件按同一批行索引同步剔除，"
+                  "不参与任何统计。详见 `data/README.md`。\n")
 
     md.append("## A. 分布对照\n")
     md.append("### 类别分布\n")
