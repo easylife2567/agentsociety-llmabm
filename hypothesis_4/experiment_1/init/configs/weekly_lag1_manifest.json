@@ -1,0 +1,56 @@
+{
+  "experiment": "hypothesis_4/experiment_1",
+  "round": "weekly_lag1",
+  "design": "周级注入时机修订：interest/random 的普通真实帖在来源周后一周首次可见；Agent 帖保持下一周可见；W13 唯一官方讣告同周进入，interest 同周置顶，random 按普通帖处理；chronological 保持原设计且不重跑",
+  "run_ids": [
+    "weekly_lag1_interest_s0",
+    "weekly_lag1_interest_s1",
+    "weekly_lag1_interest_s2",
+    "weekly_lag1_random_s0",
+    "weekly_lag1_random_s1",
+    "weekly_lag1_random_s2"
+  ],
+  "source_250_sha256": {
+    "0": "5b0f9efedffac94ba2b3a8a639aa8b0b3c0ef2bb2c1f31a8377ac76ec29608d5",
+    "1": "bf0768ec6c2fa9510188c676f901311feaec43ae8db2319408a6b4a5905e9601",
+    "2": "44d37a4ddc04fa34c940dff80415c81a6376832e69d7d7299b4b2b9177c15708"
+  },
+  "initial_sample_sha256": {
+    "0": "8915813f6b4258c03a137e3c8b0e27dc763a724bd0947b3a0190ee1cc04fe6bf",
+    "1": "da75d5861bf9bffbcb97a5b13130bd30bfc2bbfe1f11b2ed4eb4f29f92029813",
+    "2": "d5b25c42b27b468925e4112bfac60daf8f2a5362b227a83572e47b446ee19d49"
+  },
+  "initial_sample": {
+    "source_week": "2026-W11",
+    "available_week": "2026-W12",
+    "rows_per_seed": 17,
+    "sample_seed_offset": 1777
+  },
+  "timing": {
+    "ordinary_real_post_lag_weeks": 1,
+    "agent_post_lag_weeks": 1,
+    "same_week_official_pids": [
+      "official_w13_announcement"
+    ],
+    "simulation_weeks": [
+      "2026-W12",
+      "2026-W22"
+    ],
+    "expected_external_arrivals_by_week": {
+      "2026-W12": 17,
+      "2026-W13": 18,
+      "2026-W14": 34,
+      "2026-W15": 30,
+      "2026-W16": 24,
+      "2026-W17": 22,
+      "2026-W18": 19,
+      "2026-W19": 18,
+      "2026-W20": 18,
+      "2026-W21": 20,
+      "2026-W22": 23
+    },
+    "expected_external_arrivals_in_window": 243,
+    "deferred_to_w23": 24
+  },
+  "steps": "hypothesis_4/experiment_1/init/steps_weekly_lag.yaml"
+}

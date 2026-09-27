@@ -475,3 +475,20 @@ $PYTHON_PATH hypothesis_4/experiment_1/monitor.py --week 2026-W13  # 只看某�
 - 帖子主类型 = 作者类型（by construction）；env 判类器（悼念>营销>教育>玩梗>噪音>其他，
   仅用 main + meme 四列表）产出 assigned_type / type_mismatch 诊断。
 - 主基准：benchmark_curves.json 周度类型矩阵 vs 模拟供给/曝光份额。
+
+## 2026-09-27 注入时机修订：weekly_lag1（待运行审核）
+
+为让两个周级条件中的真实帖与Agent帖采用同一传播粒度，`interest`和`random`的普通真实帖改为在来源周的下一周首次进入候选池。唯一官方讣告`official_w13_announcement`作为外生事件，仍在W13当周进入；`interest`沿用W13置顶，`random`仍无置顶。`chronological`的小时级精确到达机制没有修改，也不列入本轮重跑。
+
+W12使用每个seed单独从W11分层抽取的17条历史内容初始化。模拟仍止于W22，因此原250条样本中的24条W22普通帖子要到W23才具备资格，本轮窗口内实际进入的外部帖子是原样本226条加初始化17条，共243条。帖子保留来源周，首次可见时按来源周计算帖龄；因此W15普通真实帖与W15 Agent帖都在W16以1周龄进入。
+
+新增产物：
+
+- `init/weekly_lag_config.py`：独立生成器，带旧样本和旧配置哈希守卫；
+- `init/initial_sample_weekly_lag_s{0,1,2}.json`：3份W11初始化样本；
+- `init/configs/weekly_lag1_{interest,random}_s{0,1,2}.json`：6份新配置；
+- `init/configs/weekly_lag1_manifest.json`与`init/steps_weekly_lag.yaml`：到达表、哈希和11周步进；
+- `verify_weekly_lag.py`：不调用LLM的注入时机门禁；
+- `run_weekly_lag_batch.py`：审核通过后的专用批跑入口。
+
+截至记录时，只运行了配置检查、离线机制检查和批跑`--dry-run`；6个正式run均未启动。

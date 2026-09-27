@@ -311,6 +311,18 @@ class CurationDynamicsSpace(EnvBase):
         self._feed_size = int(kwargs.pop("feed_size", 20))
         self._sampling_ratio = float(kwargs.pop("sampling_ratio", 0.05))
         self._injection_data_path = str(kwargs.pop("injection_data_path", ""))
+        # 周级臂的真实帖可得性：普通帖子按 source week 滞后若干周进入候选池；
+        # 指定的官方外生事件可在 source week 当周进入。默认 0 完全兼容旧配置。
+        self._weekly_real_post_lag_weeks = int(
+            kwargs.pop("weekly_real_post_lag_weeks", 0)
+        )
+        self._weekly_initial_injection_data_path = str(
+            kwargs.pop("weekly_initial_injection_data_path", "")
+        )
+        raw_same_week_pids = kwargs.pop("weekly_same_week_official_source_pids", None) or []
+        self._weekly_same_week_official_source_pids: set[str] = {
+            str(pid) for pid in raw_same_week_pids
+        }
         self._vocab_path = str(kwargs.pop("vocab_path", ""))
         raw_agent_types = kwargs.pop("agent_types", None) or {}
         self._agent_types: dict[str, str] = {str(k): str(v) for k, v in raw_agent_types.items()}
@@ -385,6 +397,20 @@ class CurationDynamicsSpace(EnvBase):
             raise ValueError(
                 f"event_week_mourning_floor must be >= 0, got {self._event_week_mourning_floor}"
             )
+        if self._weekly_real_post_lag_weeks < 0:
+            raise ValueError(
+                "weekly_real_post_lag_weeks must be >= 0, got "
+                f"{self._weekly_real_post_lag_weeks}"
+            )
+        if self._recommendation_algorithm == "chronological" and (
+            self._weekly_real_post_lag_weeks
+            or self._weekly_initial_injection_data_path
+            or self._weekly_same_week_official_source_pids
+        ):
+            raise ValueError(
+                "weekly lag/initial injection options only apply to random/interest; "
+                "chronological keeps its exact-time injection path"
+            )
         if any(not 0 <= h < 168 for h in self._chronological_action_hours.values()):
             raise ValueError("chronological_action_hours values must be in [0, 167]")
         if self._recommendation_algorithm == "chronological":
@@ -409,6 +435,12 @@ class CurationDynamicsSpace(EnvBase):
         self._vocab: dict[str, Any] = self._load_json_asset(self._vocab_path, "vocab")
         self._injection_by_week: dict[str, list[dict[str, Any]]] = self._load_injection(
             self._injection_data_path
+        )
+        self._weekly_initial_injection_by_week: dict[str, list[dict[str, Any]]] = (
+            self._load_injection(self._weekly_initial_injection_data_path)
+        )
+        self._weekly_injection_by_available_week: dict[str, list[dict[str, Any]]] = (
+            self._build_weekly_available_injection()
         )
         self._vocab_mourning_main = list((self._vocab.get("mourning") or {}).get("main", []) or [])
         self._vocab_marketing_main = list((self._vocab.get("marketing") or {}).get("main", []) or [])
@@ -450,6 +482,7 @@ class CurationDynamicsSpace(EnvBase):
         self._injected_this_week: dict[str, int] = {t: 0 for t in TYPE_ORDER_ALL}
         self._injected_this_week_ids: list[int] = []
         self._official_injected_this_week = 0
+        self._injected_source_keys: set[str] = set()
         self._agent_posts_pooled_prev: set[int] = set()
         self._injected_count_by_week: dict[str, int] = {}
         self._event_week_injected_count = 0
@@ -469,7 +502,11 @@ class CurationDynamicsSpace(EnvBase):
         # 供 volume 比 V_t 与 replay 的 injected_count 使用；采样本身在每 tick 打开时进行）。
         self._weeks: list[str] = [_week_add(self._start_week, i) for i in range(self._num_ticks)]
         for week in self._weeks:
-            pool = self._injection_by_week.get(week, [])
+            pool = (
+                self._injection_by_week.get(week, [])
+                if self._recommendation_algorithm == "chronological"
+                else self._weekly_injection_by_available_week.get(week, [])
+            )
             k = int(round(len(pool) * self._sampling_ratio))
             if pool and k <= 0:
                 k = 1
@@ -534,6 +571,49 @@ class CurationDynamicsSpace(EnvBase):
                 continue
             by_week.setdefault(str(rec["week"]), []).append(rec)
         return by_week
+
+    def _build_weekly_available_injection(self) -> dict[str, list[dict[str, Any]]]:
+        """为 random/interest 派生实际可用周队列，不改写输入资产的产生周。"""
+        if self._recommendation_algorithm == "chronological":
+            return {}
+
+        by_available: dict[str, list[dict[str, Any]]] = {}
+        for source_week, records in self._injection_by_week.items():
+            for source in records:
+                rec = dict(source)
+                source_pid = str(rec.get("pid", ""))
+                same_week = source_pid in self._weekly_same_week_official_source_pids
+                available_week = (
+                    source_week
+                    if same_week
+                    else _week_add(source_week, self._weekly_real_post_lag_weeks)
+                )
+                rec["source_week"] = source_week
+                rec["available_week"] = available_week
+                rec["injection_role"] = "official_same_week" if same_week else "ordinary"
+                by_available.setdefault(available_week, []).append(rec)
+
+        for source_week, records in self._weekly_initial_injection_by_week.items():
+            for source in records:
+                rec = dict(source)
+                available_week = str(rec.get("available_week") or self._start_week)
+                rec["source_week"] = str(rec.get("source_week") or source_week)
+                rec["available_week"] = available_week
+                rec["injection_role"] = "initial_history"
+                by_available.setdefault(available_week, []).append(rec)
+
+        return by_available
+
+    @staticmethod
+    def _injection_source_key(rec: dict[str, Any]) -> str:
+        """可持久化的外部记录身份，用于 resume 时防止重复注入。"""
+        return "|".join(
+            (
+                str(rec.get("injection_role", "ordinary")),
+                str(rec.get("source_week") or rec.get("week", "")),
+                str(rec.get("source_pid", rec.get("pid", ""))),
+            )
+        )
 
     @staticmethod
     def _local_event_time(value: Any, week: str, source_pid: Any = None) -> datetime:
@@ -713,6 +793,9 @@ class CurationDynamicsSpace(EnvBase):
             "type": p["type"],
             "tendencies": p.get("tendencies") or {},
             "week": p["week"],
+            "available_week": p.get("available_week", p["week"]),
+            "injected_week": p.get("injected_week", p["week"]),
+            "injection_role": p.get("injection_role"),
             "event_time": p.get("event_time"),
             "is_official": p["is_official"],
         }
@@ -873,11 +956,15 @@ class CurationDynamicsSpace(EnvBase):
         # 0) 帖子生命周期：本周冷却步长（须在注入之前，保证新帖 life=1.0）。
         self._decay_post_lives(week)
 
-        # 1) 注入（rng_injection 流，与 feed 层 RNG 分离）。
-        pool = self._injection_by_week.get(week, [])
+        # 1) 注入（rng_injection 流，与 feed 层 RNG 分离）。周级新配置从可用周队列
+        # 取数；旧配置 lag=0 时该队列与原 source-week 队列等价。
+        pool = self._weekly_injection_by_available_week.get(week, [])
         k = min(self._injected_count_by_week.get(week, 0), len(pool))
         if pool and k > 0:
             for rec in self._rng_injection.sample(pool, k):
+                source_key = self._injection_source_key(rec)
+                if source_key in self._injected_source_keys:
+                    continue
                 pid = self._next_post_id
                 self._next_post_id += 1
                 ttype = str(rec.get("type", "other"))
@@ -885,8 +972,11 @@ class CurationDynamicsSpace(EnvBase):
                     ttype = "other"
                 author = str(rec.get("author", "unknown"))
                 content = str(rec.get("content", ""))
+                source_week = str(rec.get("source_week") or rec.get("week", week))
+                age = _post_age_weeks(week, source_week)
                 self._posts[pid] = {
                     "post_id": pid,
+                    "source_pid": rec.get("pid"),
                     "author_id": "ext_" + author,
                     "author_handle": author,
                     "content": content,
@@ -894,15 +984,20 @@ class CurationDynamicsSpace(EnvBase):
                     "assigned_type": ttype,  # 注入帖判类结果=数据集标签
                     "type_mismatch": False,
                     "tendencies": self._compute_tendencies(content),
-                    "week": str(rec.get("week", week)),
+                    "week": source_week,
+                    "source_week": source_week,
+                    "available_week": str(rec.get("available_week") or week),
+                    "injected_week": week,
+                    "injection_role": str(rec.get("injection_role", "ordinary")),
                     "event_time": self._local_event_time(
-                        rec.get("published_at"), str(rec.get("week", week)), rec.get("pid")
+                        rec.get("published_at"), source_week, rec.get("pid")
                     ).isoformat(timespec="seconds"),
                     "is_official": bool(rec.get("is_official", False)),
                     "exposure_count": 0,
-                    "life": 1.0,  # 生命周期起点（用户 2026-09-12 裁定）
+                    "life": mech.life_at_age(age, self._life_half_life_weeks),
                     "tick_produced": self._tick_index,
                 }
+                self._injected_source_keys.add(source_key)
                 self._injected_this_week[ttype] += 1
                 self._injected_this_week_ids.append(pid)
                 if self._posts[pid]["is_official"]:
@@ -972,6 +1067,10 @@ class CurationDynamicsSpace(EnvBase):
                 "type_mismatch": rec["type_mismatch"],
                 "tendencies": rec.get("tendencies") or {},
                 "week": rec["week"],
+                "source_week": rec["week"],
+                "available_week": _week_add(rec["week"], 1),
+                "injected_week": _week_add(rec["week"], 1),
+                "injection_role": "agent_previous_week",
                 "event_time": rec.get("event_time"),
                 "is_official": False,
                 "exposure_count": 0,
@@ -1561,7 +1660,10 @@ class CurationDynamicsSpace(EnvBase):
             "（注入/随机臂/兴趣噪声三条 RNG 流由同一种子加固定偏移派生，默认 0）；"
             "**feed_size** 每 Agent 每 tick feed 槽位数（默认 20）；**sampling_ratio** 每周注入"
             "抽样比例（默认 0.05）；**injection_data_path** 注入数据集 JSON 路径（顶层含 posts "
-            "数组，空串=无外部注入）；**vocab_path** 四词表判类器 JSON 路径（空串=词表为空，"
+            "数组，空串=无外部注入）；**weekly_real_post_lag_weeks** 周级 random/interest "
+            "普通真实帖相对产生周的可用滞后（默认 0）；**weekly_initial_injection_data_path** "
+            "周级首轮历史初始化资产；**weekly_same_week_official_source_pids** 不受滞后影响、"
+            "在产生周直接进入的官方事件 pid；**vocab_path** 四词表判类器 JSON 路径（空串=词表为空，"
             "判类回落 other）；**agent_types** Agent 类型字典"
             "（{agent_id: meme|mourning|marketing|education|other}，未列出默认 other）；"
             "**start_week** 起始 ISO 周（默认 2026-W12）；**num_ticks** 总 tick 数（默认 11）；"
@@ -1621,6 +1723,14 @@ class CurationDynamicsSpace(EnvBase):
             "_injected_this_week": dict(self._injected_this_week),
             "_injected_this_week_ids": list(self._injected_this_week_ids),
             "_official_injected_this_week": self._official_injected_this_week,
+            "_injected_source_keys": sorted(self._injected_source_keys),
+            "_weekly_injection_policy": {
+                "lag_weeks": self._weekly_real_post_lag_weeks,
+                "initial_path": self._weekly_initial_injection_data_path,
+                "same_week_official_source_pids": sorted(
+                    self._weekly_same_week_official_source_pids
+                ),
+            },
             "_exposure_counts_tick": self._exposure_counts_tick,
             "_climate_shares": self._climate_shares,
             "_current_event_time": (
@@ -1646,6 +1756,20 @@ class CurationDynamicsSpace(EnvBase):
         if not state_path.is_file():
             return False
         d = json.loads(state_path.read_text(encoding="utf-8"))
+        expected_policy = {
+            "lag_weeks": self._weekly_real_post_lag_weeks,
+            "initial_path": self._weekly_initial_injection_data_path,
+            "same_week_official_source_pids": sorted(
+                self._weekly_same_week_official_source_pids
+            ),
+        }
+        stored_policy = d.get("_weekly_injection_policy")
+        if expected_policy["lag_weeks"] or expected_policy["initial_path"]:
+            if stored_policy != expected_policy:
+                raise ValueError(
+                    "checkpoint weekly injection policy does not match current config; "
+                    "start this timing revision in a fresh run directory"
+                )
         self._step_index = int(d.get("_step_index", 0))
         self._tick_index = int(d.get("_tick_index", 1))
         self._current_week = str(d.get("_current_week", self._start_week))
@@ -1697,6 +1821,9 @@ class CurationDynamicsSpace(EnvBase):
         }
         self._injected_this_week_ids = [int(pid) for pid in (d.get("_injected_this_week_ids") or [])]
         self._official_injected_this_week = int(d.get("_official_injected_this_week", 0))
+        self._injected_source_keys = set(
+            str(key) for key in (d.get("_injected_source_keys") or [])
+        )
         self._exposure_counts_tick = {
             str(aid): {t: int(v.get(t, 0)) for t in TYPE_ORDER_ALL}
             for aid, v in (d.get("_exposure_counts_tick") or {}).items()
