@@ -1,0 +1,226 @@
+{
+  "scope": "Static source/input audit; no simulation outcomes or causal estimates",
+  "date": "2026-09-27",
+  "source_sha256": {
+    "custom/envs/curation_assets/injection_posts.json": "6240360f1a792b98208d1999f4d064359ad44363f5aa261a5a78c5700b166b03",
+    "hypothesis_4/experiment_1/init/configs/anchored_v1_chronological_s0.json": "1c2f527a12bee9923fcbb1bbaab060db78a59678beaf29f14cbf33b4df86de97",
+    "custom/envs/curation_dynamics_space.py": "6b9f89b0e05bb4a9edc94592fd5cdcebb809f7e826431b8ec3e7a5fd77598b5d",
+    "custom/agents/curation_discourse_agent.py": "9574b67702971fac6fe74cf062736d4bb21333d37f6ea46a7c68b232f1ddf5ba",
+    "custom/agents/curation_personas.py": "0642fe6890a025abf956f7cf67fb25d390db8ff9bda542c71ee687a65db5c9f9",
+    "hypothesis_4/experiment_1/init/config_params.py": "9aaf3cd1001e0c34b2dc25ac48b6b44734be9b329661f38ba08ea0d11a6f2eb3",
+    "hypothesis_4/experiment_1/calibrate_speak.py": "dd59b7166c5e5e01ad183da312138c5258fc7f5aa403da41c7e429e5b1cdca40",
+    "hypothesis_4/experiment_1/init/injection_sample_s0.json": "5b0f9efedffac94ba2b3a8a639aa8b0b3c0ef2bb2c1f31a8377ac76ec29608d5",
+    "hypothesis_4/experiment_1/init/injection_sample_s1.json": "bf0768ec6c2fa9510188c676f901311feaec43ae8db2319408a6b4a5905e9601",
+    "hypothesis_4/experiment_1/init/injection_sample_s2.json": "44d37a4ddc04fa34c940dff80415c81a6376832e69d7d7299b4b2b9177c15708",
+    "hypothesis_4/experiment_1/init/injection_sample_holdout_s0.json": "ac0fec4d0baa2fe5f7152952cbaa007c15fdf919fb80deffca09cf773d2ed880",
+    "hypothesis_4/experiment_1/init/injection_sample_holdout_s1.json": "8d8b7b6bdbe1eaab6e9ec2eb880f130cf6d91893cd577dcbcc64dba345094fb7",
+    "hypothesis_4/experiment_1/init/injection_sample_holdout_s2.json": "c94512237ff2002fb1859fd3e59e137da3212a485262f1541901bad027cc146a"
+  },
+  "full_asset_time_quality": {
+    "rows": 52716,
+    "missing_published_at": 0,
+    "unresolved_times": 0,
+    "local_iso_week_mismatch": 488,
+    "duplicate_pid_excess": 0,
+    "duplicate_exact_nonempty_content_excess": 2576,
+    "exact_time_tie_excess": 1717
+  },
+  "utc_to_shanghai_week_transitions": {
+    "2026-W05->2026-W06": 7,
+    "2026-W06->2026-W07": 10,
+    "2026-W07->2026-W08": 8,
+    "2026-W08->2026-W09": 1,
+    "2026-W09->2026-W10": 2,
+    "2026-W10->2026-W11": 9,
+    "2026-W11->2026-W12": 6,
+    "2026-W12->2026-W13": 13,
+    "2026-W14->2026-W15": 69,
+    "2026-W15->2026-W16": 68,
+    "2026-W16->2026-W17": 48,
+    "2026-W17->2026-W18": 35,
+    "2026-W18->2026-W19": 27,
+    "2026-W19->2026-W20": 35,
+    "2026-W20->2026-W21": 44,
+    "2026-W21->2026-W22": 106
+  },
+  "holdout_local_cutoff_audit": [
+    {
+      "seed": 0,
+      "rows": 165,
+      "at_or_after_local_w19_cutoff": 1
+    },
+    {
+      "seed": 1,
+      "rows": 165,
+      "at_or_after_local_w19_cutoff": 0
+    },
+    {
+      "seed": 2,
+      "rows": 165,
+      "at_or_after_local_w19_cutoff": 0
+    }
+  ],
+  "sample_time_quality": [
+    {
+      "seed": 0,
+      "rows": 250,
+      "missing_published_at": 1,
+      "unresolved_times": 0,
+      "local_iso_week_mismatch": 6,
+      "duplicate_pid_excess": 0,
+      "duplicate_exact_nonempty_content_excess": 0,
+      "exact_time_tie_excess": 0
+    },
+    {
+      "seed": 1,
+      "rows": 250,
+      "missing_published_at": 1,
+      "unresolved_times": 0,
+      "local_iso_week_mismatch": 1,
+      "duplicate_pid_excess": 0,
+      "duplicate_exact_nonempty_content_excess": 2,
+      "exact_time_tie_excess": 0
+    },
+    {
+      "seed": 2,
+      "rows": 250,
+      "missing_published_at": 1,
+      "unresolved_times": 0,
+      "local_iso_week_mismatch": 2,
+      "duplicate_pid_excess": 0,
+      "duplicate_exact_nonempty_content_excess": 2,
+      "exact_time_tie_excess": 0
+    }
+  ],
+  "weekly_counts": [
+    {
+      "week": "2026-W12",
+      "source": 1246,
+      "injected": 17
+    },
+    {
+      "week": "2026-W13",
+      "source": 11394,
+      "injected": 35
+    },
+    {
+      "week": "2026-W14",
+      "source": 8678,
+      "injected": 30
+    },
+    {
+      "week": "2026-W15",
+      "source": 5050,
+      "injected": 24
+    },
+    {
+      "week": "2026-W16",
+      "source": 3756,
+      "injected": 22
+    },
+    {
+      "week": "2026-W17",
+      "source": 2416,
+      "injected": 19
+    },
+    {
+      "week": "2026-W18",
+      "source": 1703,
+      "injected": 18
+    },
+    {
+      "week": "2026-W19",
+      "source": 1792,
+      "injected": 18
+    },
+    {
+      "week": "2026-W20",
+      "source": 2735,
+      "injected": 20
+    },
+    {
+      "week": "2026-W21",
+      "source": 4252,
+      "injected": 23
+    },
+    {
+      "week": "2026-W22",
+      "source": 5338,
+      "injected": 24
+    }
+  ],
+  "source_w12_w22_rows": 48360,
+  "weekly_type_quotas_identical_across_three_seeds": true,
+  "source_w13_w18_ratio": 6.690546095126248,
+  "injected_w13_w18_ratio": 1.9444444444444444,
+  "action_schedule": {
+    "agents": 100,
+    "unique_hours_per_week": 63,
+    "same_hour_each_week": true,
+    "same_schedule_across_seeds": true,
+    "before_event_by_type": {
+      "education": {
+        "agents": 15,
+        "before_tuesday_1550": 4,
+        "before_official_tuesday_2000": 5
+      },
+      "marketing": {
+        "agents": 23,
+        "before_tuesday_1550": 8,
+        "before_official_tuesday_2000": 10
+      },
+      "meme": {
+        "agents": 19,
+        "before_tuesday_1550": 6,
+        "before_official_tuesday_2000": 6
+      },
+      "mourning": {
+        "agents": 22,
+        "before_tuesday_1550": 4,
+        "before_official_tuesday_2000": 5
+      },
+      "other": {
+        "agents": 21,
+        "before_tuesday_1550": 4,
+        "before_official_tuesday_2000": 4
+      }
+    }
+  },
+  "external_support_only": [
+    {
+      "seed": 0,
+      "w12_action_opportunities": 100,
+      "w12_actions_with_zero_external_posts_arrived": 13,
+      "w12_actions_with_fewer_than_10_external_posts_arrived": 74,
+      "first_sample_arrival_local": "2026-03-16T16:53:59+08:00"
+    },
+    {
+      "seed": 1,
+      "w12_action_opportunities": 100,
+      "w12_actions_with_zero_external_posts_arrived": 26,
+      "w12_actions_with_fewer_than_10_external_posts_arrived": 79,
+      "first_sample_arrival_local": "2026-03-17T15:14:52+08:00"
+    },
+    {
+      "seed": 2,
+      "w12_action_opportunities": 100,
+      "w12_actions_with_zero_external_posts_arrived": 26,
+      "w12_actions_with_fewer_than_10_external_posts_arrived": 58,
+      "first_sample_arrival_local": "2026-03-17T14:10:15+08:00"
+    }
+  ],
+  "vocabulary_risk_flags_agents_with_term": {
+    "巧乐兹": 9,
+    "雪碧": 7,
+    "跑不过": 11,
+    "心梗": 0,
+    "张雪峰死了": 1,
+    "张雪峰套餐": 0
+  },
+  "vocabulary_flag_interpretation": "Profile contains term before first feed; semantic/event-time validity needs review, not all substring hits prove future knowledge",
+  "post_lifetime": {
+    "half_life_days": 10.5,
+    "retire_floor": 0.35,
+    "continuous_retirement_days": 15.903018314712462
+  }
+}
