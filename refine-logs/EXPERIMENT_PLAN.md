@@ -120,4 +120,4 @@ interest/random×3个原seed，共**6次完整运行**，每run100人×11周；�
 - [x] 代码、配置和无LLM离线验证完成。
 - [x] 用户已审核并授权：既有实验归档完成后启动6次必要重跑。
 
-正式运行前先完成既有实验分类归档；归档总索引见工作区根目录`ARCHIVE_MANIFEST_H4E1.md`。
+既有实验分类归档已完成；归档总索引见工作区根目录`ARCHIVE_MANIFEST_H4E1.md`。`weekly_lag1`正式批已于2026-09-27 23:53（Asia/Shanghai）以并发2启动。

@@ -78,12 +78,25 @@
       "revision_round": 6
     },
     "run_experiment": {
-      "status": "needs_revision",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-09-27T15:53:47.273027+00:00",
       "completed_at": null,
-      "attempts": 2,
+      "attempts": 3,
       "error": null,
-      "metadata": {},
+      "metadata": {
+        "batch_id": "weekly_lag1",
+        "run_ids": [
+          "weekly_lag1_interest_s0",
+          "weekly_lag1_interest_s1",
+          "weekly_lag1_interest_s2",
+          "weekly_lag1_random_s0",
+          "weekly_lag1_random_s1",
+          "weekly_lag1_random_s2"
+        ],
+        "concurrency": 2,
+        "supervisor_pid": 83587,
+        "started_at": "2026-09-27T15:52:00Z"
+      },
       "verification_status": "not_started",
       "revision_round": 6
     },
@@ -574,6 +587,17 @@
       "from_status": "needs_revision",
       "to_status": "completed",
       "from_stage": "experiment_config",
+      "to_stage": "run_experiment"
+    },
+    {
+      "sequence": 24,
+      "timestamp": "2026-09-27T15:53:47.273035+00:00",
+      "kind": "stage_update",
+      "revision_round": 6,
+      "stage": "run_experiment",
+      "from_status": "needs_revision",
+      "to_status": "in_progress",
+      "from_stage": "run_experiment",
       "to_stage": "run_experiment"
     }
   ]

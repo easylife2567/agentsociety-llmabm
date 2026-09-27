@@ -15,11 +15,11 @@
 
 | 拟运行ID | 周窗 | 行动机会 | 状态 |
 |---|---|---:|---|
-| weekly_lag1_interest_s0 | W12-W22 | 1100 | CONFIG_READY_AWAITING_RUN_APPROVAL |
-| weekly_lag1_interest_s1 | W12-W22 | 1100 | CONFIG_READY_AWAITING_RUN_APPROVAL |
-| weekly_lag1_interest_s2 | W12-W22 | 1100 | CONFIG_READY_AWAITING_RUN_APPROVAL |
-| weekly_lag1_random_s0 | W12-W22 | 1100 | CONFIG_READY_AWAITING_RUN_APPROVAL |
-| weekly_lag1_random_s1 | W12-W22 | 1100 | CONFIG_READY_AWAITING_RUN_APPROVAL |
-| weekly_lag1_random_s2 | W12-W22 | 1100 | CONFIG_READY_AWAITING_RUN_APPROVAL |
+| weekly_lag1_interest_s0 | W12-W22 | 1100 | RUNNING |
+| weekly_lag1_interest_s1 | W12-W22 | 1100 | RUNNING |
+| weekly_lag1_interest_s2 | W12-W22 | 1100 | QUEUED |
+| weekly_lag1_random_s0 | W12-W22 | 1100 | QUEUED |
+| weekly_lag1_random_s1 | W12-W22 | 1100 | QUEUED |
+| weekly_lag1_random_s2 | W12-W22 | 1100 | QUEUED |
 
-6次完整run，合计最多6,600次行动机会。chronological不改，不重新校准或新增消融。批跑入口的`--dry-run`显示6个run均为pending，没有启动进程。
+6次完整run，合计最多6,600次行动机会。chronological不改，不重新校准或新增消融。2026-09-27 23:53（Asia/Shanghai）以并发2启动正式批，首批为interest s0/s1，其余由同一调度器自动补位。
