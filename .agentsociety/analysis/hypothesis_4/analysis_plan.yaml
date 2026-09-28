@@ -1,0 +1,20 @@
+research_question: 在普通真实帖与Agent帖均延迟一周进入信息环境后，interest相对random是否仍提高玩梗内容的供给、曝光和玩梗群体发言率，并能否复现真实数据中的W19-W22后期上升？
+primary_metrics:
+- supply_share_all_meme
+- exposure_share_meme
+- meme spoke_rate
+- bias_meme
+- bench_share_clean
+target_tables:
+- curation_dynamics_env_state
+- curation_dynamics_agent_state
+confirmatory_claims:
+- 在W19-W22，interest臂的三seed平均玩梗供给份额高于random臂
+- 在W19-W22，interest臂的三seed平均玩梗曝光份额与玩梗群体发言率高于random臂
+exploratory_notes: 同时检查W13悼念峰值、总供给量以及曝光份额减供给份额的策展偏差。主图只比较本轮同步重跑的interest和random；旧chronological结果不混入本轮主比较。
+simulation_limitations: 每臂只有3个随机种子；图中波动带使用seed最小值到最大值，不能解释为总体置信区间。结果是仿真内部比较，不能直接外推真实平台的因果效应。
+eda_profile: quick-stats
+eda_profiles: []
+table_checks: []
+synthesis_scope_hypothesis_ids:
+- '4'

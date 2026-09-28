@@ -4,7 +4,7 @@ AgentSociety官方目录约定使用`hypothesis_{id}/experiment_{id}/run`保存�
 
 | 批次或位置 | 分类 | 状态 | 最新分析资格 |
 |---|---|---|---|
-| `weekly_lag1/` | 当前正式批：interest/random × 3 seeds | 配置完成，待启动/运行 | 完成性复核后进入 |
+| `weekly_lag1/` | 当前正式批：interest/random × 3 seeds | 6/6完成，回放完整 | 当前正式分析输入 |
 | `anchored_v1/_derived/` | 已取代正式批的冻结派生结果兼容副本 | 9/9曾完整完成 | 否，仅用于旧结论复核和新旧比较 |
 | `archive/hypothesis_4_experiment_1_batches/formal_superseded/anchored_v1/` | `anchored_v1`原始run、自包含配置和派生结果归档 | 9/9完整，校验通过 | 否 |
 | `archive/hypothesis_4_experiment_1_history_20260915/` | 更早旧公式正式批、探针、烟测、事故和中断残留 | 已分类归档 | 否 |

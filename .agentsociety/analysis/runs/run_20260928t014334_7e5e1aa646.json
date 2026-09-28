@@ -1,0 +1,47 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20260928t014334_7e5e1aa646",
+  "operation_id": "write-plan",
+  "operation_contract_version": 1,
+  "execution_key": "4e23eac732c3f0b03c8e80f1082c53434255b32ff5661a3eda1a8530aabd0f55",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "",
+  "input_names": [
+    "hypothesis_id",
+    "payload",
+    "workspace"
+  ],
+  "input_fingerprint": "aa0e7907143af174ffe023646c08b077183c95f205635ccd44bb50ef0731cac0",
+  "safe_inputs": {
+    "hypothesis_id": "4"
+  },
+  "preflight": {
+    "operation_id": "write-plan",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {},
+  "error": null,
+  "declared_artifacts": [
+    ".agentsociety/analysis/hypothesis_{id}/analysis_plan.yaml"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/analysis_plan.yaml": "d424b8a2fc458d74382af5fab10141565cff4cbaf1ddd9155fe1e148da349480",
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "ea432570537b82d60e25fdc16c034adb402f7b76821703fdbbb26a202120b58a"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 9647,
+  "hostname": "192.168.100.6",
+  "started_at": "2026-09-28T01:43:34.003418Z",
+  "updated_at": "2026-09-28T01:43:34.008240Z",
+  "completed_at": "2026-09-28T01:43:34.008213Z",
+  "duration_ms": 4
+}

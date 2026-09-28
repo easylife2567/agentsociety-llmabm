@@ -1,0 +1,50 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20260928t014638_b318d2c3e3",
+  "operation_id": "validate-explore",
+  "operation_contract_version": 1,
+  "execution_key": "2921bffdfc9892078340b14e96a69cea5ef3db7a96739775d4aceddf0af485c4",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "1",
+  "input_names": [
+    "experiment_id",
+    "hypothesis_id",
+    "workspace"
+  ],
+  "input_fingerprint": "ede9bb4c592765afae9e7432f0a1b6f905f5a7f2b3a8074992a27eb67c7f718b",
+  "safe_inputs": {
+    "hypothesis_id": "4",
+    "experiment_id": "1"
+  },
+  "preflight": {
+    "operation_id": "validate-explore",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "recommended_next_step": "Run record-attestation --phase explore after LLM review of this stage",
+    "status": "BLOCKED"
+  },
+  "error": null,
+  "declared_artifacts": [
+    "explore checkpoint in harness state"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "71a8aac49a367f62ddc4a250e0c625f046aae5a35ae74776b44cda4f8964cbe1"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 9867,
+  "hostname": "192.168.100.6",
+  "started_at": "2026-09-28T01:46:38.852982Z",
+  "updated_at": "2026-09-28T01:46:39.111222Z",
+  "completed_at": "2026-09-28T01:46:39.111192Z",
+  "duration_ms": 258
+}

@@ -136,7 +136,7 @@
   "superseded_reason": "weekly real-post timing changed to one-period lag",
   "current_batch": {
     "batch_id": "weekly_lag1",
-    "classification": "current_formal_pending_or_running",
+    "classification": "current_formal_completed",
     "manifest": "hypothesis_4/experiment_1/init/configs/weekly_lag1_manifest.json",
     "run_root": "hypothesis_4/experiment_1/runs/weekly_lag1",
     "run_ids": [
@@ -146,6 +146,32 @@
       "weekly_lag1_random_s0",
       "weekly_lag1_random_s1",
       "weekly_lag1_random_s2"
-    ]
-  }
+    ],
+    "status": "completed_verified",
+    "completed_at": "2026-09-27T18:27:29.786409+00:00",
+    "completion": "6/6 runs; each 11 env rows and 1100 agent rows",
+    "formal_aggregates": {
+      "monitor": "hypothesis_4/experiment_1/runs/weekly_lag1/_derived/monitor/overview.json",
+      "per_run_tables": "hypothesis_4/experiment_1/runs/weekly_lag1/_derived/data",
+      "per_run_charts": "hypothesis_4/experiment_1/runs/weekly_lag1/_derived/charts",
+      "two_arm_run_week_metrics": "presentation/hypothesis_4/data/weekly_lag1_run_week_metrics.csv",
+      "two_arm_week_summary": "presentation/hypothesis_4/data/weekly_lag1_arm_week_summary.csv",
+      "summary": "presentation/hypothesis_4/data/weekly_lag1_summary.json"
+    },
+    "analysis_scope": {
+      "included": [
+        "weekly_lag1_interest_s0",
+        "weekly_lag1_interest_s1",
+        "weekly_lag1_interest_s2",
+        "weekly_lag1_random_s0",
+        "weekly_lag1_random_s1",
+        "weekly_lag1_random_s2"
+      ],
+      "excluded": [
+        "anchored_v1 chronological runs: not rerun under weekly_lag1"
+      ],
+      "reason": "Only synchronously rerun arms are combined in the current comparison."
+    }
+  },
+  "analysis_target": "weekly_lag1"
 }

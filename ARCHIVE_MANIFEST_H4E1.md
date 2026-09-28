@@ -35,4 +35,4 @@ AgentSociety官方工作区约定提供`hypothesis_{id}/experiment_{id}/run`单r
 
 路径：`hypothesis_4/experiment_1/runs/weekly_lag1/`
 
-当前活动批不属于归档。配置清单为`init/configs/weekly_lag1_manifest.json`，计划运行interest/random×3 seeds。运行完成并通过完整性检查前，不得替换论文中的正式数值结论。
+当前正式批不属于归档。配置清单为`init/configs/weekly_lag1_manifest.json`；interest/random×3 seeds已全部完成并通过回放行数检查，现为两臂分析的最新输入。未重跑的chronological不混入本批主比较。

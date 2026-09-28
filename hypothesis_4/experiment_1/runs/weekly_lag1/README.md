@@ -1,4 +1,4 @@
-# weekly_lag1 当前正式批
+# weekly_lag1 当前正式批（已完成）
 
 设计：普通真实帖与Agent帖均采用一期传播滞后，W13唯一官方讣告当周进入。只重跑受影响的`interest`和`random`，每臂3个seed，共6个run；`chronological`未修改，不混入本批完成性判定。
 
@@ -14,4 +14,4 @@ weekly_lag1/
 
 权威配置清单：`../../init/configs/weekly_lag1_manifest.json`。批跑入口：`../../run_weekly_lag_batch.py`。AgentSociety官方单run兼容入口`../../run`指向`weekly_lag1_interest_s0`。
 
-只有当6个run全部达到11/11周、每个replay包含1100行Agent状态和11行环境状态后，本批才可升格为最新正式证据。
+本批于2026-09-28完成：6个run全部达到11/11周，每个replay包含1100行Agent状态和11行环境状态；批次日志为`6 完成 / 0 异常`。`_derived/`已生成6组监控快照、36份周级CSV和30张逐run图。本批现为interest/random两臂的最新正式证据；未重跑的chronological不进入本批主比较。

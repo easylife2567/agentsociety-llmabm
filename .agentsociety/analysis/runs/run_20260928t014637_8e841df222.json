@@ -1,0 +1,54 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20260928t014637_8e841df222",
+  "operation_id": "record-phase-artifacts",
+  "operation_contract_version": 1,
+  "execution_key": "e7ae2760f8471be9e5059c1fa08dddb73d11b30467d0f03f971736f6973f9fb6",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "",
+  "input_names": [
+    "artifacts",
+    "hypothesis_id",
+    "phase",
+    "workspace"
+  ],
+  "input_fingerprint": "992d7984b9f8f7c87737cb485996b309a29dd2c223166cd0e24f27c1f3f3301c",
+  "safe_inputs": {
+    "hypothesis_id": "4",
+    "phase": "explore"
+  },
+  "preflight": {
+    "operation_id": "record-phase-artifacts",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "phase": "explore"
+  },
+  "error": null,
+  "declared_artifacts": [
+    "phase artifact registration in harness state"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "fbc7145acf1737aeffea8b6916de553663e2012796d93f7fb0c38c1495bc5ae5",
+    "presentation/hypothesis_4/data/weekly_lag1_arm_week_summary.csv": "a37f8a1042a4dd653e4aa062481560a0fd2fe59211ff050ce38e5e4245cc47ee",
+    "presentation/hypothesis_4/data/weekly_lag1_figure_notes.md": "7c903ff38b11de3e106bbb810d2cca03d07534f6caf88135c0f37cbb2f35efae",
+    "presentation/hypothesis_4/data/weekly_lag1_run_week_metrics.csv": "655beb10e91da8a79c7992e1ba41713d6a99c1c7c1bd5c9a88a53242199f9202",
+    "presentation/hypothesis_4/data/weekly_lag1_summary.json": "4893afb17f29c6c2f48ea8db7f56887bc0f0490c111c79ea4daf62b48140853d"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 9864,
+  "hostname": "192.168.100.6",
+  "started_at": "2026-09-28T01:46:37.152321Z",
+  "updated_at": "2026-09-28T01:46:37.159410Z",
+  "completed_at": "2026-09-28T01:46:37.159385Z",
+  "duration_ms": 7
+}

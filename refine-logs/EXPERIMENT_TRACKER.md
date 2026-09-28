@@ -1,6 +1,6 @@
-# 待运行审核清单：普通真实帖滞后一周，讣告当周进入
+# 正式运行完成清单：普通真实帖滞后一周，讣告当周进入
 
-日期：2026-09-27。当前实现版本`weekly_lag1`。代码与离线验证已完成；按用户要求，正式运行前再次等待审核。
+日期：2026-09-28。当前实现版本`weekly_lag1`。代码、离线验证、6个正式run及完成性复核均已完成。
 
 [当前修改方案](EXPERIMENT_PLAN.md)
 
@@ -15,11 +15,11 @@
 
 | 拟运行ID | 周窗 | 行动机会 | 状态 |
 |---|---|---:|---|
-| weekly_lag1_interest_s0 | W12-W22 | 1100 | RUNNING |
-| weekly_lag1_interest_s1 | W12-W22 | 1100 | RUNNING |
-| weekly_lag1_interest_s2 | W12-W22 | 1100 | QUEUED |
-| weekly_lag1_random_s0 | W12-W22 | 1100 | QUEUED |
-| weekly_lag1_random_s1 | W12-W22 | 1100 | QUEUED |
-| weekly_lag1_random_s2 | W12-W22 | 1100 | QUEUED |
+| weekly_lag1_interest_s0 | W12-W22 | 1100 | COMPLETE |
+| weekly_lag1_interest_s1 | W12-W22 | 1100 | COMPLETE |
+| weekly_lag1_interest_s2 | W12-W22 | 1100 | COMPLETE |
+| weekly_lag1_random_s0 | W12-W22 | 1100 | COMPLETE |
+| weekly_lag1_random_s1 | W12-W22 | 1100 | COMPLETE |
+| weekly_lag1_random_s2 | W12-W22 | 1100 | COMPLETE |
 
-6次完整run，合计最多6,600次行动机会。chronological不改，不重新校准或新增消融。2026-09-27 23:53（Asia/Shanghai）以并发2启动正式批，首批为interest s0/s1，其余由同一调度器自动补位。
+6次完整run，合计6,600次行动机会、66条环境周状态。chronological不改，不重新校准或新增消融。2026-09-27 23:53（Asia/Shanghai）以并发2启动，2026-09-28 02:27完成；所有请求超时均经自动重试恢复，无traceback或致命错误。

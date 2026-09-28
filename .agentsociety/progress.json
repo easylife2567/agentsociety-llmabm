@@ -3,7 +3,7 @@
   "workspace": {
     "topic": "公众人物去世后，算法策展如何塑造舆论场对其的数字表征",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "run_experiment",
+    "current_stage": "analysis",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
     "revision_round": 6,
@@ -15,7 +15,6 @@
       "reason": "r3 三位内审一致判定 primary reroute=experiment_config：W19-W22 真实帖在判定前进入候选池（目标泄漏），三臂同时改动候选池/时间尺度/个性化（不可识别）；另经标注器敏感性分析确认 interest 拟合最优在 doubao/GLM 两轮标注下方向反转为 random 最优，中心比较结论不成立。需重设计为结果盲臂+正交化对照后重跑。",
       "source_artifact": "paper/reviews/generic-review-r3/reviewer-1.md",
       "pending_stages": [
-        "run_experiment",
         "analysis"
       ]
     }
@@ -78,9 +77,9 @@
       "revision_round": 6
     },
     "run_experiment": {
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-09-27T15:53:47.273027+00:00",
-      "completed_at": null,
+      "completed_at": "2026-09-28T01:49:47.534635+00:00",
       "attempts": 3,
       "error": null,
       "metadata": {
@@ -101,10 +100,10 @@
       "revision_round": 6
     },
     "analysis": {
-      "status": "needs_revision",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-09-28T01:49:47.590979+00:00",
       "completed_at": null,
-      "attempts": 1,
+      "attempts": 2,
       "error": null,
       "metadata": {},
       "verification_status": "not_started",
@@ -599,6 +598,28 @@
       "to_status": "in_progress",
       "from_stage": "run_experiment",
       "to_stage": "run_experiment"
+    },
+    {
+      "sequence": 25,
+      "timestamp": "2026-09-28T01:49:47.534639+00:00",
+      "kind": "stage_update",
+      "revision_round": 6,
+      "stage": "run_experiment",
+      "from_status": "in_progress",
+      "to_status": "completed",
+      "from_stage": "run_experiment",
+      "to_stage": "analysis"
+    },
+    {
+      "sequence": 26,
+      "timestamp": "2026-09-28T01:49:47.590982+00:00",
+      "kind": "stage_update",
+      "revision_round": 6,
+      "stage": "analysis",
+      "from_status": "needs_revision",
+      "to_status": "in_progress",
+      "from_stage": "analysis",
+      "to_stage": "analysis"
     }
   ]
 }

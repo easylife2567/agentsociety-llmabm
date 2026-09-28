@@ -1,0 +1,48 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20260928t014335_f24f6280a8",
+  "operation_id": "validate-plan",
+  "operation_contract_version": 1,
+  "execution_key": "a3ddfb6a9a37972e7df5222047b4d41e9514d00e0fcf86dc4a7af1021cb334b2",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "",
+  "input_names": [
+    "hypothesis_id",
+    "workspace"
+  ],
+  "input_fingerprint": "705d141f24cf1bdb18f01bec9389edecb079394e67d98f1cf36a7182ccff7d67",
+  "safe_inputs": {
+    "hypothesis_id": "4"
+  },
+  "preflight": {
+    "operation_id": "validate-plan",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "recommended_next_step": "Run record-attestation --phase frame after LLM review of this stage",
+    "status": "BLOCKED"
+  },
+  "error": null,
+  "declared_artifacts": [
+    "frame checkpoint in harness state"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "145911a973975a5357de51702180c6868af71ed4fedb83cc69fe15c0d8cda647"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 9649,
+  "hostname": "192.168.100.6",
+  "started_at": "2026-09-28T01:43:35.733049Z",
+  "updated_at": "2026-09-28T01:43:35.737184Z",
+  "completed_at": "2026-09-28T01:43:35.737160Z",
+  "duration_ms": 4
+}

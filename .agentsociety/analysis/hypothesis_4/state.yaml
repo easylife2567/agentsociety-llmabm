@@ -1,13 +1,83 @@
 hypothesis_id: '4'
 experiment_id: '1'
 db_path: /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/run/replay
-current_phase: frame
+current_phase: claims
 hypothesis_release: not_started
 chart_count: 0
 max_charts: 0
 figure_contracts: []
-phase_attestations: {}
-phase_checkpoints: {}
-phase_artifacts: {}
-validation_history: []
-updated_at: '2026-09-15T13:10:08.121104Z'
+phase_attestations:
+  frame:
+    phase: frame
+    status: DONE
+    key_findings:
+    - 用户要求查看正式实验图，因此分析问题聚焦于weekly_lag1中interest与random的三seed聚合比较。
+    - 主指标预先锁定为玩梗供给份额、曝光份额、玩梗群体发言率和策展偏差。
+    - 旧chronological未按新时机重跑，不进入本轮主比较。
+    artifacts_read: []
+    artifacts_written:
+    - .agentsociety/analysis/hypothesis_4/analysis_plan.yaml
+    blocking_reason: null
+    recommended_next_step: null
+    rubric:
+      research_question_confirmed: 用户明确要求对已完成正式实验做图；图表问题依照当前实验目的固定为interest与random在统一一期滞后下的差异。
+      success_criteria: 图表必须使用6个正式run、按臂聚合3个seed、显示波动范围与真实基准，并清楚标注仿真和三seed限制。
+    artifact_fingerprint: 699697042c8ca8b4f8448294
+    completed_at: '2026-09-28T01:44:01.558321Z'
+  explore:
+    phase: explore
+    status: DONE
+    key_findings:
+    - 6个正式run均提供11周完整数据，共66个run-week观测；两臂各3个seed。
+    - W19-W22三seed均值中，interest相对random的玩梗供给份额高10.46个百分点、曝光份额高13.03个百分点、玩梗群体发言率高33.77个百分点。
+    - 两臂的玩梗曝光减供给偏差均为负：interest为-13.92个百分点，random为-16.50个百分点；interest只是相对更少抑制，并非绝对过度曝光。
+    - 仿真悼念供给峰出现在W14而非真实数据W13，表明一期滞后提高时序表述一致性但引入了事件响应相位后移。
+    artifacts_read: []
+    artifacts_written:
+    - presentation/hypothesis_4/data/weekly_lag1_run_week_metrics.csv
+    - presentation/hypothesis_4/data/weekly_lag1_arm_week_summary.csv
+    - presentation/hypothesis_4/data/weekly_lag1_summary.json
+    - presentation/hypothesis_4/data/weekly_lag1_figure_notes.md
+    blocking_reason: null
+    recommended_next_step: null
+    rubric:
+      tables_inspected:
+      - 'curation_dynamics_env_state: weekly supply and exposure shares'
+      - 'curation_dynamics_agent_state: type-specific speaking decisions'
+      - six-run derived weekly_supply, weekly_exposure, weekly_agent_behavior, weekly_bias,
+        weekly_benchmark tables
+      data_limitations: 每臂只有3个seed；min-max仅为描述范围。chronological未按weekly_lag1重跑而排除。仿真结果不能直接外推真实平台因果效应。
+      eda_takeaway: interest相对random提高后期玩梗表达与可见度，但绝对策展偏差仍为负；一期滞后同时造成悼念峰相位后移，图中必须同时呈现这两个结论。
+    artifact_fingerprint: ceea4826b4302e01359aa71e
+    completed_at: '2026-09-28T01:47:17.783099Z'
+phase_checkpoints:
+  frame:
+    phase: frame
+    structural_pass: true
+    attestation_pass: true
+    attestation_required: true
+    gate_pass: true
+    structural_issues: []
+    completed_at: '2026-09-28T01:44:01.558321Z'
+  explore:
+    phase: explore
+    structural_pass: true
+    attestation_pass: true
+    attestation_required: true
+    gate_pass: true
+    structural_issues: []
+    completed_at: '2026-09-28T01:47:17.783099Z'
+phase_artifacts:
+  explore:
+  - presentation/hypothesis_4/data/weekly_lag1_run_week_metrics.csv
+  - presentation/hypothesis_4/data/weekly_lag1_arm_week_summary.csv
+  - presentation/hypothesis_4/data/weekly_lag1_summary.json
+  - presentation/hypothesis_4/data/weekly_lag1_figure_notes.md
+validation_history:
+- phase: explore
+  status: PASS
+  at: '2026-09-28T01:46:39.110092Z'
+- phase: explore
+  status: PASS
+  at: '2026-09-28T01:47:19.677853Z'
+updated_at: '2026-09-28T01:47:21.408497Z'

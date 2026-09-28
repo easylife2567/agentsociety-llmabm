@@ -2,7 +2,7 @@
 
 本仓库是一个基于 AgentSociety 的可执行社会科学研究工作区，研究问题是：**推荐算法如何通过选择性放大不同表达群体，改变公众人物去世后的公共数字表征？**
 
-当前修订以`hypothesis_4/experiment_1`为唯一主实验。原`anchored_v1`的9个run已完整归档，但因真实帖注入时机问题不再作为最新正式证据。当前`weekly_lag1`只重跑受影响的interest/random×3 seeds，共6个run；chronological保持原设计，不混入本轮完成性判定。
+当前修订以`hypothesis_4/experiment_1`为唯一主实验。原`anchored_v1`的9个run已完整归档，但因真实帖注入时机问题不再作为最新正式证据。`weekly_lag1`已完成受影响的interest/random×3 seeds，共6个run；chronological保持原设计，不混入本轮主比较。
 
 ## 1. 研究设计概览
 
@@ -29,12 +29,12 @@
 | 研究问题与假设 | 已完成 | `TOPIC.md`、`hypothesis_4/HYPOTHESIS.md` |
 | 实验配置 | 已完成 | `hypothesis_4/experiment_1/init/configs/weekly_lag1_manifest.json` |
 | 旧正式批 | 已归档，9/9完整但被取代 | `ARCHIVE_MANIFEST_H4E1.md` |
-| 当前正式实验 | 待启动/运行 | `hypothesis_4/experiment_1/runs/weekly_lag1/` |
-| 当前完成性复核 | 尚未开始 | `runs/weekly_lag1/_derived/monitor/` |
-| 结果分析 | 等待新run | `runs/weekly_lag1/_derived/`、`presentation/` |
+| 当前正式实验 | 已完成，6/6 | `hypothesis_4/experiment_1/runs/weekly_lag1/` |
+| 当前完成性复核 | 已通过 | `runs/weekly_lag1/_derived/monitor/` |
+| 结果分析 | 进行中，已生成三seed聚合数据与探索图 | `runs/weekly_lag1/_derived/`、`presentation/hypothesis_4/` |
 | 最终报告 | 尚未完成，本版不纳入 | `paper/` |
 
-当前6个计划run均覆盖W12–W22，每个run执行11个周级批次。旧`anchored_v1`中的chronological 3个run完成693个小时批次，仅保留作未改制度的历史参照。
+当前6个run均完整覆盖W12–W22，每个run执行11个周级批次并产生1100条Agent状态与11条环境状态。旧`anchored_v1`中的chronological 3个run完成693个小时批次，仅保留作未改制度的历史参照。
 
 ## 3. 官方目录与权威入口
 
@@ -75,7 +75,7 @@
 3. 当前配置清单：`hypothesis_4/experiment_1/init/configs/weekly_lag1_manifest.json`。
 4. 历史批次分类：`ARCHIVE_MANIFEST_H4E1.md`。
 
-AgentSociety 当前官方状态检查与分析 intake 读取单一 `run/replay`，因此 `run/` 只承担官方兼容和生成性验证入口的作用。跨算法结论必须使用全部 9 个 replay 或三臂 3-seed 聚合表，不能只读取 `run/`。
+AgentSociety 当前官方状态检查与分析 intake 读取单一 `run/replay`，因此 `run/` 只承担官方兼容和生成性验证入口的作用。本轮interest/random结论必须使用全部6个 replay 的两臂3-seed聚合表，不能只读取 `run/`；旧chronological不与本轮数值混算。
 
 > 打包注意：`run` 在工作区中是相对符号链接。提交压缩包时应确认压缩格式保留符号链接，或在交付副本中将其实体化为同内容的真实目录，避免解压后丢失 `run/replay`。
 
@@ -83,10 +83,10 @@ AgentSociety 当前官方状态检查与分析 intake 读取单一 `run/replay`�
 
 | 算法 | seed 0 | seed 1 | seed 2 | 状态 |
 |---|---|---|---|---|
-| random | `weekly_lag1_random_s0` | `weekly_lag1_random_s1` | `weekly_lag1_random_s2` | 待启动/运行 |
-| interest | `weekly_lag1_interest_s0` | `weekly_lag1_interest_s1` | `weekly_lag1_interest_s2` | 待启动/运行 |
+| random | `weekly_lag1_random_s0` | `weekly_lag1_random_s1` | `weekly_lag1_random_s2` | 完成 |
+| interest | `weekly_lag1_interest_s0` | `weekly_lag1_interest_s1` | `weekly_lag1_interest_s2` | 完成 |
 
-完成后每个run应有replay、周度CSV和逐run图。旧`anchored_v1`的冻结派生结果仍保留在原`_derived/`路径，但已明确分类为superseded。
+每个run均已有replay、周度CSV和逐run图。旧`anchored_v1`的冻结派生结果仍保留在原`_derived/`路径，但已明确分类为superseded。
 
 ## 5. 环境与复现
 
@@ -226,4 +226,4 @@ hypothesis_4/experiment_1/runs/weekly_lag1/weekly_lag1_*
 
 ---
 
-**本README状态更新：2026-09-27。** `weekly_lag1`完成并通过复核后，还需再次更新分析来源和论文数值。
+**本README状态更新：2026-09-28。** `weekly_lag1`已完成并通过复核；当前聚合分析只覆盖同步重跑的interest/random两臂，论文数值须待图表与论断审核后更新。

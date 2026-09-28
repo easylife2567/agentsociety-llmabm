@@ -15,7 +15,7 @@
 
 ## 正式批次边界
 
-当前正式批次ID为`weekly_lag1`，计划6个run覆盖W12–W22。完成性复核前不得将其写成已完成结果。`anchored_v1`的9个raw run已移入本地归档。
+当前正式批次ID为`weekly_lag1`，6个run均已完成W12–W22并通过行数复核。当前分析只比较同步重跑的interest/random两臂；`anchored_v1`的9个raw run已移入本地归档。
 
 历史实验统一由根目录归档索引管理：
 

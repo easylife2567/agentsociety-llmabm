@@ -1,0 +1,48 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20260928t014403_59e021c18b",
+  "operation_id": "validate-plan",
+  "operation_contract_version": 1,
+  "execution_key": "a3ddfb6a9a37972e7df5222047b4d41e9514d00e0fcf86dc4a7af1021cb334b2",
+  "attempt": 2,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "",
+  "input_names": [
+    "hypothesis_id",
+    "workspace"
+  ],
+  "input_fingerprint": "705d141f24cf1bdb18f01bec9389edecb079394e67d98f1cf36a7182ccff7d67",
+  "safe_inputs": {
+    "hypothesis_id": "4"
+  },
+  "preflight": {
+    "operation_id": "validate-plan",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "recommended_next_step": "",
+    "status": "PASS"
+  },
+  "error": null,
+  "declared_artifacts": [
+    "frame checkpoint in harness state"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "469d023b80b502ef74836f08bb8a88caca9bb7498b4ed142d1972874d6cee596"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 9698,
+  "hostname": "192.168.100.6",
+  "started_at": "2026-09-28T01:44:03.235283Z",
+  "updated_at": "2026-09-28T01:44:03.239926Z",
+  "completed_at": "2026-09-28T01:44:03.239902Z",
+  "duration_ms": 4
+}

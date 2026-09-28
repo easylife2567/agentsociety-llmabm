@@ -1,0 +1,51 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20260928t014404_3883bac747",
+  "operation_id": "advance",
+  "operation_contract_version": 1,
+  "execution_key": "1525ef935c50fc9cecf8745d641053d58d44779a6a3467554d39c0e458f48abd",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "1",
+  "input_names": [
+    "experiment_id",
+    "hypothesis_id",
+    "phase",
+    "workspace"
+  ],
+  "input_fingerprint": "48d2d0306efecc8429ea60e4c9064d4f46540834007172f70282900c17451226",
+  "safe_inputs": {
+    "hypothesis_id": "4",
+    "experiment_id": "1",
+    "phase": "explore"
+  },
+  "preflight": {
+    "operation_id": "advance",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "current_phase": "explore"
+  },
+  "error": null,
+  "declared_artifacts": [
+    "current phase in harness state"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "2b252ecea6c5fea0da449e9c2b4e2bdb1da54db193211017d41e55d3f11bf877"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 9703,
+  "hostname": "192.168.100.6",
+  "started_at": "2026-09-28T01:44:04.904078Z",
+  "updated_at": "2026-09-28T01:44:04.908271Z",
+  "completed_at": "2026-09-28T01:44:04.908242Z",
+  "duration_ms": 4
+}

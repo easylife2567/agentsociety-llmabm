@@ -476,7 +476,7 @@ $PYTHON_PATH hypothesis_4/experiment_1/monitor.py --week 2026-W13  # 只看某�
   仅用 main + meme 四列表）产出 assigned_type / type_mismatch 诊断。
 - 主基准：benchmark_curves.json 周度类型矩阵 vs 模拟供给/曝光份额。
 
-## 2026-09-27 注入时机修订：weekly_lag1（待运行审核）
+## 2026-09-27 注入时机修订：weekly_lag1（2026-09-28已完成）
 
 为让两个周级条件中的真实帖与Agent帖采用同一传播粒度，`interest`和`random`的普通真实帖改为在来源周的下一周首次进入候选池。唯一官方讣告`official_w13_announcement`作为外生事件，仍在W13当周进入；`interest`沿用W13置顶，`random`仍无置顶。`chronological`的小时级精确到达机制没有修改，也不列入本轮重跑。
 
