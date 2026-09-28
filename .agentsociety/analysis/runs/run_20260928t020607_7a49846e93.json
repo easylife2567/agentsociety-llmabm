@@ -1,0 +1,58 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20260928t020607_7a49846e93",
+  "operation_id": "record-phase-artifacts",
+  "operation_contract_version": 1,
+  "execution_key": "4e9b794e434d4652af1ec6b3e979f30a621e5326ac72293516e44d76bcb55423",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "",
+  "input_names": [
+    "artifacts",
+    "hypothesis_id",
+    "phase",
+    "workspace"
+  ],
+  "input_fingerprint": "9fe84b7d77973ac5586c128da4c46777f322dee71f302156be4f6b9658b684e4",
+  "safe_inputs": {
+    "hypothesis_id": "4",
+    "phase": "explore"
+  },
+  "preflight": {
+    "operation_id": "record-phase-artifacts",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "phase": "explore"
+  },
+  "error": null,
+  "declared_artifacts": [
+    "phase artifact registration in harness state"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "99f90cc0cbe61a405bd96f061f3c65bdb6c3d504b22c62d3c62fb3aa5c836233",
+    "presentation/hypothesis_4/data/eda_figure_01_weekly_lag_meme_trajectory.png": "158b8a73a37e00cf6ab3175dfbefaea79fea782513436986911c3e3edaec3181",
+    "presentation/hypothesis_4/data/eda_figure_02_weekly_lag_event_and_arm_gap.png": "3c36f9e8696cebbe0a701667987f49271a86dddbd86ec3389cf056e778514472",
+    "presentation/hypothesis_4/data/eda_figure_03_weekly_lag_agent_supply_stacked_area.png": "0c17b44ac057d9170e73ebf1ee618302de1e290cce86cf8ca25224fca28573ec",
+    "presentation/hypothesis_4/data/weekly_lag1_agent_supply_by_type.csv": "a74a198ca635b1954a47321ef6b97ffe5de16c35899cc360ed3ec0d32689db80",
+    "presentation/hypothesis_4/data/weekly_lag1_arm_week_summary.csv": "a37f8a1042a4dd653e4aa062481560a0fd2fe59211ff050ce38e5e4245cc47ee",
+    "presentation/hypothesis_4/data/weekly_lag1_figure_notes.md": "5b29e6723dd7d7f43e3b47da7d1c0b78bfb2fa65803d35ba9b13ff3fd0dffa20",
+    "presentation/hypothesis_4/data/weekly_lag1_run_week_metrics.csv": "655beb10e91da8a79c7992e1ba41713d6a99c1c7c1bd5c9a88a53242199f9202",
+    "presentation/hypothesis_4/data/weekly_lag1_summary.json": "4893afb17f29c6c2f48ea8db7f56887bc0f0490c111c79ea4daf62b48140853d"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 14125,
+  "hostname": "192.168.100.6",
+  "started_at": "2026-09-28T02:06:07.569182Z",
+  "updated_at": "2026-09-28T02:06:07.582059Z",
+  "completed_at": "2026-09-28T02:06:07.582028Z",
+  "duration_ms": 12
+}

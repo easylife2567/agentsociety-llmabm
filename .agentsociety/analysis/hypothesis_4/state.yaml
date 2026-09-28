@@ -29,27 +29,30 @@ phase_attestations:
     status: DONE
     key_findings:
     - 6个正式run均提供11周完整数据，共66个run-week观测；两臂各3个seed。
-    - W19-W22三seed均值中，interest相对random的玩梗供给份额高10.46个百分点、曝光份额高13.03个百分点、玩梗群体发言率高33.77个百分点。
-    - 两臂的玩梗曝光减供给偏差均为负：interest为-13.92个百分点，random为-16.50个百分点；interest只是相对更少抑制，并非绝对过度曝光。
-    - 仿真悼念供给峰出现在W14而非真实数据W13，表明一期滞后提高时序表述一致性但引入了事件响应相位后移。
+    - W19-W22中interest相对random的玩梗供给份额高10.46个百分点、曝光份额高13.03个百分点、玩梗群体发言率高33.77个百分点。
+    - Agent-only发帖量显示interest在W20降至5.67帖后由玩梗发帖驱动反弹，W22为21.67帖，其中玩梗18.33帖；random在W22总计6.67帖，其中玩梗1.33帖。
+    - 两臂玩梗曝光减供给偏差均为负；仿真悼念Agent发帖峰出现在W14-W15而非真实数据W13。
     artifacts_read: []
     artifacts_written:
     - presentation/hypothesis_4/data/weekly_lag1_run_week_metrics.csv
     - presentation/hypothesis_4/data/weekly_lag1_arm_week_summary.csv
+    - presentation/hypothesis_4/data/weekly_lag1_agent_supply_by_type.csv
     - presentation/hypothesis_4/data/weekly_lag1_summary.json
     - presentation/hypothesis_4/data/weekly_lag1_figure_notes.md
+    - presentation/hypothesis_4/data/eda_figure_01_weekly_lag_meme_trajectory.png
+    - presentation/hypothesis_4/data/eda_figure_02_weekly_lag_event_and_arm_gap.png
+    - presentation/hypothesis_4/data/eda_figure_03_weekly_lag_agent_supply_stacked_area.png
     blocking_reason: null
     recommended_next_step: null
     rubric:
       tables_inspected:
       - 'curation_dynamics_env_state: weekly supply and exposure shares'
       - 'curation_dynamics_agent_state: type-specific speaking decisions'
-      - six-run derived weekly_supply, weekly_exposure, weekly_agent_behavior, weekly_bias,
-        weekly_benchmark tables
-      data_limitations: 每臂只有3个seed；min-max仅为描述范围。chronological未按weekly_lag1重跑而排除。仿真结果不能直接外推真实平台因果效应。
-      eda_takeaway: interest相对random提高后期玩梗表达与可见度，但绝对策展偏差仍为负；一期滞后同时造成悼念峰相位后移，图中必须同时呈现这两个结论。
-    artifact_fingerprint: ceea4826b4302e01359aa71e
-    completed_at: '2026-09-28T01:47:17.783099Z'
+      - 'weekly_mechanism: n_posted by arm, seed, week, and fixed agent type'
+      data_limitations: 每臂3个seed；堆叠面积使用seed均值，只描述仿真内部Agent产出，不含真实注入帖。chronological未重跑而排除。
+      eda_takeaway: interest的后期总发帖反弹主要由玩梗型Agent驱动，而random保持低位；整体一期滞后也使悼念Agent高峰落在W14-W15。
+    artifact_fingerprint: 9a016db45ba6e9325512c450
+    completed_at: '2026-09-28T02:06:26.102800Z'
 phase_checkpoints:
   frame:
     phase: frame
@@ -66,13 +69,17 @@ phase_checkpoints:
     attestation_required: true
     gate_pass: true
     structural_issues: []
-    completed_at: '2026-09-28T01:47:17.783099Z'
+    completed_at: '2026-09-28T02:06:26.102800Z'
 phase_artifacts:
   explore:
   - presentation/hypothesis_4/data/weekly_lag1_run_week_metrics.csv
   - presentation/hypothesis_4/data/weekly_lag1_arm_week_summary.csv
+  - presentation/hypothesis_4/data/weekly_lag1_agent_supply_by_type.csv
   - presentation/hypothesis_4/data/weekly_lag1_summary.json
   - presentation/hypothesis_4/data/weekly_lag1_figure_notes.md
+  - presentation/hypothesis_4/data/eda_figure_01_weekly_lag_meme_trajectory.png
+  - presentation/hypothesis_4/data/eda_figure_02_weekly_lag_event_and_arm_gap.png
+  - presentation/hypothesis_4/data/eda_figure_03_weekly_lag_agent_supply_stacked_area.png
 validation_history:
 - phase: explore
   status: PASS
@@ -80,4 +87,7 @@ validation_history:
 - phase: explore
   status: PASS
   at: '2026-09-28T01:47:19.677853Z'
-updated_at: '2026-09-28T01:47:21.408497Z'
+- phase: explore
+  status: PASS
+  at: '2026-09-28T02:06:28.130163Z'
+updated_at: '2026-09-28T02:06:28.130175Z'

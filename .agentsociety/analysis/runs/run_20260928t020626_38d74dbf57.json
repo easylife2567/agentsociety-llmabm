@@ -1,0 +1,48 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20260928t020626_38d74dbf57",
+  "operation_id": "record-attestation",
+  "operation_contract_version": 1,
+  "execution_key": "5b1c9a59028c0ba687d16cdedef03675e13aa27f248fbef6be852dde667b6fc9",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "",
+  "input_names": [
+    "hypothesis_id",
+    "payload",
+    "workspace"
+  ],
+  "input_fingerprint": "0513a9199383257054cd6f0c5cced8547bba4842e8a8ebac3b507caaac4c59c4",
+  "safe_inputs": {
+    "hypothesis_id": "4"
+  },
+  "preflight": {
+    "operation_id": "record-attestation",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "hypothesis_id": "4"
+  },
+  "error": null,
+  "declared_artifacts": [
+    "phase attestation in harness state"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "edddd8048cf9e8f3dd8754025c0eea4571b04009b8a862ca1ff5c114d2be73d0"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 14142,
+  "hostname": "192.168.100.6",
+  "started_at": "2026-09-28T02:06:26.098104Z",
+  "updated_at": "2026-09-28T02:06:26.110392Z",
+  "completed_at": "2026-09-28T02:06:26.110353Z",
+  "duration_ms": 12
+}

@@ -25,6 +25,21 @@ FINAL_CHART_DIR = OUTPUT_ROOT / "charts"
 
 ARMS = ("interest", "random")
 ARM_COLORS = {"interest": "#0072B2", "random": "#D55E00"}
+AGENT_TYPE_ORDER = ("meme", "mourning", "education", "marketing", "other")
+AGENT_TYPE_LABELS = {
+    "meme": "Meme",
+    "mourning": "Mourning",
+    "education": "Education",
+    "marketing": "Marketing",
+    "other": "Other",
+}
+AGENT_TYPE_COLORS = {
+    "meme": "#DD8452",
+    "mourning": "#4C72B0",
+    "education": "#55A868",
+    "marketing": "#CCB974",
+    "other": "#64B5CD",
+}
 METRICS = (
     "supply_share_meme",
     "exposure_share_meme",
@@ -168,6 +183,36 @@ def aggregate_runs() -> tuple[pd.DataFrame, pd.DataFrame, dict]:
         ],
     }
     return run_week, arm_week, summary
+
+
+def aggregate_agent_supply() -> pd.DataFrame:
+    frames = []
+    for run_dir in sorted(path for path in SOURCE_ROOT.glob("weekly_lag1_*") if path.is_dir()):
+        arm, seed = _run_meta(run_dir.name)
+        frame = _read_csv(run_dir / "weekly_mechanism.csv")
+        frame = frame.loc[
+            frame["type"].isin(AGENT_TYPE_ORDER), ["week", "type", "n_posted"]
+        ].copy()
+        frame["run_id"] = run_dir.name
+        frame["arm"] = arm
+        frame["seed"] = seed
+        frame["week_num"] = frame["week"].str.extract(r"W(\d+)")[0].astype(int)
+        frames.append(frame)
+    run_type_week = pd.concat(frames, ignore_index=True)
+    summary = (
+        run_type_week.groupby(["arm", "week", "week_num", "type"], sort=True)["n_posted"]
+        .agg(["mean", "min", "max", "std"])
+        .reset_index()
+        .rename(
+            columns={
+                "mean": "agent_posts_mean",
+                "min": "agent_posts_min",
+                "max": "agent_posts_max",
+                "std": "agent_posts_std",
+            }
+        )
+    )
+    return summary.sort_values(["arm", "week_num", "type"])
 
 
 def _style() -> None:
@@ -389,6 +434,96 @@ def render_figures(
     return outputs
 
 
+def render_agent_supply_figure(agent_supply: pd.DataFrame, output_dir: Path) -> list[Path]:
+    _style()
+    plt.rcParams.update(
+        {
+            "font.family": "sans-serif",
+            "font.sans-serif": [
+                "Hiragino Sans GB",
+                "PingFang SC",
+                "Arial Unicode MS",
+                "Heiti TC",
+                "DejaVu Sans",
+            ],
+            "axes.unicode_minus": False,
+        }
+    )
+    output_dir.mkdir(parents=True, exist_ok=True)
+    weeks = sorted(agent_supply["week_num"].unique())
+    week_labels = [f"2026-W{week:02d}" for week in weeks]
+    x = np.arange(len(weeks))
+
+    fig, axes = plt.subplots(1, 2, figsize=(17, 6.8), sharey=True, constrained_layout=True)
+    panel_titles = {"interest": "Interest recommendation", "random": "Random feed"}
+    for ax, arm in zip(axes, ARMS):
+        subset = agent_supply.loc[agent_supply["arm"] == arm]
+        series = []
+        for agent_type in AGENT_TYPE_ORDER:
+            values = (
+                subset.loc[subset["type"] == agent_type]
+                .set_index("week_num")["agent_posts_mean"]
+                .reindex(weeks)
+                .fillna(0)
+                .to_numpy(dtype=float)
+            )
+            series.append(values)
+        ax.stackplot(
+            x,
+            *series,
+            labels=[AGENT_TYPE_LABELS[t] for t in AGENT_TYPE_ORDER],
+            colors=[AGENT_TYPE_COLORS[t] for t in AGENT_TYPE_ORDER],
+            edgecolor="white",
+            linewidth=0.7,
+            alpha=0.92,
+            zorder=2,
+        )
+        event_x = weeks.index(13)
+        ax.axvline(event_x, color="#D62728", linestyle="--", linewidth=1.5, alpha=0.85)
+        ax.annotate(
+            "去世 3-24 (W13)",
+            xy=(event_x, 1.0),
+            xycoords=("data", "axes fraction"),
+            xytext=(7, -5),
+            textcoords="offset points",
+            color="#D62728",
+            fontsize=10,
+            va="top",
+            bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=0.85),
+        )
+        ax.set_xticks(x, week_labels, rotation=45)
+        ax.set_ylim(0, 80)
+        ax.set_yticks(range(0, 81, 10))
+        ax.set_title(panel_titles[arm], loc="left", fontsize=13, fontweight="bold")
+        ax.set_xlabel("Simulation week")
+        ax.margins(y=0.04)
+    axes[0].set_ylabel("Agent 发帖数（帖）")
+    handles, labels = axes[1].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="upper center", ncol=5, bbox_to_anchor=(0.5, 1.025), frameon=False)
+    fig.suptitle(
+        "Agent 发帖量变化（三 seed 均值 · 仅 Agent 产出 · 不含注入帖）",
+        fontsize=16,
+        fontweight="bold",
+        y=1.075,
+    )
+    fig.text(
+        0.5,
+        -0.02,
+        "Each stacked area is the mean weekly post count across three seeds. Categories and colors follow the archived template.",
+        ha="center",
+        fontsize=9,
+        color="#444444",
+    )
+    base = output_dir / "eda_figure_03_weekly_lag_agent_supply_stacked_area"
+    outputs = []
+    for suffix in (".png", ".svg"):
+        path = base.with_suffix(suffix)
+        fig.savefig(path, dpi=300, bbox_inches="tight", facecolor="white")
+        outputs.append(path)
+    plt.close(fig)
+    return outputs
+
+
 def write_caption() -> Path:
     path = DATA_DIR / "weekly_lag1_figure_notes.md"
     path.write_text(
@@ -396,6 +531,7 @@ def write_caption() -> Path:
         "- **Figure 1:** Three-seed arm means for meme supply, exposure, meme-agent speaking, and exposure-minus-supply bias. "
         "The real-data benchmark appears only where an aligned observed supply share exists.\n"
         "- **Figure 2:** Mourning response, total supply, weekly interest-minus-random gaps, and W19-W22 mean comparisons.\n"
+        "- **Figure 3:** Agent-only weekly post counts by content type, stacked using three-seed arm means; colors and 0-80 scale follow the archived chart3b template.\n"
         "- Bands and error bars are the minimum and maximum across three seeds. They are descriptive ranges, not confidence intervals.\n"
         "- Source: all six completed `weekly_lag1_{interest,random}_s{0,1,2}` runs. "
         "The non-rerun chronological arm is excluded.\n",
@@ -415,8 +551,10 @@ def main() -> int:
     args = parser.parse_args()
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     run_week, arm_week, summary = aggregate_runs()
+    agent_supply = aggregate_agent_supply()
     run_week.to_csv(DATA_DIR / "weekly_lag1_run_week_metrics.csv", index=False)
     arm_week.to_csv(DATA_DIR / "weekly_lag1_arm_week_summary.csv", index=False)
+    agent_supply.to_csv(DATA_DIR / "weekly_lag1_agent_supply_by_type.csv", index=False)
     (DATA_DIR / "weekly_lag1_summary.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
@@ -426,6 +564,7 @@ def main() -> int:
             render_figures(arm_week, summary, FINAL_CHART_DIR, "")
         else:
             render_figures(arm_week, summary, DATA_DIR, "eda_")
+        render_agent_supply_figure(agent_supply, DATA_DIR if not args.final else FINAL_CHART_DIR)
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     return 0
 
