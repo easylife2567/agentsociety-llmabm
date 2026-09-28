@@ -1,39 +1,35 @@
-# weekly_lag1_event_v2：Agent 发帖量预测与中间产物
+# weekly_lag1_event_v2：事件信号诊断与中间产物
 
-本文件夹用于审核尚未正式运行的 `weekly_lag1_event_v2`。根据 AgentSociety 分析技能的目录约定，单实验的中间数据与探索性图表放在 `presentation/hypothesis_4/data/`，因此这里没有另建顶层 `raw/`。原文件均保留在原位置，本文件夹收集的是便于集中查看的副本。
+## 状态：原预测已撤回
 
-## 先看什么
+原先生成的 Agent 发帖量图不能作为实验预测。它把配置中的 `event_signal_salience_slots=5.0` 直接代入确定性发言门槛，导致 interest 和 random 的 22 个 mourning Agent 在 W13 全部发言，总量峰值几乎完全由这一项机械叠加形成。这种结果高度依赖参数设定，不能被解释为模型自然预测出的 W13 高峰。
 
-1. `prediction/weekly_lag1_event_v2_agent_post_volume_prediction.png`：修改后方案的 Agent 发帖量预测图。
-2. `prediction/predicted_agent_posts_total.csv`：每种推荐机制、每周的三种子均值、最小值、最大值和标准差。
-3. `prediction/predicted_agent_posts_by_type.csv`：按 Agent 类型拆分的预测。
-4. `prior_weekly_lag1/eda_figure_03_weekly_lag_agent_supply_stacked_area.png`：上一轮正式实验的聚合图，适合和预测图对照。
-5. `prior_per_run/`：上一轮 interest/random 六个运行各自的 Agent 发帖量图。
+原图、原表和方法摘要已移动到 `withdrawn_mechanical_scenario/`，仅用于保留审计记录。请勿作为论文图表或实验预期引用。
 
-## 预测结论
+## 已确认的机制问题
 
-- 两组的最高峰都在 W13：interest 预计平均 41.7 帖，random 预计平均 42.0 帖。
-- W13 两组均预计有 22 个 mourning Agent 发帖。这来自两组共享的 W13 外生事件信号，符合“讣告当周发生并被 Agent 感知”的修订目标。
-- interest 在 W14 仍保持较高水平，随后下降；W21–W23 因兴趣推荐下 meme 内容的反馈累积而回升。
-- random 在 W14 后总体下降，没有再形成接近 W13 的第二高峰。
-- W23 是 drain/readout 周，只注入 W22 来源的延迟真实帖。它仍允许 Agent 对这些内容作出反应，但没有可用于拟合的 W23 同周真实基准，应该单独解释。
+- W13 的非悼念发言没有普遍增长。相对 W12，营销发言下降，教育略有上升，玩梗和其他维持低位。
+- `5.0` 个等效悼念槽位只提高 mourning Agent 的有效同类份额，不会提高其他类型的发言意愿。
+- W13 总量从约 20.7 帖提高到约 42 帖，几乎全部来自 mourning Agent 从约 1 人增加到 22 人。
+- 等效槽位存在明显的门槛跳变，同一个参数对 interest 和 random 的作用也很不对称。继续调节槽位值无法得到稳健、可解释的共同事件响应。
 
-## 预测是怎样得到的
+敏感性诊断见 `event_signal_salience_sensitivity.csv`。
 
-这不是正式实验结果，也没有调用 LLM。预测程序直接读取六个待审配置，逐周执行正式环境中的 feed 装配与确定性发帖判定规则。为了让本周 Agent 帖在下一周继续影响信息流，程序用上一轮六个已完成运行中 1,110 条 Agent 帖的分类倾向中位数，作为各类新帖内容的代理向量。
+## 建议的设计修正
 
-因此，这张图适合在正式运行前检查峰值位置、两组大致差异和数量级。具体文本会怎样改变后续排序，仍需正式实验确认。三种子的预测范围已经保存在 `predicted_agent_posts_total.csv`，不应把图中的均值当成精确结果。
+保留已经确定的时间规则：普通真实帖和 Agent 帖延迟一周，W13 官方讣告仍在 W13 当周进入，W23只作为延迟内容观察周。
 
-预测程序位于：
+撤销“事件等效为若干悼念槽位并直接进入发言效用”的设定。若需要保证两组都知道这一公共事件，可以把事件作为共同背景信息提供给 Agent，但不直接改变任何类型的发言门槛。这样，W13 是否出现总发帖高峰将重新成为实验结果，而不是被设计参数预先保证。
 
-`hypothesis_4/experiment_1/predict_weekly_lag_event_v2.py`
+在完成这一设计修正前，不再给出新的单一路径发帖量预测图。更合适的预期表述是：W13可能改变发言构成和总量，但峰值位置、峰值大小以及不同类型的响应应由实验决定。
 
 ## 文件夹说明
 
-- `prediction/`：本次机制代理预测的图、汇总表、逐运行表和方法摘要。
+- `withdrawn_mechanical_scenario/`：已撤回的原预测图表，仅供审计。
+- `event_signal_salience_sensitivity.csv`：W13 对等效槽位参数的敏感性诊断。
 - `design_inputs/`：当前实验设计清单与注入时机审阅说明。
-- `prior_weekly_lag1/`：此前基于已完成 `weekly_lag1` 结果制作的临时聚合图表和说明。
+- `prior_weekly_lag1/`：此前已完成实验的聚合图表和说明。
 - `prior_per_run/`：此前六个运行的逐运行 Agent 发帖量图。
 - `reference/`：用户指定的旧版绘图模板副本。
-- `manifest.json`：本文件夹全部产物的来源、大小和 SHA-256 校验值。
+- `manifest.json`：文件来源、大小和 SHA-256 校验值。
 
