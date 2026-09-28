@@ -392,3 +392,18 @@ config 未显式覆盖，取代码默认值。
 | `hypothesis_4/experiment_1/calibrate_speak.py` | 同构数值代理底座（`simulate` 支持 anchored/multiplicative）、门槛基数 0.95 扫描史、`--assert-replay` 涌现环境公式断言 |
 | `锚定式事件表达激活模型.md` | 理论冻结讨论稿（2026-09-14）：构念（事件表达激活势能）、核心方程、理论锚点（Noelle-Neumann/Blanco/Sohn & Geidner/Cabrera/Granovetter）、命题 1–6、可证伪条件 |
 | `hypothesis_4/experiment_1/SMOKE_DIAGNOSIS_w19_cliff.md` | 2026-09-12 烟测诊断（W19 悬崖与老帖霸屏的因果链、G 退役、D 改 tanh、R 尺度沿革、被实测排除的改法、用户裁定） |
+
+### 2026-09-28 `weekly_lag1_event_v2` 覆盖参数
+
+该round不改动已完成的`weekly_lag1`，只在独立配置中增加以下覆盖：
+
+| 参数 | v2值 | 含义 |
+|---|---:|---|
+| `event_signal_type` | `mourning` | W13外生死亡事件直接作用的既有Agent类型 |
+| `event_signal_salience_slots` | 5.0 | 事件显著性折算为5个普通同类信息槽位；与实际feed共同进入D，不复制帖子、不绕过门槛 |
+| `event_week_mourning_floor` | 0 | 关闭旧的interest-only事件周保底，避免与公共事件信号重复 |
+| `num_ticks` | 12 | W12–W23；W23只接收W22延迟帖并观察响应 |
+
+事件周的有效本类份额为`(实际本类槽位 + 事件等效槽位) / (实际feed槽位 + 事件等效槽位)`。
+该信号在interest与random中相同；算法差异继续来自interest的官方置顶和兴趣推荐，以及random
+的全历史均匀抽样。W23不注入W23来源外部帖，不参与W12–W22真实基准拟合。

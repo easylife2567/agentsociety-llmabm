@@ -110,7 +110,7 @@ agent_id = ctx['variables']['agent_id']
 response = await modules['CurationDynamicsSpace'].get_feed(agent_id)
 if isinstance(response, dict) and response.get('status') == 'success':
     results['status'] = 'success'
-    for _k in ('week', 'event_time', 'meme_env', 'own_spoke', 'own_last_post', 'feed',
+    for _k in ('week', 'event_time', 'event_signal', 'meme_env', 'own_spoke', 'own_last_post', 'feed',
                'feed_type_distribution', 'global_supply_shares',
                'global_exposure_shares', 'personal_stats'):
         results[_k] = response.get(_k)
@@ -330,6 +330,13 @@ class CurationDynamicsSpace(EnvBase):
         self._num_ticks = int(kwargs.pop("num_ticks", 11))
         self._event_week = str(kwargs.pop("event_week", "2026-W13"))
         self._official_pin_extend_weeks = int(kwargs.pop("official_pin_extend_weeks", 1))
+        # 外生事件信号：高显著性社会事件不是普通 feed 槽位。事件周内，各臂收到同一
+        # 信号；推荐制度仍只决定帖子是否置顶及其余 feed 如何分配。salience_slots 表示
+        # 该事件在意见气候计算中相当于多少个同类普通信息槽位，0 表示关闭。
+        self._event_signal_type = str(kwargs.pop("event_signal_type", ""))
+        self._event_signal_salience_slots = float(
+            kwargs.pop("event_signal_salience_slots", 0.0)
+        )
         raw_action_hours = kwargs.pop("chronological_action_hours", None) or {}
         self._chronological_action_hours: dict[str, int] = {
             str(k): int(v) for k, v in raw_action_hours.items()
@@ -396,6 +403,16 @@ class CurationDynamicsSpace(EnvBase):
         if self._event_week_mourning_floor < 0:
             raise ValueError(
                 f"event_week_mourning_floor must be >= 0, got {self._event_week_mourning_floor}"
+            )
+        if self._event_signal_type and self._event_signal_type not in TYPE_ORDER:
+            raise ValueError(
+                f"event_signal_type must be empty or one of {TYPE_ORDER}, "
+                f"got {self._event_signal_type!r}"
+            )
+        if self._event_signal_salience_slots < 0:
+            raise ValueError(
+                "event_signal_salience_slots must be >= 0, got "
+                f"{self._event_signal_salience_slots}"
             )
         if self._weekly_real_post_lag_weeks < 0:
             raise ValueError(
@@ -1240,7 +1257,8 @@ class CurationDynamicsSpace(EnvBase):
     async def get_feed(self, agent_id: str) -> dict:
         """读取您本周在舆论场的完整感知快照（只读观测工具，无任何副作用）。
 
-        **get_feed(agent_id)** 返回：当前周标签 **week**；本周玩梗涌现环境 **meme_env**
+        **get_feed(agent_id)** 返回：当前周标签 **week**；外生事件信号 **event_signal**；
+        本周玩梗涌现环境 **meme_env**
         （stock/flow=arena 存量与本周新增、flow_world=现实口径新增、abundance=丰沛度、
         emptiness=空旷度、gain=涌现增益）；您本周是否已发言 **own_spoke**；您最近一帖
         **own_last_post**；您的本周推荐信息流 **feed**（长度 = feed_size；chronological /
@@ -1277,6 +1295,17 @@ class CurationDynamicsSpace(EnvBase):
                 else f"官方置顶 {official_count} 条"
             )
         )
+        event_signal = {
+            "active": bool(
+                self._event_signal_type
+                and self._event_signal_salience_slots > 0
+                and self._current_week == self._event_week
+            ),
+            "week": self._event_week,
+            "type": self._event_signal_type or None,
+            "salience_slots": round(self._event_signal_salience_slots, 4),
+            "source": "official_external_event",
+        }
         return {
             "status": "success",
             "week": self._current_week,
@@ -1284,6 +1313,7 @@ class CurationDynamicsSpace(EnvBase):
                 self._current_event_time.isoformat(timespec="seconds")
                 if self._current_event_time is not None else None
             ),
+            "event_signal": event_signal,
             "meme_env": {
                 "stock": int(env["stock"]),
                 "flow": int(env["flow"]),
@@ -1302,6 +1332,7 @@ class CurationDynamicsSpace(EnvBase):
             "response": (
                 f"您在本周（{self._current_week}）的推荐信息流共 {len(feed)} 条"
                 f"（{official_note}），"
+                f"外生事件信号：{'生效' if event_signal['active'] else '未生效'}，"
                 f"本周舆论场存量 {env['stock']} 帖、新增 {env['flow']} 帖"
                 f"（现实口径新增 {env['flow_world']} 帖），"
                 f"您本周已发言：{'是' if self._spoke_this_tick.get(aid, False) else '否'}。"
@@ -1668,7 +1699,9 @@ class CurationDynamicsSpace(EnvBase):
             "（{agent_id: meme|mourning|marketing|education|other}，未列出默认 other）；"
             "**start_week** 起始 ISO 周（默认 2026-W12）；**num_ticks** 总 tick 数（默认 11）；"
             "**event_week** 去世周（默认 2026-W13）；**official_pin_extend_weeks** 官方置顶延伸"
-            "周数（默认 1）；interest 臂权重 **alpha**/**beta**/**gamma**、噪声幅度 "
+            "周数（默认 1）；**event_signal_type** 外生事件直接激活的内容类型（空串=关闭）、"
+            "**event_signal_salience_slots** 该事件在意见气候中等效的普通信息槽位数（默认 0）；"
+            "interest 臂权重 **alpha**/**beta**/**gamma**、噪声幅度 "
             "**interest_noise_eps**、已曝光处理 "
             "**exposure_mode**（none/penalize/exclude）与 **exposure_penalty_weight**；"
             "**帖子生命周期**（仅 chronological / interest 使用；random 忽略）："

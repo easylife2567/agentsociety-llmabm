@@ -7,7 +7,8 @@
    ——U = B_i + R·(D−B_i)，发言当且仅当 U ≥ activity（activity = 个体表达门槛，
    门槛低的 agent 更容易发言；确定性决策，无随机数，给定状态与参数行为唯一）。
    B_i 是事件前常态表达效用锚点；沉默螺旋 D 表示当周意见气候，注意力衰减 R 只折减
-   D 相对 B_i 的冲击偏离，使表达回归常态而不是机械归零。
+   D 相对 B_i 的冲击偏离，使表达回归常态而不是机械归零。高显著性外生事件以等效信息
+   槽位进入 D 的意见气候输入，不复制帖子，也不直接绕过表达门槛。
    环境观测量（B/S/G）仍随快照取回并写入 decision_log，但不参与决策。
    决策分量（份额/因子/环境/效用/门槛）全量写入 decision_log，可完整审计与事后重算。
 3. 若发言，一次内容生成 completion——提示词包含本周 feed 前 feed_context_n 条帖子的
@@ -93,6 +94,24 @@ _PARAM_DEFAULTS: dict[str, dict[str, float]] = {
 # 沉默螺旋的期望份额基线。用户 2026-09-10 裁定：群体按发帖人口径比例
 # 用户 2026-09-13 更正为：营销23/悼念22/其他21/玩梗19/教育15（不再按内容划分口径）。
 _POP_SHARE = {"meme": 0.19, "mourning": 0.22, "marketing": 0.23, "education": 0.15, "other": 0.21}
+
+
+def _event_adjusted_share(
+    observed_share: float,
+    feed_slots: float,
+    event_signal: dict,
+    own_type: str,
+) -> tuple[float, bool, float]:
+    """把外生事件显著性并入本类型气候，返回（有效份额、是否生效、等效槽位）。"""
+    active = bool(event_signal.get("active")) and event_signal.get("type") == own_type
+    salience_slots = max(0.0, float(event_signal.get("salience_slots", 0.0) or 0.0))
+    if not active or salience_slots <= 0:
+        return observed_share, active, 0.0
+    denominator = feed_slots + salience_slots
+    if denominator <= 0:
+        return observed_share, active, salience_slots
+    observed_own_slots = observed_share * feed_slots
+    return (observed_own_slots + salience_slots) / denominator, active, salience_slots
 
 # 各类型内容生成指引（人设之外的具体写作约束）
 _CONTENT_GUIDE: dict[str, str] = {
@@ -294,7 +313,16 @@ class CurationDiscourseAgent(AgentBase):
         prm = self._params
         own = self._agent_type
         climate = snap.get("feed_type_distribution") or {}
-        share_own = float(climate.get(own, 0.0) or 0.0)
+        share_own_observed = float(climate.get(own, 0.0) or 0.0)
+        share_own = share_own_observed
+        # 高显著性外生事件不应被当作十个普通 feed 槽位中的一条。事件信号只在指定周、
+        # 对指定类型生效，并以“等效普通槽位”并入意见气候；两臂可收到同一外生冲击，
+        # 推荐算法仍通过实际 feed（置顶、抽样等）产生差异。
+        event_signal = snap.get("event_signal") or {}
+        feed_slots = float(len(snap.get("feed") or []))
+        share_own, event_active, event_slots = _event_adjusted_share(
+            share_own_observed, feed_slots, event_signal, own
+        )
         base = _POP_SHARE.get(own, 0.2)
         spiral_s = prm["spiral"] * prm["spiral_scale"]
         d = mech.spiral_factor(share_own, base, spiral_s)
@@ -304,8 +332,12 @@ class CurationDiscourseAgent(AgentBase):
         u = mech.anchored_utility(prm["baseline_utility"], d, r)
         meme_env = snap.get("meme_env") or {}
         comps = {
+            "share_own_observed": round(share_own_observed, 4),
             "share_own": round(share_own, 4),
             "share_base": base,
+            "event_signal_active": event_active,
+            "event_signal_type": event_signal.get("type"),
+            "event_signal_salience_slots": round(event_slots if event_active else 0.0, 4),
             "spiral_s_raw": round(prm["spiral"], 4),
             "spiral_scale": round(prm["spiral_scale"], 4),
             "spiral": round(d, 4),

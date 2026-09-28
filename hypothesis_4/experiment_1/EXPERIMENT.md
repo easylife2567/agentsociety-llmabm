@@ -492,3 +492,35 @@ W12使用每个seed单独从W11分层抽取的17条历史内容初始化。模�
 - `run_weekly_lag_batch.py`：审核通过后的专用批跑入口。
 
 截至记录时，只运行了配置检查、离线机制检查和批跑`--dry-run`；6个正式run均未启动。
+
+## 2026-09-28 事件信号与末端观察修订：weekly_lag1_event_v2（待审核运行）
+
+`weekly_lag1` 实测表明，W13 的官方讣告虽然在 interest 中向100个Agent置顶，但它在每条
+10槽 feed 中仍只贡献1个哀悼槽位。W13 interest 三个seed的哀悼曝光均为100/1000，22个
+哀悼Agent仅1人发言；其平均效用约0.766，低于平均门槛0.964。旧的5条事件周保底选取的是
+“哀悼倾向最高的非噪音帖”，并不保证帖子主类型为 mourning；普通W13真实帖延迟后，该保底
+未形成实际哀悼曝光。因此，当前W13约18–27人的总发言主要来自营销与教育Agent，不能解释为
+有效的哀悼峰。
+
+修订把死亡事件建模为两个周级部分：官方讣告仍是W13同周可见的帖子；同时，interest与
+random共享一个W13外生事件信号。信号仅对mourning类型生效，以5个“等效普通信息槽位”
+并入沉默螺旋的意见气候输入：若实际feed长度为$n$、本类实际份额为$q$、事件显著性为$e$，
+则事件周有效份额为$(nq+e)/(n+e)$。它不复制真实帖子、不直接强制发言，也不改变Agent门槛；
+interest仍单独置顶讣告，random仍无置顶。为避免重复表达同一事件，v2关闭旧的
+interest-only `event_week_mourning_floor`。
+
+等效槽位取5沿用既有事件显著性预算，不根据本轮输出重新寻优。用已完成`weekly_lag1`的W13
+逐Agent曝光与原参数离线重算，22个哀悼Agent均越过既有门槛；若其他类型决定不变，interest
+三个seed的W13总发言由21/27/18预计变为42/48/39，random由21/19/19预计变为42/41/41。
+这些数字是运行前机制校验，不是正式实验结果。
+
+v2另将周级运行延长到W23。W23仅作drain/readout周，接收24条W22来源的延迟真实帖，不注入
+任何W23来源帖，从而消除`weekly_lag1`在W22结束造成的右截断。正式基准仍是W12–W22；W23
+单独报告为延迟响应观察，不与不存在的W23真实基准做拟合。
+
+新增产物位于独立round，已完成的`weekly_lag1`配置与运行保持冻结：
+
+- `init/weekly_lag_event_v2_config.py`与`init/configs/weekly_lag1_event_v2_manifest.json`；
+- `init/configs/weekly_lag1_event_v2_{interest,random}_s{0,1,2}.json`；
+- `init/steps_weekly_lag1_event_v2.yaml`与`verify_weekly_lag_event_v2.py`；
+- `run_weekly_lag_event_v2_batch.py`（仅在用户审核后手动启动）。
