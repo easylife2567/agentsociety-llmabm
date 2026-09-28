@@ -523,3 +523,15 @@ v2另将周级运行延长到W23。W23仅作drain/readout周，接收24条W22来
 - `init/configs/weekly_lag1_event_v2_{interest,random}_s{0,1,2}.json`；
 - `init/steps_weekly_lag1_event_v2.yaml`与`verify_weekly_lag_event_v2.py`；
 - `run_weekly_lag_event_v2_batch.py`（仅在用户审核后手动启动）。
+
+### 重新审阅状态
+
+将`anchored_v1`与已完成`weekly_lag1`正式结果对齐后发现，整体延迟不仅改变可见时间，还把
+原W13事件响应拆到W13–W15，并通过确定性门槛、累计曝光和疲劳继续传播。interest三种子总量
+曲线在原周标签下相关系数为0.690；把延迟结果向前对齐一周后提高到0.962，说明宏观形状大体
+保留，但行动周上的峰值位置和高度已经成为新的“信息延迟”处理效应。
+
+因此，`weekly_lag1_event_v2`当前标记为**待撤回审阅，不得启动正式运行**。推荐方案改为恢复
+`anchored_v1`的周级刺激—响应顺序：同周真实帖作为外部刺激进入后冻结全部Agent的feed；
+当周Agent帖继续使用pending buffer，在全部Agent完成后统一并池并从下一周起可见。完整论证见
+`INJECTION_TIMING_REDESIGN_REVIEW.md`。

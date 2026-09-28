@@ -1,18 +1,19 @@
 # weekly_lag1_event_v2：Agent 发帖量预测与中间产物
 
-## 当前有效预测
+## 当前结论：整体滞后方案正在撤回审阅
 
-`prediction_corrected/weekly_lag1_event_v2_agent_post_volume_prediction.png`
+用户将预测图与 `anchored_v1_interest_s0` 正式结果对比后指出，单纯解决注入时机不应改写整体动力学曲线。正式数据复核确认，差异来自整体滞后设计，而不是绘图误差。
 
-这张图依据修正后的 timing-only 方案生成：普通真实帖和 Agent 帖延迟一周，W13官方讣告仍在W13进入，W23作为延迟内容观察周；不再用等效悼念槽位直接提高Agent的发言效用。
+请先查看：
 
-预测没有预设W13必须成为总量峰值。三种子均值如下：
+- `timing_rethink/formal_timing_rethink.png`：`anchored_v1`与已完成`weekly_lag1`正式结果的对齐诊断。
+- `timing_rethink/formal_timing_comparison.csv`：两轮正式结果的三种子周度均值。
+- `timing_rethink/formal_timing_diagnostics.json`：原周标签与向前对齐一周后的相关系数和RMSE。
+- `hypothesis_4/experiment_1/INJECTION_TIMING_REDESIGN_REVIEW.md`：重新设计建议。
 
-- interest：W12为22.3帖，W13为20.7帖，W14为30.0帖，W15达到35.3帖；之后下降，W21–W23出现由meme内容推动的后期回升。
-- random：W12为23.3帖，W13为20.7帖，W14为25.0帖；之后总体下降，W23约6.7帖。
-- W13的直接反应较小；W14和W15的滞后反应来自Agent帖子下一周才进入信息流，以及后续一轮反馈。
+`prediction_corrected/`中的图准确表达了“整体延迟一周”方案的代理走势，但该方案本身已不再作为推荐设计，因此这张图也不能视为当前推荐实验的预测图。
 
-图中的堆叠面积是三种子均值，灰色范围是每周三个种子的总发帖量最小值到最大值。
+当前推荐恢复 `anchored_v1` 的周级刺激—响应顺序：同周真实帖作为外部环境先进入并冻结所有Agent的feed；当周Agent帖在所有Agent行动结束后统一提交，从下一周起才影响其他Agent。这样可以消除Agent之间的同一步顺序偏差，同时保留原正式模拟的周度趋势。
 
 ## 预测边界
 
@@ -26,7 +27,8 @@
 
 ## 文件夹说明
 
-- `prediction_corrected/`：当前有效的预测图、三种子总量表、类型拆分表、逐运行表和方法摘要。
+- `timing_rethink/`：正式结果的时序对齐诊断和重新设计证据。
+- `prediction_corrected/`：整体延迟方案的代理预测；因方案正在撤回，仅作诊断。
 - `withdrawn_mechanical_scenario/`：已撤回的错误预测，仅供审计。
 - `event_signal_salience_sensitivity.csv`：旧事件槽位参数的W13敏感性诊断。
 - `design_inputs/`：当前实验设计清单与注入时机审阅说明。
@@ -36,4 +38,3 @@
 - `manifest.json`：文件来源、大小和SHA-256校验值。
 
 预测程序位于`hypothesis_4/experiment_1/predict_weekly_lag_event_v2.py`。
-
