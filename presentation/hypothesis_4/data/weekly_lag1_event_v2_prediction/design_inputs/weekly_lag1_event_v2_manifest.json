@@ -1,0 +1,90 @@
+{
+  "experiment": "hypothesis_4/experiment_1",
+  "round": "weekly_lag1_event_v2",
+  "parent_round": "anchored_v1",
+  "comparison_round": "weekly_lag1",
+  "design": "普通真实帖与 Agent 帖均在来源周后一周首次可见；W13 唯一官方讣告仍同周进入。interest/random 共享 mourning 类型、5 个等效槽位的 W13 外生事件信号，旧的interest-only 哀悼保底关闭。W23 仅作 drain/readout，接收 W22 延迟帖，不注入 W23 来源外部帖；chronological 保持原设计且不重跑。",
+  "run_ids": [
+    "weekly_lag1_event_v2_interest_s0",
+    "weekly_lag1_event_v2_interest_s1",
+    "weekly_lag1_event_v2_interest_s2",
+    "weekly_lag1_event_v2_random_s0",
+    "weekly_lag1_event_v2_random_s1",
+    "weekly_lag1_event_v2_random_s2"
+  ],
+  "protected_weekly_lag1_sha256": {
+    "hypothesis_4/experiment_1/init/configs/weekly_lag1_interest_s0.json": "c397da193c30bc37806827584c83f56e172c1af0d4bc490b70fa9c4d00c15621",
+    "hypothesis_4/experiment_1/init/configs/weekly_lag1_interest_s1.json": "bc8a9d1ac40892be4afed3753ed36f0885f1cdff60ec94f36fe6ab76f401da91",
+    "hypothesis_4/experiment_1/init/configs/weekly_lag1_interest_s2.json": "0c17a8182c981f2988bc9c1a21551ebf783d84aa18e63777d6dc61450f70ded1",
+    "hypothesis_4/experiment_1/init/configs/weekly_lag1_random_s0.json": "952fa035244cf43de6dea6b4f02d18972b910dfa0901dac01a18a9ada7df6792",
+    "hypothesis_4/experiment_1/init/configs/weekly_lag1_random_s1.json": "643be49a3bc6a802e13d8c8ef97c7b32ba61f8c5951a611c401abd2e05589abd",
+    "hypothesis_4/experiment_1/init/configs/weekly_lag1_random_s2.json": "093a3e39ff8bba031aff34b2be77e9f14bc4318e8368999cc677f30f1c46079b",
+    "hypothesis_4/experiment_1/init/configs/weekly_lag1_manifest.json": "c902ef9eee36923b41784264aa3d8f93d51866e918d27b7d499674e58ad42c54",
+    "hypothesis_4/experiment_1/init/steps_weekly_lag.yaml": "5238279918e12528062955d3c287f0e7c30fdc0ac693c7f33e77558cf805e22b",
+    "hypothesis_4/experiment_1/init/initial_sample_weekly_lag_s0.json": "8915813f6b4258c03a137e3c8b0e27dc763a724bd0947b3a0190ee1cc04fe6bf",
+    "hypothesis_4/experiment_1/init/initial_sample_weekly_lag_s1.json": "da75d5861bf9bffbcb97a5b13130bd30bfc2bbfe1f11b2ed4eb4f29f92029813",
+    "hypothesis_4/experiment_1/init/initial_sample_weekly_lag_s2.json": "d5b25c42b27b468925e4112bfac60daf8f2a5362b227a83572e47b446ee19d49"
+  },
+  "source_250_sha256": {
+    "0": "5b0f9efedffac94ba2b3a8a639aa8b0b3c0ef2bb2c1f31a8377ac76ec29608d5",
+    "1": "bf0768ec6c2fa9510188c676f901311feaec43ae8db2319408a6b4a5905e9601",
+    "2": "44d37a4ddc04fa34c940dff80415c81a6376832e69d7d7299b4b2b9177c15708"
+  },
+  "initial_sample_sha256": {
+    "0": "8915813f6b4258c03a137e3c8b0e27dc763a724bd0947b3a0190ee1cc04fe6bf",
+    "1": "da75d5861bf9bffbcb97a5b13130bd30bfc2bbfe1f11b2ed4eb4f29f92029813",
+    "2": "d5b25c42b27b468925e4112bfac60daf8f2a5362b227a83572e47b446ee19d49"
+  },
+  "initial_sample": {
+    "reused_from_round": "weekly_lag1",
+    "source_week": "2026-W11",
+    "available_week": "2026-W12",
+    "rows_per_seed": 17
+  },
+  "event_signal": {
+    "week": "2026-W13",
+    "type": "mourning",
+    "salience_slots": 5.0,
+    "applies_to_arms": [
+      "interest",
+      "random"
+    ],
+    "event_week_mourning_floor": 0
+  },
+  "timing": {
+    "ordinary_real_post_lag_weeks": 1,
+    "agent_post_lag_weeks": 1,
+    "same_week_official_pids": [
+      "official_w13_announcement"
+    ],
+    "source_weeks": [
+      "2026-W12",
+      "2026-W22"
+    ],
+    "simulation_weeks": [
+      "2026-W12",
+      "2026-W23"
+    ],
+    "drain_readout_week": "2026-W23",
+    "drain_readout_week_accepts_source_week": "2026-W22",
+    "drain_readout_week_has_same_week_external_source": false,
+    "expected_external_arrivals_by_week": {
+      "2026-W12": 17,
+      "2026-W13": 18,
+      "2026-W14": 34,
+      "2026-W15": 30,
+      "2026-W16": 24,
+      "2026-W17": 22,
+      "2026-W18": 19,
+      "2026-W19": 18,
+      "2026-W20": 18,
+      "2026-W21": 20,
+      "2026-W22": 23,
+      "2026-W23": 24
+    },
+    "expected_external_arrivals_in_window": 267,
+    "w22_posts_drained_in_w23": 24,
+    "deferred_beyond_window": 0
+  },
+  "steps": "hypothesis_4/experiment_1/init/steps_weekly_lag1_event_v2.yaml"
+}

@@ -1,0 +1,116 @@
+{
+  "batch": "weekly_lag1",
+  "run_count": 6,
+  "seeds_per_arm": 3,
+  "weeks": [
+    "2026-W12",
+    "2026-W13",
+    "2026-W14",
+    "2026-W15",
+    "2026-W16",
+    "2026-W17",
+    "2026-W18",
+    "2026-W19",
+    "2026-W20",
+    "2026-W21",
+    "2026-W22"
+  ],
+  "uncertainty_display": "min-max across three seeds; not a confidence interval",
+  "late_period_w19_w22": {
+    "interest": {
+      "supply_share_meme": {
+        "mean": 0.30038692569352404,
+        "min": 0.2854215365435562,
+        "max": 0.3107822410147991
+      },
+      "exposure_share_meme": {
+        "mean": 0.16116666666666668,
+        "min": 0.1495,
+        "max": 0.16825
+      },
+      "meme_spoke_rate": {
+        "mean": 0.3640350877192982,
+        "min": 0.32894736842105265,
+        "max": 0.39473684210526316
+      },
+      "bias_meme": {
+        "mean": -0.1392202590268574,
+        "min": -0.1425322410147991,
+        "max": -0.13592153654355615
+      },
+      "supply_share_mourning": {
+        "mean": 0.0564907778161155,
+        "min": 0.04762780697563303,
+        "max": 0.062953180169025
+      },
+      "exposure_share_mourning": {
+        "mean": 0.09508333333333334,
+        "min": 0.0845,
+        "max": 0.10725
+      },
+      "total_supply": {
+        "mean": 31.583333333333332,
+        "min": 30.5,
+        "max": 33.0
+      }
+    },
+    "random": {
+      "supply_share_meme": {
+        "mean": 0.19581148988407052,
+        "min": 0.1909722222222222,
+        "max": 0.2034677419354839
+      },
+      "exposure_share_meme": {
+        "mean": 0.030833333333333334,
+        "min": 0.0225,
+        "max": 0.04025
+      },
+      "meme_spoke_rate": {
+        "mean": 0.0263157894736842,
+        "min": 0.0131578947368421,
+        "max": 0.0394736842105263
+      },
+      "bias_meme": {
+        "mean": -0.1649781565507372,
+        "min": -0.1684722222222222,
+        "max": -0.16321774193548388
+      },
+      "supply_share_mourning": {
+        "mean": 0.1184600425311521,
+        "min": 0.08808847592332864,
+        "max": 0.1351133461047254
+      },
+      "exposure_share_mourning": {
+        "mean": 0.17416666666666666,
+        "min": 0.16175,
+        "max": 0.1875
+      },
+      "total_supply": {
+        "mean": 27.0,
+        "min": 25.75,
+        "max": 27.75
+      }
+    }
+  },
+  "interest_minus_random_late_period": {
+    "supply_share_meme": 0.10457543580945355,
+    "exposure_share_meme": 0.13033333333333333,
+    "meme_spoke_rate": 0.33771929824561403,
+    "bias_meme": 0.025757897523879802
+  },
+  "benchmark_fit": {
+    "interest": {
+      "meme_supply_rmse_all_weeks": 0.10614456669924498,
+      "meme_supply_rmse_w19_w22": 0.17492093404872705
+    },
+    "random": {
+      "meme_supply_rmse_all_weeks": 0.14545031697268246,
+      "meme_supply_rmse_w19_w22": 0.2407208862467069
+    }
+  },
+  "limitations": [
+    "Three seeds per arm; ranges are descriptive.",
+    "Chronological was not rerun under weekly_lag1 and is excluded.",
+    "Simulation comparison does not establish an external real-platform causal effect."
+  ]
+}

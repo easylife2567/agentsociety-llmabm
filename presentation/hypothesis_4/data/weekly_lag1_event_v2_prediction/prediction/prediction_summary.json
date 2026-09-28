@@ -1,0 +1,95 @@
+{
+  "artifact_status": "mechanism_only_proxy_prediction_not_experiment_result",
+  "round": "weekly_lag1_event_v2",
+  "weeks": [
+    "2026-W12",
+    "2026-W13",
+    "2026-W14",
+    "2026-W15",
+    "2026-W16",
+    "2026-W17",
+    "2026-W18",
+    "2026-W19",
+    "2026-W20",
+    "2026-W21",
+    "2026-W22",
+    "2026-W23"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "arms": [
+    "interest",
+    "random"
+  ],
+  "method": "Frozen v2 feed assembly and deterministic speaking rule; Agent-authored feedback uses median type-tendency vectors from the six completed weekly_lag1 runs; no LLM calls.",
+  "prototype_tendencies": {
+    "meme": {
+      "mourning": 0.1207,
+      "marketing": 0.6784,
+      "education": 0.4485,
+      "meme": 5.3223
+    },
+    "mourning": {
+      "mourning": 2.7027,
+      "marketing": 0.2809,
+      "education": 1.1477,
+      "meme": 0.0
+    },
+    "education": {
+      "mourning": 0.0,
+      "marketing": 1.2411,
+      "education": 3.8934,
+      "meme": 0.0
+    },
+    "marketing": {
+      "mourning": 0.0,
+      "marketing": 4.7511,
+      "education": 1.7176,
+      "meme": 0.0
+    },
+    "other": {
+      "mourning": 0.274,
+      "marketing": 0.8572,
+      "education": 0.8877,
+      "meme": 0.0
+    }
+  },
+  "total_agent_posts_mean": {
+    "interest": {
+      "2026-W12": 22.333333333333332,
+      "2026-W13": 41.666666666666664,
+      "2026-W14": 39.0,
+      "2026-W15": 31.0,
+      "2026-W16": 20.333333333333332,
+      "2026-W17": 14.333333333333332,
+      "2026-W18": 11.0,
+      "2026-W19": 8.333333333333334,
+      "2026-W20": 5.0,
+      "2026-W21": 14.333333333333334,
+      "2026-W22": 22.0,
+      "2026-W23": 20.0
+    },
+    "random": {
+      "2026-W12": 23.333333333333332,
+      "2026-W13": 42.0,
+      "2026-W14": 31.0,
+      "2026-W15": 25.0,
+      "2026-W16": 16.666666666666668,
+      "2026-W17": 18.333333333333332,
+      "2026-W18": 12.333333333333334,
+      "2026-W19": 11.333333333333334,
+      "2026-W20": 5.666666666666667,
+      "2026-W21": 4.666666666666667,
+      "2026-W22": 6.0,
+      "2026-W23": 7.0
+    }
+  },
+  "limitations": [
+    "Generated wording is replaced by a median tendency vector, so downstream ranking is approximate.",
+    "The event signal changes feedback after W13; only the formal experiment can confirm the trajectory.",
+    "W23 is a drain/readout week without a same-week real-data benchmark."
+  ]
+}
