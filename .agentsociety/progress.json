@@ -105,7 +105,13 @@
       "completed_at": null,
       "attempts": 2,
       "error": null,
-      "metadata": {},
+      "metadata": {
+        "primary_batch": "anchored_v1",
+        "timing_sensitivity_batch": "weekly_lag1",
+        "withdrawn_unrun_design": "weekly_lag1_event_v2",
+        "archive_manifest": "ARCHIVE_MANIFEST_H4E1.md",
+        "injection_timing_decision": "weekly exogenous stimulus then frozen feeds; agent posts visible from next week"
+      },
       "verification_status": "not_started",
       "revision_round": 6
     },
@@ -617,6 +623,17 @@
       "revision_round": 6,
       "stage": "analysis",
       "from_status": "needs_revision",
+      "to_status": "in_progress",
+      "from_stage": "analysis",
+      "to_stage": "analysis"
+    },
+    {
+      "sequence": 27,
+      "timestamp": "2026-09-28T06:13:56.359678+00:00",
+      "kind": "stage_update",
+      "revision_round": 6,
+      "stage": "analysis",
+      "from_status": "in_progress",
       "to_status": "in_progress",
       "from_stage": "analysis",
       "to_stage": "analysis"

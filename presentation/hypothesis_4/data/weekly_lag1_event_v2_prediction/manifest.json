@@ -1,8 +1,8 @@
 {
   "bundle": "weekly_lag1_event_v2_prediction",
-  "updated_at": "2026-09-28T13:21:24+08:00",
-  "status": "lag_design_under_withdrawal_review_do_not_run",
-  "recommended_design": "restore anchored_v1 weekly stimulus-response ordering",
+  "updated_at": "2026-09-28T14:17:25+08:00",
+  "status": "archived_superseded_not_for_main_inference",
+  "recommended_design": "anchored_v1 restored as current weekly stimulus-response design",
   "organization_rule": "AgentSociety single-experiment analysis artifacts under presentation/hypothesis_4/data",
   "file_count_excluding_manifest": 39,
   "files": [
@@ -10,22 +10,22 @@
       "path": "README.md",
       "category": "documentation",
       "source": "authored in review bundle",
-      "bytes": 2838,
-      "sha256": "a45ac9c2caa10de438e55baed37aa33a1cfec2abc4e96556a3c2f953f0cfb837"
+      "bytes": 2943,
+      "sha256": "26d2321202e8c1e443fdecf5f96491489800a524117c2b9c805c46b2772ab668"
     },
     {
       "path": "design_inputs/INJECTION_TIMING_REDESIGN_REVIEW.md",
       "category": "design_input_copy",
       "source": "hypothesis_4/experiment_1/INJECTION_TIMING_REDESIGN_REVIEW.md",
-      "bytes": 5958,
-      "sha256": "93fa461ab538e31984e8581c7e23941225a6a559ca6f6688d112f370bca550ad"
+      "bytes": 6034,
+      "sha256": "38629578b2d8c57626af30197d6c2392c93f50c4162286d1e2aebb53b591bc88"
     },
     {
       "path": "design_inputs/WEEKLY_LAG_IMPLEMENTATION_REVIEW.md",
       "category": "design_input_copy",
       "source": "hypothesis_4/experiment_1/WEEKLY_LAG_IMPLEMENTATION_REVIEW.md",
-      "bytes": 2270,
-      "sha256": "75c505775737c50275c0d7c1f043106b69e45f6380cb0974e6004dedae1cffd3"
+      "bytes": 2535,
+      "sha256": "7a669330e8cf7930defb4f7a74a3e235f42f43dd5ff7f8dc263c9c0e67c643cc"
     },
     {
       "path": "design_inputs/weekly_lag1_event_v2_manifest.json",
@@ -205,7 +205,7 @@
     {
       "path": "reference/anchored_v1_chronological_s0__chart3b_agent_supply_stacked_area.png",
       "category": "reference_copy",
-      "source": "archive/hypothesis_4_experiment_1_batches/formal_superseded/anchored_v1/_derived/charts/anchored_v1_chronological_s0__chart3b_agent_supply_stacked_area.png",
+      "source": "archive/hypothesis_4_experiment_1_batches/formal_current/anchored_v1/_derived/charts/anchored_v1_chronological_s0__chart3b_agent_supply_stacked_area.png",
       "bytes": 287353,
       "sha256": "a9fb76c4fd53ddce0e1b4dca10ed6dd90e0fc1c2c98f132e0a189945fd28dff5"
     },

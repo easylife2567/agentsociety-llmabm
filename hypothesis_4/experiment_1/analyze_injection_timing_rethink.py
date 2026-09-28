@@ -16,8 +16,8 @@ import numpy as np
 
 
 ROOT = Path(__file__).resolve().parents[2]
-ARCHIVE = ROOT / "archive/hypothesis_4_experiment_1_batches/formal_superseded/anchored_v1/_derived/data"
-LAG = ROOT / "hypothesis_4/experiment_1/runs/weekly_lag1/_derived/data"
+ARCHIVE = ROOT / "archive/hypothesis_4_experiment_1_batches/formal_current/anchored_v1/_derived/data"
+LAG = ROOT / "archive/hypothesis_4_experiment_1_batches/formal_superseded/weekly_lag1/_derived/data"
 WEEKS = [f"2026-W{week:02d}" for week in range(12, 23)]
 TYPES = ["marketing", "education", "other", "mourning", "meme"]
 COLORS = {

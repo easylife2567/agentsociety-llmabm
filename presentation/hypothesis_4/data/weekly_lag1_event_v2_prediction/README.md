@@ -1,6 +1,6 @@
 # weekly_lag1_event_v2：Agent 发帖量预测与中间产物
 
-## 当前结论：整体滞后方案正在撤回审阅
+## 当前结论：整体滞后方案已撤回并归档
 
 用户将预测图与 `anchored_v1_interest_s0` 正式结果对比后指出，单纯解决注入时机不应改写整体动力学曲线。正式数据复核确认，差异来自整体滞后设计，而不是绘图误差。
 
@@ -11,9 +11,9 @@
 - `timing_rethink/formal_timing_diagnostics.json`：原周标签与向前对齐一周后的相关系数和RMSE。
 - `hypothesis_4/experiment_1/INJECTION_TIMING_REDESIGN_REVIEW.md`：重新设计建议。
 
-`prediction_corrected/`中的图准确表达了“整体延迟一周”方案的代理走势，但该方案本身已不再作为推荐设计，因此这张图也不能视为当前推荐实验的预测图。
+`prediction_corrected/`中的图准确表达了“整体延迟一周”方案的代理走势，但该方案已撤回并归档，因此这张图不能视为当前实验的预测图。
 
-当前推荐恢复 `anchored_v1` 的周级刺激—响应顺序：同周真实帖作为外部环境先进入并冻结所有Agent的feed；当周Agent帖在所有Agent行动结束后统一提交，从下一周起才影响其他Agent。这样可以消除Agent之间的同一步顺序偏差，同时保留原正式模拟的周度趋势。
+当前正式方案已经恢复为 `anchored_v1` 的周级刺激—响应顺序：同周真实帖作为外部环境先进入并冻结所有Agent的feed；当周Agent帖在所有Agent行动结束后统一提交，从下一周起才影响其他Agent。这样可以消除Agent之间的同一步顺序偏差，同时保留原正式模拟的周度趋势。
 
 ## 预测边界
 
@@ -37,4 +37,4 @@
 - `reference/`：用户指定的旧版绘图模板副本。
 - `manifest.json`：文件来源、大小和SHA-256校验值。
 
-预测程序位于`hypothesis_4/experiment_1/predict_weekly_lag_event_v2.py`。
+预测程序的审计副本位于`archive/hypothesis_4_experiment_1_batches/design_superseded/weekly_lag1_event_v2/tools/`。完整归档索引见工作区根目录`ARCHIVE_MANIFEST_H4E1.md`。

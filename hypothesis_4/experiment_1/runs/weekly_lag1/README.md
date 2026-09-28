@@ -1,17 +1,11 @@
-# weekly_lag1 当前正式批（已完成）
+# weekly_lag1 已归档敏感性批
 
-设计：普通真实帖与Agent帖均采用一期传播滞后，W13唯一官方讣告当周进入。只重跑受影响的`interest`和`random`，每臂3个seed，共6个run；`chronological`未修改，不混入本批完成性判定。
+该批把普通真实帖与 Agent 帖都严格延迟一期，W13 官方讣告保持同周可见；interest / random 各 3 个 seed，共 6 个完整 run。
 
-```text
-weekly_lag1/
-├── weekly_lag1_interest_s{0,1,2}/   # 原始run，Git忽略
-├── weekly_lag1_random_s{0,1,2}/     # 原始run，Git忽略
-└── _derived/
-    ├── monitor/                      # 状态与完成性快照
-    ├── data/                         # 逐run CSV
-    └── charts/                       # 逐run图
-```
+2026-09-28 复核发现，严格一期滞后会把 anchored_v1 的 W13 事件响应拆到 W13–W15，并通过门槛、累计曝光和疲劳继续传播。因此它估计的是一项新的“信息延迟处理”，不再作为当前主实验。
 
-权威配置清单：`../../init/configs/weekly_lag1_manifest.json`。批跑入口：`../../run_weekly_lag_batch.py`。AgentSociety官方单run兼容入口`../../run`指向`weekly_lag1_interest_s0`。
+原始 run、配置、复现实用脚本和冻结派生结果已归档到：
 
-本批于2026-09-28完成：6个run全部达到11/11周，每个replay包含1100行Agent状态和11行环境状态；批次日志为`6 完成 / 0 异常`。`_derived/`已生成6组监控快照、36份周级CSV和30张逐run图。本批现为interest/random两臂的最新正式证据；未重跑的chronological不进入本批主比较。
+`archive/hypothesis_4_experiment_1_batches/formal_superseded/weekly_lag1/`
+
+本目录只保留 Git 跟踪的 `_derived/` 兼容副本，供既有图表链接和敏感性复核使用。不得把这里的结果并入 anchored_v1 主比较。

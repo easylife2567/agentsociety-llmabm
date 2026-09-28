@@ -476,7 +476,7 @@ $PYTHON_PATH hypothesis_4/experiment_1/monitor.py --week 2026-W13  # 只看某�
   仅用 main + meme 四列表）产出 assigned_type / type_mismatch 诊断。
 - 主基准：benchmark_curves.json 周度类型矩阵 vs 模拟供给/曝光份额。
 
-## 2026-09-27 注入时机修订：weekly_lag1（2026-09-28已完成）
+## 2026-09-27 注入时机敏感性批：weekly_lag1（2026-09-28已完成并归档）
 
 为让两个周级条件中的真实帖与Agent帖采用同一传播粒度，`interest`和`random`的普通真实帖改为在来源周的下一周首次进入候选池。唯一官方讣告`official_w13_announcement`作为外生事件，仍在W13当周进入；`interest`沿用W13置顶，`random`仍无置顶。`chronological`的小时级精确到达机制没有修改，也不列入本轮重跑。
 
@@ -491,9 +491,10 @@ W12使用每个seed单独从W11分层抽取的17条历史内容初始化。模�
 - `verify_weekly_lag.py`：不调用LLM的注入时机门禁；
 - `run_weekly_lag_batch.py`：审核通过后的专用批跑入口。
 
-截至记录时，只运行了配置检查、离线机制检查和批跑`--dry-run`；6个正式run均未启动。
+6个正式run已全部完成并通过回放完整性检查。后续复核表明，这一处理不仅修正时间标签，
+还引入了新的信息延迟效应，因此不再作为主实验；完整结果已归档为时序敏感性证据。
 
-## 2026-09-28 注入时机与末端观察修订：weekly_lag1_event_v2（待审核运行）
+## 2026-09-28 注入时机与末端观察修订：weekly_lag1_event_v2（未运行，已撤回）
 
 `weekly_lag1` 实测表明，W13 的官方讣告虽然在 interest 中向100个Agent置顶，但它在每条
 10槽 feed 中仍只贡献1个哀悼槽位。W13 interest 三个seed的哀悼曝光均为100/1000，22个
@@ -517,12 +518,12 @@ v2另将周级运行延长到W23。W23仅作drain/readout周，接收24条W22来
 任何W23来源帖，从而消除`weekly_lag1`在W22结束造成的右截断。正式基准仍是W12–W22；W23
 单独报告为延迟响应观察，不与不存在的W23真实基准做拟合。
 
-新增产物位于独立round，已完成的`weekly_lag1`配置与运行保持冻结：
+该轮设计产物保持冻结并归档：
 
 - `init/weekly_lag_event_v2_config.py`与`init/configs/weekly_lag1_event_v2_manifest.json`；
 - `init/configs/weekly_lag1_event_v2_{interest,random}_s{0,1,2}.json`；
 - `init/steps_weekly_lag1_event_v2.yaml`与`verify_weekly_lag_event_v2.py`；
-- `run_weekly_lag_event_v2_batch.py`（仅在用户审核后手动启动）。
+- `run_weekly_lag_event_v2_batch.py`（历史复现入口，不列为待运行任务）。
 
 ### 重新审阅状态
 
@@ -531,7 +532,8 @@ v2另将周级运行延长到W23。W23仅作drain/readout周，接收24条W22来
 曲线在原周标签下相关系数为0.690；把延迟结果向前对齐一周后提高到0.962，说明宏观形状大体
 保留，但行动周上的峰值位置和高度已经成为新的“信息延迟”处理效应。
 
-因此，`weekly_lag1_event_v2`当前标记为**待撤回审阅，不得启动正式运行**。推荐方案改为恢复
-`anchored_v1`的周级刺激—响应顺序：同周真实帖作为外部刺激进入后冻结全部Agent的feed；
-当周Agent帖继续使用pending buffer，在全部Agent完成后统一并池并从下一周起可见。完整论证见
-`INJECTION_TIMING_REDESIGN_REVIEW.md`。
+因此，`weekly_lag1_event_v2`已正式撤回且未启动。当前主方案恢复为`anchored_v1`的周级
+刺激—响应顺序：同周真实帖作为外部刺激进入后冻结全部Agent的feed；当周Agent帖继续使用
+pending buffer，在全部Agent完成后统一并池并从下一周起可见。`weekly_lag1`只作为信息延迟
+敏感性证据保留。完整论证见`INJECTION_TIMING_REDESIGN_REVIEW.md`，归档位置见工作区根目录
+`ARCHIVE_MANIFEST_H4E1.md`。

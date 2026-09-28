@@ -1,6 +1,6 @@
 # weekly_lag1 实现审阅单
 
-日期：2026-09-27。状态：代码与配置就绪，正式实验未启动。
+日期：2026-09-27；2026-09-28 更新。状态：6 个正式 run 已完成，随后因研究对象发生偏移而归档为信息延迟敏感性批。
 
 ## 实际改了什么
 
@@ -29,9 +29,9 @@
 - 实际逐周进入量为17/18/34/30/24/22/19/18/18/20/23，总量243。
 - checkpoint恢复后不重复注入初始化内容、普通真实帖或讣告。
 - 旧版完整离线门禁25/25通过；AgentSociety配置`validate`和`check`通过。
-- 专用批跑入口只执行过`--dry-run`，列出的6个run全部为pending。
+- 在本审阅单最初形成时，专用批跑入口只执行过`--dry-run`，列出的6个run均为pending；随后6个run已全部完成并归档。
 
-## 审核通过后才会执行
+## 历史运行入口
 
 运行入口：
 
@@ -39,4 +39,4 @@
 $PYTHON_PATH hypothesis_4/experiment_1/run_weekly_lag_batch.py --with-monitor
 ```
 
-它只会启动`weekly_lag1_interest_s0..s2`和`weekly_lag1_random_s0..s2`，输出到独立的`runs/weekly_lag1/`目录，不覆盖旧结果。
+该入口曾启动`weekly_lag1_interest_s0..s2`和`weekly_lag1_random_s0..s2`。6 个 run 已完成，原始结果现位于`archive/hypothesis_4_experiment_1_batches/formal_superseded/weekly_lag1/raw/`。此命令仅作为历史复现记录，不列为当前待执行任务。
