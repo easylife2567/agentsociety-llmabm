@@ -3,7 +3,7 @@
   "round": "weekly_lag1_event_v2",
   "parent_round": "anchored_v1",
   "comparison_round": "weekly_lag1",
-  "design": "普通真实帖与 Agent 帖均在来源周后一周首次可见；W13 唯一官方讣告仍同周进入。interest/random 共享 mourning 类型、5 个等效槽位的 W13 外生事件信号，旧的interest-only 哀悼保底关闭。W23 仅作 drain/readout，接收 W22 延迟帖，不注入 W23 来源外部帖；chronological 保持原设计且不重跑。",
+  "design": "普通真实帖与 Agent 帖均在来源周后一周首次可见；W13 唯一官方讣告仍同周进入。不以外生事件槽位直接改变任何 Agent 的发言效用，旧的 interest-only 哀悼保底关闭。W23 仅作 drain/readout，接收 W22 延迟帖，不注入 W23 来源外部帖；chronological 保持原设计且不重跑。",
   "run_ids": [
     "weekly_lag1_event_v2_interest_s0",
     "weekly_lag1_event_v2_interest_s1",
@@ -42,13 +42,11 @@
     "rows_per_seed": 17
   },
   "event_signal": {
+    "enabled": false,
     "week": "2026-W13",
-    "type": "mourning",
-    "salience_slots": 5.0,
-    "applies_to_arms": [
-      "interest",
-      "random"
-    ],
+    "type": "",
+    "salience_slots": 0.0,
+    "reason": "avoid forcing a W13 participation peak through deterministic thresholds",
     "event_week_mourning_floor": 0
   },
   "timing": {

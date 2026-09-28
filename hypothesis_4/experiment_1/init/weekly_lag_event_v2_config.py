@@ -2,8 +2,9 @@
 """Generate weekly_lag1_event_v2 without rewriting completed weekly_lag1 artifacts.
 
 This round starts from the frozen anchored_v1 interest/random configs, reapplies the
-one-week real-post lag, adds a shared W13 mourning event signal, removes the old
-interest-only mourning floor, and adds W23 as a drain/readout week for W22 posts.
+one-week real-post lag, keeps the W13 official obituary available in its source week,
+removes utility-level event boosts and the old interest-only mourning floor, and adds
+W23 as a drain/readout week for W22 posts.
 The three W11 initialization samples are reused byte-for-byte from weekly_lag1 so
 the timing/event change is not confounded by a different initial information pool.
 
@@ -32,8 +33,8 @@ SOURCE_WEEKS = tuple(f"2026-W{week:02d}" for week in range(12, 23))
 RUN_WEEKS = tuple(f"2026-W{week:02d}" for week in range(12, 24))
 INITIAL_SAMPLE_N = 17
 OFFICIAL_SAME_WEEK_PIDS = ("official_w13_announcement",)
-EVENT_SIGNAL_TYPE = "mourning"
-EVENT_SIGNAL_SALIENCE_SLOTS = 5.0
+EVENT_SIGNAL_TYPE = ""
+EVENT_SIGNAL_SALIENCE_SLOTS = 0.0
 EVENT_WEEK = "2026-W13"
 DRAIN_READOUT_WEEK = "2026-W23"
 
@@ -130,8 +131,8 @@ def generate() -> None:
         "comparison_round": "weekly_lag1",
         "design": (
             "普通真实帖与 Agent 帖均在来源周后一周首次可见；W13 唯一官方讣告仍同周进入。"
-            "interest/random 共享 mourning 类型、5 个等效槽位的 W13 外生事件信号，旧的"
-            "interest-only 哀悼保底关闭。W23 仅作 drain/readout，接收 W22 延迟帖，"
+            "不以外生事件槽位直接改变任何 Agent 的发言效用，旧的 interest-only 哀悼"
+            "保底关闭。W23 仅作 drain/readout，接收 W22 延迟帖，"
             "不注入 W23 来源外部帖；chronological 保持原设计且不重跑。"
         ),
         "run_ids": [f"{ROUND_TAG}_{arm}_s{seed}" for arm in ARMS for seed in SEEDS],
@@ -150,10 +151,11 @@ def generate() -> None:
             "rows_per_seed": INITIAL_SAMPLE_N,
         },
         "event_signal": {
+            "enabled": False,
             "week": EVENT_WEEK,
             "type": EVENT_SIGNAL_TYPE,
             "salience_slots": EVENT_SIGNAL_SALIENCE_SLOTS,
-            "applies_to_arms": list(ARMS),
+            "reason": "avoid forcing a W13 participation peak through deterministic thresholds",
             "event_week_mourning_floor": 0,
         },
         "timing": {
@@ -239,10 +241,11 @@ def validate() -> list[str]:
     if manifest["timing"].get("deferred_beyond_window") != 0:
         problems.append("expected no external posts deferred beyond W23")
     if manifest["event_signal"] != {
+        "enabled": False,
         "week": EVENT_WEEK,
         "type": EVENT_SIGNAL_TYPE,
         "salience_slots": EVENT_SIGNAL_SALIENCE_SLOTS,
-        "applies_to_arms": list(ARMS),
+        "reason": "avoid forcing a W13 participation peak through deterministic thresholds",
         "event_week_mourning_floor": 0,
     }:
         problems.append("manifest event-signal definition is invalid")
@@ -265,7 +268,7 @@ def main() -> int:
         return 1
     print(f"{ROUND_TAG} validation passed")
     print("- configs: 6; protected weekly_lag1 artifacts: unchanged")
-    print("- W13 event signal: mourning, 5.0 equivalent slots; old floor: 0")
+    print("- W13 utility-level event signal: disabled; official obituary remains same-week")
     print("- W12-W23 external arrivals: 267; W23 drains 24 W22-source posts")
     return 0
 

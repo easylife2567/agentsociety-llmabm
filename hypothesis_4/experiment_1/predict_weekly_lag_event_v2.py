@@ -257,7 +257,11 @@ def aggregate_totals(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return result
 
 
-def plot_prediction(aggregate_rows: list[dict[str, Any]], output_base: Path) -> None:
+def plot_prediction(
+    aggregate_rows: list[dict[str, Any]],
+    total_rows: list[dict[str, Any]],
+    output_base: Path,
+) -> None:
     plt.rcParams.update({
         "font.family": "DejaVu Sans",
         "font.size": 10,
@@ -297,11 +301,29 @@ def plot_prediction(aggregate_rows: list[dict[str, Any]], output_base: Path) -> 
             edgecolor="white",
         )
         totals = np.sum(stacks, axis=0)
+        total_min = np.asarray([
+            next(
+                row["total_agent_posts_min"] for row in total_rows
+                if row["arm"] == arm and row["week"] == week
+            )
+            for week in WEEKS
+        ], dtype=float)
+        total_max = np.asarray([
+            next(
+                row["total_agent_posts_max"] for row in total_rows
+                if row["arm"] == arm and row["week"] == week
+            )
+            for week in WEEKS
+        ], dtype=float)
         max_total = max(max_total, float(np.max(totals)))
+        axis.fill_between(
+            x, total_min, total_max, color="#202020", alpha=0.12,
+            linewidth=0, label="3-seed range",
+        )
         axis.plot(x, totals, color="#202020", linewidth=1.5, label="Total")
         axis.axvline(1, color="#8B1A1A", linestyle="--", linewidth=1.1)
         axis.axvspan(10.5, 11.5, color="#BDBDBD", alpha=0.18)
-        axis.text(1.05, max(totals) * 0.94, "W13 event", color="#8B1A1A", fontsize=9)
+        axis.text(1.05, max(totals) * 0.94, "W13 obituary", color="#8B1A1A", fontsize=9)
         axis.text(10.58, max(totals) * 0.84, "W23 drain", color="#555555", fontsize=9)
         axis.set_title(f"{arm.capitalize()} arm — predicted mean across 3 seeds", loc="left")
         axis.set_ylabel("Agent posts")
@@ -313,7 +335,7 @@ def plot_prediction(aggregate_rows: list[dict[str, Any]], output_base: Path) -> 
     for axis in axes:
         axis.set_ylim(0, max_total * 1.13)
     fig.suptitle(
-        "Predicted Agent Posting Volume — weekly_lag1_event_v2",
+        "Predicted Agent Posting Volume — timing-only weekly_lag1_event_v2",
         fontsize=15,
         fontweight="bold",
         y=0.98,
@@ -321,7 +343,7 @@ def plot_prediction(aggregate_rows: list[dict[str, Any]], output_base: Path) -> 
     fig.text(
         0.01,
         0.01,
-        "Mechanism-only proxy (no LLM calls). W23 is a drain/readout week and is not benchmark-fitted.",
+        "Mechanism-only proxy (no LLM calls; no event-utility boost). W23 is a drain/readout week.",
         fontsize=9,
         color="#555555",
     )
@@ -359,6 +381,7 @@ def main() -> int:
     write_csv(args.output_dir / "predicted_agent_posts_total.csv", total_rows)
     plot_prediction(
         aggregate_rows,
+        total_rows,
         args.output_dir / "weekly_lag1_event_v2_agent_post_volume_prediction",
     )
 
@@ -379,13 +402,15 @@ def main() -> int:
         "arms": ["interest", "random"],
         "method": (
             "Frozen v2 feed assembly and deterministic speaking rule; Agent-authored feedback "
-            "uses median type-tendency vectors from the six completed weekly_lag1 runs; no LLM calls."
+            "uses median type-tendency vectors from the six completed weekly_lag1 runs; no LLM "
+            "calls and no utility-level event boost."
         ),
+        "utility_level_event_boost": False,
         "prototype_tendencies": PROTOTYPE_TENDENCIES,
         "total_agent_posts_mean": totals,
         "limitations": [
             "Generated wording is replaced by a median tendency vector, so downstream ranking is approximate.",
-            "The event signal changes feedback after W13; only the formal experiment can confirm the trajectory.",
+            "The W13 obituary and proxy Agent posts change later feed ranking; only the formal experiment can confirm the trajectory.",
             "W23 is a drain/readout week without a same-week real-data benchmark.",
         ],
     }

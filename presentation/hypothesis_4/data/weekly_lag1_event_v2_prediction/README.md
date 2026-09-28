@@ -1,35 +1,39 @@
-# weekly_lag1_event_v2：事件信号诊断与中间产物
+# weekly_lag1_event_v2：Agent 发帖量预测与中间产物
 
-## 状态：原预测已撤回
+## 当前有效预测
 
-原先生成的 Agent 发帖量图不能作为实验预测。它把配置中的 `event_signal_salience_slots=5.0` 直接代入确定性发言门槛，导致 interest 和 random 的 22 个 mourning Agent 在 W13 全部发言，总量峰值几乎完全由这一项机械叠加形成。这种结果高度依赖参数设定，不能被解释为模型自然预测出的 W13 高峰。
+`prediction_corrected/weekly_lag1_event_v2_agent_post_volume_prediction.png`
 
-原图、原表和方法摘要已移动到 `withdrawn_mechanical_scenario/`，仅用于保留审计记录。请勿作为论文图表或实验预期引用。
+这张图依据修正后的 timing-only 方案生成：普通真实帖和 Agent 帖延迟一周，W13官方讣告仍在W13进入，W23作为延迟内容观察周；不再用等效悼念槽位直接提高Agent的发言效用。
 
-## 已确认的机制问题
+预测没有预设W13必须成为总量峰值。三种子均值如下：
 
-- W13 的非悼念发言没有普遍增长。相对 W12，营销发言下降，教育略有上升，玩梗和其他维持低位。
-- `5.0` 个等效悼念槽位只提高 mourning Agent 的有效同类份额，不会提高其他类型的发言意愿。
-- W13 总量从约 20.7 帖提高到约 42 帖，几乎全部来自 mourning Agent 从约 1 人增加到 22 人。
-- 等效槽位存在明显的门槛跳变，同一个参数对 interest 和 random 的作用也很不对称。继续调节槽位值无法得到稳健、可解释的共同事件响应。
+- interest：W12为22.3帖，W13为20.7帖，W14为30.0帖，W15达到35.3帖；之后下降，W21–W23出现由meme内容推动的后期回升。
+- random：W12为23.3帖，W13为20.7帖，W14为25.0帖；之后总体下降，W23约6.7帖。
+- W13的直接反应较小；W14和W15的滞后反应来自Agent帖子下一周才进入信息流，以及后续一轮反馈。
 
-敏感性诊断见 `event_signal_salience_sensitivity.csv`。
+图中的堆叠面积是三种子均值，灰色范围是每周三个种子的总发帖量最小值到最大值。
 
-## 建议的设计修正
+## 预测边界
 
-保留已经确定的时间规则：普通真实帖和 Agent 帖延迟一周，W13 官方讣告仍在 W13 当周进入，W23只作为延迟内容观察周。
+这是实验前的机制代理预测，没有调用LLM。程序执行正式环境的feed装配和确定性发言规则，但用上一轮已完成实验中各类Agent帖的分类倾向中位数代替新生成文本。因此，它适合检查峰值是否被配置强制制造、延迟方向和数量级，不应当作正式实验结果。
 
-撤销“事件等效为若干悼念槽位并直接进入发言效用”的设定。若需要保证两组都知道这一公共事件，可以把事件作为共同背景信息提供给 Agent，但不直接改变任何类型的发言门槛。这样，W13 是否出现总发帖高峰将重新成为实验结果，而不是被设计参数预先保证。
+## 已撤回版本
 
-在完成这一设计修正前，不再给出新的单一路径发帖量预测图。更合适的预期表述是：W13可能改变发言构成和总量，但峰值位置、峰值大小以及不同类型的响应应由实验决定。
+`withdrawn_mechanical_scenario/`保存了原先使用5个等效悼念槽位生成的图表。该版本会把两组22个mourning Agent全部推过发言门槛，W13约42帖的峰值主要由参数机械叠加形成，已经撤回，不可用于论文或实验预期。
+
+对应的敏感性诊断见`event_signal_salience_sensitivity.csv`。
 
 ## 文件夹说明
 
-- `withdrawn_mechanical_scenario/`：已撤回的原预测图表，仅供审计。
-- `event_signal_salience_sensitivity.csv`：W13 对等效槽位参数的敏感性诊断。
+- `prediction_corrected/`：当前有效的预测图、三种子总量表、类型拆分表、逐运行表和方法摘要。
+- `withdrawn_mechanical_scenario/`：已撤回的错误预测，仅供审计。
+- `event_signal_salience_sensitivity.csv`：旧事件槽位参数的W13敏感性诊断。
 - `design_inputs/`：当前实验设计清单与注入时机审阅说明。
 - `prior_weekly_lag1/`：此前已完成实验的聚合图表和说明。
-- `prior_per_run/`：此前六个运行的逐运行 Agent 发帖量图。
+- `prior_per_run/`：此前六个运行的逐运行Agent发帖量图。
 - `reference/`：用户指定的旧版绘图模板副本。
-- `manifest.json`：文件来源、大小和 SHA-256 校验值。
+- `manifest.json`：文件来源、大小和SHA-256校验值。
+
+预测程序位于`hypothesis_4/experiment_1/predict_weekly_lag_event_v2.py`。
 

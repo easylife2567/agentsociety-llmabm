@@ -1,0 +1,96 @@
+{
+  "artifact_status": "mechanism_only_proxy_prediction_not_experiment_result",
+  "round": "weekly_lag1_event_v2",
+  "weeks": [
+    "2026-W12",
+    "2026-W13",
+    "2026-W14",
+    "2026-W15",
+    "2026-W16",
+    "2026-W17",
+    "2026-W18",
+    "2026-W19",
+    "2026-W20",
+    "2026-W21",
+    "2026-W22",
+    "2026-W23"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "arms": [
+    "interest",
+    "random"
+  ],
+  "method": "Frozen v2 feed assembly and deterministic speaking rule; Agent-authored feedback uses median type-tendency vectors from the six completed weekly_lag1 runs; no LLM calls and no utility-level event boost.",
+  "utility_level_event_boost": false,
+  "prototype_tendencies": {
+    "meme": {
+      "mourning": 0.1207,
+      "marketing": 0.6784,
+      "education": 0.4485,
+      "meme": 5.3223
+    },
+    "mourning": {
+      "mourning": 2.7027,
+      "marketing": 0.2809,
+      "education": 1.1477,
+      "meme": 0.0
+    },
+    "education": {
+      "mourning": 0.0,
+      "marketing": 1.2411,
+      "education": 3.8934,
+      "meme": 0.0
+    },
+    "marketing": {
+      "mourning": 0.0,
+      "marketing": 4.7511,
+      "education": 1.7176,
+      "meme": 0.0
+    },
+    "other": {
+      "mourning": 0.274,
+      "marketing": 0.8572,
+      "education": 0.8877,
+      "meme": 0.0
+    }
+  },
+  "total_agent_posts_mean": {
+    "interest": {
+      "2026-W12": 22.333333333333332,
+      "2026-W13": 20.666666666666668,
+      "2026-W14": 30.0,
+      "2026-W15": 35.333333333333336,
+      "2026-W16": 23.666666666666668,
+      "2026-W17": 18.333333333333332,
+      "2026-W18": 12.0,
+      "2026-W19": 6.0,
+      "2026-W20": 3.6666666666666665,
+      "2026-W21": 16.0,
+      "2026-W22": 22.333333333333332,
+      "2026-W23": 20.0
+    },
+    "random": {
+      "2026-W12": 23.333333333333332,
+      "2026-W13": 20.666666666666668,
+      "2026-W14": 25.0,
+      "2026-W15": 21.666666666666668,
+      "2026-W16": 17.333333333333332,
+      "2026-W17": 17.0,
+      "2026-W18": 12.0,
+      "2026-W19": 9.333333333333334,
+      "2026-W20": 7.333333333333334,
+      "2026-W21": 6.333333333333333,
+      "2026-W22": 5.666666666666667,
+      "2026-W23": 6.666666666666667
+    }
+  },
+  "limitations": [
+    "Generated wording is replaced by a median tendency vector, so downstream ranking is approximate.",
+    "The W13 obituary and proxy Agent posts change later feed ranking; only the formal experiment can confirm the trajectory.",
+    "W23 is a drain/readout week without a same-week real-data benchmark."
+  ]
+}

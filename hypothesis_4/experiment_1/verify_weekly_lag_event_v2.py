@@ -19,8 +19,8 @@ CONFIGS_DIR = SCRIPT_DIR / "init" / "configs"
 ROUND_TAG = "weekly_lag1_event_v2"
 WEEKS = [f"2026-W{week:02d}" for week in range(12, 24)]
 EXPECTED = [17, 18, 34, 30, 24, 22, 19, 18, 18, 20, 23, 24]
-EVENT_SIGNAL_TYPE = "mourning"
-EVENT_SIGNAL_SALIENCE_SLOTS = 5.0
+EVENT_SIGNAL_TYPE = ""
+EVENT_SIGNAL_SALIENCE_SLOTS = 0.0
 
 
 def load_module(name: str, path: Path):
@@ -81,12 +81,13 @@ def verify_config_artifacts() -> None:
     require(manifest["timing"]["drain_readout_week_has_same_week_external_source"] is False,
             "W23 不应注入 W23 来源外部帖")
     require(manifest["event_signal"] == {
+        "enabled": False,
         "week": "2026-W13",
         "type": EVENT_SIGNAL_TYPE,
         "salience_slots": EVENT_SIGNAL_SALIENCE_SLOTS,
-        "applies_to_arms": ["interest", "random"],
+        "reason": "avoid forcing a W13 participation peak through deterministic thresholds",
         "event_week_mourning_floor": 0,
-    }, "manifest 的统一外生死亡事件信号错误")
+    }, "manifest 的事件效用关闭定义错误")
 
     for arm in ("interest", "random"):
         kwargs = load_config(arm)["env_modules"][0]["kwargs"]
@@ -105,9 +106,9 @@ def verify_arm(env_cls, mech, arm: str) -> None:
             f"{arm}: env 的逐周计划量不符合审核表")
 
     require(env._event_signal_type == EVENT_SIGNAL_TYPE,
-            f"{arm}: env 未接收 mourning 事件信号")
+            f"{arm}: env 仍启用事件类型信号")
     require(env._event_signal_salience_slots == EVENT_SIGNAL_SALIENCE_SLOTS,
-            f"{arm}: env 未接收 5.0 等效槽位")
+            f"{arm}: env 仍启用事件等效槽位")
     require(env._event_week_mourning_floor == 0,
             f"{arm}: env 仍启用旧的 interest-only 哀悼保底")
 
@@ -124,10 +125,10 @@ def verify_arm(env_cls, mech, arm: str) -> None:
                 f"{arm} {week}: available_week 记录错误")
         agent_id = next(iter(env._agent_types))
         signal = asyncio.run(env.get_feed(agent_id))["event_signal"]
-        require(signal["active"] is (week == "2026-W13"),
-                f"{arm} {week}: 外生事件 active 状态错误")
-        require(signal["type"] == EVENT_SIGNAL_TYPE,
-                f"{arm} {week}: 外生事件类型错误")
+        require(signal["active"] is False,
+                f"{arm} {week}: 不应有事件效用信号生效")
+        require(signal["type"] is None,
+                f"{arm} {week}: 事件效用类型应为空")
         require(signal["salience_slots"] == EVENT_SIGNAL_SALIENCE_SLOTS,
                 f"{arm} {week}: 外生事件等效槽位错误")
         if week == "2026-W12":
@@ -213,14 +214,13 @@ def verify_agent_real_age_parity(env_cls, mech) -> None:
                 for post in real_w15), "同期 Agent 帖与真实帖首次可见时不同龄")
 
 
-def verify_event_signal_reaches_decision(env_cls, agent_cls) -> None:
-    """验证信号经过 get_feed/template 契约后实际改变 mourning 的 D 输入。"""
+def verify_event_signal_does_not_override_decision(env_cls, agent_cls) -> None:
+    """验证W13官方讣告存在，但不再用等效槽位强制改变发言效用。"""
     for arm in ("interest", "random"):
         config = load_config(arm)
         env = env_cls(**env_kwargs(config))
         env._open_tick("2026-W12")
         env._open_tick("2026-W13")
-        mourning_speakers = 0
         for spec in config["agents"]:
             profile = spec["kwargs"]
             if profile["agent_type"] != "mourning":
@@ -229,14 +229,11 @@ def verify_event_signal_reaches_decision(env_cls, agent_cls) -> None:
             agent._params = profile["params"]
             agent._agent_type = "mourning"
             snapshot = asyncio.run(env.get_feed(str(spec["agent_id"])))
-            utility, components = agent._speak_stimulus(snapshot)
-            require(components["event_signal_active"] is True,
-                    f"{arm}: W13 mourning 决策未接收到事件信号")
-            require(components["share_own"] > components["share_own_observed"],
-                    f"{arm}: 事件信号未提高 mourning 的有效气候份额")
-            mourning_speakers += utility >= profile["params"]["activity"]
-        require(mourning_speakers == 22,
-                f"{arm}: W13 事件信号只激活 {mourning_speakers}/22 个 mourning Agent")
+            _utility, components = agent._speak_stimulus(snapshot)
+            require(components["event_signal_active"] is False,
+                    f"{arm}: W13 mourning 决策仍收到事件效用信号")
+            require(components["share_own"] == components["share_own_observed"],
+                    f"{arm}: mourning 有效份额仍被事件槽位改写")
 
         education = next(
             spec for spec in config["agents"]
@@ -248,7 +245,7 @@ def verify_event_signal_reaches_decision(env_cls, agent_cls) -> None:
         snapshot = asyncio.run(env.get_feed(str(education["agent_id"])))
         _utility, components = agent._speak_stimulus(snapshot)
         require(components["event_signal_active"] is False,
-                f"{arm}: mourning 事件信号错误作用于 education Agent")
+                f"{arm}: 事件效用信号错误作用于 education Agent")
 
 
 def verify_legacy_and_chronological(env_cls) -> None:
@@ -318,7 +315,7 @@ def main() -> int:
     verify_arm(env_mod.CurationDynamicsSpace, mech, "interest")
     verify_arm(env_mod.CurationDynamicsSpace, mech, "random")
     verify_agent_real_age_parity(env_mod.CurationDynamicsSpace, mech)
-    verify_event_signal_reaches_decision(
+    verify_event_signal_does_not_override_decision(
         env_mod.CurationDynamicsSpace, agent_mod.CurationDiscourseAgent
     )
     verify_legacy_and_chronological(env_mod.CurationDynamicsSpace)
@@ -328,8 +325,8 @@ def main() -> int:
         print("- arrivals W12-W23:", dict(zip(WEEKS, EXPECTED)))
         print("- total external arrivals: 267; W23 drains 24 W22-source posts")
         print("- W23 is drain/readout only; no W23-source external posts")
-        print("- W13 event signal: mourning, 5.0 slots in both interest/random")
-        print("- W13 decision gate: 22/22 mourning agents activated in both arms")
+        print("- W13 utility-level event signal: disabled in both interest/random")
+        print("- W13 peak is not forced through mourning-agent decision thresholds")
         print("- legacy interest-only mourning floor: disabled in both arms")
         print("- W13 obituary: once; interest pinned; random unpinned")
         print("- W15 real and Agent posts: first available in W16 at age 1")
