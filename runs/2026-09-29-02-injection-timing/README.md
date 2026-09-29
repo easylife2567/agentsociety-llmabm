@@ -18,7 +18,7 @@
 
 - 已完成前置工作：已有全部可跟踪改动提交并推送到 `easylife2567/agentsociety-llmabm` 的 main，推送点 `6c8ba85`；包含工作规范和用户确认上传的打标对照工作簿。
 - 已完成：现有代码与冻结输入只读核对，撰写设计稿。
-- 当前状态：设计完成，独立审查意见已纳入，等待用户审核。
+- 当前状态：设计完成，两轮审查意见已纳入（含 2026-09-30 DeepSeek v4.1 flash 的实现接通与解释力审查），等待用户审核。
 - 下一步：用户审核方案及预算；本轮停止，不进入实现或运行。
 - 流水线：本任务是设计草案，不通过更改机器阶段表示方案已获准；用户采纳后再按 CLI 与所属技能处理。
 
@@ -35,6 +35,33 @@
 已完成一次独立方案审查。审查提出外部帖入池顺序会改变自增ID、候选排序及并列选择的问题，已在设计中加入全体帖子稳定键及等候选状态的一致性验收；无其他必须阻止交用户审核的问题。
 
 已只读核验：100名Agent与五类人口数、每周63个非空小时/11周693批、250主样本+17历史样本共267个唯一源ID、上海周界和输入哈希；本地文档链接、tmp忽略规则及git diff --check通过。未执行方案中任何仿真功能测试，未生成新配置或patch，未启动实验。
+
+### 第二次审查：实现接通与解释力风险（模型：DeepSeek v4.1 flash）
+
+审查模型 `deepseek-v4-1-flash`（DeepSeek v4.1 flash）。方式为只读核对设计稿、`custom/envs/curation_dynamics_space.py`、`custom/agents/curation_discourse_agent.py`、`hypothesis_4/experiment_1/run_batch.py` 与冻结输入；未改文件、未跑仿真。总体结论：设计稿事实层无误，风险集中在"实现接不通四格共同调整"与"单 seed 下 `Δtimestamp − Δpreload` 的解释力"，不需要扩规模或加参数。
+
+复核为真：250 主样本（249 普通 + 1 讣告）与 17 历史样本共 267 唯一源 ID 且无重叠；按上海周 17/34/30/24/22/19/17/17/21/22/26＝249，与数据集 UTC 周标签差异的 6 条均为周一 00:36–07:40（pid 38806/40650/40669/43695/48205/48236）；全部落在窗口内（最早 03-16 16:53:59、最晚 05-31 20:30:57，初始池最晚 03-15 18:20）；63 个非空小时、693 批、首批周一 06:00；interest 参数 1.5w/0.35/20/temp4/eps0.05/exposure_mode=none；逐 agent 计账的排序依赖与全局 RNG 游标问题确实存在。
+
+方案冻结前必须定死，否则四格会静默失效：
+
+1. 初始池在小时路径不生效：`_build_weekly_available_injection` 对 chronological 直接返回 `{}`（:594-595），`weekly_initial_injection_data_path` 只在 :456/:613 使用，且 `anchored_v1_chronological_s0.json` 未携带该键。后果是 timestamp 臂 W12 周一 6:00–15:00 共 9 个批次候选池为空，preload 同批有 34 条——这是缺口，不是处理。
+2. "Agent 帖次周可见"目前是记账而非门控：`_flush_pending_to_pool` 立即写入 `_posts`（:1077-1096），`available_week` 只写不读；random（:919）与 chronological（:929-937）装配都不读该字段。验收 2 须以"当周 63 个批次全查不到该帖"直接证伪。
+3. 批跑入口步数/目录绑定：`run_batch.py` 的 `ROUND_ID`（:62）、`EXPECTED_STEPS=11`（:69）、`expected_steps_for`/`steps_path_for` 按 run_id 是否含 `_chronological_` 判断（:70-85）；本方案四个 run_id 不含该子串，会被当成周级臂并在 11 步后误报 completed。建议改为从 manifest 读取，不再挂在 run_id 字符串上。
+4. 小时路径不推进生命周期：`_decay_post_lives` 只在 `_open_tick`（:974）调用，`_start_chronological_week` 不调用，`_inject_chronological_until` 写死 `life=1.0`（:1491）。
+5. 置顶/保底按注入时刻而非事件时刻生效：`_compute_pinned_ids`（:771-780）只要求 pid 在池。须每批重算并带 event_time 门控；同时定死 preload 下 W13 保底槽在 20:00 前取空还是被未来帖填满。
+6. 缺时间回退须对普通帖显式报错：`_local_event_time` 现回退到周一 12:00（:648）。
+
+解释力风险：
+
+- `Δtimestamp − Δpreload` 不是干净交互项：preload 让当周帖从周一即可用，W19–W22 当周帖占近三周活池 29%–43%。建议把 `A=(O−E)/Σn` 明确为唯一主指标，并始终与 N_j/M_j 同表出现。
+- W12 transient 可能主导单 seed 差异：timestamp 下 W12 前半可推荐池≈初始池（14/17 为营销），按 `_speak_stimulus` 推算 meme 型 U≈0.53 < 0.95、marketing 型 U≈1.09，非营销型前半周几乎必然沉默。建议写明 W12 不作机制解释。
+- 小时批次使新 interest 臂 ≠ anchored_v1 interest 臂（跨批曝光累加改变 vitality 轨迹），旧新桥接只能作整体诊断。
+- preload 臂不参与 W13 事件响应的任何断言；知识污染检查建议覆盖 W13 前全部生成文本及所有出现死亡事实的文本，而非每 run 分层抽查 20 条。
+- 曝光侧（算法确定性强）与供给侧（LLM 强随机）分列陈述，不用后者替前者背书。
+
+预算：24h 墙钟宜按"到点止损"执行；W12–W14 前缀检查补一条显式停止条件——用前缀实测单位步耗时外推全窗，超限不续跑。
+
+放行前最小清单：4 个必须先写死的接口（初始池注入点、Agent 帖周门控、run_id→steps/manifest 解析、小时路径周老化调用点）+ 3 条验收（两臂 W12 首批可推荐池对照；当周 Agent 帖在当周全批不可见；打乱入池顺序与遍历顺序后 feed 逐字节一致）+ 1 条口径（A 为唯一主指标、W12 不作机制解释）。
 
 ## 交接
 
