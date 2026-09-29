@@ -3,7 +3,7 @@
   "workspace": {
     "topic": "公众人物去世后，算法策展如何塑造舆论场对其的数字表征",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "run_experiment",
+    "current_stage": "analysis",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
     "revision_round": 7,
@@ -15,7 +15,6 @@
       "reason": "用户批准实施并启动普通真实帖到达时机四格诊断，完成后每30分钟通报",
       "source_artifact": "runs/2026-09-29-02-injection-timing/2026-09-29-01-injection-timing-plan.md",
       "pending_stages": [
-        "run_experiment",
         "analysis"
       ]
     }
@@ -79,9 +78,9 @@
       "revision_round": 7
     },
     "run_experiment": {
-      "status": "in_progress",
+      "status": "completed",
       "started_at": "2026-09-29T17:52:54.901202+00:00",
-      "completed_at": null,
+      "completed_at": "2026-09-29T21:57:53.893657+00:00",
       "attempts": 4,
       "error": null,
       "metadata": {
@@ -90,9 +89,18 @@
         "concurrency": 1,
         "supervisor_pid": 99145,
         "runtime_budget_hours": 24,
-        "runtime_root": "hypothesis_4/experiment_1/runs/arrival_timing_diagnostic"
+        "runtime_root": "hypothesis_4/experiment_1/runs/arrival_timing_diagnostic",
+        "arrival_timing_diagnostic": {
+          "status": "completed",
+          "runs": 4,
+          "actions": 4400,
+          "published": 794,
+          "runtime_seconds": 13537.18852037564,
+          "evidence": "hypothesis_4/experiment_1/runs/arrival_timing_diagnostic/batch_execution.json",
+          "verification": "Four full audits passed; checkpoints and replay counts matched. Semantic checks and scientific analysis pending."
+        }
       },
-      "verification_status": "not_started",
+      "verification_status": "complete",
       "revision_round": 7
     },
     "analysis": {
@@ -725,6 +733,17 @@
       "to_status": "in_progress",
       "from_stage": "run_experiment",
       "to_stage": "run_experiment"
+    },
+    {
+      "sequence": 31,
+      "timestamp": "2026-09-29T21:57:53.893667+00:00",
+      "kind": "stage_update",
+      "revision_round": 7,
+      "stage": "run_experiment",
+      "from_status": "in_progress",
+      "to_status": "completed",
+      "from_stage": "run_experiment",
+      "to_stage": "analysis"
     }
   ]
 }
