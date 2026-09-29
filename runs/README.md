@@ -7,7 +7,8 @@
 | 资产 | 职责 | 导航 |
 |---|---|---|
 | [README.md](README.md) | 根级任务索引与使用约定 | 从这里查找任务 |
-| [2026-09-29-01-research-roadmap/](2026-09-29-01-research-roadmap/README.md) | 课题推进方式、历史实验脉络与下一步决策 | 当前活动入口；详细进度只在任务 README |
+| [2026-09-29-01-research-roadmap/](2026-09-29-01-research-roadmap/README.md) | 课题推进规范与历史实验脉络 | 已交接，作为背景入口 |
+| [2026-09-29-02-injection-timing/](2026-09-29-02-injection-timing/README.md) | 真实帖子到达时机的四格实验设计 | 当前活动入口；设计后交用户审核 |
 
 ## 使用约定
 
