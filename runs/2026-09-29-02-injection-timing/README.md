@@ -20,17 +20,17 @@
 
 ## 实时进度
 
-- 当前：用户明确授权具体模型接口的数据发送后，2026-09-30 01:52（上海）正式启动首个preload-interest前三周前缀。监督器PID 99145，引擎PID 99147；正在确认初始运行稳定性。实施基线提交785ad41。
+- 当前：用户明确授权具体模型接口的数据发送后，2026-09-30 01:52（上海）正式启动首个preload-interest前三周前缀。监督器PID 99145，引擎PID 99147；已连续核对到10批/14次行动/7条成功发布，checkpoint一致、无失败、无额外重试，初始运行稳定性通过。实施基线提交785ad41。
 - 用户授权范围：4run×100人×11周，seed0；先四个W12–W14前缀，再按同序续跑至W22。采用运行量/累计24小时时长约束，不增加实验臂。
 - 内容模型沿用当前配置 `deepseek-v4-1-flash-260910`，温度1.0，正文不缓存；每行动最多一次额外重试，全批最多440次。实际服务响应版本和调用量另记录。
-- 定时报告：待真实引擎持续推进、成功生成及发布确认后创建每30分钟通报；目前尚未创建。
+- 定时报告：已在当前线程创建每30分钟heartbeat，automation id为`30`，状态ACTIVE。每次报告实际进度/发布/失败/重试及24小时预算；完成或停止后报告并暂停定时器。
 - 流水线：第7轮experiment_config已完成验收，run_experiment已通过CLI标记in_progress。
 - 前置同步：已有规范/工作簿在6c8ba85推送，首版方案在6a0bcce推送；本轮实现提交不自动推送。
 
 ## 正式资产入口与使用
 
 - [四格配置及冻结清单](../../hypothesis_4/experiment_1/init/arrival_timing_diagnostic/README.md)。
-- 原始引擎结果目录：`hypothesis_4/experiment_1/runs/arrival_timing_diagnostic/`；启动后由manifest逐run引用。
+- [原始引擎结果目录](../../hypothesis_4/experiment_1/runs/arrival_timing_diagnostic/)；`runtime_freeze.json`记录实际commit/模型/代码哈希，`batch_execution.json`为监督器机器记录，逐run保留checkpoint、replay、正文与标准日志；manifest逐run引用。
 - [正式模块及测试](../../custom/README.md)。
 - 正式运行命令：使用.env中Python执行本目录 `2026-09-30-03-run-batch.py`。只看进度添加 `--status`，不要重复启动。
 - 已有执行记录时监督器拒绝重入。只自动恢复通过完整性审计的正常三周前缀；中批崩溃可能使Agent/环境落盘不一致，须保留现场核对，不直接加resume重采。
@@ -49,7 +49,7 @@
 
 ## 交接
 
-从本README与方案继续；前序背景见[研究推进任务](../2026-09-29-01-research-roadmap/README.md)。用户已授权实施和运行，下一步为确认运行稳定并设置定时报告。已推送的Excel不自动替换冻结样本或标签口径；未来新结果使用独立batch_id，禁止覆盖旧结果和兼容入口。
+从本README与方案继续；前序背景见[研究推进任务](../2026-09-29-01-research-roadmap/README.md)。实验与每30分钟定时报告已启动。下一步由监督器完成四格前缀验收，按预算决定继续全窗或停止；人工交接先运行只读status，不重复启动。已推送的Excel不自动替换冻结样本或标签口径；未来新结果使用独立batch_id，禁止覆盖旧结果和兼容入口。
 
 ## 启动审批记录
 
