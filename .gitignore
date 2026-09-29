@@ -64,3 +64,6 @@ hypothesis_4/experiment_1/*.log
 .label_results_*.jsonl
 标签一致性对比明细_*.xlsx
 四模型标签一致性对比明细_*.xlsx
+
+# 根级研究任务的临时输出；任务 README、报告与 patch 正常跟踪。
+/runs/*/tmp/

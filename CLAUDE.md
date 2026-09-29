@@ -1,154 +1,132 @@
-# CLAUDE.md
+# AGENTS.md：课题工作规范
 
-This file provides guidance to Claude Code when working in this AI Social Scientist workspace.
+本规范适用于本工作区的 Codex、Claude 及受委派子 agent。`AGENTS.md` 指向本文件，两者共享唯一正文。研究主题见 `TOPIC.md`。工作区继续采用 AgentSociety2 官方推荐的目录组织；根级 `runs/README.md` 是用户新增的研究思路与决策入口，不替代官方结构。
 
-**Research Context**: See `TOPIC.md` for research topics, goals, and current work.
+## 一、启动与事实依据
 
----
+每次新任务或恢复工作：
 
-## Session Start
-
-At the start of a new task or when resuming work:
-
-1. Read `TOPIC.md` to understand the research goal.
-2. Read `.env` and resolve `PYTHON_PATH`.
-3. Run:
+1. 读 `TOPIC.md`、根 README、`runs/README.md` 及相关任务 README，明确总目标、授权范围、已完成事项和下一步。
+2. 从 `.env` 读取 `PYTHON_PATH`，不打印密钥或完整环境文件。依赖由 uv 管理，不默认使用系统 Python。
+3. 运行以下只读入口，将返回值作为机器流水线阶段的默认事实依据：
 
 ```bash
-PYTHON_PATH=$(grep "^PYTHON_PATH=" .env | cut -d'=' -f2)
+PYTHON_PATH=$(sed -n 's/^PYTHON_PATH=//p' .env)
 PYTHON_PATH=${PYTHON_PATH:-python3}
-$PYTHON_PATH .agentsociety/bin/ags.py research-pipeline where-am-i --json
+"$PYTHON_PATH" .agentsociety/bin/ags.py research-pipeline where-am-i --json
 ```
 
-Treat the returned pipeline state as the default source of truth for what to do next.
+4. 查看 `git status --short`，辨认当前任务与他人/其他任务的改动，再阅读相关代码、冻结配置和证据。
 
----
+Python 环境必须能够导入 `agentsociety2`。实验所需环境变量为 `AGENTSOCIETY_LLM_API_KEY`、`AGENTSOCIETY_LLM_API_BASE`、`AGENTSOCIETY_LLM_MODEL`，凭据不进入报告、日志或 Git。
 
-## Python Environment
+机器阶段、实验运行事实、用户授权分别核对。文档冲突时检查实际运行入口、对应冻结配置、原始结果与已记录的用户裁定，不根据文件名或时间戳猜测。发现未解决的冲突就在任务 README 记录影响，不静默选一个方便的版本。
 
-All Claude Code skills in this workspace require `agentsociety2` to be available in the configured Python environment.
+## 二、runs/ 工作框架
 
-Always prefer the interpreter from `.env`:
+- 根级 `runs/` 是研究思路、方案、决策和交接的主要入口，不是官方实验产物的替代目录。每个任务一个 `runs/YYYY-MM-DD-NN-NAME/`，同日期顺序编号；语义独立才拆任务，不按对话、seed 或参数点拆任务。
+- 每个任务 README 维护目标、范围、一级资产索引、实时进度、待决策事项、下一步及交接依据。
+- 研究思路文档、任务专属且尚未成熟的探索脚本、工具、报告、patch 放该任务目录；正式 Agent/环境代码、实验配置、引擎运行结果及配套测试仍放官方结构中的对应位置。runs 通过路径引用这些资产，不另建平行实验工作区。
+- 任务收敛且已有用户授权，任务资产才可迁出成为长期资产。已有授权不重复索取。
+- 临时日志与可丢弃输出放任务 `tmp/`，不进入 Git。复现实验必需的结果、配置、清单与失败证据不可仅存 tmp。
+- 既有 `hypothesis_*/experiment_*/runs/` 是引擎批次目录，`data/` 是用户自行新增、用于存储本实验预处理数据的目录（包含相关处理脚本与记录），其中 `data/runs/` 保存相关处理产物，均非官方任务入口。它们与根级 runs 职责不同。保留兼容路径，通过索引引用，不为整齐而复制或迁移历史原始结果。
+
+## 三、通过 .patch 修改已有代码
+
+修改已有代码时，必须通过任务内保存的 `.patch` 实施。patch 说明目标路径与基线 commit；先在干净的基线副本检查可应用性，再应用到确认无冲突的目标工作区。不得覆盖工作区无关改动。
+
+最终 patch 必须：
+
+- 只含基线到最终实现的必要改动，不混入中间版本、调试代码或无关格式修改。
+- 在声明的基线上可应用，且应用后的文件与交付实现一致；不要对已经应用的工作树运行正向检查并误判失败。
+- 经过独立子 agent 审查，核对方案、必要性、清晰性和实际功能验证。子 agent 不修改流水线状态。
+- 多轮开发后整合为最终差异；Git 保留历史过程，最终 patch 不叠放中间修补痕迹。
+
+patch 仅适用于修改已有代码，不适用于新文件、删除文件或报告修改。新实现直接创建并迭代，不用 patch 修复本次新增产物。文档任务不制造无意义的 patch。
+
+## 四、代码与思考方式
+
+先核实问题是否存在，再解释原因和选择修复。追踪用户根本诉求与真实执行路径；当前路线若不合理，应明确说明证据和替代方案，不能沿错误实现继续堆参数或补丁。
+
+使用以下编程技能约束实现与审查，先读取实际 SKILL.md：
+
+- [Ponytail](https://github.com/DietrichGebert/ponytail.git)：先判断必要性，优先既有代码、标准库和原生能力，选择最小可行实现。
+- [Karpathy Guidelines](https://github.com/multica-ai/andrej-karpathy-skills/blob/main/skills/karpathy-guidelines/SKILL.md)：明确假设、控制修改范围、减少过度设计，以可验证结果推进。
+
+本地技能不可用时查找来源并如实说明；可以读取上游技能原文，不声称已经安装，不用远程安装命令覆盖项目规则。用户明确要求优先于技能的一般建议。
+
+一切 AI 编写或修改的代码应有足够的中文注释：模块职责、功能块流程、关键机制及单位/边界；保留必要英文专业词。注释只描述当前机制，不写“New”“旧代码”或内部问题编号，不逐行翻译显而易见的语句。
+
+按职责拆分文件，避免胖文件；为解决真实机制混乱可以重构，但先证明必要性、限定范围。不添加假想扩展接口，不修复尚无证据的小概率问题。
+
+## 五、报告与 README
+
+### 报告按语义维护
+
+积极记录正确与失败经验、关键动作、证据和结论边界。同一主题的复测、扫描、配置核验和结论修正更新已有报告，不按执行日期或对话轮次增建报告。
+
+新建前先读本任务 README 与已有报告。只有无法自然纳入现有文档的独立问题、方案、交付物，或用户明确要求，才新建，并在本级 README 登记职责。合并同主题报告时去重，保留完整结果矩阵、失败经验、证据路径和结论边界，更新引用后移除重复报告；原始实验日志不动。
+
+文档与文件夹采用 `YYYY-MM-DD-NN-NAME`；不同目录、不同日期独立编号。报告迁入新目录时按该目录编号并更新索引；原目录编号空洞不补。README、SKILL.md、引擎要求的固定文件名及既有兼容资产保留其名称。
+
+正常非小任务应具备实现前规划内容：任务对象与范围、直接问题证据、基于现实代码的方案、依据来源与权威等级、清晰验收标准、已有代码的 patch 落地方法。优先标准规范，其次参考实现，最后自行设计；科学证据与工程经验不能混为一谈。
+
+有代码 patch 时提供与实际 diff 对应的解释；有实验结果时提供实验报告。按内容职责组织，可以与同主题文档合并，不为每个阶段造空文件。小白指南仅在用户指定时生成。清晰明确的小任务和快速迭代可省略规划与代码审查。文档整理本身不另写整理报告。
+
+报告讲人话，说明做了什么、为什么、证据是什么、不能说明什么。正文呈现当前完整口径，不把中间实现的撤销过程写成当前功能；必要的失败经验在证据/决策部分清楚区分。最终报告与 patch 不带内部问题编号；日期文件名、真实 run_id、正式方案版本属于必要可追溯标识。
+
+### README 是本级目录的经理
+
+- 每份 README 只索引本级文件与直接子目录，说明职责和使用方式；不递归复制子目录资产表。
+- 根 README 介绍项目和一级资产；`runs/README.md` 导航任务并指明活动入口；任务 README 是详细人工实时状态和 handoff 的唯一位置。
+- 文件增删或职责变化时更新所属目录 README；只有增删/改名子目录或改变其导航属性，才同步更新父级索引。
+- 不新增并行 tracker、status、handoff 文档；方案和实验报告不重复维护进度。
+- CLI 的 `.agentsociety/progress.json` 保持机器阶段职责，不被 README 替代。冻结 manifest、历史清单和原始日志是证据，不是新的人工进度表。
+
+## 六、审查与研究决策
+
+非小任务保留两个关键审查点：
+
+1. 方案冻结前：审查代码事实、依据及权威等级、范围、验收标准和 patch 落地方法。可委派独立子 agent；结论登记在任务 README。
+2. 代码实现后：独立子 agent 审查最终 patch 是否符合方案、必要而完整、清晰不冗余且有效；功能由实际测试或运行检查验证，不靠反复文字审查替代。
+
+只因实质修改、实际失败或未解决问题复审。严禁把假想小概率风险变成阻塞条件。清晰小任务和快速迭代适用简化例外；本规则明确允许必要的审查委派，不要求每一步并行多个 agent。
+
+研究按“事实核对→方案讨论与关键审查→明确采纳的方案→实现及功能检查→已授权诊断→结果解释→必要扩展”推进。已有明确授权范围内自主完成，不反复确认；讨论或建议不自动授权新实验、扩大费用、替换主方案或迁出任务资产。
+
+方案应区分研究主张与数据能支持的结论，区分完整仿真、数值代理、敏感性、未运行预测和失败/中断。运行前记录固定项、变量、输入与参数来源、指标、矩阵、预算和停止/扩展条件。不能为恢复漂亮曲线事后改变判据或隐去失败结果。
+
+上下文压缩后恢复原任务目标、已接受决定、授权和未完事项；用户局部追问通常是对当前任务的指导，不自动替换总目标。
+
+## 七、AgentSociety 工作流
+
+优先 `.agentsociety/bin/ags.py` 而非临时脚本执行已有工作流操作。阶段完成或有实质状态变化后由控制 agent 通过 CLI 更新；普通文档整理不等于研究阶段变更。不要手改 `.agentsociety/*.json` / `.jsonl`，除非已有明确无法使用 CLI 的原因。
+
+技能路由：
+
+- 阶段不明：`agentsociety-research-pipeline`。
+- 学术文献：`agentsociety-literature-search`；补充网络信息使用可用的 web research 能力。
+- 假设创建或实验配置前：`agentsociety-scan-modules`；假设使用 `agentsociety-hypothesis`。
+- 外部数据获取/发布属于任务时，先用 `agentsociety-use-dataset` 检索；需共享复用本地数据时用 `agentsociety-create-dataset` 引导上传，不能把临时复制当正式数据接入。
+- `experiment-config`、`create-agent`、`create-env-module` 前核对 Agent 数、步数、运行时长/成本、复杂度预算。先读已有记录，缺失且影响方案时询问，并比较2–3个有取舍的方案；不要重复索取已有预算。
+- 配置用 `agentsociety-experiment-config`；配置通过校验且在授权范围内才用 `agentsociety-run-experiment`。
+- 有实验输出才用 `agentsociety-analysis`。分析产物和论断审核就绪才生成论文，按可用论文工具/技能执行，不因插件名存在就声称可调用。
+- 完整论文的内部审稿使用 `agentsociety-paper-review`。PDF 按该技能及 PDF 技能完成一次冻结 intake，质量门禁失败则停止评审；正常评审并行委派三位隔离 reviewer，随后单独 MetaReview 核实证据、分歧与 reroute 建议。评审仅写评审包，不改研究产物、不跑实验、不更新流水线。
+
+用户或控制 agent 接受 stage-valued reroute 后执行：
 
 ```bash
-PYTHON_PATH=$(grep "^PYTHON_PATH=" .env | cut -d'=' -f2)
-PYTHON_PATH=${PYTHON_PATH:-python3}
+"$PYTHON_PATH" .agentsociety/bin/ags.py research-pipeline reroute STAGE \
+  --reason "接受的修订原因" --source-artifact PATH
 ```
 
-Required environment variables:
+不得把 `human_decision` 或 `none` 当作阶段，不得通过手写 JSON 或将早期阶段标为 in_progress 来倒退。控制 agent 是 progress.json 的单写者；审稿、分析及审查子 agent 不改机器状态。
 
-- `AGENTSOCIETY_LLM_API_KEY`
-- `AGENTSOCIETY_LLM_API_BASE`
-- `AGENTSOCIETY_LLM_MODEL`
+## 八、Git 与交付
 
-Why this matters:
-
-- Dependencies are managed via `uv`, not system Python.
-- Skill scripts use the calling interpreter.
-- Using the wrong interpreter usually means `agentsociety2` is not importable.
-
----
-
-## Primary State Files
-
-The workspace keeps durable execution state under `.agentsociety/`. Claude Code should use these files as working memory for the research process.
-
-| File | Role | How to use it |
-|------|------|---------------|
-| `.agentsociety/progress.json` | Pipeline stage tracker | Read first when deciding the next research step |
-| `.agentsociety/bin/ags.py` | Stable workspace launcher | Prefer this entry point for bundled workflow operations |
-
-Prefer updating pipeline state through `.agentsociety/bin/ags.py research-pipeline ...` instead of editing state files manually.
-
----
-
-## Workspace Map
-
-```
-.
-├── TOPIC.md
-├── CLAUDE.md
-├── AGENTS.md
-├── .env
-├── .claude/
-│   ├── settings.json           # Project-level Claude Code settings
-│   └── skills/                 # Claude Code skill bundle for this workspace
-├── .agentsociety/
-│   ├── progress.json
-│   └── bin/ags.py
-├── papers/                     # Literature outputs
-├── datasets/                   # Downloaded datasets
-├── user_data/                  # User-provided data files
-├── custom/
-│   ├── agents/                 # Custom agent code
-│   ├── envs/                   # Custom environment module code
-│   └── README.md
-├── hypothesis_{id}/            # Hypothesis and experiment folders
-├── presentation/               # Analysis reports and assets
-├── synthesis/                  # Cross-hypothesis synthesis outputs
-└── paper/                      # Workspace-level paper outputs
-```
-
-Most tasks should begin with `TOPIC.md`, `.agentsociety/progress.json`, and the relevant hypothesis or report directory.
-
----
-
-## Skill Routing
-
-Claude Code loads the workspace-local skill bundle from `.claude/skills/`.
-
-Use this routing model:
-
-- Start with `agentsociety-research-pipeline` when the current stage is unclear.
-- Use `agentsociety-literature-search` for academic literature collection.
-- Use `agentsociety-web-research` for supplementary web context.
-- Use `agentsociety-scan-modules` before hypothesis creation or experiment configuration.
-- Before `experiment-config`, `create-agent`, or `create-env-module`, resolve the simulation scale budget: target agent count or range, step budget, runtime budget, and preferred complexity tier. If the budget is missing, ask for it first and compare 2-3 approaches with trade-offs before choosing one.
-- If the work may depend on external data, search datasets first with `agentsociety-use-dataset`; if a local file should be shared or reused, guide the user through `agentsociety-create-dataset` upload instead of hand-copying data into config.
-- Use `agentsociety-hypothesis` to create or revise hypotheses.
-- Use `agentsociety-experiment-config` to prepare `init_config.json` and `steps.yaml`.
-- Use `agentsociety-run-experiment` only after configuration is ready and checked.
-- Use `agentsociety-analysis` once experiment outputs exist.
-- Use the external `paper-toolkit` plugin after analysis artifacts and reviewed claims are ready.
-- Use `agentsociety-paper-review` after a complete draft exists when the user requests an internal venue-calibrated review, score, or advice about which research stage to revisit. For PDF input, use the bundled `pdf` skill plus the paper-review PDF intake once, then give all agents the same frozen text, layout, and page renders; stop if the intake quality gate fails. For a normal result, launch three isolated reviewer subagents concurrently with the same frozen inputs, then launch a separate MetaReview subagent to verify evidence, report score dispersion, and consolidate reroute advice. It writes only the review bundle and must not revise research artifacts, run experiments, or update pipeline state.
-- After review, the user or controlling coding agent may accept one stage-valued reroute. Apply it with `research-pipeline reroute STAGE --reason "..." --source-artifact PATH`; never treat `human_decision` or `none` as stages. A reroute marks the target and completed downstream stages `needs_revision` and preserves an auditable revision round.
-- Use `agentsociety-use-dataset` or `agentsociety-create-dataset` only when data acquisition or publishing is part of the task.
-
-Preferred command examples:
-
-```bash
-$PYTHON_PATH .agentsociety/bin/ags.py research-pipeline where-am-i --json
-$PYTHON_PATH .agentsociety/bin/ags.py research-pipeline reroute analysis --reason "MetaReview requires uncertainty estimates" --source-artifact paper/reviews/acl-arr-review-r1.md
-$PYTHON_PATH .agentsociety/bin/ags.py scan-modules list --short
-$PYTHON_PATH .agentsociety/bin/ags.py hypothesis list --json
-$PYTHON_PATH .agentsociety/bin/ags.py experiment-config validate --hypothesis-id 1 --experiment-id 1
-$PYTHON_PATH .agentsociety/bin/ags.py run-experiment status --hypothesis-id 1 --experiment-id 1
-$PYTHON_PATH .agentsociety/bin/ags.py analysis load-context --workspace . --hypothesis-id 1 --experiment-id 1
-```
-
----
-
-## Operating Rules
-
-Do:
-
-- Match the user's language.
-- Explain the current pipeline stage when it matters to the next action.
-- Prefer `.agentsociety/bin/ags.py` over ad hoc helper scripts for workflow operations.
-- Update pipeline state after completing a stage or resolving a meaningful blocker.
-- When an accepted review requires backward movement, use `research-pipeline reroute` and carry its reason and source artifact into the owning skill.
-- Read relevant state files before asking the user for information that may already exist in the workspace.
-- Resolve the simulation scale budget before configuration or custom module creation; if it is missing, ask clarifying questions and compare 2-3 approaches with trade-offs.
-- If external data is needed, search or inspect datasets before building new assumptions; guide dataset upload when the input should be shared or reused.
-- **Commit every meaningful change**: after creating, editing, or deleting files, always run `git add -A && git commit -m "<descriptive message>"` to keep a full audit trail. This includes config files, experiment outputs, analysis results, and any workspace state changes.
-
-Do not:
-
-- Guess the current stage when `research-pipeline where-am-i --json` can tell you.
-- Use system Python by default when `.env` provides `PYTHON_PATH`.
-- Edit `.agentsociety/*.json` or `.jsonl` manually unless there is a clear reason not to use the CLI.
-- Move `current_stage` backward by editing JSON or by marking an earlier stage `in_progress`; use `research-pipeline reroute` so downstream work is invalidated consistently.
-- Let reviewer or analysis subagents mutate pipeline state; the controlling agent is the single writer of `progress.json`.
-- Start analysis before experiment outputs exist.
-- Start paper generation before analysis outputs and claim review are in place.
-- Skip git commits after making file changes — every modification must be tracked.
+- 每个有意义的文件变更阶段完成后必须提交，包含配置、报告、结果和状态变更。按规则忽略的临时文件、凭据和大型原始产物不强制入库；持久证据需有索引与可追溯位置。
+- 使用中文 Conventional Commits：`<type>(<scope>): <subject>`，scope 可省略；空行后的正文必填，说明原因、影响与注意事项。
+- type 使用 `fix`、`feat`、`perf`、`refactor`、`test`、`docs`、`chore`、`revert`；revert 正文注明原因和目标 commit。
+- 工作区有无关修改时只精确暂存本任务文件，禁止无差别 `git add -A`、`git add .` 或会隐式全量暂存的 sync。提交前检查 staged diff。
+- 提交不自动意味着推送或同步。用户要求同步 C 端时，先确认本项目实际对应的目标和现有授权，精确提交后再单独同步，不猜测远端。
+- 最终交付简要说明入口、实际变更、验证结果、未决事项和 commit；不把未运行建议写成已完成结果。
