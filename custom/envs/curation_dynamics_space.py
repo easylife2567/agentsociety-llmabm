@@ -305,6 +305,9 @@ class CurationDynamicsSpace(EnvBase):
     def __init__(self, **kwargs: Any):
         super().__init__()
         # config kwargs（全部有默认值，与 spec config_kwargs 一致；cls() 无必填参数）。
+        # 显式调度开关独立于推荐算法；未配置时使用原有制度。
+        schedule_mode = kwargs.pop("schedule_mode", "legacy")
+        arrival_mode = kwargs.pop("arrival_mode", "timestamp")
         self._recommendation_algorithm = str(kwargs.pop("recommendation_algorithm", "random"))
         self._meme_emergence_mode = str(kwargs.pop("meme_emergence_mode", "normal"))
         self._random_seed = int(kwargs.pop("random_seed", 0))
@@ -549,6 +552,15 @@ class CurationDynamicsSpace(EnvBase):
         self._emergence_kf_final = (
             float(self._emergence_kf) if self._emergence_kf is not None else float(flow_base_world)
         )
+
+        self._arrival = None
+        if schedule_mode == "arrival_timing":
+            spec = importlib.util.spec_from_file_location(
+                "curation_arrival_schedule", Path(__file__).with_name("curation_arrival_schedule.py"))
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            self._arrival_mech = mech
+            self._arrival = module.ArrivalSchedule(self, arrival_mode)
 
     # ---------------- 资产加载 ----------------
 
@@ -1274,6 +1286,8 @@ class CurationDynamicsSpace(EnvBase):
         参数：**agent_id** 为调用方 Agent 标识（框架约定首参）。
         """
         aid = str(agent_id)
+        if self._arrival is not None:
+            return self._arrival.get_feed(aid)
         feed = [dict(item) for item in self._feeds.get(aid, [])]
         climate = dict(self._climate_shares.get(aid, {t: 0.0 for t in TYPE_ORDER_ALL}))
         last = self._agent_last_post(aid)
@@ -1357,6 +1371,8 @@ class CurationDynamicsSpace(EnvBase):
         参数：**agent_id** 为调用方 Agent 标识；**content** 为帖子正文（非空字符串）。
         """
         aid = str(agent_id)
+        if self._arrival is not None and aid not in self._chronological_active_agents:
+            return {"status": "fail", "reason": "inactive agent"}
         text = str(content or "").strip()
         if not text:
             return {
@@ -1583,6 +1599,9 @@ class CurationDynamicsSpace(EnvBase):
         """打开 tick 1（W12）：注入本周内容、计算玩梗涌现环境、预装配全部 Agent 的 feed，并
         以 W12 注入池构成建立全局份额基线快照（U4）。无 replay 写入。"""
         self.t = start_datetime
+        if self._arrival is not None:
+            await self._arrival.init(start_datetime)
+            return
         if self._recommendation_algorithm == "chronological":
             self._start_chronological_week(self._week_for_time(start_datetime))
             self._inject_chronological_until(start_datetime)
@@ -1596,6 +1615,9 @@ class CurationDynamicsSpace(EnvBase):
         """每 tick 恰执行一次：先收尾当前 tick k（pending agent 帖并入池、写 env 1 行 +
         agent batch 行、更新全局份额快照、清空每 tick 状态），再预卷打开 tick k+1
         （注入、涌现环境、装配 feed）；step(11) 只收尾不打开 W23。replay 主键 = 内部 _step_index。"""
+        if self._arrival is not None:
+            await self._arrival.step(tick, t)
+            return
         if self._recommendation_algorithm == "chronological":
             await self._step_chronological(tick, t)
             return
@@ -1632,7 +1654,8 @@ class CurationDynamicsSpace(EnvBase):
 
     async def close(self) -> None:
         """收尾：把残留 pending agent 帖并入池（11 步后正常应无残留）。"""
-        self._flush_pending_to_pool()
+        if self._arrival is None:
+            self._flush_pending_to_pool()
 
     def set_replay_writer(self, writer: Any) -> None:
         """只接受真正的 replay 写入器；其余一律拒绝并大声报错。
@@ -1728,6 +1751,8 @@ class CurationDynamicsSpace(EnvBase):
         if self._workspace_root is None:
             raise RuntimeError("CurationDynamicsSpace workspace is not bound")
         state = {
+            "_arrival_state": self._arrival.state if self._arrival is not None else None,
+            "_exposure_age_buckets": self._exposure_age_buckets,
             "_step_index": self._step_index,
             "_tick_index": self._tick_index,
             "_current_week": self._current_week,
@@ -1789,6 +1814,12 @@ class CurationDynamicsSpace(EnvBase):
         if not state_path.is_file():
             return False
         d = json.loads(state_path.read_text(encoding="utf-8"))
+        if self._arrival is not None:
+            restored = d.get("_arrival_state")
+            if not restored or restored.get("mode") != self._arrival.mode:
+                raise ValueError("checkpoint arrival mode mismatch")
+            self._arrival.state = restored
+        self._exposure_age_buckets = d.get("_exposure_age_buckets", self._exposure_age_buckets)
         expected_policy = {
             "lag_weeks": self._weekly_real_post_lag_weeks,
             "initial_path": self._weekly_initial_injection_data_path,

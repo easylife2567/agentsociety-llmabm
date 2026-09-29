@@ -3,18 +3,19 @@
   "workspace": {
     "topic": "公众人物去世后，算法策展如何塑造舆论场对其的数字表征",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "analysis",
+    "current_stage": "run_experiment",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
-    "revision_round": 6,
+    "revision_round": 7,
     "active_reroute": {
-      "revision_round": 6,
-      "requested_at": "2026-09-25T13:37:44.927489+00:00",
+      "revision_round": 7,
+      "requested_at": "2026-09-29T17:01:10.752820+00:00",
       "from_stage": "analysis",
       "target_stage": "experiment_config",
-      "reason": "r3 三位内审一致判定 primary reroute=experiment_config：W19-W22 真实帖在判定前进入候选池（目标泄漏），三臂同时改动候选池/时间尺度/个性化（不可识别）；另经标注器敏感性分析确认 interest 拟合最优在 doubao/GLM 两轮标注下方向反转为 random 最优，中心比较结论不成立。需重设计为结果盲臂+正交化对照后重跑。",
-      "source_artifact": "paper/reviews/generic-review-r3/reviewer-1.md",
+      "reason": "用户批准实施并启动普通真实帖到达时机四格诊断，完成后每30分钟通报",
+      "source_artifact": "runs/2026-09-29-02-injection-timing/2026-09-29-01-injection-timing-plan.md",
       "pending_stages": [
+        "run_experiment",
         "analysis"
       ]
     }
@@ -64,56 +65,38 @@
     "experiment_config": {
       "status": "completed",
       "started_at": null,
-      "completed_at": "2026-09-27T15:50:06.603523+00:00",
-      "attempts": 5,
+      "completed_at": "2026-09-29T17:08:12.143737+00:00",
+      "attempts": 6,
       "error": null,
       "metadata": {
-        "batch_id": "weekly_lag1",
-        "runs": 6,
-        "offline_gate": "passed",
-        "archive_manifest": "ARCHIVE_MANIFEST_H4E1.md"
+        "batch_id": "arrival_timing_diagnostic",
+        "runs": 4,
+        "offline_tests": 9,
+        "native_schema_check": "passed",
+        "independent_review": "passed"
       },
       "verification_status": "complete",
-      "revision_round": 6
+      "revision_round": 7
     },
     "run_experiment": {
-      "status": "completed",
-      "started_at": "2026-09-27T15:53:47.273027+00:00",
-      "completed_at": "2026-09-28T01:49:47.534635+00:00",
+      "status": "needs_revision",
+      "started_at": null,
+      "completed_at": null,
       "attempts": 3,
       "error": null,
-      "metadata": {
-        "batch_id": "weekly_lag1",
-        "run_ids": [
-          "weekly_lag1_interest_s0",
-          "weekly_lag1_interest_s1",
-          "weekly_lag1_interest_s2",
-          "weekly_lag1_random_s0",
-          "weekly_lag1_random_s1",
-          "weekly_lag1_random_s2"
-        ],
-        "concurrency": 2,
-        "supervisor_pid": 83587,
-        "started_at": "2026-09-27T15:52:00Z"
-      },
+      "metadata": {},
       "verification_status": "not_started",
-      "revision_round": 6
+      "revision_round": 7
     },
     "analysis": {
-      "status": "in_progress",
-      "started_at": "2026-09-28T01:49:47.590979+00:00",
+      "status": "needs_revision",
+      "started_at": null,
       "completed_at": null,
       "attempts": 2,
       "error": null,
-      "metadata": {
-        "primary_batch": "anchored_v1",
-        "timing_sensitivity_batch": "weekly_lag1",
-        "withdrawn_unrun_design": "weekly_lag1_event_v2",
-        "archive_manifest": "ARCHIVE_MANIFEST_H4E1.md",
-        "injection_timing_decision": "weekly exogenous stimulus then frozen feeds; agent posts visible from next week"
-      },
+      "metadata": {},
       "verification_status": "not_started",
-      "revision_round": 6
+      "revision_round": 7
     },
     "generate_paper": {
       "status": "not_started",
@@ -637,6 +620,93 @@
       "to_status": "in_progress",
       "from_stage": "analysis",
       "to_stage": "analysis"
+    },
+    {
+      "sequence": 28,
+      "timestamp": "2026-09-29T17:01:10.752823+00:00",
+      "kind": "reroute",
+      "revision_round": 7,
+      "from_stage": "analysis",
+      "to_stage": "experiment_config",
+      "reason": "用户批准实施并启动普通真实帖到达时机四格诊断，完成后每30分钟通报",
+      "source_artifact": "runs/2026-09-29-02-injection-timing/2026-09-29-01-injection-timing-plan.md",
+      "invalidated_stages": [
+        "experiment_config",
+        "run_experiment",
+        "analysis"
+      ],
+      "previous_statuses": {
+        "experiment_config": "completed",
+        "run_experiment": "completed",
+        "analysis": "in_progress"
+      },
+      "previous_stage_states": {
+        "experiment_config": {
+          "status": "completed",
+          "started_at": null,
+          "completed_at": "2026-09-27T15:50:06.603523+00:00",
+          "attempts": 5,
+          "error": null,
+          "metadata": {
+            "batch_id": "weekly_lag1",
+            "runs": 6,
+            "offline_gate": "passed",
+            "archive_manifest": "ARCHIVE_MANIFEST_H4E1.md"
+          },
+          "verification_status": "complete",
+          "revision_round": 6
+        },
+        "run_experiment": {
+          "status": "completed",
+          "started_at": "2026-09-27T15:53:47.273027+00:00",
+          "completed_at": "2026-09-28T01:49:47.534635+00:00",
+          "attempts": 3,
+          "error": null,
+          "metadata": {
+            "batch_id": "weekly_lag1",
+            "run_ids": [
+              "weekly_lag1_interest_s0",
+              "weekly_lag1_interest_s1",
+              "weekly_lag1_interest_s2",
+              "weekly_lag1_random_s0",
+              "weekly_lag1_random_s1",
+              "weekly_lag1_random_s2"
+            ],
+            "concurrency": 2,
+            "supervisor_pid": 83587,
+            "started_at": "2026-09-27T15:52:00Z"
+          },
+          "verification_status": "not_started",
+          "revision_round": 6
+        },
+        "analysis": {
+          "status": "in_progress",
+          "started_at": "2026-09-28T01:49:47.590979+00:00",
+          "completed_at": null,
+          "attempts": 2,
+          "error": null,
+          "metadata": {
+            "primary_batch": "anchored_v1",
+            "timing_sensitivity_batch": "weekly_lag1",
+            "withdrawn_unrun_design": "weekly_lag1_event_v2",
+            "archive_manifest": "ARCHIVE_MANIFEST_H4E1.md",
+            "injection_timing_decision": "weekly exogenous stimulus then frozen feeds; agent posts visible from next week"
+          },
+          "verification_status": "not_started",
+          "revision_round": 6
+        }
+      }
+    },
+    {
+      "sequence": 29,
+      "timestamp": "2026-09-29T17:08:12.143745+00:00",
+      "kind": "stage_update",
+      "revision_round": 7,
+      "stage": "experiment_config",
+      "from_status": "needs_revision",
+      "to_status": "completed",
+      "from_stage": "experiment_config",
+      "to_stage": "run_experiment"
     }
   ]
 }

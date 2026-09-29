@@ -421,6 +421,13 @@ class CurationDiscourseAgent(AgentBase):
         step 是「本周有人行动的小时」；非本小时 Agent 在任何 Env/LLM 调用之前返回，
         因而每个 Agent 每周仍恰有一次决策机会。
         """
+        if self.get_profile().get("arrival_timing", False):
+            # 到达诊断使用单独的生成与记账流程，保持数值效用同源。
+            spec = importlib.util.spec_from_file_location(
+                "curation_arrival_action", Path(__file__).with_name("curation_arrival_action.py"))
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            return await module.act(self, tick, t)
         if self._chronological_action_hour is not None:
             hour_of_week = int(t.weekday()) * 24 + int(t.hour)
             if hour_of_week != self._chronological_action_hour:
