@@ -1,0 +1,90 @@
+[
+  {
+    "run_id": "arrival_timing_diagnostic_preload_interest_s0",
+    "sql": "SELECT COUNT(*) AS weeks, SUM(agent_supply) AS posts, SUM(CASE WHEN week >= '2026-W19' THEN exposure_meme ELSE 0 END) AS late_O, SUM(CASE WHEN week >= '2026-W19' THEN agent_supply_meme ELSE 0 END) AS late_meme_posts FROM curation_dynamics_env_state",
+    "result": {
+      "success": true,
+      "columns": [
+        "weeks",
+        "posts",
+        "late_O",
+        "late_meme_posts"
+      ],
+      "rows": [
+        [
+          11,
+          234,
+          1085,
+          50
+        ]
+      ],
+      "count": 1
+    }
+  },
+  {
+    "run_id": "arrival_timing_diagnostic_timestamp_interest_s0",
+    "sql": "SELECT COUNT(*) AS weeks, SUM(agent_supply) AS posts, SUM(CASE WHEN week >= '2026-W19' THEN exposure_meme ELSE 0 END) AS late_O, SUM(CASE WHEN week >= '2026-W19' THEN agent_supply_meme ELSE 0 END) AS late_meme_posts FROM curation_dynamics_env_state",
+    "result": {
+      "success": true,
+      "columns": [
+        "weeks",
+        "posts",
+        "late_O",
+        "late_meme_posts"
+      ],
+      "rows": [
+        [
+          11,
+          214,
+          744,
+          32
+        ]
+      ],
+      "count": 1
+    }
+  },
+  {
+    "run_id": "arrival_timing_diagnostic_preload_random_s0",
+    "sql": "SELECT COUNT(*) AS weeks, SUM(agent_supply) AS posts, SUM(CASE WHEN week >= '2026-W19' THEN exposure_meme ELSE 0 END) AS late_O, SUM(CASE WHEN week >= '2026-W19' THEN agent_supply_meme ELSE 0 END) AS late_meme_posts FROM curation_dynamics_env_state",
+    "result": {
+      "success": true,
+      "columns": [
+        "weeks",
+        "posts",
+        "late_O",
+        "late_meme_posts"
+      ],
+      "rows": [
+        [
+          11,
+          177,
+          189,
+          4
+        ]
+      ],
+      "count": 1
+    }
+  },
+  {
+    "run_id": "arrival_timing_diagnostic_timestamp_random_s0",
+    "sql": "SELECT COUNT(*) AS weeks, SUM(agent_supply) AS posts, SUM(CASE WHEN week >= '2026-W19' THEN exposure_meme ELSE 0 END) AS late_O, SUM(CASE WHEN week >= '2026-W19' THEN agent_supply_meme ELSE 0 END) AS late_meme_posts FROM curation_dynamics_env_state",
+    "result": {
+      "success": true,
+      "columns": [
+        "weeks",
+        "posts",
+        "late_O",
+        "late_meme_posts"
+      ],
+      "rows": [
+        [
+          11,
+          169,
+          121,
+          3
+        ]
+      ],
+      "count": 1
+    }
+  }
+]

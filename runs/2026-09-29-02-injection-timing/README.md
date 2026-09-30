@@ -16,15 +16,23 @@
 | [2026-09-30-01-generate-configs.py](2026-09-30-01-generate-configs.py) | stdlib配置生成器，源哈希守卫，输出官方init目录 |
 | [2026-09-30-02-audit.py](2026-09-30-02-audit.py) | 只读完整性、时间曝光和预登记Y/S/E/A指标审计 |
 | [2026-09-30-03-run-batch.py](2026-09-30-03-run-batch.py) | 串行prefix/full监督器；`--check`只核对，`--status`只读进度，无参数正式启动 |
+| [2026-09-30-04-analyze.py](2026-09-30-04-analyze.py) | 只读复算四格、来源、初始化、冻结词表测量及历史桥接；正式数据写presentation |
+| [2026-09-30-05-semantic-interest.json](2026-09-30-05-semantic-interest.json) | 两interest早期全查与非命中抽样，108条实际阅读记录 |
+| [2026-09-30-06-semantic-random.json](2026-09-30-06-semantic-random.json) | 两random必查与抽样，194条实际阅读记录 |
+| [2026-09-30-07-semantic-preload-interest-hits.json](2026-09-30-07-semantic-preload-interest-hits.json) | preload-interest其余命中，133条实际阅读记录 |
+| [2026-09-30-08-semantic-timestamp-interest-hits.json](2026-09-30-08-semantic-timestamp-interest-hits.json) | timestamp-interest其余命中，120条实际阅读记录及错误年龄传播链 |
+| [2026-09-30-09-plot.py](2026-09-30-09-plot.py) | 从复算表绘制曝光、作者生产、正文词表信号三张PNG/SVG |
+| [2026-09-30-10-results.md](2026-09-30-10-results.md) | 本批完整分析报告、英文阅读摘要、科学边界与下一步建议；审核主入口 |
+| [2026-09-30-11-knowledge-coverage.py](2026-09-30-11-knowledge-coverage.py) | 只核对逐条阅读覆盖与原始正文对应，统计问题帖直接曝光，不自动判语义 |
 | `tmp/` | 被Git忽略的临时核对输出，不存唯一证据 |
 
 ## 实时进度
 
-- 当前：2026-09-30 05:55（上海）核对，四个条件均于05:38完成11周并通过运行审计；监督器状态completed。实施基线提交785ad41，冻结源、配置和steps哈希一致。
+- 当前：四格运行完成，本批诊断分析已形成报告，等待用户审阅研究结论及下一步方向。主指标制度差2.2400→1.5575；正文已核查555/794条，发现19条无依据细节或日期错位，影响尚不能隔离。原始运行与冻结代码未改，未新增实验。
 - 用户授权范围：4run×100人×11周，seed0；先四个W12–W14前缀，再按同序续跑至W22。采用运行量/累计24小时时长约束，不增加实验臂。
 - 内容模型沿用当前配置 `deepseek-v4-1-flash-260910`，温度1.0，正文不缓存；每行动最多一次额外重试，全批最多440次。实际服务响应版本和调用量另记录。
 - 定时报告：每30分钟heartbeat（automation id `30`）已在确认全部完成后暂停，状态PAUSED。
-- 流水线：第7轮run_experiment已通过CLI标记completed、verification complete；当前为analysis，分析验证尚未开始。
+- 流水线：第7轮run_experiment为completed；analysis经CLI标为in_progress、verification partial。任务诊断报告已交付，但旧weekly_lag1分析harness停在claims而阻止新intake，未修改旧harness或宣称全项目synthesis完成。
 - 前置同步：已有规范/工作簿在6c8ba85推送，首版方案在6a0bcce推送；本轮实现提交不自动推送。
 
 ### 最近一次周期核验（2026-09-30 05:55，上海）
@@ -40,12 +48,23 @@
 
 内容生成共795次尝试、1/440次额外重试，重试后成功发布，无未解决行动失败。历史上另有一次已恢复的框架JSON解析重试和一次写入器保护事件；后者保留原ReplayProxy，最终回放行数完整，原始日志保留。本周期无新增错误或重试。两个timestamp条件的数值feed与实际生成上下文未来曝光均为0；preload提前曝光属于预设对照处理。实际内容响应模型均为deepseek-v4-1-flash。
 
-以上为运行完整性结论。早期正文、后续命中与抽样的语义检查及四格指标解释尚未完成；发布时间检查通过不能替代对模型预训练知识的检查，也不据单seed结果宣布科学结论。
+以上是运行完整性记录。后续分析见本级结果报告；运行成功不能替代知识来源和语义测量验收。
+
+### 分析交接与待决策
+
+- 用户本轮授权“进行实验结果分析”，沿用已批准主窗口、四格比较、来源分解、早期/命中/分层抽样核查及旧新桥接，不另行扩seed或调用生成接口。
+- 验证：4个最终审计无失败；独立CLI SQL核对发布和后期主指标；分析子agent直接从原始快照复算O/E/Y/S/A一致。555条阅读覆盖涵盖所有136条早期正文与全部冻结命中，覆盖脚本未检出必查遗漏。图形已目视检查。
+- 量化信号：timestamp保留interest相对random的正向曝光差，但幅度比preload小30.47%，玩梗作者发帖差由46降至29；不是统计显著性结论。
+- 独立终审：analysis_review给出PASS；再次直接核对主指标、555条覆盖与原始正文/上下文、19条问题记录及其曝光计数，数字一致。按建议补全历史输入/判类实现哈希，并区分登记覆盖与额外溯源阅读。
+- 科学边界：19条已确认问题含无依据年龄/时间及相对日期错位，存在回流；发现1条拒答也被成功发布。互斥语义标签与玩梗信号分歧较大，不能把作者身份等同正文语义。暂停知识无污染的生成机制论断，不通过删帖或重校准掩盖问题。
+- 待用户决策：是否先补生成输入的逐帖时间、角色边界、拒答验收及独立正文测量，再决定多seed；当前不自动改冻结实现或运行扩展。
+- 工程流程限制：`analysis intake`原始阻塞回执为`.agentsociety/analysis/runs/run_20260930t014224_40b52e079f.json`。显式四格路径仍可完成只读查询；此harness历史状态问题未阻塞本批诊断交付，但未解决全项目分析完成门禁。
 
 ## 正式资产入口与使用
 
 - [四格配置及冻结清单](../../hypothesis_4/experiment_1/init/arrival_timing_diagnostic/README.md)。
 - [原始引擎结果目录](../../hypothesis_4/experiment_1/runs/arrival_timing_diagnostic/)；`runtime_freeze.json`记录实际commit/模型/代码哈希，`batch_execution.json`为监督器机器记录，逐run保留checkpoint、replay、正文与标准日志；manifest逐run引用。
+- [正式分析表与图](../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/README.md)。
 - [正式模块及测试](../../custom/README.md)。
 - 正式运行命令：使用.env中Python执行本目录 `2026-09-30-03-run-batch.py`。只看进度添加 `--status`，不要重复启动。
 - 已有执行记录时监督器拒绝重入。只自动恢复通过完整性审计的正常三周前缀；中批崩溃可能使Agent/环境落盘不一致，须保留现场核对，不直接加resume重采。
@@ -64,7 +83,7 @@
 
 ## 交接
 
-从本README与方案继续；前序背景见[研究推进任务](../2026-09-29-01-research-roadmap/README.md)。四格实验已全部完成，定时报告已暂停。下一步依据冻结方案完成正文语义核查和四格结果分析；人工交接先读取只读status与完整审计，不重复启动，不扩大实验范围。已推送的Excel不自动替换冻结样本或标签口径；未来新结果使用独立batch_id，禁止覆盖旧结果和兼容入口。
+从本README与方案继续；前序背景见[研究推进任务](../2026-09-29-01-research-roadmap/README.md)。四格实验已全部完成，定时报告已暂停。本批分析及正文核查已完成约定覆盖，下一步由用户审核结果报告和修正方向；人工交接先读报告与逐条证据，不重复启动或扩展。已推送的Excel不自动替换冻结样本或标签口径；未来新结果使用独立batch_id，禁止覆盖旧结果和兼容入口。
 
 ## 启动审批记录
 

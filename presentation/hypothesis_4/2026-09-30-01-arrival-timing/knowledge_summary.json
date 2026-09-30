@@ -1,0 +1,264 @@
+{
+  "results": {
+    "arrival_timing_diagnostic_preload_interest_s0": {
+      "published": 234,
+      "reviewed": 186,
+      "early_required": 33,
+      "screen_hits": 136,
+      "nonhit_reviewed": {
+        "early": 40,
+        "late": 10
+      },
+      "uncovered_required": [],
+      "verdicts": {
+        "no_new_event_assertion": 45,
+        "supported_preload_future": 33,
+        "supported_current": 96,
+        "supported_published_source": 5,
+        "uncertain": 1,
+        "unsupported": 6
+      },
+      "uncertain_notes": 1,
+      "unsupported_count": 6,
+      "unsupported_records": [
+        {
+          "agent_id": 28,
+          "week": "2026-W13",
+          "post_id": 110,
+          "acted_at": "2026-03-25T17:00:00+08:00",
+          "unsupported_quote": "41岁",
+          "explanation": "病因时刻由5897支持，队伍来自未来15380，但五条截断上下文均未给出年龄41岁。"
+        },
+        {
+          "agent_id": 39,
+          "week": "2026-W13",
+          "post_id": 123,
+          "acted_at": "2026-03-27T17:00:00+08:00",
+          "unsupported_quote": "才41岁",
+          "explanation": "跑步和两公里送别有来源（后者未来），但年龄41岁未在实际截断上下文。"
+        },
+        {
+          "agent_id": 42,
+          "week": "2026-W13",
+          "post_id": 108,
+          "acted_at": "2026-03-25T11:00:00+08:00",
+          "unsupported_quote": "才41岁",
+          "explanation": "女儿与送别有来源，但实际前5×120未含41岁。"
+        },
+        {
+          "agent_id": 43,
+          "week": "2026-W14",
+          "post_id": 192,
+          "acted_at": "2026-04-04T16:00:00+08:00",
+          "unsupported_quote": "明天苏州殡仪馆的告别仪式",
+          "explanation": "42岁与病因由external:23245明确支持，不计为无依据细节；但在4月4日将3月27日Agent来源的“明天告别仪式”照搬为自己的明天，错误指向4月5日。判为明确相对日期错位，不等于提前知识泄漏。"
+        },
+        {
+          "agent_id": 74,
+          "week": "2026-W13",
+          "post_id": 118,
+          "acted_at": "2026-03-27T10:00:00+08:00",
+          "unsupported_quote": "才41岁",
+          "explanation": "女儿11岁及送别来自未来帖，年龄41岁未在五条实际截断上下文。"
+        },
+        {
+          "agent_id": 97,
+          "week": "2026-W13",
+          "post_id": 106,
+          "acted_at": "2026-03-25T07:00:00+08:00",
+          "unsupported_quote": "41岁",
+          "explanation": "抢救三小时可由官方12:26至15:50推得，送别来自未来帖，但41岁未出现在实际上下文。"
+        }
+      ],
+      "issue_post_numeric_exposures": 82,
+      "issue_post_late_exposures": 0,
+      "issue_post_actual_prompt_references": 11
+    },
+    "arrival_timing_diagnostic_timestamp_interest_s0": {
+      "published": 214,
+      "reviewed": 175,
+      "early_required": 35,
+      "screen_hits": 121,
+      "nonhit_reviewed": {
+        "early": 44,
+        "late": 10
+      },
+      "uncovered_required": [],
+      "verdicts": {
+        "no_new_event_assertion": 49,
+        "supported_current": 109,
+        "supported_published_source": 6,
+        "no_new_event_claim": 2,
+        "unsupported": 8,
+        "uncertain": 1
+      },
+      "uncertain_notes": 0,
+      "unsupported_count": 8,
+      "unsupported_records": [
+        {
+          "agent_id": 19,
+          "week": "2026-W13",
+          "post_id": 96,
+          "acted_at": "2026-03-27T07:00:00+08:00",
+          "unsupported_quote": "一个39岁的人这样走了",
+          "explanation": "死亡有支持，39岁不在五条实际节选；system写作者本人39岁，不是张雪峰年龄证据。"
+        },
+        {
+          "agent_id": 37,
+          "week": "2026-W15",
+          "post_id": 222,
+          "acted_at": "2026-04-08T22:00:00+08:00",
+          "unsupported_quote": "四十来岁，说走就走了",
+          "explanation": "死亡有支持，四十来岁不在当前五条或system。"
+        },
+        {
+          "agent_id": 44,
+          "week": "2026-W13",
+          "post_id": 97,
+          "acted_at": "2026-03-27T09:00:00+08:00",
+          "unsupported_quote": "41岁，心源性猝死",
+          "explanation": "死亡日期地点死因有来源，41岁未见实际五条或system。"
+        },
+        {
+          "agent_id": 56,
+          "week": "2026-W14",
+          "post_id": 148,
+          "acted_at": "2026-03-31T16:00:00+08:00",
+          "unsupported_quote": "昨天苏州殡仪馆外近两公里的队伍",
+          "explanation": "死亡细节有来源；把3月29日Agent30的昨天照搬到3月31日，导致送别日期指向无依据的3月30日。"
+        },
+        {
+          "agent_id": 59,
+          "week": "2026-W13",
+          "post_id": 100,
+          "acted_at": "2026-03-27T11:00:00+08:00",
+          "unsupported_quote": "才四十出头",
+          "explanation": "死亡日期死因及年幼女儿有来源，四十出头未见实际五条或system。"
+        },
+        {
+          "agent_id": 66,
+          "week": "2026-W13",
+          "post_id": 112,
+          "acted_at": "2026-03-28T17:00:00+08:00",
+          "unsupported_quote": "41岁，女儿才11岁",
+          "explanation": "死亡与女儿11岁有来源，41岁未见实际五条或system。"
+        },
+        {
+          "agent_id": 83,
+          "week": "2026-W13",
+          "post_id": 98,
+          "acted_at": "2026-03-27T09:00:00+08:00",
+          "unsupported_quote": "才四十出头的人",
+          "explanation": "跑步后不适及死亡有来源，四十出头未见实际五条或system。"
+        },
+        {
+          "agent_id": 94,
+          "week": "2026-W13",
+          "post_id": 93,
+          "acted_at": "2026-03-26T17:00:00+08:00",
+          "unsupported_quote": "他才四十出头",
+          "explanation": "死亡与孩子年幼有来源，四十出头未见实际五条或system。"
+        }
+      ],
+      "issue_post_numeric_exposures": 123,
+      "issue_post_late_exposures": 0,
+      "issue_post_actual_prompt_references": 12
+    },
+    "arrival_timing_diagnostic_preload_random_s0": {
+      "published": 177,
+      "reviewed": 107,
+      "early_required": 36,
+      "screen_hits": 57,
+      "nonhit_reviewed": {
+        "early": 40,
+        "late": 10
+      },
+      "uncovered_required": [],
+      "verdicts": {
+        "no_new_event_assertion": 41,
+        "preload_future_source": 12,
+        "current_source_supported": 49,
+        "unsupported_event_detail": 4,
+        "uncertain": 1
+      },
+      "uncertain_notes": 0,
+      "unsupported_count": 4,
+      "unsupported_records": [
+        {
+          "agent_id": 14,
+          "week": "2026-W16",
+          "post_id": 264,
+          "acted_at": "2026-04-15T19:00:00+08:00",
+          "unsupported_quote": "#张雪峰 又上热搜了",
+          "explanation": "5条当前输入为阅读理解、毕业前三年建议、资料营销和志愿选择，没有上热搜信息。正文新增热点状态，未新增死亡事实或具体死亡梗；可能是营销套话，不据此断言模型提前知道事件。"
+        },
+        {
+          "agent_id": 20,
+          "week": "2026-W14",
+          "post_id": 163,
+          "acted_at": "2026-03-30T20:00:00+08:00",
+          "unsupported_quote": "四十岁的同行",
+          "explanation": "讣告截断文本支持死亡和女儿很小，但不含逝者年龄；另外4条也没有年龄。system中40岁属于发言者人设，因此可能出现角色年龄串用，不能把该值视作真实来源所供。"
+        },
+        {
+          "agent_id": 64,
+          "week": "2026-W13",
+          "post_id": 101,
+          "acted_at": "2026-03-23T20:00:00+08:00",
+          "unsupported_quote": "前几天还在讲专业怎么选、路怎么走",
+          "explanation": "41岁、死亡及死因均见未来输入；但“前几天还在讲”新增了最近活动时间，当前5条没有此时间事实。这是局部时间修饰无依据，不能把整条死亡叙述判成LLM先验泄漏。"
+        },
+        {
+          "agent_id": 100,
+          "week": "2026-W14",
+          "post_id": 185,
+          "acted_at": "2026-04-05T15:00:00+08:00",
+          "unsupported_quote": "一个41岁的人突然没了",
+          "explanation": "死亡及遗产讨论有上下文来源；当前5条和system均不含41岁，正文新增年龄。不能判断来自模型背景还是生成补全，但不符合只用当前可见事件事实。"
+        }
+      ],
+      "issue_post_numeric_exposures": 102,
+      "issue_post_late_exposures": 52,
+      "issue_post_actual_prompt_references": 5
+    },
+    "arrival_timing_diagnostic_timestamp_random_s0": {
+      "published": 169,
+      "reviewed": 87,
+      "early_required": 32,
+      "screen_hits": 36,
+      "nonhit_reviewed": {
+        "early": 41,
+        "late": 10
+      },
+      "uncovered_required": [],
+      "verdicts": {
+        "no_new_event_assertion": 46,
+        "current_source_supported": 40,
+        "unsupported_event_detail": 1
+      },
+      "uncertain_notes": 0,
+      "unsupported_count": 1,
+      "unsupported_records": [
+        {
+          "agent_id": 61,
+          "week": "2026-W15",
+          "post_id": 222,
+          "acted_at": "2026-04-12T22:00:00+08:00",
+          "unsupported_quote": "三个月了",
+          "explanation": "死亡和送别队伍有来源；但行动为4月12日，当前官方上下文明载3月24日，“三个月了”无来源且与时间相冲突。属于时间推理/生成错误，不是未来帖曝光。"
+        }
+      ],
+      "issue_post_numeric_exposures": 25,
+      "issue_post_late_exposures": 8,
+      "issue_post_actual_prompt_references": 2
+    }
+  },
+  "total_reviewed": 555,
+  "review_sha256": {
+    "runs/2026-09-29-02-injection-timing/2026-09-30-05-semantic-interest.json": "0400e8da7e1bd5715dd3c40825d784c2e84fa377fb59f0142888cf07395d8aec",
+    "runs/2026-09-29-02-injection-timing/2026-09-30-06-semantic-random.json": "f15ba66b614a0c4c043c452c805762cb7d272fcf7344038153bf52db8a761b3d",
+    "runs/2026-09-29-02-injection-timing/2026-09-30-07-semantic-preload-interest-hits.json": "49c30ee884ad6a0ea6010fa6f3b478fdf3e4746b59c1ea019182b81c7c48d039",
+    "runs/2026-09-29-02-injection-timing/2026-09-30-08-semantic-timestamp-interest-hits.json": "650846c2050c544df01dedd03a7aa302cc5307db1b8a75d488721d5c7b7cf04c"
+  },
+  "limits": "覆盖核验不是自动语义验证；无依据细节率不是无偏污染率；问题帖曝光不证明细节被传递或导致主指标变化。"
+}

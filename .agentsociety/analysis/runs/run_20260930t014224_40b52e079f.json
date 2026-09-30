@@ -1,0 +1,51 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20260930t014224_40b52e079f",
+  "operation_id": "intake",
+  "operation_contract_version": 1,
+  "execution_key": "0eb23316eeeeb9154ca4e8e0722a00caf09bb7412b01f450ad6a419d4ab39aef",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "BLOCKED",
+  "hypothesis_id": "4",
+  "experiment_id": "1",
+  "input_names": [
+    "experiment_id",
+    "hypothesis_id",
+    "workspace"
+  ],
+  "input_fingerprint": "ede9bb4c592765afae9e7432f0a1b6f905f5a7f2b3a8074992a27eb67c7f718b",
+  "safe_inputs": {
+    "hypothesis_id": "4",
+    "experiment_id": "1"
+  },
+  "preflight": {
+    "operation_id": "intake",
+    "status": "BLOCKED_BY_PHASE",
+    "reasons": [
+      "operation is not available in phase claims; expected one of: frame"
+    ],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {},
+  "error": {
+    "type": "BLOCKED_BY_PHASE",
+    "message": "operation is not available in phase claims; expected one of: frame",
+    "retryable": false
+  },
+  "declared_artifacts": [
+    ".agentsociety/analysis/hypothesis_{id}/state.yaml"
+  ],
+  "artifact_fingerprints": {},
+  "repeatable": false,
+  "retryable": false,
+  "recommended_action": "Fix preflight blockers and rerun the operation.",
+  "pid": 45325,
+  "hostname": "192.168.100.6",
+  "started_at": "2026-09-30T01:42:24.071542Z",
+  "updated_at": "2026-09-30T01:42:24.071967Z",
+  "completed_at": "2026-09-30T01:42:24.071942Z",
+  "duration_ms": 0
+}

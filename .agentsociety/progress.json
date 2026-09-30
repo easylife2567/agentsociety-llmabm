@@ -104,13 +104,26 @@
       "revision_round": 7
     },
     "analysis": {
-      "status": "needs_revision",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-09-30T01:44:40.817471+00:00",
       "completed_at": null,
-      "attempts": 2,
+      "attempts": 3,
       "error": null,
-      "metadata": {},
-      "verification_status": "not_started",
+      "metadata": {
+        "arrival_timing_scope": "四格seed0、固定W19-W22主窗口；正文核查、来源分解、历史桥接；不扩实验",
+        "harness_limitation": "intake blocked by previous weekly_lag1 claims phase; preserve prior harness, use explicit data paths; do not mark global synthesis complete",
+        "arrival_timing_analysis": {
+          "task_status": "delivered",
+          "report": "runs/2026-09-29-02-injection-timing/2026-09-30-10-results.md",
+          "data": "presentation/hypothesis_4/2026-09-30-01-arrival-timing",
+          "independent_review": "PASS",
+          "registered_text_reviews": 555,
+          "unsupported_or_misdated_posts": 19,
+          "main_Y_interaction": -0.6825,
+          "limitations": "Single seed; content-grounding and measurement issues remain. Prior harness claims phase blocks intake; global synthesis is not validated. No new experiment authorized or started."
+        }
+      },
+      "verification_status": "partial",
       "revision_round": 7
     },
     "generate_paper": {
@@ -743,6 +756,28 @@
       "from_status": "in_progress",
       "to_status": "completed",
       "from_stage": "run_experiment",
+      "to_stage": "analysis"
+    },
+    {
+      "sequence": 32,
+      "timestamp": "2026-09-30T01:44:40.817479+00:00",
+      "kind": "stage_update",
+      "revision_round": 7,
+      "stage": "analysis",
+      "from_status": "needs_revision",
+      "to_status": "in_progress",
+      "from_stage": "analysis",
+      "to_stage": "analysis"
+    },
+    {
+      "sequence": 33,
+      "timestamp": "2026-09-30T02:00:45.436125+00:00",
+      "kind": "stage_update",
+      "revision_round": 7,
+      "stage": "analysis",
+      "from_status": "in_progress",
+      "to_status": "in_progress",
+      "from_stage": "analysis",
       "to_stage": "analysis"
     }
   ]
