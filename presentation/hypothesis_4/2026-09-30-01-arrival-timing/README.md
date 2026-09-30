@@ -18,7 +18,12 @@
 | exposure.png / exposure.svg | 周主曝光Y轨迹；PNG阅读，SVG编辑 |
 | production.png / production.svg | 周玩梗作者发帖数；PNG阅读，SVG编辑 |
 | semantic_signal.png / semantic_signal.svg | 周独立玩梗词表信号份额；不等同互斥类别或人工金标 |
+| timestamp_interest_s0__chart3b_agent_supply_stacked_area.png | timestamp-interest五类Agent周发帖堆叠，复用用户指定chart3b模板，统一0–80轴 |
+| timestamp_random_s0__chart3b_agent_supply_stacked_area.png | timestamp-random同口径同尺度堆叠图 |
+| timestamp_agent_supply_by_type.csv | 两臂22行周×五类成功发帖数，与行动账本逐项一致 |
 
 复现：使用工作区`.env`中的Python，依次执行任务内`2026-09-30-04-analyze.py`、`2026-09-30-09-plot.py`、`2026-09-30-11-knowledge-coverage.py`。三者只读原始run，不调用外部模型；最后一步使用任务内已经完成的逐条阅读记录，不重新自动“判语义”。官方SQL保存在replay_checks.json，可逐条按其run_id对应的replay路径执行。
 
 分母与边界：主窗口W19–W22，每run400次计划行动、4000实际槽；单seed不做显著性/置信区间。source=agent的内部type来自固定作者，不代表正文互斥语义；问题帖曝光不是错误细节传播或效应偏差的因果界限。
+
+堆叠图单独复现：运行任务内`2026-09-30-12-timestamp-stacked-area.py`。图中类型表示固定作者类型，不是正文语义重新判类；真实帖按实际发布时间可见，Agent生成帖次周才可推荐。图形直接复用`hypothesis_4/experiment_1/plot_run_charts.py`的`chart3b_agent_supply_stacked_area`，不修改模板或原始run。
