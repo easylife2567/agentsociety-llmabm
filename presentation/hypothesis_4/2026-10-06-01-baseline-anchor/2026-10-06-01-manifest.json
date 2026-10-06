@@ -1,0 +1,211 @@
+{
+  "run_id": "baseline_anchor_fixed_exposure_20261006_01",
+  "kind": "fixed_exposure_numerical_diagnostic",
+  "started_at": "2026-10-06T13:43:40.786139+00:00",
+  "ended_at": "2026-10-06T13:43:50.764841+00:00",
+  "LLM_calls": 0,
+  "LLM_tokens": 0,
+  "actions": 9900,
+  "new_simulation_paths": 0,
+  "code_baseline_commit": "b2fa8ec0293d96f604068c19666a116594caef29",
+  "population_information_window": "W12-W22 retrospective",
+  "expected_baseline_agents": {
+    "original": {
+      "meme": 0.009333899024183284,
+      "mourning": 0.0005833686890114552,
+      "marketing": 2.6251591005515484,
+      "education": 0.28526728892660164,
+      "other": 0.071754348748409
+    },
+    "population_posts": {
+      "meme": 0.006295247088448221,
+      "mourning": 0.00039345294302801383,
+      "marketing": 1.7705382436260624,
+      "education": 0.19239848914069876,
+      "other": 0.0483947119924457
+    },
+    "cohort_authors": {
+      "meme": 0.0,
+      "mourning": 0.0,
+      "marketing": 0.35609621233066074,
+      "education": 0.043090298962782186,
+      "other": 0.008723564954682779
+    }
+  },
+  "cohort_accounting": {
+    "meme": {
+      "cohort_users": 5943,
+      "pre_all_author_weeks": 16,
+      "pre_cohort_author_weeks": 0,
+      "pre_all_posts_with_author": 16
+    },
+    "mourning": {
+      "cohort_users": 7056,
+      "pre_all_author_weeks": 1,
+      "pre_cohort_author_weeks": 0,
+      "pre_all_posts_with_author": 1
+    },
+    "marketing": {
+      "cohort_users": 7234,
+      "pre_all_author_weeks": 2939,
+      "pre_cohort_author_weeks": 896,
+      "pre_all_posts_with_author": 4499
+    },
+    "education": {
+      "cohort_users": 4917,
+      "pre_all_author_weeks": 446,
+      "pre_cohort_author_weeks": 113,
+      "pre_all_posts_with_author": 488
+    },
+    "other": {
+      "cohort_users": 6620,
+      "pre_all_author_weeks": 119,
+      "pre_cohort_author_weeks": 22,
+      "pre_all_posts_with_author": 123
+    }
+  },
+  "checks": [
+    {
+      "run": "anchored_v1_chronological_s0",
+      "actions": 1100,
+      "old_decision_mismatches": 0,
+      "replay_post_mismatches": 0,
+      "max_U_rounding_error": 4.997942846274306e-05,
+      "W13_mourning_speakers": 13,
+      "empty_feed_actions": 6,
+      "historical_content_empty_actions": 0
+    },
+    {
+      "run": "anchored_v1_chronological_s1",
+      "actions": 1100,
+      "old_decision_mismatches": 0,
+      "replay_post_mismatches": 0,
+      "max_U_rounding_error": 4.996334371798472e-05,
+      "W13_mourning_speakers": 11,
+      "empty_feed_actions": 6,
+      "historical_content_empty_actions": 0
+    },
+    {
+      "run": "anchored_v1_chronological_s2",
+      "actions": 1100,
+      "old_decision_mismatches": 0,
+      "replay_post_mismatches": 0,
+      "max_U_rounding_error": 4.994316036655011e-05,
+      "W13_mourning_speakers": 14,
+      "empty_feed_actions": 6,
+      "historical_content_empty_actions": 2
+    },
+    {
+      "run": "anchored_v1_interest_s0",
+      "actions": 1100,
+      "old_decision_mismatches": 0,
+      "replay_post_mismatches": 0,
+      "max_U_rounding_error": 4.999944651762345e-05,
+      "W13_mourning_speakers": 22,
+      "empty_feed_actions": 0,
+      "historical_content_empty_actions": 1
+    },
+    {
+      "run": "anchored_v1_interest_s1",
+      "actions": 1100,
+      "old_decision_mismatches": 0,
+      "replay_post_mismatches": 0,
+      "max_U_rounding_error": 4.995661488071956e-05,
+      "W13_mourning_speakers": 22,
+      "empty_feed_actions": 0,
+      "historical_content_empty_actions": 1
+    },
+    {
+      "run": "anchored_v1_interest_s2",
+      "actions": 1100,
+      "old_decision_mismatches": 0,
+      "replay_post_mismatches": 0,
+      "max_U_rounding_error": 4.996334371798472e-05,
+      "W13_mourning_speakers": 22,
+      "empty_feed_actions": 0,
+      "historical_content_empty_actions": 0
+    },
+    {
+      "run": "anchored_v1_random_s0",
+      "actions": 1100,
+      "old_decision_mismatches": 0,
+      "replay_post_mismatches": 0,
+      "max_U_rounding_error": 4.9790887801826056e-05,
+      "W13_mourning_speakers": 12,
+      "empty_feed_actions": 0,
+      "historical_content_empty_actions": 0
+    },
+    {
+      "run": "anchored_v1_random_s1",
+      "actions": 1100,
+      "old_decision_mismatches": 0,
+      "replay_post_mismatches": 0,
+      "max_U_rounding_error": 4.9985996960488777e-05,
+      "W13_mourning_speakers": 7,
+      "empty_feed_actions": 0,
+      "historical_content_empty_actions": 0
+    },
+    {
+      "run": "anchored_v1_random_s2",
+      "actions": 1100,
+      "old_decision_mismatches": 0,
+      "replay_post_mismatches": 0,
+      "max_U_rounding_error": 4.995449702260846e-05,
+      "W13_mourning_speakers": 8,
+      "empty_feed_actions": 0,
+      "historical_content_empty_actions": 0
+    }
+  ],
+  "input_hashes": {
+    "anchored_v1_chronological_s0": {
+      "path": "archive/hypothesis_4_experiment_1_batches/formal_current/anchored_v1/raw/anchored_v1_chronological_s0",
+      "agent_logs_hash": "f96ba187912fc9b6980d673418aa2f1f0130725ecf0e2b248d486632ac5b2a80",
+      "profile_state_replay_hash": "7b44c84461a9a9017ff9bd656eb778dbdb16228184f8224e957f24f456c1358d"
+    },
+    "anchored_v1_chronological_s1": {
+      "path": "archive/hypothesis_4_experiment_1_batches/formal_current/anchored_v1/raw/anchored_v1_chronological_s1",
+      "agent_logs_hash": "bed147c8f44a754781e3bc7efcab890fb47ce0f11c057a1eb6adbb961e418d49",
+      "profile_state_replay_hash": "49aa3b7879403fd39b604c7d812e7c3dedc44e77aad85f8a373ae94954275ced"
+    },
+    "anchored_v1_chronological_s2": {
+      "path": "archive/hypothesis_4_experiment_1_batches/formal_current/anchored_v1/raw/anchored_v1_chronological_s2",
+      "agent_logs_hash": "f971b068379020a0e25f1942096a86bb5abbffb43c6eeb40aef4d304e603b9db",
+      "profile_state_replay_hash": "949d506bfe384165999518c6891a692c58b9316c4255f538563bbd747205c33a"
+    },
+    "anchored_v1_interest_s0": {
+      "path": "archive/hypothesis_4_experiment_1_batches/formal_current/anchored_v1/raw/anchored_v1_interest_s0",
+      "agent_logs_hash": "ca0ccaedf6ba3f89a6741fd0a38c56e17ef30de43d6804c40473e2f3985d6bb8",
+      "profile_state_replay_hash": "b57bc6584a961eb5a7fdbdf76c4141dd0dd099fcf30a458f2be53588debe2262"
+    },
+    "anchored_v1_interest_s1": {
+      "path": "archive/hypothesis_4_experiment_1_batches/formal_current/anchored_v1/raw/anchored_v1_interest_s1",
+      "agent_logs_hash": "153a6806da2cf8798083acf6a1d985e728964ae3e4dd321dd4a10fe976aec7f5",
+      "profile_state_replay_hash": "4236eece0168e6b2172fe06bb3723a21818893c1773ee8fa9c04928f15139839"
+    },
+    "anchored_v1_interest_s2": {
+      "path": "archive/hypothesis_4_experiment_1_batches/formal_current/anchored_v1/raw/anchored_v1_interest_s2",
+      "agent_logs_hash": "9f8a830591e4107411cc6d47d3884bb2251408caa0fa45ded9d860589ab9a698",
+      "profile_state_replay_hash": "a37061821c9e01bc414c00a9237f20f0d4b1c748da962578c3ccb2f7aa0a77a8"
+    },
+    "anchored_v1_random_s0": {
+      "path": "archive/hypothesis_4_experiment_1_batches/formal_current/anchored_v1/raw/anchored_v1_random_s0",
+      "agent_logs_hash": "fa5afdb38d2f59ab83ee37fc5f0701edbfc645df03c0d2ea9192fe88fd15c2a7",
+      "profile_state_replay_hash": "1701d198b3b422f313b9e3d8255f8a7e6c12a73ab0208aca2ef55df109277f71"
+    },
+    "anchored_v1_random_s1": {
+      "path": "archive/hypothesis_4_experiment_1_batches/formal_current/anchored_v1/raw/anchored_v1_random_s1",
+      "agent_logs_hash": "d09ad69b02059ebcdd931a6378c0f8b234cd892701418bbc7ac94e4b8ec55327",
+      "profile_state_replay_hash": "e2119825ff114c6dc2d7e92378e0245fd195f27095caf19ebe7ffbe5fdfa2611"
+    },
+    "anchored_v1_random_s2": {
+      "path": "archive/hypothesis_4_experiment_1_batches/formal_current/anchored_v1/raw/anchored_v1_random_s2",
+      "agent_logs_hash": "dc143585c9676b840c61de5899dd14f7c3992ff763f4941dff8e01c75092a32d",
+      "profile_state_replay_hash": "358d06e875479abd034b1773d96525d96a6a8f0f2f06a632df05d4cb3375eeae"
+    }
+  },
+  "workbook_hash": "0ea6f06b7caa114c7c3add8c2b002fe35ee3f492dd2458753426864a3bfcaae9",
+  "benchmark_hash": "dcc0c18cb20d5e9aee4f72af94fd95470be5dd130663407a8d865e3b718efb41",
+  "script_hash": "fdde8618495e87a7fbf7fa7fa69022742a3ab41dd5cb8caa7ef5f55904364552",
+  "formula_hash": "1ff47e0f7ef28ecf647161c51b3c4c2e150a45b71d72a768a7642a9cc86a88e3",
+  "scope": "Only B changes; historical D/R/exposure/time/content remain fixed; no feedback or predictive validation."
+}

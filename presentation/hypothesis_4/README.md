@@ -8,5 +8,6 @@
 | charts/ | 历史批次图表，沿用原路径 |
 | data/ | 历史批次分析、预测及来源记录；不作为到达时机四格的活动来源 |
 | [2026-09-30-01-arrival-timing/](2026-09-30-01-arrival-timing/README.md) | 普通真实帖到达时机四格诊断的复算表、来源核验和图形 |
+| [2026-10-06-01-baseline-anchor/](2026-10-06-01-baseline-anchor/README.md) | 常态锚点换算的独立固定曝光数值检查；不含新LLM轨迹 |
 
 到达时机任务的完整解释与交接见[任务README](../../runs/2026-09-29-02-injection-timing/README.md)。本目录不另设实时进度。

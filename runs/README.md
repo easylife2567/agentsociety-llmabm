@@ -9,6 +9,7 @@
 | [README.md](README.md) | 根级任务索引与使用约定 | 从这里查找任务 |
 | [2026-09-29-01-research-roadmap/](2026-09-29-01-research-roadmap/README.md) | 课题推进规范与历史实验脉络 | 已交接，作为背景入口 |
 | [2026-09-29-02-injection-timing/](2026-09-29-02-injection-timing/README.md) | 真实帖子到达时机的四格实验及后续方案 | 当前活动入口；诊断分析已交付，已采纳timestamp方向 |
+| [2026-10-06-01-baseline-anchor/](2026-10-06-01-baseline-anchor/README.md) | 常态锚点换算的独立无LLM数值探索 | 9900条复算完成，110/220条营销判定变化；新锚点尚未采纳 |
 
 ## 使用约定
 
