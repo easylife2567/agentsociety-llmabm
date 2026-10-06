@@ -15,6 +15,10 @@
 | 2026-10-06-01-numerical-decisions.csv | timestamp原轨迹、固定发布安排屏蔽和有限支持闭环共6,004条已提交数值行动；不是6,004次模型调用 |
 | 2026-10-06-02-week-boundary.csv | 现实UTC/上海周界的五类非噪音内容份额差，营销保留在分母 |
 | 2026-10-06-03-numerical-summary.json | 无LLM验证的复现结果、拒答影响、归档正文支持边界、日期原型检查及输入哈希 |
+| 2026-10-06-04-timestamp-interest-numerical-expectation.png / .svg | chart3b样式的interest条件性拟发布机会；219次，假设其他生成通过，非完整闭环预测 |
+| 2026-10-06-05-timestamp-random-numerical-expectation.png / .svg | 同口径random零干预对照；169次，纵轴同为0–80 |
+| 2026-10-06-06-numerical-expectation-weekly.csv | 两臂22行五类作者拟发布机会及归档发布数排除已确认拒答后的周表 |
+| 2026-10-06-07-numerical-expectation-provenance.json | 预期图指标、固定供给边界及源CSV、摘要、模板、绘图脚本的哈希 |
 | input_hashes.json | 原始四格及历史Agent账本、配置清单、复算器与判类依据SHA-256 |
 | replay_checks.json | 官方analysis query-data的SQL和四格返回，独立核对11周及主要总量 |
 | knowledge_summary.json | 555条实际阅读覆盖检查、问题帖计数及直接曝光；引用逐条判读哈希 |
@@ -32,3 +36,5 @@
 堆叠图单独复现：运行任务内`2026-09-30-12-timestamp-stacked-area.py`。图中类型表示固定作者类型，不是正文语义重新判类；真实帖按实际发布时间可见，Agent生成帖次周才可推荐。图形直接复用`hypothesis_4/experiment_1/plot_run_charts.py`的`chart3b_agent_supply_stacked_area`，不修改模板或原始run。
 
 数值验证单独复现：使用.env中的Python运行任务内`2026-10-06-01-numerical-check.py`。脚本设置依赖的本地价格表并禁止网络连接，只使用实际环境、纯效用函数与原始归档正文。固定发布安排分支不能解释为完整闭环新曲线；interest有限支持闭环在W17遇到不同生成上下文后停止，random是零干预控制。
+
+数值预期图单独复现：运行任务内`2026-10-06-02-plot-numerical-expectation.py`。色块计重算达到发言阈值且非已确认拒答的行动，假设其余生成均通过验收；虚线计归档发布排除已确认拒答，其他正文未经本图重新验证。只汇总数值CSV，不运行环境或生成接口。chronological仅提供样式，图示条件仍为timestamp-interest/random。

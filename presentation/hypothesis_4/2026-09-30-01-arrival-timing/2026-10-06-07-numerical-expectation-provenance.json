@@ -1,0 +1,14 @@
+{
+  "metric": "recomputed_speak excluding one known refusal; all other generations assumed valid",
+  "scope": "fixed_supply_screen; not a full closed-loop prediction",
+  "totals": {
+    "interest": 219,
+    "random": 169
+  },
+  "source_sha256": {
+    "presentation/hypothesis_4/2026-09-30-01-arrival-timing/2026-10-06-01-numerical-decisions.csv": "f1bc0135c2a505d8c7fcb0abd111592aa1a666fe8786d35f705940ee1c3c03e0",
+    "presentation/hypothesis_4/2026-09-30-01-arrival-timing/2026-10-06-03-numerical-summary.json": "e0a846db5d63b46816b4874ea7b3544b5f87b1cbe946785012a1494d2e678730",
+    "hypothesis_4/experiment_1/plot_run_charts.py": "3f3617a02452e4af9da28ad54211059b35caef92e8c74b8ecf3dab5e14e9e6aa",
+    "runs/2026-09-29-02-injection-timing/2026-10-06-02-plot-numerical-expectation.py": "56544554ba584df3e969a83f5d4d60c2607cacc6195ca543cefa5f9a8ed86fd4"
+  }
+}
