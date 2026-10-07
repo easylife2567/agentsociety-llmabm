@@ -1,0 +1,18 @@
+{
+  "totals": {
+    "preload-interest": 234,
+    "timestamp-interest": 214,
+    "preload-random": 177,
+    "timestamp-random": 169
+  },
+  "classification": "fixed author type",
+  "scope": "fixed archived supply; not closed-loop prediction",
+  "model_calls": 0,
+  "source_sha256": {
+    "presentation/hypothesis_4/2026-09-30-01-arrival-timing/2026-10-07-02-content-weekly.csv": "643a004c5809e02a854e122c9bc3b7b625f123e3b756fdce92f73f68799c9001",
+    "presentation/hypothesis_4/2026-09-30-01-arrival-timing/2026-10-07-03-content-summary.json": "3dbd04ac4da9925813c2d7ab0d732fb20aa3d6c2ef64269981fff249583afd71",
+    "hypothesis_4/experiment_1/plot_run_charts.py": "3f3617a02452e4af9da28ad54211059b35caef92e8c74b8ecf3dab5e14e9e6aa",
+    "hypothesis_4/experiment_1/runs/anchored_v1/_derived/charts/anchored_v1_chronological_s0__chart3b_agent_supply_stacked_area.png": "a9fb76c4fd53ddce0e1b4dca10ed6dd90e0fc1c2c98f132e0a189945fd28dff5",
+    "runs/2026-09-29-02-injection-timing/2026-10-07-06-content-overview.py": "a3173c2b1032c984d9414ec22d311b1d5f21174779298d42d536fc120d75285e"
+  }
+}

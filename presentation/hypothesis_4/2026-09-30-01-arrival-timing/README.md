@@ -26,6 +26,8 @@
 | 2026-10-07-06-content-timestamp-interest.png / .svg | 既有timestamp-interest静态修正后保留214条；未新增run |
 | 2026-10-07-07-content-preload-random.png / .svg | preload-random同口径177条；统一0–80轴 |
 | 2026-10-07-08-content-timestamp-random.png / .svg | 既有timestamp-random同口径169条；统一0–80轴 |
+| 2026-10-07-09-content-overview.png / .svg | 四格固定供给数值预期总览，沿用chart3b五类配色、事件线及0–80轴；标注各周总数 |
+| 2026-10-07-10-content-overview-provenance.json | 总览图的四格合计、作者分类口径、源周表/摘要/模板/脚本SHA-256 |
 | input_hashes.json | 原始四格及历史Agent账本、配置清单、复算器与判类依据SHA-256 |
 | replay_checks.json | 官方analysis query-data的SQL和四格返回，独立核对11周及主要总量 |
 | knowledge_summary.json | 555条实际阅读覆盖检查、问题帖计数及直接曝光；引用逐条判读哈希 |
@@ -47,3 +49,5 @@
 数值预期图单独复现：运行任务内`2026-10-06-02-plot-numerical-expectation.py`。色块计重算达到发言阈值且非已确认拒答的行动，假设其余生成均通过验收；虚线计归档发布排除已确认拒答，其他正文未经本图重新验证。只汇总数值CSV，不运行环境或生成接口。chronological仅提供样式，图示条件仍为timestamp-interest/random。
 
 内容修复数值图单独复现：运行任务内`2026-10-07-03-content-numerical-expectation.py`，无模型/网络。归档正文作局部修正、拒答作标明来源的离线兜底，发布量全部保留；额外45条筛查仍待人工确认。来源正文是服务后保存文本，完整服务字段不能追回。色块与原发布虚线逐周重合是固定供给的数量守恒，不是新闭环结果。正文改变仍可能影响以后interest feed，不能据本图承诺新实验全窗数量或现实拟合。chronological只提供样式，timestamp推进仍暂停；实现解释、功能验收和最终patch见任务结果报告。
+
+四格总览单独复现：使用.env指定Python运行任务内`2026-10-07-06-content-overview.py`。只读取已验收周表，检查11周完整性、作者分组之和、原发布量逐周一致及794条合计；不执行环境或模型。图中各周数字是保留发布数，不能当作新闭环生成结果。
