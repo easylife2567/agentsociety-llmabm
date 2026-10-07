@@ -4,9 +4,17 @@
 缺记录会报错，合法空feed计入主指标的计划机会分母。
 """
 import json
+import importlib.util
 from collections import Counter
 from datetime import datetime
 from pathlib import Path
+
+
+# 新内容账本与生产门控共用分类核对；旧记录保留原审计语义。
+_quality_path = Path(__file__).resolve().parents[2] / 'custom/agents/curation_content_quality.py'
+_quality_spec = importlib.util.spec_from_file_location('audit_content_quality', _quality_path)
+quality = importlib.util.module_from_spec(_quality_spec)
+_quality_spec.loader.exec_module(quality)
 
 
 def read_json(path, default=None):
@@ -68,6 +76,8 @@ def audit(run_dir, run, expected_batches=None):
             decision_pairs.append((aid, r['week']))
             if r.get('reason') in ('action_failed', 'generation_failed', 'publication_failed'):
                 failures.append(r['reason'])
+    content_ledger = quality.ledger_summary(decisions)
+    failures.extend(content_ledger['failures'])
     actual_prompt_future = 0
     for decision in decisions:
         if decision.get('generation_attempts', 0) > 0:
@@ -111,4 +121,4 @@ def audit(run_dir, run, expected_batches=None):
             'advance_seconds_mean': sum(advances)/len(advances) if advances else None,
             'advance_seconds_max': max(advances) if advances else None,
             'response_models': models, 'generation_attempts': sum(r.get('generation_attempts', 0) for r in decisions),
-            'failures': sorted(set(failures)), 'late_metrics': metrics([r for r in actions if r['week'] >= '2026-W19'])}
+            'content_ledger': content_ledger, 'failures': sorted(set(failures)), 'late_metrics': metrics([r for r in actions if r['week'] >= '2026-W19'])}

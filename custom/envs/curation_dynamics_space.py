@@ -826,6 +826,11 @@ class CurationDynamicsSpace(EnvBase):
             "injected_week": p.get("injected_week", p["week"]),
             "injection_role": p.get("injection_role"),
             "event_time": p.get("event_time"),
+            # 只增加生成溯源元数据；不补历史Agent时刻，不参与候选、排序或回流。
+            "published_at": p.get("event_time"),
+            "source": "external" if str(p.get("author_id", "")).startswith("ext_") else "agent",
+            "stable_key": (f"external:{p.get('source_pid')}" if str(p.get("author_id", "")).startswith("ext_")
+                           else f"agent:{p.get('author_id')}:{p.get('week')}"),
             "is_official": p["is_official"],
         }
 

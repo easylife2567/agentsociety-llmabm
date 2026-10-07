@@ -13,7 +13,7 @@
    决策分量（份额/因子/环境/效用/门槛）全量写入 decision_log，可完整审计与事后重算。
 3. 若发言，一次内容生成 completion——提示词包含本周 feed 前 feed_context_n 条帖子的
    作者与正文摘录，要求**基于所见内容**回应/讨论/二创/跟帖式发言（用户 2026-09-10 裁定），
-   按 Agent 固定类型生成中文帖子（≤300 字），并自然融入本类型词表词（type_vocab）。
+   按固定类型生成中文帖子（≤300字），只选所见内容已出现的类型词，不把词库当事实依据。
 4. **create_post**（幂等, template_mode）——发布，帖类型 = 作者类型（by construction）。
 
 类型全程固定（实验设计 二.2）：LLM 只负责"说什么"，"是否说"由数值算法决定。
@@ -33,6 +33,12 @@ from typing import Any
 from agentsociety2.agent.base import AgentBase
 
 logger = logging.getLogger(__name__)
+
+# 内容输入和发布前验收共用纯函数；表达效用保持原实现。
+_quality_spec = importlib.util.spec_from_file_location('curation_content_quality', Path(__file__).with_name('curation_content_quality.py'))
+quality = importlib.util.module_from_spec(_quality_spec)
+_quality_spec.loader.exec_module(quality)
+
 
 # ---------------- 共享机制纯函数（与 env / calibrate_speak.py 同源） ----------------
 # 沉默螺旋因子 D 的实现放 custom/envs/curation_mechanisms.py，三处（agent / env / 校准脚本）
@@ -112,31 +118,6 @@ def _event_adjusted_share(
         return observed_share, active, salience_slots
     observed_own_slots = observed_share * feed_slots
     return (observed_own_slots + salience_slots) / denominator, active, salience_slots
-
-# 各类型内容生成指引（人设之外的具体写作约束）
-_CONTENT_GUIDE: dict[str, str] = {
-    "meme": (
-        "写一条玩梗/抽象风格的帖子：用谐音、变体称呼、emoji、反讽或圈内梗表达，"
-        "短小轻快，不解释梗。"
-    ),
-    "mourning": (
-        "写一条悼念/缅怀风格的帖子：真诚追思、表达哀悼或由其离世引发的生命/健康感慨，"
-        "语气克制严肃，可用 🕯️ 等符号。"
-    ),
-    "marketing": (
-        "写一条借势营销帖子：借当前讨论热点引流你的课程/资料/咨询/服务，"
-        "含明确行动号召（链接/私信/领取/限时等），话术圆滑。"
-    ),
-    "education": (
-        "写一条教育观点讨论帖子：围绕专业选择、升学规划、就业、教育公平或相关人物的教育观点"
-        "展开理性讨论，有自己的明确立场，不做商业推广。"
-    ),
-    "other": (
-        "写一条普通路人讨论帖：转述事件、表达一般性看法或闲聊式感慨，"
-        "不属于玩梗/悼念/营销/教育讨论中的任何一类，口吻日常。"
-    ),
-}
-
 
 class CurationDiscourseAgent(AgentBase):
     """算法策展舆论场中的固定类型话语参与者（玩梗/悼念/营销/教育/其他）。"""
@@ -357,49 +338,8 @@ class CurationDiscourseAgent(AgentBase):
     # LLM prompt（仅内容生成；发言必须基于本周看到的帖子——用户 2026-09-10 裁定）
     # ------------------------------------------------------------------
     def _content_messages(self, snap: dict, comps: dict) -> list[dict]:
-        max_chars = int(self._config.get("max_content_chars", 300))
-        feed_n = int(self._config.get("feed_context_n", 5))
-        system = (
-            f"你在扮演一个中文社交媒体用户，人设如下：\n\n{self._persona}\n\n"
-            f"你的固定内容类型是：{self._agent_type}。{_CONTENT_GUIDE[self._agent_type]}"
-        )
-        vocab_note = ""
-        if self._type_vocab:
-            vocab_note = (
-                "\n组织语言时，从你的常用词库里自然选用 1-3 个词融入正文"
-                "（贴合语境、不要堆砌、不要逐字罗列）："
-                + "、".join(self._type_vocab)
-            )
-        # feed 上下文：取本周 feed 前 feed_context_n 条（官方置顶/算法排序在前），
-        # 摘录作者与正文（单条截断 120 字），作为发言对象。
-        feed_lines: list[str] = []
-        for it in (snap.get("feed") or [])[: max(0, feed_n)]:
-            text = str(it.get("content", "")).strip().replace("\n", " ")[:120]
-            badge = "【官方】" if it.get("is_official") else ""
-            feed_lines.append(
-                f"- {badge}@{it.get('author_handle', '?')}（{it.get('week', '?')}）：{text}"
-            )
-        if feed_lines:
-            feed_block = (
-                "\n你本周刷到的前几条帖子：\n" + "\n".join(feed_lines) + "\n"
-                "你的发言必须建立在你看到的内容之上：可以回应、补充、反驳、二创、"
-                "玩其中的梗、或接话跟帖式地引用讨论；若其中某条与你高度相关，优先围绕它展开。"
-            )
-        else:
-            feed_block = "\n本周信息流为空，你可就当前话题自由发言。"
-        env = snap.get("meme_env") or {}
-        context = (
-            f"本周舆论场存量 {env.get('stock', '?')} 帖、新增 {env.get('flow', '?')} 帖，"
-            f"你的 feed 里同类内容占比约 {comps['share_own']:.0%}。"
-        )
-        user = (
-            f"现在是 {snap.get('week', '?')}。你决定公开发言。\n{context}\n{feed_block}\n"
-            f"请写一条不超过 {max_chars} 字的帖子正文，只输出正文本身，不要解释、不要引号。"
-            "可以带 emoji 或话题标签，风格必须符合你的人设与类型。"
-            + vocab_note
-        )
-        return [{"role": "system", "content": system},
-                {"role": "user", "content": user}]
+        return quality.messages(self, snap, limit=int(self._config.get("feed_context_n", 5)),
+                                max_chars=int(self._config.get("max_content_chars", 300)))
 
     # ------------------------------------------------------------------
     # Abstract methods
@@ -435,74 +375,67 @@ class CurationDiscourseAgent(AgentBase):
                     f"{self.name}: inactive chronological batch "
                     f"({hour_of_week} != {self._chronological_action_hour})"
                 )
+        week = f'{t.isocalendar().year}-W{t.isocalendar().week:02d}'
+        if any(r.get('week') == week for r in self._decision_log):
+            return 'decision already recorded'
         self._step_count += 1
         agent_id = str(self._id)
-        record: dict[str, Any] = {"tick": tick, "speak": False, "reason": "",
-                                  "week": None, "posted": False}
-
-        # 1) 读 feed（readonly；template_mode 安全——纯查询缓存 codegen）
-        snap: dict = {}
+        record = {'tick': tick, 'week': week, 'acted_at': quality.clock_time(t), 'speak': None,
+                  'posted': False, 'post_id': None, 'generation_attempts': 0,
+                  'attempt_count_scope': 'completion_calls', 'generation_status': 'not_requested', 'content_status': 'not_generated'}
+        phase = 'before_decision'
         try:
-            results, _answer = await self.ask_env(
-                {"variables": {"agent_id": agent_id}},
-                "Please call get_feed() using agent_id from ctx['variables'] "
-                "to get my current weekly feed snapshot.",
-                readonly=True,
-                template_mode=True,
-            )
-            snap = self._find_feed_dict(results) or {}
+            results, _ = await self.ask_env(
+                {'variables': {'agent_id': agent_id}},
+                "Please call get_feed() using agent_id from ctx['variables'] to get my current weekly feed snapshot.",
+                readonly=True, template_mode=True)
+            snap = self._find_feed_dict(results)
+            if not snap or snap.get('week') != week:
+                raise RuntimeError('feed unavailable or wrong week')
+            # 行动时钟取入口t；历史来源缺精确时刻时仍保持未知，不改环境排序。
+            snap = {**snap, 'event_time': snap.get('event_time') or quality.clock_time(t)}
+            record.update(prompt_context=quality.prompt_context(snap.get('feed') or [], int(self._config.get('feed_context_n', 5))))
+            if not snap.get('feed'):
+                record.update(reason='no_context', u=None, components=None)
+                return 'no_context'
+            u, comps = self._speak_stimulus(snap)
+            speak = u >= self._params['activity']
+            phase = 'after_decision'
+            record.update(u=round(u, 4), threshold=round(self._params['activity'], 4),
+                          components=comps, speak=speak, reason='below_threshold')
+            if not speak:
+                return 'below_threshold'
+            # 常规入口仍只请求一次，完整结果检查先于正文长度截断。
+            prompts = self._content_messages(snap, comps)
+            record.update(messages=prompts, generation_attempts=1)
+            try:
+                response = await self.acompletion(prompts)
+                checked = quality.inspect_response(response, record['prompt_context'],
+                            max_chars=int(self._config.get('max_content_chars', 300))+100)
+                record.update(checked, generation_status='service_success',
+                              response_model=quality.value(response, 'model'))
+            except Exception as exc:
+                record.update(reason='generation_failed', generation_status='service_failed', error_type=type(exc).__name__)
+                return 'generation_failed'
+            if checked['content_status'] != 'accepted':
+                record['reason'] = {'refusal': 'content_refusal', 'unsupported_detail': 'content_rejected',
+                                    'empty': 'generation_failed'}[checked['content_status']]
+                return record['reason']
+            phase = 'publication'
+            result, _ = await self.ask_env(
+                {'variables': {'agent_id': agent_id, 'content': checked['content']}},
+                "Please call create_post() using agent_id and content from ctx['variables'] to publish my post.",
+                readonly=False, template_mode=True)
+            published = quality.published_result(result)
+            record.update(posted=bool(published), reason='published' if published else 'publication_failed')
+            if published:
+                record.update(post_id=published['post_id'], content_preview=checked['content'][:80])
+            return record['reason']
         except Exception as exc:
-            self.logger.error("[%s] get_feed failed: %s", self.name, exc)
-        if not snap:
-            record["reason"] = "feed_unavailable"
+            record.update(reason='publication_failed' if phase == 'publication' else 'action_failed',
+                          failure_phase=phase, error_type=type(exc).__name__)
+            if phase == 'before_decision':
+                record.update(speak=None, u=None, components=None)
+            return record['reason']
+        finally:
             self._decision_log.append(record)
-            return f"{self.name}: feed unavailable, silent"
-
-        record["week"] = snap.get("week")
-
-        # 2) 数值决策（无 LLM）：U = B_i + R·(D−B_i)，发言当且仅当 U ≥ 门槛
-        u, comps = self._speak_stimulus(snap)
-        threshold = self._params["activity"]
-        speak = u >= threshold
-        record.update({
-            "u": round(u, 4),
-            "threshold": round(threshold, 4),
-            "components": comps,
-            "speak": speak,
-            "reason": f"u={u:.3f} {'>=' if speak else '<'} threshold={threshold:.3f}",
-        })
-        if not speak:
-            self._decision_log.append(record)
-            return f"{self.name}: silent (u={u:.3f} < threshold={threshold:.3f})"
-
-        # 3) 内容生成（1 次 LLM 调用）
-        content = ""
-        try:
-            resp = await self.acompletion(self._content_messages(snap, comps))
-            content = (resp.choices[0].message.content or "").strip().strip('"“”')
-        except Exception as exc:
-            self.logger.error("[%s] content generation failed: %s", self.name, exc)
-        max_chars = int(self._config.get("max_content_chars", 300))
-        content = content[: max_chars + 100]  # 硬截断保护
-        if not content:
-            record["reason"] = "content_empty"
-            self._decision_log.append(record)
-            return f"{self.name}: content generation failed, silent"
-
-        # 4) 发布（env 侧幂等：每 tick 每 agent 仅首帖生效；唯一写工具，template_mode 安全）
-        try:
-            await self.ask_env(
-                {"variables": {"agent_id": agent_id, "content": content}},
-                "Please call create_post() using agent_id and content "
-                "from ctx['variables'] to publish my post.",
-                readonly=False,
-                template_mode=True,
-            )
-            record["posted"] = True
-            record["content_preview"] = content[:80]
-        except Exception as exc:
-            self.logger.error("[%s] create_post failed: %s", self.name, exc)
-            record["reason"] += " | post_failed"
-
-        self._decision_log.append(record)
-        return f"{self.name}: posted" if record["posted"] else f"{self.name}: post failed"

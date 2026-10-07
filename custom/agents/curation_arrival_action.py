@@ -10,29 +10,14 @@ import os
 import time
 from pathlib import Path
 
-STYLES = {
-    'meme': '用轻快、幽默或反讽的口吻回应所见内容，不凭空引入具体事件梗。',
-    'mourning': '语气克制、重视情感。仅在所见内容支持离世事实时回应悼念，否则回应实际所见内容。',
-    'marketing': '围绕所见讨论介绍课程、资料或咨询服务，可以给出行动号召。',
-    'education': '理性讨论所见内容中的教育、升学或就业观点，有明确立场。',
-    'other': '以普通路人的口吻回应所见内容，表达日常看法。',
-}
-
-
-def prompt_context(feed):
-    """实际生成上下文固定最多五条、每条120字，并记录稳定来源键。"""
-    return [{'stable_key': p['stable_key'], 'published_at': p['published_at'],
-             'text': str(p.get('content', '')).strip().replace('\n', ' ')[:120],
-             'author': p.get('author_handle', '?'), 'is_official': p.get('is_official', False)}
-            for p in feed[:5]]
-
-
-def messages(agent, snap):
-    context = prompt_context(snap['feed'])
-    lines = '\n'.join(f"- {'【官方】' if p['is_official'] else ''}@{p['author']}：{p['text']}" for p in context)
-    return [
-        {'role': 'system', 'content': f'你扮演中文社交媒体用户。人设：{agent._persona}\n{STYLES[agent._agent_type]}\n只回应提供的帖子，不凭自己的背景知识补充未出现的事件事实。'},
-        {'role': 'user', 'content': f"当前模拟时间为{snap['event_time']}。你看到的帖子：\n{lines}\n请基于这些内容写不超过300字的帖子，只输出正文。"}]
+# 两类行动路径共用内容溯源与门控，不改变各自数值和调度机制。
+import importlib.util
+_spec = importlib.util.spec_from_file_location('curation_content_quality', Path(__file__).with_name('curation_content_quality.py'))
+quality = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(quality)
+prompt_context = quality.prompt_context
+messages = quality.messages
+published_result = quality.published_result
 
 
 def reserve_retry():
@@ -82,24 +67,6 @@ async def generate_once(agent, prompts):
         await sem.release(overloaded=failed)
 
 
-def published_result(value):
-    """仅接受环境明确成功且返回帖子ID；路由摘要不等于发布成功。"""
-    if isinstance(value, dict):
-        if value.get('status') == 'success' and value.get('post_id') is not None:
-            return value
-        for key, item in value.items():
-            if key != 'variables':
-                result = published_result(item)
-                if result:
-                    return result
-    elif isinstance(value, list):
-        for item in value:
-            result = published_result(item)
-            if result:
-                return result
-    return None
-
-
 async def act(agent, tick, t):
     """每人每周一次，合法空feed与服务故障分别记账；重复恢复不重新采样。"""
     hour = t.weekday() * 24 + t.hour
@@ -109,8 +76,10 @@ async def act(agent, tick, t):
     if any(r.get('week') == week for r in agent._decision_log):
         return 'arrival decision already recorded'
     agent._step_count += 1
-    row = {'week': week, 'tick': tick, 'acted_at': t.isoformat(), 'speak': False,
-           'posted': False, 'reason': '', 'generation_attempts': 0}
+    row = {'week': week, 'tick': tick, 'acted_at': quality.clock_time(t), 'speak': None,
+           'posted': False, 'post_id': None, 'reason': '', 'generation_attempts': 0,
+           'attempt_count_scope': 'provider_requests', 'generation_status': 'not_requested', 'content_status': 'not_generated', 'generation_results': []}
+    phase = 'before_decision'
     try:
         result, _ = await agent.ask_env(
             {'variables': {'agent_id': str(agent._id)}},
@@ -125,6 +94,7 @@ async def act(agent, tick, t):
             return 'no_context'
         u, comps = agent._speak_stimulus(snap)
         speak = u >= agent._params['activity']
+        phase = 'after_decision'
         row.update(u=u, components=comps, threshold=agent._params['activity'], speak=speak,
                    reason='speak' if speak else 'below_threshold')
         if not speak:
@@ -132,23 +102,32 @@ async def act(agent, tick, t):
         prompts = messages(agent, snap)
         row['messages'] = prompts
         content = ''
+        # 技术故障/空返回沿用原额外重试预算；拒答和事实风险是终止内容结果。
         for attempt in range(2):
             if attempt and not reserve_retry():
                 break
             row['generation_attempts'] += 1
             try:
                 response = await generate_once(agent, prompts)
-                content = (response.choices[0].message.content or '').strip().strip('"“”')[:400]
-                row['response_model'] = getattr(response, 'model', None)
-                usage = getattr(response, 'usage', None)
+                checked = quality.inspect_response(response, row['prompt_context'])
+                row.update(checked, generation_status='service_success')
+                row['generation_results'].append(dict(attempt=attempt+1, **checked))
+                row['response_model'] = quality.value(response, 'model')
+                usage = quality.value(response, 'usage')
                 row['usage'] = usage.model_dump() if hasattr(usage, 'model_dump') else None
+                if checked['content_status'] in ('refusal', 'unsupported_detail'):
+                    row['reason'] = 'content_refusal' if checked['content_status'] == 'refusal' else 'content_rejected'
+                    return row['reason']
+                content = checked['content']
                 if content:
                     break
             except Exception as exc:
-                row['generation_error'] = type(exc).__name__
+                row.update(generation_error=type(exc).__name__, generation_status='service_failed')
+                row['generation_results'].append(dict(attempt=attempt+1, error_type=type(exc).__name__))
         if not content:
             row['reason'] = 'generation_failed'
             return 'generation_failed'
+        phase = 'publication'
         result, _ = await agent.ask_env(
             {'variables': {'agent_id': str(agent._id), 'content': content}},
             "Please call create_post() using agent_id and content from ctx['variables'] to publish my post.",
@@ -159,7 +138,10 @@ async def act(agent, tick, t):
             row['post_id'] = published['post_id']
         return row['reason']
     except Exception as exc:
-        row.update(reason='action_failed', error_type=type(exc).__name__)
-        return 'action_failed'
+        row.update(reason='publication_failed' if phase == 'publication' else 'action_failed',
+                   failure_phase=phase, error_type=type(exc).__name__)
+        if phase == 'before_decision':
+            row.update(speak=None, u=None, components=None)
+        return row['reason']
     finally:
         agent._decision_log.append(row)

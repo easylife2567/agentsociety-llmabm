@@ -1,0 +1,55 @@
+{
+  "archived_run_audits": [
+    {
+      "run_id": "arrival_timing_diagnostic_preload_interest_s0",
+      "batches": 693,
+      "actions": 1100,
+      "published": 234,
+      "failures": [],
+      "new_content_classified": 0
+    },
+    {
+      "run_id": "arrival_timing_diagnostic_timestamp_interest_s0",
+      "batches": 693,
+      "actions": 1100,
+      "published": 214,
+      "failures": [],
+      "new_content_classified": 0
+    },
+    {
+      "run_id": "arrival_timing_diagnostic_preload_random_s0",
+      "batches": 693,
+      "actions": 1100,
+      "published": 177,
+      "failures": [],
+      "new_content_classified": 0
+    },
+    {
+      "run_id": "arrival_timing_diagnostic_timestamp_random_s0",
+      "batches": 693,
+      "actions": 1100,
+      "published": 169,
+      "failures": [],
+      "new_content_classified": 0
+    }
+  ],
+  "utility_ast_unchanged": true,
+  "network_attempts": 0,
+  "tests": 16,
+  "mandatory_path_checks": 40,
+  "patch_baseline": "442efdcc9faf6417ec8916a952387a71e823ac5c",
+  "patch_clean_apply_and_bytes_equal": true,
+  "validator_pass": true,
+  "source_sha256": {
+    "custom/agents/curation_content_quality.py": "72c40d62d7106ca34f191613f1585b47e8e99079f12591e0c0ec720d488ab0d2",
+    "custom/tests/test_content_quality.py": "69f92393e9bf5538b25a2d9e5f9a673cd5810b63b5a4b77e91a98adadc818d2d",
+    "runs/2026-09-29-02-injection-timing/2026-10-07-01-content-quality.patch": "6528332db9f80fd30270dc9dbf853f1de5229653cf189fc09b30857fa8daad52"
+  },
+  "statically_accepted": 729,
+  "extra_screen_hits_pending_review": 45,
+  "independent_review": {
+    "reviewer": "timing_review",
+    "verdict": "PASS",
+    "scope": "final patch, 20 mandatory cases, 794 archive bodies, 44 weekly rows and static figures; generation quality not tested"
+  }
+}
