@@ -2,7 +2,7 @@
   "conditions": {
     "preload-interest": {
       "archived_published": 234,
-      "statically_accepted": 212,
+      "preserved_posts": 234,
       "known_cases": 6,
       "extra_screen_hits": 16,
       "extra_cases_for_review": [
@@ -156,16 +156,20 @@
           ]
         }
       ],
-      "content_status_counts": {
+      "initial_status_counts": {
         "accepted": 212,
         "unsupported_detail": 22
+      },
+      "content_origin_counts": {
+        "model": 212,
+        "local_detail_repair": 22
       },
       "opportunities": 1100,
       "max_u_error": 0.0
     },
     "timestamp-interest": {
       "archived_published": 214,
-      "statically_accepted": 197,
+      "preserved_posts": 214,
       "known_cases": 9,
       "extra_screen_hits": 8,
       "extra_cases_for_review": [
@@ -246,17 +250,22 @@
           ]
         }
       ],
-      "content_status_counts": {
+      "initial_status_counts": {
         "accepted": 197,
         "unsupported_detail": 16,
         "refusal": 1
+      },
+      "content_origin_counts": {
+        "model": 197,
+        "local_detail_repair": 16,
+        "fallback": 1
       },
       "opportunities": 1100,
       "max_u_error": 0.0
     },
     "preload-random": {
       "archived_published": 177,
-      "statically_accepted": 162,
+      "preserved_posts": 177,
       "known_cases": 4,
       "extra_screen_hits": 11,
       "extra_cases_for_review": [
@@ -360,16 +369,20 @@
           ]
         }
       ],
-      "content_status_counts": {
+      "initial_status_counts": {
         "accepted": 162,
         "unsupported_detail": 15
+      },
+      "content_origin_counts": {
+        "model": 162,
+        "local_detail_repair": 15
       },
       "opportunities": 1100,
       "max_u_error": 0.0
     },
     "timestamp-random": {
       "archived_published": 169,
-      "statically_accepted": 158,
+      "preserved_posts": 169,
       "known_cases": 1,
       "extra_screen_hits": 10,
       "extra_cases_for_review": [
@@ -464,9 +477,13 @@
           ]
         }
       ],
-      "content_status_counts": {
+      "initial_status_counts": {
         "accepted": 158,
         "unsupported_detail": 11
+      },
+      "content_origin_counts": {
+        "model": 158,
+        "local_detail_repair": 11
       },
       "opportunities": 1100,
       "max_u_error": 0.0
@@ -477,7 +494,17 @@
       "run_id": "arrival_timing_diagnostic_preload_interest_s0",
       "agent_id": "28",
       "week": "2026-W13",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 23,
+          "end": 27,
+          "removed": "41岁，",
+          "replacement": ""
+        }
+      ],
       "checks": [
         "unsupported_age:41岁"
       ]
@@ -486,7 +513,17 @@
       "run_id": "arrival_timing_diagnostic_preload_interest_s0",
       "agent_id": "39",
       "week": "2026-W13",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 32,
+          "end": 37,
+          "removed": "才41岁，",
+          "replacement": ""
+        }
+      ],
       "checks": [
         "unsupported_age:41岁"
       ]
@@ -495,7 +532,17 @@
       "run_id": "arrival_timing_diagnostic_preload_interest_s0",
       "agent_id": "42",
       "week": "2026-W13",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 128,
+          "end": 133,
+          "removed": "才41岁，",
+          "replacement": ""
+        }
+      ],
       "checks": [
         "unsupported_age:41岁"
       ]
@@ -504,7 +551,17 @@
       "run_id": "arrival_timing_diagnostic_preload_interest_s0",
       "agent_id": "43",
       "week": "2026-W14",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 30,
+          "end": 32,
+          "removed": "明天",
+          "replacement": ""
+        }
+      ],
       "checks": [
         "event_relative_date_requires_absolute_or_omission"
       ]
@@ -513,7 +570,23 @@
       "run_id": "arrival_timing_diagnostic_preload_interest_s0",
       "agent_id": "74",
       "week": "2026-W13",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 76,
+          "end": 81,
+          "removed": "才41岁，",
+          "replacement": ""
+        },
+        {
+          "start": 88,
+          "end": 92,
+          "removed": "说走就走",
+          "replacement": "这场离别来得太突然"
+        }
+      ],
       "checks": [
         "unsupported_age:41岁"
       ]
@@ -522,7 +595,23 @@
       "run_id": "arrival_timing_diagnostic_preload_interest_s0",
       "agent_id": "97",
       "week": "2026-W13",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 28,
+          "end": 32,
+          "removed": "41岁，",
+          "replacement": ""
+        },
+        {
+          "start": 68,
+          "end": 71,
+          "removed": "，同岁",
+          "replacement": ""
+        }
+      ],
       "checks": [
         "unsupported_age:41岁"
       ]
@@ -531,7 +620,17 @@
       "run_id": "arrival_timing_diagnostic_timestamp_interest_s0",
       "agent_id": "19",
       "week": "2026-W13",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 29,
+          "end": 33,
+          "removed": "39岁的",
+          "replacement": ""
+        }
+      ],
       "checks": [
         "unsupported_age:39岁"
       ]
@@ -540,7 +639,17 @@
       "run_id": "arrival_timing_diagnostic_timestamp_interest_s0",
       "agent_id": "37",
       "week": "2026-W15",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 38,
+          "end": 43,
+          "removed": "四十来岁，",
+          "replacement": ""
+        }
+      ],
       "checks": [
         "unsupported_age:四十来岁"
       ]
@@ -549,7 +658,17 @@
       "run_id": "arrival_timing_diagnostic_timestamp_interest_s0",
       "agent_id": "44",
       "week": "2026-W13",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 16,
+          "end": 20,
+          "removed": "41岁，",
+          "replacement": ""
+        }
+      ],
       "checks": [
         "unsupported_age:41岁"
       ]
@@ -558,7 +677,17 @@
       "run_id": "arrival_timing_diagnostic_timestamp_interest_s0",
       "agent_id": "56",
       "week": "2026-W14",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 126,
+          "end": 128,
+          "removed": "昨天",
+          "replacement": ""
+        }
+      ],
       "checks": [
         "event_relative_date_requires_absolute_or_omission"
       ]
@@ -567,7 +696,17 @@
       "run_id": "arrival_timing_diagnostic_timestamp_interest_s0",
       "agent_id": "59",
       "week": "2026-W13",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 38,
+          "end": 44,
+          "removed": "，才四十出头",
+          "replacement": ""
+        }
+      ],
       "checks": [
         "unsupported_age:四十出头"
       ]
@@ -576,7 +715,23 @@
       "run_id": "arrival_timing_diagnostic_timestamp_interest_s0",
       "agent_id": "66",
       "week": "2026-W13",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 11,
+          "end": 15,
+          "removed": "41岁，",
+          "replacement": ""
+        },
+        {
+          "start": 23,
+          "end": 28,
+          "removed": "个年纪走得",
+          "replacement": "场离别"
+        }
+      ],
       "checks": [
         "unsupported_age:41岁"
       ]
@@ -585,7 +740,10 @@
       "run_id": "arrival_timing_diagnostic_timestamp_interest_s0",
       "agent_id": "79",
       "week": "2026-W16",
-      "content_status": "refusal",
+      "initial_status": "refusal",
+      "final_status": "accepted",
+      "content_origin": "fallback",
+      "edits": [],
       "checks": [
         "service_refusal_text"
       ]
@@ -594,7 +752,17 @@
       "run_id": "arrival_timing_diagnostic_timestamp_interest_s0",
       "agent_id": "83",
       "week": "2026-W13",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 148,
+          "end": 169,
+          "removed": "也看到说他女儿还那么小……才四十出头的人，",
+          "replacement": ""
+        }
+      ],
       "checks": [
         "unsupported_age:四十出头"
       ]
@@ -603,7 +771,17 @@
       "run_id": "arrival_timing_diagnostic_timestamp_interest_s0",
       "agent_id": "94",
       "week": "2026-W13",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 132,
+          "end": 139,
+          "removed": "他才四十出头，",
+          "replacement": ""
+        }
+      ],
       "checks": [
         "unsupported_age:四十出头"
       ]
@@ -612,7 +790,17 @@
       "run_id": "arrival_timing_diagnostic_preload_random_s0",
       "agent_id": "14",
       "week": "2026-W16",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 0,
+          "end": 11,
+          "removed": "#张雪峰 又上热搜了，",
+          "replacement": ""
+        }
+      ],
       "checks": [
         "unsupported_hot_status"
       ]
@@ -621,7 +809,17 @@
       "run_id": "arrival_timing_diagnostic_preload_random_s0",
       "agent_id": "20",
       "week": "2026-W14",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 14,
+          "end": 18,
+          "removed": "四十岁的",
+          "replacement": ""
+        }
+      ],
       "checks": [
         "unsupported_age:四十岁"
       ]
@@ -630,7 +828,17 @@
       "run_id": "arrival_timing_diagnostic_preload_random_s0",
       "agent_id": "64",
       "week": "2026-W13",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 31,
+          "end": 48,
+          "removed": "，前几天还在讲专业怎么选、路怎么走",
+          "replacement": ""
+        }
+      ],
       "checks": [
         "unsupported_recent_activity:前几天还在讲"
       ]
@@ -639,7 +847,17 @@
       "run_id": "arrival_timing_diagnostic_preload_random_s0",
       "agent_id": "100",
       "week": "2026-W14",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 124,
+          "end": 128,
+          "removed": "41岁的",
+          "replacement": ""
+        }
+      ],
       "checks": [
         "unsupported_age:41岁"
       ]
@@ -648,18 +866,28 @@
       "run_id": "arrival_timing_diagnostic_timestamp_random_s0",
       "agent_id": "61",
       "week": "2026-W15",
-      "content_status": "unsupported_detail",
+      "initial_status": "unsupported_detail",
+      "final_status": "accepted",
+      "content_origin": "local_detail_repair",
+      "edits": [
+        {
+          "start": 0,
+          "end": 5,
+          "removed": "三个月了，",
+          "replacement": ""
+        }
+      ],
       "checks": [
         "unsupported_elapsed_time:三个月了"
       ]
     }
   ],
   "source_sha256": {
-    "runs/2026-09-29-02-injection-timing/2026-10-07-03-content-numerical-expectation.py": "978afe9bf111e336917125380499d4252a7e874058e2f6f2e5258f6cc4f989a0",
+    "runs/2026-09-29-02-injection-timing/2026-10-07-03-content-numerical-expectation.py": "f8a030c6450ae33d6d6b8c7322d56a5aa38479e1c75c5742c4af4289df7f72d5",
     "runs/2026-09-29-02-injection-timing/2026-10-07-02-content-acceptance-fixtures.json": "346c55d3b160df630069c20d88875cecc8af4fec7e44cf11afdbafd5ee77a97e",
     "hypothesis_4/experiment_1/init/arrival_timing_diagnostic/manifest.json": "56c5aca9f1a4a8f30afec80272e3b3a9497f32fa88c54e6d67f18ad28fa9c54a",
-    "custom/agents/curation_content_quality.py": "72c40d62d7106ca34f191613f1585b47e8e99079f12591e0c0ec720d488ab0d2",
-    "custom/agents/curation_discourse_agent.py": "117203c575744d972fba59995e7db75425b916c464ed358194ac5ad5d0cc34ea",
+    "custom/agents/curation_content_quality.py": "4e0903091e14db09c379ce65cbe665abd57aae2af0aa66b5aeca38d35ca1045f",
+    "custom/agents/curation_discourse_agent.py": "ac08888fdbd5000abb2526da83a7a9363e4b3349623f459213241b721c2e4072",
     "custom/envs/curation_dynamics_space.py": "d05a9c3d357f9adaca24496242c1b72e3ea71802b65cc44811b51b2f9a100c1b",
     "hypothesis_4/experiment_1/plot_run_charts.py": "3f3617a02452e4af9da28ad54211059b35caef92e8c74b8ecf3dab5e14e9e6aa",
     "hypothesis_4/experiment_1/runs/arrival_timing_diagnostic/arrival_timing_diagnostic_preload_interest_s0/env/CurationDynamicsSpace/state/ENV_STATE.json": "a37f7f8347acf5054c0341526d070950f0c388d7a876357594d8c8d318f51ff0",
@@ -1070,5 +1298,5 @@
   "network_attempts": 0,
   "model_calls": 0,
   "numeric_actions": 4400,
-  "scope": "static archive acceptance; frozen original supply and texts; not closed-loop prediction"
+  "scope": "static detail repair with preserved original supply; refusal uses labelled offline fallback; not closed-loop prediction"
 }

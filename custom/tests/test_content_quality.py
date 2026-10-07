@@ -81,25 +81,34 @@ class ContentTests(unittest.IsolatedAsyncioTestCase):
         for sample in FIXTURES:
             for arrival in (False, True):
                 with self.subTest(run=sample['review']['run_id'], aid=sample['review']['agent_id'], arrival=arrival):
-                    fake = FakeAgent(sample, [response(sample['decision']['content'])])
+                    fake = FakeAgent(sample, [response(sample['decision']['content']), response('看完这些讨论，我想认真听听不同人的经历，再说说自己的想法。')])
                     t = datetime.fromisoformat(sample['decision']['acted_at'])
                     if arrival:
                         fake._chronological_action_hour = t.weekday()*24+t.hour
                         async def generate(agent, prompts):
                             return await agent.acompletion(prompts)
-                        with patch.object(ACTION, 'generate_once', generate):
+                        with patch.object(ACTION, 'generate_once', generate), patch.object(ACTION, 'reserve_retry', return_value=True):
                             result = await ACTION.act(fake, 0, t)
                     else:
                         result = await AGENT.step(fake, 0, t)
-                    expected = 'content_refusal' if sample['review']['verdict'] == 'service_refusal' else 'content_rejected'
+                    expected = 'published'
                     self.assertEqual(result, expected)
                     row = fake._decision_log[-1]
                     self.assertTrue(row['speak'])
-                    self.assertFalse(row['posted'])
-                    self.assertIsNone(row['post_id'])
-                    self.assertEqual(fake.writes, 0)
-                    self.assertEqual(fake.requests, 1)
-                    self.assertEqual(row['generated_content'], sample['decision']['content'])
+                    self.assertTrue(row['posted'])
+                    self.assertIsNotNone(row['post_id'])
+                    self.assertEqual(fake.writes, 1)
+                    self.assertEqual(fake.requests, 2 if sample['review']['verdict'] == 'service_refusal' else 1)
+                    self.assertEqual(row['generation_results'][0]['generated_content'], sample['decision']['content'])
+                    self.assertEqual(row['content_status'], 'accepted')
+                    self.assertEqual(QUALITY.assess_text(row['content'], row['prompt_context'])[0], 'accepted')
+                    self.assertEqual(row['content_origin'], 'model_rewrite' if sample['review']['verdict'] == 'service_refusal' else 'local_detail_repair')
+                    if sample['review']['verdict'] == 'service_refusal':
+                        self.assertEqual(row['generation_results'][1]['purpose'], 'rewrite')
+                        self.assertEqual(len(row['generation_results'][1]['messages']), 3)
+                    if row['content_origin'] == 'local_detail_repair':
+                        self.assertTrue(row['detail_edits'])
+                        self.assertGreater(len(row['content']), len(sample['decision']['content'])*0.7)
                     self.assertFalse(QUALITY.ledger_summary(fake._decision_log)['failures'])
                     self.assertIn('只属于发言者', row['messages'][0]['content'])
                     for p in row['prompt_context']:
@@ -152,16 +161,17 @@ class ContentTests(unittest.IsolatedAsyncioTestCase):
         async def generate(agent, prompts):
             return await agent.acompletion(prompts)
         with patch.object(ACTION, 'generate_once', generate), patch.object(ACTION, 'reserve_retry', return_value=True) as retry:
-            self.assertEqual(await ACTION.act(fake, 0, t), 'content_refusal')
+            self.assertEqual(await ACTION.act(fake, 0, t), 'published')
             self.assertEqual(fake._decision_log[0]['generation_attempts'], 2)
             retry.assert_called_once()
             self.assertEqual(await ACTION.act(fake, 0, t), 'arrival decision already recorded')
             self.assertEqual(fake.requests, 2)
-            self.assertEqual(fake.writes, 0)
+            self.assertEqual(fake.writes, 1)
+            self.assertEqual(fake._decision_log[0]['content_origin'], 'fallback')
 
     async def test_failure_accounting_and_publication_confirmation(self):
-        cases = [(response(''), True, 'generation_failed'),
-                 (TimeoutError(), True, 'generation_failed'),
+        cases = [(response(''), True, 'published'),
+                 (TimeoutError(), True, 'published'),
                  (response('我不认同这些观点。'), False, 'publication_failed'),
                  (response('我不认同这些观点。'), True, 'published')]
         t = datetime.fromisoformat(FIXTURES[0]['decision']['acted_at'])
@@ -179,6 +189,53 @@ class ContentTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(await AGENT.step(bad, 0, t), 'no_context')
         self.assertEqual(bad.requests, 0)
 
+    async def test_actual_detail_repairs_keep_referents_and_punctuation(self):
+        # 原始具体样本约束局部编辑的语义；不是只复检同一正则。
+        for aid, week in ((50, '2026-W14'), (64, '2026-W13'), (66, '2026-W13'), (74, '2026-W13'), (97, '2026-W13')):
+            if aid == 50:
+                path = ROOT/'hypothesis_4/experiment_1/runs/arrival_timing_diagnostic/arrival_timing_diagnostic_timestamp_random_s0/agents/agent_0050/AGENT.json'
+                decision = next(d for d in json.loads(path.read_text())['decision_log'] if d['week']==week)
+                text, _, _ = QUALITY.repair_details(decision['content'], [])
+                self.assertNotIn('第。', text)
+            else:
+                sample = next(x for x in FIXTURES if x['review']['agent_id']==aid and x['review']['week']==week)
+                text, edits, _ = QUALITY.repair_details(sample['decision']['content'], QUALITY.prompt_context(sample['snapshot']['feed']))
+                self.assertTrue(edits)
+                self.assertNotIn('，。', text)
+                if aid == 66:
+                    self.assertIn('这场离别太突然了', text)
+                if aid == 74:
+                    self.assertIn('这场离别来得太突然了', text)
+                if aid == 97:
+                    self.assertNotIn('同岁', text)
+        fake = FakeAgent(FIXTURES[0], [TimeoutError(), response('我不认同这些观点。')])
+        t = datetime.fromisoformat(FIXTURES[0]['decision']['acted_at'])
+        self.assertEqual(await AGENT.step(fake, 0, t), 'published')
+        row = fake._decision_log[0]
+        self.assertEqual(row['content_origin'], 'model_retry')
+        self.assertEqual(row['generation_results'][1]['purpose'], 'technical_retry')
+        self.assertEqual(row['generation_results'][0]['messages'], row['generation_results'][1]['messages'])
+
+    async def test_refusal_filter_and_budget_exhaustion_keep_one_post(self):
+        # 模型拒答、过滤、空返回以及技术故障不再取消已经决定的发言。
+        for first in (response('正文', refusal='refusal'), response('正文', finish='content_filter'), response(''), TimeoutError()):
+            fake = FakeAgent(FIXTURES[-1], [first])
+            t = datetime.fromisoformat(FIXTURES[-1]['decision']['acted_at'])
+            fake._chronological_action_hour = t.weekday()*24+t.hour
+            async def generate(agent, prompts):
+                return await agent.acompletion(prompts)
+            with patch.object(ACTION, 'generate_once', generate), patch.object(ACTION, 'reserve_retry', return_value=False):
+                self.assertEqual(await ACTION.act(fake, 0, t), 'published')
+            self.assertEqual(fake.requests, 1)
+            self.assertEqual(fake.writes, 1)
+            self.assertEqual(fake._decision_log[0]['content_origin'], 'fallback')
+            self.assertFalse(QUALITY.ledger_summary(fake._decision_log)['failures'])
+        for kind in QUALITY.STYLES:
+            agent = SimpleNamespace(_agent_type=kind)
+            result = QUALITY.fallback_content(agent, [{'source': 'agent', 'text': '大家各有不同感受。'}])
+            self.assertEqual(QUALITY.assess_text(result['content'], [])[0], 'accepted')
+            self.assertTrue(result['content'])
+
     async def test_real_environment_exposure_inventory_and_recirculation(self):
         cfg = json.loads((ROOT/'hypothesis_4/experiment_1/init/arrival_timing_diagnostic/arrival_timing_diagnostic_timestamp_interest_s0.json').read_text())
         env = ENV.CurationDynamicsSpace(**cfg['env_modules'][0]['kwargs'])
@@ -193,11 +250,15 @@ class ContentTests(unittest.IsolatedAsyncioTestCase):
         async def generate(agent, prompts):
             return await agent.acompletion(prompts)
         with patch.object(ACTION, 'generate_once', generate):
-            self.assertEqual(await ACTION.act(fake, 0, t), 'content_refusal')
-        self.assertEqual(env._next_post_id, next_id)
-        self.assertEqual(env._pending_agent_posts, [])
+            self.assertEqual(await ACTION.act(fake, 0, t), 'published')
+        self.assertEqual(env._next_post_id, next_id+1)
+        self.assertEqual(len(env._pending_agent_posts), 1)
+        pid = env._pending_agent_posts[0]['post_id']
+        self.assertEqual(fake._decision_log[0]['content_origin'], 'fallback')
         await env.step(3600, t)
         self.assertEqual(sum(env._cumulative_exposures[aid].values()), len(env._arrival.state['actions'][0]['feed']))
+        self.assertNotIn(pid, env._posts)
+        self.assertTrue(any(p['post_id'] == pid for p in env._arrival.state['delayed']))
         # 正常正文仍交给原环境；不把内容修复变成回流规则修改。
         normal = ENV.CurationDynamicsSpace(**cfg['env_modules'][0]['kwargs'])
         await normal.init(t)

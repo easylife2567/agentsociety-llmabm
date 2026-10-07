@@ -405,31 +405,20 @@ class CurationDiscourseAgent(AgentBase):
                           components=comps, speak=speak, reason='below_threshold')
             if not speak:
                 return 'below_threshold'
-            # 常规入口仍只请求一次，完整结果检查先于正文长度截断。
+            # 内容问题只修正文；最多两次外层调用，兜底单列而不取消发言。
             prompts = self._content_messages(snap, comps)
-            record.update(messages=prompts, generation_attempts=1)
-            try:
-                response = await self.acompletion(prompts)
-                checked = quality.inspect_response(response, record['prompt_context'],
-                            max_chars=int(self._config.get('max_content_chars', 300))+100)
-                record.update(checked, generation_status='service_success',
-                              response_model=quality.value(response, 'model'))
-            except Exception as exc:
-                record.update(reason='generation_failed', generation_status='service_failed', error_type=type(exc).__name__)
-                return 'generation_failed'
-            if checked['content_status'] != 'accepted':
-                record['reason'] = {'refusal': 'content_refusal', 'unsupported_detail': 'content_rejected',
-                                    'empty': 'generation_failed'}[checked['content_status']]
-                return record['reason']
+            record['messages'] = prompts
+            await quality.prepare_publication(self, record, self.acompletion,
+                        max_chars=int(self._config.get('max_content_chars', 300))+100)
             phase = 'publication'
             result, _ = await self.ask_env(
-                {'variables': {'agent_id': agent_id, 'content': checked['content']}},
+                {'variables': {'agent_id': agent_id, 'content': record['content']}},
                 "Please call create_post() using agent_id and content from ctx['variables'] to publish my post.",
                 readonly=False, template_mode=True)
             published = quality.published_result(result)
             record.update(posted=bool(published), reason='published' if published else 'publication_failed')
             if published:
-                record.update(post_id=published['post_id'], content_preview=checked['content'][:80])
+                record.update(post_id=published['post_id'], content_preview=record['content'][:80])
             return record['reason']
         except Exception as exc:
             record.update(reason='publication_failed' if phase == 'publication' else 'action_failed',

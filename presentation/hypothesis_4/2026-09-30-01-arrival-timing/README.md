@@ -19,13 +19,13 @@
 | 2026-10-06-05-timestamp-random-numerical-expectation.png / .svg | 同口径random零干预对照；169次，纵轴同为0–80 |
 | 2026-10-06-06-numerical-expectation-weekly.csv | 两臂22行五类作者拟发布机会及归档发布数排除已确认拒答后的周表 |
 | 2026-10-06-07-numerical-expectation-provenance.json | 预期图指标、固定供给边界及源CSV、摘要、模板、绘图脚本的哈希 |
-| 2026-10-07-01-content-decisions.csv | 794条原归档正文在当前门控下的静态判定、已知样本标记与风险类型；不含正文 |
-| 2026-10-07-02-content-weekly.csv | 四格44行作者类型拟接纳与原发布数；固定原阅读和后续供给 |
-| 2026-10-07-03-content-summary.json | 729条拟接纳、20条必查通过、45条额外待核查、4,400行动U误差0及源哈希 |
-| 2026-10-07-05-content-preload-interest.png / .svg | preload-interest静态内容门控预期212条；chart3b样式 |
-| 2026-10-07-06-content-timestamp-interest.png / .svg | 既有timestamp-interest归档静态门控197条；时机方案暂停，未新增run |
-| 2026-10-07-07-content-preload-random.png / .svg | preload-random同口径162条；统一0–80轴 |
-| 2026-10-07-08-content-timestamp-random.png / .svg | 既有timestamp-random归档静态门控158条；统一0–80轴 |
+| 2026-10-07-01-content-decisions.csv | 794条原归档的派生修正文、原文编辑坐标、初始状态与正文来源；原始run只读 |
+| 2026-10-07-02-content-weekly.csv | 四格44行作者类型保留发布数，逐项等于原周表；不驱动新库存 |
+| 2026-10-07-03-content-summary.json | 794保留、729原文/64局部修正/1离线兜底、20必查与45额外待核查、4,400次U误差0及源哈希 |
+| 2026-10-07-05-content-preload-interest.png / .svg | preload-interest内容修复后保留234条；chart3b样式 |
+| 2026-10-07-06-content-timestamp-interest.png / .svg | 既有timestamp-interest静态修正后保留214条；未新增run |
+| 2026-10-07-07-content-preload-random.png / .svg | preload-random同口径177条；统一0–80轴 |
+| 2026-10-07-08-content-timestamp-random.png / .svg | 既有timestamp-random同口径169条；统一0–80轴 |
 | input_hashes.json | 原始四格及历史Agent账本、配置清单、复算器与判类依据SHA-256 |
 | replay_checks.json | 官方analysis query-data的SQL和四格返回，独立核对11周及主要总量 |
 | knowledge_summary.json | 555条实际阅读覆盖检查、问题帖计数及直接曝光；引用逐条判读哈希 |
@@ -46,4 +46,4 @@
 
 数值预期图单独复现：运行任务内`2026-10-06-02-plot-numerical-expectation.py`。色块计重算达到发言阈值且非已确认拒答的行动，假设其余生成均通过验收；虚线计归档发布排除已确认拒答，其他正文未经本图重新验证。只汇总数值CSV，不运行环境或生成接口。chronological仅提供样式，图示条件仍为timestamp-interest/random。
 
-内容修复数值图单独复现：运行任务内`2026-10-07-03-content-numerical-expectation.py`，无模型/网络。基线由用户确认使用本run四格归档，chronological只提供样式；旧正文是服务后已保存的文本，未保存的完整服务字段不能追回。黑色虚线为原发布数，色块为应用当前门控后拟接纳数；额外45条规则命中尚未人工确认为错误。固定原发言、正文和后续供给，不做库存闭环，不据这些曲线评价修复后的生成质量或现实拟合。源代码/归档哈希和必查结果在摘要，功能验收与patch解释在任务结果报告。历史2026-10-06的219/169图口径不同，分别保留。
+内容修复数值图单独复现：运行任务内`2026-10-07-03-content-numerical-expectation.py`，无模型/网络。归档正文作局部修正、拒答作标明来源的离线兜底，发布量全部保留；额外45条筛查仍待人工确认。来源正文是服务后保存文本，完整服务字段不能追回。色块与原发布虚线逐周重合是固定供给的数量守恒，不是新闭环结果。正文改变仍可能影响以后interest feed，不能据本图承诺新实验全窗数量或现实拟合。chronological只提供样式，timestamp推进仍暂停；实现解释、功能验收和最终patch见任务结果报告。

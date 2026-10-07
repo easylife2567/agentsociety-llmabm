@@ -101,32 +101,8 @@ async def act(agent, tick, t):
             return 'below_threshold'
         prompts = messages(agent, snap)
         row['messages'] = prompts
-        content = ''
-        # 技术故障/空返回沿用原额外重试预算；拒答和事实风险是终止内容结果。
-        for attempt in range(2):
-            if attempt and not reserve_retry():
-                break
-            row['generation_attempts'] += 1
-            try:
-                response = await generate_once(agent, prompts)
-                checked = quality.inspect_response(response, row['prompt_context'])
-                row.update(checked, generation_status='service_success')
-                row['generation_results'].append(dict(attempt=attempt+1, **checked))
-                row['response_model'] = quality.value(response, 'model')
-                usage = quality.value(response, 'usage')
-                row['usage'] = usage.model_dump() if hasattr(usage, 'model_dump') else None
-                if checked['content_status'] in ('refusal', 'unsupported_detail'):
-                    row['reason'] = 'content_refusal' if checked['content_status'] == 'refusal' else 'content_rejected'
-                    return row['reason']
-                content = checked['content']
-                if content:
-                    break
-            except Exception as exc:
-                row.update(generation_error=type(exc).__name__, generation_status='service_failed')
-                row['generation_results'].append(dict(attempt=attempt+1, error_type=type(exc).__name__))
-        if not content:
-            row['reason'] = 'generation_failed'
-            return 'generation_failed'
+        await quality.prepare_publication(agent, row, lambda p: generate_once(agent, p), reserve_retry)
+        content = row['content']
         phase = 'publication'
         result, _ = await agent.ask_env(
             {'variables': {'agent_id': str(agent._id), 'content': content}},

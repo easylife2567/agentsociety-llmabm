@@ -5,51 +5,52 @@
       "batches": 693,
       "actions": 1100,
       "published": 234,
-      "failures": [],
-      "new_content_classified": 0
+      "failures": []
     },
     {
       "run_id": "arrival_timing_diagnostic_timestamp_interest_s0",
       "batches": 693,
       "actions": 1100,
       "published": 214,
-      "failures": [],
-      "new_content_classified": 0
+      "failures": []
     },
     {
       "run_id": "arrival_timing_diagnostic_preload_random_s0",
       "batches": 693,
       "actions": 1100,
       "published": 177,
-      "failures": [],
-      "new_content_classified": 0
+      "failures": []
     },
     {
       "run_id": "arrival_timing_diagnostic_timestamp_random_s0",
       "batches": 693,
       "actions": 1100,
       "published": 169,
-      "failures": [],
-      "new_content_classified": 0
+      "failures": []
     }
   ],
   "utility_ast_unchanged": true,
   "network_attempts": 0,
-  "tests": 16,
-  "mandatory_path_checks": 40,
-  "patch_baseline": "442efdcc9faf6417ec8916a952387a71e823ac5c",
+  "model_calls": 0,
+  "tests": 18,
+  "mandatory_actual_path_publications": 40,
+  "patch_baseline": "9a769932ae9bc75e409929003baf574dfede5948",
   "patch_clean_apply_and_bytes_equal": true,
   "validator_pass": true,
   "source_sha256": {
-    "custom/agents/curation_content_quality.py": "72c40d62d7106ca34f191613f1585b47e8e99079f12591e0c0ec720d488ab0d2",
-    "custom/tests/test_content_quality.py": "69f92393e9bf5538b25a2d9e5f9a673cd5810b63b5a4b77e91a98adadc818d2d",
-    "runs/2026-09-29-02-injection-timing/2026-10-07-01-content-quality.patch": "6528332db9f80fd30270dc9dbf853f1de5229653cf189fc09b30857fa8daad52"
+    "runs/2026-09-29-02-injection-timing/2026-10-07-03-content-numerical-expectation.py": "f8a030c6450ae33d6d6b8c7322d56a5aa38479e1c75c5742c4af4289df7f72d5",
+    "custom/tests/test_arrival_timing.py": "dbcbe49c4d26b6ee82bbb77d64e2007cd37cc3878be14e450b46fd4c7bb4a7df",
+    "custom/tests/test_content_quality.py": "420718a54c32cc84b0c786c126d247d33e8b84101a406768294b827dc0152dce",
+    "custom/agents/curation_arrival_action.py": "70aec78ff741f423bfbac4cd8c11e8d4d169728ec7277ca064ecaf8d171eedc2",
+    "custom/agents/curation_content_quality.py": "4e0903091e14db09c379ce65cbe665abd57aae2af0aa66b5aeca38d35ca1045f",
+    "custom/agents/curation_discourse_agent.py": "ac08888fdbd5000abb2526da83a7a9363e4b3349623f459213241b721c2e4072",
+    "runs/2026-09-29-02-injection-timing/2026-10-07-05-speech-preserving-repair.patch": "1cc0aefacc683367d6935fd07eb8e9dfbc20ea0727e8466f13cbf6f3f75cead9"
   },
-  "statically_accepted": 729,
+  "preserved_posts": 794,
   "extra_screen_hits_pending_review": 45,
   "independent_review": {
     "reviewer": "timing_review",
     "verdict": "PASS",
-    "scope": "final patch, 20 mandatory cases, 794 archive bodies, 44 weekly rows and static figures; generation quality not tested"
+    "scope": "speech-preserving repair, actual historical samples, attempt messages/origins, patch and static figures; no actual LLM generation tested"
   }
 }

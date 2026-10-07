@@ -182,9 +182,10 @@ class TimingTests(unittest.IsolatedAsyncioTestCase):
             attempts.append(1)
             raise RuntimeError('frozen fake service failure')
         with patch.object(ACTION, 'generate_once', fail_generate), patch.object(ACTION, 'reserve_retry', return_value=True):
-            self.assertEqual(await ACTION.act(agent, 3600, start), 'generation_failed')
+            self.assertEqual(await ACTION.act(agent, 3600, start), 'published')
             self.assertEqual(len(attempts), 2)
-            self.assertFalse(agent._decision_log[0]['posted'])
+            self.assertTrue(agent._decision_log[0]['posted'])
+            self.assertEqual(agent._decision_log[0]['content_origin'], 'fallback')
         agent._decision_log = []
         attempts.clear()
         with patch.object(ACTION, 'generate_once', fail_generate), patch.object(ACTION, 'reserve_retry', return_value=False):

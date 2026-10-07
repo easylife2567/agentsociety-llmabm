@@ -1,6 +1,6 @@
-"""内容修复的离线数值预期：固定归档正文/发言安排，只应用发布前门控。
+"""内容修复的离线数值预期：固定归档正文/发言安排，修正细节并保留每次发布。
 
-全四格复算4,400次效用判定；原始正文按新门控静态分类，不更新库存或生成新文本。
+全四格复算4,400次效用判定；对归档正文离线修正，拒答使用标明来源的兜底；不重新驱动库存或调用LLM。
 五类计数仍是作者类型。额外风险命中单列待核查，不自动认作真实错误。
 """
 import csv
@@ -96,32 +96,38 @@ def main():
                 # 历史服务结构化拒答字段未留存，静态复核只使用已存完整发布正文。
                 response = {'choices': [{'message': {'content': d['content']}, 'finish_reason': 'stop'}]}
                 checked = QUALITY.inspect_response(response, context)
+                initial_status = checked['content_status']
+                candidate = QUALITY.publication_candidate(checked, context) or QUALITY.fallback_content(agent, context)
+                assert QUALITY.assess_text(candidate['content'], context)[0] == 'accepted'
                 key = run['run_id'], aid, d['week']
                 known = key in mandatory
                 if known:
                     expected = 'refusal' if mandatory[key]['review']['verdict'] == 'service_refusal' else 'unsupported_detail'
                     assert checked['content_status'] == expected, key
                     checked_samples.append(dict(run_id=key[0], agent_id=aid, week=d['week'],
-                                                content_status=checked['content_status'], checks=checked['content_checks']))
+                                                initial_status=initial_status, final_status='accepted', content_origin=candidate['content_origin'], edits=candidate['detail_edits'], checks=checked['content_checks']))
                 elif checked['content_status'] != 'accepted':
                     extra.append(dict(agent_id=aid, week=d['week'], post_id=d['post_id'],
                                       status=checked['content_status'], checks=checked['content_checks']))
-                accepted = checked['content_status'] == 'accepted'
+                accepted = True
                 archived[d['week'], profile['agent_type']] += 1
                 counts[d['week'], profile['agent_type']] += accepted
                 rows.append(dict(condition=condition, run_id=run['run_id'], agent_id=aid, week=d['week'],
                                  post_id=d['post_id'], author_type=profile['agent_type'], known_issue=known,
-                                 status=checked['content_status'], checks=json.dumps(checked['content_checks'], ensure_ascii=False),
+                                 initial_status=initial_status, final_status='accepted', content_origin=candidate['content_origin'],
+                                 edits=json.dumps(candidate['detail_edits'], ensure_ascii=False), repaired_content=candidate['content'],
+                                 checks=json.dumps(checked['content_checks'], ensure_ascii=False),
                                  archived_published=True, statically_accepted=accepted))
         assert opportunities == 1100
-        status_counts = dict(Counter(r['status'] for r in rows if r['condition'] == condition))
-        summary[condition] = dict(archived_published=sum(archived.values()), statically_accepted=sum(counts.values()),
+        status_counts = dict(Counter(r['initial_status'] for r in rows if r['condition'] == condition))
+        summary[condition] = dict(archived_published=sum(archived.values()), preserved_posts=sum(counts.values()),
                                   known_cases=sum(x['run_id'] == run['run_id'] for x in checked_samples),
                                   extra_screen_hits=len(extra), extra_cases_for_review=extra,
-                                  content_status_counts=status_counts, opportunities=opportunities, max_u_error=max_error)
+                                  initial_status_counts=status_counts, content_origin_counts=dict(Counter(r['content_origin'] for r in rows if r['condition']==condition)), opportunities=opportunities, max_u_error=max_error)
         weekly = [dict(condition=condition, week=w, **{k: counts[w, k] for k in KINDS},
                        total=sum(counts[w, k] for k in KINDS), archived_total=sum(archived[w, k] for k in KINDS)) for w in WEEKS]
-        assert sum(w['total'] for w in weekly) == sum(counts.values())
+        assert sum(w['total'] for w in weekly) == sum(counts.values()) == sum(archived.values())
+        assert all(w['total']==w['archived_total'] for w in weekly)
         weekly_rows.extend(weekly)
         # 用户模板仅提供样式；不把旧归档经门控的静态计数称为新仿真产出。
         fig, ax = STYLE.plt.subplots(figsize=(10, 5.4)); x = list(range(11))
@@ -134,11 +140,11 @@ def main():
             ax.text(i, max(w['total'],w['archived_total'])+1.4, str(w['total']), ha='center', fontsize=9)
         assert max(w['archived_total'] for w in weekly) <= 80
         ax.set_xticks(x, WEEKS, rotation=45); ax.set_ylim(0,80); ax.set_yticks(range(0,81,10))
-        ax.set_ylabel('门控后拟接纳数（条 / 周）')
+        ax.set_ylabel('内容修复后保留发布数（条 / 周）')
         ax.set_title(f'内容修复的数值预期（无 LLM · {condition}）', fontsize=13)
         ax.legend(loc='upper right', frameon=False, fontsize=9); STYLE._tidy(ax)
-        fig.text(.07,.035, f"100人 · seed 0 · 归档{sum(archived.values())}条 → 拟接纳{sum(counts.values())}条 · 类型=作者身份\n"
-                 f"固定原发言与正文；非闭环预测；额外{len(extra)}条规则命中待核查；timestamp时机方案暂停", fontsize=8, color='#555555')
+        fig.text(.07,.035, f"100人 · seed 0 · 归档{sum(archived.values())}条 → 保留{sum(counts.values())}条 · 类型=作者身份\n"
+                 f"固定原供给；离线修正文；非闭环预测；额外{len(extra)}条细节筛查待核查；timestamp时机方案暂停", fontsize=8, color='#555555')
         fig.tight_layout(rect=(0,.10,1,1))
         stem = f'2026-10-07-0{4+len(summary)}-content-{condition}'
         fig.savefig(OUT/f'{stem}.png',dpi=300)
@@ -154,9 +160,9 @@ def main():
     write_csv('2026-10-07-02-content-weekly.csv',weekly_rows)
     result = dict(conditions=summary, mandatory_results=checked_samples, source_sha256=hashes,
                   network_attempts=0, model_calls=0, numeric_actions=4400,
-                  scope='static archive acceptance; frozen original supply and texts; not closed-loop prediction')
+                  scope='static detail repair with preserved original supply; refusal uses labelled offline fallback; not closed-loop prediction')
     (OUT/'2026-10-07-03-content-summary.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
-    print(json.dumps({k:{n:v[n] for n in ('archived_published','statically_accepted','known_cases','extra_screen_hits','max_u_error')} for k,v in summary.items()},ensure_ascii=False,indent=2))
+    print(json.dumps({k:{n:v[n] for n in ('archived_published','preserved_posts','known_cases','extra_screen_hits','max_u_error')} for k,v in summary.items()},ensure_ascii=False,indent=2))
 
 
 if __name__ == '__main__':
