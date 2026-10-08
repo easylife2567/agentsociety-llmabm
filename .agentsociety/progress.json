@@ -3,18 +3,20 @@
   "workspace": {
     "topic": "公众人物去世后，算法策展如何塑造舆论场对其的数字表征",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "analysis",
+    "current_stage": "experiment_config",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
-    "revision_round": 7,
+    "revision_round": 8,
     "active_reroute": {
-      "revision_round": 7,
-      "requested_at": "2026-09-29T17:01:10.752820+00:00",
+      "revision_round": 8,
+      "requested_at": "2026-10-08T09:19:14.127989+00:00",
       "from_stage": "analysis",
       "target_stage": "experiment_config",
-      "reason": "用户批准实施并启动普通真实帖到达时机四格诊断，完成后每30分钟通报",
-      "source_artifact": "runs/2026-09-29-02-injection-timing/2026-09-29-01-injection-timing-plan.md",
+      "reason": "用户正式采用timestamp并要求退出到达时机任务，将真实信息时钟、配对行动及保留发言内容修复接入后续主实验设计；准备新批配置，保留行为参数与各臂回流，不启动实验",
+      "source_artifact": "hypothesis_4/experiment_1/EXPERIMENT.md",
       "pending_stages": [
+        "experiment_config",
+        "run_experiment",
         "analysis"
       ]
     }
@@ -62,69 +64,34 @@
       "revision_round": 4
     },
     "experiment_config": {
-      "status": "completed",
+      "status": "needs_revision",
       "started_at": null,
-      "completed_at": "2026-09-29T17:08:12.143737+00:00",
+      "completed_at": null,
       "attempts": 6,
       "error": null,
-      "metadata": {
-        "batch_id": "arrival_timing_diagnostic",
-        "runs": 4,
-        "offline_tests": 9,
-        "native_schema_check": "passed",
-        "independent_review": "passed"
-      },
-      "verification_status": "complete",
-      "revision_round": 7
+      "metadata": {},
+      "verification_status": "not_started",
+      "revision_round": 8
     },
     "run_experiment": {
-      "status": "completed",
-      "started_at": "2026-09-29T17:52:54.901202+00:00",
-      "completed_at": "2026-09-29T21:57:53.893657+00:00",
+      "status": "needs_revision",
+      "started_at": null,
+      "completed_at": null,
       "attempts": 4,
       "error": null,
-      "metadata": {
-        "batch_id": "arrival_timing_diagnostic",
-        "runs": 4,
-        "concurrency": 1,
-        "supervisor_pid": 99145,
-        "runtime_budget_hours": 24,
-        "runtime_root": "hypothesis_4/experiment_1/runs/arrival_timing_diagnostic",
-        "arrival_timing_diagnostic": {
-          "status": "completed",
-          "runs": 4,
-          "actions": 4400,
-          "published": 794,
-          "runtime_seconds": 13537.18852037564,
-          "evidence": "hypothesis_4/experiment_1/runs/arrival_timing_diagnostic/batch_execution.json",
-          "verification": "Four full audits passed; checkpoints and replay counts matched. Semantic checks and scientific analysis pending."
-        }
-      },
-      "verification_status": "complete",
-      "revision_round": 7
+      "metadata": {},
+      "verification_status": "not_started",
+      "revision_round": 8
     },
     "analysis": {
-      "status": "in_progress",
-      "started_at": "2026-09-30T01:44:40.817471+00:00",
+      "status": "needs_revision",
+      "started_at": null,
       "completed_at": null,
       "attempts": 3,
       "error": null,
-      "metadata": {
-        "arrival_timing_scope": "四格seed0、固定W19-W22主窗口；正文核查、来源分解、历史桥接；不扩实验",
-        "harness_limitation": "intake blocked by previous weekly_lag1 claims phase; preserve prior harness, use explicit data paths; do not mark global synthesis complete",
-        "arrival_timing_analysis": {
-          "task_status": "delivered",
-          "report": "runs/2026-09-29-02-injection-timing/2026-09-30-10-results.md",
-          "data": "presentation/hypothesis_4/2026-09-30-01-arrival-timing",
-          "independent_review": "PASS",
-          "registered_text_reviews": 555,
-          "unsupported_or_misdated_posts": 19,
-          "main_Y_interaction": -0.6825,
-          "limitations": "Single seed; content-grounding and measurement issues remain. Prior harness claims phase blocks intake; global synthesis is not validated. No new experiment authorized or started."
-        }
-      },
-      "verification_status": "partial",
-      "revision_round": 7
+      "metadata": {},
+      "verification_status": "not_started",
+      "revision_round": 8
     },
     "generate_paper": {
       "status": "not_started",
@@ -779,6 +746,93 @@
       "to_status": "in_progress",
       "from_stage": "analysis",
       "to_stage": "analysis"
+    },
+    {
+      "sequence": 34,
+      "timestamp": "2026-10-08T09:19:14.127993+00:00",
+      "kind": "reroute",
+      "revision_round": 8,
+      "from_stage": "analysis",
+      "to_stage": "experiment_config",
+      "reason": "用户正式采用timestamp并要求退出到达时机任务，将真实信息时钟、配对行动及保留发言内容修复接入后续主实验设计；准备新批配置，保留行为参数与各臂回流，不启动实验",
+      "source_artifact": "hypothesis_4/experiment_1/EXPERIMENT.md",
+      "invalidated_stages": [
+        "experiment_config",
+        "run_experiment",
+        "analysis"
+      ],
+      "previous_statuses": {
+        "experiment_config": "completed",
+        "run_experiment": "completed",
+        "analysis": "in_progress"
+      },
+      "previous_stage_states": {
+        "experiment_config": {
+          "status": "completed",
+          "started_at": null,
+          "completed_at": "2026-09-29T17:08:12.143737+00:00",
+          "attempts": 6,
+          "error": null,
+          "metadata": {
+            "batch_id": "arrival_timing_diagnostic",
+            "runs": 4,
+            "offline_tests": 9,
+            "native_schema_check": "passed",
+            "independent_review": "passed"
+          },
+          "verification_status": "complete",
+          "revision_round": 7
+        },
+        "run_experiment": {
+          "status": "completed",
+          "started_at": "2026-09-29T17:52:54.901202+00:00",
+          "completed_at": "2026-09-29T21:57:53.893657+00:00",
+          "attempts": 4,
+          "error": null,
+          "metadata": {
+            "batch_id": "arrival_timing_diagnostic",
+            "runs": 4,
+            "concurrency": 1,
+            "supervisor_pid": 99145,
+            "runtime_budget_hours": 24,
+            "runtime_root": "hypothesis_4/experiment_1/runs/arrival_timing_diagnostic",
+            "arrival_timing_diagnostic": {
+              "status": "completed",
+              "runs": 4,
+              "actions": 4400,
+              "published": 794,
+              "runtime_seconds": 13537.18852037564,
+              "evidence": "hypothesis_4/experiment_1/runs/arrival_timing_diagnostic/batch_execution.json",
+              "verification": "Four full audits passed; checkpoints and replay counts matched. Semantic checks and scientific analysis pending."
+            }
+          },
+          "verification_status": "complete",
+          "revision_round": 7
+        },
+        "analysis": {
+          "status": "in_progress",
+          "started_at": "2026-09-30T01:44:40.817471+00:00",
+          "completed_at": null,
+          "attempts": 3,
+          "error": null,
+          "metadata": {
+            "arrival_timing_scope": "四格seed0、固定W19-W22主窗口；正文核查、来源分解、历史桥接；不扩实验",
+            "harness_limitation": "intake blocked by previous weekly_lag1 claims phase; preserve prior harness, use explicit data paths; do not mark global synthesis complete",
+            "arrival_timing_analysis": {
+              "task_status": "delivered",
+              "report": "runs/2026-09-29-02-injection-timing/2026-09-30-10-results.md",
+              "data": "presentation/hypothesis_4/2026-09-30-01-arrival-timing",
+              "independent_review": "PASS",
+              "registered_text_reviews": 555,
+              "unsupported_or_misdated_posts": 19,
+              "main_Y_interaction": -0.6825,
+              "limitations": "Single seed; content-grounding and measurement issues remain. Prior harness claims phase blocks intake; global synthesis is not validated. No new experiment authorized or started."
+            }
+          },
+          "verification_status": "partial",
+          "revision_round": 7
+        }
+      }
     }
   ]
 }

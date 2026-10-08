@@ -1,10 +1,12 @@
 # H4-E1 实验归档总索引
 
-更新日期：2026-09-28。
+更新日期：2026-10-08。
+
+后续主设计已采用[timestamp_v1](hypothesis_4/experiment_1/EXPERIMENT.md)，新批尚未配置或运行。以下清单继续记录实际已完成和归档资产；目录名formal_current保留历史兼容含义，不代表timestamp_v1产物已存在。
 
 AgentSociety 官方工作区约定提供 `hypothesis_{id}/experiment_{id}/run` 单 run 目录，没有规定多批次历史归档结构。本项目保留该兼容入口，并按实验的证据地位组织本地 `archive/`。
 
-## A. 当前正式批：anchored_v1
+## A. 既有已完成主批：anchored_v1
 
 路径：`archive/hypothesis_4_experiment_1_batches/formal_current/anchored_v1/`
 
@@ -12,7 +14,7 @@ AgentSociety 官方工作区约定提供 `hypothesis_{id}/experiment_{id}/run` �
 - 完成性：9/9 完整；周级臂 11/11 步，chronological 693/693 批次。
 - replay：每个 run 有 1100 行 Agent 状态、11 行环境状态。
 - 周级顺序：本周真实帖先作为外部刺激进入并冻结全部 Agent 的 feed；本周 Agent 帖在全部 Agent 行动结束后统一提交，从下一周起对其他 Agent 可见。
-- 证据地位：恢复为当前主分析输入。该顺序与周级刺激—响应解释一致，并避免 Agent 在同一步内因执行先后互相影响。
+- 证据地位：保留为既有主批的历史分析输入，后续timestamp_v1须独立生成结果。该顺序与周级刺激—响应解释一致，并避免 Agent 在同一步内因执行先后互相影响。
 - 内容：`raw/` 原始 run、`_derived/` 冻结派生结果、`config/` 自包含配置、`inventory.json` 和 `checksums.sha256`。
 
 为保持既有论文和图表链接可读，Git 跟踪的派生结果副本仍位于 `hypothesis_4/experiment_1/runs/anchored_v1/_derived/`。官方单 run 兼容入口 `hypothesis_4/experiment_1/run` 指向本批 `anchored_v1_interest_s0`。

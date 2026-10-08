@@ -1,30 +1,21 @@
-# hypothesis_4 提交说明
+# hypothesis_4：算法策展主研究
 
-本目录保留当前主假设、`weekly_lag1`正式实验配置、旧`anchored_v1`冻结派生结果兼容副本，以及与当前模型直接相关的分析材料。
+本目录保存主假设、正式实验设计、配置及相关分析。后续主方案采用timestamp_v1；方案采用、配置验收和实际运行分开记录。
 
-## 权威内容
+## 一级资产
 
-- `HYPOTHESIS.md`：主假设与理论机制。
-- `SIM_SETTINGS.json`：仿真规模与设置。
-- `benchmark_curves.json`：真实数据周级效标。
-- `experiment_1/init/`：当前`weekly_lag1`配置与冻结输入。
-- `experiment_1/run`：AgentSociety官方单-run兼容入口，指向`weekly_lag1_interest_s0`。
-- `experiment_1/runs/weekly_lag1/`：当前interest/random×3 seeds正式批。
-- `experiment_1/runs/anchored_v1/_derived/`：已取代批的冻结派生结果兼容副本。
-- `experiment_1/results/numerical_ablation_drb/`：明确标注为 numerical proxy 的机制消融，不是正式 ABM/LLM run。
+| 资产 | 职责 |
+|---|---|
+| [README.md](README.md) | 主假设资产与实验入口 |
+| [HYPOTHESIS.md](HYPOTHESIS.md) | 主假设、三臂研究对象和已接受的时间规则 |
+| [SIM_SETTINGS.json](SIM_SETTINGS.json) | 正式Agent/环境类选择：CurationDiscourseAgent、CurationDynamicsSpace |
+| [benchmark_curves.json](benchmark_curves.json) | 冻结真实数据UTC周级效标，上海周对照另行派生，不覆盖 |
+| [experiment_1/](experiment_1/EXPERIMENT.md) | 已采用timestamp_v1设计、既有配置与历史批次 |
 
-## 正式批次边界
+## 设计与证据身份
 
-当前正式批次ID为`weekly_lag1`，6个run均已完成W12–W22并通过行数复核。当前分析只比较同步重跑的interest/random两臂；`anchored_v1`的9个raw run已移入本地归档。
+2026-10-08用户采用timestamp方案，当前设计以EXPERIMENT.md开头的timestamp_v1章节为准。三臂×3 seeds、100人、11周，保持行为参数及各臂回流。新版本尚未生成冻结配置或运行结果，后续从[主项目研究入口](../runs/2026-09-29-01-research-roadmap/README.md)推进。
 
-历史实验统一由根目录归档索引管理：
+实际官方单run入口仍指向既有anchored_v1_interest_s0；anchored_v1的9个已完成run继续保留。weekly_lag1是已完成的信息延迟敏感性批，weekly_lag1_event_v2是未运行且撤回设计。到达时机四格是独立单seed诊断，不改称新三臂主实验。归档路径与打包边界见[根归档清单](../ARCHIVE_MANIFEST_H4E1.md)。
 
-```text
-ARCHIVE_MANIFEST_H4E1.md
-```
-
-归档内容不得进入当前monitor、聚合表或最新分析数据源。
-
-## 打包提醒
-
-`experiment_1/run`是相对符号链接。压缩或上传时必须确认链接被保留；如果平台不支持符号链接，应在交付副本中将它实体化为当前主run目录。
+保留官方run符号链接及旧派生图的兼容路径；打包时确认链接和所引用原始资产可用，不把尚未运行的主设计写成完成结果。

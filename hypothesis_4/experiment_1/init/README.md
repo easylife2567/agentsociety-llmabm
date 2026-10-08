@@ -1,5 +1,7 @@
 # 实验配置与冻结输入
 
+后续采用timestamp_v1主设计，见[EXPERIMENT.md](../EXPERIMENT.md)。本目录尚未生成该版本配置；现有默认配置和生成脚本不等同新设计的可启动入口。新配置准备需独立manifest和预算，不导入会覆盖旧配置的生成器。
+
 | 资产 | 作用 |
 |---|---|
 | [arrival_timing_diagnostic/](arrival_timing_diagnostic/README.md) | 独立四格到达时机诊断配置、行动表及manifest |
