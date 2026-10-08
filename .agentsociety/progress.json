@@ -3,18 +3,19 @@
   "workspace": {
     "topic": "公众人物去世后，算法策展如何塑造舆论场对其的数字表征",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "run_experiment",
+    "current_stage": "experiment_config",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
-    "revision_round": 8,
+    "revision_round": 9,
     "active_reroute": {
-      "revision_round": 8,
-      "requested_at": "2026-10-08T09:19:14.127989+00:00",
-      "from_stage": "analysis",
+      "revision_round": 9,
+      "requested_at": "2026-10-08T13:02:47.548164+00:00",
+      "from_stage": "run_experiment",
       "target_stage": "experiment_config",
-      "reason": "用户正式采用timestamp并要求退出到达时机任务，将真实信息时钟、配对行动及保留发言内容修复接入后续主实验设计；准备新批配置，保留行为参数与各臂回流，不启动实验",
-      "source_artifact": "hypothesis_4/experiment_1/EXPERIMENT.md",
+      "reason": "接受用户要求W13开始共同官方帖应被全部悼念Agent读到；现九配置有5人提前耗尽机会，random入池后也不保证阅读。17条历史池属于有影响的初始条件，需先明确事件时钟/公告渠道并论证初始化后重新验收，不启动LLM。",
+      "source_artifact": "hypothesis_4/experiment_2/EXPERIMENT.md",
       "pending_stages": [
+        "experiment_config",
         "run_experiment",
         "analysis"
       ]
@@ -63,25 +64,14 @@
       "revision_round": 4
     },
     "experiment_config": {
-      "status": "completed",
+      "status": "needs_revision",
       "started_at": null,
-      "completed_at": "2026-10-08T09:58:27.016911+00:00",
+      "completed_at": null,
       "attempts": 7,
       "error": null,
-      "metadata": {
-        "hypothesis_id": "4",
-        "experiment_id": "2",
-        "batch_id": "timestamp_v1",
-        "source_artifact": "hypothesis_4/experiment_2/README.md",
-        "manifest": "hypothesis_4/experiment_2/init/manifest.json",
-        "config_checks": 9,
-        "functional_checks": 24,
-        "execution_authorized": false,
-        "model_calls": 0,
-        "independent_review": "PASS"
-      },
-      "verification_status": "complete",
-      "revision_round": 8
+      "metadata": {},
+      "verification_status": "not_started",
+      "revision_round": 9
     },
     "run_experiment": {
       "status": "needs_revision",
@@ -91,7 +81,7 @@
       "error": null,
       "metadata": {},
       "verification_status": "not_started",
-      "revision_round": 8
+      "revision_round": 9
     },
     "analysis": {
       "status": "needs_revision",
@@ -101,7 +91,7 @@
       "error": null,
       "metadata": {},
       "verification_status": "not_started",
-      "revision_round": 8
+      "revision_round": 9
     },
     "generate_paper": {
       "status": "not_started",
@@ -854,6 +844,69 @@
       "to_status": "completed",
       "from_stage": "experiment_config",
       "to_stage": "run_experiment"
+    },
+    {
+      "sequence": 36,
+      "timestamp": "2026-10-08T13:02:47.548167+00:00",
+      "kind": "reroute",
+      "revision_round": 9,
+      "from_stage": "run_experiment",
+      "to_stage": "experiment_config",
+      "reason": "接受用户要求W13开始共同官方帖应被全部悼念Agent读到；现九配置有5人提前耗尽机会，random入池后也不保证阅读。17条历史池属于有影响的初始条件，需先明确事件时钟/公告渠道并论证初始化后重新验收，不启动LLM。",
+      "source_artifact": "hypothesis_4/experiment_2/EXPERIMENT.md",
+      "invalidated_stages": [
+        "experiment_config",
+        "run_experiment",
+        "analysis"
+      ],
+      "previous_statuses": {
+        "experiment_config": "completed",
+        "run_experiment": "needs_revision",
+        "analysis": "needs_revision"
+      },
+      "previous_stage_states": {
+        "experiment_config": {
+          "status": "completed",
+          "started_at": null,
+          "completed_at": "2026-10-08T09:58:27.016911+00:00",
+          "attempts": 7,
+          "error": null,
+          "metadata": {
+            "hypothesis_id": "4",
+            "experiment_id": "2",
+            "batch_id": "timestamp_v1",
+            "source_artifact": "hypothesis_4/experiment_2/README.md",
+            "manifest": "hypothesis_4/experiment_2/init/manifest.json",
+            "config_checks": 9,
+            "functional_checks": 24,
+            "execution_authorized": false,
+            "model_calls": 0,
+            "independent_review": "PASS"
+          },
+          "verification_status": "complete",
+          "revision_round": 8
+        },
+        "run_experiment": {
+          "status": "needs_revision",
+          "started_at": null,
+          "completed_at": null,
+          "attempts": 4,
+          "error": null,
+          "metadata": {},
+          "verification_status": "not_started",
+          "revision_round": 8
+        },
+        "analysis": {
+          "status": "needs_revision",
+          "started_at": null,
+          "completed_at": null,
+          "attempts": 3,
+          "error": null,
+          "metadata": {},
+          "verification_status": "not_started",
+          "revision_round": 8
+        }
+      }
     }
   ]
 }

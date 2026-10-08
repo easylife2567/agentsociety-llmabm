@@ -8,7 +8,7 @@
 
 1. [TOPIC.md](TOPIC.md)：研究问题、理论目标和既有规模预算。
 2. [AGENTS.md](AGENTS.md)：工作规范，与 [CLAUDE.md](CLAUDE.md) 共享正文。
-3. [hypothesis_4/](hypothesis_4/README.md)：当前官方主实验入口；experiment_2已完成配置和离线验收。
+3. [hypothesis_4/](hypothesis_4/README.md)：当前官方主实验入口；experiment_2正在复核共同事件与历史初始化，配置待修订。
 4. [runs/](runs/README.md)：已完成研究探索与采纳决定的历史索引。
 5. [ARCHIVE_MANIFEST_H4E1.md](ARCHIVE_MANIFEST_H4E1.md)：已运行批次、敏感性及撤回设计的证据分类。
 

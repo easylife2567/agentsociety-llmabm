@@ -1,5 +1,7 @@
 # Experiment 2：timestamp策展三臂主实验
 
+> 当前状态：用户追加的W13共同官方帖覆盖要求未满足，历史初始化需重新论证；配置待修订，不能仅补运行预算后直接启动。见EXPERIMENT.md文末的设定复核。
+
 ## 目标与范围
 
 落实已采用的timestamp方案：三臂真实信息时钟、配对行动表、原行为参数和各臂回流制度，继承保留发言内容修复。100人×11周×3算法×3 seeds，共9 runs、9900次行动机会。本轮只准备及离线验收，不调用LLM、不启动实验。
@@ -12,6 +14,8 @@
 |---|---|
 | [README.md](README.md) | 目标、一级资产、实时进度与交接 |
 | [EXPERIMENT.md](EXPERIMENT.md) | 完整主设计、基线代码证据、落地方案、patch解释、验收及结论边界 |
+| [2026-10-08-04-initial-state-check.py](2026-10-08-04-initial-state-check.py) | 官方帖覆盖与历史初始化的只读/无LLM核对；使用.env解释器运行 |
+| [2026-10-08-05-initial-state-evidence.json](2026-10-08-05-initial-state-evidence.json) | 单seed真实归档覆盖、18组外部池数值比较及源哈希，不是闭环仿真 |
 | [init/](init/README.md) | 标准库生成器、冻结输入、九份配置、每seed步骤及manifest |
 | [2026-10-08-01-timestamp.patch](2026-10-08-01-timestamp.patch) | 三个既有正式模块的最终补丁；基线d4a8319a6477d818dc5efbcc1d475625f14a42fc |
 | [2026-10-08-02-functional-verification.json](2026-10-08-02-functional-verification.json) | 24项禁网功能验收结果，0模型调用 |
@@ -23,10 +27,10 @@
 - 正式代码：三臂均激活arrival路径；chronological使用稳定时间排序、批末入池及当周供给记账，random/interest保持次周回流；共享额外请求990次与新ledger实际接线。原行为参数不变。
 - 功能验证：24项通过、0失败；九窗环境演练各693批、1100行动、11周，未来曝光0；同批隔离、分臂回流、跨周供给守恒、恢复一致性和额度耗尽兜底通过。历史20必查样本覆盖两类行动入口；网络连接尝试0、LLM调用0。
 - 审查：方案冻结前独立timing_review通过；实现后发现并修正时序周观测遗漏，新增实际发布跨周检查，修正可见词提示说明。最终patch和冻结证据独立终审PASS。
-- 机器阶段：控制agent通过CLI将experiment_config登记completed、verification complete；current_stage自动进入run_experiment，继承reroute状态needs_revision、verification not_started。该状态表示尚待新批运行，并非新批执行失败。阶段metadata明确hypothesis_id=4、experiment_id=2；where-am-i顶层ID仍为空，启动时须显式指定，不手改机器JSON。
+- 机器阶段：用户追加共同事件需求后，控制agent通过CLI reroute至experiment_config，revision_round=9、status needs_revision；原技术验收记录保留为旧规则证据，不代表新需求已经满足。hypothesis_id=4、experiment_id=2，启动仍须显式指定，不手改机器JSON。
 - 授权：本轮只完成准备及离线验收；manifest execution_authorized=false、active_wall_seconds=null。没有新LLM结果、监督器、checkpoint或定时器。
 - 运行前审核（2026-10-08）：三个独立只读子agent分别复核patch实现、离线功能与配置矩阵，均无blocker；本轮新发现见下节。
-- 下一步：用户确定新批模型/发送范围、活动时长或费用预算后，按官方引擎CLI显式指定experiment_2的各run配置与目录，并按manifest逐run执行九格矩阵（工作区start包装器限制见下节）；本轮到此交付准备结果。
+- 下一步：先明确共同公告的事件时钟与所有悼念Agent的阅读覆盖，论证历史池并重新冻结/验收配置；这些完成后再确定新批模型/发送范围、活动时长或费用预算，按官方引擎CLI显式指定experiment_2的各run配置与目录，并按manifest逐run执行九格矩阵（工作区start包装器限制见下节）；本轮到此交付准备结果。
 
 ## 交接边界
 
@@ -58,7 +62,7 @@ LITELLM_LOCAL_MODEL_COST_MAP=True "$PYTHON_PATH" -m dotenv -f .env run --no-over
 
 命令从项目根目录运行，dotenv按与包装器相同的“不覆盖已有进程环境”规则加载凭据，不把密钥放入参数或报告。九组固定顺序为每seed random→chronological→interest，seed 0→1→2，以manifest为准。此模板是单组前台入口，不是已实现的九run预算监督器；批准新预算后才配置监督停止、后台stdout/stderr及进度报告，不复用旧四格控制器。
 
-## 运行前独立审核结论（2026-10-08）
+## 此前技术审核结论（2026-10-08，追加事件需求前）
 
 三个独立只读子agent分别审查最终patch实现、离线功能复现、配置矩阵与预算，均未发现blocker，未修改任何文件或机器阶段。
 
@@ -79,6 +83,12 @@ LITELLM_LOCAL_MODEL_COST_MAP=True "$PYTHON_PATH" -m dotenv -f .env run --no-over
 
 ### 审核后仍缺的启动条件
 
-以上是技术准备层面的结论。九run仍不能启动，缺的是三项已登记的pending，均非配置缺陷：新批模型/发送范围与启动授权；运行时长或费用预算及据此冻结的监督停止设置；并发与实际模型运行设置。九run监督器本身尚未实现，旧四格控制器按设计不复用。
+上述审核只覆盖当时冻结实现。当前首先需修订共同事件的时钟/阅读覆盖并审查历史初始化，原三项启动pending仍保留：新批模型/发送范围与启动授权；运行时长或费用预算及据此冻结的监督停止设置；并发与实际模型运行设置。九run监督器本身尚未实现，旧四格控制器按设计不复用。
 
-当前结论：代码、配置和离线功能准备通过，并已通过三方独立审核；新九run的启动授权、活动时长/费用上限及据此冻结的监督/并发设置尚待确定，manifest继续保持未授权。本次只更新准备核对记录，不改变机器阶段或原冻结方案。完整证据见本级配置验收JSON的prelaunch_check。
+此前技术核对结果保存于本级配置验收JSON的prelaunch_check。该核对未涵盖下节用户追加的共同事件条件；当前配置待修订，manifest继续保持未授权。
+
+## 共同事件与历史初始化的当前裁定
+
+已核实：九配置的5位悼念Agent在原官方时刻前用掉W13机会；真实timestamp-random归档仅1/22阅读该官方帖，interest17/22。17历史是分层现实样本但非中性占位，W13随机曝光占比和数值开口对其敏感。无LLM、无Agent反馈的18组比较与独立重放一致；尚未证明完整波峰受到“致命”影响。两点完整依据、数值表和建议在EXPERIMENT.md，不另建主题报告。
+
+用户要求的W13周初共同信息覆盖作为新验收需求；具体公告渠道/时钟定义与历史初始化替代方式仍待方案裁定。本轮未改变冻结代码、参数、配置或历史结果；此前技术审查PASS不能替代这一研究设定审查。流水线回到experiment_config待修订，运行预算仍未授权。后续不得直接使用先前命令模板启动现有九配置。
