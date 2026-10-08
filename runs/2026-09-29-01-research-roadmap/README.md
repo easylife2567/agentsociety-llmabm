@@ -12,20 +12,13 @@
 | [2026-09-29-01-research-roadmap.md](2026-09-29-01-research-roadmap.md) | 已有实验脉络、依据、推进流程及验收标准；同主题持续更新 |
 | `tmp/` | 临时检查输出；Git 忽略，不存唯一结果证据 |
 
-## 实时进度
+## 实时进度与交接
 
-- 已完成：工作规范与官方目录导航落地；2026-10-08按用户裁定接收timestamp方案，官方EXPERIMENT.md新增完整主设计，TOPIC及假设/实验导航同步。
-- 当前：本目录为主项目活动研究入口；到达时机任务已完成并退出。新版本设计标识timestamp_v1，配置和运行结果尚未生成；既有anchored_v1仍是实际兼容run来源。
-- 下一步：按官方主设计准备三臂配对配置、预算接线与离线验收，尤其核对chronological的小时回流和现有ArrivalSchedule只支持两臂的实现边界；已有代码通过本任务patch落实。
-- 授权边界：已采用timestamp和既有内容修复要求，保留行为参数及各臂回流制度。9-run是既有主研究矩阵，本次没有启动授权；新模型调用与费用冻结后再运行，不使用诊断旧预算或checkpoint。
+本任务已完成：工作规范、官方目录导航与主设计采纳脉络已留档。当前活动入口为[官方experiment_2](../../hypothesis_4/experiment_2/README.md)，正式timestamp九配置、源码patch及离线验收在该目录维护，本目录不继续实施或运行。
 
-## 待决策与后续交接
+timestamp已采纳，保留当前行为参数和各臂回流；本轮只准备及离线验收，不调用LLM。旧anchored_v1与四格是历史证据，原run链接、分析来源和checkpoint不替换。新批预算与启动边界统一由experiment_2 README管理。
 
-方案选择已完成，不重复询问是否采用timestamp。主实验当前设计见[EXPERIMENT.md](../../hypothesis_4/experiment_1/EXPERIMENT.md)，本任务报告维护接入依据与验收方法，细节不复制到README。45条额外内容筛查的人工确认、正文测量桥接及新批运行费用仍需后续处理；这些不撤销已采用的到达规则。
-
-历史来源冲突按实际入口处理：hypothesis_4/README.md及HYPOTHESIS.md的weekly_lag1/event_v2状态已纠正。`presentation/hypothesis_4/data/analysis_sources.json`仍属于旧分析上下文，不能用作尚未运行的timestamp_v1数据源；新批分析就绪前不替换实际兼容入口或伪造分析来源。
-
-控制agent已通过CLI完成analysis→experiment_config的reroute，revision_round=8，状态needs_revision，配置验收尚未完成。规范阶段推送的工作簿仍保留原用途，不自动替换冻结主样本或标签。
+以下审查记录属于本任务的历史工作；当前机器阶段和实验状态以官方CLI及experiment_2为准，不沿用历史状态快照。
 
 ## 审查与验证
 

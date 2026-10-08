@@ -3,7 +3,7 @@
   "workspace": {
     "topic": "公众人物去世后，算法策展如何塑造舆论场对其的数字表征",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "experiment_config",
+    "current_stage": "run_experiment",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
     "revision_round": 8,
@@ -15,7 +15,6 @@
       "reason": "用户正式采用timestamp并要求退出到达时机任务，将真实信息时钟、配对行动及保留发言内容修复接入后续主实验设计；准备新批配置，保留行为参数与各臂回流，不启动实验",
       "source_artifact": "hypothesis_4/experiment_1/EXPERIMENT.md",
       "pending_stages": [
-        "experiment_config",
         "run_experiment",
         "analysis"
       ]
@@ -64,13 +63,24 @@
       "revision_round": 4
     },
     "experiment_config": {
-      "status": "needs_revision",
+      "status": "completed",
       "started_at": null,
-      "completed_at": null,
-      "attempts": 6,
+      "completed_at": "2026-10-08T09:58:27.016911+00:00",
+      "attempts": 7,
       "error": null,
-      "metadata": {},
-      "verification_status": "not_started",
+      "metadata": {
+        "hypothesis_id": "4",
+        "experiment_id": "2",
+        "batch_id": "timestamp_v1",
+        "source_artifact": "hypothesis_4/experiment_2/README.md",
+        "manifest": "hypothesis_4/experiment_2/init/manifest.json",
+        "config_checks": 9,
+        "functional_checks": 24,
+        "execution_authorized": false,
+        "model_calls": 0,
+        "independent_review": "PASS"
+      },
+      "verification_status": "complete",
       "revision_round": 8
     },
     "run_experiment": {
@@ -833,6 +843,17 @@
           "revision_round": 7
         }
       }
+    },
+    {
+      "sequence": 35,
+      "timestamp": "2026-10-08T09:58:27.016921+00:00",
+      "kind": "stage_update",
+      "revision_round": 8,
+      "stage": "experiment_config",
+      "from_status": "needs_revision",
+      "to_status": "completed",
+      "from_stage": "experiment_config",
+      "to_stage": "run_experiment"
     }
   ]
 }

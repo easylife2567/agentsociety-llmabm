@@ -2,7 +2,7 @@
 
 更新日期：2026-10-08。
 
-后续主设计已采用[timestamp_v1](hypothesis_4/experiment_1/EXPERIMENT.md)，新批尚未配置或运行。以下清单继续记录实际已完成和归档资产；目录名formal_current保留历史兼容含义，不代表timestamp_v1产物已存在。
+后续主设计已采用[timestamp_v1](hypothesis_4/experiment_2/EXPERIMENT.md)，新批已完成九配置和离线验收，未启动LLM。以下清单继续记录实际已完成和归档资产；目录名formal_current保留历史兼容含义，不代表timestamp_v1产物已存在。
 
 AgentSociety 官方工作区约定提供 `hypothesis_{id}/experiment_{id}/run` 单 run 目录，没有规定多批次历史归档结构。本项目保留该兼容入口，并按实验的证据地位组织本地 `archive/`。
 

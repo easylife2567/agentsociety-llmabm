@@ -2,14 +2,16 @@
 
 这是用户新增的研究思路管理入口，按研究问题或交付目标组织方案、决策与交接；工作区仍采用 AgentSociety2 官方目录结构。先进入任务 README，再按资产索引阅读方案与结果；同主题复测继续原任务。
 
-## 一级资产与活动入口
+根级runs本轮研究探索已完成，当前工作进入[官方experiment_2](../hypothesis_4/experiment_2/README.md)。此处保留思路与决策证据，不另开并行活动任务。
+
+## 一级资产与历史导航
 
 | 资产 | 职责 | 导航 |
 |---|---|---|
 | [README.md](README.md) | 根级任务索引与使用约定 | 从这里查找任务 |
-| [2026-09-29-01-research-roadmap/](2026-09-29-01-research-roadmap/README.md) | 课题推进规范与历史实验脉络 | 当前活动入口；timestamp已采用并接入官方主设计，继续主项目配置准备 |
-| [2026-09-29-02-injection-timing/](2026-09-29-02-injection-timing/README.md) | 真实帖子到达时机的四格实验及后续方案 | 已完成并退出；timestamp方案已采用，证据与内容修复留档，后续回到课题推进入口 |
-| [2026-10-06-01-baseline-anchor/](2026-10-06-01-baseline-anchor/README.md) | 常态锚点换算的独立无LLM数值探索 | 9900条复算完成，110/220条营销判定变化；新锚点尚未采纳 |
+| [2026-09-29-01-research-roadmap/](2026-09-29-01-research-roadmap/README.md) | 课题推进规范与历史实验脉络 | 已完成并交接；推进规则和历史脉络留档 |
+| [2026-09-29-02-injection-timing/](2026-09-29-02-injection-timing/README.md) | 真实帖子到达时机的四格实验及后续方案 | 已完成并退出；timestamp方案已采用，证据与内容修复留档，后续进入官方experiment_2 |
+| [2026-10-06-01-baseline-anchor/](2026-10-06-01-baseline-anchor/README.md) | 常态锚点换算的独立无LLM数值探索 | 已完成留档；9900条复算，候选锚点未采纳 |
 
 ## 使用约定
 

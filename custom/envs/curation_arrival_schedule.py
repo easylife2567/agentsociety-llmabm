@@ -1,4 +1,4 @@
-"""到达时机诊断的小时调度：确定性曝光、次周回流与可恢复的行动审计。
+"""帖子到达的小时调度：确定性曝光、分臂回流与可恢复的行动审计。
 
 本组件由 CurationDynamicsSpace 显式启用，共享其判类、倾向分和效用输入，
 不改变其他调度路径。时钟内部统一为上海当地无时区 datetime，日志附 +08:00。
@@ -36,8 +36,8 @@ class ArrivalSchedule:
         self.e = env
         if mode not in ('preload', 'timestamp'):
             raise ValueError('arrival_mode must be preload or timestamp')
-        if env._recommendation_algorithm not in ('interest', 'random'):
-            raise ValueError('arrival timing supports interest/random')
+        if env._recommendation_algorithm not in ('interest', 'random', 'chronological'):
+            raise ValueError('arrival timing supports interest/random/chronological')
         if set(env._agent_types) != set(env._chronological_action_hours):
             raise ValueError('行动表与人口不一致')
         self.mode = mode
@@ -130,7 +130,7 @@ class ArrivalSchedule:
 
     def candidates(self):
         e = self.e
-        ids = list(e._posts) if e._recommendation_algorithm == 'random' else e._live_candidates()
+        ids = list(e._posts) if e._recommendation_algorithm in ('random', 'chronological') else e._live_candidates()
         return sorted(ids, key=lambda pid: e._posts[pid]['stable_key'])
 
     def item(self, pid):
@@ -144,6 +144,10 @@ class ArrivalSchedule:
         e = self.e
         if e._recommendation_algorithm == 'random':
             ids = self.rng(aid, 'uniform').sample(candidates, min(e._feed_size, len(candidates)))
+        elif e._recommendation_algorithm == 'chronological':
+            # 精确时间优先，稳定源键破并列；自增存储ID不影响最新帖选择。
+            ids = sorted(candidates, key=lambda pid: (e._posts[pid]['published_at'],
+                         e._posts[pid]['stable_key']), reverse=True)[:e._feed_size]
         else:
             ids = (e._pinned_ids + e._event_floor_ids)[:e._feed_size]
             scored = []
@@ -262,17 +266,26 @@ class ArrivalSchedule:
                 age = (monday(t).date() - datetime.fromisocalendar(int(p['week'][:4]), int(p['week'][-2:]), 1).date()).days // 7
                 e._exposure_age_buckets['age3plus' if age >= 3 else f'age{age}'] += 1
             self.state['actions'].append(snap)
-        # 发布成功记录与可推荐帖子分账；同周任何后续小时都不可提前读取。
+        # 全批曝光提交后才处理产出：时序臂批末入池，其余两臂次周可见。
         for rec in e._pending_agent_posts:
             aid = rec['agent_id']
-            available = monday(t) + timedelta(days=7)
-            self.state['delayed'].append({
+            chronological = e._recommendation_algorithm == 'chronological'
+            available = local_time(t) if chronological else monday(t) + timedelta(days=7)
+            pooled = {
                 **rec, 'stable_key': f"agent:{aid}:{rec['week']}", 'source': 'agent',
                 'author_id': aid, 'author_handle': aid, 'type': rec['pool_type'],
                 'source_week': rec['week'], 'available_week': e._week_for_time(available),
-                'injected_week': e._week_for_time(available), 'injection_role': 'agent_previous_week',
+                'injected_week': e._week_for_time(available),
+                'injection_role': 'agent_prior_batch' if chronological else 'agent_previous_week',
                 'published_at': stamp(t), 'available_at': stamp(available),
-                'is_official': False, 'life': 1., 'exposure_count': 0})
+                'is_official': False, 'life': 1., 'exposure_count': 0}
+            if chronological:
+                # 当前批feed是已冻结快照；这条帖子只能出现在后续批的快照中。
+                e._posts[pooled['post_id']] = pooled
+                # 当周实际入池供给累积到周度flow；start_week负责清空周计数。
+                e._agent_posts_pooled_prev.add(pooled['post_id'])
+            else:
+                self.state['delayed'].append(pooled)
             self.state['week_posts'].append(rec)
             e._total_posts_by_agent[aid] = e._total_posts_by_agent.get(aid, 0) + 1
         e._pending_agent_posts = []

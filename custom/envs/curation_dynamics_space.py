@@ -424,7 +424,8 @@ class CurationDynamicsSpace(EnvBase):
             )
         if self._recommendation_algorithm == "chronological" and (
             self._weekly_real_post_lag_weeks
-            or self._weekly_initial_injection_data_path
+            # 精确到达组件统一读取事件前初始池；常规时序制度使用自身入口。
+            or (self._weekly_initial_injection_data_path and schedule_mode != "arrival_timing")
             or self._weekly_same_week_official_source_pids
         ):
             raise ValueError(

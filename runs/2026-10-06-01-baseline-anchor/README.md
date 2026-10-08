@@ -23,11 +23,11 @@
 
 独立终审`baseline_check_review`为PASS：直接读取工作簿复算队列与作者周、逐条用数学公式复算9900条旧/新判定、核对来源哈希及weekly/summary聚合，数字一致；PNG已目视确认统一纵轴和数值诊断标注。用户追加的Agent发言量趋势图已交付PNG/SVG。父级导航、文件链接与Git差异格式检查通过；仅提交本任务资产，不自动推送。
 
-CLI机器阶段为analysis/in_progress、verification partial。官方analysis intake因已有claims阶段阻塞（回执`.agentsociety/analysis/runs/run_20261006t132919_bfcddc5689.json`）；query-data在沙箱内外均报SQLite disk I/O error。本任务以原始分片JSONL与AGENT.json独立读取，不修改harness或宣称全项目analysis完成。
+当次数值探索的CLI历史快照为analysis/in_progress、verification partial。官方analysis intake因已有claims阶段阻塞（回执`.agentsociety/analysis/runs/run_20261006t132919_bfcddc5689.json`）；query-data在沙箱内外均报SQLite disk I/O error。本任务以原始分片JSONL与AGENT.json独立读取，不修改harness或宣称全项目analysis完成。
 
 已发现口径边界：人口构成使用W12–W22全窗单类型用户，排除噪音后31770人；此构成包含事件后信息。替换W13峰值尺子不等于消除全部事后信息。固定曝光复算不模拟内容变化及后续推荐反馈。
 
-下一步：对报告的独立复核已登记为下节“审核结论”；待用户裁定候选B取舍、报告表述是否修订、是否安排完整反馈运行。尚未采纳新B或重新标定；新增完整LLM运行另行确定。
+任务已完成并留档；候选B未采纳，当前experiment_2保留原B及行为参数。以下审核结论保留其科学限制与未采纳建议，不构成本目录继续执行的计划。后续官方主实验从[experiment_2](../../hypothesis_4/experiment_2/README.md)推进，不新增LLM运行。
 
 ## 审核结论
 

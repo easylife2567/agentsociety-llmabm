@@ -20,9 +20,12 @@ messages = quality.messages
 published_result = quality.published_result
 
 
-def reserve_retry():
-    """并发Worker共享额外生成次数；仅失败重试使用，全批最多440次。"""
-    path = os.environ.get('CURATION_RETRY_LEDGER')
+def reserve_retry(limit=440, path=None):
+    """并发Worker共用内容重写/技术重试额度；上限与ledger取冻结配置。"""
+    limit = int(limit)
+    if limit < 0:
+        raise ValueError('extra request limit must be nonnegative')
+    path = path or os.environ.get('CURATION_RETRY_LEDGER')
     if not path:
         return False
     target = Path(path)
@@ -31,7 +34,7 @@ def reserve_retry():
         fcntl.flock(file, fcntl.LOCK_EX)
         file.seek(0)
         count = int(file.read() or '0')
-        if count >= 440:
+        if count >= limit:
             return False
         file.seek(0)
         file.truncate()
@@ -101,7 +104,10 @@ async def act(agent, tick, t):
             return 'below_threshold'
         prompts = messages(agent, snap)
         row['messages'] = prompts
-        await quality.prepare_publication(agent, row, lambda p: generate_once(agent, p), reserve_retry)
+        # 三臂共用profile登记的独立ledger；未登记时保留既有诊断额度。
+        budget = getattr(agent, '_profile', {}).get('content_retry_budget')
+        reserve_extra = (lambda: reserve_retry(limit=budget['limit'], path=budget['ledger_path'])) if budget else reserve_retry
+        await quality.prepare_publication(agent, row, lambda p: generate_once(agent, p), reserve_extra)
         content = row['content']
         phase = 'publication'
         result, _ = await agent.ask_env(

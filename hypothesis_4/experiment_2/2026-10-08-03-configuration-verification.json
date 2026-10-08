@@ -1,0 +1,147 @@
+{
+  "success": true,
+  "official_cli": {
+    "validate": true,
+    "prepare": true,
+    "info": true,
+    "run_config_generator": true,
+    "default_check": true
+  },
+  "nine_config_checks": [
+    {
+      "run_id": "timestamp_v1_random_s0",
+      "schema": true,
+      "env_instance": true,
+      "agent_workspace_count": 100,
+      "batches": 693
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s0",
+      "schema": true,
+      "env_instance": true,
+      "agent_workspace_count": 100,
+      "batches": 693
+    },
+    {
+      "run_id": "timestamp_v1_interest_s0",
+      "schema": true,
+      "env_instance": true,
+      "agent_workspace_count": 100,
+      "batches": 693
+    },
+    {
+      "run_id": "timestamp_v1_random_s1",
+      "schema": true,
+      "env_instance": true,
+      "agent_workspace_count": 100,
+      "batches": 693
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s1",
+      "schema": true,
+      "env_instance": true,
+      "agent_workspace_count": 100,
+      "batches": 693
+    },
+    {
+      "run_id": "timestamp_v1_interest_s1",
+      "schema": true,
+      "env_instance": true,
+      "agent_workspace_count": 100,
+      "batches": 693
+    },
+    {
+      "run_id": "timestamp_v1_random_s2",
+      "schema": true,
+      "env_instance": true,
+      "agent_workspace_count": 100,
+      "batches": 693
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s2",
+      "schema": true,
+      "env_instance": true,
+      "agent_workspace_count": 100,
+      "batches": 693
+    },
+    {
+      "run_id": "timestamp_v1_interest_s2",
+      "schema": true,
+      "env_instance": true,
+      "agent_workspace_count": 100,
+      "batches": 693
+    }
+  ],
+  "agent_workspaces_checked": 900,
+  "all_source_and_output_hashes_match": true,
+  "default_config_matches_interest_s0": true,
+  "baseline_commit": "d4a8319a6477d818dc5efbcc1d475625f14a42fc",
+  "execution_authorized": false,
+  "runtime_budget_seconds": null,
+  "source_code_and_config_sha256": {
+    "custom/agents/curation_arrival_action.py": "d7fc39461c14d957d5b8a6430b538d0bf104d2ec6f1d6498d5af751280ce15cb",
+    "custom/agents/curation_content_quality.py": "4e0903091e14db09c379ce65cbe665abd57aae2af0aa66b5aeca38d35ca1045f",
+    "custom/agents/curation_discourse_agent.py": "ac08888fdbd5000abb2526da83a7a9363e4b3349623f459213241b721c2e4072",
+    "custom/envs/curation_arrival_schedule.py": "08e3993d309e753a095eadbd50140be07cc39e08476ef55338da635c0f903b79",
+    "custom/envs/curation_assets/vocabs.json": "7db323585fdc98594da4a4b97e49ce5d3d1654c89839da7c2a754c7515b15e69",
+    "custom/envs/curation_dynamics_space.py": "37ae5b9fec19d4ccc8dd57e7be0d69d1dcc50d64bd9f8c290f72d51995430a64",
+    "custom/envs/curation_mechanisms.py": "1acbc7deafbd61c0e7d04f81673ad1ef0497acd8ef308b0a6a1b26a558a4baec",
+    "custom/tests/test_arrival_timing.py": "dbcbe49c4d26b6ee82bbb77d64e2007cd37cc3878be14e450b46fd4c7bb4a7df",
+    "custom/tests/test_content_quality.py": "420718a54c32cc84b0c786c126d247d33e8b84101a406768294b827dc0152dce",
+    "custom/tests/test_timestamp_main.py": "d7f1c4703a17ae77e8ae8e7b8cd05de80338f4ebad615693ee7cd0fa93264b9e",
+    "hypothesis_4/experiment_1/init/configs/anchored_v1_chronological_s0.json": "1c2f527a12bee9923fcbb1bbaab060db78a59678beaf29f14cbf33b4df86de97",
+    "hypothesis_4/experiment_1/init/configs/anchored_v1_chronological_s1.json": "7b892f4e3b5c294255189e4f7c03a4c1489ebf2f63b8704bdb89f0f2e37e4c19",
+    "hypothesis_4/experiment_1/init/configs/anchored_v1_chronological_s2.json": "06b4457bb1bb705b8851ee673b9894f5943074d433e9849b35b648caf728ef76",
+    "hypothesis_4/experiment_1/init/configs/anchored_v1_interest_s0.json": "10b24553bc941af81b20476c60207aa8cd6cf7a26c9327f71df6583d2e80aba1",
+    "hypothesis_4/experiment_1/init/configs/anchored_v1_interest_s1.json": "fcf2e87a583bffcc182e21d9b1cf48438b8eb089fa8ef7ef4c1e640b6ed2379f",
+    "hypothesis_4/experiment_1/init/configs/anchored_v1_interest_s2.json": "3cba366967e2f9a6c36d70353492442e97d62413ca1a7e17e284fdc70dc9af70",
+    "hypothesis_4/experiment_1/init/configs/anchored_v1_random_s0.json": "f0e3627dfa7712586009408d392bd252208c92bd7beb4acda2d16761e4fed88c",
+    "hypothesis_4/experiment_1/init/configs/anchored_v1_random_s1.json": "f46d3d13b6836c3ef86b733cb08dceb299e42f71d19d3b4006d4dad6b9900ea7",
+    "hypothesis_4/experiment_1/init/configs/anchored_v1_random_s2.json": "04a4c573c64398ee26cc623e63fe7a6d2de1e637fb898c20a987db043ae2b16a",
+    "hypothesis_4/experiment_1/init/initial_sample_weekly_lag_s0.json": "8915813f6b4258c03a137e3c8b0e27dc763a724bd0947b3a0190ee1cc04fe6bf",
+    "hypothesis_4/experiment_1/init/initial_sample_weekly_lag_s1.json": "da75d5861bf9bffbcb97a5b13130bd30bfc2bbfe1f11b2ed4eb4f29f92029813",
+    "hypothesis_4/experiment_1/init/initial_sample_weekly_lag_s2.json": "d5b25c42b27b468925e4112bfac60daf8f2a5362b227a83572e47b446ee19d49",
+    "hypothesis_4/experiment_1/init/injection_sample_s0.json": "5b0f9efedffac94ba2b3a8a639aa8b0b3c0ef2bb2c1f31a8377ac76ec29608d5",
+    "hypothesis_4/experiment_1/init/injection_sample_s1.json": "bf0768ec6c2fa9510188c676f901311feaec43ae8db2319408a6b4a5905e9601",
+    "hypothesis_4/experiment_1/init/injection_sample_s2.json": "44d37a4ddc04fa34c940dff80415c81a6376832e69d7d7299b4b2b9177c15708",
+    "hypothesis_4/experiment_2/2026-10-08-01-timestamp.patch": "67b4bae49e2735851f132504c45d97a5135e6a3b5207f28057b47272bd32db7c",
+    "hypothesis_4/experiment_2/init/config_params.py": "39c16d3f23d93f7d0fbeec8bf95077aaa71edb994cdd0641a73def969bd7760d",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s0.json": "4741002d3a3b802d1388a9a064dd5339663229fae04aef12b48b1141a148a16b",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s1.json": "b7881647fefb10a7ceab21b7ee6181095fd78835641962e502ee39c5d3e10f82",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s2.json": "81ac3b7e946323ee086f7216466e2415d0c7b9cf0d35de84cfec64fe7234ef45",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s0.json": "c8d11a9c34999031ee55719a79bfdc7f3fb5b935efa328de5d17063e8089f4f7",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s1.json": "7f583e9ea4ebfd8e33046921b6e56caf727cede64807fe9c7df548bbd2a28cf6",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s2.json": "4d6bbc7356d1f4f41b85301507c9625e8060ae5ae79853c096111297f4614207",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s0.json": "1b6a1901e7f69555296bf6f466066b671e8ac51d00244a49d52fbfb4ff493642",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s1.json": "622abbcf10f19c6b90246cac199b6057eb0ee345ab6bf0cc89ea48977f470216",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s2.json": "a01716b133bd2248dd6d0cbb1429a661d406e5a9bcb4b5d0542a325976720745",
+    "hypothesis_4/experiment_2/init/init_config.json": "c8d11a9c34999031ee55719a79bfdc7f3fb5b935efa328de5d17063e8089f4f7",
+    "hypothesis_4/experiment_2/init/inputs/action_schedule_s0.json": "52b5643ef06c10b03c5587f2cba4cbc5d78737d59f9127911dc5de61a10782cd",
+    "hypothesis_4/experiment_2/init/inputs/action_schedule_s1.json": "52b5643ef06c10b03c5587f2cba4cbc5d78737d59f9127911dc5de61a10782cd",
+    "hypothesis_4/experiment_2/init/inputs/action_schedule_s2.json": "52b5643ef06c10b03c5587f2cba4cbc5d78737d59f9127911dc5de61a10782cd",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s0.json": "8915813f6b4258c03a137e3c8b0e27dc763a724bd0947b3a0190ee1cc04fe6bf",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s1.json": "da75d5861bf9bffbcb97a5b13130bd30bfc2bbfe1f11b2ed4eb4f29f92029813",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s2.json": "d5b25c42b27b468925e4112bfac60daf8f2a5362b227a83572e47b446ee19d49",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s0.json": "5b0f9efedffac94ba2b3a8a639aa8b0b3c0ef2bb2c1f31a8377ac76ec29608d5",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s1.json": "bf0768ec6c2fa9510188c676f901311feaec43ae8db2319408a6b4a5905e9601",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s2.json": "44d37a4ddc04fa34c940dff80415c81a6376832e69d7d7299b4b2b9177c15708",
+    "hypothesis_4/experiment_2/init/inputs/population_s0.json": "00ac34e2c28a4c3fb25bdb7af7e78599af5ac8e92a78a41a26acefc3000da395",
+    "hypothesis_4/experiment_2/init/inputs/population_s1.json": "00ac34e2c28a4c3fb25bdb7af7e78599af5ac8e92a78a41a26acefc3000da395",
+    "hypothesis_4/experiment_2/init/inputs/population_s2.json": "00ac34e2c28a4c3fb25bdb7af7e78599af5ac8e92a78a41a26acefc3000da395",
+    "hypothesis_4/experiment_2/init/manifest.json": "1122ed37c083bc1e0ab230fdfbdfd134be2fb12659992dc581001047cb36ca39",
+    "hypothesis_4/experiment_2/init/steps.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_2/init/steps_s0.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_2/init/steps_s1.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_2/init/steps_s2.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8"
+  },
+  "final_patch": {
+    "baseline_commit": "d4a8319a6477d818dc5efbcc1d475625f14a42fc",
+    "clean_baseline_check": true,
+    "applied_files_match_delivery": true,
+    "targets": [
+      "custom/envs/curation_arrival_schedule.py",
+      "custom/agents/curation_arrival_action.py",
+      "custom/envs/curation_dynamics_space.py"
+    ]
+  }
+}
