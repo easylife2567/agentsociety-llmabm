@@ -143,5 +143,122 @@
       "custom/agents/curation_arrival_action.py",
       "custom/envs/curation_dynamics_space.py"
     ]
+  },
+  "prelaunch_check": {
+    "checked_at": "2026-10-08T19:31:45.617377+08:00",
+    "baseline_head": "4f795a5",
+    "frozen_hashes_checked": 54,
+    "frozen_hash_mismatches": [],
+    "official_default_check": true,
+    "existing_run_paths": [],
+    "ledger_exists": false,
+    "llm_variables_present": {
+      "AGENTSOCIETY_LLM_API_KEY": true,
+      "AGENTSOCIETY_LLM_API_BASE": true,
+      "AGENTSOCIETY_LLM_MODEL": true
+    },
+    "configured_api_base": "https://ark.cn-beijing.volces.com/api/coding/v3",
+    "configured_model": "deepseek-v4-1-flash-260910",
+    "network_connection_attempts": 0,
+    "model_calls": 0,
+    "service_connectivity_verified": false,
+    "direct_engine_cli_argument_checks": [
+      {
+        "run_id": "timestamp_v1_random_s0",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_random_s0",
+        "schema": true,
+        "agent_specs": 100,
+        "batches": 693,
+        "log_path": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_random_s0/engine.log"
+      },
+      {
+        "run_id": "timestamp_v1_chronological_s0",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s0",
+        "schema": true,
+        "agent_specs": 100,
+        "batches": 693,
+        "log_path": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s0/engine.log"
+      },
+      {
+        "run_id": "timestamp_v1_interest_s0",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s0",
+        "schema": true,
+        "agent_specs": 100,
+        "batches": 693,
+        "log_path": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s0/engine.log"
+      },
+      {
+        "run_id": "timestamp_v1_random_s1",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_random_s1",
+        "schema": true,
+        "agent_specs": 100,
+        "batches": 693,
+        "log_path": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_random_s1/engine.log"
+      },
+      {
+        "run_id": "timestamp_v1_chronological_s1",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s1",
+        "schema": true,
+        "agent_specs": 100,
+        "batches": 693,
+        "log_path": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s1/engine.log"
+      },
+      {
+        "run_id": "timestamp_v1_interest_s1",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s1",
+        "schema": true,
+        "agent_specs": 100,
+        "batches": 693,
+        "log_path": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s1/engine.log"
+      },
+      {
+        "run_id": "timestamp_v1_random_s2",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_random_s2",
+        "schema": true,
+        "agent_specs": 100,
+        "batches": 693,
+        "log_path": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_random_s2/engine.log"
+      },
+      {
+        "run_id": "timestamp_v1_chronological_s2",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s2",
+        "schema": true,
+        "agent_specs": 100,
+        "batches": 693,
+        "log_path": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s2/engine.log"
+      },
+      {
+        "run_id": "timestamp_v1_interest_s2",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s2",
+        "schema": true,
+        "agent_specs": 100,
+        "batches": 693,
+        "log_path": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s2/engine.log"
+      }
+    ],
+    "argument_check_scope": "官方main实际解析参数，运行器与日志写入为记录器；没有初始化Ray或运行仿真",
+    "wrapper_limitation": {
+      "path": ".claude/skills/agentsociety-run-experiment/scripts/run.py",
+      "start_run_id_ignored": true,
+      "status_stop_run_id_ignored_upstream": true,
+      "adopted_entry": "python -m agentsociety2.society.cli，逐run显式指定config/steps/run-dir/log-file"
+    },
+    "launch_gate": {
+      "execution_authorized": false,
+      "active_wall_seconds": null,
+      "pending": [
+        "新九run模型/发送范围及启动授权",
+        "运行时长或费用预算，以及据此配置监督停止",
+        "冻结并发和实际模型运行设置"
+      ]
+    },
+    "check_failure_experience": "预检曾把custom/子目录传入registry而被403拒绝；正式API需要工作区根目录，按真实运行器规则传入后九配置通过。没有改动访问控制。",
+    "dotenv_command_checked": true,
+    "workspace_matches_cwd": true,
+    "entry_source_sha256": {
+      ".claude/skills/agentsociety-run-experiment/scripts/run.py": "5e5bfc39ef3ea30db8fd2fc77795890de84379bd07d123f3aa06e485cff8a788",
+      "AgentSociety2/packages/agentsociety2/agentsociety2/society/cli.py": "c5b385070f8675b71186d05c0db25ff5a1d89fade6d6f9cafbc991d67f00b18c",
+      "AgentSociety2/packages/agentsociety2/agentsociety2/skills/experiment/runner.py": "65c70d0187aa3960c5f0a46e3f3e95314fff04f6c1252e975bc3d28ae03106b6"
+    }
   }
 }
