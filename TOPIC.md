@@ -2,7 +2,7 @@
 
 ## 当前采用的实验设计
 
-2026-10-08用户正式采用timestamp真实帖到达方案，并结束到达时机诊断任务。后续主设计为`timestamp_v1`：三臂共用真实发布时间资格、同seed行动小时表和每人每周一次机会；保留原锚定式效用、行为参数及各臂回流制度，落实已接受的保留发言内容修复。完整规则、矩阵、指标及配置验收见[主实验设计](hypothesis_4/experiment_2/EXPERIMENT.md)，主项目推进从[experiment_2入口](hypothesis_4/experiment_2/README.md)进入。九份配置的技术验收已完成；W13共同官方帖覆盖与历史初始化已发现设定问题，进入配置修订，尚未启动新主批；anchored_v1及四格继续作为历史证据，实际兼容run链接尚未切换。
+2026-10-08用户正式采用timestamp真实帖到达方案，并结束到达时机诊断任务。后续主设计为`timestamp_v1`：三臂共用真实发布时间资格、同seed行动小时表和每人每周一次机会；保留原锚定式效用、行为参数及各臂回流制度，落实已接受的保留发言内容修复。完整规则、矩阵、指标及配置验收见[主实验设计](hypothesis_4/experiment_2/EXPERIMENT.md)，主项目推进从[experiment_2入口](hypothesis_4/experiment_2/README.md)进入。九份配置的技术验收已完成；用户明确interest保留官方置顶，random/chronological允许漏读，并暂时接受17条历史池。interest的W13全部22人覆盖与现有行动时钟待明确，配置仍待修订，尚未启动新主批；anchored_v1及四格继续作为历史证据，实际兼容run链接尚未切换。
 
 ## 核心命题
 
