@@ -2,24 +2,24 @@
 
 本仓库使用 AgentSociety 研究：推荐机制如何通过改变既有表达群体的可见度与参与，影响公众人物身后的公共数字表征。
 
-**工作区继续采用 AgentSociety2 官方推荐的文件夹结构；对话决策从新增的 [runs/README.md](runs/README.md) 查阅。** 正式任务/实验 README 提供目标、资产、实时进度和下一步；实验方案和结果放对应官方目录。项目总览不重复维护各任务进度。
+**工作区继续采用 AgentSociety2 官方推荐的文件夹结构；默认在正式项目中工作，只有用户明确要求才开启根级 run 隔离探索。** 工作规范见 [AGENTS.md](AGENTS.md)，已有探索与决策记录从 [runs/README.md](runs/README.md) 查阅。正式任务/实验 README 提供目标、资产、实时进度和下一步；实验方案和结果放对应官方目录。项目总览不重复维护各任务进度。
 
 ## 阅读入口与职责
 
 1. [TOPIC.md](TOPIC.md)：研究问题、理论目标和既有规模预算。
-2. [AGENTS.md](AGENTS.md)：工作规范，与 [CLAUDE.md](CLAUDE.md) 共享正文。
+2. [AGENTS.md](AGENTS.md)：唯一工作规范正文；[CLAUDE.md](CLAUDE.md) 是指向它的兼容链接。
 3. [hypothesis_4/](hypothesis_4/README.md)：当前官方主实验入口；experiment_2采用共同timestamp与W13局部顺延，官方按各臂规则普通推荐，暂时保留17条历史池。
-4. [runs/](runs/README.md)：用户与AI对话决策记录索引，并保留历史探索资产导航。
+4. [runs/](runs/README.md)：用户显式开启的隔离探索入口与历史对话决策导航；当前无活跃探索。
 5. [ARCHIVE_MANIFEST_H4E1.md](ARCHIVE_MANIFEST_H4E1.md)：已运行批次、敏感性及撤回设计的证据分类。
 
-根级 `runs/` 只记录用户与AI对话中的决策及依据，不承担开发、实验设计或执行交接；历史探索资产保留索引。`data/` 同样由用户新增，用于本实验的预处理数据及相关处理材料。正式代码、实验配置和结果留在原来的官方对应位置，通过任务文档引用。一个算法×seed 的仿真运行是实验单元，不自动成为一个新工作任务。历史报告和机器来源清单可能存在口径冲突，使用前核对实际入口与冻结配置；相关冲突及验收状态见当前官方实验README。
+根级 `runs/` 仅在用户显式开启时承载隔离探索，候选成果须获采用授权才落到正式项目；普通任务不自动创建或续接 run。已有对话决策和探索资产保留历史索引，不自动迁移、归档或重新启动。`data/` 同样由用户新增，用于本实验的预处理数据及相关处理材料。正式代码、实验配置和结果留在原来的官方对应位置，通过任务文档引用。一个算法×seed 的仿真运行是实验单元，不自动成为一个新工作任务。历史报告和机器来源清单可能存在口径冲突，使用前核对实际入口与冻结配置；相关冲突及验收状态见当前官方实验README。
 
 ## 根文件索引
 
 | 文件 | 职责与使用方式 |
 |---|---|
 | [README.md](README.md) | 项目介绍与一级导航 |
-| [AGENTS.md](AGENTS.md)、[CLAUDE.md](CLAUDE.md) | 唯一工作规范正文与兼容链接 |
+| [AGENTS.md](AGENTS.md)、[CLAUDE.md](CLAUDE.md) | AGENTS唯一正文，CLAUDE兼容链接 |
 | [TOPIC.md](TOPIC.md) | 研究主题与既有设计背景 |
 | [TOPIC_1788166337268_0_u31u.md](TOPIC_1788166337268_0_u31u.md) | 初始主题澄清记录 |
 | [PARAMETERS.md](PARAMETERS.md) | 参数说明；具体实验以对应冻结配置为准 |
@@ -40,7 +40,7 @@
 
 | 目录 | 职责 |
 |---|---|
-| [runs/](runs/README.md) | 用户新增：对话决策记录与历史资产索引 |
+| [runs/](runs/README.md) | 用户新增：显式授权的隔离探索与历史决策索引 |
 | [hypothesis_4/](hypothesis_4/) | 主假设、实验配置、兼容入口与派生结果；历史状态需与冻结证据核对 |
 | [custom/](custom/) | 正式 Agent 与环境实现 |
 | [data/](data/README.md) | 用户新增：本实验预处理数据，以及处理所需的输入、脚本和记录 |
@@ -50,7 +50,7 @@
 | [paper/](paper/README.md) | 论文、附录与审稿材料 |
 | [presentation/](presentation/) | 分析图表、演示及相关来源清单 |
 | [research/](research/) | 研究背景与探索材料 |
-| [change/](change/)、[refine-logs/](refine-logs/) | 已有机制修改和方案探索记录；新日常任务从根级 runs 进入 |
+| [change/](change/)、[refine-logs/](refine-logs/) | 已有机制修改和方案探索记录；普通任务使用对应正式目录 |
 | [archive/](archive/) | 本地冻结历史与批次原始结果，按根目录归档清单查找；不入 Git |
 | `AgentSociety2/` | 上游引擎源码及虚拟环境，不随项目源码打包 |
 | `.agentsociety/` | CLI 管理的流水线状态与工作区启动器 |
