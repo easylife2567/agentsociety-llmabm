@@ -176,7 +176,12 @@ class ArrivalSchedule:
         e._current_event_time = local_time(event_time)
         e._posted_this_step = set()
         hour = event_time.weekday() * 24 + event_time.hour
-        e._chronological_active_agents = {aid for aid, h in e._chronological_action_hours.items() if h == hour}
+        # 覆盖只影响当前周指定人的机会；其余行动仍按共同基线小时表。
+        overrides = e._chronological_action_hour_overrides.get(e._current_week, {})
+        e._chronological_active_agents = {
+            aid for aid, h in e._chronological_action_hours.items()
+            if overrides.get(aid, h) == hour
+        }
         for p in e._posts.values():
             age = (monday(event_time).date() - datetime.fromisocalendar(int(p['week'][:4]), int(p['week'][-2:]), 1).date()).days // 7
             p['life'] = 2 ** (-age / e._life_half_life_weeks)

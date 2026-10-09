@@ -9,6 +9,7 @@ from datetime import datetime, timedelta, timezone
 import hashlib
 import json
 from pathlib import Path
+import random
 
 INIT = Path(__file__).resolve().parent
 ROOT = INIT.parents[2]
@@ -18,6 +19,10 @@ ALGORITHMS = ("random", "chronological", "interest")
 SHANGHAI = timezone(timedelta(hours=8))
 START = datetime(2026, 3, 16)
 END = datetime(2026, 6, 1)
+EVENT_WEEK = "2026-W13"
+EVENT_WEEK_START = datetime(2026, 3, 23)
+OFFICIAL_HOUR = 44
+EVENT_SCHEDULE_SEED = 20261009
 POPULATION_COUNTS = {"marketing": 23, "mourning": 22, "other": 21, "meme": 19, "education": 15}
 RETRY_BUDGET = {"limit": 990, "ledger_path": "hypothesis_4/experiment_2/runs/timestamp_v1/_extra_attempts.count"}
 
@@ -56,7 +61,32 @@ def validate_samples(window, initial):
             assert START <= local_time(row["published_at"]) < END
 
 
-def build_population(source_agents, hours):
+def build_event_schedule(hours, source_agents):
+    """只顺延5位事件前悼念Agent；独立抽样一次，三臂三seed复用。"""
+    mourning_ids = {str(agent["agent_id"]) for agent in source_agents
+                    if agent["kwargs"]["agent_type"] == "mourning"}
+    early_ids = sorted((aid for aid in mourning_ids if hours[aid] < OFFICIAL_HOUR),
+                       key=lambda aid: (hours[aid], int(aid)))
+    assert early_ids == ["70", "21", "22", "20", "56"]
+    # 使用既有调度网格的不同小时，保持693步；抽样流不参与推荐或效用计算。
+    eligible_hours = sorted({hour for hour in hours.values() if hour > OFFICIAL_HOUR})
+    selected = sorted(random.Random(EVENT_SCHEDULE_SEED).sample(eligible_hours, len(early_ids)))
+    overrides = dict(zip(early_ids, selected))
+    assert overrides == {"70": 61, "21": 67, "22": 96, "20": 113, "56": 166}
+    effective_hours = dict(hours, **overrides)
+    adjustments = [{"agent_id": int(aid), "original_hour": hours[aid], "adjusted_hour": overrides[aid],
+                    "original_at": (EVENT_WEEK_START + timedelta(hours=hours[aid])).replace(tzinfo=SHANGHAI).isoformat(),
+                    "adjusted_at": (EVENT_WEEK_START + timedelta(hours=overrides[aid])).replace(tzinfo=SHANGHAI).isoformat()}
+                   for aid in early_ids]
+    return {"week": EVENT_WEEK, "selection_seed": EVENT_SCHEDULE_SEED,
+            "selection_rule": "从原100人表中严格晚于官方hour44的不同小时等权无放回抽5个，排序对应原5人先后；不读取结果，不使用推荐随机流",
+            "basis": "用户采纳的事件后参与条件；不是观测活动时刻",
+            "chronological_action_hour_overrides": {EVENT_WEEK: overrides},
+            "adjustments": adjustments,
+            "empty_dispatch_hours": sorted(set(hours.values()) - set(effective_hours.values()))}
+
+
+def build_population(source_agents, hours, overrides):
     """清理22份固定预知陈述，保留职业、风格、词表和全部数值profile。"""
     population = deepcopy(source_agents)
     assert len(population) == 100
@@ -72,12 +102,16 @@ def build_population(source_agents, hours):
             cleaned.append(agent["agent_id"])
         profile.update(arrival_timing=True, chronological_action_hour=hours[str(agent["agent_id"])],
                        content_retry_budget=deepcopy(RETRY_BUDGET))
+        # baseline小时保留用于其他10周，只有这5份profile接入W13覆盖。
+        aid = str(agent["agent_id"])
+        if aid in overrides[EVENT_WEEK]:
+            profile["chronological_action_hour_overrides"] = {EVENT_WEEK: overrides[EVENT_WEEK][aid]}
     assert len(cleaned) == 22
     return population, cleaned
 
 
 def build_steps(hours):
-    """每个非空行动小时一个step；末步推进到窗口右界，不增加W23行动。"""
+    """保留基线调度网格；W13允许空批，末步收齐窗口且不增加W23行动。"""
     unique_hours = sorted(set(hours.values()))
     assert all(isinstance(hour, int) and 0 <= hour < 168 for hour in unique_hours)
     times = [START + timedelta(weeks=week, hours=hour) for week in range(11) for hour in unique_hours]
@@ -101,6 +135,8 @@ def main():
     generated = []
     runs = []
     seeds = {}
+    common_hours = None
+    common_event_schedule = None
     source_paths = []
     for seed in range(3):
         source_paths.extend(SOURCE / f"configs/anchored_v1_{algorithm}_s{seed}.json" for algorithm in ALGORITHMS)
@@ -121,7 +157,14 @@ def main():
         hours = base["chronological"]["env_modules"][0]["kwargs"]["chronological_action_hours"]
         ids = {str(agent["agent_id"]) for agent in base["interest"]["agents"]}
         assert len(ids) == 100 and set(hours) == ids
-        population, cleaned = build_population(base["interest"]["agents"], hours)
+        # 不逐seed重抽；先核对原时刻完全相同，再共用一次冻结的覆盖表。
+        if common_hours is None:
+            common_hours = deepcopy(hours)
+            common_event_schedule = build_event_schedule(hours, base["interest"]["agents"])
+        else:
+            assert hours == common_hours, "三seed基线小时表不一致，不能复用既定事件安排"
+        overrides = common_event_schedule["chronological_action_hour_overrides"]
+        population, cleaned = build_population(base["interest"]["agents"], hours, overrides)
         steps, times = build_steps(hours)
         steps_path = INIT / f"steps_s{seed}.yaml"
         steps_path.write_text(steps, encoding="utf-8")
@@ -139,10 +182,13 @@ def main():
         schedule_path = inputs / f"action_schedule_s{seed}.json"
         write_json(population_path, population)
         write_json(schedule_path, {"timezone": "Asia/Shanghai", "action_hours": hours,
+                                  "chronological_action_hour_overrides": overrides,
+                                  "event_week_action_schedule": common_event_schedule,
                                   "action_times": [moment.replace(tzinfo=SHANGHAI).isoformat() for moment in times]})
         generated.extend([population_path, schedule_path])
         seeds[str(seed)] = {"population": relative(population_path), "schedule": relative(schedule_path),
-                            "cleaned_persona_agent_ids": cleaned, "nonempty_hours_per_week": len(set(hours.values())),
+                            "cleaned_persona_agent_ids": cleaned, "dispatch_hours_per_week": len(set(hours.values())),
+                            "empty_dispatch_hours_by_week": {EVENT_WEEK: common_event_schedule["empty_dispatch_hours"]},
                             "expected_batches": len(times)}
 
         # 同seed环境共同参数逐值相同；chronological/random的议程键存在但执行分支不使用。
@@ -152,7 +198,8 @@ def main():
             config["agents"] = deepcopy(population)
             env = config["env_modules"][0]["kwargs"]
             env.update(schedule_mode="arrival_timing", arrival_mode="timestamp",
-                       chronological_action_hours=hours, chronological_total_batches=len(times),
+                       chronological_action_hours=hours, chronological_action_hour_overrides=deepcopy(overrides),
+                       chronological_total_batches=len(times),
                        injection_data_path=relative(inputs / window_name),
                        weekly_initial_injection_data_path=relative(inputs / initial_name),
                        event_week_mourning_floor=base["interest"]["env_modules"][0]["kwargs"]["event_week_mourning_floor"])
@@ -181,13 +228,15 @@ def main():
         "timezone": "Asia/Shanghai", "window_start": START.replace(tzinfo=SHANGHAI).isoformat(),
         "window_end_exclusive": END.replace(tzinfo=SHANGHAI).isoformat(),
         "official_available_at": "2026-03-24T20:00:00+08:00", "official_time_basis": "建模约定；不是原帖观测时刻",
+        "event_week_action_schedule": common_event_schedule,
         "seeds": seeds, "runs": runs,
         "budget": {"decision_opportunities": 9900, "extra_requests_limit": 990, "extra_requests_per_action": 1,
                    "content_retry_budget": RETRY_BUDGET, "active_wall_seconds": None,
                    "execution_note": "本轮只准备与离线验收，模型、发送范围和时长/费用在启动前另行确定"},
         "mechanisms": {"arrival": "三臂timestamp，published_at与本臂available_at均不晚于行动",
                        "agent_return": {"random": "次周周一", "interest": "次周周一", "chronological": "批末统一入池，后续行动批次可见"},
-                       "agenda": "只有interest使用官方置顶与事件周最多5条保底；其余臂忽略共同配置中的议程参数",
+                       "agenda": "只有interest使用10槽内官方首位与事件周最多5条保底；其余臂忽略共同配置中的议程参数",
+                       "event_week_schedule": "只覆盖5位悼念Agent的W13决策小时；三臂三seed同表，保留693调度批，W13原hour18为空批",
                        "stable_keys": "外部帖external:source_pid；Agent帖作者×周，运行期自增ID不参与选择",
                        "tie_break": "chronological按发布时间与稳定来源键倒序；不依赖入池或生成完成顺序",
                        "random_stream": "seed、周、Agent、用途分流；逐帖噪声包含稳定来源键",

@@ -3,7 +3,7 @@
   "workspace": {
     "topic": "公众人物去世后，算法策展如何塑造舆论场对其的数字表征",
     "created_at": "2026-08-18T10:08:46.083Z",
-    "current_stage": "experiment_config",
+    "current_stage": "run_experiment",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
     "revision_round": 9,
@@ -15,7 +15,6 @@
       "reason": "接受用户要求W13开始共同官方帖应被全部悼念Agent读到；现九配置有5人提前耗尽机会，random入池后也不保证阅读。17条历史池属于有影响的初始条件，需先明确事件时钟/公告渠道并论证初始化后重新验收，不启动LLM。",
       "source_artifact": "hypothesis_4/experiment_2/EXPERIMENT.md",
       "pending_stages": [
-        "experiment_config",
         "run_experiment",
         "analysis"
       ]
@@ -64,13 +63,21 @@
       "revision_round": 4
     },
     "experiment_config": {
-      "status": "needs_revision",
+      "status": "completed",
       "started_at": null,
-      "completed_at": null,
-      "attempts": 7,
+      "completed_at": "2026-10-09T02:32:09.613659+00:00",
+      "attempts": 8,
       "error": null,
-      "metadata": {},
-      "verification_status": "not_started",
+      "metadata": {
+        "hypothesis_id": 4,
+        "experiment_id": 2,
+        "design_artifact": "hypothesis_4/experiment_2/EXPERIMENT.md",
+        "verification_artifact": "hypothesis_4/experiment_2/2026-10-09-04-event-week-verification.json",
+        "event_week_schedule": "五人W13共同顺延；三臂三seed同表；原10槽、U与回流保留",
+        "execution_authorized": false,
+        "independent_review": "PASS"
+      },
+      "verification_status": "complete",
       "revision_round": 9
     },
     "run_experiment": {
@@ -907,6 +914,17 @@
           "revision_round": 8
         }
       }
+    },
+    {
+      "sequence": 37,
+      "timestamp": "2026-10-09T02:32:09.613672+00:00",
+      "kind": "stage_update",
+      "revision_round": 9,
+      "stage": "experiment_config",
+      "from_status": "needs_revision",
+      "to_status": "completed",
+      "from_stage": "experiment_config",
+      "to_stage": "run_experiment"
     }
   ]
 }

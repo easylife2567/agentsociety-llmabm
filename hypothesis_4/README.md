@@ -16,7 +16,7 @@
 
 ## 设计与证据身份
 
-2026-10-08用户采用timestamp方案，当前主实验从[experiment_2](experiment_2/README.md)推进。三臂×3 seeds、100人、11周，保持行为参数及各臂回流；现有配置的技术离线验收已完成。用户明确interest保留官方置顶，random/chronological允许漏读，17条历史池暂时接受；本轮选择仅interest的22位悼念Agent在W13增设独立官方首槽，其余机制保持；额外槽待实现，全部22人的覆盖时间条件待明确，配置待修订，LLM尚未启动。根级runs探索已交接结束。
+2026-10-08用户采用timestamp方案，当前主实验从[experiment_2](experiment_2/README.md)推进。三臂×3 seeds、100人、11周，保持行为参数及各臂回流；现有配置的技术离线验收已完成。用户明确interest保留官方置顶，random/chronological允许漏读，17条历史池暂时接受；已按用户采纳的方案共同顺延5个过早的W13悼念决策，三臂三seed共表，其余人/周保持；interest原10槽官方首位，22人均在事件后决策；30项禁网离线验收通过，LLM尚未启动。根级runs探索已交接结束。
 
 实际官方单run入口仍指向既有anchored_v1_interest_s0；anchored_v1的9个已完成run继续保留。weekly_lag1是已完成的信息延迟敏感性批，weekly_lag1_event_v2是未运行且撤回设计。到达时机四格是独立单seed诊断，不改称新三臂主实验。归档路径与打包边界见[根归档清单](../ARCHIVE_MANIFEST_H4E1.md)。
 

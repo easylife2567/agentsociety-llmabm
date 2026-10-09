@@ -73,9 +73,12 @@ async def generate_once(agent, prompts):
 async def act(agent, tick, t):
     """每人每周一次，合法空feed与服务故障分别记账；重复恢复不重新采样。"""
     hour = t.weekday() * 24 + t.hour
-    if hour != agent._chronological_action_hour:
-        return 'inactive arrival batch'
     week = f'{t.isocalendar().year}-W{t.isocalendar().week:02d}'
+    # profile 与环境配置由同一冻结表生成；只替换本周机会，不新增决策。
+    overrides = getattr(agent, '_profile', {}).get('chronological_action_hour_overrides', {})
+    action_hour = overrides.get(week, agent._chronological_action_hour)
+    if hour != action_hour:
+        return 'inactive arrival batch'
     if any(r.get('week') == week for r in agent._decision_log):
         return 'arrival decision already recorded'
     agent._step_count += 1

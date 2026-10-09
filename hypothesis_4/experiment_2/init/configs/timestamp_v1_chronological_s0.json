@@ -239,6 +239,15 @@
         "official_pin_extend_weeks": 0,
         "schedule_mode": "arrival_timing",
         "arrival_mode": "timestamp",
+        "chronological_action_hour_overrides": {
+          "2026-W13": {
+            "70": 61,
+            "21": 67,
+            "22": 96,
+            "20": 113,
+            "56": 166
+          }
+        },
         "weekly_initial_injection_data_path": "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s0.json"
       }
     }
@@ -1459,6 +1468,9 @@
         "content_retry_budget": {
           "limit": 990,
           "ledger_path": "hypothesis_4/experiment_2/runs/timestamp_v1/_extra_attempts.count"
+        },
+        "chronological_action_hour_overrides": {
+          "2026-W13": 113
         }
       }
     },
@@ -1524,6 +1536,9 @@
         "content_retry_budget": {
           "limit": 990,
           "ledger_path": "hypothesis_4/experiment_2/runs/timestamp_v1/_extra_attempts.count"
+        },
+        "chronological_action_hour_overrides": {
+          "2026-W13": 67
         }
       }
     },
@@ -1589,6 +1604,9 @@
         "content_retry_budget": {
           "limit": 990,
           "ledger_path": "hypothesis_4/experiment_2/runs/timestamp_v1/_extra_attempts.count"
+        },
+        "chronological_action_hour_overrides": {
+          "2026-W13": 96
         }
       }
     },
@@ -3512,6 +3530,9 @@
         "content_retry_budget": {
           "limit": 990,
           "ledger_path": "hypothesis_4/experiment_2/runs/timestamp_v1/_extra_attempts.count"
+        },
+        "chronological_action_hour_overrides": {
+          "2026-W13": 166
         }
       }
     },
@@ -4299,6 +4320,9 @@
         "content_retry_budget": {
           "limit": 990,
           "ledger_path": "hypothesis_4/experiment_2/runs/timestamp_v1/_extra_attempts.count"
+        },
+        "chronological_action_hour_overrides": {
+          "2026-W13": 61
         }
       }
     },

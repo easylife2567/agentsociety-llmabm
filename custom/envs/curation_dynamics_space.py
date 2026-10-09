@@ -344,6 +344,12 @@ class CurationDynamicsSpace(EnvBase):
         self._chronological_action_hours: dict[str, int] = {
             str(k): int(v) for k, v in raw_action_hours.items()
         }
+        # 逐周覆盖只替换指定 Agent 的机会小时；未配置的周与 Agent 使用基线表。
+        raw_overrides = kwargs.pop("chronological_action_hour_overrides", None) or {}
+        self._chronological_action_hour_overrides = {
+            str(week): {str(aid): int(hour) for aid, hour in hours.items()}
+            for week, hours in raw_overrides.items()
+        }
         self._chronological_total_batches = int(
             kwargs.pop("chronological_total_batches", 0)
         )
@@ -434,6 +440,16 @@ class CurationDynamicsSpace(EnvBase):
             )
         if any(not 0 <= h < 168 for h in self._chronological_action_hours.values()):
             raise ValueError("chronological_action_hours values must be in [0, 167]")
+        if self._chronological_action_hour_overrides and schedule_mode != "arrival_timing":
+            raise ValueError("weekly action overrides require arrival_timing")
+        for week, hours in self._chronological_action_hour_overrides.items():
+            if week not in {_week_add(self._start_week, i) for i in range(self._num_ticks)}:
+                raise ValueError("action override week is outside the experiment window")
+            if not set(hours) <= set(self._chronological_action_hours):
+                raise ValueError("action override contains an unknown agent")
+            # 保留已冻结的调度网格，防止覆盖小时没有对应的引擎 step。
+            if not set(hours.values()) <= set(self._chronological_action_hours.values()):
+                raise ValueError("action override hour is outside the dispatch grid")
         if self._recommendation_algorithm == "chronological":
             missing = set(self._agent_types) - set(self._chronological_action_hours)
             if missing:
@@ -1758,6 +1774,7 @@ class CurationDynamicsSpace(EnvBase):
             raise RuntimeError("CurationDynamicsSpace workspace is not bound")
         state = {
             "_arrival_state": self._arrival.state if self._arrival is not None else None,
+            "_arrival_action_hour_overrides": self._chronological_action_hour_overrides,
             "_exposure_age_buckets": self._exposure_age_buckets,
             "_step_index": self._step_index,
             "_tick_index": self._tick_index,
@@ -1820,6 +1837,9 @@ class CurationDynamicsSpace(EnvBase):
         if not state_path.is_file():
             return False
         d = json.loads(state_path.read_text(encoding="utf-8"))
+        # 恢复必须复用同一行动安排；历史无覆盖的 checkpoint 仍兼容空表。
+        if d.get("_arrival_action_hour_overrides", {}) != self._chronological_action_hour_overrides:
+            raise ValueError("checkpoint action overrides do not match current config")
         if self._arrival is not None:
             restored = d.get("_arrival_state")
             if not restored or restored.get("mode") != self._arrival.mode:

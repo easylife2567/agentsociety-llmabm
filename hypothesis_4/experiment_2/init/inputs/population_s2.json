@@ -1214,6 +1214,9 @@
       "content_retry_budget": {
         "limit": 990,
         "ledger_path": "hypothesis_4/experiment_2/runs/timestamp_v1/_extra_attempts.count"
+      },
+      "chronological_action_hour_overrides": {
+        "2026-W13": 113
       }
     }
   },
@@ -1279,6 +1282,9 @@
       "content_retry_budget": {
         "limit": 990,
         "ledger_path": "hypothesis_4/experiment_2/runs/timestamp_v1/_extra_attempts.count"
+      },
+      "chronological_action_hour_overrides": {
+        "2026-W13": 67
       }
     }
   },
@@ -1344,6 +1350,9 @@
       "content_retry_budget": {
         "limit": 990,
         "ledger_path": "hypothesis_4/experiment_2/runs/timestamp_v1/_extra_attempts.count"
+      },
+      "chronological_action_hour_overrides": {
+        "2026-W13": 96
       }
     }
   },
@@ -3267,6 +3276,9 @@
       "content_retry_budget": {
         "limit": 990,
         "ledger_path": "hypothesis_4/experiment_2/runs/timestamp_v1/_extra_attempts.count"
+      },
+      "chronological_action_hour_overrides": {
+        "2026-W13": 166
       }
     }
   },
@@ -4054,6 +4066,9 @@
       "content_retry_budget": {
         "limit": 990,
         "ledger_path": "hypothesis_4/experiment_2/runs/timestamp_v1/_extra_attempts.count"
+      },
+      "chronological_action_hour_overrides": {
+        "2026-W13": 61
       }
     }
   },
