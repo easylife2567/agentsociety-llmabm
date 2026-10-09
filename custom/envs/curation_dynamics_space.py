@@ -333,6 +333,12 @@ class CurationDynamicsSpace(EnvBase):
         self._num_ticks = int(kwargs.pop("num_ticks", 11))
         self._event_week = str(kwargs.pop("event_week", "2026-W13"))
         self._official_pin_extend_weeks = int(kwargs.pop("official_pin_extend_weeks", 1))
+        # 官方可按议程或普通推荐处理；普通策略仅供精确到达路径显式启用。
+        self._arrival_official_policy = str(kwargs.pop("arrival_official_policy", "agenda"))
+        if self._arrival_official_policy not in ("agenda", "ordinary"):
+            raise ValueError("arrival_official_policy must be agenda or ordinary")
+        if self._arrival_official_policy == "ordinary" and schedule_mode != "arrival_timing":
+            raise ValueError("ordinary official policy requires arrival_timing")
         # 外生事件信号：高显著性社会事件不是普通 feed 槽位。事件周内，各臂收到同一
         # 信号；推荐制度仍只决定帖子是否置顶及其余 feed 如何分配。salience_slots 表示
         # 该事件在意见气候计算中相当于多少个同类普通信息槽位，0 表示关闭。
@@ -1744,7 +1750,8 @@ class CurationDynamicsSpace(EnvBase):
             "（{agent_id: meme|mourning|marketing|education|other}，未列出默认 other）；"
             "**start_week** 起始 ISO 周（默认 2026-W12）；**num_ticks** 总 tick 数（默认 11）；"
             "**event_week** 去世周（默认 2026-W13）；**official_pin_extend_weeks** 官方置顶延伸"
-            "周数（默认 1）；**event_signal_type** 外生事件直接激活的内容类型（空串=关闭）、"
+            "周数（默认 1）；**arrival_official_policy** 精确到达模式的官方推荐策略"
+            "（agenda 默认议程 / ordinary 普通推荐，不进入置顶或保底）；**event_signal_type** 外生事件直接激活的内容类型（空串=关闭）、"
             "**event_signal_salience_slots** 该事件在意见气候中等效的普通信息槽位数（默认 0）；"
             "interest 臂权重 **alpha**/**beta**/**gamma**、噪声幅度 "
             "**interest_noise_eps**、已曝光处理 "
@@ -1774,6 +1781,7 @@ class CurationDynamicsSpace(EnvBase):
             raise RuntimeError("CurationDynamicsSpace workspace is not bound")
         state = {
             "_arrival_state": self._arrival.state if self._arrival is not None else None,
+            "_arrival_official_policy": self._arrival_official_policy,
             "_arrival_action_hour_overrides": self._chronological_action_hour_overrides,
             "_exposure_age_buckets": self._exposure_age_buckets,
             "_step_index": self._step_index,
@@ -1837,6 +1845,9 @@ class CurationDynamicsSpace(EnvBase):
         if not state_path.is_file():
             return False
         d = json.loads(state_path.read_text(encoding="utf-8"))
+        # 官方推荐规则属于冻结配置；历史无此字段的状态按 agenda 解释。
+        if d.get("_arrival_official_policy", "agenda") != self._arrival_official_policy:
+            raise ValueError("checkpoint official policy does not match current config")
         # 恢复必须复用同一行动安排；历史无覆盖的 checkpoint 仍兼容空表。
         if d.get("_arrival_action_hour_overrides", {}) != self._chronological_action_hour_overrides:
             raise ValueError("checkpoint action overrides do not match current config")

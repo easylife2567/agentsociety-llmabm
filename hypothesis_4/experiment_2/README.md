@@ -1,10 +1,10 @@
 # Experiment 2：timestamp策展三臂主实验
 
-> 当前状态：已落实用户采纳的W13共同顺延方案，完成30项禁网离线验收；方案与最终patch独立审查均PASS。本轮未启动LLM。
+> 当前状态：已落实W13共同顺延及官方普通兴趣推荐；35项禁网验收全部通过；方案及最终patch独立审查均PASS。本轮未启动LLM。
 
 ## 目标与范围
 
-100人×W12–W22×random/chronological/interest×3 seeds，共9 runs、9900次行动机会。三臂共享timestamp真实信息时钟和行动表，保留行为参数、各臂回流、内容修复及17条历史池。只将5位过早悼念Agent的W13决策顺延，保证interest的22人在官方取得资格后按原U决策；其他人及其他周保持。
+100人×W12–W22×random/chronological/interest×3 seeds，共9 runs、9900次行动机会。三臂共享timestamp真实信息时钟和行动表，保留行为参数、各臂回流、内容修复及17条历史池。只将5位过早悼念Agent的W13决策顺延，使22位悼念Agent在官方取得资格后获得决策机会，按实际feed与原U决定是否发言；其他人及其他周保持。
 
 根级runs探索已交接，本目录是当前官方实验入口，不另建研究任务目录。实时进度及交接以本README为准，完整方法见EXPERIMENT.md。
 
@@ -18,8 +18,10 @@
 | [.gitignore](.gitignore) | 忽略本级可丢弃tmp，不忽略持久验收证据 |
 | [2026-10-09-01-official-timing-review.md](2026-10-09-01-official-timing-review.md) | nature-reviewer模拟方法评审包；其中共同顺延5次机会建议已获用户采纳 |
 | [2026-10-09-02-event-week-schedule.patch](2026-10-09-02-event-week-schedule.patch) | 本次四文件最终修改；基线1539418abf98800d4a3284317c68e8e5ff91319f |
-| [2026-10-09-03-event-week-check.py](2026-10-09-03-event-week-check.py) | 从项目根用.env解释器执行的禁网功能检查；不跑社会引擎或LLM |
-| [2026-10-09-04-event-week-verification.json](2026-10-09-04-event-week-verification.json) | 当前30项检查、九窗阅读覆盖、900份实际profile读取及41项冻结哈希 |
+| [2026-10-09-03-event-week-check.py](2026-10-09-03-event-week-check.py) | 从项目根用.env解释器执行的当前共同顺延及官方普通推荐的禁网功能检查，输出06；不跑社会引擎或LLM |
+| [2026-10-09-04-event-week-verification.json](2026-10-09-04-event-week-verification.json) | 官方置顶版本30项原验收、900份实际profile及哈希；保留为历史证据 |
+| [2026-10-09-05-ordinary-official.patch](2026-10-09-05-ordinary-official.patch) | 当前官方普通推荐的五文件最终patch；基线7adc50d08b41e1c3da26d62ec3833d9d6694ad5b |
+| [2026-10-09-06-ordinary-official-verification.json](2026-10-09-06-ordinary-official-verification.json) | 当前官方普通推荐与继承功能验收、实际custom路径及冻结哈希 |
 | [2026-10-08-01-timestamp.patch](2026-10-08-01-timestamp.patch) | timestamp基础接线，基线d4a8319a6477d818dc5efbcc1d475625f14a42fc |
 | [2026-10-08-02-functional-verification.json](2026-10-08-02-functional-verification.json) | 基础版本24项功能证据，当前继承项已复跑 |
 | [2026-10-08-03-configuration-verification.json](2026-10-08-03-configuration-verification.json) | 基础版本54项源码及资产哈希与启动入口核验；不用于当前版本的全量哈希匹配 |
@@ -29,21 +31,20 @@
 
 ## 实时进度
 
-- 方案：用户明确接受三臂共同顺延5次过早机会。独立方案审查PASS，确认原表、固定抽样结果、空批处理和环境/Agent双侧接线可行。
-- 实现：环境、arrival调度、Agent行动门及配置生成器已通过保存patch修改；原五人baseline小时保留，仅W13覆盖为70→61、21→67、22→96、20→113、56→166。三臂三seed同表，原W13 hour18为空批，693步未改。
-- 配置：官方scan/info、experiment-config validate/info/run/check通过。默认兼容配置官方check通过；九份独立配置均通过官方引擎schema，900份CLI profile拆分、正式Agent工作区创建与读取覆盖一致。
-- 功能：30项禁网检查全部通过，0失败、0错误、0网络尝试、0LLM调用；原24项继承功能复跑。九窗各693批、1100唯一Agent×周机会、11周，普通未来曝光0；旧小时不行动、新小时执行U门槛、其他周恢复原时刻、恢复不重复、错误覆盖拒绝通过。
-- 官方阅读：interest三个seed各22/22悼念Agent在W13官方后决策，feed最多10且官方首位，生成可读摘录也首位。无Agent产出的环境演练中random为4/6/4人、chronological为6/6/6人收到；这些计数只用于证明没有共同强制槽，不是新LLM结果或最终阅读率预测。
-- patch：声明commit的干净副本可应用，应用后四文件与正式工作树逐字节一致；实现后独立终审PASS；审查者另复跑新增6项并验证旧arrival及legacy无新字段checkpoint的空表恢复兼容。
-- 机器阶段：控制agent已通过CLI将experiment_config标为completed、verification complete；当前推荐阶段为run_experiment needs_revision，revision_round9，尚未运行。active_reroute中的共同公告/历史池替换理由是原修订记录，当前实施以用户已采纳的分臂阅读与5次共同顺延为准；显式hypothesis_id=4、experiment_id=2记录在本阶段metadata，后续调用仍指定这两个ID。没有手改机器JSON。
-- 授权：只准备与离线验收；manifest execution_authorized=false、active_wall_seconds=null。九run结果目录、LLM调用、监督器及新定时器均未创建，旧四格预算和checkpoint不复用。
-- 下一步：实际启动需要确定本九run模型/发送范围、时长或费用预算及监督停止设置，本轮不启动。
+- 采用规则：三臂官方按共同20:00取得资格；interest官方不置顶、不参与悼念保底，正常参与兴趣评分和抽样。其他悼念帖最多5条保底、生命周期、10槽、U、内容修复与各臂回流保持。
+- 时间：五人W13共同顺延61/67/96/113/166保持；三臂三seed共表，其他95人及其他周不变，原hour18为空批，693步未改。保证事件后决策机会，不保证22人都读到官方或都发言。
+- 正式路径：registry实际扫描并加载custom/envs/curation_dynamics_space.py及custom/agents/curation_discourse_agent.py；arrival推荐实现位于custom/envs/curation_arrival_schedule.py。init生成器仅声明配置，实验目录patch用于记录和应用，不是运行模块。
+- 配置：九配置显式arrival_official_policy=ordinary；原人口、样本、共同顺延表、steps和预算保持，manifest未授权运行。官方run/check通过；35项禁网验收全部通过，0失败/错误/网络/LLM，42份当前冻结哈希一致；九窗各693批/1100机会/11周，900份实际CLI/profile工作区读取通过。新5项核验官方普通评分、可选可漏、候选时钟、历史兼容和custom源码路径。
+- 审查：独立方案审查PASS，已将“官方标记等价”验收限定在固定保底集合的普通评分/抽样层；最终patch审查PASS，审查者独立复跑新5项通过，干净基线应用与五文件一致。
+- 机器阶段：按最新用户决定经CLI reroute后，控制agent已完成experiment_config、verification complete；当前阶段为run_experiment needs_revision，revision_round10，尚未运行。后续显式使用hypothesis_id=4、experiment_id=2。
+- 授权：仅实现与离线验收，不启动LLM；execution_authorized=false、active_wall_seconds=null，没有新结果、监督器或定时器。
+- 下一步：正式启动另需新九run发送范围、模型、时长/费用及监督停止设置。
 
 ## 交接与结论边界
 
-官方3月24日20:00是建模约定，不是观测发布时间；分散安排是事件后参与条件，不能证明现实22人必然如此行动。每人仍一次机会，收到官方与愿意发言分别记账。interest保留10槽内置顶，random/chronological允许漏读。比较继续是完整策展制度效应，含原生命周期、议程和回流差异。
+官方20:00是建模约定；五人分散安排是条件化参与假设。官方可能被普通兴趣槽选中或漏读，不通过保底绕过选择；收到后是否发言仍由U判定。其他保底及回流差异保持，比较仍是完整制度效果。原04的22/22首位阅读属于置顶版本历史验收，当前以06证据为准，不静默改写原结果。禁网功能演练不代表新LLM闭环波峰或阅读率预测。
 
-B保留现有尺度和floor；独立baseline-anchor候选未采纳。20条内容必查样本仍覆盖两类入口，45条额外筛查命中未全部人工确认。离线成功不能证明新正文质量或闭环曲线改善。历史54项哈希中的正式文件已随本次授权修改，当前验收入口为本级03脚本/04记录，不将历史证据静默覆盖成新结果。
+B尺度/floor、17条历史池及20条内容必查样本保持；45条额外命中未全人工确认。旧54项或41项源码哈希不代表当前冻结状态，当前入口为03脚本，当前输出为06。
 
 ## 启动入口和仍需确定的运行项
 

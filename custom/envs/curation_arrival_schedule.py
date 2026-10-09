@@ -189,9 +189,13 @@ class ArrivalSchedule:
         e._feed_live_pool = len(candidates)
         e._pinned_ids, e._event_floor_ids = [], []
         if e._recommendation_algorithm == 'interest' and event_time >= OFFICIAL_TIME:
-            e._pinned_ids = sorted(e._compute_pinned_ids(e._current_week), key=lambda pid: e._posts[pid]['stable_key'])
+            if e._arrival_official_policy == 'agenda':
+                e._pinned_ids = sorted(e._compute_pinned_ids(e._current_week), key=lambda pid: e._posts[pid]['stable_key'])
             if e._current_week == e._event_week:
-                floor = [pid for pid in candidates if pid not in e._pinned_ids and e._posts[pid]['type'] != 'noise']
+                # 普通官方走下方评分/抽样，不经悼念保底重新获得强制曝光。
+                floor = [pid for pid in candidates
+                         if pid not in e._pinned_ids and e._posts[pid]['type'] != 'noise'
+                         and (e._arrival_official_policy != 'ordinary' or not e._posts[pid]['is_official'])]
                 floor.sort(key=lambda pid: (-e._posts[pid]['tendencies'].get('mourning', 0.), e._posts[pid]['stable_key']))
                 e._event_floor_ids = floor[:e._event_week_mourning_floor]
         self.state['snapshots'] = {}

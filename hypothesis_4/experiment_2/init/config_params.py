@@ -191,13 +191,13 @@ def main():
                             "empty_dispatch_hours_by_week": {EVENT_WEEK: common_event_schedule["empty_dispatch_hours"]},
                             "expected_batches": len(times)}
 
-        # 同seed环境共同参数逐值相同；chronological/random的议程键存在但执行分支不使用。
+        # 三臂共同声明官方普通推荐；chronological/random不使用事件周悼念保底。
         common_configs = []
         for algorithm in ALGORITHMS:
             config = deepcopy(base[algorithm])
             config["agents"] = deepcopy(population)
             env = config["env_modules"][0]["kwargs"]
-            env.update(schedule_mode="arrival_timing", arrival_mode="timestamp",
+            env.update(schedule_mode="arrival_timing", arrival_mode="timestamp", arrival_official_policy="ordinary",
                        chronological_action_hours=hours, chronological_action_hour_overrides=deepcopy(overrides),
                        chronological_total_batches=len(times),
                        injection_data_path=relative(inputs / window_name),
@@ -235,7 +235,7 @@ def main():
                    "execution_note": "本轮只准备与离线验收，模型、发送范围和时长/费用在启动前另行确定"},
         "mechanisms": {"arrival": "三臂timestamp，published_at与本臂available_at均不晚于行动",
                        "agent_return": {"random": "次周周一", "interest": "次周周一", "chronological": "批末统一入池，后续行动批次可见"},
-                       "agenda": "只有interest使用10槽内官方首位与事件周最多5条保底；其余臂忽略共同配置中的议程参数",
+                       "agenda": "官方普通参与推荐，不置顶、不经悼念保底强制选入，不保证22/22阅读；只有interest使用事件周其他悼念帖最多5条保底，其余臂不使用议程",
                        "event_week_schedule": "只覆盖5位悼念Agent的W13决策小时；三臂三seed同表，保留693调度批，W13原hour18为空批",
                        "stable_keys": "外部帖external:source_pid；Agent帖作者×周，运行期自增ID不参与选择",
                        "tie_break": "chronological按发布时间与稳定来源键倒序；不依赖入池或生成完成顺序",

@@ -2,7 +2,7 @@
 
 ## 当前采用的实验设计
 
-2026-10-08用户正式采用timestamp真实帖到达方案，并结束到达时机诊断任务。后续主设计为`timestamp_v1`：三臂共用真实发布时间资格、同seed行动小时表和每人每周一次机会；保留原锚定式效用、行为参数及各臂回流制度，落实已接受的保留发言内容修复。完整规则、矩阵、指标及配置验收见[主实验设计](hypothesis_4/experiment_2/EXPERIMENT.md)，主项目推进从[experiment_2入口](hypothesis_4/experiment_2/README.md)进入。九份配置的技术验收已完成；用户明确interest保留官方置顶，random/chronological允许漏读，并暂时接受17条历史池。已按用户采纳的方案共同顺延5个过早的W13悼念决策，三臂三seed共表，其余人/周保持；interest原10槽官方首位，22人均在事件后决策，random/chronological允许漏读；30项禁网离线验收通过，尚未启动新主批；anchored_v1及四格继续作为历史证据，实际兼容run链接尚未切换。
+2026-10-08用户正式采用timestamp真实帖到达方案，并结束到达时机诊断任务。后续主设计为`timestamp_v1`：三臂共用真实发布时间资格、同seed行动小时表和每人每周一次机会；保留原锚定式效用、行为参数及各臂回流制度，落实已接受的保留发言内容修复。完整规则、矩阵、指标及配置验收见[主实验设计](hypothesis_4/experiment_2/EXPERIMENT.md)，主项目推进从[experiment_2入口](hypothesis_4/experiment_2/README.md)进入。九份配置沿用100人×11周×三臂×3 seeds，暂时保留17条历史池及五人W13共同顺延。官方在interest中与普通帖子一起评分/抽样，不进入置顶或悼念保底；22位悼念Agent均有事件后决策机会，实际阅读不预设全员必达。正式机制在custom，配置在experiment_2/init；当前修订只做实现和离线验收，未启动LLM。anchored_v1及四格保留历史证据，兼容run链接未切换。
 
 ## 核心命题
 

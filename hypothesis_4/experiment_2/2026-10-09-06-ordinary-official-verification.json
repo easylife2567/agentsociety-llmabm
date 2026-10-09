@@ -1,0 +1,219 @@
+{
+  "baseline_commit": "1539418abf98800d4a3284317c68e8e5ff91319f",
+  "scope": "W13时间覆盖、官方普通推荐与继承功能；无LLM正文，无Agent反馈产量预测",
+  "tests_run": 35,
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "network_connection_attempts": 0,
+  "llm_calls": 0,
+  "event_week_checks": {
+    "windows": [
+      {
+        "algorithm": "random",
+        "seed": 0,
+        "batches": 693,
+        "unique_actions": 1100,
+        "weeks": 11,
+        "mourning_after_official": 22,
+        "mourning_official_in_feed": 4,
+        "future_exposures": 0,
+        "empty_batches": [
+          "2026-03-23T18:00:00"
+        ],
+        "scope": "无Agent生成与回流的环境功能演练"
+      },
+      {
+        "algorithm": "chronological",
+        "seed": 0,
+        "batches": 693,
+        "unique_actions": 1100,
+        "weeks": 11,
+        "mourning_after_official": 22,
+        "mourning_official_in_feed": 6,
+        "future_exposures": 0,
+        "empty_batches": [
+          "2026-03-23T18:00:00"
+        ],
+        "scope": "无Agent生成与回流的环境功能演练"
+      },
+      {
+        "algorithm": "interest",
+        "seed": 0,
+        "batches": 693,
+        "unique_actions": 1100,
+        "weeks": 11,
+        "mourning_after_official": 22,
+        "mourning_official_in_feed": 10,
+        "future_exposures": 0,
+        "empty_batches": [
+          "2026-03-23T18:00:00"
+        ],
+        "scope": "无Agent生成与回流的环境功能演练"
+      },
+      {
+        "algorithm": "random",
+        "seed": 1,
+        "batches": 693,
+        "unique_actions": 1100,
+        "weeks": 11,
+        "mourning_after_official": 22,
+        "mourning_official_in_feed": 6,
+        "future_exposures": 0,
+        "empty_batches": [
+          "2026-03-23T18:00:00"
+        ],
+        "scope": "无Agent生成与回流的环境功能演练"
+      },
+      {
+        "algorithm": "chronological",
+        "seed": 1,
+        "batches": 693,
+        "unique_actions": 1100,
+        "weeks": 11,
+        "mourning_after_official": 22,
+        "mourning_official_in_feed": 6,
+        "future_exposures": 0,
+        "empty_batches": [
+          "2026-03-23T18:00:00"
+        ],
+        "scope": "无Agent生成与回流的环境功能演练"
+      },
+      {
+        "algorithm": "interest",
+        "seed": 1,
+        "batches": 693,
+        "unique_actions": 1100,
+        "weeks": 11,
+        "mourning_after_official": 22,
+        "mourning_official_in_feed": 5,
+        "future_exposures": 0,
+        "empty_batches": [
+          "2026-03-23T18:00:00"
+        ],
+        "scope": "无Agent生成与回流的环境功能演练"
+      },
+      {
+        "algorithm": "random",
+        "seed": 2,
+        "batches": 693,
+        "unique_actions": 1100,
+        "weeks": 11,
+        "mourning_after_official": 22,
+        "mourning_official_in_feed": 4,
+        "future_exposures": 0,
+        "empty_batches": [
+          "2026-03-23T18:00:00"
+        ],
+        "scope": "无Agent生成与回流的环境功能演练"
+      },
+      {
+        "algorithm": "chronological",
+        "seed": 2,
+        "batches": 693,
+        "unique_actions": 1100,
+        "weeks": 11,
+        "mourning_after_official": 22,
+        "mourning_official_in_feed": 6,
+        "future_exposures": 0,
+        "empty_batches": [
+          "2026-03-23T18:00:00"
+        ],
+        "scope": "无Agent生成与回流的环境功能演练"
+      },
+      {
+        "algorithm": "interest",
+        "seed": 2,
+        "batches": 693,
+        "unique_actions": 1100,
+        "weeks": 11,
+        "mourning_after_official": 22,
+        "mourning_official_in_feed": 8,
+        "future_exposures": 0,
+        "empty_batches": [
+          "2026-03-23T18:00:00"
+        ],
+        "scope": "无Agent生成与回流的环境功能演练"
+      }
+    ],
+    "parsed_profiles": 900
+  },
+  "official_policy": "ordinary",
+  "patch_baseline_commit": "7adc50d08b41e1c3da26d62ec3833d9d6694ad5b",
+  "execution_authorized": false,
+  "frozen_sha256": {
+    "custom/agents/curation_arrival_action.py": "d494fd814e2467ec3b69ce430659cc00043b763c2886b3cf9cd389cebb5636aa",
+    "custom/agents/curation_content_quality.py": "4e0903091e14db09c379ce65cbe665abd57aae2af0aa66b5aeca38d35ca1045f",
+    "custom/agents/curation_discourse_agent.py": "ac08888fdbd5000abb2526da83a7a9363e4b3349623f459213241b721c2e4072",
+    "custom/envs/curation_arrival_schedule.py": "e422e73bc43ff699e20cbf640e06a14430d2e3493001fbe62b4eb182d9de488d",
+    "custom/envs/curation_assets/vocabs.json": "7db323585fdc98594da4a4b97e49ce5d3d1654c89839da7c2a754c7515b15e69",
+    "custom/envs/curation_dynamics_space.py": "794f19b45dfdd6548246feb49b86b4b557a0c9c637a019549025f4663e2fa160",
+    "custom/envs/curation_mechanisms.py": "1acbc7deafbd61c0e7d04f81673ad1ef0497acd8ef308b0a6a1b26a558a4baec",
+    "custom/tests/test_arrival_timing.py": "dbcbe49c4d26b6ee82bbb77d64e2007cd37cc3878be14e450b46fd4c7bb4a7df",
+    "custom/tests/test_content_quality.py": "420718a54c32cc84b0c786c126d247d33e8b84101a406768294b827dc0152dce",
+    "custom/tests/test_event_week_schedule.py": "5911e7a4150c48e14f1174d7ef34c96725f36a087e30bfeb063df2c84e5c6b52",
+    "custom/tests/test_ordinary_official.py": "f84a031e75f1f546919d8805e75db9c6e1ffa0f7398c6a9f6b03142438be2688",
+    "custom/tests/test_timestamp_main.py": "d7f1c4703a17ae77e8ae8e7b8cd05de80338f4ebad615693ee7cd0fa93264b9e",
+    "hypothesis_4/experiment_2/2026-10-09-03-event-week-check.py": "d398be83057e1e6a009311a90a6848ee8d10f618094dce2770cfc3f4c35c2c64",
+    "hypothesis_4/experiment_2/2026-10-09-05-ordinary-official.patch": "8e7e5cc5d3e8608f207c1d25043292fea2371243c94dde7cb99e0702d43c796c",
+    "hypothesis_4/experiment_2/init/config_params.py": "178b1806187ae112cdb8b58dad386f630eb56d3753c3ac1c3139b2666522befe",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s0.json": "c647d5a56be35ad529422f12c8e6e55a9d6b4e8efd5f382473cdc5de23b854a9",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s1.json": "5e5f75d6f2ea52e9f5826e0868032582ca5427aee2c66d11727412f0bf9a025e",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s2.json": "ea7dfb942c5d433403fb55267d184801f833ba071fb83c6bbc14a966c1e3fff8",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s0.json": "68afdd91e46e6d4cde1eee1f7696b004e1ae4ddce292fd8dbb43706eb6d74a37",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s1.json": "3a740043abe77d7fed9b281fc4180530a9dbffffaa3d540ec8746acc03be241f",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s2.json": "5b4e1cc16a830a99d6ac71398e8b681f3cdceb1b1e3efa0196720ba0d59993fd",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s0.json": "5036a7d253cc13809f96320b78ecef8529258b80c53efe7282a0ab2c96280213",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s1.json": "ea0da1cbe7b3bcff671c9265d438dde27a9b21d9c1bd0fd12af86c086d525acb",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s2.json": "f1719531ef10311b517ad74f9a8a47dce3162f2720dd31eabfd5001b4ef7f162",
+    "hypothesis_4/experiment_2/init/init_config.json": "68afdd91e46e6d4cde1eee1f7696b004e1ae4ddce292fd8dbb43706eb6d74a37",
+    "hypothesis_4/experiment_2/init/inputs/action_schedule_s0.json": "a864f4d09e9e291446c24618a3e980939d8c16f964f73d07d3f76667081f8ccf",
+    "hypothesis_4/experiment_2/init/inputs/action_schedule_s1.json": "a864f4d09e9e291446c24618a3e980939d8c16f964f73d07d3f76667081f8ccf",
+    "hypothesis_4/experiment_2/init/inputs/action_schedule_s2.json": "a864f4d09e9e291446c24618a3e980939d8c16f964f73d07d3f76667081f8ccf",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s0.json": "8915813f6b4258c03a137e3c8b0e27dc763a724bd0947b3a0190ee1cc04fe6bf",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s1.json": "da75d5861bf9bffbcb97a5b13130bd30bfc2bbfe1f11b2ed4eb4f29f92029813",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s2.json": "d5b25c42b27b468925e4112bfac60daf8f2a5362b227a83572e47b446ee19d49",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s0.json": "5b0f9efedffac94ba2b3a8a639aa8b0b3c0ef2bb2c1f31a8377ac76ec29608d5",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s1.json": "bf0768ec6c2fa9510188c676f901311feaec43ae8db2319408a6b4a5905e9601",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s2.json": "44d37a4ddc04fa34c940dff80415c81a6376832e69d7d7299b4b2b9177c15708",
+    "hypothesis_4/experiment_2/init/inputs/population_s0.json": "8debff3a0349a5cc5d732b7e494f71c312fa7e22aa9458c6a80c7980ffe35d65",
+    "hypothesis_4/experiment_2/init/inputs/population_s1.json": "8debff3a0349a5cc5d732b7e494f71c312fa7e22aa9458c6a80c7980ffe35d65",
+    "hypothesis_4/experiment_2/init/inputs/population_s2.json": "8debff3a0349a5cc5d732b7e494f71c312fa7e22aa9458c6a80c7980ffe35d65",
+    "hypothesis_4/experiment_2/init/manifest.json": "8e917116af252f4b9fcc369191583f9957d0faec0d815621980cb6f31572de34",
+    "hypothesis_4/experiment_2/init/steps.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_2/init/steps_s0.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_2/init/steps_s1.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_2/init/steps_s2.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8"
+  },
+  "final_patch": {
+    "baseline_commit": "7adc50d08b41e1c3da26d62ec3833d9d6694ad5b",
+    "files": [
+      "custom/envs/curation_dynamics_space.py",
+      "custom/envs/curation_arrival_schedule.py",
+      "custom/tests/test_event_week_schedule.py",
+      "hypothesis_4/experiment_2/init/config_params.py",
+      "hypothesis_4/experiment_2/2026-10-09-03-event-week-check.py"
+    ],
+    "clean_baseline_apply_check": true,
+    "applied_files_match_worktree": true
+  },
+  "official_workflow": {
+    "scan_info": "passed",
+    "validate_info": "passed",
+    "run": "passed",
+    "check": "default compatibility entry passed; all nine configs parsed by official schema and actual environment in tests"
+  },
+  "historical_04_unchanged": true,
+  "formal_module_paths": {
+    "CurationDynamicsSpace": "custom/envs/curation_dynamics_space.py",
+    "CurationDiscourseAgent": "custom/agents/curation_discourse_agent.py",
+    "arrival_recommendation": "custom/envs/curation_arrival_schedule.py"
+  },
+  "run_directories_exist": false,
+  "independent_review": {
+    "result": "PASS",
+    "plan": "ordinary_official_plan_review",
+    "implementation": "ordinary_official_final_review",
+    "new_tests_independently_repeated": 5
+  }
+}

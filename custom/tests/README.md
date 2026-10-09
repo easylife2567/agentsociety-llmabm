@@ -8,4 +8,6 @@
 
 `test_timestamp_main.py`验证experiment_2九配置：共享输入和profile、九个完整窗口的真实到达与行动记账、三臂回流、同批隔离、稳定排序、恢复、时序周供给守恒及共享请求耗尽兜底。使用`.env`中的Python执行`-m unittest discover -s custom/tests -p test_timestamp_main.py -v`，不调用LLM。联合24项禁网验收记录见`hypothesis_4/experiment_2/README.md`；环境演练与固定生成返回不代表完整模型仿真结果。
 
-`test_event_week_schedule.py`验证experiment_2的W13共同顺延：仅5人本周改变、九窗22位悼念均事件后行动、interest官方首位且最多10槽、900份正式CLI/profile工作区保留覆盖、实际Agent行动门及恢复不重复、错误覆盖拒绝。联合30项禁网验收使用`hypothesis_4/experiment_2/2026-10-09-03-event-week-check.py`，输出路径见实验README。阅读计数为无Agent产出的环境演练，不是闭环LLM结果。
+`test_event_week_schedule.py`验证experiment_2的W13共同顺延：仅5人本周改变、九窗22位悼念均事件后行动、三臂官方无特殊槽且最多10槽、900份正式CLI/profile工作区保留覆盖、实际Agent行动门及恢复不重复、错误覆盖拒绝。联合当前功能禁网验收使用`hypothesis_4/experiment_2/2026-10-09-03-event-week-check.py`，输出路径见实验README。阅读计数为无Agent产出的环境演练，不是闭环LLM结果。
+
+`test_ordinary_official.py`核验官方普通评分/抽样、候选资格和20:00门控、不进入置顶/保底、可选中或漏读、历史agenda兼容、换策略恢复拒绝及真实registry源码位于custom。当前35项联合验收输出为实验目录2026-10-09-06-ordinary-official-verification.json。

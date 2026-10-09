@@ -239,6 +239,7 @@
         "official_pin_extend_weeks": 0,
         "schedule_mode": "arrival_timing",
         "arrival_mode": "timestamp",
+        "arrival_official_policy": "ordinary",
         "chronological_action_hour_overrides": {
           "2026-W13": {
             "70": 61,

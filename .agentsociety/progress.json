@@ -6,13 +6,13 @@
     "current_stage": "run_experiment",
     "current_hypothesis_id": null,
     "current_experiment_id": null,
-    "revision_round": 9,
+    "revision_round": 10,
     "active_reroute": {
-      "revision_round": 9,
-      "requested_at": "2026-10-08T13:02:47.548164+00:00",
+      "revision_round": 10,
+      "requested_at": "2026-10-09T02:48:57.799746+00:00",
       "from_stage": "run_experiment",
       "target_stage": "experiment_config",
-      "reason": "接受用户要求W13开始共同官方帖应被全部悼念Agent读到；现九配置有5人提前耗尽机会，random入池后也不保证阅读。17条历史池属于有影响的初始条件，需先明确事件时钟/公告渠道并论证初始化后重新验收，不启动LLM。",
+      "reason": "接受用户修订：官方讣告在interest中正常参与兴趣推荐，不置顶、不经悼念保底强制选入；保留五人W13共同顺延、10槽、U及其他制度，重新冻结配置与离线验收，不启动LLM。",
       "source_artifact": "hypothesis_4/experiment_2/EXPERIMENT.md",
       "pending_stages": [
         "run_experiment",
@@ -65,20 +65,20 @@
     "experiment_config": {
       "status": "completed",
       "started_at": null,
-      "completed_at": "2026-10-09T02:32:09.613659+00:00",
-      "attempts": 8,
+      "completed_at": "2026-10-09T02:57:45.165314+00:00",
+      "attempts": 9,
       "error": null,
       "metadata": {
         "hypothesis_id": 4,
         "experiment_id": 2,
         "design_artifact": "hypothesis_4/experiment_2/EXPERIMENT.md",
-        "verification_artifact": "hypothesis_4/experiment_2/2026-10-09-04-event-week-verification.json",
-        "event_week_schedule": "五人W13共同顺延；三臂三seed同表；原10槽、U与回流保留",
+        "verification_artifact": "hypothesis_4/experiment_2/2026-10-09-06-ordinary-official-verification.json",
+        "official_policy": "ordinary：interest官方不置顶、不进保底，参与普通评分和抽样",
         "execution_authorized": false,
         "independent_review": "PASS"
       },
       "verification_status": "complete",
-      "revision_round": 9
+      "revision_round": 10
     },
     "run_experiment": {
       "status": "needs_revision",
@@ -88,7 +88,7 @@
       "error": null,
       "metadata": {},
       "verification_status": "not_started",
-      "revision_round": 9
+      "revision_round": 10
     },
     "analysis": {
       "status": "needs_revision",
@@ -98,7 +98,7 @@
       "error": null,
       "metadata": {},
       "verification_status": "not_started",
-      "revision_round": 9
+      "revision_round": 10
     },
     "generate_paper": {
       "status": "not_started",
@@ -920,6 +920,77 @@
       "timestamp": "2026-10-09T02:32:09.613672+00:00",
       "kind": "stage_update",
       "revision_round": 9,
+      "stage": "experiment_config",
+      "from_status": "needs_revision",
+      "to_status": "completed",
+      "from_stage": "experiment_config",
+      "to_stage": "run_experiment"
+    },
+    {
+      "sequence": 38,
+      "timestamp": "2026-10-09T02:48:57.799756+00:00",
+      "kind": "reroute",
+      "revision_round": 10,
+      "from_stage": "run_experiment",
+      "to_stage": "experiment_config",
+      "reason": "接受用户修订：官方讣告在interest中正常参与兴趣推荐，不置顶、不经悼念保底强制选入；保留五人W13共同顺延、10槽、U及其他制度，重新冻结配置与离线验收，不启动LLM。",
+      "source_artifact": "hypothesis_4/experiment_2/EXPERIMENT.md",
+      "invalidated_stages": [
+        "experiment_config",
+        "run_experiment",
+        "analysis"
+      ],
+      "previous_statuses": {
+        "experiment_config": "completed",
+        "run_experiment": "needs_revision",
+        "analysis": "needs_revision"
+      },
+      "previous_stage_states": {
+        "experiment_config": {
+          "status": "completed",
+          "started_at": null,
+          "completed_at": "2026-10-09T02:32:09.613659+00:00",
+          "attempts": 8,
+          "error": null,
+          "metadata": {
+            "hypothesis_id": 4,
+            "experiment_id": 2,
+            "design_artifact": "hypothesis_4/experiment_2/EXPERIMENT.md",
+            "verification_artifact": "hypothesis_4/experiment_2/2026-10-09-04-event-week-verification.json",
+            "event_week_schedule": "五人W13共同顺延；三臂三seed同表；原10槽、U与回流保留",
+            "execution_authorized": false,
+            "independent_review": "PASS"
+          },
+          "verification_status": "complete",
+          "revision_round": 9
+        },
+        "run_experiment": {
+          "status": "needs_revision",
+          "started_at": null,
+          "completed_at": null,
+          "attempts": 4,
+          "error": null,
+          "metadata": {},
+          "verification_status": "not_started",
+          "revision_round": 9
+        },
+        "analysis": {
+          "status": "needs_revision",
+          "started_at": null,
+          "completed_at": null,
+          "attempts": 3,
+          "error": null,
+          "metadata": {},
+          "verification_status": "not_started",
+          "revision_round": 9
+        }
+      }
+    },
+    {
+      "sequence": 39,
+      "timestamp": "2026-10-09T02:57:45.165325+00:00",
+      "kind": "stage_update",
+      "revision_round": 10,
       "stage": "experiment_config",
       "from_status": "needs_revision",
       "to_status": "completed",

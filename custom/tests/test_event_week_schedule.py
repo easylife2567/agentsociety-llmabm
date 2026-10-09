@@ -31,6 +31,7 @@ class EventWeekTests(unittest.IsolatedAsyncioTestCase):
                 before = json.loads(subprocess.check_output(['git', 'show', f'{BASELINE}:{path}'], cwd=ROOT))
                 after = deepcopy(config(algorithm, seed))
                 env = after['env_modules'][0]['kwargs']
+                self.assertEqual(env.pop('arrival_official_policy'), 'ordinary')
                 self.assertEqual(env.pop('chronological_action_hour_overrides'), {WEEK: OVERRIDES})
                 changed = []
                 for agent in after['agents']:
@@ -46,7 +47,7 @@ class EventWeekTests(unittest.IsolatedAsyncioTestCase):
                              subprocess.check_output(['git', 'show', f'{BASELINE}:{step_path}'], cwd=ROOT))
 
     async def test_nine_windows_cover_all_mourning_agents_after_official(self):
-        """逐条核验1100机会；interest22人首位读官方，另两臂没有强制槽。"""
+        """逐条核验1100机会与22人事件后时刻；三臂官方都没有强制槽。"""
         RECORD['windows'] = []
         for seed in range(3):
             for algorithm in ('random', 'chronological', 'interest'):
@@ -82,11 +83,13 @@ class EventWeekTests(unittest.IsolatedAsyncioTestCase):
                 self.assertTrue(all(r['acted_at'] > OFFICIAL for r in mourning))
                 seen = [r for r in mourning if any(p['is_official'] for p in r['feed'])]
                 if algorithm == 'interest':
-                    self.assertEqual(len(seen), 22)
-                    for row in mourning:
-                        self.assertTrue(row['feed'][0]['is_official'])
-                        self.assertEqual(sum(p['is_official'] for p in row['feed']), 1)
-                        self.assertEqual(ACTION.prompt_context(row['feed'])[0]['stable_key'], row['feed'][0]['stable_key'])
+                    for row in rows:
+                        self.assertEqual(row['pinned_keys'], [])
+                        official = [p for p in row['feed'] if p['is_official']]
+                        self.assertLessEqual(len(official), 1)
+                        self.assertTrue(all(p['stable_key'] not in row['floor_keys'] for p in official))
+                        self.assertEqual([p['stable_key'] for p in ACTION.prompt_context(row['feed'])],
+                                         [p['stable_key'] for p in row['feed'][:5]])
                 RECORD['windows'].append({'algorithm': algorithm, 'seed': seed,
                     'batches': 693, 'unique_actions': 1100, 'weeks': 11,
                     'mourning_after_official': 22, 'mourning_official_in_feed': len(seen),
@@ -190,5 +193,8 @@ class EventWeekTests(unittest.IsolatedAsyncioTestCase):
         for entry in ({WEEK: {'999': 61}}, {'2026-W23': {'70': 61}}, {WEEK: {'70': 0}}):
             with self.assertRaises(ValueError):
                 ENV.CurationDynamicsSpace(**dict(base, chronological_action_hour_overrides=entry))
+        # 单独核验周时刻覆盖，避免普通官方的入口约束先于本约束触发。
+        legacy = dict(base, schedule_mode='legacy')
+        legacy.pop('arrival_official_policy')
         with self.assertRaisesRegex(ValueError, 'require arrival_timing'):
-            ENV.CurationDynamicsSpace(**dict(base, schedule_mode='legacy'))
+            ENV.CurationDynamicsSpace(**legacy)

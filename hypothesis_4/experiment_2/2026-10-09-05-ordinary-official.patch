@@ -1,0 +1,183 @@
+--- a/custom/envs/curation_dynamics_space.py
++++ b/custom/envs/curation_dynamics_space.py
+@@ -333,6 +333,12 @@
+         self._num_ticks = int(kwargs.pop("num_ticks", 11))
+         self._event_week = str(kwargs.pop("event_week", "2026-W13"))
+         self._official_pin_extend_weeks = int(kwargs.pop("official_pin_extend_weeks", 1))
++        # 官方可按议程或普通推荐处理；普通策略仅供精确到达路径显式启用。
++        self._arrival_official_policy = str(kwargs.pop("arrival_official_policy", "agenda"))
++        if self._arrival_official_policy not in ("agenda", "ordinary"):
++            raise ValueError("arrival_official_policy must be agenda or ordinary")
++        if self._arrival_official_policy == "ordinary" and schedule_mode != "arrival_timing":
++            raise ValueError("ordinary official policy requires arrival_timing")
+         # 外生事件信号：高显著性社会事件不是普通 feed 槽位。事件周内，各臂收到同一
+         # 信号；推荐制度仍只决定帖子是否置顶及其余 feed 如何分配。salience_slots 表示
+         # 该事件在意见气候计算中相当于多少个同类普通信息槽位，0 表示关闭。
+@@ -1744,7 +1750,8 @@
+             "（{agent_id: meme|mourning|marketing|education|other}，未列出默认 other）；"
+             "**start_week** 起始 ISO 周（默认 2026-W12）；**num_ticks** 总 tick 数（默认 11）；"
+             "**event_week** 去世周（默认 2026-W13）；**official_pin_extend_weeks** 官方置顶延伸"
+-            "周数（默认 1）；**event_signal_type** 外生事件直接激活的内容类型（空串=关闭）、"
++            "周数（默认 1）；**arrival_official_policy** 精确到达模式的官方推荐策略"
++            "（agenda 默认议程 / ordinary 普通推荐，不进入置顶或保底）；**event_signal_type** 外生事件直接激活的内容类型（空串=关闭）、"
+             "**event_signal_salience_slots** 该事件在意见气候中等效的普通信息槽位数（默认 0）；"
+             "interest 臂权重 **alpha**/**beta**/**gamma**、噪声幅度 "
+             "**interest_noise_eps**、已曝光处理 "
+@@ -1774,6 +1781,7 @@
+             raise RuntimeError("CurationDynamicsSpace workspace is not bound")
+         state = {
+             "_arrival_state": self._arrival.state if self._arrival is not None else None,
++            "_arrival_official_policy": self._arrival_official_policy,
+             "_arrival_action_hour_overrides": self._chronological_action_hour_overrides,
+             "_exposure_age_buckets": self._exposure_age_buckets,
+             "_step_index": self._step_index,
+@@ -1837,6 +1845,9 @@
+         if not state_path.is_file():
+             return False
+         d = json.loads(state_path.read_text(encoding="utf-8"))
++        # 官方推荐规则属于冻结配置；历史无此字段的状态按 agenda 解释。
++        if d.get("_arrival_official_policy", "agenda") != self._arrival_official_policy:
++            raise ValueError("checkpoint official policy does not match current config")
+         # 恢复必须复用同一行动安排；历史无覆盖的 checkpoint 仍兼容空表。
+         if d.get("_arrival_action_hour_overrides", {}) != self._chronological_action_hour_overrides:
+             raise ValueError("checkpoint action overrides do not match current config")
+--- a/custom/envs/curation_arrival_schedule.py
++++ b/custom/envs/curation_arrival_schedule.py
+@@ -189,9 +189,13 @@
+         e._feed_live_pool = len(candidates)
+         e._pinned_ids, e._event_floor_ids = [], []
+         if e._recommendation_algorithm == 'interest' and event_time >= OFFICIAL_TIME:
+-            e._pinned_ids = sorted(e._compute_pinned_ids(e._current_week), key=lambda pid: e._posts[pid]['stable_key'])
++            if e._arrival_official_policy == 'agenda':
++                e._pinned_ids = sorted(e._compute_pinned_ids(e._current_week), key=lambda pid: e._posts[pid]['stable_key'])
+             if e._current_week == e._event_week:
+-                floor = [pid for pid in candidates if pid not in e._pinned_ids and e._posts[pid]['type'] != 'noise']
++                # 普通官方走下方评分/抽样，不经悼念保底重新获得强制曝光。
++                floor = [pid for pid in candidates
++                         if pid not in e._pinned_ids and e._posts[pid]['type'] != 'noise'
++                         and (e._arrival_official_policy != 'ordinary' or not e._posts[pid]['is_official'])]
+                 floor.sort(key=lambda pid: (-e._posts[pid]['tendencies'].get('mourning', 0.), e._posts[pid]['stable_key']))
+                 e._event_floor_ids = floor[:e._event_week_mourning_floor]
+         self.state['snapshots'] = {}
+--- a/custom/tests/test_event_week_schedule.py
++++ b/custom/tests/test_event_week_schedule.py
+@@ -31,6 +31,7 @@
+                 before = json.loads(subprocess.check_output(['git', 'show', f'{BASELINE}:{path}'], cwd=ROOT))
+                 after = deepcopy(config(algorithm, seed))
+                 env = after['env_modules'][0]['kwargs']
++                self.assertEqual(env.pop('arrival_official_policy'), 'ordinary')
+                 self.assertEqual(env.pop('chronological_action_hour_overrides'), {WEEK: OVERRIDES})
+                 changed = []
+                 for agent in after['agents']:
+@@ -46,7 +47,7 @@
+                              subprocess.check_output(['git', 'show', f'{BASELINE}:{step_path}'], cwd=ROOT))
+ 
+     async def test_nine_windows_cover_all_mourning_agents_after_official(self):
+-        """逐条核验1100机会；interest22人首位读官方，另两臂没有强制槽。"""
++        """逐条核验1100机会与22人事件后时刻；三臂官方都没有强制槽。"""
+         RECORD['windows'] = []
+         for seed in range(3):
+             for algorithm in ('random', 'chronological', 'interest'):
+@@ -82,11 +83,13 @@
+                 self.assertTrue(all(r['acted_at'] > OFFICIAL for r in mourning))
+                 seen = [r for r in mourning if any(p['is_official'] for p in r['feed'])]
+                 if algorithm == 'interest':
+-                    self.assertEqual(len(seen), 22)
+-                    for row in mourning:
+-                        self.assertTrue(row['feed'][0]['is_official'])
+-                        self.assertEqual(sum(p['is_official'] for p in row['feed']), 1)
+-                        self.assertEqual(ACTION.prompt_context(row['feed'])[0]['stable_key'], row['feed'][0]['stable_key'])
++                    for row in rows:
++                        self.assertEqual(row['pinned_keys'], [])
++                        official = [p for p in row['feed'] if p['is_official']]
++                        self.assertLessEqual(len(official), 1)
++                        self.assertTrue(all(p['stable_key'] not in row['floor_keys'] for p in official))
++                        self.assertEqual([p['stable_key'] for p in ACTION.prompt_context(row['feed'])],
++                                         [p['stable_key'] for p in row['feed'][:5]])
+                 RECORD['windows'].append({'algorithm': algorithm, 'seed': seed,
+                     'batches': 693, 'unique_actions': 1100, 'weeks': 11,
+                     'mourning_after_official': 22, 'mourning_official_in_feed': len(seen),
+@@ -190,5 +193,8 @@
+         for entry in ({WEEK: {'999': 61}}, {'2026-W23': {'70': 61}}, {WEEK: {'70': 0}}):
+             with self.assertRaises(ValueError):
+                 ENV.CurationDynamicsSpace(**dict(base, chronological_action_hour_overrides=entry))
++        # 单独核验周时刻覆盖，避免普通官方的入口约束先于本约束触发。
++        legacy = dict(base, schedule_mode='legacy')
++        legacy.pop('arrival_official_policy')
+         with self.assertRaisesRegex(ValueError, 'require arrival_timing'):
+-            ENV.CurationDynamicsSpace(**dict(base, schedule_mode='legacy'))
++            ENV.CurationDynamicsSpace(**legacy)
+--- a/hypothesis_4/experiment_2/init/config_params.py
++++ b/hypothesis_4/experiment_2/init/config_params.py
+@@ -191,13 +191,13 @@
+                             "empty_dispatch_hours_by_week": {EVENT_WEEK: common_event_schedule["empty_dispatch_hours"]},
+                             "expected_batches": len(times)}
+ 
+-        # 同seed环境共同参数逐值相同；chronological/random的议程键存在但执行分支不使用。
++        # 三臂共同声明官方普通推荐；chronological/random不使用事件周悼念保底。
+         common_configs = []
+         for algorithm in ALGORITHMS:
+             config = deepcopy(base[algorithm])
+             config["agents"] = deepcopy(population)
+             env = config["env_modules"][0]["kwargs"]
+-            env.update(schedule_mode="arrival_timing", arrival_mode="timestamp",
++            env.update(schedule_mode="arrival_timing", arrival_mode="timestamp", arrival_official_policy="ordinary",
+                        chronological_action_hours=hours, chronological_action_hour_overrides=deepcopy(overrides),
+                        chronological_total_batches=len(times),
+                        injection_data_path=relative(inputs / window_name),
+@@ -235,7 +235,7 @@
+                    "execution_note": "本轮只准备与离线验收，模型、发送范围和时长/费用在启动前另行确定"},
+         "mechanisms": {"arrival": "三臂timestamp，published_at与本臂available_at均不晚于行动",
+                        "agent_return": {"random": "次周周一", "interest": "次周周一", "chronological": "批末统一入池，后续行动批次可见"},
+-                       "agenda": "只有interest使用10槽内官方首位与事件周最多5条保底；其余臂忽略共同配置中的议程参数",
++                       "agenda": "官方普通参与推荐，不置顶、不经悼念保底强制选入，不保证22/22阅读；只有interest使用事件周其他悼念帖最多5条保底，其余臂不使用议程",
+                        "event_week_schedule": "只覆盖5位悼念Agent的W13决策小时；三臂三seed同表，保留693调度批，W13原hour18为空批",
+                        "stable_keys": "外部帖external:source_pid；Agent帖作者×周，运行期自增ID不参与选择",
+                        "tie_break": "chronological按发布时间与稳定来源键倒序；不依赖入池或生成完成顺序",
+--- a/hypothesis_4/experiment_2/2026-10-09-03-event-week-check.py
++++ b/hypothesis_4/experiment_2/2026-10-09-03-event-week-check.py
+@@ -1,4 +1,4 @@
+-"""禁网复核W13顺延及继承功能，保存可追溯的配置、源码与结果证据。
++"""禁网复核W13顺延、官方普通推荐及继承功能，保存可追溯的配置、源码与结果证据。
+ 
+ 从项目根用.env解释器执行；只调用unittest与正式本地模块，不运行社会引擎。
+ 报告中的官方阅读计数来自无Agent产出的环境演练，不是LLM实验结果。
+@@ -21,7 +21,7 @@
+ 
+ 
+ def main():
+-    """拦截网络并执行四组实际功能测试，日志与重复恢复工作区仅存tmp。"""
++    """拦截网络并执行正式配套功能测试，日志与重复恢复工作区仅存tmp。"""
+     attempts = []
+     def deny_network(*args, **kwargs):
+         attempts.append('blocked connection')
+@@ -46,24 +46,26 @@
+              ROOT / 'custom/envs/curation_mechanisms.py',
+              ROOT / 'custom/envs/curation_assets/vocabs.json',
+              HERE / 'init/config_params.py', HERE / 'init/manifest.json',
+-             HERE / '2026-10-09-02-event-week-schedule.patch', Path(__file__)]
++             HERE / '2026-10-09-05-ordinary-official.patch', Path(__file__)]
+     paths.extend(TESTS.glob('test_*.py'))
+     manifest = json.loads((HERE / 'init/manifest.json').read_text())
+     paths.extend(ROOT / name for name in manifest['output_sha256'])
+     evidence = {
+         'baseline_commit': module.BASELINE,
+-        'scope': 'W13时间覆盖功能与继承测试；无LLM正文，无Agent反馈产量预测',
++        'scope': 'W13时间覆盖、官方普通推荐与继承功能；无LLM正文，无Agent反馈产量预测',
+         'tests_run': result.testsRun,
+         'failures': [{'test': str(test), 'trace': trace} for test, trace in result.failures],
+         'errors': [{'test': str(test), 'trace': trace} for test, trace in result.errors],
+         'skipped': [{'test': str(test), 'reason': reason} for test, reason in result.skipped],
+         'network_connection_attempts': len(attempts), 'llm_calls': 0,
+         'event_week_checks': module.RECORD,
++        'official_policy': 'ordinary',
++        'patch_baseline_commit': '7adc50d08b41e1c3da26d62ec3833d9d6694ad5b',
+         'execution_authorized': manifest['execution_authorized'],
+         'frozen_sha256': {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
+                           for p in sorted(set(paths))},
+     }
+-    output = HERE / '2026-10-09-04-event-week-verification.json'
++    output = HERE / '2026-10-09-06-ordinary-official-verification.json'
+     output.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + '\n')
+     print(json.dumps({'evidence': str(output.relative_to(ROOT)), 'tests': result.testsRun,
+                      'failures': len(result.failures), 'errors': len(result.errors),
