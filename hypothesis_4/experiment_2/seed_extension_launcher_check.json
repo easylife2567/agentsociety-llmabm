@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "case": "failure_stops_remaining",
+      "passed": true,
+      "subprocesses_launched": 1
+    },
+    {
+      "case": "success_advances_in_order",
+      "passed": true,
+      "subprocesses_launched": 2
+    }
+  ],
+  "real_cli_calls": 0,
+  "llm_calls": 0,
+  "controller_sha256": "d628b762714f8db7a1d7ead572c0481d277685d9f6f99e99ea6df68139573415"
+}

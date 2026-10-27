@@ -1,0 +1,103 @@
+{
+  "created_at": "2026-10-16T13:32:46.946352+08:00",
+  "purpose": "用户要求新建run，讨论500或1000人作为下一轮正式主实验；未授权实现或启动。",
+  "baseline_commit": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "working_tree_dirty": true,
+  "baseline_status": "initial-git-status.txt",
+  "baseline_note": "以下哈希记录讨论时实际文件，不能用commit独立重建全部未提交资产。尚未开始代码探索，未创建workspace；未来实施前须明确并保全获准基线。",
+  "engine_import_path": "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/__init__.py",
+  "source_sha256": {
+    "README.md": "f7d8e82722404bfd3eb83365e5193dc89e2aafe31dce767322951aa647fecde2",
+    "TOPIC.md": "734203d0e19f03780f55001fb7c54c8522a4b67665a3b4987c21042b9f351ed2",
+    "AGENTS.md": "0f523965c2f238781381d5a0ea9666ba016dbd2d5ebc677af15e6e43cc920de9",
+    "runs/README.md": "d5a6196230b770e70a65c7cebeee88de269909234ba5fc20aab2f6460bfb3418",
+    "hypothesis_4/README.md": "0416d4ca3bf98f3a093abf1d207dc25ece260626793d4e246b021619c8a77ae4",
+    "hypothesis_4/experiment_2/README.md": "070fe6afa3faf36ac0b85869e4b2a7d0d6b1c9a7ac8e293438aa20b64309641d",
+    "hypothesis_4/experiment_2/EXPERIMENT.md": "5078ca9bd12672901b52fd12a888605c4b2d6b6e6b6b20a48dd9bc85af020999",
+    "hypothesis_4/experiment_2/init/config_params.py": "178b1806187ae112cdb8b58dad386f630eb56d3753c3ac1c3139b2666522befe",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s0.json": "68afdd91e46e6d4cde1eee1f7696b004e1ae4ddce292fd8dbb43706eb6d74a37",
+    "hypothesis_4/experiment_2/run_main_experiment.py": "76ab22e819fe1be514a81f27071b3bfc6f14a13cbc2db9eb92f8b9898e4d2989",
+    "hypothesis_4/experiment_2/runs/timestamp_v1/batch_execution.json": "91e69c2f4077d44c4982302b78aca19c7124ade646d587d527d97bf7264d92eb",
+    "hypothesis_4/experiment_3/README.md": "a8bd9b5a514612f6da00e02f3c094c2b14fe3fc697088030bb61e7033e655d9a",
+    "custom/agents/curation_arrival_action.py": "d494fd814e2467ec3b69ce430659cc00043b763c2886b3cf9cd389cebb5636aa",
+    "custom/agents/curation_discourse_agent.py": "ac08888fdbd5000abb2526da83a7a9363e4b3349623f459213241b721c2e4072",
+    "custom/envs/curation_arrival_schedule.py": "e422e73bc43ff699e20cbf640e06a14430d2e3493001fbe62b4eb182d9de488d",
+    "custom/envs/curation_dynamics_space.py": "794f19b45dfdd6548246feb49b86b4b557a0c9c637a019549025f4663e2fa160",
+    "custom/envs/curation_mechanisms.py": "1acbc7deafbd61c0e7d04f81673ad1ef0497acd8ef308b0a6a1b26a558a4baec"
+  },
+  "current_design": {
+    "population": 100,
+    "population_by_type": {
+      "marketing": 23,
+      "mourning": 22,
+      "other": 21,
+      "meme": 19,
+      "education": 15
+    },
+    "weeks": 11,
+    "arms": 3,
+    "seeds": 3,
+    "feed_size": 10,
+    "life_saturation_scale": 20.0,
+    "event_week_mourning_floor": 5,
+    "expected_batches": 693,
+    "completed_runs": 9,
+    "completed_actions": 9900,
+    "batch_elapsed_hours": 8.09161163486111,
+    "window_external_posts": 250,
+    "initial_history_posts": 17
+  },
+  "arithmetic_scenarios": {
+    "100": {
+      "population_by_type": {
+        "marketing": 23,
+        "mourning": 22,
+        "other": 21,
+        "meme": 19,
+        "education": 15
+      },
+      "opportunities_per_run": 1100,
+      "opportunities_9_runs": 9900,
+      "maximum_feed_slots_9_runs": 99000,
+      "requests_upper_bound_if_10_percent_extra": 10890,
+      "illustrative_extra_limit_10_percent": 990
+    },
+    "500": {
+      "population_by_type": {
+        "marketing": 115,
+        "mourning": 110,
+        "other": 105,
+        "meme": 95,
+        "education": 75
+      },
+      "opportunities_per_run": 5500,
+      "opportunities_9_runs": 49500,
+      "maximum_feed_slots_9_runs": 495000,
+      "requests_upper_bound_if_10_percent_extra": 54450,
+      "illustrative_extra_limit_10_percent": 4950
+    },
+    "1000": {
+      "population_by_type": {
+        "marketing": 230,
+        "mourning": 220,
+        "other": 210,
+        "meme": 190,
+        "education": 150
+      },
+      "opportunities_per_run": 11000,
+      "opportunities_9_runs": 99000,
+      "maximum_feed_slots_9_runs": 990000,
+      "requests_upper_bound_if_10_percent_extra": 108900,
+      "illustrative_extra_limit_10_percent": 9900
+    }
+  },
+  "authority": {
+    "discussion_and_run_creation": true,
+    "implementation": false,
+    "llm_execution": false,
+    "adoption": false,
+    "commit": false
+  },
+  "validation": "只读文件与源码检查、真实解释器import、CLI where-am-i；未做扩容功能验收或性能实测。",
+  "user_goal": "用户明确希望500或1000人作为下一轮正式主实验，以减少100人小群体的随机波动并提高结论说服力；最终规模未定。"
+}

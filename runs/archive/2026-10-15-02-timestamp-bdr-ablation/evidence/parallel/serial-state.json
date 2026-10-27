@@ -1,0 +1,101 @@
+{
+  "supervisor_pid": 98576,
+  "status": "running",
+  "started_at": "2026-10-15T14:45:32.471959+00:00",
+  "completed": [
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s0",
+      "finished_at": "2026-10-15T15:36:56.044934+00:00",
+      "progress": {
+        "agents_recorded": 100,
+        "agent_decisions": 1100,
+        "posts": 88,
+        "provider_requests": 88,
+        "retries": 0,
+        "content_rewrites": 0,
+        "fallback_posts": 0,
+        "reasons": {
+          "published": 88,
+          "below_threshold": 1012
+        },
+        "pid.json": {
+          "pid": 98578,
+          "status": "completed",
+          "start_time": "2026-10-15T14:45:34.379247+00:00",
+          "experiment_id": "timestamp_bdr_v1_interest_no_b_s0",
+          "simulation_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "end_time": "2026-10-15T15:36:50.201721+00:00"
+        },
+        "SOCIETY_STEP.json": {
+          "current_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "completed_step_count": 693,
+          "terminated": false
+        },
+        "environment_actions": 1100,
+        "weeks": 11
+      }
+    }
+  ],
+  "current_run": "timestamp_bdr_v1_interest_no_d_s0",
+  "deadline_at": "2026-10-17T12:21:11.583919+00:00",
+  "current_run_dir": "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/hypothesis_4/experiment_3/runtime/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_d_s0",
+  "persistent_mirror_dir": "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/results/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_d_s0",
+  "child_pid": 6985,
+  "command": [
+    "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python",
+    "-m",
+    "agentsociety2.society.cli",
+    "--config",
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s0.json",
+    "--steps",
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/hypothesis_4/experiment_3/init/steps_s0.yaml",
+    "--run-dir",
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/hypothesis_4/experiment_3/runtime/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_d_s0",
+    "--experiment-id",
+    "timestamp_bdr_v1_interest_no_d_s0",
+    "--log-file",
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/hypothesis_4/experiment_3/runtime/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_d_s0/engine.log",
+    "--batch-size",
+    "100"
+  ],
+  "updated_at": "2026-10-15T16:01:06.667846+00:00",
+  "progress": {
+    "agents_recorded": 100,
+    "agent_decisions": 321,
+    "posts": 163,
+    "provider_requests": 163,
+    "retries": 0,
+    "content_rewrites": 0,
+    "fallback_posts": 0,
+    "reasons": {
+      "published": 163,
+      "below_threshold": 158
+    },
+    "pid.json": {
+      "pid": 6985,
+      "status": "running",
+      "start_time": "2026-10-15T15:36:57.781869+00:00",
+      "experiment_id": "timestamp_bdr_v1_interest_no_d_s0",
+      "simulation_time": "2026-04-07T11:00:00",
+      "step_count": 202
+    },
+    "SOCIETY_STEP.json": {
+      "current_time": "2026-04-07T11:00:00",
+      "step_count": 202,
+      "completed_step_count": 202,
+      "terminated": false
+    },
+    "environment_actions": 321,
+    "weeks": 3
+  },
+  "mirror": {
+    "files": 755,
+    "final_hashes_verified": 0
+  },
+  "provider_requests": 251,
+  "extra_requests": 0,
+  "budget_remaining_seconds": 159604.91608,
+  "elapsed_seconds": 4534.171766582993
+}

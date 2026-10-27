@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-24",
+  "file": "ICA2027-V5_10组实验_修订版.docx",
+  "source_original_unchanged": true,
+  "source_sha256": "a9509ee2122a862d3149fc08dce2f1b376552925b62b3393d847d4be54726656",
+  "output_sha256": "ce216e100d8f8a7a1934b749731b9306472f3ee26067ad9ceced460ccf5dc615",
+  "changed_package_parts": [
+    "[Content_Types].xml",
+    "word/_rels/document.xml.rels",
+    "word/document.xml",
+    "word/settings.xml"
+  ],
+  "preserved_package_parts": 25,
+  "new_media_parts": [
+    "word/media/figure_01_seed10.png",
+    "word/media/figure_01_seed10.svg",
+    "word/media/figure_02_seed10.png",
+    "word/media/figure_02_seed10.svg",
+    "word/media/figure_03_seed10.png",
+    "word/media/figure_03_seed10.svg",
+    "word/media/figure_04_seed10.png",
+    "word/media/figure_04_seed10.svg"
+  ],
+  "track_revisions_enabled": true,
+  "tracked_insertions": 48,
+  "tracked_deletions": 73,
+  "unique_revision_ids": true,
+  "reject_all_restores_original_text_and_character_formats": true,
+  "original_paragraph_formats_preserved": 120,
+  "main_formula_preserved": true,
+  "tables_and_bibliography_preserved": true,
+  "current_figures": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "figure5_tracked_deleted": true,
+  "images": [
+    {
+      "figure": 1,
+      "svg_part": "word/media/figure_01_seed10.svg",
+      "svg_sha256": "48ba91250812b7b28db2782f42bbb4c00ba091c09b76fb73c1af20087d98d3d8",
+      "aspect_ratio_preserved": true
+    },
+    {
+      "figure": 2,
+      "svg_part": "word/media/figure_02_seed10.svg",
+      "svg_sha256": "78af3bf1403bd33dfd247640a2465d34ce28bf65552693a1bbdf70bbab4faaaf",
+      "aspect_ratio_preserved": true
+    },
+    {
+      "figure": 3,
+      "svg_part": "word/media/figure_03_seed10.svg",
+      "svg_sha256": "20e548cfb4f7bd19c6364118b618dc1f00ba8ba0417e42f7132c23a54914c7b2",
+      "aspect_ratio_preserved": true
+    },
+    {
+      "figure": 4,
+      "svg_part": "word/media/figure_04_seed10.svg",
+      "svg_sha256": "fb80a167ea5f94a2eda67bdd0d988fb0e8ec960511b1daab21f6d9cb58c52dd0",
+      "aspect_ratio_preserved": true
+    }
+  ],
+  "iso_schema_difference": {
+    "word/document.xml": {
+      "Element '{http://schemas.openxmlformats.org/wordprocessingml/2006/main}p', attribute '{http://schemas.microsoft.com/office/word/2010/wordml}paraId': The attribute '{http://schemas.microsoft.com/office/word/2010/wordml}paraId' is not allowed.": 4
+    },
+    "word/settings.xml": {}
+  },
+  "schema_note": "原稿自带MS/WPS扩展不受纯ISO模式识别；新差异仅四个新增图注段的MS paraId，无新增核心元素顺序错误。通用office验证CLI因bundled环境缺defusedxml未运行，使用bundled lxml直接校验并比较。",
+  "readme": "PNG视觉核验记录在README；未以位图替代SVG主媒体，PNG只用于旧版Office兼容。"
+}

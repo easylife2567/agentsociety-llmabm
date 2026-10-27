@@ -1,0 +1,138 @@
+{
+  "backend": "Python / Matplotlib",
+  "python": "3.13.9",
+  "matplotlib": "3.10.0",
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "manuscript_sha256": "7b82052396fcd4119b89064da75b0b85bdbdcddd928d7ce8c1b7d86c1bd969c6",
+  "dimensions_mm": {
+    "figure_01_observed_pooled": [
+      180,
+      88
+    ],
+    "figure_02_observed_platforms": [
+      180,
+      88
+    ],
+    "figure_03_simulated_trajectories": [
+      180,
+      144
+    ],
+    "figure_04_feedback_exposure": [
+      180,
+      82
+    ],
+    "figure_05_bdr_ablation": [
+      183,
+      140
+    ]
+  },
+  "replicates": "three original seeds, 0/1/2; individual observations and arithmetic means",
+  "interpolation": "straight segments between observed weekly values; no curve smoothing",
+  "palette": {
+    "education": "#4C78A8",
+    "mourning": "#D55E00",
+    "meme": "#6F4C9B",
+    "other": "#B5BCC5",
+    "marketing": "#DDBD64"
+  },
+  "outputs": [
+    {
+      "file": "figure_01_observed_pooled.pdf",
+      "bytes": 35309,
+      "sha256": "1de8939a477d24282d2585d8d974a91df89f11cdf80f96723c405a9605a3c483"
+    },
+    {
+      "file": "figure_01_observed_pooled.png",
+      "bytes": 413768,
+      "sha256": "82de1bacb0339f8f8b8ecd207f45570aaebd1612a02502185ce486bd8b5a9bc7"
+    },
+    {
+      "file": "figure_01_observed_pooled.svg",
+      "bytes": 34917,
+      "sha256": "931557452b0b69c2e387017adaae64110a946abec25c6a32d9ea18e2537061c7"
+    },
+    {
+      "file": "figure_02_observed_platforms.pdf",
+      "bytes": 35843,
+      "sha256": "1df2e5408594fde70b7f7833a2843b6fcb41087bd5bee76ce1cbf2a3f7be3743"
+    },
+    {
+      "file": "figure_02_observed_platforms.png",
+      "bytes": 421347,
+      "sha256": "4a0b2b1810959550cd24a862f121818c6eee4b11a7e612d3507c86a85d2cde60"
+    },
+    {
+      "file": "figure_02_observed_platforms.svg",
+      "bytes": 36195,
+      "sha256": "52e0f8f7bed820d6962eb337d5976133133ee9273c239f7a42c32b7077d98d18"
+    },
+    {
+      "file": "figure_03_simulated_trajectories.pdf",
+      "bytes": 41533,
+      "sha256": "09727c5c38edb4010c4e52452bcfcc46a5ca5c2b2474a75a427a6869c01af652"
+    },
+    {
+      "file": "figure_03_simulated_trajectories.png",
+      "bytes": 1049967,
+      "sha256": "ecdf091eb1c891d0adec7d59b7345a6dc84a6e27fb4307a4fd3c2628c39645c5"
+    },
+    {
+      "file": "figure_03_simulated_trajectories.svg",
+      "bytes": 74510,
+      "sha256": "d5f5e4ec54c1b3c3f652e3a6140fede90e5b79567f4faa7cd15e68423c63fb58"
+    },
+    {
+      "file": "figure_04_feedback_exposure.pdf",
+      "bytes": 37637,
+      "sha256": "487450e579546f1d09d52316b6992b7d753f8368e882f822cc3f1137653285b2"
+    },
+    {
+      "file": "figure_04_feedback_exposure.png",
+      "bytes": 223208,
+      "sha256": "ed9320c47dc59ea600abd9f6f37bd084908b9f2eb4e792020c9aae45e48811a9"
+    },
+    {
+      "file": "figure_04_feedback_exposure.svg",
+      "bytes": 29627,
+      "sha256": "f3d87228a782a7bed3ef7aca8042f06dbd2615bb0a93cf5188648178ba97da7e"
+    },
+    {
+      "file": "figure_05_bdr_ablation.pdf",
+      "bytes": 41751,
+      "sha256": "8f46d78e56732f306173ee8df54a1b5884540be631ff7356f4056bab4146a9ab"
+    },
+    {
+      "file": "figure_05_bdr_ablation.png",
+      "bytes": 542705,
+      "sha256": "6b54a3a3493c4ab4f15cc64b27c93254e2bc9fb80fb7249ece4b965b2f7da3f2"
+    },
+    {
+      "file": "figure_05_bdr_ablation.svg",
+      "bytes": 47113,
+      "sha256": "979cff85868b4a579102453071f787dba6078c196d69870034be83c2278c64dc"
+    }
+  ],
+  "source_data": [
+    {
+      "file": "source_data/ablation_metrics.csv",
+      "sha256": "8fcddb869221d10007dde4e1fc507195fcbb78e62332e8259e5035a3f8e60588"
+    },
+    {
+      "file": "source_data/observed_weekly.csv",
+      "sha256": "0fcebc205d10e1f8bb7408c870bb685bc276a539ad7a4896576275bd830841be"
+    },
+    {
+      "file": "source_data/simulation_exposure.csv",
+      "sha256": "eed64451d581fbc824194601191c1e1883270f9c66e5d99d9347cea2bdd6c33c"
+    },
+    {
+      "file": "source_data/simulation_late.csv",
+      "sha256": "b81087b6ef641287293e2550f8021a9c3a9619b87d930d27dd2b9be618dc6316"
+    },
+    {
+      "file": "source_data/simulation_weekly.csv",
+      "sha256": "7445ce9b8d0169981e19b40dd6440a5a5e2599901b947e96338f5fd2faa45ac0"
+    }
+  ]
+}

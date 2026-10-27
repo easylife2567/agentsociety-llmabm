@@ -1,0 +1,56 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-24T13:29:59.416080+00:00",
+  "supervisor_pid": 71703,
+  "actual_supervisor_alive": true,
+  "status_field_path_matching_limitation": "supervisor_alive uses absolute path; launched relative path; verified PID and filename via ps",
+  "active_runs": [
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s6",
+      "run_dir": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_r_s6_resume1",
+      "child_pid": 71716,
+      "steps": 319,
+      "actions": 504,
+      "unique_actions": 504,
+      "weeks": 5,
+      "summary": {
+        "agent_files": 100,
+        "decisions": 504,
+        "unique_decisions": 504,
+        "posted": 226,
+        "requests": 226,
+        "action_failures": 0,
+        "response_models": {
+          "deepseek-v4-1-flash-261017": 226
+        }
+      }
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s7",
+      "run_dir": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_b_s7",
+      "child_pid": 72024,
+      "steps": 4,
+      "actions": 6,
+      "unique_actions": 6,
+      "weeks": 0,
+      "summary": {
+        "agent_files": 100,
+        "decisions": 5,
+        "unique_decisions": 5,
+        "posted": 2,
+        "requests": 2,
+        "action_failures": 0,
+        "response_models": {
+          "deepseek-v4-1-flash-261017": 2
+        }
+      }
+    }
+  ],
+  "completed_runs": 11,
+  "body_requests_from_current_agents": 3230,
+  "extra_requests": 4,
+  "frozen_files_verified": 148,
+  "preserved_original_files_verified": 2714,
+  "automation_status": "ACTIVE",
+  "no_analysis_performed": true
+}

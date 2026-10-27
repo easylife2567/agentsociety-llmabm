@@ -1,0 +1,40 @@
+{
+  "paired_clock_checks": [
+    {
+      "condition": "no_b",
+      "paired_opportunities": 3300,
+      "actual_clock_and_author_type_equal": true
+    },
+    {
+      "condition": "no_d",
+      "paired_opportunities": 3300,
+      "actual_clock_and_author_type_equal": true
+    },
+    {
+      "condition": "no_r",
+      "paired_opportunities": 3300,
+      "actual_clock_and_author_type_equal": true
+    }
+  ],
+  "B_W12_identity_observed": [
+    {
+      "seed": 0,
+      "max_abs_U_difference": 0.0,
+      "all_R_one": true,
+      "posted_equal": true
+    },
+    {
+      "seed": 1,
+      "max_abs_U_difference": 0.0,
+      "all_R_one": true,
+      "posted_equal": true
+    },
+    {
+      "seed": 2,
+      "max_abs_U_difference": 0.0,
+      "all_R_one": true,
+      "posted_equal": true
+    }
+  ],
+  "note": "observed-record audit, not additional model or LLM runs"
+}

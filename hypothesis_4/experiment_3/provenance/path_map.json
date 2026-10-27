@@ -1,0 +1,30 @@
+{
+  "principle": "raw JSON/log/config bytes retain historical paths; only derived analysis sources use formal locations",
+  "mappings": [
+    {
+      "old": "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/hypothesis_4/experiment_3/runtime/timestamp_bdr_v1_attempt_02",
+      "new": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02",
+      "kind": "engine output, mirrored source verified byte-for-byte"
+    },
+    {
+      "old": "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/results/timestamp_bdr_v1_attempt_02",
+      "new": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02",
+      "kind": "persistent result copy; original evidence unchanged"
+    },
+    {
+      "old": "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/hypothesis_4/experiment_3/init",
+      "new": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/init",
+      "kind": "frozen scientific configs/steps/inputs"
+    },
+    {
+      "old": "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/analysis/presentation/hypothesis_4",
+      "new": "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/timestamp_bdr_v1",
+      "kind": "derived sources rebound and reports adopted; raw original source index preserved"
+    },
+    {
+      "old": "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/analysis/tools",
+      "new": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/analysis",
+      "kind": "selected offline scripts adapted for formal paths; no old controller promoted as launch entry"
+    }
+  ]
+}

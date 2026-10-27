@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-10-16T20:16:18.792605+08:00",
+  "source_files_checked": 1387,
+  "source_bytes_hashed": 368836205,
+  "source_mismatches": [],
+  "report_files_checked": [
+    "model-comparison-analysis/synthesis_report_en.html",
+    "model-comparison-analysis/report_zh.md",
+    "model-comparison-analysis/report_en.md",
+    "model-comparison-analysis/report_en.html",
+    "model-comparison-analysis/synthesis_report_zh.html",
+    "model-comparison-analysis/report_zh.html",
+    "model-comparison-analysis/README.md",
+    "model-comparison-analysis/synthesis_report_en.md",
+    "model-comparison-analysis/synthesis_report_zh.md",
+    "model-comparison-analysis/review.md",
+    "workspace/presentation/hypothesis_4_cuc/report_zh.md",
+    "workspace/presentation/hypothesis_4_cuc/report_en.md",
+    "workspace/presentation/hypothesis_4_cuc/report_en.html",
+    "workspace/presentation/hypothesis_4_cuc/report_zh.html",
+    "workspace/synthesis/synthesis_report_en.html",
+    "workspace/synthesis/synthesis_report_zh.html",
+    "workspace/synthesis/synthesis_report_en.md",
+    "workspace/synthesis/synthesis_report_zh.md"
+  ],
+  "broken_local_links": [],
+  "figure_visual_review": "Primary agent inspected rendered PNG: labels, denominators, source proportions and old/new encoding readable; no clipping/overlap observed.",
+  "formal_harness_release_passed": false,
+  "formal_harness_note": "Candidate claims remain approved:false; no user confirmation of concrete findings recorded, no analysis-completed pipeline mutation.",
+  "scientific_and_artifact_checks_pass": true
+}

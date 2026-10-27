@@ -1,0 +1,52 @@
+{
+  "status": "running",
+  "attempt": "02",
+  "current_run": "timestamp_bdr_v1_interest_no_b_s0",
+  "supervisor_pid": 98576,
+  "child_pid": 98578,
+  "supervisor_alive": true,
+  "engine_alive": true,
+  "actual_progress": {
+    "agents_recorded": 100,
+    "agent_decisions": 43,
+    "posts": 14,
+    "provider_requests": 14,
+    "retries": 0,
+    "content_rewrites": 0,
+    "fallback_posts": 0,
+    "reasons": {
+      "below_threshold": 29,
+      "published": 14
+    },
+    "pid.json": {
+      "pid": 98578,
+      "status": "running",
+      "start_time": "2026-10-15T14:45:34.379247+00:00",
+      "experiment_id": "timestamp_bdr_v1_interest_no_b_s0",
+      "simulation_time": "2026-03-18T16:00:00",
+      "step_count": 30
+    },
+    "SOCIETY_STEP.json": {
+      "current_time": "2026-03-18T16:00:00",
+      "step_count": 30,
+      "completed_step_count": 30,
+      "terminated": false
+    },
+    "environment_actions": 43,
+    "weeks": 0
+  },
+  "old_failure_files_unchanged": true,
+  "scientific_sources_unchanged": 33,
+  "recovery_overlay_unchanged": 45,
+  "engine_output_inside_isolated_workspace": true,
+  "persistent_mirror_active": true,
+  "model": "deepseek-v4-1-flash-260910",
+  "deadline_at": "2026-10-17T12:21:11.583919+00:00",
+  "extra_requests_limit": 990,
+  "original_budget_not_extended": true,
+  "timer_id": "b-d-r-30",
+  "timer_status": "ACTIVE",
+  "main_pipeline_unchanged": true,
+  "formal_code_modified": false,
+  "checked_at": "2026-10-15T22:49:26.964755+08:00"
+}

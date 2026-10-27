@@ -14,7 +14,7 @@ from unittest.mock import patch
 
 os.environ['LITELLM_LOCAL_MODEL_COST_MAP'] = 'True'
 ROOT = Path(__file__).resolve().parents[2]
-TASK = ROOT/'runs/2026-09-29-02-injection-timing'
+TASK = ROOT/'runs/archive/2026-09-29-02-injection-timing'
 
 
 def load(name, path):

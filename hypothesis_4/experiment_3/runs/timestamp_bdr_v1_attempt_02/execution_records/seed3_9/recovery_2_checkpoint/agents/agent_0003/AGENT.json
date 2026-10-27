@@ -1,0 +1,765 @@
+{
+  "id": 3,
+  "name": "路人_29",
+  "profile": {
+    "id": 3,
+    "name": "路人_29",
+    "agent_type": "other",
+    "persona": "你叫路人_29，50 岁，是一名退休职工，平时主要刷抖音。偶尔评论两句的普通用户。\n你是普通路人用户，偶尔刷到相关讨论，发表一般性看法、转述消息或随口感慨，没有固定立场与议题。\n行为特征：\n- 你是沉默螺旋最明显的群体：非常在意'大家都怎么说'，风向不明或与自己观感不符时你选择只看不说。\n- 你的兴趣来得快去得也快，同一个话题讨论几周后你就失去兴趣。\n- 你的活跃度不高且随机，兴致来了才说，多数时候是看客。",
+    "params": {
+      "activity": 0.9984,
+      "spiral": 1.6752,
+      "decay": 0.0,
+      "baseline_utility": 0.7686,
+      "spiral_scale": 0.4296954755626446
+    },
+    "type_vocab": [],
+    "arrival_timing": true,
+    "chronological_action_hour": 141,
+    "content_retry_budget": {
+      "limit": 2310,
+      "ledger_path": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/execution_records/seed3_9/_extra_attempts.count"
+    }
+  },
+  "step_count": 9,
+  "decision_log": [
+    {
+      "week": "2026-W12",
+      "tick": 50400,
+      "acted_at": "2026-03-21T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "external:4477",
+          "published_at": "2026-03-16T11:25:17+08:00",
+          "week": "2026-W12",
+          "source": "external",
+          "text": "张雪峰：毕业进石油系统推荐这6所学校#张雪峰 张雪峰：毕业进石油系统推荐这6所学校#张雪峰",
+          "author": "老张升学规划",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:5374",
+          "published_at": "2026-03-21T16:30:33+08:00",
+          "week": "2026-W12",
+          "source": "external",
+          "text": "张雪峰说过：考公最靠谱的机构，认为就这五家。 全国我认为不坑学生，真正为了上岸，就那么 5 家 这五家的总部都在北京，深圳等一线城市，在全国有 20 多个校区，你现在在网上看到的，那些粉丝有几十万的公考名师，基本上都出自这五家。 我说一个内",
+          "author": "考证舵手楠姐",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:3752",
+          "published_at": "2026-03-10T07:12:12+08:00",
+          "week": "2026-W11",
+          "source": "external",
+          "text": "高考志愿填报即将开始 每天都要不停的学习，始终觉得需要学的东西太多太多了。给自己打气，加油✊#在小红书随手拍[话题]# #高考报志愿选专业[话题]# #高考志愿填报[话题]# Y 专业关乎就业张雪峰·峰教研团队编著从就业看专业张雪峰教研团队",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:5295",
+          "published_at": "2026-03-20T10:19:07+08:00",
+          "week": "2026-W12",
+          "source": "external",
+          "text": "为什么我考过统招专升本才发现这个网址 #成考政治[话题]# #自考资料[话题]# #自考汉语言文学[话题]# #资料[话题]# #成人学士学位英语学习资料[话题]# #函授本科[话题]# #考试题库[话题]# #押题[话题]# #题库[话题",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:4267",
+          "published_at": "2026-03-15T23:02:52+08:00",
+          "week": "2026-W11",
+          "source": "external",
+          "text": "庆幸四年级抓对了！普娃成绩逆袭全班第一❗ #四年级 #四年级下册 #家长收藏孩子受益 #小学语文怎么学 #辣妈育儿经 #四年级预习 #四年级开学规划 #小学开学 #开学规划 #开学预习必备 四年级下册语文1-28课每课知识晨读单第1课古诗词",
+          "author": "unknown",
+          "is_official": false
+        }
+      ],
+      "u": 0.3484508792928869,
+      "components": {
+        "share_own_observed": 0.0,
+        "share_own": 0.0,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.6752,
+        "spiral_scale": 0.4297,
+        "spiral": 0.3485,
+        "cum_own": 0.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.3485,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 0.9984
+    },
+    {
+      "week": "2026-W13",
+      "tick": 50400,
+      "acted_at": "2026-03-28T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "external:6936",
+          "published_at": "2026-03-24T23:19:43+08:00",
+          "week": "2026-W13",
+          "source": "external",
+          "text": "张雪峰老师，一路走好!🕯️🙏🏻😭。大家一定要保重身体啊，人不是老了才会死，是随时都会死啊… #张雪峰 #猝死 #健康 #教育 #热门",
+          "author": "清华学长阿泽",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:8625",
+          "published_at": "2026-03-25T22:43:40+08:00",
+          "week": "2026-W13",
+          "source": "external",
+          "text": "张雪峰走了 我想到了那个猝死的全职妈妈 张雪峰老师一路走好 逝者安息#那些煎熬着的日子 #张雪峰 #张雪峰猝死 #正视女性困境 #全职妈妈 #带娃日常 #熬夜 也不要让自己生气",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:8678",
+          "published_at": "2026-03-25T22:41:18+08:00",
+          "week": "2026-W13",
+          "source": "external",
+          "text": "张老师，一路走好 15:094G 澎湃澎湃新闻关注2/2计告我们怀着无比沉痛的心情，向所有关心张雪峰老师的各界朋友告知：亲爱的张雪峰老师，因心源性猝死全力抢救无效，于2026年3月24日15时50分在苏州逝世。张雪峰老师出身寒门，一生心系广",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:11603",
+          "published_at": "2026-03-26T19:32:30+08:00",
+          "week": "2026-W13",
+          "source": "external",
+          "text": "欧米茄。人生苦短，及时行乐 #欧米茄#omega#张雪峰",
+          "author": "盛时表行沈阳中兴欧米茄柜姐爱霖",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:11334",
+          "published_at": "2026-03-26T20:13:35+08:00",
+          "week": "2026-W13",
+          "source": "external",
+          "text": ".张雪峰老师带给我们的启示： 张雪峰老师这件事，真的给所有人敲了最痛，最清醒的警钟。 1。再拼，再忙，命永远排在第一位他那么拼，那么自律，那么想帮别人，最后倒在过度透支上。 你再优秀，再努力，再有钱，没有健康，一切归零。 2。别觉得\"年轻，",
+          "author": "阿春(孔垄)",
+          "is_official": false
+        }
+      ],
+      "u": 0.5278127103634307,
+      "components": {
+        "share_own_observed": 0.1,
+        "share_own": 0.1,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.6752,
+        "spiral_scale": 0.4297,
+        "spiral": 0.5278,
+        "cum_own": 0.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.5278,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 0.9984
+    },
+    {
+      "week": "2026-W14",
+      "tick": 50400,
+      "acted_at": "2026-04-04T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "external:22974",
+          "published_at": "2026-04-02T10:25:53+08:00",
+          "week": "2026-W14",
+          "source": "external",
+          "text": "听了张雪峰老师的经验 深耕深扎别管你的行业好不好 在一个行业深耕 只要坚持不下桌早晚你有出头之日 副业卖桨板 真心不累还赚钱 从自己爱玩，到顺便卖桨板 没想到成了我最稳的副业🌊 不用囤货、不用熬夜，朋友圈+小红书发发实拍 咨询不断，成交很顺",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:100:2026-W13",
+          "published_at": "2026-03-29T15:00:00+08:00",
+          "week": "2026-W13",
+          "source": "agent",
+          "text": "这两天首页连着刷到好几条，说法都挺像，但又不是我能确认的渠道，看得心里发毛。这种事我一般不敢转，也不知道该信哪个。说实话，作为常年熬夜改代码的，刷到这类话题确实会愣一下，我的体检报告拖了快两年还没去拿。不过真假还是再等等吧，别到时候传岔了，",
+          "author": "100",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:22665",
+          "published_at": "2026-04-02T14:00:28+08:00",
+          "week": "2026-W14",
+          "source": "external",
+          "text": "张雪峰强烈推荐? 家人们，考研卷疯了，上岸太难了!\t今天给大家 扒一扒张雪峰老师力荐的\"水硕\"清单。注意，这个\"水\"不是说学历水，是说申请门槛相对友好，毕业难度可控啦，学制短，1-2年就能拿证，关键是不用考!不用考!不用考!(重要的事情说三",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:16777",
+          "published_at": "2026-03-29T13:06:56+08:00",
+          "week": "2026-W13",
+          "source": "external",
+          "text": "送别张雪峰的队伍绵延数公里 借用他的口头禅：你就说，牛逼不牛逼？   先生千古 #张雪峰[话题]# #张雪峰老师[话题]# #张雪峰去世[话题]# PA79. 请尊重逝者保持肃穆请勿摄影、摄像社会群众请往请勿喧哗吵闹等不得影响馆内祭奠正常秩",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:11603",
+          "published_at": "2026-03-26T19:32:30+08:00",
+          "week": "2026-W13",
+          "source": "external",
+          "text": "欧米茄。人生苦短，及时行乐 #欧米茄#omega#张雪峰",
+          "author": "盛时表行沈阳中兴欧米茄柜姐爱霖",
+          "is_official": false
+        }
+      ],
+      "u": 0.5278127103634307,
+      "components": {
+        "share_own_observed": 0.1,
+        "share_own": 0.1,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.6752,
+        "spiral_scale": 0.4297,
+        "spiral": 0.5278,
+        "cum_own": 1.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.5278,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 0.9984
+    },
+    {
+      "week": "2026-W15",
+      "tick": 50400,
+      "acted_at": "2026-04-11T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "agent:15:2026-W14",
+          "published_at": "2026-04-03T15:00:00+08:00",
+          "week": "2026-W14",
+          "source": "agent",
+          "text": "刷到一堆“最适合女生的专业”清单，说实话有点不适。口腔、师范、护理，听起来稳，但把性别和职业这样绑在一起，等于提前替人把路走窄了。专业选择牵扯兴趣、能力、家庭能承受的试错成本，不是一句“报这个”能解决的。  我理解这类内容对信息匮乏的家庭有",
+          "author": "15",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:87:2026-W13",
+          "published_at": "2026-03-24T22:00:00+08:00",
+          "week": "2026-W13",
+          "source": "agent",
+          "text": "刷到那几条，从四年级晨读单到升学规划、考研择校，再到护师和事业编E类的考点，绕来绕去都是一个词：信息差。  资料本身不值钱，值钱的是有人帮你把小学到高中各阶段的规划思路、选科和志愿逻辑串成一条线，再对着你家孩子的分数和位次说清楚下一步先干什",
+          "author": "87",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:34:2026-W14",
+          "published_at": "2026-03-30T13:00:00+08:00",
+          "week": "2026-W14",
+          "source": "agent",
+          "text": "刷到几条关于张老师的消息，心里挺不是滋味。不管外界怎么讨论他的观点，他让很多家长第一次认真去了解专业和出路，这点是真的。  但我也想说句实在的：志愿和选科这事，最怕的不是信息少，是攒了一堆却没整理。今天看一个视频，明天存一份清单，到最后还是",
+          "author": "34",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:95:2026-W14",
+          "published_at": "2026-04-02T10:00:00+08:00",
+          "week": "2026-W14",
+          "source": "agent",
+          "text": "刷到那条说“骤然离世”的帖子，第一反应是不敢信，也不敢转。我没看到能让我确认的东西，只希望是误传。如果真如帖子里写的那样，那听过他很多场直播、讲座的人，心里会空一下。不是要把他捧多高，就是觉得一个认真替普通家庭孩子打算的人，不该被这样轻飘飘",
+          "author": "95",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:36:2026-W13",
+          "published_at": "2026-03-28T14:00:00+08:00",
+          "week": "2026-W13",
+          "source": "agent",
+          "text": "这两天刷到好多关于张老师的帖子，心里挺不是滋味。我一个天天熬夜整理资料的，最怕的就是身体先垮，现在给自己立了规矩：到点就睡，白天效率拉满。备考也一样，拼时长不如拼方法，别熬到凌晨还在瞎翻书。我整理的《高频考点+每日时间规划表》，就是帮大家少",
+          "author": "36",
+          "is_official": false
+        }
+      ],
+      "u": 0.3484508792928869,
+      "components": {
+        "share_own_observed": 0.0,
+        "share_own": 0.0,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.6752,
+        "spiral_scale": 0.4297,
+        "spiral": 0.3485,
+        "cum_own": 2.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.3485,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 0.9984
+    },
+    {
+      "week": "2026-W16",
+      "tick": 50400,
+      "acted_at": "2026-04-18T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "agent:78:2026-W14",
+          "published_at": "2026-04-03T10:00:00+08:00",
+          "week": "2026-W14",
+          "source": "agent",
+          "text": "关于“收费是过滤器”这个说法，我不太认同。花钱图个安心我能理解，但把高价说成“筛选”，等于默认了信息越贵越靠谱。普通家庭的孩子最缺的就是这类信息，一收费就把他们挡在外面，这算不上过滤，更像是在设一道门槛。  志愿填报、专业选择这些事，本来应",
+          "author": "78",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:58:2026-W15",
+          "published_at": "2026-04-10T23:00:00+08:00",
+          "week": "2026-W15",
+          "source": "agent",
+          "text": "几个帖子连着刷下来，我最想说的还是那条：体育课跑狠了、作业写到凌晨。孩子睡眠被当成可以透支的成本，这不只是哪所学校的问题，是很多家庭的默认操作。我自己也在反省。  至于那些“女生最适合的专业”清单，我一向持保留。口腔、师范、护理，说起来稳，",
+          "author": "58",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:26:2026-W15",
+          "published_at": "2026-04-12T19:00:00+08:00",
+          "week": "2026-W15",
+          "source": "agent",
+          "text": "刷到几条让人心里发沉的内容，具体的不多说，也不去猜。只是那个感受又上来了：升学这条路上，普通家庭最缺的从来不是焦虑，是能马上上手用的东西。  这两天后台问得最多的还是那几样——晨读单怎么排、初升高什么时候定选科、资料太散怎么收拢。我都一条条",
+          "author": "26",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:19:2026-W14",
+          "published_at": "2026-04-03T07:00:00+08:00",
+          "week": "2026-W14",
+          "source": "agent",
+          "text": "那个帖子的具体事我没法核实，也不转。但“体育课跑狠了、晚上写作业到凌晨”这个状态，我信它普遍存在——睡眠被当成可以透支的成本，这是我最不认可的地方。  至于“好公司只去好学校”，校招名单客观存在，学历是敲门砖这话不错。但拿名单推出“学历无用",
+          "author": "19",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:24020",
+          "published_at": "2026-04-03T10:20:45+08:00",
+          "week": "2026-W14",
+          "source": "external",
+          "text": "张雪峰老师说过最真实的话 选专业逻辑普通家庭：先生存，再理想考研与升学优先级城市学校专业慎选专业新闻、哲学、历史、艺术、心理学（家里没矿慎选）四大天坑生化环材：本科就业差，慎选文科真相多是服务业，拼人脉情商，不考公多做销售学医原则想在哪工作",
+          "author": "unknown",
+          "is_official": false
+        }
+      ],
+      "u": 0.3484508792928869,
+      "components": {
+        "share_own_observed": 0.0,
+        "share_own": 0.0,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.6752,
+        "spiral_scale": 0.4297,
+        "spiral": 0.3485,
+        "cum_own": 2.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.3485,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 0.9984
+    },
+    {
+      "week": "2026-W17",
+      "tick": 50400,
+      "acted_at": "2026-04-25T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "external:32844",
+          "published_at": "2026-04-16T13:42:05+08:00",
+          "week": "2026-W16",
+          "source": "external",
+          "text": "#大鹏老师讲数学(家长篇)@张雪峰团队讲升学规划 @峰学蔚来武亮",
+          "author": "伟",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:35:2026-W15",
+          "published_at": "2026-04-10T14:00:00+08:00",
+          "week": "2026-W15",
+          "source": "agent",
+          "text": "顺序”这个说法我认同。我在中学教书，见过太多家长把顺序搞反：先囤资料、先报班，回头才问孩子到底卡在哪。钱花了，问题还在原地。  但顺序对了，清单也只是工具。网上那些“普通家庭先生存再理想”“某某专业慎选”的说法听着扎心，是因为它把结构性问题",
+          "author": "35",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:59:2026-W15",
+          "published_at": "2026-04-10T11:00:00+08:00",
+          "week": "2026-W15",
+          "source": "agent",
+          "text": "这半个月陆陆续续刷到不少相关的帖子，情绪也慢慢平下来了。刚看到3月24日苏州那则消息时愣了很久——一个总在屏幕上讲专业、讲选择的人，就这么走了，总觉得不太真实。  后来也刷到批评他的声音，说贩卖焦虑、说观点太绝对。我觉得都有道理，人本来就不",
+          "author": "59",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:28423",
+          "published_at": "2026-04-09T12:27:33+08:00",
+          "week": "2026-W15",
+          "source": "external",
+          "text": "这些年，身体出现七次危机 脾气大到想砸店， 重度胃溃疡不能吃饭， 身体受风寒手臂抬不起来， 呼吸气短查不出原因经常憋个半死， 心脏压迫差点倒在南口医院的楼梯间， 鼻子过敏一天打200喷嚏去某大做了手术也没用， 疫情睡不着吹着空调冒汗心跳加快",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:30344",
+          "published_at": "2026-04-12T16:48:00+08:00",
+          "week": "2026-W15",
+          "source": "external",
+          "text": "【达人问政】关于完善成都马拉松赛事健康参赛标准的建议！2026成马报名何时开启？ 《达人问政》很危险的，别跑了关注成都马拉松2020-09-15回复O75张雪峰离世引发的“问政”小红书Emirates FLYBETTER 42km我到底能不",
+          "author": "unknown",
+          "is_official": false
+        }
+      ],
+      "u": 0.948671131412315,
+      "components": {
+        "share_own_observed": 0.2,
+        "share_own": 0.2,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.6752,
+        "spiral_scale": 0.4297,
+        "spiral": 0.9487,
+        "cum_own": 2.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.9487,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 0.9984
+    },
+    {
+      "week": "2026-W18",
+      "tick": 50400,
+      "acted_at": "2026-05-02T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "external:31733",
+          "published_at": "2026-04-14T11:22:00+08:00",
+          "week": "2026-W16",
+          "source": "external",
+          "text": "峰学蔚来接班人武亮还是挺仗义的，张老师选对人了#纪念张雪峰老师@予你一书",
+          "author": "予你一书",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:42:2026-W16",
+          "published_at": "2026-04-15T11:00:00+08:00",
+          "week": "2026-W16",
+          "source": "agent",
+          "text": "刷到那几条，心里沉了一下，说不上来是什么滋味。以前他讲选专业、排晨读的那些话，我是当工具用的，抄在本子上，确实管用。现在同样的字被别人转来转去，读着还是踏实，可到底不太一样了。  我不想跟着那些拼凑的标题走，也不想争他功利还是直白。对普通家",
+          "author": "42",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:22:2026-W16",
+          "published_at": "2026-04-13T18:00:00+08:00",
+          "week": "2026-W16",
+          "source": "agent",
+          "text": "刷到那条通宵剪视频、赶飞机时捶着心脏默念的帖子，我停了很久。考研二战这半年，我也把“再撑一下”当口头禅，作息全靠咖啡吊着。看到有人把这种状态写成“透支”两个字，反而觉得刺眼，因为太像自己的日常了。  至于网上传的那些消息，我没见到能确认的说",
+          "author": "22",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:6:2026-W17",
+          "published_at": "2026-04-20T10:00:00+08:00",
+          "week": "2026-W17",
+          "source": "agent",
+          "text": "刷到这几条，心里挺有感触。升学季里，不管是选专业还是补数学，最怕的就是把某个人的经验当成标准答案。信息差这东西，光靠听一个人讲是补不齐的，规则和数据还是得自己看明白。我们这边整理了一套升学规划资料包，专业怎么选、数学怎么补、家长怎么帮孩子查",
+          "author": "6",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:32779",
+          "published_at": "2026-04-16T15:20:44+08:00",
+          "week": "2026-W16",
+          "source": "external",
+          "text": "张雪峰在世时谈上海户口，在沪打工人千万不要错过 在这里住了十几年，越来越觉得自己的选择确实没错，更加坚定了自己的想法“女性要真正独立，只能靠自己” 也真心建议各位女性朋友可以拿一个上海户口 1⃣教育压力小，上海今年高考人数就5.8万人，相比",
+          "author": "unknown",
+          "is_official": false
+        }
+      ],
+      "u": 0.5278127103634307,
+      "components": {
+        "share_own_observed": 0.1,
+        "share_own": 0.1,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.6752,
+        "spiral_scale": 0.4297,
+        "spiral": 0.5278,
+        "cum_own": 4.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.5278,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 0.9984
+    },
+    {
+      "week": "2026-W19",
+      "tick": 50400,
+      "acted_at": "2026-05-09T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "agent:19:2026-W17",
+          "published_at": "2026-04-24T07:00:00+08:00",
+          "week": "2026-W17",
+          "source": "agent",
+          "text": "那句“祥子到死都觉得是自己不够努力”，拿来对照今天的升学话题，真有点扎心。我教书这些年最怕一种说法：把结构性的东西全翻译成“你不够拼”。志愿填错、方向选偏，很多时候差的不是孩子熬夜的时长，是家里有没有人替他看一眼路。  @32 说信息差比收",
+          "author": "19",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:16:2026-W18",
+          "published_at": "2026-04-29T10:00:00+08:00",
+          "week": "2026-W18",
+          "source": "agent",
+          "text": "刷到几条帖子，聊信息差、聊志愿节奏，挺有共鸣。做课程咨询这几年，见过的不是资料太少，而是囤了用不上；家长熬夜抢回去一堆，孩子翻不到十页，真正缺的是理清思路：分数位次怎么用、专业方向怎么筛、冲稳保怎么排。这些提前动手，比出分那几天临时抱佛脚强",
+          "author": "16",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:52:2026-W17",
+          "published_at": "2026-04-25T14:00:00+08:00",
+          "week": "2026-W17",
+          "source": "agent",
+          "text": "做升学内容这些年，我越来越觉得，家长最该提前准备两件事：一是自己的身体，别熬到出分那几天才急；二是孩子的志愿方向，别等最后一晚才翻资料。刷到那条“八所专科小清华”，我劝高三家长先别急着对号入座，分数三四百分也有不少路能走，关键是提前把专业和",
+          "author": "52",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:97:2026-W18",
+          "published_at": "2026-04-29T07:00:00+08:00",
+          "week": "2026-W18",
+          "source": "agent",
+          "text": "刷到几条都在聊“怎么快速变厉害”“学历是不是唯一出路”，道理听着都对，但翻来覆去还是那几句。我四十了，干程序员的，身边学历一般的、半路转行的都有混得不错的，也有名校出来天天焦虑的。所以“唯一”这词我是不太信的。  复利那套我信一半，坚持是好",
+          "author": "97",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:36683",
+          "published_at": "2026-04-26T19:41:04+08:00",
+          "week": "2026-W17",
+          "source": "external",
+          "text": "这一年我如何和干燥和解（三） 最近太忙了，一直没在更新，今天得空还是继续记录一下，上次说到症状有了大幅好转，但是接踵而来了新状况，那就是好转反应： 1、心脏不舒服 最新出现的反应是心跳较快，晚上睡觉都能感到心脏砰砰砰，然后静心心率从平常62",
+          "author": "unknown",
+          "is_official": false
+        }
+      ],
+      "u": 0.948671131412315,
+      "components": {
+        "share_own_observed": 0.2,
+        "share_own": 0.2,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.6752,
+        "spiral_scale": 0.4297,
+        "spiral": 0.9487,
+        "cum_own": 5.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.9487,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 0.9984
+    },
+    {
+      "week": "2026-W20",
+      "tick": 50400,
+      "acted_at": "2026-05-16T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "external:41930",
+          "published_at": "2026-05-15T20:15:00+08:00",
+          "week": "2026-W20",
+          "source": "external",
+          "text": "张雪峰说的没错：雅思从不渡穷人，今天给大家分享两家性价比超高的雅思机构！ #雅思 #雅思机构 #雅思考试 #雅思机构推荐 #雅思网课",
+          "author": "语言喵老师",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:22:2026-W19",
+          "published_at": "2026-05-04T18:00:00+08:00",
+          "week": "2026-W19",
+          "source": "agent",
+          "text": "刷完这几条，心里有点堵，但也说不上来该讲什么。  那条写作业到凌晨的，我看了两遍。我自己二战，去年也是这么熬过来的，所以“再撑一撑”这话我听过太多次，当时听着像鼓励，现在回头想，更像一句没人负责的顺口溜。  满屏在传的事我没转，也没跟着猜。",
+          "author": "22",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:41150",
+          "published_at": "2026-05-13T19:06:55+08:00",
+          "week": "2026-W20",
+          "source": "external",
+          "text": "又怕孩子在高中过得苦又怕上中职断了升本路 广州中考一模放榜，身边不少家长心态各有千秋，不是说又怕兄弟过得苦又怕兄弟开路虎嘛，那我这些亲朋好友的心态就是又怕孩子在高中过得苦又怕上中职断了孩子的升本后路。 \t 真的有个朋友就这么问我的。 \t 我",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:11:2026-W19",
+          "published_at": "2026-05-10T22:00:00+08:00",
+          "week": "2026-W19",
+          "source": "agent",
+          "text": "看这几条讨论，我比较认同的一点是：资料和工具能帮你查分数段、整理院校专业，这确实省事，但把“清单”当成答案，我是不太信的。每个孩子的性子、家里能撑多少、专业课基础都不一样，同一份清单落到不同人手里，效果差得远。  做老师这些年，我最怕家长问",
+          "author": "11",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:5:2026-W18",
+          "published_at": "2026-04-28T16:00:00+08:00",
+          "week": "2026-W18",
+          "source": "agent",
+          "text": "信息差不是靠听一个人讲就能补上的。选专业、补数学，别人的经验最多算参考，真正要看的还是孩子的兴趣、学习能力和家庭的承受力。家长焦虑时容易把某个人的话当成标准答案，结果往往是别人说得头头是道，自己家却根本走不通。规则和数据要自己查，孩子坐不坐",
+          "author": "5",
+          "is_official": false
+        }
+      ],
+      "u": 0.3484508792928869,
+      "components": {
+        "share_own_observed": 0.0,
+        "share_own": 0.0,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.6752,
+        "spiral_scale": 0.4297,
+        "spiral": 0.3485,
+        "cum_own": 7.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.3485,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 0.9984
+    }
+  ]
+}

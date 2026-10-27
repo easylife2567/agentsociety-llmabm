@@ -1,0 +1,3 @@
+# 已确认的分析定义
+
+plan.json保留预设窗口、分母和配对单位。三个claim及candidate_claims.json中的approved现按用户直接确认登记为true；历史文件名保留，采纳依据见上级adoption.json。figure_contracts.json限定图表口径和结论边界。frame/explore-attestation.json是原离线工作区的历史签署载荷，不冒充主项目独立审阅或正式流水线通过记录。

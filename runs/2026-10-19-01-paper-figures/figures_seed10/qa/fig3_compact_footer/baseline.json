@@ -1,0 +1,27 @@
+{
+  "git_commit": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "baseline_code_sha256": {
+    "scripts/gen_fig3.py": "abd63be061ae0ac28b2ae40ab8eb71cd2c45d1a842081c0691b69ce4a02e4c6d",
+    "scripts/validate_delivery.py": "03d0af7584d1293b2de432e4c694c6b4651f9e1ab4ffab5100997d5110debfdc"
+  },
+  "source_csv_sha256": {
+    "source_data/seed10_runs.csv": "4fb2fb651c80cb038b748cf07bd42bce8b93a559bcd2d3b9d369294b9f503ac1",
+    "source_data/seed10_paired_contrasts.csv": "caef842345b7d30f4a7ba328aa1d4016abd9ba942b08d7f4279a915e589f62cc",
+    "source_data/seed10_weekly.csv": "0153d8f36eaafde3807855270570da34b86bd419faa99b8ca592f08af3686c7d",
+    "source_data/seed10_arm_summary.csv": "619de97839e688ade3b85aae6520e9abe840bf7551763df18506638ff0554f3b",
+    "source_data/observed_weekly.csv": "0fcebc205d10e1f8bb7408c870bb685bc276a539ad7a4896576275bd830841be",
+    "source_data/seed10_weekly_summary.csv": "2c5ac17c0211a49fc09b7501eef8d8646889c7896c76ed4cb276be7e85dd0f58"
+  },
+  "other_figure_sha256": {
+    "figure_01_observed_pooled.svg": "48ba91250812b7b28db2782f42bbb4c00ba091c09b76fb73c1af20087d98d3d8",
+    "figure_01_observed_pooled.pdf": "858b0cbad8dcbaf1651e7a20bc096cab34dd30a83fc8a59a877dc00a807d92b6",
+    "figure_01_observed_pooled.png": "7f35e19f4a0eabe15f4b5701ea5216c72aab75b231bff14716614b8fd3c26e0d",
+    "figure_02_observed_platforms.svg": "78af3bf1403bd33dfd247640a2465d34ce28bf65552693a1bbdf70bbab4faaaf",
+    "figure_02_observed_platforms.pdf": "a1fa27b855da3789793ac283c6ff840dd51fb880e808cb3fc3c403b16f12f755",
+    "figure_02_observed_platforms.png": "1953fc4d8d4c1a412e5aeb291f49fb6583e35da490671abd093edb3867601214",
+    "figure_04_feedback_exposure.svg": "fb80a167ea5f94a2eda67bdd0d988fb0e8ec960511b1daab21f6d9cb58c52dd0",
+    "figure_04_feedback_exposure.pdf": "d976ba805bfe637656a078cdf0ed4486194a3223dca11c2a77241248bc9ce50d",
+    "figure_04_feedback_exposure.png": "98cd453229b54cf44dfc5886d13256589faec525535fef4dbe0b738b172c6076"
+  },
+  "tracked_word_sha256": "ce216e100d8f8a7a1934b749731b9306472f3ee26067ad9ceced460ccf5dc615"
+}

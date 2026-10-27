@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "case": "success",
+      "passed": true,
+      "fake_processes": 4,
+      "max_parallel": 2,
+      "no_relaunch_after_failure": true,
+      "deadline_and_start_preserved": true
+    },
+    {
+      "case": "failure",
+      "passed": true,
+      "fake_processes": 2,
+      "max_parallel": 2,
+      "no_relaunch_after_failure": true,
+      "deadline_and_start_preserved": true
+    },
+    {
+      "case": "budget",
+      "passed": true,
+      "fake_processes": 2,
+      "max_parallel": 2,
+      "no_relaunch_after_failure": true,
+      "deadline_and_start_preserved": true
+    }
+  ],
+  "real_subprocesses": 0,
+  "simulation_calls": 0,
+  "llm_calls": 0,
+  "controller_sha256": "4150905536d09cc4874d0655a04a8b83720638f33287094327ae79cacbe6cb39"
+}

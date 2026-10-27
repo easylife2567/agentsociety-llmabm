@@ -1,0 +1,53 @@
+{
+  "checked_at": "2026-10-16T19:58:39.728068+08:00",
+  "success": true,
+  "runs": [
+    {
+      "algorithm": "random",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "posts": 176,
+      "body_requests": 176,
+      "origins": {
+        "model": 176
+      },
+      "end_time": "2026-10-16T07:49:36.111332+00:00"
+    },
+    {
+      "algorithm": "chronological",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "posts": 210,
+      "body_requests": 210,
+      "origins": {
+        "model": 209,
+        "local_detail_repair": 1
+      },
+      "end_time": "2026-10-16T09:49:33.841323+00:00"
+    },
+    {
+      "algorithm": "interest",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "posts": 217,
+      "body_requests": 217,
+      "origins": {
+        "model": 215,
+        "local_detail_repair": 2
+      },
+      "end_time": "2026-10-16T11:35:15.898733+00:00"
+    }
+  ],
+  "frozen_files_changed": [],
+  "processes": {
+    "supervisor_pid": "",
+    "child_pid": ""
+  },
+  "status": "completed",
+  "finished_at": "2026-10-16T11:35:25.494734+00:00",
+  "elapsed_minutes": 343.59030943333335,
+  "extra_requests_used": 0
+}

@@ -1,0 +1,33 @@
+{
+  "arrival": {
+    "baseline": "bab8e2a98d5cf99d855a84de8da7d2ac16cad575",
+    "patch_sha256": "ca54412556442a2991060db6f33ebb599f2c3105e8e10cbc3562236a939c13b3",
+    "patch_apply_check": true,
+    "restored_files_match_delivery": {
+      "custom/envs/curation_dynamics_space.py": "37528c799eb190758e3e7188f6e9dfb1e9886fe48ccb07596b9c4e48ecf3c14b",
+      "custom/agents/curation_discourse_agent.py": "75fa477edeed395008fc7aa5a6c49a4b3c715e0ff6a938f3c742c55c35882ae2"
+    },
+    "offline_test_modules": [
+      "test_arrival_timing.py"
+    ],
+    "passed": true
+  },
+  "speech": {
+    "baseline": "9a769932ae9bc75e409929003baf574dfede5948",
+    "patch_sha256": "1cc0aefacc683367d6935fd07eb8e9dfbc20ea0727e8466f13cbf6f3f75cead9",
+    "patch_apply_check": true,
+    "restored_files_match_delivery": {
+      "runs/2026-09-29-02-injection-timing/2026-10-07-03-content-numerical-expectation.py": "f8a030c6450ae33d6d6b8c7322d56a5aa38479e1c75c5742c4af4289df7f72d5",
+      "custom/tests/test_arrival_timing.py": "dbcbe49c4d26b6ee82bbb77d64e2007cd37cc3878be14e450b46fd4c7bb4a7df",
+      "custom/tests/test_content_quality.py": "420718a54c32cc84b0c786c126d247d33e8b84101a406768294b827dc0152dce",
+      "custom/agents/curation_arrival_action.py": "70aec78ff741f423bfbac4cd8c11e8d4d169728ec7277ca064ecaf8d171eedc2",
+      "custom/agents/curation_content_quality.py": "4e0903091e14db09c379ce65cbe665abd57aae2af0aa66b5aeca38d35ca1045f",
+      "custom/agents/curation_discourse_agent.py": "ac08888fdbd5000abb2526da83a7a9363e4b3349623f459213241b721c2e4072"
+    },
+    "offline_test_modules": [
+      "test_arrival_timing.py",
+      "test_content_quality.py"
+    ],
+    "passed": true
+  }
+}

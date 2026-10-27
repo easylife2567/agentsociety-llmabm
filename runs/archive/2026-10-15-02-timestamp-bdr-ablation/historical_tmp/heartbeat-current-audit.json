@@ -1,0 +1,122 @@
+{
+  "at": "2026-10-15T20:16:40.299260+00:00",
+  "status": "running",
+  "completed": [
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s0",
+      "step": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "posts": 88,
+      "requests": 88,
+      "rewrites": 0,
+      "engine_alive": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s0",
+      "step": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "posts": 275,
+      "requests": 275,
+      "rewrites": 0,
+      "engine_alive": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s0",
+      "step": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "posts": 521,
+      "requests": 522,
+      "rewrites": 1,
+      "engine_alive": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s1",
+      "step": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "posts": 100,
+      "requests": 101,
+      "rewrites": 1,
+      "engine_alive": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s1",
+      "step": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "posts": 278,
+      "requests": 279,
+      "rewrites": 1,
+      "engine_alive": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s1",
+      "step": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "posts": 535,
+      "requests": 535,
+      "rewrites": 0,
+      "engine_alive": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s2",
+      "step": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "posts": 94,
+      "requests": 94,
+      "rewrites": 0,
+      "engine_alive": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s2",
+      "step": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "posts": 255,
+      "requests": 257,
+      "rewrites": 2,
+      "engine_alive": false
+    }
+  ],
+  "active": [
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s2",
+      "pid": 43548,
+      "alive": true,
+      "step": 656,
+      "actions": 1039,
+      "environment_actions": 1039,
+      "weeks": 10,
+      "posts": 478,
+      "requests": 478,
+      "extra": 0,
+      "rewrites": 0,
+      "fallback_posts": 0,
+      "mirror_step": 655,
+      "model": "deepseek-v4-1-flash-260910"
+    }
+  ],
+  "errors": [],
+  "supervisor_pid": 11126,
+  "supervisor_alive": true,
+  "extra_requests": 5,
+  "total_requests": 2629,
+  "total_posts": 2624,
+  "total_rewrites": 5,
+  "batch_elapsed_seconds": 19867.827301,
+  "budget_elapsed_seconds": 28528.715341,
+  "budget_remaining_seconds": 144271.284659,
+  "deadline_at": "2026-10-17T12:21:11.583919+00:00",
+  "since_previous": {
+    "at": "2026-10-15T19:46:57.319351+00:00",
+    "requests": 223,
+    "posts": 223,
+    "actions": 441,
+    "steps": 279
+  }
+}

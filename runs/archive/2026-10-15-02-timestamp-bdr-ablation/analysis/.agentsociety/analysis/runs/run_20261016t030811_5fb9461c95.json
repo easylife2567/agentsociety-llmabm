@@ -1,0 +1,48 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261016t030811_5fb9461c95",
+  "operation_id": "record-attestation",
+  "operation_contract_version": 1,
+  "execution_key": "21409c33e115b9a070fa88b5fb7714afd035e611f22e12b8986ac11f31c4f6d4",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "",
+  "input_names": [
+    "hypothesis_id",
+    "payload",
+    "workspace"
+  ],
+  "input_fingerprint": "c2a9b4c640a55412ebfedb473544489a5835e96789894d3b9935539ec57d9af3",
+  "safe_inputs": {
+    "hypothesis_id": "4"
+  },
+  "preflight": {
+    "operation_id": "record-attestation",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "hypothesis_id": "4"
+  },
+  "error": null,
+  "declared_artifacts": [
+    "phase attestation in harness state"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "3a66fd5b8e9e0d201907ef1949fdd39ede99d101afaa2898990c3061f33b075f"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 3051,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-16T03:08:11.915180Z",
+  "updated_at": "2026-10-16T03:08:11.936439Z",
+  "completed_at": "2026-10-16T03:08:11.936402Z",
+  "duration_ms": 21
+}

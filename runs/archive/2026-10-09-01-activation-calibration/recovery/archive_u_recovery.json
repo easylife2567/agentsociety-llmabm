@@ -1,0 +1,26 @@
+{
+  "baseline": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "source": "git show exact committed objects; no original workspace or main uncommitted source",
+  "static_all_rows_identical": true,
+  "cells": [
+    {
+      "condition": "soft_warm",
+      "arm": "interest",
+      "seed": 0,
+      "actions": 1100,
+      "post_opportunities": 1000,
+      "all_actions_and_weekly_rows_identical": true
+    },
+    {
+      "condition": "no_feedback",
+      "arm": "interest",
+      "seed": 0,
+      "actions": 1100,
+      "post_opportunities": 1000,
+      "all_actions_and_weekly_rows_identical": true
+    }
+  ],
+  "network_attempts": 0,
+  "model_calls": 0,
+  "full_matrix_rerun": false
+}

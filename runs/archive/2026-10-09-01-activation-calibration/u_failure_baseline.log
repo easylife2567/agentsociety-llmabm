@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-09-01-activation-calibration/u_experiments.py", line 259, in <module>
+    asyncio.run(run(args.project_root.resolve(),args.run_dir.resolve(),args.output.resolve()))
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-09-01-activation-calibration/u_experiments.py", line 239, in run
+    assert all(all(a[k]==b[k] for k in a) for a,b in zip(old,new)),arm
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: random

@@ -1,0 +1,136 @@
+--- a/custom/tests/test_content_quality.py
++++ b/custom/tests/test_content_quality.py
+@@ -103,6 +103,9 @@
+                     self.assertEqual(row['content_status'], 'accepted')
+                     self.assertEqual(QUALITY.assess_text(row['content'], row['prompt_context'])[0], 'accepted')
+                     self.assertEqual(row['content_origin'], 'model_rewrite' if sample['review']['verdict'] == 'service_refusal' else 'local_detail_repair')
++                    if sample['review']['verdict'] == 'service_refusal':
++                        self.assertEqual(row['generation_results'][1]['purpose'], 'rewrite')
++                        self.assertEqual(len(row['generation_results'][1]['messages']), 3)
+                     if row['content_origin'] == 'local_detail_repair':
+                         self.assertTrue(row['detail_edits'])
+                         self.assertGreater(len(row['content']), len(sample['decision']['content'])*0.7)
+@@ -185,6 +188,33 @@
+         bad._decision_log = []
+         self.assertEqual(await AGENT.step(bad, 0, t), 'no_context')
+         self.assertEqual(bad.requests, 0)
++
++    async def test_actual_detail_repairs_keep_referents_and_punctuation(self):
++        # 原始具体样本约束局部编辑的语义；不是只复检同一正则。
++        for aid, week in ((50, '2026-W14'), (64, '2026-W13'), (66, '2026-W13'), (74, '2026-W13'), (97, '2026-W13')):
++            if aid == 50:
++                path = ROOT/'hypothesis_4/experiment_1/runs/arrival_timing_diagnostic/arrival_timing_diagnostic_timestamp_random_s0/agents/agent_0050/AGENT.json'
++                decision = next(d for d in json.loads(path.read_text())['decision_log'] if d['week']==week)
++                text, _, _ = QUALITY.repair_details(decision['content'], [])
++                self.assertNotIn('第。', text)
++            else:
++                sample = next(x for x in FIXTURES if x['review']['agent_id']==aid and x['review']['week']==week)
++                text, edits, _ = QUALITY.repair_details(sample['decision']['content'], QUALITY.prompt_context(sample['snapshot']['feed']))
++                self.assertTrue(edits)
++                self.assertNotIn('，。', text)
++                if aid == 66:
++                    self.assertIn('这场离别太突然了', text)
++                if aid == 74:
++                    self.assertIn('这场离别来得太突然了', text)
++                if aid == 97:
++                    self.assertNotIn('同岁', text)
++        fake = FakeAgent(FIXTURES[0], [TimeoutError(), response('我不认同这些观点。')])
++        t = datetime.fromisoformat(FIXTURES[0]['decision']['acted_at'])
++        self.assertEqual(await AGENT.step(fake, 0, t), 'published')
++        row = fake._decision_log[0]
++        self.assertEqual(row['content_origin'], 'model_retry')
++        self.assertEqual(row['generation_results'][1]['purpose'], 'technical_retry')
++        self.assertEqual(row['generation_results'][0]['messages'], row['generation_results'][1]['messages'])
+ 
+     async def test_refusal_filter_and_budget_exhaustion_keep_one_post(self):
+         # 模型拒答、过滤、空返回以及技术故障不再取消已经决定的发言。
+--- a/custom/agents/curation_content_quality.py
++++ b/custom/agents/curation_content_quality.py
+@@ -6,6 +6,7 @@
+ from __future__ import annotations
+ 
+ import re
++import difflib
+ from datetime import datetime
+ from zoneinfo import ZoneInfo
+ 
+@@ -129,7 +130,7 @@
+         event_elapsed = (not prefix or prefix == '第') and re.search(r'张雪峰|张老师|离世|去世|送他|悼念', text)
+         if (event_elapsed or re.search(r'离世|去世|周年|悼念', local)) and m.group() not in external:
+             checks.append('unsupported_elapsed_time:'+m.group())
+-            edits.append((m.start(), m.end()))
++            edits.append((m.start()-1 if text[max(0, m.start()-1):m.start()] == '第' else m.start(), m.end()))
+     for m in RECENT_ACTIVITY.finditer(text):
+         # “还在听他讲课”是读者行为，不等于人物近期仍在讲课。
+         if not re.search(r'听|看|刷到|读到', m.group()) and m.group() not in external:
+@@ -154,6 +155,10 @@
+ def repair_details(text, context):
+     """删除无依据的局部细节，保留其余字符和每项编辑证据，再检查结果。"""
+     checks, spans = _detail_issues(text, context)
++    age_removed = any(c.startswith('unsupported_age:') for c in checks)
++    if age_removed:
++        # 同龄断言依赖被移除的年龄，不能留下这条隐含事实。
++        spans.extend(_clause_span(text, m.start(), m.end()) for m in re.finditer(r'同岁', text))
+     merged = []
+     for start, end in sorted(set(spans)):
+         if merged and start <= merged[-1][1]:
+@@ -164,9 +169,16 @@
+     for start, end in reversed(merged):
+         repaired = repaired[:start]+repaired[end:]
+     # 仅整理局部删除留下的标点，不替换原立场或用发布时间猜事件日期。
++    if age_removed:
++        # 年龄主语删除后明确谈的是离别，避免女儿年龄成为去世的默认主语。
++        repaired = re.sub(r'这个年纪(?:走得|离开得)', '这场离别', repaired)
++        repaired = re.sub(r'((?:女儿|儿子)[^。！？\n]{0,20}[，,]\s*)说走就走了', r'\1这场离别来得太突然了', repaired)
++    repaired = re.sub(r'[，,]+([。！？；])', r'\1', repaired)
+     repaired = re.sub(r'([。！？；])(?:[，,。])+', r'\1', repaired)
+     repaired = re.sub(r'^[\s，,。；;]+', '', repaired).strip()
+-    edits = [{'start': start, 'end': end, 'removed': text[start:end]} for start, end in merged]
++    # 最终编辑坐标始终指向原文，涵盖删除后的标点和指代修正。
++    edits = [{'start': a, 'end': b, 'removed': text[a:b], 'replacement': repaired[c:d]}
++             for tag, a, b, c, d in difflib.SequenceMatcher(None, text, repaired, autojunk=False).get_opcodes() if tag != 'equal']
+     return repaired, edits, checks
+ 
+ 
+@@ -228,6 +240,7 @@
+     """
+     context, prompts = row['prompt_context'], row['messages']
+     row['generation_results'] = []
++    rewrite_requested = False
+     for attempt in range(2):
+         if attempt and reserve_extra is not None and not reserve_extra():
+             break
+@@ -240,20 +253,22 @@
+             row.update(checked, generation_status='service_success', response_model=value(response, 'model'))
+             usage = value(response, 'usage')
+             row['usage'] = usage.model_dump() if hasattr(usage, 'model_dump') else None
+-            row['generation_results'].append({'attempt': attempt+1, **checked})
++            row['generation_results'].append({'attempt': attempt+1, 'purpose': 'rewrite' if rewrite_requested else 'generation' if not attempt else 'technical_retry', 'messages': prompts, **checked})
+             candidate = publication_candidate(checked, context, max_chars)
+             if candidate:
+                 if attempt:
+-                    candidate['content_origin'] = 'model_rewrite' if candidate['content_origin'] == 'model' else 'model_rewrite_detail_repair'
++                    prefix = 'model_rewrite' if rewrite_requested else 'model_retry'
++                    candidate['content_origin'] = prefix if candidate['content_origin'] == 'model' else prefix+'_detail_repair'
+                 row.update(candidate, content_status='accepted', content_checks=[])
+                 return
+             # 原拒答/空输出保留在尝试记录；请求同一来源下的观点，不重复传播拒答。
++            rewrite_requested = True
+             prompts = row['messages']+[{'role': 'user', 'content':
+                 '你已经决定发言。请只表达阅读上述帖后的个人感受、观点或交流意愿；'
+                 '保留人设语气，不补人物年龄、事件日期、近期活动或热搜等事实。只输出一条有效短帖。'}]
+         except Exception as exc:
+             row.update(generation_status='service_failed', generation_error=type(exc).__name__)
+-            row['generation_results'].append({'attempt': attempt+1, 'error_type': type(exc).__name__})
++            row['generation_results'].append({'attempt': attempt+1, 'purpose': 'rewrite' if rewrite_requested else 'generation' if not attempt else 'technical_retry', 'messages': prompts, 'error_type': type(exc).__name__})
+     row.update(fallback_content(agent, context, max_chars), content_status='accepted', content_checks=[])
+ 
+ 
+@@ -308,5 +323,7 @@
+     # 新账本的每次行动恰属一个最终结果；外层调用数和实际请求数分别标明口径。
+     return {'counts': counts, 'failures': sorted(set(failures)), 'classified_actions': sum(counts.values()),
+             'speak_opportunities': sum(r.get('speak') is True for r in rows if 'content_status' in r),
++            'content_origins': {origin: sum(r.get('content_origin') == origin for r in rows) for origin in sorted({r['content_origin'] for r in rows if r.get('content_origin')})},
++            'initial_content_statuses': {status: sum(r.get('initial_content_status') == status for r in rows) for status in sorted({r['initial_content_status'] for r in rows if r.get('initial_content_status')})},
+             'attempts_by_scope': {scope: sum(r.get('generation_attempts', 0) for r in rows if r.get('attempt_count_scope') == scope)
+                                  for scope in ('completion_calls', 'provider_requests')}}

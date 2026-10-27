@@ -1,0 +1,3 @@
+usage: config.py [-h] [--workspace WORKSPACE] [--json]
+                 {validate,prepare,info,run,check} ...
+config.py: error: unrecognized arguments: --json

@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "positive_real_cli_cases": 9,
+  "old_layout_rejected": true,
+  "actual_profiles": 900,
+  "environment_windows": 9,
+  "environment_batches": 6237,
+  "unique_actions": 9900,
+  "LLM_calls": 0,
+  "network_attempts": 0,
+  "real_ray_or_provider_started": false,
+  "scope": "真实完整官方命令入口、注册路径和安全检查；在模型/Ray初始化边界执行真实profile/环境全窗后退出，未伪造完整LLM运行。",
+  "controller_sha256": "0be2c2cf0391c1c5632f9da1d0acab704a5dc96104dfcbccef46b69982710697",
+  "hook_sha256": "0ef636e65e2388a64167a25a8ce17b945b0fa8ff0da632c2f0b74efe52637742"
+}

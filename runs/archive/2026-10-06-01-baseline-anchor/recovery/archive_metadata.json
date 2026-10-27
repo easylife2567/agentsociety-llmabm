@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-13",
+  "outcome": "未采用（候选B）",
+  "old_path": "runs/2026-10-06-01-baseline-anchor",
+  "new_path": "runs/archive/2026-10-06-01-baseline-anchor",
+  "active_run_preserved": "2026-10-09-01-activation-calibration",
+  "no_llm_runs": true,
+  "no_commit": true,
+  "adaptation_baseline": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "code_after_sha256": {
+    "runs/archive/2026-10-06-01-baseline-anchor/2026-10-06-02-check.py": "d93edfa33c12b748c908f072288e6d30db7ee8bf08d28bc1ab164374ef23ad13"
+  },
+  "restoration_inputs_sha256": "d27433b3cd488ddb0fa81f15296cffc98286366eb92ed1bf407318d3eae0d63d",
+  "checks": {
+    "original_files_preserved": true,
+    "current_run_unchanged": true,
+    "archive_path_patch_reapplication_matches": true,
+    "navigation_links_valid": true,
+    "git_diff_check_passed": true,
+    "staging_empty": true
+  },
+  "python_version": "3.13.9"
+}

@@ -1,0 +1,66 @@
+{
+  "pymupdf_version": "1.25.2",
+  "figures": [
+    {
+      "figure": "figure_01_observed_pooled",
+      "font_exit_code": 0,
+      "collision_exit_code": 0,
+      "collision_verdict": "PASS",
+      "alignment_verdict": "PASS",
+      "svg_text_elements": 42,
+      "physical_size_mm": [
+        180.0,
+        88.0
+      ]
+    },
+    {
+      "figure": "figure_02_observed_platforms",
+      "font_exit_code": 0,
+      "collision_exit_code": 0,
+      "collision_verdict": "PASS",
+      "alignment_verdict": "PASS",
+      "svg_text_elements": 42,
+      "physical_size_mm": [
+        180.0,
+        88.0
+      ]
+    },
+    {
+      "figure": "figure_03_simulated_trajectories",
+      "font_exit_code": 0,
+      "collision_exit_code": 0,
+      "collision_verdict": "PASS",
+      "alignment_verdict": "PASS",
+      "svg_text_elements": 68,
+      "physical_size_mm": [
+        180.0,
+        144.0
+      ]
+    },
+    {
+      "figure": "figure_04_feedback_exposure",
+      "font_exit_code": 0,
+      "collision_exit_code": 0,
+      "collision_verdict": "PASS",
+      "alignment_verdict": "PASS",
+      "svg_text_elements": 30,
+      "physical_size_mm": [
+        180.0,
+        82.0
+      ]
+    },
+    {
+      "figure": "figure_05_bdr_ablation",
+      "font_exit_code": 0,
+      "collision_exit_code": 0,
+      "collision_verdict": "PASS",
+      "alignment_verdict": "PASS",
+      "svg_text_elements": 59,
+      "physical_size_mm": [
+        183.0,
+        140.0
+      ]
+    }
+  ],
+  "pass": true
+}

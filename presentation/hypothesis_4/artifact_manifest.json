@@ -1,0 +1,87 @@
+{
+  "hypothesis_id": "4",
+  "generated_at": "2026-10-23T07:30:54.738761+00:00",
+  "artifacts": [
+    {
+      "filename": "chart_01_seed10_trajectories.png",
+      "type": "chart",
+      "description": "图1：W12–W22玩梗作者周供给；旧3、新7与合计10的方向相同，阴影为实际seed极差而非置信区间。",
+      "finding_number": 1,
+      "included_in_report": true
+    },
+    {
+      "filename": "chart_02_seed10_model_cohorts.png",
+      "type": "chart",
+      "description": "图2：W19–W22五项原指标按运行批次补充分层；兴趣和时序高于随机，合计10包含旧3与新7而非独立队列。",
+      "finding_number": 3,
+      "included_in_report": true
+    },
+    {
+      "filename": "chart_03_seed10_paired_seeds.png",
+      "type": "chart",
+      "description": "图3：同seed配对差值显示兴趣、时序均高于随机；时序相对兴趣的供给份额在seed5反向，其余9个seed为正。",
+      "finding_number": 2,
+      "included_in_report": true
+    },
+    {
+      "filename": "data/seed10_runs.csv",
+      "type": "data",
+      "description": "30 run级指标 / 30 run-level outcomes",
+      "included_in_report": true
+    },
+    {
+      "filename": "data/seed10_weekly.csv",
+      "type": "data",
+      "description": "330周记录 / 330 weekly rows",
+      "included_in_report": true
+    },
+    {
+      "filename": "data/seed10_arm_summary.csv",
+      "type": "data",
+      "description": "分层均值、区间 / Cohort means and intervals",
+      "included_in_report": true
+    },
+    {
+      "filename": "data/seed10_paired_contrasts.csv",
+      "type": "data",
+      "description": "配对、Holm、逐一剔除 / Paired tests, Holm, leave-one-out",
+      "included_in_report": true
+    },
+    {
+      "filename": "data/seed10_sources.json",
+      "type": "data",
+      "description": "路径、模型与校验和 / Paths, models and hashes",
+      "included_in_report": true
+    },
+    {
+      "filename": "data/seed10_metrics.sqlite",
+      "type": "data",
+      "description": "本轮数据库 / Current analysis database",
+      "included_in_report": true
+    },
+    {
+      "filename": "data/evidence_index.json",
+      "type": "data",
+      "description": "证据索引 / Evidence index",
+      "included_in_report": true
+    },
+    {
+      "filename": "data/seed10_quick_stats/eda_quick_stats.md",
+      "type": "eda",
+      "description": "本轮EDA快速统计",
+      "included_in_report": true
+    },
+    {
+      "filename": "data/seed10_explore.md",
+      "type": "analysis",
+      "description": "原口径复验与范围说明",
+      "included_in_report": true
+    },
+    {
+      "filename": "agentsociety_icon.svg",
+      "type": "image",
+      "description": "官方prepare-produce插入的本地EDA品牌图标",
+      "included_in_report": true
+    }
+  ]
+}

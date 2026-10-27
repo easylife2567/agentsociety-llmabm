@@ -1,0 +1,486 @@
+{
+  "authorization": "用户2026-10-24：额度恢复后继续剩余消融，先核查两次中断安全接续，保留完成与失败现场，原配置/总预算/截止，30分钟汇报，不分析",
+  "prepared_at": "2026-10-24T13:27:50.194231+00:00",
+  "original_runtime_plan_sha256": "6b445bbc703218f0a1098efc038f61e9a6cba558aa5a040b5fc7440d89c02dc4",
+  "original_started_at": "2026-10-24T08:34:46.097898+00:00",
+  "original_deadline_at": "2026-10-26T08:34:46.097898+00:00",
+  "source_state": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/execution_records/seed3_9/stopped_execution_1.json",
+  "runs": [
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s3",
+      "algorithm": "interest",
+      "condition": "no_b",
+      "seed": 3,
+      "ablation_parameter": "kwargs.params.baseline_utility",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s3.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s3",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_b_s3.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s3.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_b_s3",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s3",
+      "algorithm": "interest",
+      "condition": "no_d",
+      "seed": 3,
+      "ablation_parameter": "kwargs.params.spiral_scale",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s3.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s3",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s3.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s3.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_d_s3",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s3",
+      "algorithm": "interest",
+      "condition": "no_r",
+      "seed": 3,
+      "ablation_parameter": "kwargs.params.decay",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s3.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s3",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s3.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s3.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_r_s3",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s4",
+      "algorithm": "interest",
+      "condition": "no_b",
+      "seed": 4,
+      "ablation_parameter": "kwargs.params.baseline_utility",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s4.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s4",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_b_s4.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s4.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_b_s4",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s4",
+      "algorithm": "interest",
+      "condition": "no_d",
+      "seed": 4,
+      "ablation_parameter": "kwargs.params.spiral_scale",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s4.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s4",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s4.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s4.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_d_s4",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s4",
+      "algorithm": "interest",
+      "condition": "no_r",
+      "seed": 4,
+      "ablation_parameter": "kwargs.params.decay",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s4.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s4",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s4.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s4.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_r_s4",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s5",
+      "algorithm": "interest",
+      "condition": "no_b",
+      "seed": 5,
+      "ablation_parameter": "kwargs.params.baseline_utility",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s5.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s5",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_b_s5.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s5.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_b_s5",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s5",
+      "algorithm": "interest",
+      "condition": "no_d",
+      "seed": 5,
+      "ablation_parameter": "kwargs.params.spiral_scale",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s5.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s5",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s5.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s5.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_d_s5",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s5",
+      "algorithm": "interest",
+      "condition": "no_r",
+      "seed": 5,
+      "ablation_parameter": "kwargs.params.decay",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s5.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s5",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s5.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s5.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_r_s5",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s6",
+      "algorithm": "interest",
+      "condition": "no_b",
+      "seed": 6,
+      "ablation_parameter": "kwargs.params.baseline_utility",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s6.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s6_resume1",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_b_s6.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s6.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_b_s6",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s6",
+      "algorithm": "interest",
+      "condition": "no_d",
+      "seed": 6,
+      "ablation_parameter": "kwargs.params.spiral_scale",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s6.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s6_resume1",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s6.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s6.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_d_s6_resume1",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false,
+      "source_run_dir": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_d_s6",
+      "resume": true,
+      "prior_requests": 262
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s6",
+      "algorithm": "interest",
+      "condition": "no_r",
+      "seed": 6,
+      "ablation_parameter": "kwargs.params.decay",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s6.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s6_resume1",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s6.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s6.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_r_s6_resume1",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false,
+      "source_run_dir": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_r_s6",
+      "resume": true,
+      "prior_requests": 208
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s7",
+      "algorithm": "interest",
+      "condition": "no_b",
+      "seed": 7,
+      "ablation_parameter": "kwargs.params.baseline_utility",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s7.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s7",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_b_s7.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s7.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_b_s7",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s7",
+      "algorithm": "interest",
+      "condition": "no_d",
+      "seed": 7,
+      "ablation_parameter": "kwargs.params.spiral_scale",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s7.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s7",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s7.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s7.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_d_s7",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s7",
+      "algorithm": "interest",
+      "condition": "no_r",
+      "seed": 7,
+      "ablation_parameter": "kwargs.params.decay",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s7.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s7",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s7.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s7.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_r_s7",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s8",
+      "algorithm": "interest",
+      "condition": "no_b",
+      "seed": 8,
+      "ablation_parameter": "kwargs.params.baseline_utility",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s8.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s8",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_b_s8.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s8.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_b_s8",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s8",
+      "algorithm": "interest",
+      "condition": "no_d",
+      "seed": 8,
+      "ablation_parameter": "kwargs.params.spiral_scale",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s8.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s8",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s8.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s8.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_d_s8",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s8",
+      "algorithm": "interest",
+      "condition": "no_r",
+      "seed": 8,
+      "ablation_parameter": "kwargs.params.decay",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s8.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s8",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s8.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s8.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_r_s8",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s9",
+      "algorithm": "interest",
+      "condition": "no_b",
+      "seed": 9,
+      "ablation_parameter": "kwargs.params.baseline_utility",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s9.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s9",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_b_s9.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s9.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_b_s9",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s9",
+      "algorithm": "interest",
+      "condition": "no_d",
+      "seed": 9,
+      "ablation_parameter": "kwargs.params.spiral_scale",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s9.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s9",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s9.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s9.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_d_s9",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s9",
+      "algorithm": "interest",
+      "condition": "no_r",
+      "seed": 9,
+      "ablation_parameter": "kwargs.params.decay",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s9.json",
+      "full_run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s9",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s9.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s9.yaml",
+      "run_dir": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_r_s9",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    }
+  ],
+  "completed_retained": 10,
+  "original_body_requests": 3208,
+  "original_extra_requests": 4,
+  "discarded_attempts": [],
+  "prior_probe_requests": 2,
+  "prior_probe_tokens": 90,
+  "recovery_probe": {
+    "status": "passed",
+    "authorization": "用户2026-10-24明确授权额度恢复后继续剩余消融",
+    "started_at": "2026-10-24T13:26:06.995942+00:00",
+    "attempted_requests": 1,
+    "completed_requests": 1,
+    "simulation_requests": 0,
+    "counted_in_formal_body_budget": false,
+    "requested_model": "deepseek-v4.1-flash",
+    "response_model": "deepseek-v4-1-flash-261017",
+    "content": "OK",
+    "usage": {
+      "completion_tokens": 16,
+      "prompt_tokens": 35,
+      "total_tokens": 51,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 14,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": null,
+        "video_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cached_tokens": 0,
+        "text_tokens": null,
+        "image_tokens": null,
+        "video_tokens": null
+      }
+    },
+    "finished_at": "2026-10-24T13:26:07.791241+00:00",
+    "ledger_unchanged": true
+  },
+  "scientific_config_changed": false,
+  "rule": "两份完整复制接续；后续9次补位。再次失败即联停，不自行重试",
+  "recovery_source_sha256": {
+    "hypothesis_4/experiment_3/run_seed_extension_recovery.py": "9343a3bba87b666e572d11a27d3eed42d63adaf16214e8d5c0ddc0202648c136",
+    "hypothesis_4/experiment_3/verify_seed_extension_recovery.py": "4c96d1d746eed5a64b02c428a537e2ff27e5147e06fe410ae72ff7b5964cdfa9",
+    "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/execution_records/seed3_9/recovery_1_offline_check.json": "a46b0152d97526040010602994c2ae97049b11b7f232e1ebd3b4ea396f96ac4a",
+    "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/execution_records/seed3_9/recovery_probe_1.json": "afdd5ee866aa74923fdd2bd6f65a2ce97eda272e0ce0031e110413b7d312402e",
+    "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/execution_records/seed3_9/recovery_1_controller_check.json": "86a0def93f4e239083abe38e06de143ec9b71a9608c4a429f1a4053e84b8e058"
+  }
+}

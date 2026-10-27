@@ -1,0 +1,13 @@
+--- a/paper/word/scripts/assemble_article.py
++++ b/paper/word/scripts/assemble_article.py
+@@ -137,8 +137,8 @@
+ def assemble(root: Path) -> dict:
+     source = root / "paper/manuscript/manuscript.accepted.md"
+     caption_path = root / "paper/figures/CAPTIONS.md"
+-    accepted_path = root / "runs/2026-10-15-01-ica2027-cat-writing/section_4_1.accepted.md"
+-    structure = root / "runs/2026-10-15-01-ica2027-cat-writing/ARTICLE_STRUCTURE.md"
++    accepted_path = root / "paper/word/source_materials/section_4_1.accepted.md"
++    structure = root / "paper/word/source_materials/ARTICLE_STRUCTURE.md"
+     original = source.read_text(encoding="utf-8")
+     original_sha = sha256(source)
+     captions = captions_from(caption_path.read_text(encoding="utf-8"))

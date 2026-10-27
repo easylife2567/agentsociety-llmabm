@@ -1,0 +1,46 @@
+{
+  "hypothesis_id": "4",
+  "sections": [
+    {
+      "id": "0",
+      "title": "范围与数据"
+    },
+    {
+      "id": "1",
+      "title": "预设指标的配对结果"
+    },
+    {
+      "id": "2",
+      "title": "B：维持退潮后的表达底座，也保留非玩梗供给"
+    },
+    {
+      "id": "3",
+      "title": "D：调节表达时机及晚期选择性，不是单向增加总量"
+    },
+    {
+      "id": "4",
+      "title": "R：约束持续高供给，并参与晚期群体优势的重排"
+    },
+    {
+      "id": "5",
+      "title": "能够支持的结论与边界"
+    }
+  ],
+  "figures": [
+    {
+      "asset": "chart_03_supply_mean_comparison.png",
+      "caption": "图1：三seed均值的作者类型供给。复用指定模板五色、W13事件线和0–80轴；只含Agent成功发布，逐seed单图见附录。",
+      "finding_number": 1
+    },
+    {
+      "asset": "chart_04_primary_paired_effects.png",
+      "caption": "图2：预设三指标的同seed配对。每条线连接相同seed，差值均为消融−Full；范围不是置信区间。",
+      "finding_number": 2
+    },
+    {
+      "asset": "chart_05_speaking_trajectories.png",
+      "caption": "图3：全体与玩梗型作者的发言率轨迹。粗线为均值、浅带为三个seed实际最小–最大，不是统计置信区间。",
+      "finding_number": 3
+    }
+  ]
+}

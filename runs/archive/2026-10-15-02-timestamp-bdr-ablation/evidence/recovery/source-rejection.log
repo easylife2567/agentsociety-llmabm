@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/tmp/recovery-check/hypothesis_4/experiment_3/init/config_params.py", line 182, in <module>
+    main()
+    ~~~~^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/tmp/recovery-check/hypothesis_4/experiment_3/init/config_params.py", line 110, in main
+    lock = verify_sources()
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/tmp/recovery-check/hypothesis_4/experiment_3/init/config_params.py", line 64, in verify_sources
+    raise ValueError(f"冻结哈希不一致：{name}")
+ValueError: 冻结哈希不一致：hypothesis_4/experiment_3/init/inputs/injection_sample_s0.json

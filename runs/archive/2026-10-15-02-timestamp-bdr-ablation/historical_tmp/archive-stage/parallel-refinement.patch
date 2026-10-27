@@ -1,0 +1,26 @@
+--- a/runs/2026-10-15-02-timestamp-bdr-ablation/run_ablation.py
++++ b/runs/2026-10-15-02-timestamp-bdr-ablation/run_ablation.py
+@@ -206,7 +206,7 @@
+     env.update(WORKSPACE_PATH=str(WORKSPACE), AGENTSOCIETY_WORKSPACE=str(WORKSPACE),
+                LITELLM_LOCAL_MODEL_COST_MAP='True', MEM0_TELEMETRY='False', ANONYMIZED_TELEMETRY='False',
+                AGENTSOCIETY_LLM_RAY_MAX_WORKERS='4', AGENTSOCIETY_LLM_RAY_CONCURRENCY='16',
+-               PYTHONUNBUFFERED='1')
++               PYTHONUNBUFFERED='1', RAY_ADDRESS='local')
+     # 离线验收钩子只供验收使用；实际运行不继承其PYTHONPATH或审计日志变量。
+     env.pop('BDR_NETWORK_AUDIT',None)
+     require('offline_guard' not in env.get('PYTHONPATH',''), '进程仍带离线网络钩子')
+@@ -392,9 +392,13 @@
+         for item in active:
+             try:
+                 item['progress'] = inspect_run(Path(item['current_run_dir']))
++            except Exception as exc:
++                item['final_audit_error'] = str(exc)
++            # 审计发现失败也必须镜像原始证据，不让异常检查跳过保全。
++            try:
+                 item['mirror'] = mirror_run(Path(item['current_run_dir']),Path(item['persistent_mirror_dir']),item['_cache'],final=not engine_alive(item))
+             except Exception as exc:
+-                item['final_audit_error'] = str(exc)
++                item['mirror_error'] = str(exc)
+         save()
+ 
+ 

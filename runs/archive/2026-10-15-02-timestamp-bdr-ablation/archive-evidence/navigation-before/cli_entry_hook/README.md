@@ -1,0 +1,5 @@
+# 完整官方CLI入口的离线钩子
+
+[sitecustomize.py](sitecustomize.py)仅由check_cli_entry.py的验收子进程通过PYTHONPATH加载。它阻断网络，并在实际官方main完成参数、schema、steps、custom注册及路径安全检查后、初始化Ray/模型之前，接管init_dispatchers以验证真实900份profile及九环境全窗，然后按测试标记退出。
+
+测试不创建真实Ray集群、不调用模型，不假装完成正式LLM实验。正式运行环境不带本钩子的PYTHONPATH或BDR_ENTRY_CHECK；不修改SDK源文件。

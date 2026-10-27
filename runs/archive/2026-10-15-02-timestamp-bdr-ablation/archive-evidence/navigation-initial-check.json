@@ -1,0 +1,11 @@
+{
+  "initial_missing_links": [
+    "README.md",
+    "../experiment_2/README.md",
+    "../experiment_2/EXPERIMENT.md",
+    "../experiment_1/results/numerical_ablation_drb/RESULTS.md",
+    "baseline.json"
+  ],
+  "cause": "original representative CLI context plan was copied without corresponding README/neighbor experiments; fixed only document navigation, original saved",
+  "resolved": true
+}

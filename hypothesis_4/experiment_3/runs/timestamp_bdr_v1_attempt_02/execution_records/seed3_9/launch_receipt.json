@@ -1,0 +1,10 @@
+{
+  "supervisor_pid": 37735,
+  "command": [
+    "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python",
+    "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/run_seed_extension.py",
+    "--start-authorized"
+  ],
+  "log_file": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/execution_records/seed3_9/supervisor.log",
+  "authorization": "用户2026-10-24明确正式启动21次，两路并行，原预算48小时，每30分钟报告，终态暂停，暂不分析"
+}

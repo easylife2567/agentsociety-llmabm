@@ -1,0 +1,47 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261024t054650_bc0a7a41da",
+  "operation_id": "write-plan",
+  "operation_contract_version": 1,
+  "execution_key": "7c762b6b85233003e8ca02f4af92cb5ccc43dc9f34986c22936cd13f5d68b287",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "",
+  "input_names": [
+    "hypothesis_id",
+    "payload",
+    "workspace"
+  ],
+  "input_fingerprint": "9b9bf242b5636fdb8c8b24759f846e673e01c340fa4de4a0aabdbf90ef4fe5fe",
+  "safe_inputs": {
+    "hypothesis_id": "4"
+  },
+  "preflight": {
+    "operation_id": "write-plan",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {},
+  "error": null,
+  "declared_artifacts": [
+    ".agentsociety/analysis/hypothesis_{id}/analysis_plan.yaml"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/analysis_plan.yaml": "1d55be083935b781dd554f9b9e893bedf0b549ecaff84086e5f2a416f291617e",
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "9f160d6fbdaeaad9bf80ce419da48b33b746253866c9ffcdc73e1567d341137d"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 22209,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-24T05:46:50.566451Z",
+  "updated_at": "2026-10-24T05:46:50.588118Z",
+  "completed_at": "2026-10-24T05:46:50.588087Z",
+  "duration_ms": 21
+}

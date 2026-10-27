@@ -1,0 +1,250 @@
+{
+  "checked_at": "2026-10-22T20:19:50.225645+00:00",
+  "batch_id": "timestamp_v1_seed3_9",
+  "status": "stopped",
+  "finished_at": "2026-10-22T20:01:14.886204+00:00",
+  "completed_runs": [
+    {
+      "run_id": "timestamp_v1_random_s3",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 174,
+      "requests": 174,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 174
+      }
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s3",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 224,
+      "requests": 224,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 224
+      }
+    },
+    {
+      "run_id": "timestamp_v1_interest_s3",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 218,
+      "requests": 218,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 218
+      }
+    },
+    {
+      "run_id": "timestamp_v1_random_s4",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 158,
+      "requests": 158,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 158
+      }
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s4",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 220,
+      "requests": 220,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 220
+      }
+    },
+    {
+      "run_id": "timestamp_v1_interest_s4",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 228,
+      "requests": 229,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 228
+      }
+    },
+    {
+      "run_id": "timestamp_v1_random_s5",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 165,
+      "requests": 166,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 165
+      }
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s5",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 206,
+      "requests": 206,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 206
+      }
+    },
+    {
+      "run_id": "timestamp_v1_interest_s5",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 216,
+      "requests": 217,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 216
+      }
+    },
+    {
+      "run_id": "timestamp_v1_random_s6",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 169,
+      "requests": 170,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 169
+      }
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s6",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 205,
+      "requests": 206,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 205
+      }
+    }
+  ],
+  "interrupted_runs": [
+    {
+      "run_id": "timestamp_v1_interest_s6",
+      "step": {
+        "current_time": "2026-05-19T11:00:00",
+        "step_count": 580,
+        "completed_step_count": 580,
+        "terminated": false
+      },
+      "actions": 921,
+      "unique_actions": 921,
+      "weeks": 9,
+      "agent_files": 100,
+      "decisions": 921,
+      "unique_decisions": 921,
+      "posted": 175,
+      "requests": 175,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 175
+      }
+    },
+    {
+      "run_id": "timestamp_v1_random_s7",
+      "step": {
+        "current_time": "2026-03-31T13:00:00",
+        "step_count": 141,
+        "completed_step_count": 141,
+        "terminated": false
+      },
+      "actions": 224,
+      "unique_actions": 224,
+      "weeks": 2,
+      "agent_files": 100,
+      "decisions": 224,
+      "unique_decisions": 224,
+      "posted": 54,
+      "requests": 54,
+      "action_failures": 1,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 54
+      }
+    }
+  ],
+  "unstarted_runs": 8,
+  "checked_pids": [
+    83453,
+    1346,
+    3539
+  ],
+  "processes_alive": [],
+  "ps_exit_code": 1,
+  "total_body_requests": 2417,
+  "total_published_posts": 2412,
+  "extra_requests": 5,
+  "prior_probe_requests": 3,
+  "stop_reason": "行动/发布失败: timestamp_v1_random_s7",
+  "quota_evidence": [
+    {
+      "file": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_interest_s6/stderr.log",
+      "line": 880,
+      "reason": "5-hour usage quota exceeded",
+      "reset_time_from_provider": "2026-10-23 04:57:46 +0800"
+    },
+    {
+      "file": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_random_s7/stderr.log",
+      "line": 181,
+      "reason": "5-hour usage quota exceeded",
+      "reset_time_from_provider": "2026-10-23 04:57:46 +0800"
+    }
+  ],
+  "auxiliary_sdk_requests_in_body_counter": false,
+  "deadline_at": "2026-10-24T15:40:45.950453+00:00",
+  "elapsed_seconds": 15628.970464,
+  "remaining_seconds_at_stop": 157171.028676,
+  "automation_status": "PAUSED",
+  "restart_performed": false
+}

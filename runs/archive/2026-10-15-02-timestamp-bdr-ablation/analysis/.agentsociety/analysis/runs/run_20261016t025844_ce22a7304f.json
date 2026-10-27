@@ -1,0 +1,50 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261016t025844_ce22a7304f",
+  "operation_id": "write-plan",
+  "operation_contract_version": 1,
+  "execution_key": "783ff28d426921285ce1355db39474d4c5897b764c2b2c8d1394cd6952dafa40",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "FAILED",
+  "hypothesis_id": "4",
+  "experiment_id": "",
+  "input_names": [
+    "hypothesis_id",
+    "payload",
+    "workspace"
+  ],
+  "input_fingerprint": "794c3918e33d80aa0a183195ccebd6b059b24cf7c94354c8059794d71a137dcb",
+  "safe_inputs": {
+    "hypothesis_id": "4"
+  },
+  "preflight": {
+    "operation_id": "write-plan",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {},
+  "error": {
+    "type": "ValueError",
+    "message": "payload must be a JSON object",
+    "retryable": true
+  },
+  "declared_artifacts": [
+    ".agentsociety/analysis/hypothesis_{id}/analysis_plan.yaml"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "11a13be77baf1ff4e33968eafa6a8e52c707a39d89e6c53e4e2567a7b1b25a3b"
+  },
+  "repeatable": true,
+  "retryable": true,
+  "recommended_action": "Rerun the operation after preflight; automatic payload replay is disabled.",
+  "pid": 1459,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-16T02:58:44.912371Z",
+  "updated_at": "2026-10-16T02:58:44.914012Z",
+  "completed_at": "2026-10-16T02:58:44.913982Z",
+  "duration_ms": 1
+}

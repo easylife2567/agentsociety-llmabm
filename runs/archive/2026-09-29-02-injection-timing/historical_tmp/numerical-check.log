@@ -1,0 +1,24 @@
+[92m21:44:39 - LiteLLM:WARNING[0m: get_model_cost_map.py:271 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: numerical check forbids network connections. Falling back to local backup.
+interest baseline {"complete": true, "committed_batches": 693, "actions": 1100, "completed_weeks": 11, "published": 214, "blocked_known_refusals": 0, "decision_changes": 0, "context_changes": 0, "max_u_difference": 0.0, "late_opportunities": 400, "late_meme_exposures": 744, "boundary": null}
+interest fixed_supply_screen {"complete": true, "committed_batches": 693, "actions": 1100, "completed_weeks": 11, "published": 213, "blocked_known_refusals": 1, "decision_changes": 16, "context_changes": 599, "max_u_difference": 0.36725918750100783, "late_opportunities": 400, "late_meme_exposures": 757, "boundary": null}
+interest closed_support {"complete": false, "committed_batches": 319, "actions": 504, "completed_weeks": 5, "published": 143, "blocked_known_refusals": 1, "decision_changes": 0, "context_changes": 4, "max_u_difference": 0.11644312637491072, "late_opportunities": 0, "late_meme_exposures": 0, "boundary": {"agent_id": "27", "week": "2026-W17", "acted_at": "2026-04-20T11:00:00+08:00", "reason": "changed_generation_context", "original_speak": true, "new_speak": true, "original_keys": ["external:33100", "agent:26:2026-W16", "agent:21:2026-W15", "external:33751", "external:30400"], "new_keys": ["external:33100", "agent:13:2026-W16", "external:27204", "external:33751", "agent:76:2026-W15"], "original_u": 0.8123918005492781, "new_u": 0.9288349269241888, "threshold": 0.7886, "uncommitted_batch_size": 2}}
+random baseline {"complete": true, "committed_batches": 693, "actions": 1100, "completed_weeks": 11, "published": 169, "blocked_known_refusals": 0, "decision_changes": 0, "context_changes": 0, "max_u_difference": 0.0, "late_opportunities": 400, "late_meme_exposures": 121, "boundary": null}
+random fixed_supply_screen {"complete": true, "committed_batches": 693, "actions": 1100, "completed_weeks": 11, "published": 169, "blocked_known_refusals": 0, "decision_changes": 0, "context_changes": 0, "max_u_difference": 0.0, "late_opportunities": 400, "late_meme_exposures": 121, "boundary": null}
+random closed_support {"complete": true, "committed_batches": 693, "actions": 1100, "completed_weeks": 11, "published": 169, "blocked_known_refusals": 0, "decision_changes": 0, "context_changes": 0, "max_u_difference": 0.0, "late_opportunities": 400, "late_meme_exposures": 121, "boundary": null}
+Traceback (most recent call last):
+  File "/Users/easylife/Project/AgentSociety/runs/2026-09-29-02-injection-timing/2026-10-06-01-numerical-check.py", line 282, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-09-29-02-injection-timing/2026-10-06-01-numerical-check.py", line 267, in main
+    assert not NETWORK_ATTEMPTS
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError

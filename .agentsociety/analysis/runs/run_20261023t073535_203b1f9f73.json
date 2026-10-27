@@ -1,0 +1,55 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261023t073535_203b1f9f73",
+  "operation_id": "validate-release",
+  "operation_contract_version": 1,
+  "execution_key": "d4701448973de50a5d0c309821233426731e19765d7947d90a2dda7550dd1181",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "BLOCKED",
+  "hypothesis_id": "4",
+  "experiment_id": "2",
+  "input_names": [
+    "experiment_id",
+    "hypothesis_id",
+    "workspace"
+  ],
+  "input_fingerprint": "a59dffe39f67ec8a91acca5b026c9a1619eb6366ef0f1040d05670dfb9c1f5dc",
+  "safe_inputs": {
+    "hypothesis_id": "4",
+    "experiment_id": "2"
+  },
+  "preflight": {
+    "operation_id": "validate-release",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "hypothesis_release": "blocked",
+    "recommended_next_step": "Sync manifest with report_outline figures",
+    "status": "BLOCKED"
+  },
+  "error": {
+    "type": "OperationBlocked",
+    "message": "Sync manifest with report_outline figures",
+    "retryable": true
+  },
+  "declared_artifacts": [
+    "produce checkpoint in harness state"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "742f2f8e74bee7a5a636195cccbf1fdc056067471a6e6fafac46255bf63352a2"
+  },
+  "repeatable": true,
+  "retryable": true,
+  "recommended_action": "Rerun the operation after preflight; automatic payload replay is disabled.",
+  "pid": 54149,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-23T07:35:35.760442Z",
+  "updated_at": "2026-10-23T07:35:35.779295Z",
+  "completed_at": "2026-10-23T07:35:35.779269Z",
+  "duration_ms": 18
+}

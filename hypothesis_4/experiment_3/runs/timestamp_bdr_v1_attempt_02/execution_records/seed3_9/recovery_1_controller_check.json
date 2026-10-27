@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "case": "success",
+      "status": "passed",
+      "fake_children": 3,
+      "original_deadline_retained": true
+    },
+    {
+      "case": "quota",
+      "status": "passed",
+      "fake_children": 2,
+      "original_deadline_retained": true
+    },
+    {
+      "case": "budget",
+      "status": "passed",
+      "fake_children": 2,
+      "original_deadline_retained": true
+    },
+    {
+      "case": "deadline",
+      "status": "passed",
+      "fake_children": 0,
+      "original_deadline_retained": true
+    }
+  ],
+  "real_processes": 0,
+  "llm_calls": 0,
+  "controller_sha256": "9343a3bba87b666e572d11a27d3eed42d63adaf16214e8d5c0ddc0202648c136",
+  "verifier_sha256": "4c96d1d746eed5a64b02c428a537e2ff27e5147e06fe410ae72ff7b5964cdfa9"
+}

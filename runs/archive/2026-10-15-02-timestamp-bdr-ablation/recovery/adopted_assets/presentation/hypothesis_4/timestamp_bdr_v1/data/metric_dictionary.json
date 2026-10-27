@@ -1,0 +1,35 @@
+{
+  "delta_direction": "ablation minus Full, paired within seed",
+  "replicate": "seed (n=3); not individual opportunities or weeks",
+  "primary": {
+    "B": {
+      "field": "late_posts_per_week",
+      "window": "2026-W19..W22",
+      "definition": "successful Agent publications / 4 weeks per run",
+      "unit": "posts/week"
+    },
+    "D": {
+      "field": "late_meme_speak_rate",
+      "window": "2026-W19..W22",
+      "definition": "speak=true among meme-type authors / (19*4)",
+      "unit": "fraction; multiply by 100 for percent and delta pp"
+    },
+    "R": {
+      "field": "mid_speak_rate",
+      "window": "2026-W14..W18",
+      "definition": "all speak=true / (100*5)",
+      "unit": "fraction; multiply by 100 for percent and delta pp"
+    }
+  },
+  "exposure": {
+    "meme_label_share": "observed feed items with type=meme / actual feed length; ratio of pooled counts within run/window/cohort, then average seeds",
+    "agent_read_share": "observed feed items with source=agent / actual feed length; never count injected supply as Agent output",
+    "missing_denominator": "NaN if zero; never filled as 0"
+  },
+  "labels": {
+    "agent_type": "fixed author group, pool_type for generated posts",
+    "assigned_type": "existing four-vocabulary classifier output, not human semantic ground truth",
+    "feed_type": "external dataset label or generated post author pool label"
+  },
+  "post_locations": "Last-week successful publications can remain in _arrival_state.week_posts before next-week recommendation eligibility; counted even if absent from _posts."
+}

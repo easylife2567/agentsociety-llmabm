@@ -1,0 +1,45 @@
+{
+  "hypothesis_id": "4",
+  "sections": [
+    {
+      "id": "overview",
+      "title": "研究范围与原口径"
+    },
+    {
+      "id": "data",
+      "title": "数据与核验"
+    },
+    {
+      "id": "findings",
+      "title": "十seed主分析、制度设计与批次补充稳健性"
+    },
+    {
+      "id": "conclusions",
+      "title": "统计解释与结论边界"
+    },
+    {
+      "id": "appendix",
+      "title": "可复核资产"
+    }
+  ],
+  "figures": [
+    {
+      "asset": "assets/chart_01_seed10_trajectories.png",
+      "caption": "图1：W12–W22玩梗作者周供给；旧3、新7与合计10的方向相同，阴影为实际seed极差而非置信区间。",
+      "caption_en": "Figure 1: Weekly meme-author supply in W12–W22; old3, new7 and all10 retain the same direction, with shading showing the observed seed range rather than a confidence interval.",
+      "finding_number": 1
+    },
+    {
+      "asset": "assets/chart_02_seed10_model_cohorts.png",
+      "caption": "图2：W19–W22五项原指标按运行批次补充分层；兴趣和时序高于随机，合计10包含旧3与新7而非独立队列。",
+      "caption_en": "Figure 2: The five original W19–W22 metrics supplementarily stratified by execution batch; interest and chronological exceed random, and all10 combines old3 and new7 rather than forming an independent cohort.",
+      "finding_number": 3
+    },
+    {
+      "asset": "assets/chart_03_seed10_paired_seeds.png",
+      "caption": "图3：同seed配对差值显示兴趣、时序均高于随机；时序相对兴趣的供给份额在seed5反向，其余9个seed为正。",
+      "caption_en": "Figure 3: Within-seed contrasts place interest and chronological above random; chronological minus interest in supply share reverses for seed5 and is positive for the other nine seeds.",
+      "finding_number": 2
+    }
+  ]
+}

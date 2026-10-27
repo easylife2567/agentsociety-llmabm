@@ -1,0 +1,275 @@
+{
+  "figure": 5,
+  "data_identity": "timestamp_bdr_v1, interest curation only",
+  "full_batch": "hypothesis_4/experiment_2/runs/timestamp_v1",
+  "ablation_batch": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "conditions": [
+    "full",
+    "no_b",
+    "no_d",
+    "no_r"
+  ],
+  "python": "3.13.9",
+  "git_commit_at_preparation": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "script": {
+    "path": "paper/figures/scripts/prepare_ablation.py",
+    "sha256": "c51fe6da9e3e4c09dac4be756eb3b488e681f5ac155ac18872efb7f1957ae313"
+  },
+  "calculation_rules": {
+    "aggregation": "先汇总每run的窗口分子/分母，再对三个seed比值取算术均值；连线只连接同seed。",
+    "late_posts_per_week": "W19—W22全部固定作者群体成功发布数/4周，不含外部与官方输入。",
+    "late_meme_post_rate": "W19—W22玩梗型作者成功发布数/(19人×4周=76机会)。",
+    "mid_post_rate": "W14—W18全体作者成功发布数/(100人×5周=500机会)。",
+    "late_meme_author_share": "W19—W22玩梗型作者成功发布数/全部智能体成功发布数。",
+    "late_meme_exposure_non_meme": "W19—W22非玩梗型作者所见type=meme槽位/全部实际3240个feed槽位，含外部与生成帖，不是图4仅生成帖跨群体项。",
+    "unit": "proportion保存为0—1，展示百分比时乘100；posts_per_week保持帖/周。",
+    "delta": "每seed消融减同seed Full；范围为实际三配对差值最小—最大，不是置信区间。"
+  },
+  "measurement_contract": {
+    "agent_type": "fixed author group, pool_type for generated posts",
+    "assigned_type": "existing four-vocabulary classifier output, not human semantic ground truth",
+    "feed_type": "external dataset label or generated post author pool label"
+  },
+  "reading_limit": "展示统计是实际数值feed槽位；不等同全部槽位正文都进入LLM提示。",
+  "comparison_limits": [
+    "固定同一人口/行动表的三个配对seed，不将机会或周当独立重复。",
+    "组件比较限于冻结兴趣制度，允许后续供给、接触和正文反馈自然分叉。",
+    "R=1同时令U=D并取消B权重，比较不是保持B贡献不变的正交R效应。",
+    "Full与消融分批运行，API路径及返回模型标识差异尚未通过同期新对照排除。",
+    "生成帖按固定作者类型归类，外部帖沿用来源标签；没有新增独立正文语义编码。"
+  ],
+  "checks": {
+    "all_passed": true,
+    "long_table_rows": 30,
+    "metric_pairs": 5,
+    "numeric_crosschecks": 55
+  },
+  "metric_summaries": [
+    {
+      "panel": "a",
+      "metric": "late_posts_per_week",
+      "comparison": "no_b",
+      "unit": "posts_per_week",
+      "window": [
+        "2026-W19",
+        "2026-W20",
+        "2026-W21",
+        "2026-W22"
+      ],
+      "n_paired_seeds": 3,
+      "full_values_by_seed": [
+        13.5,
+        15.25,
+        12.75
+      ],
+      "ablation_values_by_seed": [
+        6.5,
+        7.5,
+        6.5
+      ],
+      "full_mean": 13.833333333333334,
+      "ablation_mean": 6.833333333333333,
+      "paired_deltas_by_seed": [
+        -7.0,
+        -7.75,
+        -6.25
+      ],
+      "delta_mean": -7.0,
+      "delta_min": -7.75,
+      "delta_max": -6.25,
+      "all_paired_deltas_negative": true,
+      "all_paired_deltas_positive": false
+    },
+    {
+      "panel": "b",
+      "metric": "late_meme_post_rate",
+      "comparison": "no_d",
+      "unit": "proportion",
+      "window": [
+        "2026-W19",
+        "2026-W20",
+        "2026-W21",
+        "2026-W22"
+      ],
+      "n_paired_seeds": 3,
+      "full_values_by_seed": [
+        0.4473684210526316,
+        0.5394736842105263,
+        0.4473684210526316
+      ],
+      "ablation_values_by_seed": [
+        0.15789473684210525,
+        0.18421052631578946,
+        0.17105263157894737
+      ],
+      "full_mean": 0.4780701754385965,
+      "ablation_mean": 0.17105263157894737,
+      "paired_deltas_by_seed": [
+        -0.2894736842105263,
+        -0.35526315789473684,
+        -0.2763157894736842
+      ],
+      "delta_mean": -0.30701754385964913,
+      "delta_min": -0.35526315789473684,
+      "delta_max": -0.2763157894736842,
+      "all_paired_deltas_negative": true,
+      "all_paired_deltas_positive": false
+    },
+    {
+      "panel": "c",
+      "metric": "mid_post_rate",
+      "comparison": "no_r",
+      "unit": "proportion",
+      "window": [
+        "2026-W14",
+        "2026-W15",
+        "2026-W16",
+        "2026-W17",
+        "2026-W18"
+      ],
+      "n_paired_seeds": 3,
+      "full_values_by_seed": [
+        0.18,
+        0.198,
+        0.196
+      ],
+      "ablation_values_by_seed": [
+        0.498,
+        0.512,
+        0.466
+      ],
+      "full_mean": 0.19133333333333333,
+      "ablation_mean": 0.492,
+      "paired_deltas_by_seed": [
+        0.318,
+        0.314,
+        0.27
+      ],
+      "delta_mean": 0.3006666666666667,
+      "delta_min": 0.27,
+      "delta_max": 0.318,
+      "all_paired_deltas_negative": false,
+      "all_paired_deltas_positive": true
+    },
+    {
+      "panel": "d",
+      "metric": "late_meme_author_share",
+      "comparison": "no_r",
+      "unit": "proportion",
+      "window": [
+        "2026-W19",
+        "2026-W20",
+        "2026-W21",
+        "2026-W22"
+      ],
+      "n_paired_seeds": 3,
+      "full_values_by_seed": [
+        0.6296296296296297,
+        0.6721311475409836,
+        0.6666666666666666
+      ],
+      "ablation_values_by_seed": [
+        0.12121212121212122,
+        0.14215686274509803,
+        0.11330049261083744
+      ],
+      "full_mean": 0.6561424812790932,
+      "ablation_mean": 0.12555649218935222,
+      "paired_deltas_by_seed": [
+        -0.5084175084175084,
+        -0.5299742847958855,
+        -0.5533661740558292
+      ],
+      "delta_mean": -0.5305859890897411,
+      "delta_min": -0.5533661740558292,
+      "delta_max": -0.5084175084175084,
+      "all_paired_deltas_negative": true,
+      "all_paired_deltas_positive": false
+    },
+    {
+      "panel": "e",
+      "metric": "late_meme_exposure_non_meme",
+      "comparison": "no_r",
+      "unit": "proportion",
+      "window": [
+        "2026-W19",
+        "2026-W20",
+        "2026-W21",
+        "2026-W22"
+      ],
+      "n_paired_seeds": 3,
+      "full_values_by_seed": [
+        0.18765432098765433,
+        0.21419753086419754,
+        0.20555555555555555
+      ],
+      "ablation_values_by_seed": [
+        0.07592592592592592,
+        0.08425925925925926,
+        0.0734567901234568
+      ],
+      "full_mean": 0.20246913580246914,
+      "ablation_mean": 0.07788065843621399,
+      "paired_deltas_by_seed": [
+        -0.11172839506172841,
+        -0.1299382716049383,
+        -0.13209876543209875
+      ],
+      "delta_mean": -0.12458847736625515,
+      "delta_min": -0.13209876543209875,
+      "delta_max": -0.11172839506172841,
+      "all_paired_deltas_negative": true,
+      "all_paired_deltas_positive": false
+    }
+  ],
+  "output_sha256": {
+    "ablation_metrics.csv": "8fcddb869221d10007dde4e1fc507195fcbb78e62332e8259e5035a3f8e60588"
+  },
+  "sources": {
+    "presentation/hypothesis_4/timestamp_bdr_v1/data/weekly_by_type.csv": {
+      "role": "official_successful_posts_and_opportunities",
+      "bytes": 83105,
+      "sha256": "326e455f3997b5b6719a16717ec6f91c206dd1593226040aeb2d51de3dc78cda"
+    },
+    "presentation/hypothesis_4/timestamp_bdr_v1/data/weekly_exposure_by_cohort.csv": {
+      "role": "official_actual_feed_counts",
+      "bytes": 25796,
+      "sha256": "df1dd790c4604afa61de96e1f533816a7c37ab4166314fc84a33873658fd250a"
+    },
+    "presentation/hypothesis_4/timestamp_bdr_v1/data/run_metrics.csv": {
+      "role": "crosscheck_official_per_seed_metrics",
+      "bytes": 3664,
+      "sha256": "48ef6410566b526ff2dc02d2b288272b8d8e8276bdec99cf6115cd32814f7811"
+    },
+    "presentation/hypothesis_4/timestamp_bdr_v1/data/paired_summary.csv": {
+      "role": "crosscheck_official_paired_summaries",
+      "bytes": 6965,
+      "sha256": "bbce73c42c29a113847796be05aa69ba70a4ca6ae4baa2f5acaa37f223a06f3f"
+    },
+    "presentation/hypothesis_4/timestamp_bdr_v1/data/metric_dictionary.json": {
+      "role": "metric_definitions",
+      "bytes": 1574,
+      "sha256": "ceacc439428c17552785399b26530ef1f45908d4c4bc54041921339c53285e11"
+    },
+    "presentation/hypothesis_4/timestamp_bdr_v1/data/source_index.json": {
+      "role": "upstream_raw_result_locations_and_hashes",
+      "bytes": 1594745,
+      "sha256": "1813ba8f1af8598c38c61a3dfd743b5e1980409328b6b9aab576b8ea7258643f"
+    },
+    "presentation/hypothesis_4/timestamp_bdr_v1/report_zh.md": {
+      "role": "accepted_results_and_limits",
+      "bytes": 15944,
+      "sha256": "98d803eb620d83feee43e1ef4182c42a055193089525253fe088359c5b159942"
+    },
+    "hypothesis_4/experiment_3/EXPERIMENT.md": {
+      "role": "frozen_ablation_design",
+      "bytes": 11183,
+      "sha256": "71536e396569b4861c0f88ad9976f5f6f78acb51f7a1b481b996eccd35a6b8ac"
+    }
+  }
+}

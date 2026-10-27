@@ -1,6 +1,6 @@
 # 常态锚点的独立数值探索
 
-本目录为`baseline_anchor_fixed_exposure_20261006_01`的数值派生产物。完整方案、结果解释与状态见[任务入口](../../../runs/2026-10-06-01-baseline-anchor/README.md)。固定9900条历史曝光路径，候选只改B；没有新正文或引擎轨迹，不替代正式ABM。
+本目录为`baseline_anchor_fixed_exposure_20261006_01`的数值派生产物。完整方案、结果解释与状态见[任务入口](../../../runs/archive/2026-10-06-01-baseline-anchor/README.md)。固定9900条历史曝光路径，候选只改B；没有新正文或引擎轨迹，不替代正式ABM。
 
 | 一级资产 | 职责 |
 |---|---|
@@ -14,6 +14,6 @@
 | 2026-10-06-01-contrasts.csv | 逐seed的interest/random玩梗人数与份额差；份额分母为开口判定 |
 | 2026-10-06-01-fixed-exposure.png / .svg | 固定曝光周总开口对照，三面板3seed均值；PNG查看，SVG编辑 |
 
-复现：用.env中的Python执行`runs/2026-10-06-01-baseline-anchor/2026-10-06-02-check.py`。只读用户工作簿与原归档，输出到本目录；重复执行确定性数值结果一致，manifest执行时间与SVG元数据可以不同。新增数据输入与脚本由哈希定位。
+复现：用.env中的Python执行`runs/archive/2026-10-06-01-baseline-anchor/2026-10-06-02-check.py`。只读用户工作簿与原归档，输出到本目录；重复执行确定性数值结果一致，manifest执行时间与SVG元数据可以不同。新增数据输入与脚本由哈希定位。
 
 口径：UTC周、固定作者类型、事件前W05–W12活动、W12–W22回顾性人口。original是已发生发言意图，候选是固定路径数值判定。4条原content_empty保留；候选开口不保证内容生成成功。不要把人数差稳定解释为完整推荐反馈稳定，也不要把份额提高解释为玩梗生产增加。

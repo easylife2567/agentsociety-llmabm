@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1060" viewBox="0 0 1800 1060" role="img" aria-labelledby="title desc">
+<title id="title">算法策展与逝者数字表征：整体研究框架</title><desc id="desc">现实数据识别时序与平台差异，并为多智能体模型提供输入和参数参照。模型以可见性配置、选择性表达和内容回流构成反馈循环，通过三种策展制度和三种组件干预比较供给、参与及可见位置。</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse"><path d="M1 1 L8 5 L1 9" fill="none" stroke="#526477" stroke-width="1.6"/></marker></defs><style>text{font-family:"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#243447}.h{font-size:24px;font-weight:600}.b{font-size:20px}.small{font-size:17px;fill:#566778}.label{font-size:17px;font-weight:600;letter-spacing:2px}</style>
+<rect id="background" x="0" y="0" width="1800" height="1060" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/>
+<text x="48" y="54" class="h" text-anchor="start">算法策展如何重组逝者的公共表征</text>
+<text x="48" y="87" class="small" text-anchor="start">现实内容分析与大语言模型多智能体仿真相结合</text>
+<rect id="empirical-panel" x="40" y="118" width="350" height="805" rx="14" fill="#F1F6FB" stroke="#CBDCEA" stroke-width="1.5"/>
+<rect id="simulation-panel" x="420" y="118" width="890" height="805" rx="14" fill="#FAFBFC" stroke="#D6DEE7" stroke-width="1.5"/>
+<rect id="evaluation-panel" x="1340" y="118" width="420" height="805" rx="14" fill="#F8F5FA" stroke="#DCD2E7" stroke-width="1.5"/>
+<text x="64" y="157" class="label" text-anchor="start" style="fill:#336C91">01  现实数据与经验识别</text>
+<text x="445" y="157" class="label" text-anchor="start" style="fill:#337B73">02  多智能体传播反馈模型</text>
+<text x="1365" y="157" class="label" text-anchor="start" style="fill:#785B95">03  实验比较与过程观测</text>
+<rect id="corpus" x="62" y="184" width="306" height="142" rx="14" fill="#FFFFFF" stroke="#D6DEE7" stroke-width="1.5"/>
+<text x="82" y="219" class="h" text-anchor="start">张雪峰相关帖文</text>
+<text x="82" y="253" class="h" text-anchor="start">抖音 × 小红书</text>
+<text x="82" y="285" class="small" text-anchor="start">49,930 条｜2026年1—5月</text>
+<rect id="coding" x="62" y="350" width="306" height="170" rx="14" fill="#FFFFFF" stroke="#D6DEE7" stroke-width="1.5"/>
+<text x="82" y="386" class="h" text-anchor="start">内容编码与周度聚合</text>
+<text x="82" y="423" class="b" text-anchor="start">教育 · 悼念 · 玩梗</text>
+<text x="82" y="454" class="b" text-anchor="start">其他 · 营销；剔除噪音</text>
+<text x="82" y="493" class="small" text-anchor="start">按平台、发布时间组织</text>
+<path d="M215 326 V347" fill="none" stroke="#526477" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect id="observation" x="62" y="547" width="306" height="139" rx="14" fill="#E4EEF8" stroke="#BDD2E5" stroke-width="1.5"/>
+<text x="82" y="584" class="h" text-anchor="start">经验识别  /  RQ1</text>
+<text x="82" y="623" class="b" text-anchor="start">表达数量与构成的时序变化</text>
+<text x="82" y="652" class="b" text-anchor="start">两平台的共性与差异</text>
+<path d="M215 520 V544" fill="none" stroke="#526477" stroke-width="2.3" marker-end="url(#arrow)"/>
+<rect id="empirical-inputs" x="62" y="716" width="306" height="177" rx="14" fill="#FFFFFF" stroke="#D6DEE7" stroke-width="1.5"/>
+<text x="82" y="753" class="h" text-anchor="start">模型输入与参数参照</text>
+<text x="82" y="793" class="b" text-anchor="start">外部帖文按时间到达</text>
+<text x="82" y="825" class="b" text-anchor="start">作者类型构成与常态供给</text>
+<text x="82" y="857" class="b" text-anchor="start">案例变化用于参数标定</text>
+<rect id="controls" x="445" y="184" width="840" height="102" rx="14" fill="#EDF2F5" stroke="#D6DEE7" stroke-width="1.5"/>
+<text x="465" y="218" class="b" text-anchor="start">共同条件：100名智能体 · W12—W22 · 每周一次表达机会</text>
+<text x="465" y="251" class="small" text-anchor="start">固定作者类型与人数；同一种子下共用外部输入、行动表及行为参数</text>
+<rect id="pool" x="710" y="321" width="310" height="112" rx="14" fill="#E4F2EF" stroke="#AFCFC8" stroke-width="1.5"/>
+<text x="865" y="358" class="h" text-anchor="middle">制度内候选内容池</text>
+<text x="865" y="394" class="small" text-anchor="middle">已到达外部帖 ＋ 合资格生成帖</text>
+<rect id="visibility" x="445" y="510" width="260" height="235" rx="14" fill="#E5EFF9" stroke="#D6DEE7" stroke-width="1.5"/>
+<rect id="expression" x="735" y="510" width="260" height="235" rx="14" fill="#FFF1DC" stroke="#D6DEE7" stroke-width="1.5"/>
+<rect id="return" x="1025" y="510" width="260" height="235" rx="14" fill="#E5F2ED" stroke="#D6DEE7" stroke-width="1.5"/>
+<text x="465" y="550" class="h" text-anchor="start">① 可见性配置</text>
+<text x="465" y="591" class="b" text-anchor="start">按策展制度选择内容</text>
+<text x="465" y="622" class="b" text-anchor="start">形成个人信息流</text>
+<text x="465" y="712" class="small" text-anchor="start">每次最多10条</text>
+<text x="755" y="550" class="h" text-anchor="start">② 选择性表达</text>
+<text x="755" y="590" class="b" text-anchor="start">B  常态表达效用</text>
+<text x="755" y="623" class="b" text-anchor="start">D  意见气候响应</text>
+<text x="755" y="656" class="b" text-anchor="start">R  累计接触衰减</text>
+<text x="755" y="712" class="small" text-anchor="start">效用达到个体门槛才发帖</text>
+<text x="1045" y="550" class="h" text-anchor="start">③ 内容生成与回流</text>
+<text x="1045" y="591" class="b" text-anchor="start">大模型依据人设与</text>
+<text x="1045" y="622" class="b" text-anchor="start">当次所见内容生成帖文</text>
+<text x="1045" y="712" class="small" text-anchor="start">按制度规定取得展示资格</text>
+<path d="M705 626 H732" fill="none" stroke="#526477" stroke-width="2.3" marker-end="url(#arrow)"/>
+<path d="M995 626 H1022" fill="none" stroke="#526477" stroke-width="2.3" marker-end="url(#arrow)"/>
+<path d="M710 377 H575 V506" fill="none" stroke="#526477" stroke-width="2.3" marker-end="url(#arrow)"/>
+<path d="M1155 507 V377 H1024" fill="none" stroke="#526477" stroke-width="2.3" marker-end="url(#arrow)"/>
+<text x="1164" y="454" class="small" text-anchor="start">后续再分发</text>
+<path d="M690 510 V466 H800 V506" fill="none" stroke="#526477" stroke-width="2.3" marker-end="url(#arrow)" stroke-dasharray="7 6"/>
+<text x="816" y="481" class="small" text-anchor="start">个体接触历史</text>
+<path d="M368 799 H430 V772 H720 V448 H741 V436" fill="none" stroke="#526477" stroke-width="2.3" marker-end="url(#arrow)" stroke-dasharray="7 6"/>
+<text x="451" y="816" class="small" text-anchor="start">经验材料约束模型设定</text>
+<rect id="loop-interpretation" x="710" y="792" width="575" height="101" rx="14" fill="#FFFFFF" stroke="#D6DEE7" stroke-width="1.5"/>
+<text x="730" y="829" class="h" text-anchor="start">循环生成公开表达的构成与可见位置</text>
+<text x="730" y="866" class="small" text-anchor="start">固定作者类型：供给重组不等同于个体态度转变</text>
+<rect id="regime-comparison" x="1362" y="184" width="376" height="205" rx="14" fill="#FFFFFF" stroke="#D6DEE7" stroke-width="1.5"/>
+<text x="1382" y="220" class="h" text-anchor="start">制度比较  /  RQ2、RQ3</text>
+<rect id="regime-随机" x="1381" y="245" width="110" height="50" rx="14" fill="#E8EEF5" stroke="#D6DEE7" stroke-width="1.5"/>
+<text x="1436" y="277" class="b" text-anchor="middle">随机</text>
+<rect id="regime-时序" x="1494" y="245" width="110" height="50" rx="14" fill="#E5EFF9" stroke="#D6DEE7" stroke-width="1.5"/>
+<text x="1549" y="277" class="b" text-anchor="middle">时序</text>
+<rect id="regime-兴趣" x="1607" y="245" width="110" height="50" rx="14" fill="#E5F2ED" stroke="#D6DEE7" stroke-width="1.5"/>
+<text x="1662" y="277" class="b" text-anchor="middle">兴趣</text>
+<text x="1382" y="330" class="small" text-anchor="start">3种制度 × 3个种子＝9次运行</text>
+<text x="1382" y="360" class="small" text-anchor="start">比较完整内容组织制度</text>
+<rect id="ablation" x="1362" y="414" width="376" height="205" rx="14" fill="#FFFFFF" stroke="#D6DEE7" stroke-width="1.5"/>
+<text x="1382" y="450" class="h" text-anchor="start">表达组件干预  /  兴趣制度</text>
+<rect id="ablation-B = 0" x="1381" y="475" width="110" height="50" rx="14" fill="#FFF1DC" stroke="#D6DEE7" stroke-width="1.5"/>
+<text x="1436" y="507" class="b" text-anchor="middle">B = 0</text>
+<rect id="ablation-D = 1" x="1494" y="475" width="110" height="50" rx="14" fill="#FFF1DC" stroke="#D6DEE7" stroke-width="1.5"/>
+<text x="1549" y="507" class="b" text-anchor="middle">D = 1</text>
+<rect id="ablation-R = 1" x="1607" y="475" width="110" height="50" rx="14" fill="#FFF1DC" stroke="#D6DEE7" stroke-width="1.5"/>
+<text x="1662" y="507" class="b" text-anchor="middle">R = 1</text>
+<text x="1382" y="559" class="small" text-anchor="start">各3次配对重复；复用完整模型参照</text>
+<text x="1382" y="589" class="small" text-anchor="start">考察参与时机、持续性及闭环变化</text>
+<rect id="measures" x="1362" y="645" width="376" height="248" rx="14" fill="#EEE8F4" stroke="#D1C1DF" stroke-width="1.5"/>
+<text x="1382" y="682" class="h" text-anchor="start">过程记录与宏观结果</text>
+<text x="1382" y="725" class="b" text-anchor="start">个人：同类接触、表达参与</text>
+<text x="1382" y="759" class="b" text-anchor="start">传播：生成帖的再次展示</text>
+<text x="1382" y="793" class="b" text-anchor="start">群体：按固定作者类型的供给</text>
+<text x="1382" y="827" class="b" text-anchor="start">整体：时序轨迹与晚期构成</text>
+<text x="1382" y="871" class="small" text-anchor="start">联结接触 → 参与 → 后续可见位置</text>
+<path d="M1285 765 H1323 V769 H1358" fill="none" stroke="#526477" stroke-width="2.3" marker-end="url(#arrow)"/>
+<text x="1235" y="787" class="small" text-anchor="start">记录</text>
+<rect id="synthesis" x="40" y="950" width="1720" height="77" rx="14" fill="#243D50" stroke="#243D50" stroke-width="1.5"/>
+<text x="900" y="982" class="b" text-anchor="middle" style="fill:#FFFFFF">研究指向：在群体构成固定的条件下，可见性与表达参与的循环如何重组逝者数字表征</text>
+<text x="900" y="1010" class="small" text-anchor="middle" style="fill:#DCE7EF">现实分析识别变化格局；仿真提供机制参照与制度比较，不将模拟制度直接对应现实平台</text>
+</svg>

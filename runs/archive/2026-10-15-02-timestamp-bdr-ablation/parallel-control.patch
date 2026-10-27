@@ -1,0 +1,373 @@
+--- a/runs/2026-10-15-02-timestamp-bdr-ablation/run_ablation.py
++++ b/runs/2026-10-15-02-timestamp-bdr-ablation/run_ablation.py
+@@ -175,7 +175,7 @@
+     return dict(files=len(cache),final_hashes_verified=len(final_hashes))
+ 
+ 
+-def preflight():
++def preflight(pin_main_model=False):
+     manifest = read(INIT/'manifest.json')
+     require(len(manifest['runs'])==9 and manifest['decision_opportunities']==9900, '矩阵或机会预算不符')
+     frozen = dict(manifest['source_sha256'])
+@@ -199,12 +199,14 @@
+     env.update({k:str(v) for k,v in dotenv_values(PROJECT/'.env').items() if v is not None})
+     main = read(INIT/'reference/main_runtime_plan.json')
+     require(bool(env.get('AGENTSOCIETY_LLM_API_KEY')), '缺少模型凭据')
++    if pin_main_model:
++        env['AGENTSOCIETY_LLM_MODEL'] = main['model']
+     require(env.get('AGENTSOCIETY_LLM_MODEL')==main['model'], '当前模型与主批不同，停止启动')
+     require(urlsplit(env.get('AGENTSOCIETY_LLM_API_BASE','')).hostname==main['service_host'], '服务地址与主批不同')
+     env.update(WORKSPACE_PATH=str(WORKSPACE), AGENTSOCIETY_WORKSPACE=str(WORKSPACE),
+                LITELLM_LOCAL_MODEL_COST_MAP='True', MEM0_TELEMETRY='False', ANONYMIZED_TELEMETRY='False',
+                AGENTSOCIETY_LLM_RAY_MAX_WORKERS='4', AGENTSOCIETY_LLM_RAY_CONCURRENCY='16',
+-               PYTHONUNBUFFERED='1')
++               PYTHONUNBUFFERED='1', RAY_ADDRESS='local')
+     # 离线验收钩子只供验收使用；实际运行不继承其PYTHONPATH或审计日志变量。
+     env.pop('BDR_NETWORK_AUDIT',None)
+     require('offline_guard' not in env.get('PYTHONPATH',''), '进程仍带离线网络钩子')
+@@ -212,124 +214,192 @@
+     return manifest,frozen,env,main
+ 
+ 
+-def supervise():
+-    BATCH.mkdir(parents=True,exist_ok=True)
++def process_alive(pid, expected):
++    check = subprocess.run(['ps','-p',str(pid),'-o','stat=,command='],capture_output=True,text=True)
++    fields = check.stdout.strip().split(None,1)
++    return check.returncode==0 and len(fields)==2 and not fields[0].startswith('Z') and expected in fields[1]
++
++
++def engine_alive(item):
++    proc = item.get('_process')
++    return proc.poll() is None if proc is not None else process_alive(item['child_pid'],item['current_run_dir'])
++
++
++def signal_engines(active, sig):
++    # 只对本run且命令仍匹配的独立引擎进程组发信号，避免PID复用误伤。
++    for item in active:
++        if engine_alive(item) and process_alive(item['child_pid'],item['current_run_dir']):
++            os.killpg(item['child_pid'],sig)
++
++
++def enforce_budget(completed, active, extra):
++    requests = sum(row['progress']['provider_requests'] for row in completed+active)
++    require(extra<=MAX_EXTRA and requests<=MAX_REQUESTS,'两路累计请求超过冻结共享预算')
++    return requests
++
++
++def pending_runs(runs, completed, active):
++    used = {row['run_id'] for row in completed+active}
++    return [run for run in runs if run['run_id'] not in used]
++
++
++def supervise(parallel_handoff=False):
++    manifest,frozen,env,main = preflight(pin_main_model=True)
++    require(parallel_handoff, '本批已有记录；必须显式使用--parallel-handoff，禁止重复启动')
++    history = RUN/'evidence/parallel'
++    require(not (history/'serial-state.json').exists(), '已交接过，禁止重启或再次接管')
++    previous = read(STATE)
++    require(previous['status']=='running' and 'active_runs' not in previous,'只接管正常运行的原串行监督器')
++    old_pid = previous['supervisor_pid']
++    require(process_alive(old_pid,str(Path(__file__).resolve())), '原监督器不存活，不能自动续接')
++    # 原控制器只处理TERM/INT，它们会中断子引擎。暂停父进程取得一致快照，
++    # 再用默认HUP退出父进程；独立session的引擎保持运行，由本进程接管。
++    os.kill(old_pid,signal.SIGSTOP)
++    parent_released = False
++    try:
++        previous = read(STATE)
++        require(previous['supervisor_pid']==old_pid and previous['status']=='running','交接时串行状态改变')
++        directory = Path(previous['current_run_dir'])
++        require(process_alive(previous['child_pid'],str(directory)), '待接管引擎已退出')
++        children = subprocess.check_output(['ps','-axo','pid=,ppid=,command='],text=True).splitlines()
++        actual = [int(p[0]) for line in children if len(p:=line.split(None,2))==3 and int(p[1])==old_pid and 'agentsociety2.society.cli' in p[2]]
++        require(actual==[previous['child_pid']], '父进程与状态中的引擎不一致，取消交接')
++        inspect_run(directory)
++        for row in previous['completed']:
++            inspect_run(ENGINE_BATCH/row['run_id'],final=True)
++        write(history/'serial-state.json',previous)
++        write(history/'serial-runtime-plan.json',read(BATCH/'runtime_plan.json'))
++        os.kill(old_pid,signal.SIGHUP)
++        os.kill(old_pid,signal.SIGCONT)
++        parent_released = True
++    finally:
++        if not parent_released and process_alive(old_pid,str(Path(__file__).resolve())):
++            os.kill(old_pid,signal.SIGCONT)
++    # 持有原批次同一把锁，沿用原输出和原账本，绝不创建新预算。
+     lock = (BATCH/'supervisor.lock').open('a')
+-    fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+-    require(not STATE.exists(), '已有运行记录，禁止重复启动或覆盖')
+-    manifest,frozen,env,main = preflight()
+-    budget = remaining_budget()
+-    require(not ENGINE_BATCH.is_symlink() and ENGINE_BATCH.resolve().is_relative_to(WORKSPACE), '引擎输出必须实际位于隔离worktree')
+-    ENGINE_BATCH.mkdir(parents=True,exist_ok=True)
+-    require(not LEDGER.exists() or LEDGER.read_text().strip() in ('','0'), '新账本不是零')
+-    alias = WORKSPACE/'hypothesis_4/experiment_3/runs/timestamp_bdr_v1'
+-    require(alias.is_symlink() and alias.resolve()==BATCH, '隔离账本未映射到本run持久目录')
+-    for run in manifest['runs']:
+-        require(not (BATCH/run['run_id']).exists() and not (ENGINE_BATCH/run['run_id']).exists(), '输出目录已存在: '+run['run_id'])
+-    plan = dict(authorized=True,authorization='2026-10-15用户明确授权：修正输出布局、完整CLI禁网验收通过后，按原模型及剩余预算重新启动九次消融；保留首次失败，异常先停。',
+-        baseline_commit=manifest['baseline_commit'],source_sha256=frozen,supervisor_sha256=digest(Path(__file__)),
+-        model=main['model'],service_host=main['service_host'],runs=manifest['runs'],serial=True,
+-        decision_opportunities=9900,extra_requests_limit=MAX_EXTRA,provider_requests_upper_bound=MAX_REQUESTS,
+-        max_wall_hours=MAX_HOURS,stall_stop_minutes=30,stop_policy='异常或技术请求错误即停；保留记录，不自动重启/续跑/调参',
+-        workspace=str(WORKSPACE),engine_output=str(ENGINE_BATCH),persistent_output=str(BATCH),ledger_alias=str(alias),
+-        previous_attempt=str(ORIGINAL_BATCH),remaining_budget=budget,started_at=now())
+-    write(BATCH/'runtime_plan.json',plan)
+-    state = dict(supervisor_pid=os.getpid(),status='running',started_at=now(),completed=[],current_run=None,deadline_at=budget['deadline_at'])
+-    write(STATE,state)
+-    child = None
+-    directory = None
+-    persistent = None
+-    mirror_cache = {}
++    for attempt in range(50):
++        try:
++            fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
++            break
++        except BlockingIOError:
++            time.sleep(.1)
++    else:
++        signal_engines([dict(child_pid=previous['child_pid'],current_run_dir=previous['current_run_dir'])],signal.SIGINT)
++        raise RuntimeError('交接未能取得原监督锁，已请求引擎停止')
++    state = dict(previous,supervisor_pid=os.getpid(),max_parallel=2,active_runs=[],
++                 handoff_at=now(),status='running',updated_at=now())
++    for key in ('current_run','current_run_dir','persistent_mirror_dir','child_pid','command','progress','mirror'):
++        state.pop(key,None)
++    active = []
+     stop_reason = None
+     stop_at = None
+-    started = time.monotonic()
++
++    def add_active(run, pid, proc=None, credential_epoch='new_env_pinned_original_model'):
++        item = dict(run_id=run['run_id'],child_pid=pid,current_run_dir=str(ENGINE_BATCH/run['run_id']),
++                    persistent_mirror_dir=str(BATCH/run['run_id']),credential_epoch=credential_epoch,
++                    _process=proc,_cache={},_signature=None,_last_at=time.monotonic(),_offsets={},progress={})
++        active.append(item)
++        return item
++
++    def save():
++        state['active_runs'] = [{k:v for k,v in item.items() if not k.startswith('_')} for item in active]
++        state.update(updated_at=now(),elapsed_seconds=(datetime.now(timezone.utc)-datetime.fromisoformat(state['started_at'])).total_seconds(),
++                     budget_remaining_seconds=max(0,(datetime.fromisoformat(state['deadline_at'])-datetime.now(timezone.utc)).total_seconds()))
++        write(STATE,state)
+ 
+     def request_stop(reason):
+         nonlocal stop_reason,stop_at
+         if stop_reason is None:
+             stop_reason,stop_at = reason,time.monotonic()
+             state.update(status='stopping',failure_reason=reason)
+-            write(STATE,state)
+-            if child is not None and child.poll() is None:
+-                os.killpg(child.pid,signal.SIGINT)
+-
+-    def on_signal(signum,frame):
+-        request_stop('收到停止信号 '+str(signum))
+-
+-    signal.signal(signal.SIGTERM,on_signal)
+-    signal.signal(signal.SIGINT,on_signal)
++            signal_engines(active,signal.SIGINT)
++            save()
++
++    signal.signal(signal.SIGTERM,lambda sig,frame: request_stop('收到停止信号 '+str(sig)))
++    signal.signal(signal.SIGINT,lambda sig,frame: request_stop('收到停止信号 '+str(sig)))
++    old_run = next(run for run in manifest['runs'] if run['run_id']==previous['current_run'])
++    add_active(old_run,previous['child_pid'],credential_epoch='existing_engine_old_api_unchanged')
+     try:
+-        for run in manifest['runs']:
+-            require(stop_reason is None,'已请求停止')
+-            directory = ENGINE_BATCH/run['run_id']
+-            persistent = BATCH/run['run_id']
+-            directory.mkdir()
+-            mirror_cache = {}
+-            child_env = dict(env,AGENTSOCIETY_HOME_DIR=str(directory/'workspace'))
+-            command = [env.get('PYTHON_PATH') or sys.executable,'-m','agentsociety2.society.cli',
+-                       '--config',str(WORKSPACE/run['config']),'--steps',str(WORKSPACE/run['steps']),
+-                       '--run-dir',str(directory),'--experiment-id',run['run_id'],
+-                       '--log-file',str(directory/'engine.log'),'--batch-size','100']
+-            with (directory/'stdout.log').open('ab') as stdout,(directory/'stderr.log').open('ab') as stderr:
+-                child = subprocess.Popen(command,cwd=WORKSPACE,env=child_env,stdout=stdout,stderr=stderr,start_new_session=True)
+-            state.update(current_run=run['run_id'],current_run_dir=str(directory),persistent_mirror_dir=str(persistent),
+-                         child_pid=child.pid,command=command,updated_at=now())
+-            write(STATE,state)
+-            last_progress,last_at = None,time.monotonic()
+-            offsets = {}
+-            while child.poll() is None:
+-                time.sleep(10)
+-                try:
+-                    require(datetime.now(timezone.utc)<datetime.fromisoformat(budget['deadline_at']),'达到原48小时截止时刻')
+-                    require(all(digest(WORKSPACE/p)==h for p,h in frozen.items()),'运行期间源码或输入改变')
+-                    progress = inspect_run(directory)
+-                    signature = (progress.get('SOCIETY_STEP.json',{}).get('step_count'),progress['agent_decisions'])
+-                    if signature != last_progress:
+-                        last_progress,last_at = signature,time.monotonic()
+-                    require(time.monotonic()-last_at < 1800,'实际步数/行动记录连续30分钟未推进')
+-                    extra = int(LEDGER.read_text().strip() or '0') if LEDGER.exists() else 0
+-                    requests = sum(r['progress']['provider_requests'] for r in state['completed'])+progress['provider_requests']
+-                    require(extra<=MAX_EXTRA and requests<=MAX_REQUESTS,'累计请求超过冻结预算')
+-                    for name in ('engine.log','stderr.log'):
+-                        logfile = directory/name
+-                        if logfile.exists():
+-                            with logfile.open(errors='replace') as log:
+-                                log.seek(offsets.get(name,0));recent = log.read();offsets[name]=log.tell()
+-                            require(not any(s in recent for s in ('Error executing step','Traceback (most recent call last)','RayTaskError','OutOfMemoryError')),'引擎出现异常，见 '+name)
+-                    mirror = mirror_run(directory,persistent,mirror_cache)
+-                    state.update(progress=progress,mirror=mirror,provider_requests=requests,extra_requests=extra,
+-                                 budget_remaining_seconds=max(0,(datetime.fromisoformat(budget['deadline_at'])-datetime.now(timezone.utc)).total_seconds()),
+-                                 updated_at=now(),elapsed_seconds=time.monotonic()-started)
+-                    write(STATE,state)
+-                except Exception as exc:
+-                    request_stop(str(exc))
+-                if stop_reason and child.poll() is None and time.monotonic()-stop_at > 180:
+-                    os.killpg(child.pid,signal.SIGTERM)
+-                    child.wait(timeout=60)
++        plan = read(BATCH/'runtime_plan.json')
++        plan.update(serial=False,max_parallel=2,parallel_changed_at=now(),
++                    parallel_authorization='用户明确授权两个独立实验并行，保持原模型/科学配置/共享预算/截止，异常两路联停',
++                    supervisor_sha256=digest(Path(__file__)),api_change=dict(new_host=urlsplit(env['AGENTSOCIETY_LLM_API_BASE']).hostname,
++                    new_path=urlsplit(env['AGENTSOCIETY_LLM_API_BASE']).path,env_model_overridden_to=main['model'],
++                    existing_engine_restarted=False,secrets_saved=False),launch_order='原manifest顺序补空位；完成顺序由运行耗时决定')
++        write(BATCH/'runtime_plan.json',plan)
++        save()
++        while active or pending_runs(manifest['runs'],state['completed'],active):
+             require(stop_reason is None,stop_reason or '已停止')
+-            require(child.returncode==0,f'官方引擎退出码异常 {child.returncode}')
+-            progress = inspect_run(directory,final=True)
+-            mirror_run(directory,persistent,mirror_cache,final=True)
+-            state['completed'].append(dict(run_id=run['run_id'],finished_at=now(),progress=progress))
+-            state.update(progress=progress,updated_at=now())
+-            write(STATE,state)
++            require(datetime.now(timezone.utc)<datetime.fromisoformat(state['deadline_at']),'达到原48小时截止时刻')
++            require(all(digest(WORKSPACE/p)==h for p,h in frozen.items()),'运行期间源码或输入改变')
++            finished = []
++            for item in active:
++                directory = Path(item['current_run_dir'])
++                alive = engine_alive(item)
++                if not alive and item['_process'] is not None:
++                    require(item['_process'].returncode==0, '官方引擎退出码异常 '+str(item['_process'].returncode))
++                progress = inspect_run(directory,final=not alive)
++                item['progress'] = progress
++                signature = (progress.get('SOCIETY_STEP.json',{}).get('step_count'),progress['agent_decisions'])
++                if signature!=item['_signature']:
++                    item['_signature'],item['_last_at'] = signature,time.monotonic()
++                require(time.monotonic()-item['_last_at']<1800,'实际步数/行动连续30分钟未推进: '+item['run_id'])
++                for name in ('engine.log','stderr.log'):
++                    logfile = directory/name
++                    if logfile.exists():
++                        with logfile.open(errors='replace') as log:
++                            log.seek(item['_offsets'].get(name,0));recent=log.read();item['_offsets'][name]=log.tell()
++                        require(not any(s in recent for s in ('Error executing step','Traceback (most recent call last)','RayTaskError','OutOfMemoryError')),'引擎异常: '+item['run_id']+'/'+name)
++                item['mirror'] = mirror_run(directory,Path(item['persistent_mirror_dir']),item['_cache'],final=not alive)
++                if not alive:
++                    finished.append(item)
++            extra = int(LEDGER.read_text().strip() or '0') if LEDGER.exists() else 0
++            state.update(provider_requests=enforce_budget(state['completed'],active,extra),extra_requests=extra)
++            for item in finished:
++                state['completed'].append(dict(run_id=item['run_id'],finished_at=now(),progress=item['progress']))
++                active.remove(item)
++            for run in pending_runs(manifest['runs'],state['completed'],active)[:2-len(active)]:
++                require(stop_reason is None,'已经请求停止，禁止新开条件')
++                directory = ENGINE_BATCH/run['run_id']
++                require(not directory.exists() and not (BATCH/run['run_id']).exists(),'拒绝覆盖或重跑 '+run['run_id'])
++                directory.mkdir()
++                child_env = dict(env,AGENTSOCIETY_HOME_DIR=str(directory/'workspace'))
++                command = [env.get('PYTHON_PATH') or sys.executable,'-m','agentsociety2.society.cli',
++                           '--config',str(WORKSPACE/run['config']),'--steps',str(WORKSPACE/run['steps']),
++                           '--run-dir',str(directory),'--experiment-id',run['run_id'],
++                           '--log-file',str(directory/'engine.log'),'--batch-size','100']
++                with (directory/'stdout.log').open('ab') as stdout,(directory/'stderr.log').open('ab') as stderr:
++                    proc = subprocess.Popen(command,cwd=WORKSPACE,env=child_env,stdout=stdout,stderr=stderr,start_new_session=True)
++                add_active(run,proc.pid,proc)
++                save()
++            require(len(active)<=2,'并行数超过2')
++            save()
++            time.sleep(10)
+         state.update(status='completed',finished_at=now())
+     except Exception as exc:
+-        if child is not None and child.poll() is None:
+-            request_stop(str(exc))
+-            try: child.wait(timeout=180)
+-            except subprocess.TimeoutExpired:
+-                os.killpg(child.pid,signal.SIGTERM)
+-                try: child.wait(timeout=60)
+-                except subprocess.TimeoutExpired: state['child_needs_manual_attention']=True
+-        state.update(status='stopped' if stop_reason else 'failed',error=str(exc),finished_at=now())
++        request_stop(str(exc))
++        # 两路同时收到INT；共用同一停机等待窗，不能逐路各等180秒。
++        while any(engine_alive(item) for item in active) and time.monotonic()-stop_at<180:
++            time.sleep(2)
++        signal_engines(active,signal.SIGTERM)
++        term_at = time.monotonic()
++        while any(engine_alive(item) for item in active) and time.monotonic()-term_at<60:
++            time.sleep(2)
++        state.update(status='stopped',error=str(exc),finished_at=now(),
++                     children_needing_attention=[item['child_pid'] for item in active if engine_alive(item)])
+         print(str(exc),file=sys.stderr,flush=True)
+     finally:
+-        if directory is not None and directory.exists():
+-            try: mirror_run(directory,persistent,mirror_cache,final=child is not None and child.poll() is not None)
+-            except Exception as exc: state['mirror_error']=str(exc)
+-        state.update(updated_at=now(),elapsed_seconds=time.monotonic()-started)
+-        write(STATE,state)
++        for item in active:
++            try:
++                item['progress'] = inspect_run(Path(item['current_run_dir']))
++            except Exception as exc:
++                item['final_audit_error'] = str(exc)
++            # 审计发现失败也必须镜像原始证据，不让异常检查跳过保全。
++            try:
++                item['mirror'] = mirror_run(Path(item['current_run_dir']),Path(item['persistent_mirror_dir']),item['_cache'],final=not engine_alive(item))
++            except Exception as exc:
++                item['mirror_error'] = str(exc)
++        save()
+ 
+ 
+ if __name__=='__main__':
+@@ -337,26 +407,36 @@
+     parser.add_argument('--status',action='store_true')
+     parser.add_argument('--check',action='store_true')
+     parser.add_argument('--stop',action='store_true')
++    parser.add_argument('--parallel-handoff',action='store_true')
+     args = parser.parse_args()
+     if args.status:
+         state = read(STATE) if STATE.exists() else {'status':'not_started'}
+-        if state.get('current_run'):
+-            try: state['actual_progress']=inspect_run(Path(state.get('current_run_dir',str(ENGINE_BATCH/state['current_run']))))
++        if 'active_runs' in state:
++            for item in state['active_runs']:
++                item['child_pid_alive'] = process_alive(item['child_pid'],item['current_run_dir'])
++                try: item['actual_progress'] = inspect_run(Path(item['current_run_dir']))
++                except RuntimeError as exc: item['actual_audit_error'] = str(exc)
++        elif state.get('current_run'):
++            try: state['actual_progress']=inspect_run(Path(state['current_run_dir']))
+             except RuntimeError as exc: state['actual_audit_error']=str(exc)
+-        for key in ('supervisor_pid','child_pid'):
+-            if key in state:
+-                check = subprocess.run(['ps','-p',str(state[key]),'-o','command='],capture_output=True,text=True)
+-                state[key+'_alive'] = check.returncode==0 and (str(RUN) in check.stdout)
++            state['child_pid_alive'] = process_alive(state['child_pid'],state['current_run_dir'])
++        if 'supervisor_pid' in state:
++            state['supervisor_pid_alive'] = process_alive(state['supervisor_pid'],str(Path(__file__).resolve()))
+         print(json.dumps(state,ensure_ascii=False,indent=2))
+     elif args.stop:
+         state = read(STATE)
+-        command = subprocess.check_output(['ps','-p',str(state['supervisor_pid']),'-o','command='],text=True)
+-        require(str(Path(__file__).resolve()) in command,'监督PID已不是本批进程，拒绝发信号')
+-        os.kill(state['supervisor_pid'],signal.SIGTERM)
+-        print('已请求停止当前及后续条件，保留现场。')
++        if process_alive(state['supervisor_pid'],str(Path(__file__).resolve())):
++            os.kill(state['supervisor_pid'],signal.SIGTERM)
++        else:
++            active = state.get('active_runs') or ([state] if state.get('child_pid') else [])
++            signal_engines(active,signal.SIGINT)
++            state.update(status='stopping',failure_reason='监督器已退出；停止入口直接请求全部残留子引擎退出',updated_at=now())
++            write(STATE,state)
++        print('已请求两路当前及后续条件全部停止，保留现场。')
+     elif args.check:
+-        manifest,frozen,env,main = preflight()
++        manifest,frozen,env,main = preflight(pin_main_model=True)
+         print(json.dumps({'preflight':'PASS','runs':len(manifest['runs']),'frozen_files':len(frozen),
+-                          'model':main['model'],'service_host':main['service_host'],'remaining_budget':remaining_budget(),'LLM_calls':0},ensure_ascii=False))
++                          'model':main['model'],'max_parallel':2,'service_host':main['service_host'],
++                          'remaining_budget':remaining_budget(),'LLM_calls':0},ensure_ascii=False))
+     else:
+-        supervise()
++        supervise(parallel_handoff=args.parallel_handoff)

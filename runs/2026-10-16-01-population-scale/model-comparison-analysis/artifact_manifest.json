@@ -1,0 +1,157 @@
+{
+  "status": "candidate_comparison_delivered",
+  "formal_release_approved": false,
+  "files": [
+    {
+      "path": "analysis_plan_payload.json",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "analysis_summary.json",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "c1_candidate.json",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "c2_candidate.json",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "c3_candidate.json",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "explore_attestation.json",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "extract_comparison.py",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "figure_contract.json",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "frame_attestation.json",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "plot_comparison.py",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "report_en.html",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "report_en.md",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "report_outline.json",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "report_zh.html",
+      "purpose": "Chinese primary report"
+    },
+    {
+      "path": "report_zh.md",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "semantic_report_passages.json",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "synthesis_brief.json",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "synthesis_report_en.html",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "synthesis_report_en.md",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "synthesis_report_zh.html",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "synthesis_report_zh.md",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "write_reports.py",
+      "purpose": "analysis deliverable"
+    },
+    {
+      "path": "README.md",
+      "purpose": "direct-asset navigation"
+    },
+    {
+      "path": "data/README.md",
+      "purpose": "direct-asset navigation"
+    },
+    {
+      "path": "assets/README.md",
+      "purpose": "direct-asset navigation"
+    },
+    {
+      "path": "build_appendices.py",
+      "purpose": "reproducibility or independent verification"
+    },
+    {
+      "path": "artifact_qa.json",
+      "purpose": "reproducibility or independent verification"
+    },
+    {
+      "path": "review.md",
+      "purpose": "reproducibility or independent verification"
+    },
+    {
+      "path": "review.json",
+      "purpose": "reproducibility or independent verification"
+    },
+    {
+      "path": "data/weekly_comparison.md",
+      "purpose": "reproducibility or independent verification"
+    },
+    {
+      "path": "data/runtime_comparison.json",
+      "purpose": "reproducibility or independent verification"
+    },
+    {
+      "path": "plot_speech_volume.py",
+      "purpose": "user-requested new-run weekly Agent posting volume"
+    },
+    {
+      "path": "speech_volume_contract.json",
+      "purpose": "user-requested new-run weekly Agent posting volume"
+    },
+    {
+      "path": "assets/chart_02_weekly_agent_posts.png",
+      "purpose": "user-requested new-run weekly Agent posting volume"
+    },
+    {
+      "path": "assets/chart_02_weekly_agent_posts.svg",
+      "purpose": "user-requested new-run weekly Agent posting volume"
+    },
+    {
+      "path": "data/weekly_agent_posts.csv",
+      "purpose": "user-requested new-run weekly Agent posting volume"
+    },
+    {
+      "path": "data/weekly_agent_posts_verification.json",
+      "purpose": "user-requested new-run weekly Agent posting volume"
+    }
+  ],
+  "raw_evidence_index": "data/source_index.json",
+  "workspace_presentation": "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/presentation/hypothesis_4_cuc",
+  "workspace_synthesis": "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/synthesis"
+}

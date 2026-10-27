@@ -1,0 +1,14 @@
+{
+  "status": "stopped_on_startup_error",
+  "completed": 0,
+  "LLM_calls": 0,
+  "model_budget_extended": false,
+  "main_source_hashes_unchanged": 33,
+  "main_pipeline_unchanged": true,
+  "isolated_pipeline": "failed",
+  "automation": "b-d-r-30",
+  "automation_status": "PAUSED",
+  "failure_records_preserved": true,
+  "automatic_restart": false,
+  "git_commit_or_push": false
+}

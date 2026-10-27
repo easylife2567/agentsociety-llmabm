@@ -1,0 +1,29 @@
+test_failure_accounting_and_publication_confirmation (test_content_quality.ContentTests.test_failure_accounting_and_publication_confirmation) ... ok
+test_legitimate_views_quotes_and_supported_facts_survive (test_content_quality.ContentTests.test_legitimate_views_quotes_and_supported_facts_survive) ... ok
+test_real_environment_exposure_inventory_and_recirculation (test_content_quality.ContentTests.test_real_environment_exposure_inventory_and_recirculation) ... FAIL
+test_technical_retry_then_refusal_keeps_attempts (test_content_quality.ContentTests.test_technical_retry_then_refusal_keeps_attempts) ... ok
+test_twenty_historical_cases_on_both_actual_paths (test_content_quality.ContentTests.test_twenty_historical_cases_on_both_actual_paths) ... ok
+test_unknown_historical_time_is_not_fabricated (test_content_quality.ContentTests.test_unknown_historical_time_is_not_fabricated) ... ok
+
+======================================================================
+FAIL: test_real_environment_exposure_inventory_and_recirculation (test_content_quality.ContentTests.test_real_environment_exposure_inventory_and_recirculation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/easylife/Project/AgentSociety/custom/tests/test_content_quality.py", line 188, in test_real_environment_exposure_inventory_and_recirculation
+    self.assertEqual(result['status'], 'success')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'fail' != 'success'
+- fail
++ success
+
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.041s
+
+FAILED (failures=1)

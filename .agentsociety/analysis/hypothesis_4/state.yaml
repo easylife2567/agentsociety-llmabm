@@ -1,58 +1,151 @@
 hypothesis_id: '4'
-experiment_id: '1'
-db_path: /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/run/replay
-current_phase: claims
-hypothesis_release: not_started
-chart_count: 0
+experiment_id: '2'
+db_path: /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/data/seed10_metrics.sqlite
+current_phase: produce
+hypothesis_release: ready
+chart_count: 3
 max_charts: 0
-figure_contracts: []
+figure_contracts:
+- contract_id: seed10_fc1
+  claim_id: seed10_c1
+  core_finding: 新增7seed与旧3seed的周玩梗供给轨迹保持时序/兴趣高于随机；合计10不是独立新样本。
+  figure_scope: single chart
+  chart_role: trend
+  evidence_source: data/seed10_weekly_summary.csv
+  analysis_scope: W12–W22; old3,new7,all10
+  figure_archetype: three cohort facets with mean and min-max band
+  visual_center: late W19–W22 separation from random
+  axes_grouping: same y=0–20 posts, x=W12–W22
+  legend_strategy: shared arm legend
+  reviewer_check: shade is actual seed range, not confidence interval; author type
+    not semantics
+  caption_requirements: []
+  presentation_mode: static
+  output_files:
+  - charts/chart_01_seed10_trajectories.png
+- contract_id: seed10_fc3
+  claim_id: seed10_c2
+  core_finding: 配对seed支持时序/兴趣均高于随机，时序对兴趣份额有1个seed反向。
+  figure_scope: single chart
+  chart_role: robustness
+  evidence_source: data/seed10_runs.csv; data/seed10_paired_contrasts.csv
+  analysis_scope: seed0–9 paired contrasts; old/new blocks
+  figure_archetype: paired differences across seed; posts and share
+  visual_center: zero reference and exceptions
+  axes_grouping: seed x; paired mean counts / pp differences y
+  legend_strategy: three contrast series
+  reviewer_check: connecting seeds is an index guide, not longitudinal evolution;
+    model cohort split
+  caption_requirements: []
+  presentation_mode: static
+  output_files:
+  - charts/chart_03_seed10_paired_seeds.png
+- contract_id: seed10_fc2
+  claim_id: seed10_c3
+  core_finding: 三臂各10seed按用户确认的模型等价口径作为主分析；旧3与新7的制度排序一致，分批图仅作补充检查。
+  figure_scope: single chart
+  chart_role: comparison
+  evidence_source: data/seed10_runs.csv; data/seed10_arm_summary.csv
+  analysis_scope: W19–W22 five original metrics
+  figure_archetype: five metric facets; old3,new7,all10
+  visual_center: cohort consistency
+  axes_grouping: five endpoints with own denominators
+  legend_strategy: shared arm colors
+  reviewer_check: all10 duplicates cohorts; mean ratio first per seed; t interval
+    approximation
+  caption_requirements: []
+  presentation_mode: static
+  output_files:
+  - charts/chart_02_seed10_model_cohorts.png
 phase_attestations:
   frame:
     phase: frame
     status: DONE
     key_findings:
-    - 用户要求查看正式实验图，因此分析问题聚焦于weekly_lag1中interest与random的三seed聚合比较。
-    - 主指标预先锁定为玩梗供给份额、曝光份额、玩梗群体发言率和策展偏差。
-    - 旧chronological未按新时机重跑，不进入本轮主比较。
+    - 按2026-10-24用户确认采用模型等价处理，以各10seed为主分析；补充时序设计归因限制。
     artifacts_read: []
-    artifacts_written:
-    - .agentsociety/analysis/hypothesis_4/analysis_plan.yaml
+    artifacts_written: []
     blocking_reason: null
     recommended_next_step: null
     rubric:
-      research_question_confirmed: 用户明确要求对已完成正式实验做图；图表问题依照当前实验目的固定为interest与random在统一一期滞后下的差异。
-      success_criteria: 图表必须使用6个正式run、按臂聚合3个seed、显示波动范围与真实基准，并清楚标注仿真和三seed限制。
-    artifact_fingerprint: 699697042c8ca8b4f8448294
-    completed_at: '2026-09-28T01:44:01.558321Z'
+      research_question_confirmed: 用户明确采用新旧版本等价，并指出更快入池可能贡献时序结果。
+      success_criteria: 沿用原指标与数值，版本保留溯源；核对真实代码并将时序制度整体差异与排序贡献分开。
+    artifact_fingerprint: ec3f7250edc788f1f733d05d
+    completed_at: '2026-10-24T05:46:53.014378Z'
   explore:
     phase: explore
-    status: DONE
+    status: DONE_WITH_CONCERNS
     key_findings:
-    - 6个正式run均提供11周完整数据，共66个run-week观测；两臂各3个seed。
-    - W19-W22中interest相对random的玩梗供给份额高10.46个百分点、曝光份额高13.03个百分点、玩梗群体发言率高33.77个百分点。
-    - Agent-only发帖量显示interest在W20降至5.67帖后由玩梗发帖驱动反弹，W22为21.67帖，其中玩梗18.33帖；random在W22总计6.67帖，其中玩梗1.33帖。
-    - 两臂玩梗曝光减供给偏差均为负；仿真悼念Agent发帖峰出现在W14-W15而非真实数据W13。
+    - 原9次图3/4逐格复现；30run完整且新7的主要方向与旧3一致。
+    - 模型与seed范围混杂，小样本15项校正保守，须分层和配对。
     artifacts_read: []
     artifacts_written:
-    - presentation/hypothesis_4/data/weekly_lag1_run_week_metrics.csv
-    - presentation/hypothesis_4/data/weekly_lag1_arm_week_summary.csv
-    - presentation/hypothesis_4/data/weekly_lag1_agent_supply_by_type.csv
-    - presentation/hypothesis_4/data/weekly_lag1_summary.json
-    - presentation/hypothesis_4/data/weekly_lag1_figure_notes.md
-    - presentation/hypothesis_4/data/eda_figure_01_weekly_lag_meme_trajectory.png
-    - presentation/hypothesis_4/data/eda_figure_02_weekly_lag_event_and_arm_gap.png
-    - presentation/hypothesis_4/data/eda_figure_03_weekly_lag_agent_supply_stacked_area.png
+    - /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/data/seed10_explore.md
+    - /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/data/seed10_sources.json
+    - /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/data/seed10_runs.csv
+    - /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/data/seed10_weekly.csv
+    - /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/data/seed10_arm_summary.csv
+    - /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/data/seed10_paired_contrasts.csv
+    - /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/data/seed10_quick_stats/eda_quick_stats.md
     blocking_reason: null
     recommended_next_step: null
     rubric:
       tables_inspected:
-      - 'curation_dynamics_env_state: weekly supply and exposure shares'
-      - 'curation_dynamics_agent_state: type-specific speaking decisions'
-      - 'weekly_mechanism: n_posted by arm, seed, week, and fixed agent type'
-      data_limitations: 每臂3个seed；堆叠面积使用seed均值，只描述仿真内部Agent产出，不含真实注入帖。chronological未重跑而排除。
-      eda_takeaway: interest的后期总发帖反弹主要由玩梗型Agent驱动，而random保持低位；整体一期滞后也使悼念Agent高峰落在W14-W15。
-    artifact_fingerprint: 9a016db45ba6e9325512c450
-    completed_at: '2026-09-28T02:06:26.102800Z'
+      - seed10_run_metrics
+      - seed10_weekly_metrics
+      data_limitations: 30个完整run；旧3请求260910但返回无日期别名，新7返回261017；不能分离版本效应。
+      eda_takeaway: 晚期兴趣/时序高于随机的方向保持，不能改写成兴趣最强。
+    artifact_fingerprint: fcb6291a03ad8474671f86ea
+    completed_at: '2026-10-23T07:17:32.534313Z'
+  claims:
+    phase: claims
+    status: DONE
+    key_findings:
+    - c1方向保持；c2限定完整制度差异；c3采用用户等价约定和合计10主分析。
+    artifacts_read: []
+    artifacts_written: []
+    blocking_reason: null
+    recommended_next_step: null
+    rubric:
+      claims_user_approved: 用户明确采用等价口径并要求标记时序设计限制；按其当前修正更新表述。
+      confirmatory_vs_exploratory_clear: c1原口径确认性结果；c2时序相对兴趣为探索性制度比较；c3含用户采用的模型等价约定与分批描述，未将约定写作统计检验发现。
+    artifact_fingerprint: aeebfd0b5ef3ec62d4d780a6
+    completed_at: '2026-10-24T05:46:55.414997Z'
+  refine:
+    phase: refine
+    status: DONE
+    key_findings:
+    - 三图数值不变，图中文字将All10标为主分析、版本按本研究等价处理。
+    artifacts_read:
+    - presentation/hypothesis_4/data/seed10_figure_contracts.json
+    artifacts_written:
+    - presentation/hypothesis_4/charts/seed10_model_convention.patch
+    blocking_reason: null
+    recommended_next_step: null
+    rubric:
+      charts_map_to_claims:
+        seed10_c1: chart_01_seed10_trajectories.png
+        seed10_c2: chart_03_seed10_paired_seeds.png
+        seed10_c3: chart_02_seed10_model_cohorts.png
+      visual_message_clear: 全10为主分析，旧新批次作溯源和补充；seed点、区间和原指标保持，图2已目视核对。
+    artifact_fingerprint: 2f2047c8c9beebff18f87388
+    completed_at: '2026-10-24T05:46:57.849036Z'
+  produce:
+    phase: produce
+    status: DONE
+    key_findings:
+    - 已按用户确认将模型版本视为本研究等价、合计10为主分析；双语报告已明确时序排序与生成帖更快入池/周内回流、候选规则未分离。
+    - 独立定向审查PASS，原始来源和指标表校验值保持。
+    artifacts_read: []
+    artifacts_written: []
+    blocking_reason: null
+    recommended_next_step: null
+    rubric:
+      bilingual_reports_reviewed: true
+      limitations_stated: 排序、生成帖入池及周内回流、候选规则同时变化；较高结果不能分离机制贡献。固定作者类型与数值接触的原口径边界保留。
+      independent_review_pass: true
+    artifact_fingerprint: 87909fd55047957ebe9f7a2c
+    completed_at: '2026-10-24T05:51:14.183054Z'
 phase_checkpoints:
   frame:
     phase: frame
@@ -61,7 +154,7 @@ phase_checkpoints:
     attestation_required: true
     gate_pass: true
     structural_issues: []
-    completed_at: '2026-09-28T01:44:01.558321Z'
+    completed_at: '2026-10-24T05:46:53.014378Z'
   explore:
     phase: explore
     structural_pass: true
@@ -69,25 +162,61 @@ phase_checkpoints:
     attestation_required: true
     gate_pass: true
     structural_issues: []
-    completed_at: '2026-09-28T02:06:26.102800Z'
+    completed_at: '2026-10-23T07:17:32.534313Z'
+  claims:
+    phase: claims
+    structural_pass: true
+    attestation_pass: true
+    attestation_required: true
+    gate_pass: true
+    structural_issues: []
+    completed_at: '2026-10-24T05:46:55.414997Z'
+  refine:
+    phase: refine
+    structural_pass: true
+    attestation_pass: true
+    attestation_required: true
+    gate_pass: true
+    structural_issues: []
+    completed_at: '2026-10-24T05:46:57.849036Z'
+  produce:
+    phase: produce
+    structural_pass: true
+    attestation_pass: true
+    attestation_required: true
+    gate_pass: true
+    structural_issues: []
+    completed_at: '2026-10-24T05:51:14.183054Z'
 phase_artifacts:
   explore:
-  - presentation/hypothesis_4/data/weekly_lag1_run_week_metrics.csv
-  - presentation/hypothesis_4/data/weekly_lag1_arm_week_summary.csv
-  - presentation/hypothesis_4/data/weekly_lag1_agent_supply_by_type.csv
-  - presentation/hypothesis_4/data/weekly_lag1_summary.json
-  - presentation/hypothesis_4/data/weekly_lag1_figure_notes.md
-  - presentation/hypothesis_4/data/eda_figure_01_weekly_lag_meme_trajectory.png
-  - presentation/hypothesis_4/data/eda_figure_02_weekly_lag_event_and_arm_gap.png
-  - presentation/hypothesis_4/data/eda_figure_03_weekly_lag_agent_supply_stacked_area.png
+  - /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/data/seed10_explore.md
+  - /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/data/seed10_sources.json
+  - /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/data/seed10_runs.csv
+  - /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/data/seed10_weekly.csv
+  - /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/data/seed10_arm_summary.csv
+  - /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/data/seed10_paired_contrasts.csv
+  - /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/data/seed10_quick_stats/eda_quick_stats.md
+  refine_validated_charts:
+  - /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/charts/chart_01_seed10_trajectories.png
+  - /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/charts/chart_02_seed10_model_cohorts.png
+  - /Users/easylife/Project/AgentSociety/presentation/hypothesis_4/charts/chart_03_seed10_paired_seeds.png
 validation_history:
 - phase: explore
   status: PASS
-  at: '2026-09-28T01:46:39.110092Z'
-- phase: explore
+  at: '2026-10-23T07:17:36.732639Z'
+- phase: refine
   status: PASS
-  at: '2026-09-28T01:47:19.677853Z'
-- phase: explore
+  at: '2026-10-23T07:21:55.279638Z'
+- phase: produce
+  status: BLOCKED
+  at: '2026-10-23T07:35:35.775898Z'
+- phase: produce
   status: PASS
-  at: '2026-09-28T02:06:28.130163Z'
-updated_at: '2026-09-28T02:06:28.130175Z'
+  at: '2026-10-23T07:37:56.836148Z'
+- phase: refine
+  status: PASS
+  at: '2026-10-24T05:47:56.852307Z'
+- phase: produce
+  status: PASS
+  at: '2026-10-24T05:51:16.930502Z'
+updated_at: '2026-10-24T05:51:16.930512Z'

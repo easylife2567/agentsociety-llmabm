@@ -1,0 +1,109 @@
+{
+  "supervisor_pid": 2200,
+  "status": "completed",
+  "started_at": "2026-10-14T14:47:28.343831+00:00",
+  "completed": [
+    {
+      "run_id": "timestamp_v1_random_s0",
+      "finished_at": "2026-10-14T15:45:41.463064+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s0",
+      "finished_at": "2026-10-14T16:44:15.197923+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11
+    },
+    {
+      "run_id": "timestamp_v1_interest_s0",
+      "finished_at": "2026-10-14T17:43:48.840092+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11
+    },
+    {
+      "run_id": "timestamp_v1_random_s1",
+      "finished_at": "2026-10-14T18:36:02.272824+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s1",
+      "finished_at": "2026-10-14T19:30:05.575798+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11
+    },
+    {
+      "run_id": "timestamp_v1_interest_s1",
+      "finished_at": "2026-10-14T20:22:58.886805+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11
+    },
+    {
+      "run_id": "timestamp_v1_random_s2",
+      "finished_at": "2026-10-14T21:11:21.874790+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s2",
+      "finished_at": "2026-10-14T22:01:25.010071+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11
+    },
+    {
+      "run_id": "timestamp_v1_interest_s2",
+      "finished_at": "2026-10-14T22:52:58.153545+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11
+    }
+  ],
+  "current_run": "timestamp_v1_interest_s2",
+  "child_pid": 65032,
+  "command": [
+    "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python",
+    "-m",
+    "agentsociety2.society.cli",
+    "--config",
+    "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s2.json",
+    "--steps",
+    "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/init/steps_s2.yaml",
+    "--run-dir",
+    "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s2",
+    "--experiment-id",
+    "timestamp_v1_interest_s2",
+    "--log-file",
+    "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s2/engine.log",
+    "--batch-size",
+    "100"
+  ],
+  "updated_at": "2026-10-14T22:52:58.035495+00:00",
+  "progress": {
+    "pid.json": {
+      "pid": 65032,
+      "status": "completed",
+      "start_time": "2026-10-14T22:01:26.559556+00:00",
+      "experiment_id": "timestamp_v1_interest_s2",
+      "simulation_time": "2026-06-01T00:00:00",
+      "step_count": 693,
+      "end_time": "2026-10-14T22:52:46.723892+00:00"
+    },
+    "SOCIETY_STEP.json": {
+      "current_time": "2026-06-01T00:00:00",
+      "step_count": 693,
+      "completed_step_count": 693,
+      "terminated": false
+    }
+  },
+  "elapsed_seconds": 29129.801885499997,
+  "finished_at": "2026-10-14T22:52:58.155081+00:00"
+}

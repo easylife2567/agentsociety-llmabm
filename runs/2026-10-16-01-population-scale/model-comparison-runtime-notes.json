@@ -1,0 +1,1251 @@
+{
+  "request_budget_scope": "manifest/execution中的formal_requests_upper_bound=3630仅约束Agent正文外层请求，不含框架初始化或服务探测，不能称为全部HTTP请求上限。",
+  "initialization_calls": "官方SDK每臂初始化生成observe和statistics代码，正常各1次；异常修正受SDK原有有限重试机制约束，另计。当前random已完成这2项。",
+  "service_probe_calls": 1,
+  "requested_model": "cuc/deepseek",
+  "initial_response_model": "deepseek-v4.1-flash-4",
+  "scientific_source_changed": false,
+  "first_saved_body_response_models": [
+    "deepseek-v4.1-flash",
+    "deepseek-v4.1-flash-4"
+  ],
+  "note": "同一请求别名在首次两条正式正文中已有两种返回标识，保留原始账本，不认定后台一致。",
+  "observed_at": "2026-10-16T13:54:54.648153+08:00",
+  "monitor_checks": [
+    {
+      "checked_at": "2026-10-16T14:27:16.767830+08:00",
+      "status": "running",
+      "current_arm": "random",
+      "completed_arms": 0,
+      "step": 168,
+      "environment_actions": 263,
+      "agent_decisions": 263,
+      "completed_weeks": 2,
+      "simulation_week": "2026-W14",
+      "posts": 68,
+      "body_requests": 68,
+      "action_failures": 0,
+      "technical_attempt_failures": 0,
+      "unrecovered_service_failures": 0,
+      "model_rewrites": 0,
+      "fallbacks": 0,
+      "extra_requests_used": 0,
+      "extra_requests_limit": 330,
+      "elapsed_minutes": 35.44486103333334,
+      "remaining_minutes": 684.5551389666666,
+      "supervisor_pid": 25395,
+      "child_pid": 25398,
+      "both_processes_alive_and_commands_matched": true,
+      "seconds_since_step_save": 5.498356,
+      "response_models": {
+        "deepseek-v4.1-flash-4": 27,
+        "deepseek-v4.1-flash-2": 15,
+        "deepseek-v4.1-flash": 10,
+        "deepseek-v4.1-flash-3": 16
+      },
+      "previous_report": {
+        "step": 11,
+        "decisions": 20,
+        "posts": 7
+      },
+      "log_exception_markers": 0
+    },
+    {
+      "checked_at": "2026-10-16T14:57:21.381757+08:00",
+      "status": "running",
+      "current_arm": "cuc_model_v1_random",
+      "completed_arms": 0,
+      "step": 360,
+      "simulation_time": "2026-04-24T10:00:00",
+      "environment_actions": 569,
+      "unique_environment_actions": 569,
+      "agent_decisions": 569,
+      "completed_weeks": 5,
+      "decision_weeks": {
+        "2026-W12": 100,
+        "2026-W13": 100,
+        "2026-W14": 100,
+        "2026-W15": 100,
+        "2026-W16": 100,
+        "2026-W17": 69
+      },
+      "posts": 129,
+      "body_requests": 129,
+      "action_failures": 0,
+      "technical_attempt_failures": 0,
+      "unrecovered_service_failures": 0,
+      "attempt_purposes": {
+        "generation": 129
+      },
+      "content_origins": {
+        "model": 129
+      },
+      "initial_content_status": {
+        "accepted": 129
+      },
+      "response_models": {
+        "deepseek-v4.1-flash-4": 48,
+        "deepseek-v4.1-flash-2": 31,
+        "deepseek-v4.1-flash": 20,
+        "deepseek-v4.1-flash-3": 30
+      },
+      "extra_requests_used": 0,
+      "extra_requests_limit": 330,
+      "elapsed_minutes": 65.52175981666667,
+      "remaining_minutes": 654.4782401833334,
+      "seconds_since_step_save": 2.31025,
+      "pids": {
+        "supervisor_pid": {
+          "alive": true,
+          "process": "25395 01:05:31 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/run_model_comparison.py"
+        },
+        "child_pid": {
+          "alive": true,
+          "process": "25398 01:05:31 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python -m agentsociety2.society.cli --config /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/configs/cuc_model_v1_random.json --steps /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/steps.yaml --run-dir /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_random --experiment-id cuc_model_v1_random --log-file /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_random/engine.log --batch-size 100"
+        }
+      },
+      "log_exception_markers": {
+        "engine.log": {
+          "count": 0,
+          "last": []
+        },
+        "stderr.log": {
+          "count": 0,
+          "last": []
+        }
+      },
+      "speed_estimate": {
+        "matched_completed_steps": 360,
+        "new_minutes": 65.45,
+        "old_minutes": 33.68333333333333,
+        "elapsed_ratio": 1.9430974764967837,
+        "projected_total_minutes": 341.64783177741214,
+        "projected_remaining_minutes": 276.12607196074543
+      },
+      "change_since_last_monitor": {
+        "step": 192,
+        "environment_actions": 306,
+        "posts": 61,
+        "body_requests": 61
+      }
+    },
+    {
+      "checked_at": "2026-10-16T15:27:13.130087+08:00",
+      "status": "running",
+      "current_arm": "cuc_model_v1_random",
+      "completed_arms": 0,
+      "step": 567,
+      "simulation_time": "2026-05-18T06:00:00",
+      "environment_actions": 900,
+      "unique_environment_actions": 900,
+      "agent_decisions": 900,
+      "completed_weeks": 9,
+      "decision_weeks": {
+        "2026-W12": 100,
+        "2026-W13": 100,
+        "2026-W14": 100,
+        "2026-W15": 100,
+        "2026-W16": 100,
+        "2026-W17": 100,
+        "2026-W18": 100,
+        "2026-W19": 100,
+        "2026-W20": 100
+      },
+      "posts": 162,
+      "body_requests": 162,
+      "action_failures": 0,
+      "technical_attempt_failures": 0,
+      "unrecovered_service_failures": 0,
+      "attempt_purposes": {
+        "generation": 162
+      },
+      "content_origins": {
+        "model": 162
+      },
+      "initial_content_status": {
+        "accepted": 162
+      },
+      "response_models": {
+        "deepseek-v4.1-flash-4": 64,
+        "deepseek-v4.1-flash-2": 38,
+        "deepseek-v4.1-flash": 23,
+        "deepseek-v4.1-flash-3": 37
+      },
+      "extra_requests_used": 0,
+      "extra_requests_limit": 330,
+      "elapsed_minutes": 95.38423198333334,
+      "remaining_minutes": 624.6157680166666,
+      "seconds_since_step_save": 8.921046,
+      "pids": {
+        "supervisor_pid": {
+          "alive": true,
+          "process": "25395 01:35:23 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/run_model_comparison.py"
+        },
+        "child_pid": {
+          "alive": true,
+          "process": "25398 01:35:23 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python -m agentsociety2.society.cli --config /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/configs/cuc_model_v1_random.json --steps /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/steps.yaml --run-dir /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_random --experiment-id cuc_model_v1_random --log-file /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_random/engine.log --batch-size 100"
+        }
+      },
+      "log_exception_markers": {
+        "engine.log": {
+          "count": 0,
+          "last": []
+        },
+        "stderr.log": {
+          "count": 0,
+          "last": []
+        }
+      },
+      "speed_estimate": {
+        "matched_completed_steps": 567,
+        "new_minutes": 95.2,
+        "old_minutes": 49.13333333333333,
+        "elapsed_ratio": 1.937584803256445,
+        "projected_total_minutes": 340.6785582938942,
+        "projected_remaining_minutes": 245.29432631056085
+      },
+      "change_since_last_monitor": {
+        "step": 207,
+        "environment_actions": 331,
+        "posts": 33,
+        "body_requests": 33
+      }
+    },
+    {
+      "checked_at": "2026-10-16T15:57:46.168331+08:00",
+      "status": "running",
+      "current_arm": "cuc_model_v1_chronological",
+      "completed_arms": 1,
+      "runs": [
+        {
+          "algorithm": "random",
+          "status": "completed",
+          "step": 693,
+          "simulation_time": "2026-06-01T00:00:00",
+          "environment_actions": 1100,
+          "unique_environment_actions": 1100,
+          "agent_decisions": 1100,
+          "completed_weeks": 11,
+          "posts": 176,
+          "environment_agent_posts": 8,
+          "body_requests": 176,
+          "elapsed_minutes": 117.73367338333334,
+          "ended_at": "2026-10-16T07:49:36.111332+00:00",
+          "total_weekly_agent_supply": 176
+        },
+        {
+          "algorithm": "chronological",
+          "status": "running",
+          "step": 53,
+          "simulation_time": "2026-03-21T14:00:00",
+          "environment_actions": 82,
+          "unique_environment_actions": 82,
+          "agent_decisions": 82,
+          "completed_weeks": 0,
+          "posts": 21,
+          "environment_agent_posts": 21,
+          "body_requests": 21,
+          "elapsed_minutes": 8.01343065,
+          "ended_at": null
+        }
+      ],
+      "total_environment_actions": 1182,
+      "total_agent_decisions": 1182,
+      "total_posts": 197,
+      "total_body_requests": 197,
+      "action_failures": 0,
+      "technical_attempt_failures": 0,
+      "unrecovered_service_failures": 0,
+      "attempt_purposes": {
+        "generation": 197
+      },
+      "content_origins": {
+        "model": 197
+      },
+      "initial_content_status": {
+        "accepted": 197
+      },
+      "response_models": {
+        "deepseek-v4.1-flash-4": 83,
+        "deepseek-v4.1-flash-2": 45,
+        "deepseek-v4.1-flash": 26,
+        "deepseek-v4.1-flash-3": 43
+      },
+      "extra_requests_used": 0,
+      "extra_requests_limit": 330,
+      "elapsed_minutes": 125.93486938333334,
+      "remaining_minutes": 594.0651306166667,
+      "seconds_since_step_save": 4.859821,
+      "pids": {
+        "supervisor_pid": {
+          "alive": true,
+          "process": "25395 02:05:56 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/run_model_comparison.py"
+        },
+        "child_pid": {
+          "alive": true,
+          "process": "44072 08:03 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python -m agentsociety2.society.cli --config /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/configs/cuc_model_v1_chronological.json --steps /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/steps.yaml --run-dir /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_chronological --experiment-id cuc_model_v1_chronological --log-file /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_chronological/engine.log --batch-size 100"
+        }
+      },
+      "log_exception_markers": {
+        "engine.log": {
+          "count": 0,
+          "last": []
+        },
+        "stderr.log": {
+          "count": 0,
+          "last": []
+        }
+      },
+      "frozen_files_changed": [],
+      "change_since_last_monitor": {
+        "completed_arms": 1,
+        "environment_actions": 282,
+        "posts": 35
+      },
+      "environment_agent_posts_scope": "各run的environment_agent_posts为arrival.week_posts当周缓存数量；全窗以weeks.agent_supply求和并核对Agent成功发布数，不能将该缓存当作全窗总量。"
+    },
+    {
+      "checked_at": "2026-10-16T16:27:42.110319+08:00",
+      "status": "running",
+      "current_arm": "cuc_model_v1_chronological",
+      "completed_arms": 1,
+      "runs": [
+        {
+          "algorithm": "random",
+          "status": "completed",
+          "step": 693,
+          "simulation_time": "2026-06-01T00:00:00",
+          "environment_actions": 1100,
+          "unique_environment_actions": 1100,
+          "agent_decisions": 1100,
+          "completed_weeks": 11,
+          "posts": 176,
+          "body_requests": 176,
+          "elapsed_minutes": 117.73367338333334,
+          "ended_at": "2026-10-16T07:49:36.111332+00:00",
+          "total_weekly_agent_supply": 176
+        },
+        {
+          "algorithm": "chronological",
+          "status": "running",
+          "step": 174,
+          "simulation_time": "2026-04-03T15:00:00",
+          "environment_actions": 274,
+          "unique_environment_actions": 274,
+          "agent_decisions": 276,
+          "completed_weeks": 2,
+          "posts": 101,
+          "body_requests": 101,
+          "elapsed_minutes": 37.94579711666667,
+          "ended_at": null
+        }
+      ],
+      "total_environment_actions": 1374,
+      "total_agent_decisions": 1376,
+      "total_posts": 277,
+      "total_body_requests": 277,
+      "action_failures": 0,
+      "technical_attempt_failures": 0,
+      "unrecovered_service_failures": 0,
+      "attempt_purposes": {
+        "generation": 277
+      },
+      "content_origins": {
+        "model": 276,
+        "local_detail_repair": 1
+      },
+      "initial_content_status": {
+        "accepted": 276,
+        "unsupported_detail": 1
+      },
+      "response_models": {
+        "deepseek-v4.1-flash-4": 120,
+        "deepseek-v4.1-flash-2": 68,
+        "deepseek-v4.1-flash": 34,
+        "deepseek-v4.1-flash-3": 55
+      },
+      "extra_requests_used": 0,
+      "extra_requests_limit": 330,
+      "elapsed_minutes": 155.86723585,
+      "remaining_minutes": 564.13276415,
+      "seconds_since_step_save": 27.217471,
+      "pids": {
+        "supervisor_pid": {
+          "alive": true,
+          "process": "25395 02:35:52 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/run_model_comparison.py"
+        },
+        "child_pid": {
+          "alive": true,
+          "process": "44072 37:59 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python -m agentsociety2.society.cli --config /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/configs/cuc_model_v1_chronological.json --steps /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/steps.yaml --run-dir /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_chronological --experiment-id cuc_model_v1_chronological --log-file /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_chronological/engine.log --batch-size 100"
+        }
+      },
+      "log_exception_markers": {
+        "engine.log": {
+          "count": 0,
+          "last": []
+        },
+        "stderr.log": {
+          "count": 1,
+          "last": [
+            "\u001b[36m(EnvRouterActor pid=44121)\u001b[0m [2026-10-16 16:05:04] WARNING Request failed for 'cuc/deepseek' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=60.03 seconds"
+          ]
+        }
+      },
+      "frozen_files_changed": [],
+      "change_since_last_monitor": {
+        "completed_arms": 0,
+        "environment_actions": 192,
+        "posts": 80,
+        "current_arm_steps": 121
+      },
+      "framework_timeout_events": [
+        {
+          "at": "2026-10-16T16:05:04+08:00",
+          "actor": "EnvRouterActor",
+          "timeout_seconds": 60,
+          "sdk_attempt": 1,
+          "status": "SDK logged immediate retry; later steps continued to174; no current step failure",
+          "scope": "framework side, not Agent正文generation_results; not counted in shared330正文extra ledger"
+        }
+      ],
+      "local_detail_repairs": [
+        {
+          "algorithm": "chronological",
+          "agent_id": 77,
+          "week": "2026-W13",
+          "initial_content_check": "unsupported_age:三十八岁",
+          "generation_attempts": 1,
+          "posted": true,
+          "origin": "local_detail_repair",
+          "source": "workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_chronological/agents/agent_0077/AGENT.json"
+        }
+      ],
+      "snapshot_timing_note": "chronological Agent决策276与环境行动274为运行中不同保存时点；不把非原子快照差异当成终态守恒失败，完成后按全部1100核对。"
+    },
+    {
+      "checked_at": "2026-10-16T16:57:34.112516+08:00",
+      "status": "running",
+      "current_arm": "cuc_model_v1_chronological",
+      "completed_arms": 1,
+      "runs": [
+        {
+          "algorithm": "random",
+          "status": "completed",
+          "step": 693,
+          "simulation_time": "2026-06-01T00:00:00",
+          "environment_actions": 1100,
+          "unique_environment_actions": 1100,
+          "agent_decisions": 1100,
+          "completed_weeks": 11,
+          "posts": 176,
+          "body_requests": 176,
+          "elapsed_minutes": 117.73367338333334
+        },
+        {
+          "algorithm": "chronological",
+          "status": "running",
+          "step": 349,
+          "simulation_time": "2026-04-23T07:00:00",
+          "environment_actions": 550,
+          "unique_environment_actions": 550,
+          "agent_decisions": 550,
+          "completed_weeks": 5,
+          "posts": 140,
+          "body_requests": 140,
+          "elapsed_minutes": 67.8125004
+        }
+      ],
+      "total_environment_actions": 1650,
+      "total_agent_decisions": 1650,
+      "total_posts": 316,
+      "total_body_requests": 316,
+      "action_failures": 0,
+      "technical_attempt_failures": 0,
+      "unrecovered_service_failures": 0,
+      "attempt_purposes": {
+        "generation": 316
+      },
+      "content_origins": {
+        "model": 315,
+        "local_detail_repair": 1
+      },
+      "initial_content_status": {
+        "accepted": 315,
+        "unsupported_detail": 1
+      },
+      "response_models": {
+        "deepseek-v4.1-flash": 46,
+        "deepseek-v4.1-flash-4": 138,
+        "deepseek-v4.1-flash-3": 61,
+        "deepseek-v4.1-flash-2": 71
+      },
+      "extra_requests_used": 0,
+      "extra_requests_limit": 330,
+      "elapsed_minutes": 185.73393913333334,
+      "remaining_minutes": 534.2660608666666,
+      "seconds_since_step_save": 7.13202,
+      "pids": {
+        "supervisor_pid": {
+          "alive": true,
+          "process": "25395 03:05:44 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/run_model_comparison.py"
+        },
+        "child_pid": {
+          "alive": true,
+          "process": "44072 01:07:51 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python -m agentsociety2.society.cli --config /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/configs/cuc_model_v1_chronological.json --steps /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/steps.yaml --run-dir /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_chronological --experiment-id cuc_model_v1_chronological --log-file /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_chronological/engine.log --batch-size 100"
+        }
+      },
+      "log_exception_markers": {
+        "engine.log": {
+          "count": 0,
+          "last": []
+        },
+        "stderr.log": {
+          "count": 2,
+          "last": [
+            "\u001b[36m(EnvRouterActor pid=44121)\u001b[0m [2026-10-16 16:05:04] WARNING Request failed for 'cuc/deepseek' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=60.03 seconds",
+            "\u001b[36m(EnvRouterActor pid=44121)\u001b[0m [2026-10-16 16:52:19] WARNING Request failed for 'cuc/deepseek' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=60.03 seconds"
+          ]
+        }
+      },
+      "frozen_files_changed": [],
+      "change_since_last_monitor": {
+        "completed_arms": 0,
+        "environment_actions": 276,
+        "posts": 39,
+        "current_arm_steps": 175
+      },
+      "framework_timeout_count": 2,
+      "framework_timeout_times": [
+        "2026-10-16T16:05:04+08:00",
+        "2026-10-16T16:52:19+08:00"
+      ],
+      "framework_timeout_status": "两次均SDK重试后继续推进；正文账本技术失败0，共享正文重试额度未增加。"
+    },
+    {
+      "checked_at": "2026-10-16T17:27:40.674674+08:00",
+      "status": "running",
+      "current_arm": "cuc_model_v1_chronological",
+      "completed_arms": 1,
+      "runs": [
+        {
+          "algorithm": "random",
+          "status": "completed",
+          "step": 693,
+          "simulation_time": "2026-06-01T00:00:00",
+          "environment_actions": 1100,
+          "unique_environment_actions": 1100,
+          "agent_decisions": 1100,
+          "completed_weeks": 11,
+          "posts": 176,
+          "body_requests": 176,
+          "elapsed_minutes": 117.73367338333334
+        },
+        {
+          "algorithm": "chronological",
+          "status": "running",
+          "step": 562,
+          "simulation_time": "2026-05-17T15:00:00",
+          "environment_actions": 894,
+          "unique_environment_actions": 894,
+          "agent_decisions": 894,
+          "completed_weeks": 8,
+          "posts": 168,
+          "body_requests": 168,
+          "elapsed_minutes": 97.92186969999999
+        }
+      ],
+      "total_environment_actions": 1994,
+      "total_agent_decisions": 1994,
+      "total_posts": 344,
+      "total_body_requests": 344,
+      "action_failures": 0,
+      "technical_attempt_failures": 0,
+      "unrecovered_service_failures": 0,
+      "attempt_purposes": {
+        "generation": 344
+      },
+      "content_origins": {
+        "model": 343,
+        "local_detail_repair": 1
+      },
+      "initial_content_status": {
+        "accepted": 343,
+        "unsupported_detail": 1
+      },
+      "response_models": {
+        "deepseek-v4.1-flash": 49,
+        "deepseek-v4.1-flash-4": 153,
+        "deepseek-v4.1-flash-3": 65,
+        "deepseek-v4.1-flash-2": 77
+      },
+      "extra_requests_used": 0,
+      "extra_requests_limit": 330,
+      "elapsed_minutes": 215.84330843333333,
+      "remaining_minutes": 504.15669156666667,
+      "seconds_since_step_save": 0.333854,
+      "pids": {
+        "supervisor_pid": {
+          "alive": true,
+          "process": "25395 03:35:50 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/run_model_comparison.py"
+        },
+        "child_pid": {
+          "alive": true,
+          "process": "44072 01:37:57 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python -m agentsociety2.society.cli --config /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/configs/cuc_model_v1_chronological.json --steps /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/steps.yaml --run-dir /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_chronological --experiment-id cuc_model_v1_chronological --log-file /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_chronological/engine.log --batch-size 100"
+        }
+      },
+      "log_exception_markers": {
+        "engine.log": {
+          "count": 0,
+          "last": []
+        },
+        "stderr.log": {
+          "count": 2,
+          "last": [
+            "\u001b[36m(EnvRouterActor pid=44121)\u001b[0m [2026-10-16 16:05:04] WARNING Request failed for 'cuc/deepseek' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=60.03 seconds",
+            "\u001b[36m(EnvRouterActor pid=44121)\u001b[0m [2026-10-16 16:52:19] WARNING Request failed for 'cuc/deepseek' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=60.03 seconds"
+          ]
+        }
+      },
+      "frozen_files_changed": [],
+      "change_since_last_monitor": {
+        "completed_arms": 0,
+        "environment_actions": 344,
+        "posts": 28,
+        "current_arm_steps": 213
+      }
+    },
+    {
+      "checked_at": "2026-10-16T17:57:36.890011+08:00",
+      "status": "running",
+      "current_arm": "cuc_model_v1_interest",
+      "completed_arms": 2,
+      "runs": [
+        {
+          "algorithm": "random",
+          "status": "completed",
+          "step": 693,
+          "simulation_time": "2026-06-01T00:00:00",
+          "environment_actions": 1100,
+          "unique_environment_actions": 1100,
+          "agent_decisions": 1100,
+          "completed_weeks": 11,
+          "posts": 176,
+          "body_requests": 176,
+          "elapsed_minutes": 117.73367338333334,
+          "ended_at": "2026-10-16T07:49:36.111332+00:00",
+          "total_weekly_agent_supply": 176
+        },
+        {
+          "algorithm": "chronological",
+          "status": "completed",
+          "step": 693,
+          "simulation_time": "2026-06-01T00:00:00",
+          "environment_actions": 1100,
+          "unique_environment_actions": 1100,
+          "agent_decisions": 1100,
+          "completed_weeks": 11,
+          "posts": 210,
+          "body_requests": 210,
+          "elapsed_minutes": 119.80798051666667,
+          "ended_at": "2026-10-16T09:49:33.841323+00:00",
+          "total_weekly_agent_supply": 210
+        },
+        {
+          "algorithm": "interest",
+          "status": "running",
+          "step": 43,
+          "simulation_time": "2026-03-20T08:00:00",
+          "environment_actions": 64,
+          "unique_environment_actions": 64,
+          "agent_decisions": 64,
+          "completed_weeks": 0,
+          "posts": 19,
+          "body_requests": 19,
+          "elapsed_minutes": 7.934065416666667,
+          "ended_at": null
+        }
+      ],
+      "total_environment_actions": 2264,
+      "total_agent_decisions": 2264,
+      "total_posts": 405,
+      "total_body_requests": 405,
+      "action_failures": 0,
+      "technical_attempt_failures": 0,
+      "unrecovered_service_failures": 0,
+      "attempt_purposes": {
+        "generation": 405
+      },
+      "content_origins": {
+        "model": 404,
+        "local_detail_repair": 1
+      },
+      "initial_content_status": {
+        "accepted": 404,
+        "unsupported_detail": 1
+      },
+      "response_models": {
+        "deepseek-v4.1-flash": 59,
+        "deepseek-v4.1-flash-4": 175,
+        "deepseek-v4.1-flash-3": 80,
+        "deepseek-v4.1-flash-2": 91
+      },
+      "extra_requests_used": 0,
+      "extra_requests_limit": 330,
+      "elapsed_minutes": 245.78023071666667,
+      "remaining_minutes": 474.21976928333333,
+      "seconds_since_step_save": 4.494509,
+      "pids": {
+        "supervisor_pid": {
+          "alive": true,
+          "process": "25395 04:05:47 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/run_model_comparison.py"
+        },
+        "child_pid": {
+          "alive": true,
+          "process": "63662 07:58 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python -m agentsociety2.society.cli --config /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/configs/cuc_model_v1_interest.json --steps /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/steps.yaml --run-dir /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_interest --experiment-id cuc_model_v1_interest --log-file /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_interest/engine.log --batch-size 100"
+        }
+      },
+      "log_exception_markers": {
+        "random": {
+          "engine.log": {
+            "count": 0,
+            "last": []
+          },
+          "stderr.log": {
+            "count": 1,
+            "last": [
+              "\u001b[36m(EnvRouterActor pid=25433)\u001b[0m [2026-10-16 15:35:07] WARNING Request failed for 'cuc/deepseek' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=346.75 seconds"
+            ]
+          }
+        },
+        "chronological": {
+          "engine.log": {
+            "count": 0,
+            "last": []
+          },
+          "stderr.log": {
+            "count": 2,
+            "last": [
+              "\u001b[36m(EnvRouterActor pid=44121)\u001b[0m [2026-10-16 16:05:04] WARNING Request failed for 'cuc/deepseek' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=60.03 seconds",
+              "\u001b[36m(EnvRouterActor pid=44121)\u001b[0m [2026-10-16 16:52:19] WARNING Request failed for 'cuc/deepseek' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=60.03 seconds"
+            ]
+          }
+        },
+        "interest": {
+          "engine.log": {
+            "count": 0,
+            "last": []
+          },
+          "stderr.log": {
+            "count": 0,
+            "last": []
+          }
+        }
+      },
+      "frozen_files_changed": [],
+      "change_since_last_monitor": {
+        "completed_arms": 1,
+        "environment_actions": 270,
+        "posts": 61
+      },
+      "framework_timeout_count_all_started_runs": 3,
+      "framework_timeout_count_correction": "本次补查已完成random尾段发现15:35:07一次超时（名义timeout60秒，日志实际346.75秒）；此前只检查当前chronological，累计2次是漏计。全批累计3次，均恢复；不是本半小时新增超时。"
+    },
+    {
+      "checked_at": "2026-10-16T18:27:27.608716+08:00",
+      "status": "running",
+      "current_arm": "cuc_model_v1_interest",
+      "completed_arms": 2,
+      "runs": [
+        {
+          "algorithm": "random",
+          "status": "completed",
+          "step": 693,
+          "simulation_time": "2026-06-01T00:00:00",
+          "environment_actions": 1100,
+          "unique_environment_actions": 1100,
+          "agent_decisions": 1100,
+          "completed_weeks": 11,
+          "posts": 176,
+          "body_requests": 176,
+          "elapsed_minutes": 117.73367338333334
+        },
+        {
+          "algorithm": "chronological",
+          "status": "completed",
+          "step": 693,
+          "simulation_time": "2026-06-01T00:00:00",
+          "environment_actions": 1100,
+          "unique_environment_actions": 1100,
+          "agent_decisions": 1100,
+          "completed_weeks": 11,
+          "posts": 210,
+          "body_requests": 210,
+          "elapsed_minutes": 119.80798051666667
+        },
+        {
+          "algorithm": "interest",
+          "status": "running",
+          "step": 201,
+          "simulation_time": "2026-04-07T09:00:00",
+          "environment_actions": 319,
+          "unique_environment_actions": 319,
+          "agent_decisions": 319,
+          "completed_weeks": 3,
+          "posts": 104,
+          "body_requests": 104,
+          "elapsed_minutes": 37.77937716666667
+        }
+      ],
+      "total_environment_actions": 2519,
+      "total_agent_decisions": 2519,
+      "total_posts": 490,
+      "total_body_requests": 490,
+      "action_failures": 0,
+      "technical_attempt_failures": 0,
+      "unrecovered_service_failures": 0,
+      "attempt_purposes": {
+        "generation": 490
+      },
+      "content_origins": {
+        "model": 487,
+        "local_detail_repair": 3
+      },
+      "initial_content_status": {
+        "accepted": 487,
+        "unsupported_detail": 3
+      },
+      "response_models": {
+        "deepseek-v4.1-flash": 77,
+        "deepseek-v4.1-flash-4": 209,
+        "deepseek-v4.1-flash-3": 100,
+        "deepseek-v4.1-flash-2": 104
+      },
+      "extra_requests_used": 0,
+      "extra_requests_limit": 330,
+      "elapsed_minutes": 275.6255424666667,
+      "remaining_minutes": 444.3744575333333,
+      "seconds_since_step_save": 1.321,
+      "pids": {
+        "supervisor_pid": {
+          "alive": true,
+          "process": "25395 04:35:37 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/run_model_comparison.py"
+        },
+        "child_pid": {
+          "alive": true,
+          "process": "63662 37:48 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python -m agentsociety2.society.cli --config /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/configs/cuc_model_v1_interest.json --steps /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/steps.yaml --run-dir /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_interest --experiment-id cuc_model_v1_interest --log-file /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_interest/engine.log --batch-size 100"
+        }
+      },
+      "log_exception_markers": {
+        "random": {
+          "engine.log": {
+            "count": 0,
+            "last": []
+          },
+          "stderr.log": {
+            "count": 1,
+            "last": [
+              "\u001b[36m(EnvRouterActor pid=25433)\u001b[0m [2026-10-16 15:35:07] WARNING Request failed for 'cuc/deepseek' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=346.75 seconds"
+            ]
+          }
+        },
+        "chronological": {
+          "engine.log": {
+            "count": 0,
+            "last": []
+          },
+          "stderr.log": {
+            "count": 2,
+            "last": [
+              "\u001b[36m(EnvRouterActor pid=44121)\u001b[0m [2026-10-16 16:05:04] WARNING Request failed for 'cuc/deepseek' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=60.03 seconds",
+              "\u001b[36m(EnvRouterActor pid=44121)\u001b[0m [2026-10-16 16:52:19] WARNING Request failed for 'cuc/deepseek' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=60.03 seconds"
+            ]
+          }
+        },
+        "interest": {
+          "engine.log": {
+            "count": 0,
+            "last": []
+          },
+          "stderr.log": {
+            "count": 0,
+            "last": []
+          }
+        }
+      },
+      "frozen_files_changed": [],
+      "change_since_last_monitor": {
+        "completed_arms": 0,
+        "environment_actions": 255,
+        "posts": 85,
+        "current_arm_steps": 158
+      },
+      "current_arm_local_detail_repairs": [
+        {
+          "agent_id": 85,
+          "week": "2026-W13",
+          "initial_content_checks": [
+            "unsupported_age:四十出头"
+          ],
+          "posted": true,
+          "generation_attempts": 1,
+          "source": "workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_interest/agents/agent_0085/AGENT.json"
+        },
+        {
+          "agent_id": 58,
+          "week": "2026-W13",
+          "initial_content_checks": [
+            "unsupported_age:41岁"
+          ],
+          "posted": true,
+          "generation_attempts": 1,
+          "source": "workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_interest/agents/agent_0058/AGENT.json"
+        }
+      ]
+    },
+    {
+      "checked_at": "2026-10-16T18:57:32.550780+08:00",
+      "status": "running",
+      "current_arm": "cuc_model_v1_interest",
+      "completed_arms": 2,
+      "runs": [
+        {
+          "algorithm": "random",
+          "status": "completed",
+          "step": 693,
+          "simulation_time": "2026-06-01T00:00:00",
+          "environment_actions": 1100,
+          "unique_environment_actions": 1100,
+          "agent_decisions": 1100,
+          "completed_weeks": 11,
+          "posts": 176,
+          "body_requests": 176,
+          "elapsed_minutes": 117.73367338333334
+        },
+        {
+          "algorithm": "chronological",
+          "status": "completed",
+          "step": 693,
+          "simulation_time": "2026-06-01T00:00:00",
+          "environment_actions": 1100,
+          "unique_environment_actions": 1100,
+          "agent_decisions": 1100,
+          "completed_weeks": 11,
+          "posts": 210,
+          "body_requests": 210,
+          "elapsed_minutes": 119.80798051666667
+        },
+        {
+          "algorithm": "interest",
+          "status": "running",
+          "step": 426,
+          "simulation_time": "2026-05-01T15:00:00",
+          "environment_actions": 674,
+          "unique_environment_actions": 674,
+          "agent_decisions": 674,
+          "completed_weeks": 6,
+          "posts": 165,
+          "body_requests": 165,
+          "elapsed_minutes": 67.8617449
+        }
+      ],
+      "total_environment_actions": 2874,
+      "total_agent_decisions": 2874,
+      "total_posts": 551,
+      "total_body_requests": 551,
+      "action_failures": 0,
+      "technical_attempt_failures": 0,
+      "unrecovered_service_failures": 0,
+      "attempt_purposes": {
+        "generation": 551
+      },
+      "content_origins": {
+        "model": 548,
+        "local_detail_repair": 3
+      },
+      "initial_content_status": {
+        "accepted": 548,
+        "unsupported_detail": 3
+      },
+      "response_models": {
+        "deepseek-v4.1-flash": 88,
+        "deepseek-v4.1-flash-4": 233,
+        "deepseek-v4.1-flash-3": 115,
+        "deepseek-v4.1-flash-2": 115
+      },
+      "extra_requests_used": 0,
+      "extra_requests_limit": 330,
+      "elapsed_minutes": 305.7079102,
+      "remaining_minutes": 414.2920898,
+      "seconds_since_step_save": 2.868388,
+      "pids": {
+        "supervisor_pid": {
+          "alive": true,
+          "process": "25395 05:05:42 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/run_model_comparison.py"
+        },
+        "child_pid": {
+          "alive": true,
+          "process": "63662 01:07:53 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python -m agentsociety2.society.cli --config /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/configs/cuc_model_v1_interest.json --steps /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/steps.yaml --run-dir /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_interest --experiment-id cuc_model_v1_interest --log-file /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_interest/engine.log --batch-size 100"
+        }
+      },
+      "log_exception_markers": {
+        "random": {
+          "engine.log": {
+            "count": 0,
+            "last": []
+          },
+          "stderr.log": {
+            "count": 1,
+            "last": [
+              "\u001b[36m(EnvRouterActor pid=25433)\u001b[0m [2026-10-16 15:35:07] WARNING Request failed for 'cuc/deepseek' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=346.75 seconds"
+            ]
+          }
+        },
+        "chronological": {
+          "engine.log": {
+            "count": 0,
+            "last": []
+          },
+          "stderr.log": {
+            "count": 2,
+            "last": [
+              "\u001b[36m(EnvRouterActor pid=44121)\u001b[0m [2026-10-16 16:05:04] WARNING Request failed for 'cuc/deepseek' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=60.03 seconds",
+              "\u001b[36m(EnvRouterActor pid=44121)\u001b[0m [2026-10-16 16:52:19] WARNING Request failed for 'cuc/deepseek' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=60.03 seconds"
+            ]
+          }
+        },
+        "interest": {
+          "engine.log": {
+            "count": 0,
+            "last": []
+          },
+          "stderr.log": {
+            "count": 0,
+            "last": []
+          }
+        }
+      },
+      "frozen_files_changed": [],
+      "change_since_last_monitor": {
+        "completed_arms": 0,
+        "environment_actions": 355,
+        "posts": 61,
+        "current_arm_steps": 225
+      }
+    },
+    {
+      "checked_at": "2026-10-16T19:28:13.273340+08:00",
+      "status": "running",
+      "current_arm": "cuc_model_v1_interest",
+      "completed_arms": 2,
+      "runs": [
+        {
+          "algorithm": "random",
+          "status": "completed",
+          "step": 693,
+          "simulation_time": "2026-06-01T00:00:00",
+          "environment_actions": 1100,
+          "unique_environment_actions": 1100,
+          "agent_decisions": 1100,
+          "completed_weeks": 11,
+          "posts": 176,
+          "body_requests": 176,
+          "elapsed_minutes": 117.73367338333334
+        },
+        {
+          "algorithm": "chronological",
+          "status": "completed",
+          "step": 693,
+          "simulation_time": "2026-06-01T00:00:00",
+          "environment_actions": 1100,
+          "unique_environment_actions": 1100,
+          "agent_decisions": 1100,
+          "completed_weeks": 11,
+          "posts": 210,
+          "body_requests": 210,
+          "elapsed_minutes": 119.80798051666667
+        },
+        {
+          "algorithm": "interest",
+          "status": "running",
+          "step": 662,
+          "simulation_time": "2026-05-27T19:00:00",
+          "environment_actions": 1045,
+          "unique_environment_actions": 1045,
+          "agent_decisions": 1045,
+          "completed_weeks": 10,
+          "posts": 206,
+          "body_requests": 206,
+          "elapsed_minutes": 98.54045423333334
+        }
+      ],
+      "total_environment_actions": 3245,
+      "total_agent_decisions": 3245,
+      "total_posts": 592,
+      "total_body_requests": 592,
+      "action_failures": 0,
+      "technical_attempt_failures": 0,
+      "unrecovered_service_failures": 0,
+      "attempt_purposes": {
+        "generation": 592
+      },
+      "content_origins": {
+        "model": 589,
+        "local_detail_repair": 3
+      },
+      "initial_content_status": {
+        "accepted": 589,
+        "unsupported_detail": 3
+      },
+      "response_models": {
+        "deepseek-v4.1-flash": 96,
+        "deepseek-v4.1-flash-4": 249,
+        "deepseek-v4.1-flash-3": 124,
+        "deepseek-v4.1-flash-2": 123
+      },
+      "extra_requests_used": 0,
+      "extra_requests_limit": 330,
+      "elapsed_minutes": 336.3866195333333,
+      "remaining_minutes": 383.6133804666667,
+      "seconds_since_step_save": -0.025597,
+      "pids": {
+        "supervisor_pid": {
+          "alive": true,
+          "process": "25395 05:36:23 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/run_model_comparison.py"
+        },
+        "child_pid": {
+          "alive": true,
+          "process": "63662 01:38:34 /Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python -m agentsociety2.society.cli --config /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/configs/cuc_model_v1_interest.json --steps /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/init/steps.yaml --run-dir /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_interest --experiment-id cuc_model_v1_interest --log-file /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_interest/engine.log --batch-size 100"
+        }
+      },
+      "log_exception_markers": {
+        "random": {
+          "engine.log": {
+            "count": 0,
+            "last": []
+          },
+          "stderr.log": {
+            "count": 1,
+            "last": [
+              "\u001b[36m(EnvRouterActor pid=25433)\u001b[0m [2026-10-16 15:35:07] WARNING Request failed for 'cuc/deepseek' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=346.75 seconds"
+            ]
+          }
+        },
+        "chronological": {
+          "engine.log": {
+            "count": 0,
+            "last": []
+          },
+          "stderr.log": {
+            "count": 2,
+            "last": [
+              "\u001b[36m(EnvRouterActor pid=44121)\u001b[0m [2026-10-16 16:05:04] WARNING Request failed for 'cuc/deepseek' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=60.03 seconds",
+              "\u001b[36m(EnvRouterActor pid=44121)\u001b[0m [2026-10-16 16:52:19] WARNING Request failed for 'cuc/deepseek' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=60.03 seconds"
+            ]
+          }
+        },
+        "interest": {
+          "engine.log": {
+            "count": 0,
+            "last": []
+          },
+          "stderr.log": {
+            "count": 0,
+            "last": []
+          }
+        }
+      },
+      "frozen_files_changed": [],
+      "change_since_last_monitor": {
+        "completed_arms": 0,
+        "environment_actions": 371,
+        "posts": 41,
+        "current_arm_steps": 236
+      }
+    },
+    {
+      "checked_at": "2026-10-16T20:09:59.483174+08:00",
+      "status": "completed",
+      "current_arm": null,
+      "completed_arms": 3,
+      "runs": [
+        {
+          "algorithm": "random",
+          "steps": 693,
+          "actions": 1100,
+          "weeks": 11,
+          "posts": 176,
+          "body_requests": 176,
+          "origins": {
+            "model": 176
+          },
+          "end_time": "2026-10-16T07:49:36.111332+00:00"
+        },
+        {
+          "algorithm": "chronological",
+          "steps": 693,
+          "actions": 1100,
+          "weeks": 11,
+          "posts": 210,
+          "body_requests": 210,
+          "origins": {
+            "model": 209,
+            "local_detail_repair": 1
+          },
+          "end_time": "2026-10-16T09:49:33.841323+00:00"
+        },
+        {
+          "algorithm": "interest",
+          "steps": 693,
+          "actions": 1100,
+          "weeks": 11,
+          "posts": 217,
+          "body_requests": 217,
+          "origins": {
+            "model": 215,
+            "local_detail_repair": 2
+          },
+          "end_time": "2026-10-16T11:35:15.898733+00:00"
+        }
+      ],
+      "total_environment_actions": 3300,
+      "total_agent_decisions": 3300,
+      "total_posts": 603,
+      "total_body_requests": 603,
+      "action_failures": 0,
+      "technical_attempt_failures": 0,
+      "unrecovered_service_failures": 0,
+      "content_origins": {
+        "model": 600,
+        "local_detail_repair": 3
+      },
+      "initial_content_status": {
+        "accepted": 600,
+        "unsupported_detail": 3
+      },
+      "extra_requests_used": 0,
+      "extra_requests_limit": 330,
+      "elapsed_minutes": 343.59030943333335,
+      "remaining_minutes_at_finish": 376.40969056666665,
+      "processes": {
+        "supervisor_pid": "",
+        "child_pid": ""
+      },
+      "frozen_files_changed": [],
+      "framework_timeout_count_all_started_runs": 3,
+      "finished_at": "2026-10-16T11:35:25.494734+00:00",
+      "change_since_last_monitor": {
+        "completed_arms": 1,
+        "environment_actions": 55,
+        "posts": 11,
+        "current_arm_steps": 31
+      },
+      "quality_interpretation": "3条unsupported_detail为自动规则命中，不是3条语义金标幻觉。逐文审读发现chronological agent77的三十八岁描述本人且符合persona；另interest agent58/85原始死者年龄无提示依据。详见model-comparison-analysis/data/text_review_findings.md。"
+    }
+  ],
+  "observed_body_response_models": [
+    "deepseek-v4.1-flash",
+    "deepseek-v4.1-flash-2",
+    "deepseek-v4.1-flash-3",
+    "deepseek-v4.1-flash-4"
+  ]
+}

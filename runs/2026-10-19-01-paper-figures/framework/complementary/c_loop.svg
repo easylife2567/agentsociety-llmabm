@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="63.75mm" viewBox="0 0 2400 850" role="img" aria-labelledby="title desc"><title id="title">Complementary studies: an empirical–mechanism circuit</title><desc id="desc">Two complementary studies of postmortem public representation. Empirical and simulation panel areas: 35:65 (812:1508; equal 638-unit height). Visibility configuration, selective expression and content recirculation form the proposed mechanism. All authors retain fixed types. Candle and flower icons indicate the mourning context, not a variable or a result.</desc><defs>
+<marker id="ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#111827"/></marker>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#2167A5"/></marker>
+<marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#A72E3B"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#704097"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#4D7A27"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#48515D"/></marker>
+</defs><style>text{font-family:Arial,Helvetica,sans-serif;fill:#111827;font-size:32px}.title{font-size:42px;font-weight:700}.h{font-size:36px;font-weight:700}.b{font-size:32px}.s{font-size:30px}.xs{font-size:27px}.big{font-size:50px;font-weight:700}.math{font-family:Times New Roman,Times,serif;font-style:italic}</style><rect width="2400" height="850" fill="white"/>
+<text x="24" y="48" class="title" text-anchor="start">Complementary studies of postmortem public representation</text>
+<rect x="24" y="80" width="812" height="638" rx="0" fill="#FFFFFF" stroke="#4D7A27" stroke-width="2.5" id="empirical-panel"/>
+<rect x="868" y="80" width="1508" height="638" rx="0" fill="#FFFFFF" stroke="#111827" stroke-width="2.5" id="simulation-panel"/>
+<rect x="24" y="80" width="812" height="64" rx="0" fill="#A9D47D" stroke="#4D7A27" stroke-width="2.5"/>
+<text x="48" y="124" class="h" text-anchor="start">Platform analysis</text>
+<g aria-label="Mourning context" transform="translate(759 107) scale(0.62)"><ellipse cx="0" cy="52" rx="28" ry="5" fill="#D5D8DC"/><rect x="-13" y="-3" width="26" height="52" rx="4" fill="white" stroke="#111827" stroke-width="2"/><path d="M-5 0 V42" stroke="#D5D8DC" stroke-width="5"/><path d="M0 -3 V-10" stroke="#111827" stroke-width="2"/><path d="M0 -12 C-18 -23 -4 -36 0 -41 C13 -27 15 -19 0 -12 Z" fill="#F47D7D" stroke="#111827" stroke-width="1.5"/><path d="M0 -15 C-7 -22 -1 -27 1 -30 C7 -23 7 -19 0 -15 Z" fill="white"/>
+<g transform="translate(-36 17)"><path d="M0 4 L4 36 M2 25 L-9 17 M2 21 L13 13" fill="none" stroke="#48515D" stroke-width="2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(0)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(60)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(120)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(180)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(240)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(300)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<circle r="4" fill="#111827"/></g>
+<g transform="translate(37 19)"><path d="M0 4 L4 36 M2 25 L-9 17 M2 21 L13 13" fill="none" stroke="#48515D" stroke-width="2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(0)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(60)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(120)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(180)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(240)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(300)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<circle r="4" fill="#111827"/></g>
+</g>
+<text x="892" y="121" class="h" text-anchor="start">Simulation modeling</text>
+<text x="892" y="161" class="s" text-anchor="start">100 fixed-type agents · W12–W22</text>
+<text x="2348" y="161" class="xs" text-anchor="end" style="fill:#48515D">Representation reorganization mechanism</text>
+<rect x="50" y="170" width="760" height="111" rx="5" fill="#EDF5E3" stroke="#4D7A27" stroke-width="2"/>
+<text x="72" y="211" class="h" text-anchor="start">49,930 posts · Jan–May 2026</text>
+<text x="72" y="255" class="s" text-anchor="start">Douyin + Xiaohongshu</text>
+<path d="M430 284 V310" fill="none" stroke="#4D7A27" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#green)"/>
+<rect x="50" y="316" width="760" height="88" rx="5" fill="#A9D47D" stroke="#4D7A27" stroke-width="2"/>
+<text x="72" y="353" class="h" text-anchor="start">Content coding</text>
+<text x="72" y="389" class="s" text-anchor="start">Post-level expression categories</text>
+<path d="M430 407 V429" fill="none" stroke="#4D7A27" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#green)"/>
+<rect x="50" y="435" width="760" height="252" rx="5" fill="#FFFFFF" stroke="#4D7A27" stroke-width="2"/>
+<text x="72" y="477" class="h" text-anchor="start">Two analytical axes</text>
+<rect x="72" y="498" width="350" height="111" rx="4" fill="#EDF5E3" stroke="#4D7A27" stroke-width="2"/>
+<rect x="440" y="498" width="348" height="111" rx="4" fill="#EDF5E3" stroke="#4D7A27" stroke-width="2"/>
+<text x="88" y="533" class="s" text-anchor="start" style="font-weight:700">Temporal evolution</text>
+<text x="88" y="566" class="xs" text-anchor="start">Weekly counts +</text>
+<text x="88" y="597" class="xs" text-anchor="start">content composition</text>
+<text x="456" y="533" class="s" text-anchor="start" style="font-weight:700">Platform differences</text>
+<text x="456" y="566" class="xs" text-anchor="start">Compare expression</text>
+<text x="456" y="597" class="xs" text-anchor="start">trajectories</text>
+<path d="M247 609 V628 H614 V609" fill="none" stroke="#4D7A27" stroke-width="2.5"/>
+<path d="M430 628 V642" fill="none" stroke="#4D7A27" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#green)"/>
+<text x="430" y="675" class="s" text-anchor="middle">Mourning peak → later meme growth</text>
+<path d="M810 477 H850 V182 H1285 V214" fill="none" stroke="#4D7A27" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#green)"/>
+<text x="902" y="205" class="xs" text-anchor="start" style="fill:#4D7A27">Mechanism questions</text>
+<rect x="906" y="220" width="430" height="267" rx="8" fill="#FFFFFF" stroke="#2167A5" stroke-width="2.5"/>
+<rect x="906" y="220" width="430" height="92" rx="8" fill="#88BFF2" stroke="#2167A5" stroke-width="2.5"/>
+<text x="929" y="259" class="h" text-anchor="start">1  Visibility</text>
+<text x="929" y="299" class="h" text-anchor="start">configuration</text>
+<text x="930" y="352" class="s" text-anchor="start">Frozen inputs + pool</text>
+<text x="930" y="393" class="s" text-anchor="start">Random / chronological /</text>
+<text x="930" y="428" class="s" text-anchor="start">interest-based curation</text>
+<text x="930" y="469" class="s" text-anchor="start" style="font-weight:700">Personal feed: ≤10 posts</text>
+<rect x="1392" y="220" width="940" height="286" rx="8" fill="#FFFFFF" stroke="#A72E3B" stroke-width="2.5"/>
+<rect x="1392" y="220" width="940" height="61" rx="8" fill="#F47D7D" stroke="#A72E3B" stroke-width="2.5"/>
+<text x="1417" y="263" class="h" text-anchor="start">2  Selective expression</text>
+<text x="1862" y="331" class="math" text-anchor="middle" style="font-size:45px">U<tspan baseline-shift="sub" font-size="30.6">it</tspan><tspan> = B</tspan><tspan baseline-shift="sub" font-size="30.6">i</tspan><tspan> + R</tspan><tspan baseline-shift="sub" font-size="30.6">it</tspan><tspan>(D</tspan><tspan baseline-shift="sub" font-size="30.6">it</tspan><tspan> − B</tspan><tspan baseline-shift="sub" font-size="30.6">i</tspan><tspan>)</tspan></text>
+<text x="1417" y="379" class="b" text-anchor="start" style="font-weight:700">U ≥ fixed threshold: LLM → published post</text>
+<text x="1417" y="420" class="s" text-anchor="start">U &lt; fixed threshold: no post</text>
+<text x="1417" y="471" class="s" text-anchor="start">Fixed persona + ≤5 feed excerpts (≤120 chars each)</text>
+<path d="M1336 355 H1385" fill="none" stroke="#2167A5" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#blue)"/>
+<rect x="906" y="540" width="521" height="82" rx="6" fill="#F3F4F6" stroke="#48515D" stroke-width="2" stroke-dasharray="8 5"/>
+<text x="929" y="574" class="s" text-anchor="start" style="font-weight:700">Exposure history → future R</text>
+<text x="929" y="609" class="xs" text-anchor="start">Prior cumulative same-type contact</text>
+<path d="M1121 487 V535" fill="none" stroke="#48515D" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#gray)" stroke-dasharray="7 5"/>
+<path d="M1427 581 H1530 V506" fill="none" stroke="#48515D" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#gray)" stroke-dasharray="7 5"/>
+<text x="1450" y="565" class="xs" text-anchor="start" style="fill:#48515D">later</text>
+<rect x="1641" y="539" width="691" height="163" rx="8" fill="#FFFFFF" stroke="#704097" stroke-width="2.5"/>
+<rect x="1641" y="539" width="691" height="57" rx="8" fill="#BE9AE3" stroke="#704097" stroke-width="2.5"/>
+<text x="1664" y="579" class="h" text-anchor="start">3  Content recirculation</text>
+<text x="1664" y="635" class="s" text-anchor="start">Chronological: later batches</text>
+<text x="1664" y="679" class="s" text-anchor="start">Random / interest: next week</text>
+<path d="M2214 506 V533" fill="none" stroke="#A72E3B" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#red)"/>
+<path d="M1641 647 H1502 V690 H889 V365 H900" fill="none" stroke="#704097" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#purple)"/>
+<text x="1164" y="679" class="s" text-anchor="middle" style="fill:#704097;font-weight:700">Return → re-exposure</text>
+<path d="M430 719 V743" fill="none" stroke="#4D7A27" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#green)"/>
+<path d="M1986 719 V743" fill="none" stroke="#704097" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#purple)"/>
+<rect x="24" y="750" width="2352" height="76" rx="0" fill="#F3F4F6" stroke="#111827" stroke-width="2"/>
+<text x="49" y="799" class="h" text-anchor="start">Public representation reorganization</text>
+<text x="972" y="798" class="b" text-anchor="start">Observed patterns + mechanism explanation</text>
+</svg>

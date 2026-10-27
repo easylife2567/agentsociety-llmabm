@@ -1,0 +1,441 @@
+"""CurationDiscourseAgent: 算法策展舆论场模拟的话语参与者 Agent。
+
+每 tick 固定管线（LLM 调用预算受控，0-1 次/agent-tick）：
+1. **get_feed**（readonly, template_mode）——取回本周 feed 快照（feed 列表、意见气候、
+   玩梗涌现环境、全局供给/曝光份额、个人累计曝光）。
+2. **数字化发言决策**（无 LLM，2026-09-14 锚定式效用修订）
+   ——U = B_i + R·(D−B_i)，发言当且仅当 U ≥ activity（activity = 个体表达门槛，
+   门槛低的 agent 更容易发言；确定性决策，无随机数，给定状态与参数行为唯一）。
+   B_i 是事件前常态表达效用锚点；沉默螺旋 D 表示当周意见气候，注意力衰减 R 只折减
+   D 相对 B_i 的冲击偏离，使表达回归常态而不是机械归零。高显著性外生事件以等效信息
+   槽位进入 D 的意见气候输入，不复制帖子，也不直接绕过表达门槛。
+   环境观测量（B/S/G）仍随快照取回并写入 decision_log，但不参与决策。
+   决策分量（份额/因子/环境/效用/门槛）全量写入 decision_log，可完整审计与事后重算。
+3. 若发言，一次内容生成 completion——提示词包含本周 feed 前 feed_context_n 条帖子的
+   作者与正文摘录，要求**基于所见内容**回应/讨论/二创/跟帖式发言（用户 2026-09-10 裁定），
+   按固定类型生成中文帖子（≤300字），只选所见内容已出现的类型词，不把词库当事实依据。
+4. **create_post**（幂等, template_mode）——发布，帖类型 = 作者类型（by construction）。
+
+类型全程固定（实验设计 二.2）：LLM 只负责"说什么"，"是否说"由数值算法决定。
+"""
+
+from __future__ import annotations
+
+import importlib.util
+import json
+import logging
+import math
+from collections import deque
+from datetime import datetime
+from pathlib import Path
+from typing import Any
+
+from agentsociety2.agent.base import AgentBase
+
+logger = logging.getLogger(__name__)
+
+# 内容输入和发布前验收共用纯函数；表达效用保持原实现。
+_quality_spec = importlib.util.spec_from_file_location('curation_content_quality', Path(__file__).with_name('curation_content_quality.py'))
+quality = importlib.util.module_from_spec(_quality_spec)
+_quality_spec.loader.exec_module(quality)
+
+
+# ---------------- 共享机制纯函数（与 env / calibrate_speak.py 同源） ----------------
+# 沉默螺旋因子 D 的实现放 custom/envs/curation_mechanisms.py，三处（agent / env / 校准脚本）
+# import 同一份，避免"校准-仿真不同构"。本模块按路径加载，与 env 模块同一模式。
+_MECH_PATH = Path(__file__).resolve().parents[1] / "envs" / "curation_mechanisms.py"
+_mech_spec = importlib.util.spec_from_file_location("curation_mechanisms", _MECH_PATH)
+if _mech_spec is None or _mech_spec.loader is None:  # pragma: no cover
+    raise ImportError(f"无法加载共享机制模块: {_MECH_PATH}")
+mech = importlib.util.module_from_spec(_mech_spec)
+_mech_spec.loader.exec_module(mech)
+
+VALID_TYPES = ("meme", "mourning", "marketing", "education", "other")
+
+# ---------------- 发言决策：锚定式表达效用模型（用户 2026-09-14 裁定） ----------------
+# U = B_i + R·(D−B_i)，发言当且仅当 U ≥ activity。
+#   D = 1 + s·tanh(k·(share_own − base)/base)           沉默的螺旋：同类气候共振放大收益、
+#       少数派处境抑制收益（负值段即"孤立成本"）——有界 tanh，无地板（2026-09-12 裁定，
+#       实现见共享模块 curation_mechanisms.spiral_factor）。
+#       文献依据：Noelle-Neumann 1974（恐惧孤立）；Blanco 2005 博弈式给出"发言门槛
+#       = 孤立成本/(收益+成本)"，与本模型 U ≥ activity 的门槛结构同构；Sohn & Geidner 2015
+#       / Cabrera et al. 2021 用 logistic 有界映射把意见气候 δ 转成表达意愿；
+#       Granovetter 1978 阈值分布对应 activity 的 U[0.8,1.2] 个体抖动。
+#   R = exp(−λ·cum_own/15)                              注意力衰减：重复曝光疲劳折减收益
+#       （Wu & Huberman 2007；Candia et al. 2019 两段式衰减）。半饱和尺度 15 ≈ 一周半
+#       活跃曝光；2026-09-12 用户裁定由 50 调至 20，2026-09-13 进一步下压至 15
+#       （依据见 SMOKE_DIAGNOSIS §五之五：真实总量深 V 而模拟近平 → 退潮未显现；
+#       且趋势变陡后锯齿相对不显眼、效标拟合改善 3 倍；二次下压经代理实测
+#       玩梗 W22 份额 0.608 vs 真实 0.603、W13 悼念 0.456 vs 0.414）。
+#
+# 2026-09-12 用户裁定：原第三因子 **玩梗涌现环境增益 G = clamp(B^β·S^σ, 0.2, 3.0)** 退役
+# （原 U = D·R·G^θ，仅玩梗型 θ>0）。依据（见 hypothesis_4/experiment_1/
+# SMOKE_DIAGNOSIS_w19_cliff.md §五之二/§五之三）：① G 的两处标定常数（K_a=52 与基准周）
+# 与它要比较的内生存量（约 450–510）量纲不匹配 → 丰沛度 B 从 W13 起饱和为常数 ≈3.6，
+# "存量越丰沛越易诞生 meme" 在数值上未工作；② G 只对玩梗型生效，等价于把该类型的有效
+# 门槛打个 3 折（W18-19 有效门槛 0.32 vs 其他类型 0.95），且随周漂移 6 倍，与"类型间不设
+# 门槛差异"的裁定冲突；③ no-G 反事实探针实测：去掉 G 后玩梗第二波主体不受影响
+# （W20-22：38 vs 47 帖 = 0.81），G 的作用集中在 W17–W19 的早期零星参与。
+# B/S/G 仍在 env 侧逐周计算并写入 replay（作为描述性时间轴与审计线索），但**不进入任何
+# 类型的决策**；`sustained_hot`（冻结 S）因此不再产生行为差异，配置统一为 normal。
+#
+# 2026-09-14 标定：B_i 固定自 W05-W12 常态盘；alpha_D 与五类 λ 只使用 W13-W18
+# 拟合，W19-W22 留出验证。alpha_D 乘在 s 上而非 D 上，保持 D 的中性中心为 1。
+# profile 未带 params 时使用下列回退值；正式配置会显式下发所有参数。
+
+_CALIBRATED_ALPHA_D = 0.4296954755626446
+
+_PARAM_DEFAULTS: dict[str, dict[str, float]] = {
+    "meme":      {"activity": 0.95, "spiral": 1.2, "spiral_scale": _CALIBRATED_ALPHA_D,
+                  "decay": 1.2430377762128202, "baseline_utility": 0.7755},
+    "mourning":  {"activity": 0.95, "spiral": 0.8, "spiral_scale": _CALIBRATED_ALPHA_D,
+                  "decay": 2.2820352013850083, "baseline_utility": 0.7678},
+    "marketing": {"activity": 0.95, "spiral": 0.2, "spiral_scale": _CALIBRATED_ALPHA_D,
+                  "decay": 1.0192411149739293, "baseline_utility": 0.82515},
+    "education": {"activity": 0.95, "spiral": 0.5, "spiral_scale": _CALIBRATED_ALPHA_D,
+                  "decay": 2.4936143467584957, "baseline_utility": 0.7412},
+    "other":     {"activity": 0.95, "spiral": 1.5, "spiral_scale": _CALIBRATED_ALPHA_D,
+                  "decay": 4.429457710113387, "baseline_utility": 0.7686},
+}
+# 沉默螺旋的期望份额基线。用户 2026-09-10 裁定：群体按发帖人口径比例
+# 用户 2026-09-13 更正为：营销23/悼念22/其他21/玩梗19/教育15（不再按内容划分口径）。
+_POP_SHARE = {"meme": 0.19, "mourning": 0.22, "marketing": 0.23, "education": 0.15, "other": 0.21}
+
+
+def _event_adjusted_share(
+    observed_share: float,
+    feed_slots: float,
+    event_signal: dict,
+    own_type: str,
+) -> tuple[float, bool, float]:
+    """把外生事件显著性并入本类型气候，返回（有效份额、是否生效、等效槽位）。"""
+    active = bool(event_signal.get("active")) and event_signal.get("type") == own_type
+    salience_slots = max(0.0, float(event_signal.get("salience_slots", 0.0) or 0.0))
+    if not active or salience_slots <= 0:
+        return observed_share, active, 0.0
+    denominator = feed_slots + salience_slots
+    if denominator <= 0:
+        return observed_share, active, salience_slots
+    observed_own_slots = observed_share * feed_slots
+    return (observed_own_slots + salience_slots) / denominator, active, salience_slots
+
+class CurationDiscourseAgent(AgentBase):
+    """算法策展舆论场中的固定类型话语参与者（玩梗/悼念/营销/教育/其他）。"""
+
+    # ------------------------------------------------------------------
+    # Registry descriptions
+    # ------------------------------------------------------------------
+    @classmethod
+    def description(cls) -> str:
+        return (
+            "CurationDiscourseAgent: 固定内容类型的社媒发言者。"
+            "每 tick 先读推荐 feed，再按锚定式表达效用模型"
+            "（常态锚点 + 注意力衰减 × 气候冲击偏离）数值决策是否公开发言；"
+            "发言内容严格限于自身类型并融入类型词表词。"
+        )
+
+    @classmethod
+    def init_description(cls) -> str:
+        return """CurationDiscourseAgent: 固定内容类型的社媒发言者。
+
+通过 ``CurationDiscourseAgent.create(workspace_path, profile, config)`` 创建。
+
+**Profile fields:**
+- id (int): 唯一 agent id。
+- name (str): 显示名（中文网名）。
+- agent_type (str): 固定类型，取值 meme/mourning/marketing/education/other。
+- persona (str): 完整人设文本（类型模板 + 个体人口学特征），内容生成风格依据。
+- params (dict): 发言决策数值参数 {activity, spiral, spiral_scale, decay,
+  baseline_utility}（可选，
+  缺失回退类型均值）。activity = 表达门槛（越低越容易发言）；
+  （旧版第四个参数 emergence/θ 已于 2026-09-12 退役，缺省即忽略）。
+- type_vocab (list[str]): 本类型词表个人常用词库（可选），发言须自然融入 1-3 词。
+
+**Config fields（均可选）:**
+- max_content_chars (int, 默认 300): 单帖最大字符数。
+- feed_context_n (int, 默认 5): 内容生成提示词中包含的本周 feed 帖子条数
+  （发言须基于所见帖子：回应/讨论/二创/跟帖）。
+
+**Example config:**
+```json
+{"id": 1, "profile": {"name": "抽象老雪", "agent_type": "meme", "persona": "...",
+  "params": {"activity": 0.5, "spiral": 1.2, "spiral_scale": 0.4297,
+             "decay": 1.243, "baseline_utility": 0.7755},
+  "type_vocab": ["抽象", "乐子"]}, "config": {"feed_context_n": 5}}
+```
+"""
+
+    # ------------------------------------------------------------------
+    # Workspace contract（Template 1：自管 AGENT.json，不用 skill runtime）
+    # ------------------------------------------------------------------
+    @classmethod
+    def create(cls, workspace_path: Path, profile: dict, config: dict) -> None:
+        workspace_path = Path(workspace_path)
+        workspace_path.mkdir(parents=True, exist_ok=True)
+        (workspace_path / "config.json").write_text(
+            json.dumps(config or {}, ensure_ascii=False, indent=2), encoding="utf-8")
+        agent_id = int(profile.get("id", 0))
+        name = str(profile.get("name") or f"Agent_{agent_id}")
+        (workspace_path / "AGENT.json").write_text(
+            json.dumps(
+                {"id": agent_id, "name": name, "profile": profile,
+                 "step_count": 0, "decision_log": []},
+                ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+
+    @classmethod
+    async def from_workspace(cls, workspace_path: Path, service_proxy: Any) -> "CurationDiscourseAgent":
+        agent = cls()
+        await agent.restore(workspace_path, service_proxy)
+        return agent
+
+    async def restore(self, workspace_path: Path, service_proxy: Any) -> None:
+        workspace_path = Path(workspace_path)
+        cfg: dict = {}
+        cfg_path = workspace_path / "config.json"
+        if cfg_path.exists():
+            cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
+        meta = json.loads((workspace_path / "AGENT.json").read_text(encoding="utf-8"))
+        self._id = int(meta.get("agent_id", meta.get("id", 0)))
+        self._profile = meta.get("profile", {"name": meta.get("name")})
+        self._name = meta.get("name") or f"Agent_{self._id}"
+        self._config = dict(cfg or {})
+        self._bind_services(service_proxy)
+        self._step_count = int(meta.get("step_count", 0))
+        self._decision_log: list[dict] = list(meta.get("decision_log", []))
+        # 业务状态
+        self._agent_type = str(self.get_profile().get("agent_type", "other"))
+        if self._agent_type not in VALID_TYPES:
+            raise ValueError(f"非法 agent_type: {self._agent_type}")
+        self._persona = str(self.get_profile().get("persona", ""))
+        # 类型词表（配置期从 vocabs.json 按类型抽样注入 profile；用户裁定：
+        # 发言须用本类型词表中的词组织语言，同时让 env 判类标签与作者类型对齐）。
+        self._type_vocab: list[str] = [str(w) for w in (self.get_profile().get("type_vocab") or [])]
+        # 发言决策数值参数（profile.params 优先，缺失回退类型均值）。
+        raw_params = self.get_profile().get("params") or {}
+        defaults = _PARAM_DEFAULTS.get(self._agent_type, {})
+        # emergence（θ）已于 2026-09-12 退役：旧 profile 里若仍带该键，此处直接忽略。
+        self._params: dict[str, float] = {
+            k: float(raw_params.get(k, defaults.get(k, 0.0)))
+            for k in ("activity", "spiral", "spiral_scale", "decay", "baseline_utility")
+        }
+        # chronological 专用行动时刻：Asia/Shanghai 本地周内小时（周一 00:00=0，
+        # 周日 23:00=167）。该字段只写入 chronological 配置；random / interest
+        # 不携带它，仍按各自的周级 step 行动，三种推荐制度互不借用机制。
+        action_hour = self.get_profile().get("chronological_action_hour")
+        self._chronological_action_hour: int | None = (
+            int(action_hour) if action_hour is not None else None
+        )
+        if self._chronological_action_hour is not None and not 0 <= self._chronological_action_hour < 168:
+            raise ValueError(
+                "chronological_action_hour must be in [0, 167], got "
+                f"{self._chronological_action_hour}"
+            )
+
+    async def to_workspace(self, workspace_path: Path) -> None:
+        workspace_path = Path(workspace_path)
+        (workspace_path / "AGENT.json").write_text(
+            json.dumps(
+                {"id": self._id, "name": self._name, "profile": self.get_profile(),
+                 "step_count": getattr(self, "_step_count", 0),
+                 "decision_log": getattr(self, "_decision_log", [])},
+                ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+
+    # ------------------------------------------------------------------
+    # Env 返回解析（防御式：codegen 生成的代码自行命名 results 键）
+    # ------------------------------------------------------------------
+    @staticmethod
+    def _find_feed_dict(node: Any) -> dict | None:
+        """在 ask_env 返回的 results 里查找 get_feed 快照（含 feed/meme_env 键的字典）。
+
+        迭代 BFS 实现（浅层优先 + 命中即停），比递归 DFS 少一层函数调用开销且无深递归；
+        跳过 variables 子树；对任意嵌套结构保持防御式兼容。"""
+        if not isinstance(node, (dict, list)):
+            return None
+        queue: deque[Any] = deque([node])
+        while queue:
+            cur = queue.popleft()
+            if isinstance(cur, dict):
+                if "feed" in cur and "meme_env" in cur:
+                    return cur
+                for k, v in cur.items():
+                    if k != "variables" and isinstance(v, (dict, list)):
+                        queue.append(v)
+            else:
+                queue.extend(v for v in cur if isinstance(v, (dict, list)))
+        return None
+
+    # ---------------- 发言决策数值算法（无 LLM） ----------------
+
+    def _speak_stimulus(self, snap: dict) -> tuple[float, dict]:
+        """锚定式表达效用模型（用户 2026-09-14 裁定）。
+
+        U = B_i + R·(D−B_i)，发言当且仅当 U ≥ activity。
+
+        - D（沉默的螺旋，收益侧共振/抑制因子）: `1 + s·tanh(k·(share_own − base)/base)`
+          （共享实现 `curation_mechanisms.spiral_factor`，k=1.5）；base = 本类型在 100 人
+          群体中的份额。同类气候强 → 共鸣放大收益；少数派 → 收益被抑制，D<0 时表达存在
+          净成本（孤立成本）。有界 [1−s, 1+s]、单调、边际递减，无地板。
+        - R（注意力衰减，收益侧折减因子）: `mech.fatigue_factor(λ, cum_own)`
+          = exp(−λ·cum_own/15)（本类型累计曝光的半饱和尺度 15 ≈ 一周半活跃曝光；
+          2026-09-12 用户裁定由 50 调至 20，2026-09-13 进一步下压至 15，
+          以"让退潮更猛烈"）。重复同类曝光越多，边际表达收益越低。
+
+        2026-09-12 用户裁定：原第三因子 G^θ（玩梗涌现环境增益，仅玩梗型 θ>0）退役，
+        理由与证据见模块头注释与 SMOKE_DIAGNOSIS_w19_cliff.md。env 快照里的
+        meme_env（B/S/G）仍原样写入 `components` 供监测与审计，但**不参与本决策**。
+
+        B_i 是事件前常态表达效用锚点；R=1 时 U=D，R→0 时 U→B_i。
+        因而注意力衰减只消除事件冲击，不会让各类型表达机械衰减为零。
+        """
+        prm = self._params
+        own = self._agent_type
+        climate = snap.get("feed_type_distribution") or {}
+        share_own_observed = float(climate.get(own, 0.0) or 0.0)
+        share_own = share_own_observed
+        # 高显著性外生事件不应被当作十个普通 feed 槽位中的一条。事件信号只在指定周、
+        # 对指定类型生效，并以“等效普通槽位”并入意见气候；两臂可收到同一外生冲击，
+        # 推荐算法仍通过实际 feed（置顶、抽样等）产生差异。
+        event_signal = snap.get("event_signal") or {}
+        feed_slots = float(len(snap.get("feed") or []))
+        share_own, event_active, event_slots = _event_adjusted_share(
+            share_own_observed, feed_slots, event_signal, own
+        )
+        base = _POP_SHARE.get(own, 0.2)
+        spiral_s = prm["spiral"] * prm["spiral_scale"]
+        d = mech.spiral_factor(share_own, base, spiral_s)
+        cum = (snap.get("personal_stats") or {}).get("cumulative_exposures") or {}
+        cum_own = float(cum.get(own, 0) or 0)
+        r = mech.fatigue_factor(prm["decay"], cum_own)   # 共享纯函数（尺度 DEFAULT_DECAY_SCALE=15）
+        u = mech.anchored_utility(prm["baseline_utility"], d, r)
+        meme_env = snap.get("meme_env") or {}
+        comps = {
+            "share_own_observed": round(share_own_observed, 4),
+            "share_own": round(share_own, 4),
+            "share_base": base,
+            "event_signal_active": event_active,
+            "event_signal_type": event_signal.get("type"),
+            "event_signal_salience_slots": round(event_slots if event_active else 0.0, 4),
+            "spiral_s_raw": round(prm["spiral"], 4),
+            "spiral_scale": round(prm["spiral_scale"], 4),
+            "spiral": round(d, 4),
+            "cum_own": cum_own,
+            "decay": round(r, 4),
+            "baseline_utility": round(prm["baseline_utility"], 4),
+            "benefit": round(u, 4),
+            # 以下为环境观测量：仅记录（描述性时间轴 + 事后审计），不参与决策。
+            "env_observed_only": True,
+            "env_abundance": round(float(meme_env.get("abundance", 1.0) or 1.0), 4),
+            "env_emptiness": round(float(meme_env.get("emptiness", 1.0) or 1.0), 4),
+            "env_gain": round(float(meme_env.get("gain", 1.0) or 1.0), 4),
+        }
+        return u, comps
+
+    # ------------------------------------------------------------------
+    # LLM prompt（仅内容生成；发言必须基于本周看到的帖子——用户 2026-09-10 裁定）
+    # ------------------------------------------------------------------
+    def _content_messages(self, snap: dict, comps: dict) -> list[dict]:
+        return quality.messages(self, snap, limit=int(self._config.get("feed_context_n", 5)),
+                                max_chars=int(self._config.get("max_content_chars", 300)))
+
+    # ------------------------------------------------------------------
+    # Abstract methods
+    # ------------------------------------------------------------------
+    async def ask(self, message: str, readonly: bool = True, *, t: datetime | None = None) -> str:
+        try:
+            response = await self.acompletion([{"role": "user", "content": message}])
+            if response and response.choices:
+                return response.choices[0].message.content or ""
+            return ""
+        except Exception as exc:
+            self.logger.error("[%s] ask failed: %s", self.name, exc)
+            return f"[error] {exc}"
+
+    async def step(self, tick: int, t: datetime) -> str:
+        """行动批次：读 feed → 数值决策 → （若发言）生成并发布一条本类型帖子。
+
+        random / interest 每个引擎 step 都是一个周级行动批次。chronological 的引擎
+        step 是「本周有人行动的小时」；非本小时 Agent 在任何 Env/LLM 调用之前返回，
+        因而每个 Agent 每周仍恰有一次决策机会。
+        """
+        if self.get_profile().get("arrival_timing", False):
+            # 到达诊断使用单独的生成与记账流程，保持数值效用同源。
+            spec = importlib.util.spec_from_file_location(
+                "curation_arrival_action", Path(__file__).with_name("curation_arrival_action.py"))
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            return await module.act(self, tick, t)
+        if self._chronological_action_hour is not None:
+            hour_of_week = int(t.weekday()) * 24 + int(t.hour)
+            if hour_of_week != self._chronological_action_hour:
+                return (
+                    f"{self.name}: inactive chronological batch "
+                    f"({hour_of_week} != {self._chronological_action_hour})"
+                )
+        week = f'{t.isocalendar().year}-W{t.isocalendar().week:02d}'
+        if any(r.get('week') == week for r in self._decision_log):
+            return 'decision already recorded'
+        self._step_count += 1
+        agent_id = str(self._id)
+        record = {'tick': tick, 'week': week, 'acted_at': quality.clock_time(t), 'speak': None,
+                  'posted': False, 'post_id': None, 'generation_attempts': 0,
+                  'generation_status': 'not_requested', 'content_status': 'not_generated'}
+        phase = 'before_decision'
+        try:
+            results, _ = await self.ask_env(
+                {'variables': {'agent_id': agent_id}},
+                "Please call get_feed() using agent_id from ctx['variables'] to get my current weekly feed snapshot.",
+                readonly=True, template_mode=True)
+            snap = self._find_feed_dict(results)
+            if not snap or snap.get('week') != week:
+                raise RuntimeError('feed unavailable or wrong week')
+            # 行动时钟取入口t；历史来源缺精确时刻时仍保持未知，不改环境排序。
+            snap = {**snap, 'event_time': snap.get('event_time') or quality.clock_time(t)}
+            record.update(prompt_context=quality.prompt_context(snap.get('feed') or [], int(self._config.get('feed_context_n', 5))))
+            if not snap.get('feed'):
+                record.update(reason='no_context', u=None, components=None)
+                return 'no_context'
+            u, comps = self._speak_stimulus(snap)
+            speak = u >= self._params['activity']
+            phase = 'after_decision'
+            record.update(u=round(u, 4), threshold=round(self._params['activity'], 4),
+                          components=comps, speak=speak, reason='below_threshold')
+            if not speak:
+                return 'below_threshold'
+            # 常规入口仍只请求一次，完整结果检查先于正文长度截断。
+            prompts = self._content_messages(snap, comps)
+            record.update(messages=prompts, generation_attempts=1)
+            try:
+                response = await self.acompletion(prompts)
+                checked = quality.inspect_response(response, record['prompt_context'],
+                            max_chars=int(self._config.get('max_content_chars', 300))+100)
+                record.update(checked, generation_status='service_success',
+                              response_model=quality.value(response, 'model'))
+            except Exception as exc:
+                record.update(reason='generation_failed', generation_status='service_failed', error_type=type(exc).__name__)
+                return 'generation_failed'
+            if checked['content_status'] != 'accepted':
+                record['reason'] = {'refusal': 'content_refusal', 'unsupported_detail': 'content_rejected',
+                                    'empty': 'generation_failed'}[checked['content_status']]
+                return record['reason']
+            phase = 'publication'
+            result, _ = await self.ask_env(
+                {'variables': {'agent_id': agent_id, 'content': checked['content']}},
+                "Please call create_post() using agent_id and content from ctx['variables'] to publish my post.",
+                readonly=False, template_mode=True)
+            published = quality.published_result(result)
+            record.update(posted=bool(published), reason='published' if published else 'publication_failed')
+            if published:
+                record.update(post_id=published['post_id'], content_preview=checked['content'][:80])
+            return record['reason']
+        except Exception as exc:
+            record.update(reason='publication_failed' if phase == 'publication' else 'action_failed',
+                          failure_phase=phase, error_type=type(exc).__name__)
+            if phase == 'before_decision':
+                record.update(speak=None, u=None, components=None)
+            return record['reason']
+        finally:
+            self._decision_log.append(record)

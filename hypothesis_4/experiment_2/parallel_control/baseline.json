@@ -1,0 +1,16 @@
+{
+  "baseline_commit": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "serial_controller_path": "hypothesis_4/experiment_2/run_seed_extension.py",
+  "serial_controller_sha256": "d628b762714f8db7a1d7ead572c0481d277685d9f6f99e99ea6df68139573415",
+  "parallel_controller_is_new_file": true,
+  "original_frozen_files_verified": 105,
+  "original_plan_sha256": "062ba97ff60e915b2e212382c11551c6526e413f934af4b5d1ee1cccc9ac2e94",
+  "original_started_at": "2026-10-22T15:40:45.950453+00:00",
+  "original_deadline_at": "2026-10-24T15:40:45.950453+00:00",
+  "budgets": {
+    "decision_opportunities": 23100,
+    "extra_requests_limit": 2310,
+    "max_agent_body_requests": 25410
+  },
+  "created_at": "2026-10-22T16:43:52.474985+00:00"
+}

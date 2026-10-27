@@ -1,0 +1,23 @@
+[2026-10-18 01:42:06] INFO    ModuleRegistry initialized (lazy loading enabled)
+[2026-10-18 01:42:06] INFO    Cleared 0 custom modules
+[2026-10-18 01:42:07] INFO    Registered 1 custom env modules and 1 custom agents
+[2026-10-18 01:42:07] INFO    Registered 16 env modules and 7 agents from built-in modules
+[2026-10-18 01:42:07] INFO    Cleared 1 custom modules
+[2026-10-18 01:42:07] INFO    Registered 1 custom env modules and 1 custom agents
+Executing <Task finished name='Task-10' coro=<MainTimestampTests.test_chronological_weekly_supply_flow_is_conserved() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/tmp/archive-restore-workspace/custom/tests/test_timestamp_main.py:145> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 0.134 seconds
+Executing <Task finished name='Task-15' coro=<MainTimestampTests.test_nine_complete_windows_have_no_future_exposure() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/tmp/archive-restore-workspace/custom/tests/test_timestamp_main.py:71> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 6.406 seconds
+Executing <Task finished name='Task-29' coro=<MainTimestampTests.test_recirculation_and_restore_preserve_each_regime() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/tmp/archive-restore-workspace/custom/tests/test_timestamp_main.py:122> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 0.219 seconds
+[2026-10-18 01:42:26] INFO    Cleared 1 custom modules
+[2026-10-18 01:42:26] INFO    Registered 1 custom env modules and 1 custom agents
+[2026-10-18 01:42:26] INFO    Cleared 1 custom modules
+[2026-10-18 01:42:26] INFO    Registered 1 custom env modules and 1 custom agents
+Executing <Task finished name='Task-39' coro=<EventWeekTests.test_actual_cli_profiles_and_agent_workspaces_preserve_overrides() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/tmp/archive-restore-workspace/custom/tests/test_event_week_schedule.py:99> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 0.627 seconds
+Executing <Task finished name='Task-48' coro=<EventWeekTests.test_nine_windows_cover_all_mourning_agents_after_official() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/tmp/archive-restore-workspace/custom/tests/test_event_week_schedule.py:49> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 7.402 seconds
+Executing <Task finished name='Task-57' coro=<EventWeekTests.test_w13_restore_equivalence_and_mismatched_schedule_rejected() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/tmp/archive-restore-workspace/custom/tests/test_event_week_schedule.py:166> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 0.477 seconds
+[2026-10-18 01:42:35] INFO    Cleared 1 custom modules
+[2026-10-18 01:42:35] INFO    Registered 1 custom env modules and 1 custom agents
+[2026-10-18 01:42:35] INFO    Cleared 1 custom modules
+[2026-10-18 01:42:35] INFO    Registered 1 custom env modules and 1 custom agents
+Executing <Task finished name='Task-66' coro=<OrdinaryOfficialTests.test_historical_agenda_and_checkpoint_policy() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/tmp/archive-restore-workspace/custom/tests/test_ordinary_official.py:72> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 0.264 seconds
+Executing <Task finished name='Task-75' coro=<OrdinaryOfficialTests.test_official_is_ordinary_in_candidate_and_feed_sampling() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/tmp/archive-restore-workspace/custom/tests/test_ordinary_official.py:27> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 0.113 seconds
+{"phase": "verify", "success": true, "actual_profiles": 900, "windows": 9, "inherited_tests": {"run": 26, "failures": 0, "errors": 0, "skipped": 0}, "network_attempts": 0, "LLM_calls": 0}

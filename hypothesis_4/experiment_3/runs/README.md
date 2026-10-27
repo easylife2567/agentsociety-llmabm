@@ -1,0 +1,9 @@
+# 已完成消融的正式原始结果
+
+[timestamp_bdr_v1_attempt_02](timestamp_bdr_v1_attempt_02/README.md)含九次完成结果、原始运行计划、监督记录、账本和终态验收。原始内容独立复制，不链接到活跃探索run。首次403失败在上级provenance/failed_attempt_01。
+
+此处是既有结果的采用，不授权新增运行。准备期配置中的timestamp_bdr_v1账本地址是历史逻辑路径；原运行期链接到第二批账本。当前正式核对和分析直接读取attempt_02账本=5，不创建或重置新账本。
+
+seed3–9新增21次也规划在上述同一主目录，当前仅execution_records/seed3_9准备计划与独立0账本已建立，21个引擎子目录均未创建。旧九次完成记录与账本5不变；不将新旧部分作为两个实验。
+
+seed3–9新增21次已于北京时间2026-10-26 02:07:28全部完成，逐次693步/1100完整唯一行动及决策/11周/100Agent验收通过；与旧九次共同构成各条件10seed数据，新增种子暂未分析。runtime_plan/recovery_1/2/3、最终batch_execution、独立账本及completion_check_recovery_3在同一主目录execution_records/seed3_9。原预算/截止和全部失败现场保持，旧B失败62次计入总正文6276，共享额外9，定时汇报已结束。原根级batch_execution只属于旧九次。当前状态以实验README为准。

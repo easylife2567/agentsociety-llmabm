@@ -1,0 +1,47 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261024t054547_8418ac5ba1",
+  "operation_id": "record-claim",
+  "operation_contract_version": 1,
+  "execution_key": "08d4fd8a392475315c31eb4e8cf22219e8c6bbcf1e41789194b2be9d5741584f",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "",
+  "input_names": [
+    "hypothesis_id",
+    "payload",
+    "workspace"
+  ],
+  "input_fingerprint": "dd0fd9ee35ee35450dd964a801bd3d89c26d7096de9d3f712438220e66cdaed6",
+  "safe_inputs": {
+    "hypothesis_id": "4"
+  },
+  "preflight": {
+    "operation_id": "record-claim",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {},
+  "error": null,
+  "declared_artifacts": [
+    ".agentsociety/analysis/hypothesis_{id}/claims.json"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/claims.json": "2a9796467f90693f8099c3256cc272cf1abc7038cb0d19fed41c1eb35c010115",
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "44965aebcabe08c023a397ba3644ed971626d07abdba139452ea9aeb73a56243"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 22128,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-24T05:45:47.918372Z",
+  "updated_at": "2026-10-24T05:45:47.924307Z",
+  "completed_at": "2026-10-24T05:45:47.924281Z",
+  "duration_ms": 5
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261023t074709_b797415122",
+  "operation_id": "record-synthesis-review",
+  "operation_contract_version": 1,
+  "execution_key": "433bedfdf5db1510c6d0c81d21ff13dd5ec503086d0268a078ffa0b96ae527ca",
+  "attempt": 2,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "",
+  "experiment_id": "",
+  "input_names": [
+    "payload",
+    "workspace"
+  ],
+  "input_fingerprint": "e198aede5712bd6683503f8d257bb8a50b210fee56d09c53e29413a7a9b7a997",
+  "safe_inputs": {},
+  "preflight": {
+    "operation_id": "record-synthesis-review",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "overall_score": 5,
+    "verdict": "PASS"
+  },
+  "error": null,
+  "declared_artifacts": [
+    ".agentsociety/analysis/synthesis/synthesis_review.json"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/synthesis/state.yaml": "df85db04597e623186749419856f502f89df621364f2608942287f1d1451f602",
+    ".agentsociety/analysis/synthesis/synthesis_review.json": "2290fad3becc2c168063a81fcc7d471046777d4e4416ba97c8d2799477a40e16"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 54984,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-23T07:47:09.435690Z",
+  "updated_at": "2026-10-23T07:47:09.452375Z",
+  "completed_at": "2026-10-23T07:47:09.452349Z",
+  "duration_ms": 16
+}

@@ -1,0 +1,393 @@
+--- before/runs/2026-09-29-01-research-roadmap/2026-09-29-01-research-roadmap.md
++++ after/runs/archive/2026-09-29-01-research-roadmap/2026-09-29-01-research-roadmap.md
+@@ -31,10 +31,10 @@
+ 
+ 证据入口：
+ 
+-- [批次归档总索引](../../ARCHIVE_MANIFEST_H4E1.md)、[更早历史清单](../../ARCHIVE_MANIFEST_H4E1_history_20260915.md)。
+-- [现有批次索引](../../hypothesis_4/experiment_1/runs/README.md)、[数值消融结果](../../hypothesis_4/experiment_1/results/numerical_ablation_drb/RESULTS.md)。
+-- [一期滞后实现记录](../../hypothesis_4/experiment_1/WEEKLY_LAG_IMPLEMENTATION_REVIEW.md)、[恢复周度方案的决策背景](../../hypothesis_4/experiment_1/INJECTION_TIMING_REDESIGN_REVIEW.md)。
+-- [到达机制依赖审计](../../refine-logs/injection_timing_20260927/DEPENDENCY_AUDIT.md)。审计有历史状态文字，执行事实应结合当前入口核验。
++- [批次归档总索引](../../../ARCHIVE_MANIFEST_H4E1.md)、[更早历史清单](../../../ARCHIVE_MANIFEST_H4E1_history_20260915.md)。
++- [现有批次索引](../../../hypothesis_4/experiment_1/runs/README.md)、[数值消融结果](../../../hypothesis_4/experiment_1/results/numerical_ablation_drb/RESULTS.md)。
++- [一期滞后实现记录](../../../hypothesis_4/experiment_1/WEEKLY_LAG_IMPLEMENTATION_REVIEW.md)、[恢复周度方案的决策背景](../../../hypothesis_4/experiment_1/INJECTION_TIMING_REDESIGN_REVIEW.md)。
++- [到达机制依赖审计](../../../refine-logs/injection_timing_20260927/DEPENDENCY_AUDIT.md)。审计有历史状态文字，执行事实应结合当前入口核验。
+ 
+ 经验边界：整体滞后会拆分事件响应，不能把曲线变差简单视为原设计正确；额外事件参数可能直接推动目标峰值，必须有独立机制依据；数值代理不能代替完整 LLM 反馈。研究要区分“对真实供给的条件响应”“策展制度差异”和“独立生成转移”，三者需要的证据不同。
+ 
+--- before/runs/2026-09-29-01-research-roadmap/2026-10-09-01-workflow-decisions.md
++++ after/runs/archive/2026-09-29-01-research-roadmap/2026-10-09-01-workflow-decisions.md
+@@ -2,7 +2,7 @@
+ 
+ ## 当前采用：显式run与官方结构融合
+ 
+-用户在2026-10-09要求以提供的原始AGENTS.md与AgentSociety项目工作流融合为唯一规范。现行正文见[AGENTS.md](../../AGENTS.md)，CLAUDE.md仅是指向它的兼容链接，两者内容完全相同。
++用户在2026-10-09要求以提供的原始AGENTS.md与AgentSociety项目工作流融合为唯一规范。现行正文见[AGENTS.md](../../../AGENTS.md)，CLAUDE.md仅是指向它的兼容链接，两者内容完全相同。
+ 
+ - 默认为普通模式，按授权直接处理正式项目；任务复杂、需要实验或记录，不构成自动新建run的授权。
+ - 只有用户明确创建或继续指定run时，进入隔离探索；候选成果不因测试、归档或提交就自动采用，正式落地须有明确授权。
+@@ -10,7 +10,7 @@
+ - 保留官方custom扩展、假设/实验/init目录、CLI阶段与运行入口、预算和后台日志规则；不把上游源码仓库布局或远端配置套到课题工作区。
+ - 按实际风险选择审查与验证，不要求低风险小任务独立审查或全量测试。README按职责索引，复杂主题持续维护同一文档。
+ 
+-依据为用户指定的原始规范（/Users/easylife/Project/AGENTS.md）、本地[官方AGENTS](../../AgentSociety2/AGENTS.md)、[官方架构说明](../../AgentSociety2/CLAUDE.md)及研究技能。目录与授权规则以用户新规范为准；官方技能中的自动提交和全量暂存建议不扩大授权。
++依据为用户指定的原始规范（/Users/easylife/Project/AGENTS.md）、本地[官方AGENTS](../../../AgentSociety2/AGENTS.md)、[官方架构说明](../../../AgentSociety2/CLAUDE.md)及研究技能。目录与授权规则以用户新规范为准；官方技能中的自动提交和全量暂存建议不扩大授权。
+ 
+ 本次仅融合规范和同步导航，没有创建run、worktree或归档目录，没有修改实验代码、冻结配置、原始结果或机器阶段，也未启动LLM。历史探索材料不迁移或删除。
+ 
+@@ -18,4 +18,4 @@
+ 
+ 用户此前要求删除强制独立补丁规定，并将根级runs限定为对话决策记录；正式方案、代码、配置、测试与实验结果放官方对应目录。该决定解释既有目录的组织方式；其中“根级runs仅存决策”和“每个阶段必须提交”的限制已由本次新规范替换，直接修改及保全历史证据的原则继续保留。
+ 
+-hypothesis_*/experiment_*/runs/的引擎批次职责及data/预处理数据职责始终保持。决策主题总索引见[上级README](../README.md)。
++hypothesis_*/experiment_*/runs/的引擎批次职责及data/预处理数据职责始终保持。决策主题总索引见[上级README](../../README.md)。
+--- before/runs/2026-09-29-01-research-roadmap/README.md
++++ after/runs/archive/2026-09-29-01-research-roadmap/README.md
+@@ -1,4 +1,17 @@
+ # 课题推进与工作入口
++
++## 归档结论（2026-10-13）
++
++用户明确要求归档除当前U标定run以外的全部根级探索run。本目录已由 `runs/2026-09-29-01-research-roadmap/` 迁至 `runs/archive/2026-09-29-01-research-roadmap/`，原编号保留。结果：**已采用（文档与工作规范）**。历史规范和项目导航已落实；现行规范以根AGENTS.md为准。纯文档run，没有候选代码、LLM仿真或worktree。
++
++归档前未发现本run占用进程或登记的worktree；恢复核验及本次临时worktree安全移除已完成。原JSON、manifest、checkpoint、原始日志中的历史路径不改写；源码哈希的旧路径可在[原始材料](recovery/README.md)中按同名文件核对。正式实验原始输出与presentation产物仍留在原位置，没有借归档重跑、重新采用或提交成果。
++
++| 归档资产 | 用途 |
++|---|---|
++| [recovery/](recovery/README.md) | 原件快照、准确基线、恢复输入与实际核验 |
++| `historical_tmp/` | 原tmp完整保全，包括验收/失败日志、基线与阶段代码快照；缓存也暂时保留，未按忽略状态删除 |
++
++纯文档恢复材料为本run全部原件及original_inventory.json校验和；无需编译或代码恢复测试。下文旧状态及时间记录保留历史身份，不作为当前继续执行指令。
+ 
+ ## 目标与范围
+ 
+@@ -15,7 +28,7 @@
+ 
+ ## 当前决策与正式入口
+ 
+-本目录保持历史决策记录身份，不恢复探索或执行；2026-10-09工作方式以本级记录的“当前采用”及根AGENTS为准。历史工作已完成：工作规范、官方目录导航与主设计采纳脉络已留档。当前活动入口为[官方experiment_2](../../hypothesis_4/experiment_2/README.md)，正式timestamp配置、源码及离线验收在该目录维护，本目录不继续实施或运行。
++本目录保持历史决策记录身份，不恢复探索或执行；2026-10-09工作方式以本级记录的“当前采用”及根AGENTS为准。历史工作已完成：工作规范、官方目录导航与主设计采纳脉络已留档。当前活动入口为[官方experiment_2](../../../hypothesis_4/experiment_2/README.md)，正式timestamp配置、源码及离线验收在该目录维护，本目录不继续实施或运行。
+ 
+ timestamp已采纳，保留当前行为参数和各臂回流；本轮只准备及离线验收，不调用LLM。旧anchored_v1与四格是历史证据，原run链接、分析来源和checkpoint不替换。新批预算与启动边界统一由experiment_2 README管理。
+ 
+--- before/runs/2026-09-29-02-injection-timing/2026-09-29-01-injection-timing-plan.md
++++ after/runs/archive/2026-09-29-02-injection-timing/2026-09-29-01-injection-timing-plan.md
+@@ -23,15 +23,15 @@
+ 
+ | 事实 | 直接证据 | 设计含义 |
+ |---|---|---|
+-| 周级路径先注入本周样本再装配全部 feed | [环境实现](../../custom/envs/curation_dynamics_space.py) `_open_tick`、`_assemble_feed` | 普通帖到达资格需要独立开关 |
+-| 小时调度绑定 chronological 名称，Agent 与批跑器也依赖它 | 同文件 `_step_chronological`、[Agent](../../custom/agents/curation_discourse_agent.py) `step`、[批跑器](../../hypothesis_4/experiment_1/run_batch.py) `expected_steps_for` | 调度模式必须与推荐算法解耦，不能仅修改注入函数 |
++| 周级路径先注入本周样本再装配全部 feed | [环境实现](../../../custom/envs/curation_dynamics_space.py) `_open_tick`、`_assemble_feed` | 普通帖到达资格需要独立开关 |
++| 小时调度绑定 chronological 名称，Agent 与批跑器也依赖它 | 同文件 `_step_chronological`、[Agent](../../../custom/agents/curation_discourse_agent.py) `step`、[批跑器](../../../hypothesis_4/experiment_1/run_batch.py) `expected_steps_for` | 调度模式必须与推荐算法解耦，不能仅修改注入函数 |
+ | 小时路径批末把 Agent 帖立即回流 | `_step_chronological` 调用 `_flush_pending_to_pool` | 本实验不能直接套用其即时回流 |
+ | 兴趣分数读取累计曝光，而装配 feed 循环立即计账 | `_interest_rank`、`_post_vitality`、`_open_tick` | 同批先冻结状态，再统一计账；这是四格共同调整 |
+ | LLM 只读 feed 前5条，每条120字；提示含整周环境统计与类型词库 | Agent `_content_messages`、`_CONTENT_GUIDE` | 清理预知入口，但保留原文本阅读预算 |
+ | 发言由数值效用决定，LLM 生成正文 | Agent `_speak_stimulus` | 不把语义改进等同于发言率改进 |
+-| s0主样本有250条，其中讣告1条缺原始时间 | [主样本](../../hypothesis_4/experiment_1/init/injection_sample_s0.json) | 普通249条使用实际时间，讣告使用独立建模约定 |
+-| W11历史样本已有17条，时间均早于上海W12周界 | [初始样本](../../hypothesis_4/experiment_1/init/initial_sample_weekly_lag_s0.json) | 可跨四格复用，不重新抽样或补未来帖 |
+-| 已有行动表为100人、每周63个非空小时，重复11周 | [chronological配置](../../hypothesis_4/experiment_1/init/configs/anchored_v1_chronological_s0.json) | 可复用693批次结构，避免额外引入行动表随机化 |
++| s0主样本有250条，其中讣告1条缺原始时间 | [主样本](../../../hypothesis_4/experiment_1/init/injection_sample_s0.json) | 普通249条使用实际时间，讣告使用独立建模约定 |
++| W11历史样本已有17条，时间均早于上海W12周界 | [初始样本](../../../hypothesis_4/experiment_1/init/initial_sample_weekly_lag_s0.json) | 可跨四格复用，不重新抽样或补未来帖 |
++| 已有行动表为100人、每周63个非空小时，重复11周 | [chronological配置](../../../hypothesis_4/experiment_1/init/configs/anchored_v1_chronological_s0.json) | 可复用693批次结构，避免额外引入行动表随机化 |
+ 
+ 主样本 SHA-256：`5b0f9efedffac94ba2b3a8a639aa8b0b3c0ef2bb2c1f31a8377ac76ec29608d5`。
+ 初始样本 SHA-256：`8915813f6b4258c03a137e3c8b0e27dc763a724bd0947b3a0190ee1cc04fe6bf`。
+@@ -263,7 +263,7 @@
+ | 代码、冻结配置、时间戳与SHA-256 | 实现事实和输入证据，不等于现实行为已被验证 |
+ | [ODD协议](https://www.jasss.org/23/2/7.html) | 同行评议的模型描述规范：要求明确调度、初始化、输入与评价；不规定本项目参数 |
+ | [Agent Scheduling in Opinion Dynamics](https://www.jasss.org/22/4/5.html) | 相关模型研究：支持将调度视为实质设计因素；不能外推本实验效应方向 |
+-| [本项目既有依赖审计](../../refine-logs/injection_timing_20260927/DEPENDENCY_AUDIT.md) | 已有代码审计经验，需结合当前分支复核，不是独立实证结果 |
++| [本项目既有依赖审计](../../../refine-logs/injection_timing_20260927/DEPENDENCY_AUDIT.md) | 已有代码审计经验，需结合当前分支复核，不是独立实证结果 |
+ | 复用固定行动表、共享初始池、24小时上限和先seed0诊断 | 为控制改造范围与成本作出的工程/研究建议，待用户审核；不伪装成行业标准 |
+ 
+ 本方案的验收是“能明确知道要改什么、比较什么、用多少资源、什么结果支持何种解释”，不是“保证出现原来那条曲线”。
+--- before/runs/2026-09-29-02-injection-timing/README.md
++++ after/runs/archive/2026-09-29-02-injection-timing/README.md
+@@ -1,10 +1,27 @@
+ # 真实帖子到达时机：实验设计与运行
++
++## 归档结论（2026-10-13）
++
++用户明确要求归档除当前U标定run以外的全部根级探索run。本目录已由 `runs/2026-09-29-02-injection-timing/` 迁至 `runs/archive/2026-09-29-02-injection-timing/`，原编号保留。结果：**已采用（timestamp设计与保留发言的内容修复）**。四格诊断、内容修复与数值验证保留历史证据身份；当前正式主设计为experiment_2。未启动新LLM，不把诊断写成当前主批结果。
++
++归档前未发现本run占用进程或登记的worktree；恢复核验及本次临时worktree安全移除已完成。原JSON、manifest、checkpoint、原始日志中的历史路径不改写；源码哈希的旧路径可在[原始材料](recovery/README.md)中按同名文件核对。正式实验原始输出与presentation产物仍留在原位置，没有借归档重跑、重新采用或提交成果。
++
++| 归档资产 | 用途 |
++|---|---|
++| [recovery/](recovery/README.md) | 原件快照、准确基线、恢复输入与实际核验 |
++| `historical_tmp/` | 原tmp完整保全，包括验收/失败日志、基线与阶段代码快照；缓存也暂时保留，未按忽略状态删除 |
++
++恢复核验：初始到达接线补丁在 `bab8e2a98d5cf99d855a84de8da7d2ac16cad575` 上可应用，恢复代码与785ad416交付一致，9项离线测试通过；保留发言修复补丁在 `9a769932ae9bc75e409929003baf574dfede5948` 上可应用，六个目标与19650745交付一致，18项离线测试通过。中间缺失的初始审计脚本及Agent50样本已补入恢复包，首次失败日志保留。归档适配仅修改脚本根路径与两份正式测试引用，最终补丁见recovery/archive-paths.patch；未修改生产Agent、环境或冻结配置。
++
++独立恢复顺序：分别从上述阶段基线建立干净worktree；初始阶段复制recovery/arrival_new到原相对位置，再检查并应用原arrival补丁；内容修复阶段检查并应用原speech补丁。复制recovery/frozen_inputs到其登记相对位置；测试仍从该恢复项目的custom/tests执行。两阶段基线不同，不把它们当作可直接连续应用的补丁链。最终历史代码快照在recovery/final_code，交付提交为 `19650745591da07d3b59e39c7ef468e51eb09649`；复原旧run脚本时使用recovery/original_sources中的原件，归档路径适配补丁不用于旧目录布局。
++
++归档包恢复验证没有运行四格LLM，也没有完整重算全部历史分析图。大型原始结果由稳定的正式归档资产提供，原来源校验和保留在既有manifest；恢复包只复制离线测试必需的小型素材和一份历史Agent记录，不包含凭据。
+ 
+ ## 目标与授权边界
+ 
+ 判断普通真实帖整周提前可见是否改变interest相对random的曝光与表达。用户于2026-09-30明确授权开始实验，并要求程序稳定后每30分钟报告。实施已审阅四格方案，串行累计实验运行上限24小时。用户随后于2026-09-30明确选择“以timestamp继续推进”，将其作为后续实验的到达规则；已完成诊断与anchored_v1保留为历史证据，尚未生成或运行替代主实验批次。
+ 
+-用户最新裁定（2026-10-08）：timestamp方案标记为采用，本任务结束并交接主项目；已将其纳入[主实验设计](../../hypothesis_4/experiment_1/EXPERIMENT.md)。内容修复仍按“只修细节、不取消发言；有限重写后以基于所见的保守短帖兜底”执行。此前timestamp暂停仅属内容修复阶段的推进边界；现已解除方案暂停，但本次不授权启动新LLM。四格及固定供给图继续保留原证据身份。
++用户最新裁定（2026-10-08）：timestamp方案标记为采用，本任务结束并交接主项目；已将其纳入[主实验设计](../../../hypothesis_4/experiment_1/EXPERIMENT.md)。内容修复仍按“只修细节、不取消发言；有限重写后以基于所见的保守短帖兜底”执行。此前timestamp暂停仅属内容修复阶段的推进边界；现已解除方案暂停，但本次不授权启动新LLM。四格及固定供给图继续保留原证据身份。
+ 
+ 本目录管理研究思路。正式Agent、环境、配置和结果继续使用AgentSociety2对应目录，任务仅引用。
+ 
+@@ -84,10 +101,10 @@
+ 
+ ## 正式资产入口与使用
+ 
+-- [四格配置及冻结清单](../../hypothesis_4/experiment_1/init/arrival_timing_diagnostic/README.md)。
+-- [原始引擎结果目录](../../hypothesis_4/experiment_1/runs/arrival_timing_diagnostic/)；`runtime_freeze.json`记录实际commit/模型/代码哈希，`batch_execution.json`为监督器机器记录，逐run保留checkpoint、replay、正文与标准日志；manifest逐run引用。
+-- [正式分析表与图](../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/README.md)。
+-- [正式模块及测试](../../custom/README.md)。
++- [四格配置及冻结清单](../../../hypothesis_4/experiment_1/init/arrival_timing_diagnostic/README.md)。
++- [原始引擎结果目录](../../../hypothesis_4/experiment_1/runs/arrival_timing_diagnostic)；`runtime_freeze.json`记录实际commit/模型/代码哈希，`batch_execution.json`为监督器机器记录，逐run保留checkpoint、replay、正文与标准日志；manifest逐run引用。
++- [正式分析表与图](../../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/README.md)。
++- [正式模块及测试](../../../custom/README.md)。
+ - 正式运行命令：使用.env中Python执行本目录 `2026-09-30-03-run-batch.py`。只看进度添加 `--status`，不要重复启动。
+ - 已有执行记录时监督器拒绝重入。只自动恢复通过完整性审计的正常三周前缀；中批崩溃可能使Agent/环境落盘不一致，须保留现场核对，不直接加resume重采。
+ 
+@@ -115,7 +132,7 @@
+ 
+ ## 交接
+ 
+-本任务已结束，timestamp方案已采用。后续从[课题推进任务](../2026-09-29-01-research-roadmap/README.md)和[官方主实验设计](../../hypothesis_4/experiment_1/EXPERIMENT.md)继续；本目录保留诊断、内容修复patch、必查样本、离线验收与数值图供引用，不删除或搬迁原始证据。四格实验已完成，定时报告已暂停，不启动或续跑旧checkpoint。
++本任务已结束，timestamp方案已采用。后续从[课题推进任务](../2026-09-29-01-research-roadmap/README.md)和[官方主实验设计](../../../hypothesis_4/experiment_1/EXPERIMENT.md)继续；本目录保留诊断、内容修复patch、必查样本、离线验收与数值图供引用，不删除或搬迁原始证据。四格实验已完成，定时报告已暂停，不启动或续跑旧checkpoint。
+ 
+ 设计采用不改写原运行事实，也不代表timestamp_v1已配置或运行。新批按独立batch_id保留参数及各臂回流机制；后续配置、实际运行预算与测量桥接分别落实。45条额外细节筛查仍待人工确认；既有benchmark和未采纳的baseline-anchor候选不因本次选择自动替换。
+ 
+--- before/runs/2026-09-29-02-injection-timing/2026-09-30-10-results.md
++++ after/runs/archive/2026-09-29-02-injection-timing/2026-09-30-10-results.md
+@@ -18,7 +18,7 @@
+ - 时间：统一Asia/Shanghai。W12保留作初始化诊断；官方20:00是模型约定，不是原帖观测时间。preload的普通未来曝光是设计处理，不当作实现违规。
+ - 验证：现有审计器在4个最终checkpoint上重跑；AGENT账本、环境快照、逐周replay相互核对。官方CLI `analysis query-data`独立复核4个run的周数、全窗发布数、后期O和玩梗作者发布数，均一致。
+ 
+-复算入口为本目录[04-analyze.py](2026-09-30-04-analyze.py)，图形入口为[09-plot.py](2026-09-30-09-plot.py)。使用`.env`指定Python；不调用模型。全部量化结果和输入哈希见[正式分析资产](../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/README.md)，逐条正文核查另由本任务README索引。
++复算入口为本目录[04-analyze.py](2026-09-30-04-analyze.py)，图形入口为[09-plot.py](2026-09-30-09-plot.py)。使用`.env`指定Python；不调用模型。全部量化结果和输入哈希见[正式分析资产](../../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/README.md)，逐条正文核查另由本任务README索引。
+ 
+ 分析依据分级：冻结方案规定比较对象和判据；checkpoint、replay、冻结哈希提供运行事实；词表判类和人工阅读提供有局限的测量；候选池解释及下一步建议属于本次研究判断，不冒充独立实证定律。
+ 
+@@ -54,7 +54,7 @@
+ 
+ 制度差由2.24降到1.5575，相对preload差值缩小30.47%。这个百分比只描述本次实现，不是稳健性阈值。不能说“影响不大所以不用改”，也不能说“时间过滤后算法差异消失”。
+ 
+-![每次行动的内部玩梗类型曝光](../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/exposure.png)
++![每次行动的内部玩梗类型曝光](../../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/exposure.png)
+ 
+ 图：灰色区域为冻结主窗口；timestamp的后期上升仍存在，W20–W22的水平低于同算法preload。内部type表示供给群体身份，不能直接当作所有正文的语义类别。
+ 
+@@ -71,11 +71,11 @@
+ 
+ 玩梗作者发帖的制度差从46条降到29条，描述性交互为−17条；参与率差从60.53个百分点降到38.16个百分点。interest的玩梗作者发帖减少18条、总发帖减少16条，不能只用份额变化描述。
+ 
+-![固定玩梗型作者的周发帖数](../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/production.png)
++![固定玩梗型作者的周发帖数](../../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/production.png)
+ 
+ 图：preload-interest在W20已有12位玩梗作者发帖，timestamp-interest同周只有1位；W21为19比13，W22为19比18。作者每周最多发一帖，所以周发帖数也等于该周活跃作者数。“明显起量更晚”比“精确延迟一周”更符合这些轨迹。
+ 
+-用户指定模板的五类堆叠图：[timestamp-interest](../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/timestamp_interest_s0__chart3b_agent_supply_stacked_area.png)、[timestamp-random](../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/timestamp_random_s0__chart3b_agent_supply_stacked_area.png)。两图沿用chronological模板的配色、W13事件线及0–80纵轴，仅计Agent成功产出，不含真实注入帖；前者总计214帖，后者169帖。它们采用本批timestamp规则，Agent帖仍次周可见，不意味着发布后立即被推荐。
++用户指定模板的五类堆叠图：[timestamp-interest](../../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/timestamp_interest_s0__chart3b_agent_supply_stacked_area.png)、[timestamp-random](../../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/timestamp_random_s0__chart3b_agent_supply_stacked_area.png)。两图沿用chronological模板的配色、W13事件线及0–80纵轴，仅计Agent成功产出，不含真实注入帖；前者总计214帖，后者169帖。它们采用本批timestamp规则，Agent帖仍次周可见，不意味着发布后立即被推荐。
+ 
+ ## 曝光差来自哪些内容与候选池
+ 
+@@ -124,7 +124,7 @@
+ | preload-random | 4 | 4 / 28（14.29%） | 0 |
+ | timestamp-random | 3 | 2 / 29（6.90%） | 0 |
+ 
+-![独立玩梗词表信号占成功正文比例](../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/semantic_signal.png)
++![独立玩梗词表信号占成功正文比例](../../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/semantic_signal.png)
+ 
+ 图：这个信号允许与悼念、营销、教育词共存。不能把互斥主标签0误读为文本完全没有玩梗，也不能把信号命中当作可靠人工玩梗判定。
+ 
+@@ -250,7 +250,7 @@
+ 
+ 图表只汇总已保存的数值明细，不跑新仿真或LLM。范围为每臂1,100次行动、W12–W22、seed0；拟发布机会没有统计期望或置信区间含义。验收为源CSV哈希对应、每周作者分组之和等于总数、每人每周至多一次、分类数量不超过固定人口上限。PNG用于阅读，SVG用于编辑，CSV保留逐周五类数值；最容易误读之处是把全窗色块当作已修复并重新生成的实际发帖曲线，因此标题、纵轴和图注均说明预期口径及固定供给条件。
+ 
+-[interest预期图](../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/2026-10-06-04-timestamp-interest-numerical-expectation.png)与[random预期图](../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/2026-10-06-05-timestamp-random-numerical-expectation.png)已生成。interest全窗219次拟发布机会，等于220次重算发言意愿减去已确认拒答；归档发布数排除拒答为213。random为169，因为本次没有移除其帖子。标题里的timestamp是实际数值条件，chronological仅是样式模板，未新建chronological仿真。
++[interest预期图](../../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/2026-10-06-04-timestamp-interest-numerical-expectation.png)与[random预期图](../../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/2026-10-06-05-timestamp-random-numerical-expectation.png)已生成。interest全窗219次拟发布机会，等于220次重算发言意愿减去已确认拒答；归档发布数排除拒答为213。random为169，因为本次没有移除其帖子。标题里的timestamp是实际数值条件，chronological仅是样式模板，未新建chronological仿真。
+ 
+ | 周 | interest拟发布机会 | 其中玩梗作者 | random拟发布机会 | 其中玩梗作者 |
+ |---|---:|---:|---:|---:|
+@@ -269,7 +269,7 @@
+ 
+ ### 证据与解释边界
+ 
+-明细及摘要位于[正式分析资产](../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/README.md)：数值行动CSV共6,004行（包含多个分支）、周界CSV及numerical-summary.json。摘要保存正式代码、配置、输入和原始账本的SHA-256；验证前后逐个哈希一致，未覆盖原始run。所有已提交回放曝光符合timestamp发布时间过滤与Agent次周回流。
++明细及摘要位于[正式分析资产](../../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/README.md)：数值行动CSV共6,004行（包含多个分支）、周界CSV及numerical-summary.json。摘要保存正式代码、配置、输入和原始账本的SHA-256；验证前后逐个哈希一致，未覆盖原始run。所有已提交回放曝光符合timestamp发布时间过滤与Agent次周回流。
+ 
+ 首次执行时依赖库导入尝试获取模型价格表，被本脚本的连接阻断器拦截，执行在输出验收前失败，没有LLM请求。随后采用该依赖原生的本地价格表开关；正式通过的执行网络连接尝试为0、模型调用为0。首次失败和正式执行日志保留在本任务tmp，原因与最终验证结果在本节留档，不以临时日志为唯一证据。
+ 
+@@ -312,7 +312,7 @@
+ 
+ ### 图与数值含义
+ 
+-[四格数值预期总览图](../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/2026-10-07-09-content-overview.png)将四个条件放在共同尺度中，沿用指定chart3b模板，并直接标注每周总数。它只汇总已验收周表，不执行新的模型或环境；[总览脚本](2026-10-07-06-content-overview.py)和正式分析目录中的来源记录提供复现依据。
++[四格数值预期总览图](../../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/2026-10-07-09-content-overview.png)将四个条件放在共同尺度中，沿用指定chart3b模板，并直接标注每周总数。它只汇总已验收周表，不执行新的模型或环境；[总览脚本](2026-10-07-06-content-overview.py)和正式分析目录中的来源记录提供复现依据。
+ 
+ 按用户确认，使用本run四格归档正文，chronological chart3b仅提供五类作者配色/顺序、W13事件线和0–80尺度。图表示固定原发言与后续供给时，修正内容后保留的发布数；单条件图的黑色虚线为原发布量，二者逐周重合是数量守恒的设计结果；总览图直接标注每周数量。
+ 
+@@ -326,7 +326,7 @@
+ 
+ 729条原正文直接保留、64条作局部编辑、1条拒答作离线保守兜底。20必查包含19个局部编辑与1个拒答；另外45个编辑来自未人工确认为错误的规则命中，不能用64/794作为真实缺陷率。离线兜底是明确规则文本，不假装本轮LLM已重新生成。原归档服务后已截断，未保存的完整响应字段/文本不补造；正式代码检查完整返回再限长。
+ 
+-[四格图与CSV入口](../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/README.md)保留794条派生正文/初始状态/编辑、44行周表及源哈希，原始帖子不改写。4,400次原U与发言判断复算误差0，发布周×作者类型计数与原归档逐项一致。保留总数是机械的静态预期，不是仿真质量改善的证据；类型仍为作者身份，正文分类未统一。
++[四格图与CSV入口](../../../presentation/hypothesis_4/2026-09-30-01-arrival-timing/README.md)保留794条派生正文/初始状态/编辑、44行周表及源哈希，原始帖子不改写。4,400次原U与发言判断复算误差0，发布周×作者类型计数与原归档逐项一致。保留总数是机械的静态预期，不是仿真质量改善的证据；类型仍为作者身份，正文分类未统一。
+ 
+ 完整新实验中正文改变会影响interest特征和后续feed，轨迹仍可分化；不承诺新全窗234/214/177/169。此前219/169意愿分支是不同条件性回放，保留为历史证据；不能与当前静态修正文图混用。新LLM、测量桥接和扩seed均未启动，timestamp方案继续暂停。
+ 
+--- before/runs/2026-10-06-01-baseline-anchor/README.md
++++ after/runs/archive/2026-10-06-01-baseline-anchor/README.md
+@@ -1,4 +1,17 @@
+ # 常态锚点：独立数值探索run
++
++## 归档结论（2026-10-13）
++
++用户明确要求归档除当前U标定run以外的全部根级探索run。本目录已由 `runs/2026-10-06-01-baseline-anchor/` 迁至 `runs/archive/2026-10-06-01-baseline-anchor/`，原编号保留。结果：**未采用（候选B）**。固定曝光数值诊断已完成，候选B没有落地；当前主实验继续保留原B及行为参数。
++
++归档前未发现本run占用进程或登记的worktree；恢复核验及本次临时worktree安全移除已完成。原JSON、manifest、checkpoint、原始日志中的历史路径不改写；源码哈希的旧路径可在[原始材料](recovery/README.md)中按同名文件核对。正式实验原始输出与presentation产物仍留在原位置，没有借归档重跑、重新采用或提交成果。
++
++| 归档资产 | 用途 |
++|---|---|
++| [recovery/](recovery/README.md) | 原件快照、准确基线、恢复输入与实际核验 |
++| `historical_tmp/` | 原tmp完整保全，包括验收/失败日志、基线与阶段代码快照；缓存也暂时保留，未按忽略状态删除 |
++
++恢复起点为原manifest登记的 `b2fa8ec0293d96f604068c19666a116594caef29`。本轮已在干净worktree恢复新增检查脚本，SHA256及语法核验通过，presentation冻结结果文件校验和一致；没有重新运行9900条固定曝光复算、工作簿分析或绘图。原始9900条复核的结果和限制见下文。本run没有修改既有代码；归档路径适配版与原脚本分别保留，原脚本可按原路径复制到基线中恢复。稳定输入/结果位置与校验和见recovery/restoration_inputs.json及原presentation manifest。
+ 
+ ## 目标与授权
+ 
+@@ -13,7 +26,7 @@
+ | [2026-10-06-02-check.py](2026-10-06-02-check.py) | 只读输入、计算两种候选B、固定曝光路径逐行动对照 |
+ | `tmp/` | 可丢弃临时核验，不保存唯一证据 |
+ 
+-正式分析产物保存于[presentation对应目录](../../presentation/hypothesis_4/2026-10-06-01-baseline-anchor/README.md)，通过本入口引用；不创建伪引擎replay。
++正式分析产物保存于[presentation对应目录](../../../presentation/hypothesis_4/2026-10-06-01-baseline-anchor/README.md)，通过本入口引用；不创建伪引擎replay。
+ 
+ ## 进度与交接
+ 
+@@ -27,7 +40,7 @@
+ 
+ 已发现口径边界：人口构成使用W12–W22全窗单类型用户，排除噪音后31770人；此构成包含事件后信息。替换W13峰值尺子不等于消除全部事后信息。固定曝光复算不模拟内容变化及后续推荐反馈。
+ 
+-任务已完成并留档；候选B未采纳，当前experiment_2保留原B及行为参数。以下审核结论保留其科学限制与未采纳建议，不构成本目录继续执行的计划。后续官方主实验从[experiment_2](../../hypothesis_4/experiment_2/README.md)推进，不新增LLM运行。
++任务已完成并留档；候选B未采纳，当前experiment_2保留原B及行为参数。以下审核结论保留其科学限制与未采纳建议，不构成本目录继续执行的计划。后续官方主实验从[experiment_2](../../../hypothesis_4/experiment_2/README.md)推进，不新增LLM运行。
+ 
+ ## 审核结论
+ 
+@@ -38,7 +51,7 @@
+ | W13被拿来计算事件前常态锚点 | 事实成立；run能回答“换尺后影响多大”，不能回答“什么才是真正的事件前锚点” |
+ | 小数发言人数被压成零 | 成立；run确认并量化，未修复；最接近事件前的候选反而更严重 |
+ 
+-**W13尺子**。实锤在[predict_anchored_utility.py:69](../../hypothesis_4/experiment_1/predict_anchored_utility.py#L69)：尺子`22/4714`（W13悼念帖）乘在全部五类上，分子W05–W12只决定相对形状。PARAMETERS.md已披露该换算；论文正文与附录只说由W05—W12常态供给固定、未披露尺子，属文档缺口。run的回答：9900条固定曝光判定仅营销翻转110/220条（全为开口→沉默），B 0.82515→0.78240/0.74130。run不能回答的：两个候选的人口/队列仍定义在W12–W22（含W13），报告已自认非独立事件前估计；四类“逐条不变”来自期望<0.5落floor的**退化不变性**（四类B逐字未变），不能作为“W13对四类无害”的证据。
++**W13尺子**。实锤在[predict_anchored_utility.py:69](../../../hypothesis_4/experiment_1/predict_anchored_utility.py#L69)：尺子`22/4714`（W13悼念帖）乘在全部五类上，分子W05–W12只决定相对形状。PARAMETERS.md已披露该换算；论文正文与附录只说由W05—W12常态供给固定、未披露尺子，属文档缺口。run的回答：9900条固定曝光判定仅营销翻转110/220条（全为开口→沉默），B 0.82515→0.78240/0.74130。run不能回答的：两个候选的人口/队列仍定义在W12–W22（含W13），报告已自认非独立事件前估计；四类“逐条不变”来自期望<0.5落floor的**退化不变性**（四类B逐字未变），不能作为“W13对四类无害”的证据。
+ 
+ **报告未记录的W12端点杠杆**。W12占营销前期帖21.6%、占同队列前期作者周53.6%。去掉W12后营销期望2.625→2.354，k由3降到2，B 0.82515→0.78240，恰等于人口尺度候选的B。即“事件前窗口右端点归属”与“W13尺子”对营销锚点的影响同量级，应与质疑①一并裁定。
+ 
+--- before/runs/2026-10-06-01-baseline-anchor/2026-10-06-01-baseline-anchor-check.md
++++ after/runs/archive/2026-10-06-01-baseline-anchor/2026-10-06-01-baseline-anchor-check.md
+@@ -87,7 +87,7 @@
+ 
+ 份额差较旧值增加约1.51或4.68百分点，来源是营销减少改变分母；并没有新增玩梗发言。各seed的份额与人数差保存于contrasts.csv，不把这三seed称为统计显著性证据。
+ 
+-![固定曝光路径下的周总开口判定](../../presentation/hypothesis_4/2026-10-06-01-baseline-anchor/2026-10-06-01-fixed-exposure.png)
++![固定曝光路径下的周总开口判定](../../../presentation/hypothesis_4/2026-10-06-01-baseline-anchor/2026-10-06-01-fixed-exposure.png)
+ 
+ 图：黑线原参数、蓝线人口尺度、橙线同队列活跃率；3seed均值，纵轴是开口判定数，三面板统一尺度。主曲线形态在本次数值复算中保留；候选没有新正文，不能称为新正式发帖曲线。
+ 
+--- before/runs/README.md
++++ after/runs/README.md
+@@ -10,20 +10,18 @@
+ |---|---|---|
+ | [2026-10-09-01-activation-calibration/](2026-10-09-01-activation-calibration/README.md) | 核查U/B标定、落实最新作者文稿与研究分工；后续章节在本run重写 | 实验1/2离线完成；主工作区文稿对齐完成，后续章节尚未重写；实验候选未采纳，未启动LLM |
+ 
+-## 一级资产与历史导航
++## 一级资产
+ 
+-| 资产 | 职责 | 状态与导航 |
+-|---|---|---|
+-| [README.md](README.md) | 显式探索入口、历史主题索引与使用约定 | 当前入口 |
+-| [2026-09-29-01-research-roadmap/](2026-09-29-01-research-roadmap/README.md) | 工作规范与课题推进决策；附历史实验脉络 | 历史记录；现行规范查AGENTS，正式执行进入experiment_2 |
+-| [2026-09-29-02-injection-timing/](2026-09-29-02-injection-timing/README.md) | timestamp采纳与内容修复决策；附历史四格探索资产 | 已完成并退出，后续进入官方experiment_2 |
+-| [2026-10-06-01-baseline-anchor/](2026-10-06-01-baseline-anchor/README.md) | 常态锚点未采纳的决策依据；附历史数值探索资产 | 已结束留档，候选锚点未采纳 |
++| 资产 | 用途 |
++|---|---|
++| [README.md](README.md) | 活跃探索与使用约定 |
++| [archive/](archive/README.md) | 已归档run索引、历史证据和恢复说明 |
+ 
+ ## 使用约定
+ 
+ - 只有用户明确要求创建新 run，才创建 `YYYY-MM-DD-NN-NAME/` 及README并更新索引；继续已有 run 需明确的用户指向或连续任务上下文。仅创建run的请求不自动授权实施、运行或正式落地。
+ - 新 run README维护目标、边界、探索状态、本级资产及证据、待办和交接；需要试改现有项目时使用隔离workspace，忽略workspace和可丢弃tmp，保全重要证据。
+-- 既有目录维持历史位置，其文档记载的是当时的规则和决定；规则变化以根AGENTS和工作方式记录为准，不把历史README当作自动续跑授权。
++- 已归档run从archive入口查阅，其文档记载的是当时的规则和决定；现行规则以根AGENTS为准，历史README不构成自动续跑授权。
+ - 同主题报告持续维护，不按对话、seed或参数点拆新run。正式成果采用后回指正式资产，不复制一套正式实验工作区。
+ - 归档不等于采用；未授权不落地、不commit、不push。归档目录只在已选定run的归档操作需要时创建，不自动搬动现有历史目录。
+ - `hypothesis_*/experiment_*/runs/` 仍保存引擎批次；`data/` 和`data/runs/` 仍保存预处理材料，本规范不改变它们。
+--- before/hypothesis_4/experiment_1/EXPERIMENT.md
++++ after/hypothesis_4/experiment_1/EXPERIMENT.md
+@@ -77,7 +77,7 @@
+ 
+ 未来运行若出现未来曝光、重复动作、账本/库存不守恒或不一致checkpoint，应保留现场停止续跑；内容质量不足如实报告，按实际原因修订，不能删失败或调D/R获得预设曲线。
+ 
+-来源等级：2026-10-08用户采纳决定是研究取舍依据；冻结配置、实际模块及到达任务的审计/功能结果是项目事实；配对时钟与完整制度解释是本项目明确采用的设计。曲线形态是描述性效标，不承担跨seed普遍性证明。完整原始结果、失败经验与patch解释从[到达时机任务](../../runs/2026-09-29-02-injection-timing/README.md)查阅；主项目接续从[研究推进入口](../../runs/2026-09-29-01-research-roadmap/README.md)进入。
++来源等级：2026-10-08用户采纳决定是研究取舍依据；冻结配置、实际模块及到达任务的审计/功能结果是项目事实；配对时钟与完整制度解释是本项目明确采用的设计。曲线形态是描述性效标，不承担跨seed普遍性证明。完整原始结果、失败经验与patch解释从[到达时机任务](../../runs/archive/2026-09-29-02-injection-timing/README.md)查阅；主项目接续从[研究推进入口](../../runs/archive/2026-09-29-01-research-roadmap/README.md)进入。
+ 
+ ## 历史设计与证据留档
+ 
+--- before/hypothesis_4/experiment_2/EXPERIMENT.md
++++ after/hypothesis_4/experiment_2/EXPERIMENT.md
+@@ -95,7 +95,7 @@
+ 
+ 未来运行若出现未来曝光、重复动作、账本/库存不守恒或不一致checkpoint，应保留现场停止续跑；内容质量不足如实报告，按实际原因修订，不能删失败或调D/R获得预设曲线。
+ 
+-来源等级：2026-10-08用户采纳决定是研究取舍依据；冻结配置、实际模块及到达任务的审计/功能结果是项目事实；配对时钟与完整制度解释是本项目明确采用的设计。曲线形态是描述性效标，不承担跨seed普遍性证明。完整原始结果、失败经验与patch解释从[到达时机任务](../../runs/2026-09-29-02-injection-timing/README.md)查阅；主项目接续从[本实验README](README.md)进入。
++来源等级：2026-10-08用户采纳决定是研究取舍依据；冻结配置、实际模块及到达任务的审计/功能结果是项目事实；配对时钟与完整制度解释是本项目明确采用的设计。曲线形态是描述性效标，不承担跨seed普遍性证明。完整原始结果、失败经验与patch解释从[到达时机任务](../../runs/archive/2026-09-29-02-injection-timing/README.md)查阅；主项目接续从[本实验README](README.md)进入。
+ 
+ ## 实现前事实核对与落地方案
+ 
+--- before/hypothesis_4/experiment_1/init/arrival_timing_diagnostic/README.md
++++ after/hypothesis_4/experiment_1/init/arrival_timing_diagnostic/README.md
+@@ -1,6 +1,6 @@
+ # 普通真实帖到达时机诊断：冻结配置
+ 
+-本目录只存四格诊断的输入配置，不替换原主实验配置。研究设计、实时进度与运行授权统一见[任务入口](../../../../runs/2026-09-29-02-injection-timing/README.md)。生成器是[任务专用脚本](../../../../runs/2026-09-29-02-injection-timing/2026-09-30-01-generate-configs.py)，从工作区根目录使用 `.env` 指定的 Python 运行。
++本目录只存四格诊断的输入配置，不替换原主实验配置。研究设计、实时进度与运行授权统一见[任务入口](../../../../runs/archive/2026-09-29-02-injection-timing/README.md)。生成器是[任务专用脚本](../../../../runs/archive/2026-09-29-02-injection-timing/2026-09-30-01-generate-configs.py)，从工作区根目录使用 `.env` 指定的 Python 运行。
+ 
+ | 一级资产 | 职责 |
+ |---|---|
+--- before/presentation/hypothesis_4/README.md
++++ after/presentation/hypothesis_4/README.md
+@@ -10,4 +10,4 @@
+ | [2026-09-30-01-arrival-timing/](2026-09-30-01-arrival-timing/README.md) | 普通真实帖到达时机四格诊断的复算表、来源核验和图形 |
+ | [2026-10-06-01-baseline-anchor/](2026-10-06-01-baseline-anchor/README.md) | 常态锚点换算的独立固定曝光数值检查；不含新LLM轨迹 |
+ 
+-到达时机任务的完整解释与交接见[任务README](../../runs/2026-09-29-02-injection-timing/README.md)。本目录不另设实时进度。
++到达时机任务的完整解释与交接见[任务README](../../runs/archive/2026-09-29-02-injection-timing/README.md)。本目录不另设实时进度。
+--- before/presentation/hypothesis_4/2026-09-30-01-arrival-timing/README.md
++++ after/presentation/hypothesis_4/2026-09-30-01-arrival-timing/README.md
+@@ -1,6 +1,6 @@
+ # 到达时机四格诊断的量化资产
+ 
+-本目录保存冻结四格的分析结果，不替代原始引擎run。解释、研究判断和正文逐条核查见[任务入口](../../../runs/2026-09-29-02-injection-timing/README.md)。原四格结果仅描述seed 0；新增数值回放的条件与边界单独登记，不作为新LLM实验结果。
++本目录保存冻结四格的分析结果，不替代原始引擎run。解释、研究判断和正文逐条核查见[任务入口](../../../runs/archive/2026-09-29-02-injection-timing/README.md)。原四格结果仅描述seed 0；新增数值回放的条件与边界单独登记，不作为新LLM实验结果。
+ 
+ | 本级资产 | 内容与使用 |
+ |---|---|
+--- before/presentation/hypothesis_4/2026-10-06-01-baseline-anchor/README.md
++++ after/presentation/hypothesis_4/2026-10-06-01-baseline-anchor/README.md
+@@ -1,6 +1,6 @@
+ # 常态锚点的独立数值探索
+ 
+-本目录为`baseline_anchor_fixed_exposure_20261006_01`的数值派生产物。完整方案、结果解释与状态见[任务入口](../../../runs/2026-10-06-01-baseline-anchor/README.md)。固定9900条历史曝光路径，候选只改B；没有新正文或引擎轨迹，不替代正式ABM。
++本目录为`baseline_anchor_fixed_exposure_20261006_01`的数值派生产物。完整方案、结果解释与状态见[任务入口](../../../runs/archive/2026-10-06-01-baseline-anchor/README.md)。固定9900条历史曝光路径，候选只改B；没有新正文或引擎轨迹，不替代正式ABM。
+ 
+ | 一级资产 | 职责 |
+ |---|---|
+@@ -14,6 +14,6 @@
+ | 2026-10-06-01-contrasts.csv | 逐seed的interest/random玩梗人数与份额差；份额分母为开口判定 |
+ | 2026-10-06-01-fixed-exposure.png / .svg | 固定曝光周总开口对照，三面板3seed均值；PNG查看，SVG编辑 |
+ 
+-复现：用.env中的Python执行`runs/2026-10-06-01-baseline-anchor/2026-10-06-02-check.py`。只读用户工作簿与原归档，输出到本目录；重复执行确定性数值结果一致，manifest执行时间与SVG元数据可以不同。新增数据输入与脚本由哈希定位。
++复现：用.env中的Python执行`runs/archive/2026-10-06-01-baseline-anchor/2026-10-06-02-check.py`。只读用户工作簿与原归档，输出到本目录；重复执行确定性数值结果一致，manifest执行时间与SVG元数据可以不同。新增数据输入与脚本由哈希定位。
+ 
+ 口径：UTC周、固定作者类型、事件前W05–W12活动、W12–W22回顾性人口。original是已发生发言意图，候选是固定路径数值判定。4条原content_empty保留；候选开口不保证内容生成成功。不要把人数差稳定解释为完整推荐反馈稳定，也不要把份额提高解释为玩梗生产增加。

@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-14",
+  "purpose": "第三、四章详细大纲、问题—主张—证据—图表对应及U正文取舍；不产生新的实验结果",
+  "git_commit": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "git_status_at_intake_summary": {
+    "source": "本轮首次只读git status --short",
+    "pre_existing_changes": "研究文档、两份测试路径调整、三历史run归档及原始稿件等已有未提交修改",
+    "staging_empty": true
+  },
+  "git_status_at_delivery": " M AGENTS.md\n M README.md\n M TOPIC.md\n M custom/tests/test_arrival_timing.py\n M custom/tests/test_content_quality.py\n M data/README.md\n M hypothesis_4/HYPOTHESIS.md\n M hypothesis_4/README.md\n M hypothesis_4/experiment_1/EXPERIMENT.md\n M hypothesis_4/experiment_1/init/arrival_timing_diagnostic/README.md\n M hypothesis_4/experiment_2/EXPERIMENT.md\n M hypothesis_4/experiment_2/README.md\n M paper/README.md\n M paper/manuscript/INTAKE_AUDIT.md\n M paper/manuscript/manuscript.accepted.md\n M presentation/hypothesis_4/2026-09-30-01-arrival-timing/README.md\n M presentation/hypothesis_4/2026-10-06-01-baseline-anchor/README.md\n M presentation/hypothesis_4/README.md\n D runs/2026-09-29-01-research-roadmap/2026-09-29-01-research-roadmap.md\n D runs/2026-09-29-01-research-roadmap/2026-10-09-01-workflow-decisions.md\n D runs/2026-09-29-01-research-roadmap/README.md\n D runs/2026-09-29-02-injection-timing/2026-09-29-01-injection-timing-plan.md\n D runs/2026-09-29-02-injection-timing/2026-09-30-01-arrival-timing.patch\n D runs/2026-09-29-02-injection-timing/2026-09-30-01-generate-configs.py\n D runs/2026-09-29-02-injection-timing/2026-09-30-02-audit.py\n D runs/2026-09-29-02-injection-timing/2026-09-30-03-run-batch.py\n D runs/2026-09-29-02-injection-timing/2026-09-30-04-analyze.py\n D runs/2026-09-29-02-injection-timing/2026-09-30-05-semantic-interest.json\n D runs/2026-09-29-02-injection-timing/2026-09-30-06-semantic-random.json\n D runs/2026-09-29-02-injection-timing/2026-09-30-07-semantic-preload-interest-hits.json\n D runs/2026-09-29-02-injection-timing/2026-09-30-08-semantic-timestamp-interest-hits.json\n D runs/2026-09-29-02-injection-timing/2026-09-30-09-plot.py\n D runs/2026-09-29-02-injection-timing/2026-09-30-10-results.md\n D runs/2026-09-29-02-injection-timing/2026-09-30-11-knowledge-coverage.py\n D runs/2026-09-29-02-injection-timing/2026-09-30-12-timestamp-stacked-area.py\n D runs/2026-09-29-02-injection-timing/2026-10-03-01-input-accounting-plan.md\n D runs/2026-09-29-02-injection-timing/2026-10-03-02-measurement-audit.json\n D runs/2026-09-29-02-injection-timing/2026-10-06-01-numerical-check.py\n D runs/2026-09-29-02-injection-timing/2026-10-06-02-plot-numerical-expectation.py\n D runs/2026-09-29-02-injection-timing/2026-10-07-01-timestamp-decision-audit.md\n D runs/2026-09-29-02-injection-timing/2026-10-07-02-content-acceptance-fixtures.json\n D runs/2026-09-29-02-injection-timing/2026-10-07-03-content-numerical-expectation.py\n D runs/2026-09-29-02-injection-timing/2026-10-07-04-content-verification.json\n D runs/2026-09-29-02-injection-timing/2026-10-07-05-speech-preserving-repair.patch\n D runs/2026-09-29-02-injection-timing/2026-10-07-06-content-overview.py\n D runs/2026-09-29-02-injection-timing/README.md\n D runs/2026-10-06-01-baseline-anchor/2026-10-06-01-baseline-anchor-check.md\n D runs/2026-10-06-01-baseline-anchor/2026-10-06-02-check.py\n D runs/2026-10-06-01-baseline-anchor/README.md\n M runs/README.md\n M \"\\351\\224\\232\\345\\256\\232\\345\\274\\217\\344\\272\\213\\344\\273\\266\\350\\241\\250\\350\\276\\276\\346\\277\\200\\346\\264\\273\\346\\250\\241\\345\\236\\213.md\"\n?? runs/2026-10-09-01-activation-calibration/\n?? runs/archive/\n?? \"\\343\\200\\2201009\\346\\211\\271\\346\\263\\250\\347\\211\\210\\343\\200\\221ICA-\\347\\240\\224\\347\\251\\266\\350\\203\\214\\346\\231\\257\\345\\222\\214\\346\\226\\207\\347\\214\\256\\347\\273\\274\\350\\277\\260.docx\"\n?? \"\\343\\200\\220\\344\\277\\256\\350\\256\\2421\\343\\200\\2211008 \\347\\220\\206\\350\\256\\272\\346\\241\\206\\346\\236\\266.docx\"\n?? \"\\346\\202\\274\\345\\277\\265\\351\\200\\200\\346\\275\\256\\344\\271\\213\\345\\220\\216\\357\\274\\232\\345\\237\\272\\344\\272\\216\\345\\244\\232\\346\\231\\272\\350\\203\\275\\344\\275\\223\\344\\273\\277\\347\\234\\237\\347\\232\\204\\351\\200\\235\\350\\200\\205\\346\\225\\260\\345\\255\\227\\345\\275\\242\\350\\261\\241\\345\\241\\221\\351\\200\\240\\346\\234\\272\\345\\210\\266\\347\\240\\224\\347\\251\\266.pdf\"\n",
+  "source_sha256": {
+    "ARCHIVE_MANIFEST_H4E1.md": "b6b54c6fa496d1d3cd78e78fcee2b416faa33227222a1d764e9d7ee1098bcd35",
+    "data/README.md": "7cdb3a407d164d1f8c7f5a9bea8bde5e81038612c81a984e259403355354c08b",
+    "data/prompts/label_prompt_round1.md": "e1a69125de67b5fd8c6f448abb47683e10c4366d737def180e4e78400023fa80",
+    "data/reports/DATA_MINING_REVIEW.md": "6782654b63e7e2b46674f738e82fe57e207d059b8b1a200ae475432c11edacd3",
+    "data/reports/第1轮口径复现对比报告_R1prompt_Seed2_1_lite_20260927.md": "397659ea0c73b6150d07714079a33178251e41547ee0e07e0260ee52d7973448",
+    "hypothesis_4/experiment_1/results/blind_classification/REPORT.md": "140cbaa1cffb423a5982b8aeb59c2e957e569569c5b21b245fb56d51aef35d40",
+    "hypothesis_4/experiment_1/results/labeler_sensitivity/REPORT.md": "423821e064840c2b4f0282a55ca138acfe6d9842d1498ad6a3cdcc66461ac6b2",
+    "hypothesis_4/experiment_1/results/labeler_sensitivity/weekly_matrices.json": "a343eb5d798306f5bfbaafa820d694a1acedcebbbee4cad71bf001fd20bcad9e",
+    "hypothesis_4/experiment_1/results/numerical_ablation_drb/RESULTS.md": "644dbc73456a14d317b37adf8740659b4348d1b4af1802ca6aae9e8076524a27",
+    "hypothesis_4/experiment_1/results/numerical_ablation_drb/data/drb_ablation_summary.json": "436d260f6175ed488bdc8c660328f8ce15b98379ed63d4d4aa9945e220f8a3ca",
+    "hypothesis_4/experiment_1/results/platform_heterogeneity/REPORT.md": "fa40fc6926787c7a9ae22f38403e6f8aa0abe55c489422eaea6e6ba8c971c58b",
+    "hypothesis_4/experiment_1/results/platform_heterogeneity/STANDARDIZATION.md": "970ae75cf268fc921773a1740c67bb25cce9cc6d77d32a669b8782eabe08a9b4",
+    "hypothesis_4/experiment_1/results/platform_heterogeneity/platform_weekly_matrices.json": "c8752e6cf5ef6cdfa16ff8151cc24fdd511020767df8e9caad80de5dd607d97f",
+    "hypothesis_4/experiment_1/runs/anchored_v1/_derived/data/arm/arm_platform_user_chain.csv": "1543930ea5d57a72ca5b2e7f2bd16eaff9768aab32a88bc2a9cac5a1bf56d35d",
+    "hypothesis_4/experiment_1/runs/anchored_v1/_derived/data/arm/arm_weekly_by_type.csv": "2d5cc1e82d5a7900910a72cf18806815f69121d2bdbcc2be78609770a9378bc0",
+    "hypothesis_4/experiment_2/EXPERIMENT.md": "5078ca9bd12672901b52fd12a888605c4b2d6b6e6b6b20a48dd9bc85af020999",
+    "hypothesis_4/experiment_2/README.md": "9f9b4574aad751399bae505c4eea4d7b956b9198b48cb1ce1b72582ead69ed2d",
+    "paper/manuscript/INTAKE_AUDIT.md": "b21c4e436c59a87dfa54da0c40e3c70d8c0d15f6d944e6907cd04740ec741437",
+    "paper/manuscript/manuscript.accepted.md": "850b81cb1857f93e99c665d8526562a26ae7ad674aab14b68efc735c74999bbf",
+    "runs/2026-10-09-01-activation-calibration/arm_contrasts.csv": "d841957df269ac94e61d5a4acfa15fc8917c9d6a6ad33295df61989afcbaad23",
+    "runs/2026-10-09-01-activation-calibration/assessment.md": "40b766b82c608054fd385bce38bc053b22678a87a5baa5184833760c3e1e0211",
+    "runs/2026-10-09-01-activation-calibration/baseline_evidence.json": "6544f63c350782d64e08e63805c7618319b50041dbe703e69c725db6ac43a0e7",
+    "runs/2026-10-09-01-activation-calibration/calibration_evidence.json": "5f5998807d2fbb9c3531a22495bbfee2cbaa37b50c22ea6fe5b0bea356aebc46",
+    "runs/2026-10-09-01-activation-calibration/experiment_protocol.md": "b8762f961b7d89a50b26f9ada43e8fd484f6d3daaa8d93fa5c8cf21e09aae8cf",
+    "runs/2026-10-09-01-activation-calibration/experiment_summary.json": "5f85bfa002282ac4134ac1c3c7c33ad434447ee9462337e56a5a3cb186c8cf3f",
+    "runs/2026-10-09-01-activation-calibration/trajectory_summary.csv": "284cebb6bd01369938d4c32ae0e522f897ff2d8dc8364aee25730e2c2f6d3ab4"
+  },
+  "written_paths": [
+    "runs/2026-10-09-01-activation-calibration/paper_outline.md",
+    "runs/2026-10-09-01-activation-calibration/outline_sources.json",
+    "runs/2026-10-09-01-activation-calibration/README.md",
+    "runs/README.md"
+  ],
+  "checks": {
+    "local_source_targets_exist": true,
+    "research_questions_match_author_framework": true,
+    "all_eight_U_items_have_placement": true,
+    "new_main_results_marked_pending": true,
+    "proxy_and_LLM_evidence_separated": true,
+    "figures_planned_not_generated": true,
+    "git_diff_check_passed": true,
+    "staging_empty": true,
+    "no_simulations_or_model_calls_this_task": true
+  },
+  "limitations": [
+    "本轮依据现有报告/设计与汇总进行规划，未重新计算工作簿、编码或轨迹",
+    "来源哈希固定本轮写作所用版本，不等于完整科学结果复算",
+    "官方ICA CAT篇幅和补充材料规则本轮未检索，图表预算是编辑建议"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "python": "3.13.9 (main, Nov 19 2025, 23:39:32) [Clang 21.1.4 ]",
+  "interpreter": "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python",
+  "packages": {
+    "agentsociety2": "2.8.4",
+    "pydantic": "2.12.5",
+    "litellm": "1.89.2",
+    "PyYAML": "6.0.3",
+    "fastapi": "0.138.0"
+  },
+  "sdk_git_commit": "13e28b5e67a2a8f2f43d640ebf27859126da622e",
+  "sdk_git_status": [],
+  "official_config_script_sha256": "7756ec024c30b4a4f772b395203e3747ea38d697330ef31319d816ca24b08d09"
+}

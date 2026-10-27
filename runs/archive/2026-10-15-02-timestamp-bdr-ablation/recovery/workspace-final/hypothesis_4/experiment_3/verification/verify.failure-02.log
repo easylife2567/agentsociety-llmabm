@@ -1,0 +1,27 @@
+[2026-10-15 20:07:20] INFO    ModuleRegistry initialized (lazy loading enabled)
+[2026-10-15 20:07:20] INFO    Cleared 0 custom modules
+[2026-10-15 20:07:20] INFO    Registered 1 custom env modules and 1 custom agents
+[2026-10-15 20:07:21] INFO    Registered 16 env modules and 7 agents from built-in modules
+[2026-10-15 20:07:21] INFO    Cleared 1 custom modules
+[2026-10-15 20:07:21] INFO    Registered 1 custom env modules and 1 custom agents
+Traceback (most recent call last):
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/hypothesis_4/experiment_3/verify_offline.py", line 269, in <module>
+    main()
+    ~~~~^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/hypothesis_4/experiment_3/verify_offline.py", line 248, in main
+    result = asyncio.run(verify(api,agent_cls,env_cls))
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/hypothesis_4/experiment_3/verify_offline.py", line 162, in verify
+    ensure(outcome == 'published', f'固定正文未实际发布 {path.stem}/{own}: {outcome}; {agent._decision_log[-1]}')
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/hypothesis_4/experiment_3/verify_offline.py", line 68, in ensure
+    raise AssertionError(message)
+AssertionError: 固定正文未实际发布 timestamp_bdr_v1_interest_no_b_s0/marketing: action_failed; {'week': '2026-W12', 'tick': 1, 'acted_at': '2026-03-18T19:00:00+08:00', 'speak': None, 'posted': False, 'post_id': None, 'reason': 'action_failed', 'generation_attempts': 0, 'attempt_count_scope': 'provider_requests', 'generation_status': 'not_requested', 'content_status': 'not_generated', 'generation_results': [], 'failure_phase': 'before_decision', 'error_type': 'RuntimeError', 'u': None, 'components': None}

@@ -1,0 +1,82 @@
+{
+  "baseline": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "script_sha256": "b1351a6db0a27c8ea52cea237335ad0a7a2465b09371ce129365701f20e690a6",
+  "helper_sha256": "464226719aeb6d3f9ff6afdc77953cd5ff31ef92bdd28430a44a4ed06f2896f1",
+  "protocol_sha256": "f1a9a97f937ac37f6e2da657d33cb4878e26f5d6107d2ee4578f483062d1fd73",
+  "parent_manifest_sha256": "821ffa8b93031a3ca6f25505e23165393aae57ab1ddb2c6d6c69486243498314",
+  "conditions": {
+    "hard_warm": {
+      "eps": 0,
+      "init": "warm"
+    },
+    "soft_publish": {
+      "eps": 0.02,
+      "init": "publish"
+    },
+    "soft_warm": {
+      "eps": 0.02,
+      "init": "warm"
+    },
+    "soft_cold": {
+      "eps": 0.02,
+      "init": "cold"
+    },
+    "eps01": {
+      "eps": 0.01,
+      "init": "warm"
+    },
+    "eps04": {
+      "eps": 0.04,
+      "init": "warm"
+    },
+    "threshold090": {
+      "eps": 0.02,
+      "init": "warm",
+      "threshold": 0.9
+    },
+    "threshold100": {
+      "eps": 0.02,
+      "init": "warm",
+      "threshold": 1.0
+    },
+    "alternate_D": {
+      "eps": 0.02,
+      "init": "warm",
+      "function": "D"
+    },
+    "alternate_R": {
+      "eps": 0.02,
+      "init": "warm",
+      "function": "R"
+    },
+    "no_feedback": {
+      "eps": 0.02,
+      "init": "warm",
+      "feedback": false
+    },
+    "old_U": {
+      "eps": 0.02,
+      "init": "warm",
+      "function": "old"
+    },
+    "no_D": {
+      "eps": 0.02,
+      "init": "warm",
+      "function": "no_D"
+    },
+    "no_R": {
+      "eps": 0.02,
+      "init": "warm",
+      "function": "no_R"
+    }
+  },
+  "new_cells": 108,
+  "verification_cells": 3,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "max_seconds": 1800,
+  "model_calls": 0
+}

@@ -1,0 +1,101 @@
+{
+  "baseline_commit": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "created_at": "2026-10-12T04:54:02.280748+00:00",
+  "frozen_inputs_sha256": {
+    "custom/envs/curation_assets/vocabs.json": "7db323585fdc98594da4a4b97e49ce5d3d1654c89839da7c2a754c7515b15e69",
+    "hypothesis_4/benchmark_curves.json": "f5feca17298fa67d0529b61574f72cb58e3f86c7bf9ac08751b36dadaab45a40",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s0.json": "c647d5a56be35ad529422f12c8e6e55a9d6b4e8efd5f382473cdc5de23b854a9",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s1.json": "5e5f75d6f2ea52e9f5826e0868032582ca5427aee2c66d11727412f0bf9a025e",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s2.json": "ea7dfb942c5d433403fb55267d184801f833ba071fb83c6bbc14a966c1e3fff8",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s0.json": "68afdd91e46e6d4cde1eee1f7696b004e1ae4ddce292fd8dbb43706eb6d74a37",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s1.json": "3a740043abe77d7fed9b281fc4180530a9dbffffaa3d540ec8746acc03be241f",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s2.json": "5b4e1cc16a830a99d6ac71398e8b681f3cdceb1b1e3efa0196720ba0d59993fd",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s0.json": "5036a7d253cc13809f96320b78ecef8529258b80c53efe7282a0ab2c96280213",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s1.json": "ea0da1cbe7b3bcff671c9265d438dde27a9b21d9c1bd0fd12af86c086d525acb",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s2.json": "f1719531ef10311b517ad74f9a8a47dce3162f2720dd31eabfd5001b4ef7f162",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s0.json": "8915813f6b4258c03a137e3c8b0e27dc763a724bd0947b3a0190ee1cc04fe6bf",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s1.json": "da75d5861bf9bffbcb97a5b13130bd30bfc2bbfe1f11b2ed4eb4f29f92029813",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s2.json": "d5b25c42b27b468925e4112bfac60daf8f2a5362b227a83572e47b446ee19d49",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s0.json": "5b0f9efedffac94ba2b3a8a639aa8b0b3c0ef2bb2c1f31a8377ac76ec29608d5",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s1.json": "bf0768ec6c2fa9510188c676f901311feaec43ae8db2319408a6b4a5905e9601",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s2.json": "44d37a4ddc04fa34c940dff80415c81a6376832e69d7d7299b4b2b9177c15708"
+  },
+  "code_sha256": {
+    "custom/envs/curation_arrival_schedule.py": "e422e73bc43ff699e20cbf640e06a14430d2e3493001fbe62b4eb182d9de488d",
+    "custom/envs/curation_mechanisms.py": "1acbc7deafbd61c0e7d04f81673ad1ef0497acd8ef308b0a6a1b26a558a4baec",
+    "custom/envs/curation_dynamics_space.py": "794f19b45dfdd6548246feb49b86b4b557a0c9c637a019549025f4663e2fa160",
+    "custom/agents/curation_arrival_action.py": "d494fd814e2467ec3b69ce430659cc00043b763c2886b3cf9cd389cebb5636aa",
+    "custom/agents/curation_personas.py": "0642fe6890a025abf956f7cf67fb25d390db8ff9bda542c71ee687a65db5c9f9",
+    "custom/agents/curation_content_quality.py": "4e0903091e14db09c379ce65cbe665abd57aae2af0aa66b5aeca38d35ca1045f",
+    "custom/agents/curation_discourse_agent.py": "ac08888fdbd5000abb2526da83a7a9363e4b3349623f459213241b721c2e4072"
+  },
+  "raw_workbook": {
+    "path": "/Users/easylife/Project/AgentSociety/data/baseline/抖音微博小红书-全量已打标.xlsx",
+    "sha256": "0c51e7f8d4cbcb60de8783dfd43b990ec80d7854c983c83b89709c6c5433a8e0",
+    "valid_posts": 52716,
+    "missing_author_valid_posts": 595
+  },
+  "dependencies": {
+    "agentsociety2": "2.8.4",
+    "pandas": "2.3.3",
+    "numpy": "2.3.5",
+    "openpyxl": "3.1.5"
+  },
+  "sdk_loaded_from": "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/__init__.py",
+  "sdk_entry_sha256": "91667036147a5ebbb6adde37ef364a3a320d90a70f492d400b15048b1db4c007",
+  "aggregate_sha256": "50719920d4e75009d59d208976eb8c21e6946f45eb7c6db2fc57221a43bc37a4",
+  "script_sha256": "464226719aeb6d3f9ff6afdc77953cd5ff31ef92bdd28430a44a4ed06f2896f1",
+  "protocol_sha256": "b8762f961b7d89a50b26f9ada43e8fd484f6d3daaa8d93fa5c8cf21e09aae8cf",
+  "scales": {
+    "current": 0.004666949512091642,
+    "sample_population": 0.0031476235442241107,
+    "unique_authors": 0.004942709503482363,
+    "half_stress": 0.002333474756045821,
+    "double_stress": 0.009333899024183284
+  },
+  "cohort_counts": {
+    "meme": 5943,
+    "mourning": 7056,
+    "marketing": 7234,
+    "education": 4917,
+    "other": 6620
+  },
+  "frozen_fallback": {
+    "meme": "牢峰这个梗让人感慨。",
+    "mourning": "一路走好，愿安息。",
+    "marketing": "欢迎咨询我们的课程报名服务。",
+    "education": "志愿填报需要仔细了解专业。",
+    "other": "最近看到一些相关讨论，记录一下想法。"
+  },
+  "matrix": {
+    "scales": 5,
+    "arms": [
+      "random",
+      "chronological",
+      "interest"
+    ],
+    "input_seeds": [
+      0,
+      1,
+      2
+    ],
+    "population": 100,
+    "weeks": [
+      "2026-W12",
+      "2026-W13",
+      "2026-W14",
+      "2026-W15",
+      "2026-W16",
+      "2026-W17",
+      "2026-W18",
+      "2026-W19",
+      "2026-W20",
+      "2026-W21",
+      "2026-W22"
+    ],
+    "cells": 45,
+    "opportunities": 49500,
+    "max_seconds": 1800
+  },
+  "network_attempts": 0
+}

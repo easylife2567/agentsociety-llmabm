@@ -1,0 +1,34 @@
+{
+  "baseline_commit": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "overlay_files_verified": 45,
+  "independent_clean_worktree": true,
+  "original_workspace_inputs_used": false,
+  "phases_passed": [
+    "setup",
+    "generate",
+    "verify"
+  ],
+  "regenerated_manifest_identical": true,
+  "output_hashes_match": {
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_b_s0.json": true,
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s0.json": true,
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s0.json": true,
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_b_s1.json": true,
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s1.json": true,
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s1.json": true,
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_b_s2.json": true,
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s2.json": true,
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s2.json": true,
+    "hypothesis_4/experiment_3/init/init_config.json": true,
+    "hypothesis_4/experiment_3/init/steps.yaml": true
+  },
+  "changed_source_rejected_before_output_write": true,
+  "actual_profiles": 900,
+  "windows": 9,
+  "inherited_tests": 26,
+  "LLM_calls": 0,
+  "network_attempts": 0,
+  "scope": "SDK/已安装官方技能依赖版本见dependencies.json；没有主工作区未提交修改、其他run候选或原workspace依赖。",
+  "temporary_recovery_worktree_removed": true,
+  "retained_workspace": "workspace/"
+}

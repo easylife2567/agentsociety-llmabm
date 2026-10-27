@@ -1,0 +1,67 @@
+ M .agentsociety/progress.json
+ M AGENTS.md
+ M README.md
+ M TOPIC.md
+ M custom/tests/test_arrival_timing.py
+ M custom/tests/test_content_quality.py
+ M data/README.md
+ M hypothesis_4/HYPOTHESIS.md
+ M hypothesis_4/README.md
+ M hypothesis_4/experiment_1/EXPERIMENT.md
+ M hypothesis_4/experiment_1/init/arrival_timing_diagnostic/README.md
+ M hypothesis_4/experiment_2/.gitignore
+ M hypothesis_4/experiment_2/EXPERIMENT.md
+ M hypothesis_4/experiment_2/README.md
+ M paper/README.md
+ M paper/manuscript/INTAKE_AUDIT.md
+ M paper/manuscript/manuscript.accepted.md
+ M presentation/hypothesis_4/2026-09-30-01-arrival-timing/README.md
+ M presentation/hypothesis_4/2026-10-06-01-baseline-anchor/README.md
+ M presentation/hypothesis_4/README.md
+ D runs/2026-09-29-01-research-roadmap/2026-09-29-01-research-roadmap.md
+ D runs/2026-09-29-01-research-roadmap/2026-10-09-01-workflow-decisions.md
+ D runs/2026-09-29-01-research-roadmap/README.md
+ D runs/2026-09-29-02-injection-timing/2026-09-29-01-injection-timing-plan.md
+ D runs/2026-09-29-02-injection-timing/2026-09-30-01-arrival-timing.patch
+ D runs/2026-09-29-02-injection-timing/2026-09-30-01-generate-configs.py
+ D runs/2026-09-29-02-injection-timing/2026-09-30-02-audit.py
+ D runs/2026-09-29-02-injection-timing/2026-09-30-03-run-batch.py
+ D runs/2026-09-29-02-injection-timing/2026-09-30-04-analyze.py
+ D runs/2026-09-29-02-injection-timing/2026-09-30-05-semantic-interest.json
+ D runs/2026-09-29-02-injection-timing/2026-09-30-06-semantic-random.json
+ D runs/2026-09-29-02-injection-timing/2026-09-30-07-semantic-preload-interest-hits.json
+ D runs/2026-09-29-02-injection-timing/2026-09-30-08-semantic-timestamp-interest-hits.json
+ D runs/2026-09-29-02-injection-timing/2026-09-30-09-plot.py
+ D runs/2026-09-29-02-injection-timing/2026-09-30-10-results.md
+ D runs/2026-09-29-02-injection-timing/2026-09-30-11-knowledge-coverage.py
+ D runs/2026-09-29-02-injection-timing/2026-09-30-12-timestamp-stacked-area.py
+ D runs/2026-09-29-02-injection-timing/2026-10-03-01-input-accounting-plan.md
+ D runs/2026-09-29-02-injection-timing/2026-10-03-02-measurement-audit.json
+ D runs/2026-09-29-02-injection-timing/2026-10-06-01-numerical-check.py
+ D runs/2026-09-29-02-injection-timing/2026-10-06-02-plot-numerical-expectation.py
+ D runs/2026-09-29-02-injection-timing/2026-10-07-01-timestamp-decision-audit.md
+ D runs/2026-09-29-02-injection-timing/2026-10-07-02-content-acceptance-fixtures.json
+ D runs/2026-09-29-02-injection-timing/2026-10-07-03-content-numerical-expectation.py
+ D runs/2026-09-29-02-injection-timing/2026-10-07-04-content-verification.json
+ D runs/2026-09-29-02-injection-timing/2026-10-07-05-speech-preserving-repair.patch
+ D runs/2026-09-29-02-injection-timing/2026-10-07-06-content-overview.py
+ D runs/2026-09-29-02-injection-timing/README.md
+ D runs/2026-10-06-01-baseline-anchor/2026-10-06-01-baseline-anchor-check.md
+ D runs/2026-10-06-01-baseline-anchor/2026-10-06-02-check.py
+ D runs/2026-10-06-01-baseline-anchor/README.md
+ M runs/README.md
+ M 锚定式事件表达激活模型.md
+?? .agentsociety/analysis/runs/run_20261015t024653_b5434d6ed1.json
+?? hypothesis_4/experiment_2/run_main_experiment.py
+?? hypothesis_4/experiment_2/runs/
+?? paper/OUTLINE.md
+?? paper/后续论文具体写作报告.md
+?? paper/必要实验与结果整理.md
+?? presentation/hypothesis_4/charts/
+?? presentation/hypothesis_4/data/timestamp_v1_agent_supply_arm_week_mean.csv
+?? presentation/hypothesis_4/data/timestamp_v1_agent_supply_by_run_week.csv
+?? presentation/hypothesis_4/data/timestamp_v1_agent_supply_sources.json
+?? runs/archive/
+?? 【1009批注版】ICA-研究背景和文献综述.docx
+?? "【修订1】1008 理论框架.docx"
+?? 悼念退潮之后：基于多智能体仿真的逝者数字形象塑造机制研究.pdf

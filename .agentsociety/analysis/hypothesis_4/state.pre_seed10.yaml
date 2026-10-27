@@ -1,0 +1,93 @@
+hypothesis_id: '4'
+experiment_id: '1'
+db_path: /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/run/replay
+current_phase: claims
+hypothesis_release: not_started
+chart_count: 0
+max_charts: 0
+figure_contracts: []
+phase_attestations:
+  frame:
+    phase: frame
+    status: DONE
+    key_findings:
+    - 用户要求查看正式实验图，因此分析问题聚焦于weekly_lag1中interest与random的三seed聚合比较。
+    - 主指标预先锁定为玩梗供给份额、曝光份额、玩梗群体发言率和策展偏差。
+    - 旧chronological未按新时机重跑，不进入本轮主比较。
+    artifacts_read: []
+    artifacts_written:
+    - .agentsociety/analysis/hypothesis_4/analysis_plan.yaml
+    blocking_reason: null
+    recommended_next_step: null
+    rubric:
+      research_question_confirmed: 用户明确要求对已完成正式实验做图；图表问题依照当前实验目的固定为interest与random在统一一期滞后下的差异。
+      success_criteria: 图表必须使用6个正式run、按臂聚合3个seed、显示波动范围与真实基准，并清楚标注仿真和三seed限制。
+    artifact_fingerprint: 699697042c8ca8b4f8448294
+    completed_at: '2026-09-28T01:44:01.558321Z'
+  explore:
+    phase: explore
+    status: DONE
+    key_findings:
+    - 6个正式run均提供11周完整数据，共66个run-week观测；两臂各3个seed。
+    - W19-W22中interest相对random的玩梗供给份额高10.46个百分点、曝光份额高13.03个百分点、玩梗群体发言率高33.77个百分点。
+    - Agent-only发帖量显示interest在W20降至5.67帖后由玩梗发帖驱动反弹，W22为21.67帖，其中玩梗18.33帖；random在W22总计6.67帖，其中玩梗1.33帖。
+    - 两臂玩梗曝光减供给偏差均为负；仿真悼念Agent发帖峰出现在W14-W15而非真实数据W13。
+    artifacts_read: []
+    artifacts_written:
+    - presentation/hypothesis_4/data/weekly_lag1_run_week_metrics.csv
+    - presentation/hypothesis_4/data/weekly_lag1_arm_week_summary.csv
+    - presentation/hypothesis_4/data/weekly_lag1_agent_supply_by_type.csv
+    - presentation/hypothesis_4/data/weekly_lag1_summary.json
+    - presentation/hypothesis_4/data/weekly_lag1_figure_notes.md
+    - presentation/hypothesis_4/data/eda_figure_01_weekly_lag_meme_trajectory.png
+    - presentation/hypothesis_4/data/eda_figure_02_weekly_lag_event_and_arm_gap.png
+    - presentation/hypothesis_4/data/eda_figure_03_weekly_lag_agent_supply_stacked_area.png
+    blocking_reason: null
+    recommended_next_step: null
+    rubric:
+      tables_inspected:
+      - 'curation_dynamics_env_state: weekly supply and exposure shares'
+      - 'curation_dynamics_agent_state: type-specific speaking decisions'
+      - 'weekly_mechanism: n_posted by arm, seed, week, and fixed agent type'
+      data_limitations: 每臂3个seed；堆叠面积使用seed均值，只描述仿真内部Agent产出，不含真实注入帖。chronological未重跑而排除。
+      eda_takeaway: interest的后期总发帖反弹主要由玩梗型Agent驱动，而random保持低位；整体一期滞后也使悼念Agent高峰落在W14-W15。
+    artifact_fingerprint: 9a016db45ba6e9325512c450
+    completed_at: '2026-09-28T02:06:26.102800Z'
+phase_checkpoints:
+  frame:
+    phase: frame
+    structural_pass: true
+    attestation_pass: true
+    attestation_required: true
+    gate_pass: true
+    structural_issues: []
+    completed_at: '2026-09-28T01:44:01.558321Z'
+  explore:
+    phase: explore
+    structural_pass: true
+    attestation_pass: true
+    attestation_required: true
+    gate_pass: true
+    structural_issues: []
+    completed_at: '2026-09-28T02:06:26.102800Z'
+phase_artifacts:
+  explore:
+  - presentation/hypothesis_4/data/weekly_lag1_run_week_metrics.csv
+  - presentation/hypothesis_4/data/weekly_lag1_arm_week_summary.csv
+  - presentation/hypothesis_4/data/weekly_lag1_agent_supply_by_type.csv
+  - presentation/hypothesis_4/data/weekly_lag1_summary.json
+  - presentation/hypothesis_4/data/weekly_lag1_figure_notes.md
+  - presentation/hypothesis_4/data/eda_figure_01_weekly_lag_meme_trajectory.png
+  - presentation/hypothesis_4/data/eda_figure_02_weekly_lag_event_and_arm_gap.png
+  - presentation/hypothesis_4/data/eda_figure_03_weekly_lag_agent_supply_stacked_area.png
+validation_history:
+- phase: explore
+  status: PASS
+  at: '2026-09-28T01:46:39.110092Z'
+- phase: explore
+  status: PASS
+  at: '2026-09-28T01:47:19.677853Z'
+- phase: explore
+  status: PASS
+  at: '2026-09-28T02:06:28.130163Z'
+updated_at: '2026-09-28T02:06:28.130175Z'

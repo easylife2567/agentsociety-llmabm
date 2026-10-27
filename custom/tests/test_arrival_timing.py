@@ -199,7 +199,7 @@ class TimingTests(unittest.IsolatedAsyncioTestCase):
         self.assertIsNone(agent._decision_log[0]['u'])
 
     async def test_metrics_empty_and_different_candidate_pools(self):
-        audit = load_module('test_audit', ROOT / 'runs/2026-09-29-02-injection-timing/2026-09-30-02-audit.py')
+        audit = load_module('test_audit', ROOT / 'runs/archive/2026-09-29-02-injection-timing/2026-09-30-02-audit.py')
         rows = [{'feed': [{'type': 'meme'}, {'type': 'other'}], 'candidate_count': 10, 'candidate_meme': 2},
                 {'feed': [], 'candidate_count': 0, 'candidate_meme': 0}]
         result = audit.metrics(rows)

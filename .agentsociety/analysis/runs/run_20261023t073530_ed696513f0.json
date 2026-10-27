@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261023t073530_ed696513f0",
+  "operation_id": "record-report-review",
+  "operation_contract_version": 1,
+  "execution_key": "e781abd81e16568beebecf05c2b6d397ef53dbc91740a7fb9366f14c002d274f",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "2",
+  "input_names": [
+    "experiment_id",
+    "hypothesis_id",
+    "payload",
+    "workspace"
+  ],
+  "input_fingerprint": "2560370fef59c0e3a235de371fa18c38a0dfbd8d820f1137795d5b339ec9b830",
+  "safe_inputs": {
+    "hypothesis_id": "4",
+    "experiment_id": "2"
+  },
+  "preflight": {
+    "operation_id": "record-report-review",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "overall_score": 5,
+    "verdict": "PASS"
+  },
+  "error": null,
+  "declared_artifacts": [
+    ".agentsociety/analysis/hypothesis_{id}/report_review.json"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/report_review.json": "f89b86a0591c4d6857718b5f2ce55b04271fa4792bb6766c5c5f39dfd426372b",
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "b7f1e9a55daed9d295fa6906a3bcce4e9b363e342b021584e1211650d1432795"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 54128,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-23T07:35:30.967172Z",
+  "updated_at": "2026-10-23T07:35:30.981848Z",
+  "completed_at": "2026-10-23T07:35:30.981809Z",
+  "duration_ms": 14
+}

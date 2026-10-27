@@ -1,0 +1,45 @@
+{
+  "adoption_record": "../../../hypothesis_4/experiment_3/adoption.json",
+  "formal_harness_release_signed": false,
+  "status": "adopted",
+  "claims_user_approved": true,
+  "independent_model_review": false,
+  "figures": [
+    {
+      "asset": "chart_03_supply_mean_comparison.png",
+      "finding_number": 1,
+      "caption": "图1：三seed均值的作者类型供给。复用指定模板五色、W13事件线和0–80轴；只含Agent成功发布，逐seed单图见附录。",
+      "source_files": [
+        "data/weekly_by_type.csv",
+        "data/run_metrics.csv",
+        "data/paired_summary.csv"
+      ]
+    },
+    {
+      "asset": "chart_04_primary_paired_effects.png",
+      "finding_number": 2,
+      "caption": "图2：预设三指标的同seed配对。每条线连接相同seed，差值均为消融−Full；范围不是置信区间。",
+      "source_files": [
+        "data/weekly_by_type.csv",
+        "data/run_metrics.csv",
+        "data/paired_summary.csv"
+      ]
+    },
+    {
+      "asset": "chart_05_speaking_trajectories.png",
+      "finding_number": 3,
+      "caption": "图3：全体与玩梗型作者的发言率轨迹。粗线为均值、浅带为三个seed实际最小–最大，不是统计置信区间。",
+      "source_files": [
+        "data/weekly_by_type.csv",
+        "data/run_metrics.csv",
+        "data/paired_summary.csv"
+      ]
+    }
+  ],
+  "reports": [
+    "report_zh.md",
+    "report_en.md",
+    "report_zh.html",
+    "report_en.html"
+  ]
+}

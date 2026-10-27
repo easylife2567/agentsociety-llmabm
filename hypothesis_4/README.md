@@ -1,5 +1,7 @@
 # hypothesis_4：算法策展主研究
 
+主研究承接[TOPIC.md](../TOPIC.md)中的问题（2）（3）：解释算法与发帖行为的循环如何塑造表征，并比较完整策展制度是否差异化推动悼念向玩梗转变。问题（1）主要由原始数据挖掘与分析回答，提供时序和平台差异参照；本目录的仿真不代替该项现实分析。总体理论为传播反馈回路视角与策展流框架，U模型负责选择性表达的操作化。
+
 本目录保存主假设、正式实验设计、配置及相关分析。后续主方案采用timestamp_v1；方案采用、配置验收和实际运行分开记录。
 
 ## 一级资产
@@ -12,11 +14,12 @@
 | [benchmark_curves.json](benchmark_curves.json) | 冻结真实数据UTC周级效标，上海周对照另行派生，不覆盖 |
 | [experiment_1/](experiment_1/EXPERIMENT.md) | 既有配置、历史设计与完成批次 |
 
-| [experiment_2/](experiment_2/README.md) | 当前timestamp_v1主设计、九配置与离线验收；未启动LLM |
+| [experiment_2/](experiment_2/README.md) | timestamp主实验；seed0–9三臂30次统一存于experiment_2/runs/timestamp_v1，每臂10seed并已完整核验，定时器暂停；原口径主分析见报告，消融保持 |
+| [experiment_3/](experiment_3/README.md) | timestamp-interest B/D/R已补齐seed0–9；新增21次全部完成并逐次完整验收，原失败证据保留、定时汇报结束；新增种子暂未分析，旧九次分析保持 |
 
 ## 设计与证据身份
 
-后续主实验从[experiment_2](experiment_2/README.md)推进：三臂×3 seeds、100人、11周；五人W13共同顺延、行为参数、17条历史池及各臂回流保持。官方按共同20:00取得资格，在interest中不置顶或保底，正常参与兴趣评分/抽样；三臂均允许官方漏读。正式源码在custom，配置在官方init；本轮实现和离线验收，不启动LLM。根级runs探索已交接结束。
+后续主实验从[experiment_2](experiment_2/README.md)推进：三臂×10 seeds、100人、11周；五人W13共同顺延、行为参数、17条历史池及各臂回流保持。官方按共同20:00取得资格，在interest中不置顶或保底，正常参与兴趣评分/抽样；三臂均允许官方漏读。正式源码在custom，配置在官方init；配置准备时仅实现和离线验收；获授权的30次LLM主实验现已完成。此前到达时机探索已交接结束；U标定与文稿讨论run已归档，后续依据paper目录两份报告继续写作，实验运行状态以experiment_2 README为准。
 
 实际官方单run入口仍指向既有anchored_v1_interest_s0；anchored_v1的9个已完成run继续保留。weekly_lag1是已完成的信息延迟敏感性批，weekly_lag1_event_v2是未运行且撤回设计。到达时机四格是独立单seed诊断，不改称新三臂主实验。归档路径与打包边界见[根归档清单](../ARCHIVE_MANIFEST_H4E1.md)。
 

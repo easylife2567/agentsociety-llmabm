@@ -1,0 +1,65 @@
+{
+  "valid": true,
+  "errors": [],
+  "warnings": [
+    "ask_env at line 425: readonly=False with template_mode=True. This pattern caches a closure keyed on instruction-text similarity + argument names (NOT tool name) and can silently collide between writes. Default to template_mode=False for writes. See references/pitfalls.md P3."
+  ],
+  "class_name": "CurationDiscourseAgent",
+  "has_init_description": true,
+  "methods": [
+    "description",
+    "init_description",
+    "create",
+    "from_workspace",
+    "restore",
+    "to_workspace",
+    "_find_feed_dict",
+    "_speak_stimulus",
+    "_content_messages",
+    "ask",
+    "step"
+  ]
+}
+{
+  "archived_run_audits": [
+    {
+      "run_id": "arrival_timing_diagnostic_preload_interest_s0",
+      "batches": 693,
+      "actions": 1100,
+      "published": 234,
+      "failures": [],
+      "new_content_classified": 0
+    },
+    {
+      "run_id": "arrival_timing_diagnostic_timestamp_interest_s0",
+      "batches": 693,
+      "actions": 1100,
+      "published": 214,
+      "failures": [],
+      "new_content_classified": 0
+    },
+    {
+      "run_id": "arrival_timing_diagnostic_preload_random_s0",
+      "batches": 693,
+      "actions": 1100,
+      "published": 177,
+      "failures": [],
+      "new_content_classified": 0
+    },
+    {
+      "run_id": "arrival_timing_diagnostic_timestamp_random_s0",
+      "batches": 693,
+      "actions": 1100,
+      "published": 169,
+      "failures": [],
+      "new_content_classified": 0
+    }
+  ],
+  "utility_ast_unchanged": true,
+  "network_attempts": 0,
+  "tests": 16,
+  "mandatory_path_checks": 40,
+  "patch_baseline": "442efdcc9faf6417ec8916a952387a71e823ac5c",
+  "patch_clean_apply_and_bytes_equal": true,
+  "validator_pass": true
+}

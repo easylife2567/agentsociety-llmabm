@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261024t054846_9668962ee5",
+  "operation_id": "prepare-produce",
+  "operation_contract_version": 1,
+  "execution_key": "39ed2e9ed1b2ac662d5411ebff6c5f5c89e55c885c5ba9af53e281acc48ff4c0",
+  "attempt": 3,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "2",
+  "input_names": [
+    "experiment_id",
+    "hypothesis_id",
+    "workspace"
+  ],
+  "input_fingerprint": "a59dffe39f67ec8a91acca5b026c9a1619eb6366ef0f1040d05670dfb9c1f5dc",
+  "safe_inputs": {
+    "hypothesis_id": "4",
+    "experiment_id": "2"
+  },
+  "preflight": {
+    "operation_id": "prepare-produce",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "executed_steps": [
+      "report_context",
+      "report_assets",
+      "interactive_eda"
+    ],
+    "recommended_next_step": "Draft bilingual reports, re-run prepare-produce after adding report asset references, record an independent review, then run validate-release.",
+    "skipped_steps": [],
+    "status": "PREPARED"
+  },
+  "error": null,
+  "declared_artifacts": [
+    ".agentsociety/analysis/hypothesis_{id}/prepare_produce_manifest.json",
+    "presentation/hypothesis_{id}/data/evidence_index.json",
+    "presentation/hypothesis_{id}/data/report_context.md",
+    "presentation/hypothesis_{id}/assets/*"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/prepare_produce_manifest.json": "951e45f7f8b673e76e434e21910dfb47ee1312eddeb7a4e07c2d5bd1c42d625f",
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "040dc2e4870e6d4b8ee99b7b7b4db542276a09d0727f19e4cc601d93745f3693",
+    "presentation/hypothesis_4/assets/agentsociety_icon.svg": "9244e5581292b9e6e46961a188d158ce44949d321dad0a822e10f41063b13141",
+    "presentation/hypothesis_4/assets/chart_01_seed10_trajectories.png": "8c39777d0c2747c8dacaaaa430919420464c348ab81a5e6af592cbfd7fc1c653",
+    "presentation/hypothesis_4/assets/chart_02_seed10_model_cohorts.png": "0421aa579af52f0e06ac65f2cb90650f9d384b8f8e99c9a24726bd4a4f0c30b0",
+    "presentation/hypothesis_4/assets/chart_03_seed10_paired_seeds.png": "c9dc6a35749bb7ad510bec3c58a2fea0017ce5d0b5c0c97482735dac68d15642",
+    "presentation/hypothesis_4/data/evidence_index.json": "d34bf9db0a997a1f1d9dc8187a14ad377fad9e2bff8986c6d222beab00f4940c",
+    "presentation/hypothesis_4/data/report_context.md": "1632a004c276cf05d69848585e2f2ea783526aaee141183a022492fbf4611c1a"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 22460,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-24T05:48:46.813877Z",
+  "updated_at": "2026-10-24T05:48:46.916397Z",
+  "completed_at": "2026-10-24T05:48:46.916361Z",
+  "duration_ms": 102
+}

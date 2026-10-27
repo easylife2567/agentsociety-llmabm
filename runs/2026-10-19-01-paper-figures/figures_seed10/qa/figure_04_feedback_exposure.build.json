@@ -1,0 +1,414 @@
+{
+  "figure": "figure_04_feedback_exposure",
+  "size_mm": [
+    180.0,
+    98.0
+  ],
+  "panels": [
+    "Fig. 4a",
+    "Fig. 4b",
+    "Fig. 4c"
+  ],
+  "font": "Times New Roman",
+  "base_font_pt": 9,
+  "python": "3.13.9",
+  "matplotlib": "3.10.0",
+  "labels": [],
+  "rendered_text_boxes": [
+    {
+      "text": "3.2%",
+      "bbox_px": [
+        203.38,
+        432.03,
+        243.38,
+        449.03
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "43.6%",
+      "bbox_px": [
+        376.74,
+        332.15,
+        425.62,
+        349.15
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "26.3%",
+      "bbox_px": [
+        302.45,
+        232.27,
+        351.33,
+        249.27
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Fig. 4a",
+      "bbox_px": [
+        175.39,
+        480.02,
+        235.39,
+        499.02
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Same-type feed items (%)",
+      "bbox_px": [
+        203.64,
+        92.12,
+        389.01,
+        108.2
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0",
+      "bbox_px": [
+        177.11,
+        122.78,
+        185.48,
+        138.78
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "10",
+      "bbox_px": [
+        215.88,
+        122.78,
+        232.51,
+        138.78
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "20",
+      "bbox_px": [
+        258.78,
+        122.78,
+        275.41,
+        138.78
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "30",
+      "bbox_px": [
+        301.69,
+        122.78,
+        318.31,
+        138.78
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "40",
+      "bbox_px": [
+        344.53,
+        122.78,
+        361.28,
+        138.78
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "50",
+      "bbox_px": [
+        387.49,
+        122.78,
+        404.12,
+        138.78
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Curation regime",
+      "bbox_px": [
+        38.06,
+        246.87,
+        56.06,
+        369.49
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Random",
+      "bbox_px": [
+        111.6,
+        391.07,
+        168.1,
+        407.07
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Chronological",
+      "bbox_px": [
+        72.73,
+        291.19,
+        168.1,
+        307.19
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Interest-based",
+      "bbox_px": [
+        74.35,
+        191.31,
+        168.1,
+        207.31
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "4.1%",
+      "bbox_px": [
+        511.16,
+        432.03,
+        551.16,
+        449.03
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "59.7%",
+      "bbox_px": [
+        675.33,
+        332.15,
+        724.08,
+        349.15
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "49.7%",
+      "bbox_px": [
+        645.83,
+        232.27,
+        694.71,
+        249.27
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Fig. 4b",
+      "bbox_px": [
+        484.98,
+        480.02,
+        546.23,
+        499.02
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Successful posts /\nopportunities (%)",
+      "bbox_px": [
+        542.66,
+        73.71,
+        669.16,
+        108.2
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0",
+      "bbox_px": [
+        486.69,
+        122.78,
+        495.06,
+        138.78
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "20",
+      "bbox_px": [
+        541.55,
+        122.78,
+        558.18,
+        138.78
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "40",
+      "bbox_px": [
+        600.48,
+        122.78,
+        617.23,
+        138.78
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "60",
+      "bbox_px": [
+        659.47,
+        122.78,
+        676.22,
+        138.78
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "80",
+      "bbox_px": [
+        718.46,
+        122.78,
+        735.21,
+        138.78
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0.1%",
+      "bbox_px": [
+        809.48,
+        432.03,
+        849.36,
+        449.03
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "24.9%",
+      "bbox_px": [
+        976.72,
+        332.15,
+        1025.72,
+        349.15
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "7.4%",
+      "bbox_px": [
+        858.42,
+        232.27,
+        898.42,
+        249.27
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Fig. 4c",
+      "bbox_px": [
+        794.56,
+        480.02,
+        853.43,
+        499.02
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Generated memetic posts /\nother authors' feed items (%)",
+      "bbox_px": [
+        812.67,
+        73.8,
+        1018.3,
+        108.2
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0",
+      "bbox_px": [
+        796.27,
+        122.78,
+        804.64,
+        138.78
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "10",
+      "bbox_px": [
+        859.56,
+        122.78,
+        876.19,
+        138.78
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "20",
+      "bbox_px": [
+        926.98,
+        122.78,
+        943.6,
+        138.78
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "30",
+      "bbox_px": [
+        994.4,
+        122.78,
+        1011.02,
+        138.78
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W19–W22 · n = 10 seeds per regime",
+      "bbox_px": [
+        759.42,
+        529.23,
+        1036.42,
+        547.23
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Individual seed",
+      "bbox_px": [
+        473.57,
+        36.19,
+        582.7,
+        52.19
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Arithmetic mean",
+      "bbox_px": [
+        665.04,
+        36.19,
+        785.17,
+        52.19
+      ],
+      "outside_canvas": false
+    }
+  ],
+  "axes": [
+    [
+      0.165,
+      0.265,
+      0.22752808988764042,
+      0.535
+    ],
+    [
+      0.45623595505617975,
+      0.265,
+      0.2275280898876404,
+      0.535
+    ],
+    [
+      0.7474719101123595,
+      0.265,
+      0.2275280898876404,
+      0.535
+    ]
+  ],
+  "outputs": {
+    "svg": "fb80a167ea5f94a2eda67bdd0d988fb0e8ec960511b1daab21f6d9cb58c52dd0",
+    "pdf": "d976ba805bfe637656a078cdf0ed4486194a3223dca11c2a77241248bc9ce50d",
+    "png": "98cd453229b54cf44dfc5886d13256589faec525535fef4dbe0b738b172c6076"
+  }
+}

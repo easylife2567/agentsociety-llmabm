@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-26",
+  "passed": true,
+  "source_rows": 100,
+  "paired_seeds": 10,
+  "data_sha256": "61d24bcf31ddc99431559b10c00022cc85713483e2e8dedfa395007e5bc26a6b",
+  "protected_original_files_unchanged": true,
+  "original_word_unchanged": true,
+  "previous_style_unchanged": true,
+  "candidates": [
+    {
+      "stem": "figure_05_seed_atlas_v1",
+      "size_mm": [
+        180.0,
+        90.0
+      ],
+      "min_font_pt": 8.0,
+      "svg_text_objects": 73,
+      "svg_embedded_images": 0,
+      "pdf_raster_images": 0,
+      "outside_pdf_text": [],
+      "overlapping_pdf_text": [],
+      "outputs_sha256": {
+        "svg": "ae8bb23b456aa168123a41c93efa30f328c69f522dc61c7e2771abe787d8c5dc",
+        "pdf": "3ad28c6ff7969a5f29e45f8009b6425ccfd54c31b95e3957bca73abac70a4510",
+        "png": "8766e3638059d6824fc806f849922f96a6e9b6bf3ab5353381ebd1750568b479"
+      }
+    },
+    {
+      "stem": "figure_05_effect_table_v1",
+      "size_mm": [
+        180.0,
+        104.0
+      ],
+      "min_font_pt": 8.0,
+      "svg_text_objects": 49,
+      "svg_embedded_images": 0,
+      "pdf_raster_images": 0,
+      "outside_pdf_text": [],
+      "overlapping_pdf_text": [],
+      "outputs_sha256": {
+        "svg": "d127f54bb5e4cf22c7c57a0a947de74520b932102ff250d0789b194cc998a078",
+        "pdf": "4b373a787b57088c99a730316afea552e777d614c9b9f0dcd78a8f8f23a7a1a4",
+        "png": "664a70bfd0c0b2bb7ad5e924c65998ea616164eacae2011f5fd04a458bbca8d6"
+      }
+    }
+  ],
+  "paired_effects": [
+    {
+      "panel": "a",
+      "delta_mean": -7.825,
+      "delta_unit": "posts per week",
+      "full_mean": 13.8,
+      "intervention_mean": 5.975
+    },
+    {
+      "panel": "b",
+      "delta_mean": -32.763157894736864,
+      "delta_unit": "percentage points",
+      "full_mean": 49.736842105263165,
+      "intervention_mean": 16.9736842105263
+    },
+    {
+      "panel": "c",
+      "delta_mean": 30.76,
+      "delta_unit": "percentage points",
+      "full_mean": 19.42,
+      "intervention_mean": 50.18
+    },
+    {
+      "panel": "d",
+      "delta_mean": -56.445238069624324,
+      "delta_unit": "percentage points",
+      "full_mean": 68.47204814807236,
+      "intervention_mean": 12.02681007844802
+    },
+    {
+      "panel": "e",
+      "delta_mean": -12.851851851851867,
+      "delta_unit": "percentage points",
+      "full_mean": 20.81481481481483,
+      "intervention_mean": 7.962962962962964
+    }
+  ],
+  "review": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "xhigh",
+    "result": "pass",
+    "scope": "Two structure candidates; actual final PNGs inspected"
+  }
+}

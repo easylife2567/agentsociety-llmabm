@@ -1,0 +1,233 @@
+{
+  "late": {
+    "preload-interest": {
+      "J": 400,
+      "slots": 4000,
+      "O": 1085,
+      "E": 1046.7914438502673,
+      "Y": 2.7125,
+      "S": 0.27125,
+      "A": 0.009552139037433165,
+      "published": 69,
+      "meme_author_posts": 50,
+      "meme_author_share": 0.7246376811594203,
+      "meme_author_participation": 0.6578947368421053,
+      "semantic_meme_posts": 1,
+      "meme_signal_posts": 48,
+      "semantic_meme_share": 0.014492753623188406,
+      "candidate_N": {
+        "min": 68.0,
+        "q25": 70.25,
+        "median": 78.0,
+        "q75": 91.25,
+        "max": 110.0
+      },
+      "candidate_M": {
+        "min": 0.0,
+        "q25": 5.25,
+        "median": 18.5,
+        "q75": 38.75,
+        "max": 65.0
+      },
+      "candidate_meme_fraction": {
+        "min": 0.0,
+        "q25": 0.07720588235294118,
+        "median": 0.22794117647058826,
+        "q75": 0.41243315508021394,
+        "max": 0.5909090909090909
+      },
+      "short_feeds": 0,
+      "O_over_E": 1.036500638569604,
+      "meme_source_counts": {
+        "external": 651,
+        "agent": 434
+      }
+    },
+    "timestamp-interest": {
+      "J": 400,
+      "slots": 4000,
+      "O": 744,
+      "E": 722.1601707453822,
+      "Y": 1.86,
+      "S": 0.186,
+      "A": 0.005459957313654456,
+      "published": 53,
+      "meme_author_posts": 32,
+      "meme_author_share": 0.6037735849056604,
+      "meme_author_participation": 0.42105263157894735,
+      "semantic_meme_posts": 0,
+      "meme_signal_posts": 34,
+      "semantic_meme_share": 0.0,
+      "candidate_N": {
+        "min": 52.0,
+        "q25": 59.0,
+        "median": 63.0,
+        "q75": 71.0,
+        "max": 92.0
+      },
+      "candidate_M": {
+        "min": 0.0,
+        "q25": 0.75,
+        "median": 7.0,
+        "q75": 21.75,
+        "max": 48.0
+      },
+      "candidate_meme_fraction": {
+        "min": 0.0,
+        "q25": 0.01293103448275862,
+        "median": 0.11498079385403329,
+        "q75": 0.30209302325581394,
+        "max": 0.5217391304347826
+      },
+      "short_feeds": 0,
+      "O_over_E": 1.030242361929315,
+      "meme_source_counts": {
+        "external": 550,
+        "agent": 194
+      }
+    },
+    "preload-random": {
+      "J": 400,
+      "slots": 4000,
+      "O": 189,
+      "E": 174.30689340275669,
+      "Y": 0.4725,
+      "S": 0.04725,
+      "A": 0.0036732766493108287,
+      "published": 28,
+      "meme_author_posts": 4,
+      "meme_author_share": 0.14285714285714285,
+      "meme_author_participation": 0.05263157894736842,
+      "semantic_meme_posts": 0,
+      "meme_signal_posts": 4,
+      "semantic_meme_share": 0.0,
+      "candidate_N": {
+        "min": 347.0,
+        "q25": 369.5,
+        "median": 390.5,
+        "q75": 412.0,
+        "max": 436.0
+      },
+      "candidate_M": {
+        "min": 3.0,
+        "q25": 8.25,
+        "median": 15.5,
+        "q75": 25.25,
+        "max": 38.0
+      },
+      "candidate_meme_fraction": {
+        "min": 0.008645533141210375,
+        "q25": 0.022055282489546628,
+        "median": 0.03925269847939701,
+        "q75": 0.06077413934053956,
+        "max": 0.0871559633027523
+      },
+      "short_feeds": 0,
+      "O_over_E": 1.0842944665607295,
+      "meme_source_counts": {
+        "external": 183,
+        "agent": 6
+      }
+    },
+    "timestamp-random": {
+      "J": 400,
+      "slots": 4000,
+      "O": 121,
+      "E": 129.26815189884186,
+      "Y": 0.3025,
+      "S": 0.03025,
+      "A": -0.0020670379747104663,
+      "published": 29,
+      "meme_author_posts": 3,
+      "meme_author_share": 0.10344827586206896,
+      "meme_author_participation": 0.039473684210526314,
+      "semantic_meme_posts": 0,
+      "meme_signal_posts": 2,
+      "semantic_meme_share": 0.0,
+      "candidate_N": {
+        "min": 321.0,
+        "q25": 344.75,
+        "median": 371.0,
+        "q75": 397.75,
+        "max": 428.0
+      },
+      "candidate_M": {
+        "min": 3.0,
+        "q25": 3.75,
+        "median": 9.5,
+        "q75": 20.5,
+        "max": 37.0
+      },
+      "candidate_meme_fraction": {
+        "min": 0.008875739644970414,
+        "q25": 0.010835032167535941,
+        "median": 0.025592954307638645,
+        "q75": 0.05152643055868862,
+        "max": 0.08644859813084112
+      },
+      "short_feeds": 0,
+      "O_over_E": 0.9360387552742917,
+      "meme_source_counts": {
+        "external": 121
+      }
+    }
+  },
+  "contrasts": {
+    "Y": {
+      "preload_gap": 2.2399999999999998,
+      "timestamp_gap": 1.5575,
+      "interaction": -0.6824999999999997,
+      "interest_arrival_effect": -0.8524999999999998,
+      "random_arrival_effect": -0.16999999999999998
+    },
+    "S": {
+      "preload_gap": 0.22399999999999998,
+      "timestamp_gap": 0.15575,
+      "interaction": -0.06824999999999998,
+      "interest_arrival_effect": -0.08524999999999999,
+      "random_arrival_effect": -0.017
+    },
+    "A": {
+      "preload_gap": 0.005878862388122337,
+      "timestamp_gap": 0.007526995288364922,
+      "interaction": 0.0016481329002425854,
+      "interest_arrival_effect": -0.004092181723778709,
+      "random_arrival_effect": -0.0057403146240212945
+    },
+    "meme_author_posts": {
+      "preload_gap": 46,
+      "timestamp_gap": 29,
+      "interaction": -17,
+      "interest_arrival_effect": -18,
+      "random_arrival_effect": -1
+    },
+    "meme_author_share": {
+      "preload_gap": 0.5817805383022774,
+      "timestamp_gap": 0.5003253090435914,
+      "interaction": -0.08145522925868598,
+      "interest_arrival_effect": -0.12086409625375993,
+      "random_arrival_effect": -0.039408866995073885
+    },
+    "meme_author_participation": {
+      "preload_gap": 0.605263157894737,
+      "timestamp_gap": 0.381578947368421,
+      "interaction": -0.22368421052631593,
+      "interest_arrival_effect": -0.23684210526315796,
+      "random_arrival_effect": -0.013157894736842105
+    },
+    "semantic_meme_posts": {
+      "preload_gap": 1,
+      "timestamp_gap": 0,
+      "interaction": -1,
+      "interest_arrival_effect": -1,
+      "random_arrival_effect": 0
+    },
+    "semantic_meme_share": {
+      "preload_gap": 0.014492753623188406,
+      "timestamp_gap": 0.0,
+      "interaction": -0.014492753623188406,
+      "interest_arrival_effect": -0.014492753623188406,
+      "random_arrival_effect": 0.0
+    }
+  }
+}

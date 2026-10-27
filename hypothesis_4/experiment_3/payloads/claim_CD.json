@@ -1,0 +1,8 @@
+{
+  "claim_id": "CD",
+  "statement": "去D响应使晚期玩梗型作者发言率下降30.70个百分点；更多早期发言及晚期更高同类接触/更低R提供闭环过程证据，不能只归于当周D差值。",
+  "mode": "confirmatory",
+  "evidence": "paired_summary.csv condition=no_d metric=late_meme_speak_rate; weekly_by_type.csv; decisions.csv late meme cum_own/R",
+  "needs_chart": true,
+  "approved": true
+}

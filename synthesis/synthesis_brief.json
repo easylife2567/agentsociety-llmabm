@@ -1,0 +1,24 @@
+{
+  "synthesis_question": "按用户采纳的新旧模型等价研究约定，以三臂各10seed为主分析，哪些结论稳定，时序排序与生成帖更快入池/周内回流及候选规则的制度组合如何限制归因？",
+  "scope_hypothesis_ids": [
+    "4"
+  ],
+  "source_artifacts": [
+    "presentation/hypothesis_4/report_zh.md",
+    "presentation/hypothesis_4/report_en.md",
+    "presentation/hypothesis_4/data/analysis_summary.json",
+    "presentation/hypothesis_4/data/seed10_runs.csv",
+    "presentation/hypothesis_4/data/seed10_arm_summary.csv",
+    "presentation/hypothesis_4/data/seed10_paired_contrasts.csv",
+    "presentation/hypothesis_4/data/seed10_sources.json",
+    "paper/figures/scripts/prepare_simulation.py",
+    "custom/envs/curation_arrival_schedule.py"
+  ],
+  "comparison_mode": "integrative",
+  "model_comparability_convention": {
+    "status": "equivalent_for_this_study_as_adopted_convention",
+    "primary_analysis": "pooled ten seeds per arm",
+    "version_labels_role": "provenance only",
+    "independent_statistical_equivalence_test_performed": false
+  }
+}

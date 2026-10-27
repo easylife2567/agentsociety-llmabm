@@ -1,0 +1,46 @@
+test_chronological_stable_order_and_same_batch_visibility (test_timestamp_main.MainTimestampTests.test_chronological_stable_order_and_same_batch_visibility) ... ok
+test_chronological_weekly_supply_flow_is_conserved (test_timestamp_main.MainTimestampTests.test_chronological_weekly_supply_flow_is_conserved)
+时序帖当周入池，跨周观测只计本周新增供给，stock按窗口累积。 ... ok
+test_nine_complete_windows_have_no_future_exposure (test_timestamp_main.MainTimestampTests.test_nine_complete_windows_have_no_future_exposure)
+无生成演练仍走真实到达、周末排空、曝光累计与周写入路径。 ... ok
+test_paired_matrix_and_input_hashes (test_timestamp_main.MainTimestampTests.test_paired_matrix_and_input_hashes)
+人口/参数/时刻/样本配对，推荐制度仍是唯一分臂配置键。 ... ok
+test_profile_budget_is_shared_and_exhaustion_keeps_speech (test_timestamp_main.MainTimestampTests.test_profile_budget_is_shared_and_exhaustion_keeps_speech)
+测试配置额度从profile进入真实生成路径，三臂共用一个ledger。 ... ok
+test_recirculation_and_restore_preserve_each_regime (test_timestamp_main.MainTimestampTests.test_recirculation_and_restore_preserve_each_regime) ... ok
+test_actual_action_gate_and_restored_decision_do_not_repeat (test_event_week_schedule.EventWeekTests.test_actual_action_gate_and_restored_decision_do_not_repeat)
+五人的旧小时关闭、新小时正常判定；W12/W14回原小时，恢复不再决策。 ... ok
+test_actual_cli_profiles_and_agent_workspaces_preserve_overrides (test_event_week_schedule.EventWeekTests.test_actual_cli_profiles_and_agent_workspaces_preserve_overrides)
+正式schema、CLI profile拆分及900个Agent工作区读取均不丢覆盖字段。 ... ok
+test_invalid_override_does_not_silently_drop_an_opportunity (test_event_week_schedule.EventWeekTests.test_invalid_override_does_not_silently_drop_an_opportunity)
+未知Agent、窗口外周、无step小时及非arrival入口不能接受覆盖。 ... ok
+test_nine_windows_cover_all_mourning_agents_after_official (test_event_week_schedule.EventWeekTests.test_nine_windows_cover_all_mourning_agents_after_official)
+逐条核验1100机会与22人事件后时刻；三臂官方都没有强制槽。 ... ok
+test_only_five_weekly_opportunities_change (test_event_week_schedule.EventWeekTests.test_only_five_weekly_opportunities_change)
+逐配置对照Git基线，确保没有顺便改变人口、公式参数、feed或步骤。 ... ok
+test_w13_restore_equivalence_and_mismatched_schedule_rejected (test_event_week_schedule.EventWeekTests.test_w13_restore_equivalence_and_mismatched_schedule_rejected)
+W13已进入覆盖时段后恢复，状态/曝光一致；换表恢复明确失败。 ... ok
+test_actual_registry_resolves_formal_modules_from_custom (test_ordinary_official.OrdinaryOfficialTests.test_actual_registry_resolves_formal_modules_from_custom)
+扫描真实registry后检查类源码，配置目录没有替代正式运行类。 ... ok
+test_historical_agenda_and_checkpoint_policy (test_ordinary_official.OrdinaryOfficialTests.test_historical_agenda_and_checkpoint_policy)
+默认历史路径仍置顶；ordinary恢复连续，改策略恢复明确拒绝。 ... ok
+test_invalid_or_unsupported_policy_is_rejected (test_ordinary_official.OrdinaryOfficialTests.test_invalid_or_unsupported_policy_is_rejected)
+拼错策略不能静默回到置顶；常规legacy入口不接受ordinary。 ... ok
+test_official_is_ordinary_in_candidate_and_feed_sampling (test_ordinary_official.OrdinaryOfficialTests.test_official_is_ordinary_in_candidate_and_feed_sampling)
+实际官方不占特殊槽；固定floor时，普通抽样不使用官方标记。 ... ok
+test_ordinary_slot_can_select_or_miss_official (test_ordinary_official.OrdinaryOfficialTests.test_ordinary_slot_can_select_or_miss_official)
+确定性小池正反例：没有把官方禁推，也不为官方保留普通槽。 ... ok
+test_actual_detail_repairs_keep_referents_and_punctuation (test_content_quality.ContentTests.test_actual_detail_repairs_keep_referents_and_punctuation) ... ok
+test_failure_accounting_and_publication_confirmation (test_content_quality.ContentTests.test_failure_accounting_and_publication_confirmation) ... ok
+test_inconsistent_ledgers_are_rejected (test_content_quality.ContentTests.test_inconsistent_ledgers_are_rejected) ... ok
+test_legitimate_views_quotes_and_supported_facts_survive (test_content_quality.ContentTests.test_legitimate_views_quotes_and_supported_facts_survive) ... ok
+test_real_environment_exposure_inventory_and_recirculation (test_content_quality.ContentTests.test_real_environment_exposure_inventory_and_recirculation) ... ok
+test_refusal_filter_and_budget_exhaustion_keep_one_post (test_content_quality.ContentTests.test_refusal_filter_and_budget_exhaustion_keep_one_post) ... ok
+test_technical_retry_then_refusal_keeps_attempts (test_content_quality.ContentTests.test_technical_retry_then_refusal_keeps_attempts) ... ok
+test_twenty_historical_cases_on_both_actual_paths (test_content_quality.ContentTests.test_twenty_historical_cases_on_both_actual_paths) ... ok
+test_unknown_historical_time_is_not_fabricated (test_content_quality.ContentTests.test_unknown_historical_time_is_not_fabricated) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 15.214s
+
+OK

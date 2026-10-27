@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "checks": [
+    "官方检查点读取、完整环境恢复、100份Agent决策逐份恢复",
+    "剩余10条件、原截止及失败54请求不归零",
+    "假进程只启两路、失败联停且不启动第三路"
+  ],
+  "llm_calls": 0,
+  "network_calls": 0,
+  "real_engine_calls": 0,
+  "real_process_signals": 0,
+  "controller_sha256": "64c5f566befe7f3a8a68cdb4c47e0b49430987a035adf332106fdce8fc34edde",
+  "check_sha256": "a78a8aa686f5da605707e717dedce3a234341630e5628ea4e8a38b88730a779a",
+  "checked_at": "2026-10-23T02:23:41.251489+00:00",
+  "fixture_correction": "临时检查修正工作区父目录及假ROOT对应的控制器路径；未调用模型或修改原始文件"
+}

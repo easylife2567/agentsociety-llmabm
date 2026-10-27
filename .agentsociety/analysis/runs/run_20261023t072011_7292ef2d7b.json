@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261023t072011_7292ef2d7b",
+  "operation_id": "validate-chart",
+  "operation_contract_version": 1,
+  "execution_key": "50524e8c96c56121d8664e2de47e3104c4f586feaae2a6ab407b086997266557",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "BLOCKED",
+  "hypothesis_id": "4",
+  "experiment_id": "",
+  "input_names": [
+    "chart_path",
+    "hypothesis_id",
+    "workspace"
+  ],
+  "input_fingerprint": "f5ef308221e4c1ce4b06bae9273db63abb7331d0da68182bda10401d9040916c",
+  "safe_inputs": {
+    "hypothesis_id": "4"
+  },
+  "preflight": {
+    "operation_id": "validate-chart",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "recommended_next_step": "Run record-attestation --phase refine after LLM review of this stage",
+    "status": "BLOCKED"
+  },
+  "error": {
+    "type": "OperationBlocked",
+    "message": "Run record-attestation --phase refine after LLM review of this stage",
+    "retryable": true
+  },
+  "declared_artifacts": [
+    "validated chart registration in harness state"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "fdbba7c905509aa1a92a05a0cb8921fcef9a70f00f3c1baa72d940ddf0138d28"
+  },
+  "repeatable": true,
+  "retryable": true,
+  "recommended_action": "Rerun the operation after preflight; automatic payload replay is disabled.",
+  "pid": 52291,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-23T07:20:11.936412Z",
+  "updated_at": "2026-10-23T07:20:11.954634Z",
+  "completed_at": "2026-10-23T07:20:11.954599Z",
+  "duration_ms": 18
+}

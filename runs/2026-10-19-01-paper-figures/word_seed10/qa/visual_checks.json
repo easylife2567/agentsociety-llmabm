@@ -1,0 +1,99 @@
+{
+  "date": "2026-10-24",
+  "renderer": "documents/render_docx.py; bundled LibreOffice only",
+  "fontconfig": "task-local fonts.conf; DOCX fonts unchanged",
+  "reference_pages": 18,
+  "accepted_pages": 17,
+  "tracked_pages": 23,
+  "checks": [
+    {
+      "reviewer": "root",
+      "accepted_pages": [
+        1,
+        7,
+        11,
+        13
+      ],
+      "tracked_pages": [
+        1
+      ],
+      "verdict": "pass"
+    },
+    {
+      "reviewer": "word_visual_a",
+      "accepted_pages": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "tracked_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "verdict": "pass"
+    },
+    {
+      "reviewer": "word_visual_b",
+      "accepted_pages": [
+        6,
+        8,
+        9,
+        10
+      ],
+      "tracked_pages": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "verdict": "pass"
+    },
+    {
+      "reviewer": "word_visual_c",
+      "accepted_pages": [
+        12,
+        14,
+        15
+      ],
+      "tracked_pages": [
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "verdict": "pass"
+    },
+    {
+      "reviewer": "word_visual_d",
+      "accepted_pages": [
+        16,
+        17
+      ],
+      "tracked_pages": [
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "verdict": "pass"
+    }
+  ],
+  "observations": [
+    "所有最终PNG按原始分辨率逐页查看",
+    "中文、主公式、表格及页脚无新增缺字/重叠/裁切",
+    "四张新SVG纵横比保持，英文标签和W13日期可读",
+    "图2说明段按原格式在接受视图第8—9页自然续排，无裁切",
+    "修订视图中旧图及图5叉线/旧文字删除线属于预期；接受视图只有图1—4"
+  ],
+  "output_sha256": "ce216e100d8f8a7a1934b749731b9306472f3ee26067ad9ceced460ccf5dc615"
+}

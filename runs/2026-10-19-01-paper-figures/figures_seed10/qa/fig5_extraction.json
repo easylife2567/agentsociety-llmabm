@@ -1,0 +1,75 @@
+{
+  "passed": true,
+  "run_units": 40,
+  "unique_agent_decisions": 44000,
+  "agent_files": 4000,
+  "new21_successful_posts": 6206,
+  "old9_successful_posts": 2652,
+  "all_ablation_successful_posts": 8858,
+  "replay_environment_agent_crosschecks": 40,
+  "source_files_fingerprinted": 18108,
+  "old30_panel_values_reproduced": true,
+  "model_calls_added": 0,
+  "summary": [
+    {
+      "panel": "a",
+      "metric": "late_posts_per_week",
+      "comparison": "no_b",
+      "full_mean": 13.8,
+      "ablation_mean": 5.975,
+      "paired_delta_mean": -7.825,
+      "paired_delta_min": -8.75,
+      "paired_delta_max": -6.25,
+      "n_paired_seeds": 10
+    },
+    {
+      "panel": "b",
+      "metric": "late_meme_speak_rate",
+      "comparison": "no_d",
+      "full_mean": 49.73684210526316,
+      "ablation_mean": 16.97368421052631,
+      "paired_delta_mean": -32.763157894736835,
+      "paired_delta_min": -42.10526315789473,
+      "paired_delta_max": -27.631578947368418,
+      "n_paired_seeds": 10
+    },
+    {
+      "panel": "c",
+      "metric": "mid_speak_rate",
+      "comparison": "no_r",
+      "full_mean": 19.419999999999998,
+      "ablation_mean": 50.18,
+      "paired_delta_mean": 30.76,
+      "paired_delta_min": 27.0,
+      "paired_delta_max": 33.800000000000004,
+      "n_paired_seeds": 10
+    },
+    {
+      "panel": "d",
+      "metric": "late_meme_author_share",
+      "comparison": "no_r",
+      "full_mean": 68.47204814807235,
+      "ablation_mean": 12.026810078448028,
+      "paired_delta_mean": -56.44523806962432,
+      "paired_delta_min": -63.367666815942684,
+      "paired_delta_max": -50.841750841750844,
+      "n_paired_seeds": 10
+    },
+    {
+      "panel": "e",
+      "metric": "late_meme_exposure_non_meme",
+      "comparison": "no_r",
+      "full_mean": 20.814814814814813,
+      "ablation_mean": 7.962962962962964,
+      "paired_delta_mean": -12.851851851851853,
+      "paired_delta_min": -14.629629629629628,
+      "paired_delta_max": -11.17283950617284,
+      "n_paired_seeds": 10
+    }
+  ],
+  "output_sha256": {
+    "ablation_seed10_metrics.csv": "61d24bcf31ddc99431559b10c00022cc85713483e2e8dedfa395007e5bc26a6b",
+    "ablation_seed10_runs.csv": "1c4e18a5245b5dd46adbc3fb98fc6ab326c250c7a75962aa8bd419e998d82d81",
+    "ablation_seed10_weekly.csv": "f2cd46fa115c740c82627bab3391eb795c68defb5e2f36b992e492f8595f10f1"
+  }
+}

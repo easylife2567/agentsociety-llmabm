@@ -1,0 +1,39 @@
+{
+  "requested_template_png": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/runs/anchored_v1/_derived/charts/anchored_v1_chronological_s0__chart3b_agent_supply_stacked_area.png",
+  "requested_template_sha256": "a9fb76c4fd53ddce0e1b4dca10ed6dd90e0fc1c2c98f132e0a189945fd28dff5",
+  "requested_template_pixels": [
+    3000,
+    1620
+  ],
+  "template_source": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_1/plot_run_charts.py",
+  "template_source_sha256": "3f3617a02452e4af9da28ad54211059b35caef92e8c74b8ecf3dab5e14e9e6aa",
+  "frozen_template_copy_sha256": "3f3617a02452e4af9da28ad54211059b35caef92e8c74b8ecf3dab5e14e9e6aa",
+  "stack_order": [
+    "meme",
+    "mourning",
+    "education",
+    "marketing",
+    "other"
+  ],
+  "colors": [
+    "#DD8452",
+    "#4C72B0",
+    "#55A868",
+    "#CCB974",
+    "#64B5CD"
+  ],
+  "event_week": "2026-W13",
+  "supply_axis": [
+    0,
+    80
+  ],
+  "actual_peak": 63,
+  "individual_seed_charts": 12,
+  "mean_charts": 4,
+  "main_comparison_charts": 3,
+  "export_formats": [
+    "PNG",
+    "SVG",
+    "PDF (main charts)"
+  ]
+}

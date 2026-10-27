@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "errors": [],
+  "warnings": [
+    "user_data/ 目录不存在"
+  ],
+  "info": {
+    "agent_classes": [
+      "CurationDiscourseAgent"
+    ],
+    "env_modules": [
+      "CurationDynamicsSpace"
+    ]
+  }
+}

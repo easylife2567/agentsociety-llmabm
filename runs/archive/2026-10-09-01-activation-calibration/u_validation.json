@@ -1,0 +1,291 @@
+{
+  "complete_offline_plan": true,
+  "main_outline_adopted": true,
+  "source_and_inputs_unchanged": true,
+  "workspace_clean": true,
+  "staging_empty": true,
+  "git_diff_check": true,
+  "links_missing": [],
+  "robust_directions": [
+    {
+      "condition": "baseline",
+      "arm": "chronological",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "baseline",
+      "arm": "chronological",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "baseline",
+      "arm": "interest",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "baseline",
+      "arm": "interest",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "hard_warm",
+      "arm": "chronological",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "hard_warm",
+      "arm": "chronological",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "hard_warm",
+      "arm": "interest",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "hard_warm",
+      "arm": "interest",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "soft_publish",
+      "arm": "chronological",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "soft_publish",
+      "arm": "chronological",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "soft_publish",
+      "arm": "interest",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "soft_publish",
+      "arm": "interest",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "soft_warm",
+      "arm": "chronological",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "soft_warm",
+      "arm": "chronological",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "soft_warm",
+      "arm": "interest",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "soft_warm",
+      "arm": "interest",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "soft_cold",
+      "arm": "chronological",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "soft_cold",
+      "arm": "chronological",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "soft_cold",
+      "arm": "interest",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "soft_cold",
+      "arm": "interest",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "eps01",
+      "arm": "chronological",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "eps01",
+      "arm": "chronological",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "eps01",
+      "arm": "interest",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "eps01",
+      "arm": "interest",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "eps04",
+      "arm": "chronological",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "eps04",
+      "arm": "chronological",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "eps04",
+      "arm": "interest",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "eps04",
+      "arm": "interest",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "threshold090",
+      "arm": "chronological",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "threshold090",
+      "arm": "chronological",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "threshold090",
+      "arm": "interest",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "threshold090",
+      "arm": "interest",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "threshold100",
+      "arm": "chronological",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "threshold100",
+      "arm": "chronological",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "threshold100",
+      "arm": "interest",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "threshold100",
+      "arm": "interest",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "alternate_D",
+      "arm": "chronological",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "alternate_D",
+      "arm": "chronological",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "alternate_D",
+      "arm": "interest",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "alternate_D",
+      "arm": "interest",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "alternate_R",
+      "arm": "chronological",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "alternate_R",
+      "arm": "chronological",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "alternate_R",
+      "arm": "interest",
+      "metric": "late_posts",
+      "all_three_seeds_positive": true
+    },
+    {
+      "condition": "alternate_R",
+      "arm": "interest",
+      "metric": "late_share",
+      "all_three_seeds_positive": true
+    }
+  ],
+  "recovery_scope": "30 static rows and two 1100-record cells; not full matrix",
+  "function_matching_checked": true,
+  "main_LLM_started": false,
+  "behavior_candidate_adopted": false,
+  "sha256": {
+    "paper/OUTLINE.md": "576d454d58e592d3e14058fd19241dca1c7be3bb4b9e4fc76caf972fdaa61048",
+    "paper/README.md": "64bdb014b5f5dd8215533c9c5375b0b3dc0782cbc4bfd824f1e39560ee9d40e4",
+    "runs/2026-10-09-01-activation-calibration/u_experiments.py": "0702efb1e55f891964995dc41564c07417be8100f784f06e63b7b681fce5cc11",
+    "runs/2026-10-09-01-activation-calibration/analyze_u.py": "cfb40dad1cb23d077be7fe266328880d9b1962933013661fdecb91fc52064efd",
+    "runs/2026-10-09-01-activation-calibration/verify_u_recovery.py": "753318ca56e80af2e085751c99eda13af1adea8785bd14ca7532fa10b3a04c93",
+    "runs/2026-10-09-01-activation-calibration/u_protocol.md": "f1a9a97f937ac37f6e2da657d33cb4878e26f5d6107d2ee4578f483062d1fd73",
+    "runs/2026-10-09-01-activation-calibration/u_results_report.md": "bc566a9bfb34cea27ca9ef9745e17718de3d6896ea642412d1cd71307761ba11",
+    "runs/2026-10-09-01-activation-calibration/u_results/analysis.json": "859b326a504f6510994ce773d8580ba869f3ed7eee777a8d766f9f9ebfdafaac",
+    "runs/2026-10-09-01-activation-calibration/u_results/completion.json": "51e450d6e687d841381d1501361a6f380d2d379af3b878a2e69af465b6897bb8",
+    "runs/2026-10-09-01-activation-calibration/u_recovery.json": "4263243ffd222ada83e4bd138fb3c28836471786af1fcb49d0302ec8f88711d2"
+  }
+}

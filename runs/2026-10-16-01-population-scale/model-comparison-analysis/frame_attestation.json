@@ -1,0 +1,17 @@
+{
+  "phase": "frame",
+  "status": "DONE_WITH_CONCERNS",
+  "key_findings": [
+    "用户已明确要求比较模型服务切换后的正文质量与三制度结论；配对输入和指标已事前冻结。"
+  ],
+  "artifacts_read": [
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis-plan.md"
+  ],
+  "artifacts_written": [
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/analysis_plan_payload.json"
+  ],
+  "rubric": {
+    "research_question_confirmed": "用户2026-10-16明确授权：跑完与旧模型三策展比较内容质量及主要结论。",
+    "success_criteria": "实际逐周差异、制度差值方向、全账本质量指标与上下文审读；不预设等价；一次重复不能检验跨轮稳定。"
+  }
+}

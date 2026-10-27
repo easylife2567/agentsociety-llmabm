@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "units": 12,
+  "raw_opportunities": 13200,
+  "independent_primary_pair_checks": 27,
+  "source_files_sha256_verified": 5394,
+  "weekly_type_rows": 660,
+  "weekly_total_rows": 132,
+  "zero_output_weeks_preserved": 10,
+  "peak_weekly_posts": 63,
+  "template_axis": [
+    0,
+    80
+  ],
+  "PNG_files": 19,
+  "SVG_files": 19,
+  "report_image_links": "all local and resolved",
+  "plot_font_warnings": 0,
+  "network_attempts": 0,
+  "additional_LLM_calls": 0,
+  "main_machine_state_unchanged": true,
+  "ablation_results_and_ledger_unchanged": true,
+  "scientific_review": "user approved adoption; primary-agent consistency review only; no independent model reviewer"
+}

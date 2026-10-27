@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/analysis/tools/extract.py", line 173, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/analysis/tools/extract.py", line 116, in main
+    post=env['_posts'][str(row['post_id'])];assert post['source']=='agent' and post['agent_id']==aid and post['type']==kind and post['content']==row['content']
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+KeyError: '446'

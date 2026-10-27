@@ -1,0 +1,223 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="70.7143mm" viewBox="0 0 2800 1100" role="img" aria-labelledby="title desc"><title id="title">Research framework: empirical analysis and circular curation–expression feedback, version 2</title><desc id="desc">White background and restrained, stronger blue and vermilion modules. Platform analysis occupies approximately 34 percent and simulation 66 percent of the main research area. The three open circular arcs are a schematic mechanism, not data proportions. The central card lies wholly inside the circle, while D, later R and utility output pass through deliberate gaps. Only successfully published posts return to the regime-specific pool. Reading updates same-type history independently of posting. Fixed author types and separate frozen inputs are retained. Chrysanthemums, memorial ribbon and candle indicate context only. No individual platform proportions are shown.</desc><defs>
+<marker id="ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#17212B"/></marker>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#0072B2"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#D55E00"/></marker>
+<marker id="return" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#283D4F"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#435260"/></marker>
+</defs><style>text{font-family:Arial,Helvetica,sans-serif;fill:#17212B;font-size:36px}.title{font-size:44px;font-weight:700}.head{font-size:40px;font-weight:700}.body{font-size:36px}.small{font-size:34px}.note{font-size:32px}.big{font-size:84px;font-weight:700}.math{font-family:Times New Roman,Times,serif;font-size:37px;font-style:italic}</style><rect width="2800" height="1100" fill="white"/>
+<text x="48" y="66" class="title" text-anchor="start" style="fill:#17212B">01  Platform data analysis</text>
+<text x="1010" y="66" class="title" text-anchor="start" style="fill:#17212B">02  Simulation modeling</text>
+<text x="2750" y="65" class="small" text-anchor="end" style="fill:#435260">100 fixed-type agents · W12–W22</text>
+<path d="M950 100 V1015" fill="none" stroke="#8C9AA7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 11"/>
+<g aria-label="Memorial bouquet, ribbon and candle"><path d="M104 189 L159 284 M158 155 L159 284 M210 194 L159 284" fill="none" stroke="#283D4F" stroke-width="3.5"/><path d="M145 252 Q126 235 117 217 M171 249 Q190 225 204 222" fill="none" stroke="#283D4F" stroke-width="2.7"/>
+<g transform="translate(103 184) scale(0.9)">
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(0)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(20)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(40)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(60)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(80)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(100)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(120)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(140)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(160)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(180)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(200)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(220)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(240)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(260)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(280)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(300)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(320)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(340)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(10)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(40)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(70)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(100)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(130)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(160)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(190)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(220)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(250)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(280)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(310)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(340)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<circle cx="0" cy="0" r="5" fill="#D3BD86" stroke="#283D4F" stroke-width="1"/>
+</g>
+<g transform="translate(158 150) scale(1.1)">
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(0)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(20)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(40)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(60)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(80)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(100)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(120)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(140)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(160)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(180)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(200)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(220)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(240)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(260)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(280)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(300)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(320)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(340)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(10)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(40)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(70)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(100)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(130)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(160)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(190)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(220)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(250)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(280)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(310)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(340)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<circle cx="0" cy="0" r="5" fill="#D3BD86" stroke="#283D4F" stroke-width="1"/>
+</g>
+<g transform="translate(213 194) scale(0.82)">
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(0)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(20)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(40)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(60)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(80)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(100)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(120)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(140)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(160)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(180)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(200)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(220)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(240)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(260)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(280)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(300)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(320)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-18" rx="4.6" ry="20" transform="rotate(340)" fill="white" stroke="#283D4F" stroke-width="1.3"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(10)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(40)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(70)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(100)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(130)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(160)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(190)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(220)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(250)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(280)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(310)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<ellipse cx="0" cy="-9" rx="3.4" ry="11" transform="rotate(340)" fill="white" stroke="#283D4F" stroke-width="1.1"/>
+<circle cx="0" cy="0" r="5" fill="#D3BD86" stroke="#283D4F" stroke-width="1"/>
+</g>
+<path d="M144 255 L173 266 L162 282 L137 271Z M144 269 L134 303 L151 293 L160 307 L167 278" fill="#283D4F" stroke="#17212B" stroke-width="1.5"/><rect x="233" y="233" width="27" height="63" rx="3" fill="white" stroke="#17212B" stroke-width="2.8"/><path d="M247 232 V222" stroke="#17212B" stroke-width="2.4"/><path d="M247 219 C231 206 243 192 247 185 C262 204 262 212 247 219Z" fill="#D55E00"/><path d="M219 300 H274" stroke="#283D4F" stroke-width="2.5"/></g>
+<text x="316" y="177" class="big" text-anchor="start" style="fill:#17212B">49,930</text>
+<text x="316" y="232" class="body" text-anchor="start" style="fill:#17212B">posts · Jan–May 2026</text>
+<text x="316" y="285" class="body" text-anchor="start" style="fill:#17212B">Douyin + Xiaohongshu</text>
+<rect x="48" y="354" width="840" height="146" rx="10" fill="#FFFFFF" stroke="#0072B2" stroke-width="2.4"/>
+<rect x="48" y="354" width="840" height="51" rx="0" fill="#0072B2" stroke="#0072B2" stroke-width="0"/>
+<text x="73" y="392" class="small" text-anchor="start" style="fill:#FFFFFF;font-weight:700">Content coding</text>
+<text x="73" y="441" class="small" text-anchor="start" style="fill:#17212B">Education · Mourning · Meme</text>
+<text x="73" y="479" class="small" text-anchor="start" style="fill:#17212B">Other · Marketing · Noise</text>
+<path d="M468 500 V525 H247 V543" fill="none" stroke="#17212B" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ink)"/>
+<path d="M468 525 H686 V543" fill="none" stroke="#17212B" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ink)"/>
+<rect x="48" y="548" width="400" height="176" rx="10" fill="#FFFFFF" stroke="#0072B2" stroke-width="2.8"/>
+<rect x="48" y="548" width="400" height="54" rx="0" fill="#0072B2" stroke="#0072B2" stroke-width="0"/>
+<text x="248.0" y="587" class="small" text-anchor="middle" style="fill:#FFFFFF;font-weight:700">Temporal patterns</text>
+<text x="70" y="651" class="small" text-anchor="start" style="fill:#17212B">Weekly counts</text>
+<text x="70" y="695" class="small" text-anchor="start" style="fill:#17212B">Content composition</text>
+<rect x="490" y="548" width="398" height="176" rx="10" fill="#FFFFFF" stroke="#0072B2" stroke-width="2.8"/>
+<rect x="490" y="548" width="398" height="54" rx="0" fill="#0072B2" stroke="#0072B2" stroke-width="0"/>
+<text x="689.0" y="587" class="small" text-anchor="middle" style="fill:#FFFFFF;font-weight:700">Platform differences</text>
+<text x="512" y="651" class="small" text-anchor="start" style="fill:#17212B">Compare expression</text>
+<text x="512" y="695" class="small" text-anchor="start" style="fill:#17212B">trajectories</text>
+<path d="M247 724 V755 H686 V724" fill="none" stroke="#17212B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M468 755 V790" fill="none" stroke="#17212B" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ink)"/>
+<text x="468" y="838" class="small" text-anchor="middle" style="fill:#17212B">Mourning peak → later meme growth</text>
+<text x="468" y="882" class="small" text-anchor="middle" style="fill:#17212B">Shared sequence; divergent trajectories</text>
+<text x="468" y="945" class="body" text-anchor="middle" style="fill:#17212B;font-weight:700">Patterns + calibration references</text>
+<rect x="1010" y="110" width="684" height="94" rx="10" fill="#D8EAF6" stroke="#0072B2" stroke-width="2.4"/>
+<rect x="1010" y="110" width="10" height="94" rx="0" fill="#0072B2" stroke="#0072B2" stroke-width="0"/>
+<text x="1040" y="149" class="small" text-anchor="start" style="fill:#17212B;font-weight:700">Frozen, time-stamped posts</text>
+<text x="1040" y="190" class="note" text-anchor="start" style="fill:#17212B">Shared across regimes within seed</text>
+<rect x="1725" y="110" width="1025" height="94" rx="10" fill="#EEF2F5" stroke="#8C9AA7" stroke-width="2.4"/>
+<rect x="1725" y="110" width="10" height="94" rx="0" fill="#283D4F" stroke="#283D4F" stroke-width="0"/>
+<text x="1754" y="149" class="small" text-anchor="start" style="fill:#17212B;font-weight:700">Fixed author type + individual threshold</text>
+<text x="1754" y="190" class="small" text-anchor="start" style="fill:#17212B">Case-grounded author mix + B / D / R</text>
+<path d="M1915 980 V986 Q1915 1002 1897 1002 H1010 Q988 1002 988 980 V465 Q988 445 1008 445 H1020" fill="none" stroke="#283D4F" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#return)"/>
+<text x="1040" y="986" class="note" text-anchor="start" style="fill:#435260">Published posts return to pool</text>
+<path d="M888 921 H951 Q968 921 968 904 V322 Q968 306 985 306 H1013" fill="none" stroke="#0072B2" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#blue)"/>
+<text x="48" y="1002" class="small" text-anchor="start" style="fill:#435260">Empirical patterns → mechanism questions</text>
+<path d="M1655.112 459.967 A234 234 0 0 1 2066.682 405.783" fill="none" stroke="#8C9AA7" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2094.888 620.033 A234 234 0 0 1 1875.000 774.000" fill="none" stroke="#8C9AA7" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1834.366 770.445 A234 234 0 0 1 1683.318 674.217" fill="none" stroke="#8C9AA7" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1638.197 453.811 A252 252 0 0 1 2081.426 395.459" fill="none" stroke="#0072B2" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2085.441 401.193 L2054.308 386.369 L2082.160 366.867 Z" fill="#0072B2" stroke="#0072B2" stroke-width="1"/>
+<path d="M2111.803 626.189 A252 252 0 0 1 1875.000 792.000" fill="none" stroke="#D55E00" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1868.000 792.000 L1898.000 775.000 L1898.000 809.000 Z" fill="#D55E00" stroke="#D55E00" stroke-width="1"/>
+<path d="M1831.241 788.172 A252 252 0 0 1 1668.574 684.541" fill="none" stroke="#283D4F" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1664.559 678.807 L1695.692 693.631 L1667.840 713.133 Z" fill="#283D4F" stroke="#283D4F" stroke-width="1"/>
+<circle cx="1046" cy="261" r="26" fill="#0072B2" stroke="#0072B2" stroke-width="1"/>
+<text x="1046" y="273" class="body" text-anchor="middle" style="fill:#FFFFFF;font-weight:700">1</text>
+<text x="1091" y="257" class="head" text-anchor="start" style="fill:#17212B">Visibility</text>
+<text x="1091" y="303" class="head" text-anchor="start" style="fill:#17212B">configuration</text>
+<rect x="1020" y="350" width="480" height="145" rx="10" fill="#D8EAF6" stroke="#0072B2" stroke-width="2.8"/>
+<rect x="1020" y="350" width="480" height="54" rx="0" fill="#0072B2" stroke="#0072B2" stroke-width="0"/>
+<text x="1260" y="390" class="small" text-anchor="middle" style="fill:#FFFFFF;font-weight:700">Regime-specific pool</text>
+<text x="1260" y="442" class="small" text-anchor="middle" style="fill:#17212B">Random · Chronological</text>
+<text x="1260" y="482" class="small" text-anchor="middle" style="fill:#17212B">Interest-based</text>
+<path d="M1650 204 V325 H1260 V350" fill="none" stroke="#0072B2" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#blue)"/>
+<path d="M1260 495 V545" fill="none" stroke="#0072B2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#blue)"/>
+<rect x="1020" y="545" width="480" height="100" rx="10" fill="#D8EAF6" stroke="#0072B2" stroke-width="2.8"/>
+<text x="1260" y="584" class="body" text-anchor="middle" style="fill:#17212B;font-weight:700">Personal feed</text>
+<text x="1260" y="628" class="small" text-anchor="middle" style="fill:#17212B">≤10 eligible posts</text>
+<rect x="1695" y="418" width="360" height="246" rx="10" fill="#FFE5C7" stroke="#AA4600" stroke-width="2.8"/>
+<rect x="1695" y="418" width="360" height="51" rx="0" fill="#AA4600" stroke="#AA4600" stroke-width="0"/>
+<text x="1875" y="456" class="small" text-anchor="middle" style="fill:#FFFFFF;font-weight:700">Expression utility</text>
+<text x="1875" y="518" class="math" text-anchor="middle">U<tspan baseline-shift="sub" font-size="24">it</tspan> = B<tspan baseline-shift="sub" font-size="24">i</tspan> + R<tspan baseline-shift="sub" font-size="24">it</tspan>(D<tspan baseline-shift="sub" font-size="24">it</tspan> − B<tspan baseline-shift="sub" font-size="24">i</tspan>)</text>
+<text x="1875" y="566" class="note" text-anchor="middle" style="fill:#17212B">B  Baseline utility</text>
+<text x="1875" y="607" class="note" text-anchor="middle" style="fill:#17212B">D  Feed response</text>
+<text x="1875" y="648" class="note" text-anchor="middle" style="fill:#17212B">R  Prior-exposure weight</text>
+<path d="M1500 595 H1695" fill="none" stroke="#17212B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ink)"/>
+<text x="1574" y="577" class="note" text-anchor="start" style="fill:#435260">D</text>
+<rect x="1020" y="735" width="480" height="112" rx="10" fill="#EEF2F5" stroke="#435260" stroke-width="2.4" stroke-dasharray="9 6"/>
+<text x="1260" y="778" class="small" text-anchor="middle" style="fill:#17212B;font-weight:700">Same-type exposure history</text>
+<text x="1260" y="823" class="small" text-anchor="middle" style="fill:#17212B">For later actions</text>
+<path d="M1260 645 V735" fill="none" stroke="#435260" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#gray)" stroke-dasharray="8 7"/>
+<text x="1281" y="700" class="note" text-anchor="start" style="fill:#435260">contact</text>
+<path d="M1500 795 H1585 V635 H1660 V648 H1695" fill="none" stroke="#435260" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#gray)" stroke-dasharray="8 7"/>
+<text x="1565" y="716" class="note" text-anchor="end" style="fill:#435260">later R</text>
+<circle cx="2255" cy="261" r="26" fill="#D55E00" stroke="#D55E00" stroke-width="1"/>
+<text x="2255" y="273" class="body" text-anchor="middle" style="fill:#FFFFFF;font-weight:700">2</text>
+<text x="2300" y="257" class="head" text-anchor="start" style="fill:#17212B">Selective</text>
+<text x="2300" y="303" class="head" text-anchor="start" style="fill:#17212B">expression</text>
+<polygon points="2485,327 2730,394 2485,461 2240,394" fill="#FFE5C7" stroke="#AA4600" stroke-width="2.8"/>
+<text x="2485" y="406" class="small" text-anchor="middle" style="fill:#17212B;font-weight:700">U ≥ fixed threshold?</text>
+<path d="M2055 518 H2170 V394 H2240" fill="none" stroke="#17212B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ink)"/>
+<path d="M2485 461 V560" fill="none" stroke="#17212B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ink)"/>
+<text x="2468" y="526" class="note" text-anchor="end" style="fill:#435260">Yes</text>
+<rect x="2550" y="484" width="190" height="48" rx="10" fill="#EEF2F5" stroke="#8C9AA7" stroke-width="2.4"/>
+<text x="2645" y="519" class="note" text-anchor="middle" style="fill:#17212B">No post</text>
+<path d="M2730 394 H2770 V508 H2740" fill="none" stroke="#435260" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#gray)"/>
+<text x="2750" y="459" class="note" text-anchor="end" style="fill:#435260">No</text>
+<rect x="2220" y="560" width="520" height="135" rx="10" fill="#FFE5C7" stroke="#AA4600" stroke-width="2.8"/>
+<rect x="2220" y="560" width="520" height="50" rx="0" fill="#AA4600" stroke="#AA4600" stroke-width="0"/>
+<text x="2480" y="598" class="small" text-anchor="middle" style="fill:#FFFFFF;font-weight:700">LLM post generation</text>
+<text x="2480" y="649" class="small" text-anchor="middle" style="fill:#17212B">Persona + ≤5 feed excerpts</text>
+<text x="2480" y="686" class="note" text-anchor="middle" style="fill:#17212B">≤120 characters each</text>
+<path d="M2480 695 V748" fill="none" stroke="#17212B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ink)"/>
+<rect x="2220" y="748" width="520" height="95" rx="10" fill="#FFFFFF" stroke="#283D4F" stroke-width="2.8"/>
+<g transform="translate(2245 768) scale(0.9)" fill="white" stroke="#17212B" stroke-width="2.8"><path d="M0 0 H36 L52 16 V66 H0Z"/><path d="M36 0 V16 H52 M9 29 H42 M9 41 H42 M9 53 H31" fill="none"/></g>
+<text x="2326" y="788" class="body" text-anchor="start" style="fill:#17212B;font-weight:700">Published post</text>
+<text x="2326" y="831" class="small" text-anchor="start" style="fill:#17212B">Successful publication</text>
+<rect x="1610" y="850" width="610" height="130" rx="10" fill="#FFFFFF" stroke="#283D4F" stroke-width="2.8"/>
+<rect x="1610" y="850" width="610" height="48" rx="0" fill="#283D4F" stroke="#283D4F" stroke-width="0"/>
+<circle cx="1641" cy="874" r="26" fill="#283D4F" stroke="#283D4F" stroke-width="1"/>
+<text x="1641" y="886" class="body" text-anchor="middle" style="fill:#FFFFFF;font-weight:700">3</text>
+<text x="1681" y="887" class="small" text-anchor="start" style="fill:#FFFFFF;font-weight:700">Content recirculation</text>
+<text x="1915" y="930" class="note" text-anchor="middle" style="fill:#17212B">Chronological: after batch; visible later</text>
+<text x="1915" y="966" class="note" text-anchor="middle" style="fill:#17212B">Random / Interest: eligible next week</text>
+<path d="M2480 843 V928 H2220" fill="none" stroke="#283D4F" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#return)"/>
+<text x="1010" y="1040" class="note" text-anchor="start" style="fill:#435260">3 regimes × 3 seeds  ·  Interest-based interventions: B=0 / D=1 / R=1</text>
+<path d="M48 1057 H2750" fill="none" stroke="#17212B" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1400" y="1086" class="body" text-anchor="middle" style="fill:#17212B;font-weight:700">Empirical patterns + simulated feedback → Public representation reorganization</text>
+</svg>

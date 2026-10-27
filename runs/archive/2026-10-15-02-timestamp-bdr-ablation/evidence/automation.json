@@ -1,0 +1,13 @@
+{
+  "automation_id": "b-d-r-30",
+  "kind": "heartbeat",
+  "interval_minutes": 30,
+  "status_at_creation": "ACTIVE",
+  "reports_unchanged_progress": true,
+  "pause_after_completion_or_full_stop": true,
+  "current_status": "ACTIVE",
+  "pause_reason": "首条件启动失败，监督器和子进程都已退出，避免重复空报",
+  "attempt": "02",
+  "current_results": "results/timestamp_bdr_v1_attempt_02",
+  "absolute_deadline": "2026-10-17T12:21:11.583919+00:00"
+}

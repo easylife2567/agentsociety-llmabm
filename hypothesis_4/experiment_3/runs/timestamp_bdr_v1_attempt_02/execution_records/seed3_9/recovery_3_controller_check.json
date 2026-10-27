@@ -1,0 +1,46 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "case": "success",
+      "passed": true,
+      "fake_children": 3,
+      "max_parallel": 2
+    },
+    {
+      "case": "service_failed",
+      "passed": true,
+      "fake_children": 2,
+      "max_parallel": 2
+    },
+    {
+      "case": "missing_model",
+      "passed": true,
+      "fake_children": 2,
+      "max_parallel": 2
+    },
+    {
+      "case": "quota",
+      "passed": true,
+      "fake_children": 2,
+      "max_parallel": 2
+    },
+    {
+      "case": "budget",
+      "passed": true,
+      "fake_children": 2,
+      "max_parallel": 2
+    },
+    {
+      "case": "deadline",
+      "passed": true,
+      "fake_children": 0,
+      "max_parallel": 2
+    }
+  ],
+  "recovered_retry_not_misclassified": true,
+  "process_path_matching": true,
+  "real_processes": 0,
+  "llm_calls": 0,
+  "controller_sha256": "8bcb9efef813819521da7ff0d0b770ea137debe0035d61a27fb11414e52856f1"
+}

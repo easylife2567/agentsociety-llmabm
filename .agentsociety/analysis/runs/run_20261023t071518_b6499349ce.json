@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261023t071518_b6499349ce",
+  "operation_id": "run-eda",
+  "operation_contract_version": 1,
+  "execution_key": "244b665bb1c44ead4e85fb9eceb18c8f5acc4fe299517be0b8dae4a5680b9e64",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "",
+  "input_names": [
+    "data_path",
+    "hypothesis_id",
+    "output_dir",
+    "tables",
+    "type",
+    "workspace"
+  ],
+  "input_fingerprint": "cb65e76af320236a5f7fafd3fcd73b614ce734bdbceb07ddb026903de47fceea",
+  "safe_inputs": {
+    "type": "quick-stats",
+    "hypothesis_id": "4"
+  },
+  "preflight": {
+    "operation_id": "run-eda",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {
+      "eda.quick-stats": "available"
+    }
+  },
+  "result_summary": {},
+  "error": null,
+  "declared_artifacts": [
+    "presentation/hypothesis_{id}/data/eda_*"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "386748b0f51b9baae2f81f6f543e617a8ea3c3c86a0029ba2c1d20dd3e4a88f4",
+    "presentation/hypothesis_4/data/eda_figure_01_weekly_lag_meme_trajectory.png": "158b8a73a37e00cf6ab3175dfbefaea79fea782513436986911c3e3edaec3181",
+    "presentation/hypothesis_4/data/eda_figure_01_weekly_lag_meme_trajectory.svg": "d32ac119659927801d0d8be6286a7fc83ec685eb272e6bc5b4261f7efce2de60",
+    "presentation/hypothesis_4/data/eda_figure_02_weekly_lag_event_and_arm_gap.png": "3c36f9e8696cebbe0a701667987f49271a86dddbd86ec3389cf056e778514472",
+    "presentation/hypothesis_4/data/eda_figure_02_weekly_lag_event_and_arm_gap.svg": "55ed41dd11217bfddcc241f699945282cb0231ba183451f456a300cf5db839e7",
+    "presentation/hypothesis_4/data/eda_figure_03_weekly_lag_agent_supply_stacked_area.png": "0c17b44ac057d9170e73ebf1ee618302de1e290cce86cf8ca25224fca28573ec",
+    "presentation/hypothesis_4/data/eda_figure_03_weekly_lag_agent_supply_stacked_area.svg": "0d211fe6dca58836013f45ec29ecc733d07ecb04f02dccaa3c0beefecd417358",
+    "presentation/hypothesis_4/data/seed10_quick_stats/eda_quick_stats.md": "7970b01a1ba102b2926df6f6f12cbb660344a2165c256fbdf9fc4e70e5dc8f23"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 51689,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-23T07:15:18.667402Z",
+  "updated_at": "2026-10-23T07:15:18.693403Z",
+  "completed_at": "2026-10-23T07:15:18.693357Z",
+  "duration_ms": 25
+}

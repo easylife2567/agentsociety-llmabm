@@ -1,0 +1,323 @@
+{
+  "supervisor_pid": 11126,
+  "status": "completed",
+  "started_at": "2026-10-15T14:45:32.471959+00:00",
+  "completed": [
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s0",
+      "finished_at": "2026-10-15T15:36:56.044934+00:00",
+      "progress": {
+        "agents_recorded": 100,
+        "agent_decisions": 1100,
+        "posts": 88,
+        "provider_requests": 88,
+        "retries": 0,
+        "content_rewrites": 0,
+        "fallback_posts": 0,
+        "reasons": {
+          "published": 88,
+          "below_threshold": 1012
+        },
+        "pid.json": {
+          "pid": 98578,
+          "status": "completed",
+          "start_time": "2026-10-15T14:45:34.379247+00:00",
+          "experiment_id": "timestamp_bdr_v1_interest_no_b_s0",
+          "simulation_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "end_time": "2026-10-15T15:36:50.201721+00:00"
+        },
+        "SOCIETY_STEP.json": {
+          "current_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "completed_step_count": 693,
+          "terminated": false
+        },
+        "environment_actions": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s0",
+      "finished_at": "2026-10-15T16:40:56.347537+00:00",
+      "progress": {
+        "agents_recorded": 100,
+        "agent_decisions": 1100,
+        "posts": 275,
+        "provider_requests": 275,
+        "retries": 0,
+        "content_rewrites": 0,
+        "fallback_posts": 0,
+        "reasons": {
+          "published": 275,
+          "below_threshold": 825
+        },
+        "pid.json": {
+          "pid": 6985,
+          "status": "completed",
+          "start_time": "2026-10-15T15:36:57.781869+00:00",
+          "experiment_id": "timestamp_bdr_v1_interest_no_d_s0",
+          "simulation_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "end_time": "2026-10-15T16:40:45.080884+00:00"
+        },
+        "SOCIETY_STEP.json": {
+          "current_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "completed_step_count": 693,
+          "terminated": false
+        },
+        "environment_actions": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s0",
+      "finished_at": "2026-10-15T17:22:32.660322+00:00",
+      "progress": {
+        "agents_recorded": 100,
+        "agent_decisions": 1100,
+        "posts": 521,
+        "provider_requests": 522,
+        "retries": 1,
+        "content_rewrites": 1,
+        "fallback_posts": 0,
+        "reasons": {
+          "published": 521,
+          "below_threshold": 579
+        },
+        "pid.json": {
+          "pid": 11135,
+          "status": "completed",
+          "start_time": "2026-10-15T16:01:14.839249+00:00",
+          "experiment_id": "timestamp_bdr_v1_interest_no_r_s0",
+          "simulation_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "end_time": "2026-10-15T17:22:27.670662+00:00"
+        },
+        "SOCIETY_STEP.json": {
+          "current_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "completed_step_count": 693,
+          "terminated": false
+        },
+        "environment_actions": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s1",
+      "finished_at": "2026-10-15T17:29:46.244751+00:00",
+      "progress": {
+        "agents_recorded": 100,
+        "agent_decisions": 1100,
+        "posts": 100,
+        "provider_requests": 101,
+        "retries": 1,
+        "content_rewrites": 1,
+        "fallback_posts": 0,
+        "reasons": {
+          "published": 100,
+          "below_threshold": 1000
+        },
+        "pid.json": {
+          "pid": 18120,
+          "status": "completed",
+          "start_time": "2026-10-15T16:40:58.116544+00:00",
+          "experiment_id": "timestamp_bdr_v1_interest_no_b_s1",
+          "simulation_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "end_time": "2026-10-15T17:29:35.231011+00:00"
+        },
+        "SOCIETY_STEP.json": {
+          "current_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "completed_step_count": 693,
+          "terminated": false
+        },
+        "environment_actions": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s1",
+      "finished_at": "2026-10-15T18:22:38.199175+00:00",
+      "progress": {
+        "agents_recorded": 100,
+        "agent_decisions": 1100,
+        "posts": 278,
+        "provider_requests": 279,
+        "retries": 1,
+        "content_rewrites": 1,
+        "fallback_posts": 0,
+        "reasons": {
+          "published": 278,
+          "below_threshold": 822
+        },
+        "pid.json": {
+          "pid": 24890,
+          "status": "completed",
+          "start_time": "2026-10-15T17:22:34.370845+00:00",
+          "experiment_id": "timestamp_bdr_v1_interest_no_d_s1",
+          "simulation_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "end_time": "2026-10-15T18:22:33.798324+00:00"
+        },
+        "SOCIETY_STEP.json": {
+          "current_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "completed_step_count": 693,
+          "terminated": false
+        },
+        "environment_actions": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s1",
+      "finished_at": "2026-10-15T18:46:05.196992+00:00",
+      "progress": {
+        "agents_recorded": 100,
+        "agent_decisions": 1100,
+        "posts": 535,
+        "provider_requests": 535,
+        "retries": 0,
+        "content_rewrites": 0,
+        "fallback_posts": 0,
+        "reasons": {
+          "published": 535,
+          "below_threshold": 565
+        },
+        "pid.json": {
+          "pid": 26297,
+          "status": "completed",
+          "start_time": "2026-10-15T17:29:47.780757+00:00",
+          "experiment_id": "timestamp_bdr_v1_interest_no_r_s1",
+          "simulation_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "end_time": "2026-10-15T18:46:02.205204+00:00"
+        },
+        "SOCIETY_STEP.json": {
+          "current_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "completed_step_count": 693,
+          "terminated": false
+        },
+        "environment_actions": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s2",
+      "finished_at": "2026-10-15T19:07:24.271541+00:00",
+      "progress": {
+        "agents_recorded": 100,
+        "agent_decisions": 1100,
+        "posts": 94,
+        "provider_requests": 94,
+        "retries": 0,
+        "content_rewrites": 0,
+        "fallback_posts": 0,
+        "reasons": {
+          "published": 94,
+          "below_threshold": 1006
+        },
+        "pid.json": {
+          "pid": 35874,
+          "status": "completed",
+          "start_time": "2026-10-15T18:22:39.816665+00:00",
+          "experiment_id": "timestamp_bdr_v1_interest_no_b_s2",
+          "simulation_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "end_time": "2026-10-15T19:07:19.583685+00:00"
+        },
+        "SOCIETY_STEP.json": {
+          "current_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "completed_step_count": 693,
+          "terminated": false
+        },
+        "environment_actions": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s2",
+      "finished_at": "2026-10-15T19:43:48.522695+00:00",
+      "progress": {
+        "agents_recorded": 100,
+        "agent_decisions": 1100,
+        "posts": 255,
+        "provider_requests": 257,
+        "retries": 2,
+        "content_rewrites": 2,
+        "fallback_posts": 0,
+        "reasons": {
+          "published": 255,
+          "below_threshold": 845
+        },
+        "pid.json": {
+          "pid": 39731,
+          "status": "completed",
+          "start_time": "2026-10-15T18:46:06.844395+00:00",
+          "experiment_id": "timestamp_bdr_v1_interest_no_d_s2",
+          "simulation_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "end_time": "2026-10-15T19:43:44.401777+00:00"
+        },
+        "SOCIETY_STEP.json": {
+          "current_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "completed_step_count": 693,
+          "terminated": false
+        },
+        "environment_actions": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s2",
+      "finished_at": "2026-10-15T20:20:38.156088+00:00",
+      "progress": {
+        "agents_recorded": 100,
+        "agent_decisions": 1100,
+        "posts": 506,
+        "provider_requests": 506,
+        "retries": 0,
+        "content_rewrites": 0,
+        "fallback_posts": 0,
+        "reasons": {
+          "published": 506,
+          "below_threshold": 594
+        },
+        "pid.json": {
+          "pid": 43548,
+          "status": "completed",
+          "start_time": "2026-10-15T19:07:25.946908+00:00",
+          "experiment_id": "timestamp_bdr_v1_interest_no_r_s2",
+          "simulation_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "end_time": "2026-10-15T20:20:27.754300+00:00"
+        },
+        "SOCIETY_STEP.json": {
+          "current_time": "2026-06-01T00:00:00",
+          "step_count": 693,
+          "completed_step_count": 693,
+          "terminated": false
+        },
+        "environment_actions": 1100,
+        "weeks": 11
+      }
+    }
+  ],
+  "deadline_at": "2026-10-17T12:21:11.583919+00:00",
+  "updated_at": "2026-10-15T20:20:48.166425+00:00",
+  "provider_requests": 2657,
+  "extra_requests": 5,
+  "budget_remaining_seconds": 144023.41747,
+  "elapsed_seconds": 20115.694472,
+  "max_parallel": 2,
+  "active_runs": [],
+  "handoff_at": "2026-10-15T16:01:12.090154+00:00",
+  "finished_at": "2026-10-15T20:20:48.166373+00:00"
+}

@@ -1,0 +1,59 @@
+[
+  {
+    "contract_id": "seed10_fc1",
+    "claim_id": "seed10_c1",
+    "core_finding": "新增7seed与旧3seed的周玩梗供给轨迹保持时序/兴趣高于随机；合计10不是独立新样本。",
+    "scope": "single chart",
+    "chart_role": "trend",
+    "evidence_source": "data/seed10_weekly_summary.csv",
+    "analysis_scope": "W12–W22; old3,new7,all10",
+    "figure_archetype": "three cohort facets with mean and min-max band",
+    "visual_center": "late W19–W22 separation from random",
+    "audience": "experiment report",
+    "highlight": "late window",
+    "axes_grouping": "same y=0–20 posts, x=W12–W22",
+    "legend_strategy": "shared arm legend",
+    "reviewer_check": "shade is actual seed range, not confidence interval; author type not semantics",
+    "output_files": [
+      "charts/chart_01_seed10_trajectories.png"
+    ]
+  },
+  {
+    "contract_id": "seed10_fc2",
+    "claim_id": "seed10_c3",
+    "core_finding": "三臂各10seed按用户确认的模型等价口径作为主分析；旧3与新7的制度排序一致，分批图仅作补充检查。",
+    "scope": "single chart",
+    "chart_role": "comparison",
+    "evidence_source": "data/seed10_runs.csv; data/seed10_arm_summary.csv",
+    "analysis_scope": "W19–W22 five original metrics",
+    "figure_archetype": "five metric facets; old3,new7,all10",
+    "visual_center": "cohort consistency",
+    "audience": "experiment report",
+    "highlight": "raw seed dots and means",
+    "axes_grouping": "five endpoints with own denominators",
+    "legend_strategy": "shared arm colors",
+    "reviewer_check": "all10 duplicates cohorts; mean ratio first per seed; t interval approximation",
+    "output_files": [
+      "charts/chart_02_seed10_model_cohorts.png"
+    ]
+  },
+  {
+    "contract_id": "seed10_fc3",
+    "claim_id": "seed10_c2",
+    "core_finding": "配对seed支持时序/兴趣均高于随机，时序对兴趣份额有1个seed反向。",
+    "scope": "single chart",
+    "chart_role": "robustness",
+    "evidence_source": "data/seed10_runs.csv; data/seed10_paired_contrasts.csv",
+    "analysis_scope": "seed0–9 paired contrasts; old/new blocks",
+    "figure_archetype": "paired differences across seed; posts and share",
+    "visual_center": "zero reference and exceptions",
+    "audience": "experiment report",
+    "highlight": "one share reversal",
+    "axes_grouping": "seed x; paired mean counts / pp differences y",
+    "legend_strategy": "three contrast series",
+    "reviewer_check": "connecting seeds is an index guide, not longitudinal evolution; model cohort split",
+    "output_files": [
+      "charts/chart_03_seed10_paired_seeds.png"
+    ]
+  }
+]

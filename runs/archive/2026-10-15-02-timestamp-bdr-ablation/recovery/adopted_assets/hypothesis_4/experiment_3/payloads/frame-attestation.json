@@ -1,0 +1,17 @@
+{
+  "phase": "frame",
+  "status": "DONE_WITH_CONCERNS",
+  "key_findings": [
+    "按既有方案固定三项主指标，12单元同seed配对，n=3。"
+  ],
+  "artifacts_read": [
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/EXPERIMENT.md"
+  ],
+  "artifacts_written": [
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/analysis/payloads/plan.json"
+  ],
+  "rubric": {
+    "research_question_confirmed": "用户本次直接授权判断B/D/R作用并同seed Full比较；原方案已固定窗口、分母和差值方向。",
+    "success_criteria": "12次终态与代码/配置/输入兼容核验，逐seed主差值、零周保留、模型批次限制披露、模板图不混外部供给。"
+  }
+}

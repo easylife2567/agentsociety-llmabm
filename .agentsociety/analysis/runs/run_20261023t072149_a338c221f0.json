@@ -1,0 +1,49 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261023t072149_a338c221f0",
+  "operation_id": "validate-chart",
+  "operation_contract_version": 1,
+  "execution_key": "01d05bca1d53ae61c0743148e94039baf722a12e2e11068832d5fd22674fe30a",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "",
+  "input_names": [
+    "chart_path",
+    "hypothesis_id",
+    "workspace"
+  ],
+  "input_fingerprint": "7af220545d29fc76f835e51c08e53861cb41ec54f0ca444ff4415f9f4f38e0dc",
+  "safe_inputs": {
+    "hypothesis_id": "4"
+  },
+  "preflight": {
+    "operation_id": "validate-chart",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "recommended_next_step": "Run record-attestation --phase refine after LLM review of this stage",
+    "status": "BLOCKED"
+  },
+  "error": null,
+  "declared_artifacts": [
+    "validated chart registration in harness state"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "a626ae02c5381de0bdc8747097d4ba72e186bdcff8ad2cbc69e81a666a56af60"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 52446,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-23T07:21:49.008511Z",
+  "updated_at": "2026-10-23T07:21:49.019635Z",
+  "completed_at": "2026-10-23T07:21:49.019607Z",
+  "duration_ms": 11
+}

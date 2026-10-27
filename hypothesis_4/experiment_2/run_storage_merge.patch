@@ -1,0 +1,123 @@
+--- a/hypothesis_4/experiment_2/run_main_experiment.py
++++ b/hypothesis_4/experiment_2/run_main_experiment.py
+@@ -13,15 +13,16 @@
+ from urllib.parse import urlsplit
+ 
+ from dotenv import dotenv_values
++from run_asset_paths import resolve_asset_path
+ 
+ EXPERIMENT = Path(__file__).resolve().parent
+ ROOT = EXPERIMENT.parents[1]
+-BATCH = EXPERIMENT / 'runs/timestamp_v1'
++BATCH = EXPERIMENT / 'runs/timestamp_v1/execution_records/seed0_2'
+ STATE = BATCH / 'batch_execution.json'
+ 
+ 
+ def read(path):
+-    return json.loads(path.read_text())
++    return json.loads(resolve_asset_path(path).read_text())
+ 
+ 
+ def write(path, data):
+@@ -31,7 +32,7 @@
+ 
+ 
+ def digest(path):
+-    return hashlib.sha256(path.read_bytes()).hexdigest()
++    return hashlib.sha256(resolve_asset_path(path).read_bytes()).hexdigest()
+ 
+ 
+ def now():
+@@ -39,6 +40,7 @@
+ 
+ 
+ def progress(directory):
++    directory = resolve_asset_path(directory)
+     result = {}
+     for name in ('pid.json', 'SOCIETY_STEP.json'):
+         path = directory / name
+--- a/hypothesis_4/experiment_2/run_seed_extension.py
++++ b/hypothesis_4/experiment_2/run_seed_extension.py
+@@ -14,11 +14,12 @@
+ from urllib.parse import urlsplit
+ 
+ from dotenv import dotenv_values
++from run_asset_paths import resolve_asset_path
+ from run_main_experiment import read, write, digest, now, progress, completed
+ 
+ HERE = Path(__file__).resolve().parent
+ ROOT = HERE.parents[1]
+-BATCH = HERE / 'runs/timestamp_v1_seed3_9'
++BATCH = HERE / 'runs/timestamp_v1/execution_records/seed3_9'
+ STATE = BATCH / 'batch_execution.json'
+ MANIFEST = HERE / 'init/manifest_seed3_9.json'
+ EXPECTED_MODEL = 'deepseek-v4-1-flash-261017'
+@@ -64,6 +65,7 @@
+ 
+ def agent_summary(directory):
+     """只读取引擎已保存的真实决策，写文件瞬间的不完整JSON留待下次读取。"""
++    directory = resolve_asset_path(directory)
+     summary = dict(agent_files=0, decisions=0, unique_decisions=0, posted=0, requests=0,
+                    action_failures=0, response_models={})
+     unique = set()
+--- a/hypothesis_4/experiment_2/verify_seed_extension.py
++++ b/hypothesis_4/experiment_2/verify_seed_extension.py
+@@ -61,7 +61,7 @@
+     from agentsociety2.society import cli, models
+     from agentsociety2.config import config as sdk_config
+ 
+-    old = read(HERE / 'runs/timestamp_v1/runtime_plan.json')
++    old = read(HERE / 'runs/timestamp_v1/execution_records/seed0_2/runtime_plan.json')
+     configured = dotenv_values(ROOT / '.env')
+     endpoint = urlsplit(configured.get('AGENTSOCIETY_LLM_API_BASE') or '')
+     counts = {}
+--- a/presentation/hypothesis_4/data/seed10_analyze.py
++++ b/presentation/hypothesis_4/data/seed10_analyze.py
+@@ -21,6 +21,7 @@
+ sys.path.insert(0, str(EXPERIMENT))
+ from run_seed_extension_parallel import final_result
+ from run_main_experiment import completed
++from run_asset_paths import resolve_asset_path
+ 
+ ARMS = ('random', 'chronological', 'interest')
+ TYPES = ('meme', 'mourning', 'education', 'marketing', 'other')
+@@ -123,8 +124,8 @@
+ def main():
+     target = OUT / 'seed10_sources.json'
+     assert not target.exists(), '不覆盖本次来源证据；更改复算需明确版本'
+-    manifests = [(read(EXPERIMENT / 'init/manifest.json'), EXPERIMENT / 'runs/timestamp_v1', 'old3'),
+-                 (read(EXPERIMENT / 'init/manifest_seed3_9.json'), EXPERIMENT / 'runs/timestamp_v1_seed3_9', 'new7')]
++    manifests = [(read(EXPERIMENT / 'init/manifest.json'), EXPERIMENT / 'runs/timestamp_v1/execution_records/seed0_2', 'old3'),
++                 (read(EXPERIMENT / 'init/manifest_seed3_9.json'), EXPERIMENT / 'runs/timestamp_v1/execution_records/seed3_9', 'new7')]
+     items, hashes = [], {}
+     for manifest, batch, cohort in manifests:
+         plan, state = read(batch / 'runtime_plan.json'), read(batch / 'batch_execution.json')
+@@ -132,7 +133,7 @@
+         completion = {r['run_id']: r for r in state['completed']}
+         for run in manifest['runs']:
+             completed = completion[run['run_id']]
+-            directory = Path(completed.get('run_dir') or ROOT / run['run_dir'])
++            directory = resolve_asset_path(completed.get('run_dir') or ROOT / run['run_dir'])
+             items.append((run, directory, cohort, plan['model']))
+         for name in ['runtime_plan.json', 'batch_execution.json']:
+             hashes[str((batch / name).relative_to(ROOT))] = digest(batch / name)
+--- a/presentation/hypothesis_4/charts/timestamp_v1_plot_agent_supply.py
++++ b/presentation/hypothesis_4/charts/timestamp_v1_plot_agent_supply.py
+@@ -46,7 +46,7 @@
+ 
+ def main() -> None:
+     DATA.mkdir(parents=True, exist_ok=True)
+-    batch = json.loads((BATCH / "batch_execution.json").read_text())
++    batch = json.loads((BATCH / "execution_records/seed0_2/batch_execution.json").read_text())
+     expected = {f"timestamp_v1_{arm}_s{seed}" for arm in ARMS for seed in range(3)}
+     assert batch["status"] == "completed"
+     assert {r["run_id"] for r in batch["completed"]} == expected
+@@ -137,7 +137,7 @@
+         },
+         "template": {"path": str(TEMPLATE.relative_to(ROOT)), "sha256": digest(TEMPLATE)},
+         "script": {"path": str(Path(__file__).relative_to(ROOT)), "sha256": digest(Path(__file__))},
+-        "batch_execution_sha256": digest(BATCH / "batch_execution.json"),
++        "batch_execution_sha256": digest(BATCH / "execution_records/seed0_2/batch_execution.json"),
+         "runs": evidence, "chart_outputs": outputs,
+     }
+     (DATA / "timestamp_v1_agent_supply_sources.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")

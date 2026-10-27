@@ -1,0 +1,45 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261024t055119_b4941bb880",
+  "operation_id": "record-attestation",
+  "operation_contract_version": 1,
+  "execution_key": "2e81161c9d69ebe3b82aa9dd08760e5393ad4c7860967f737e3df603b713f40a",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "",
+  "experiment_id": "",
+  "input_names": [
+    "payload",
+    "workspace"
+  ],
+  "input_fingerprint": "25d111ea5058ec38c3ba0a14b055486caea1b490a762f14b4e1909e756466fd8",
+  "safe_inputs": {
+    "hypothesis_id": null
+  },
+  "preflight": {
+    "operation_id": "record-attestation",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "scope": "workspace"
+  },
+  "error": null,
+  "declared_artifacts": [
+    "phase attestation in harness state"
+  ],
+  "artifact_fingerprints": {},
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 22671,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-24T05:51:19.249460Z",
+  "updated_at": "2026-10-24T05:51:19.257738Z",
+  "completed_at": "2026-10-24T05:51:19.257714Z",
+  "duration_ms": 8
+}

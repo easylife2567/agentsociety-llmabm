@@ -1,0 +1,10 @@
+version = 1
+id = "b-d-r-30"
+kind = "heartbeat"
+name = "B、D、R消融实验每30分钟进度报告"
+prompt = "每30分钟在当前聊天简要汇报B、D、R九次正式LLM消融，即使暂无变化也报告。项目为/Users/easylife/Project/AgentSociety，指定run为runs/2026-10-15-02-timestamp-bdr-ablation。先读该run README，用主项目.env里的PYTHON_PATH执行该run的run_ablation.py --status，核对results/timestamp_bdr_v1_attempt_02/runtime_plan.json和batch_execution.json。当前授权最多两个独立实验并行；逐项读取active_runs，每一路都核对真实PID及进程命令、SOCIETY_STEP、环境和Agent记录、必要日志与持久镜像，不只凭监督器文字判断存活。报告两路去B/去D/去R与seed、总完成数/9、各路步数/693、实际行动/1100、完成周/11、发布数、各路和全批模型请求、共享额外请求/990、累计耗时、原48小时预算余量、较上次进展、错误或停滞。以manifest既定seed0→1→2、每seed no_b→no_d→no_r顺序补充空位，完成顺序可不同；不扩条件、调科学参数、重跑或续接checkpoint，不提前宣布科学结论。原模型必须固定deepseek-v4-1-flash-260910，即使.env默认模型已变为deepseek-v4.1-flash也不得跟随切换。现有去D seed0保持旧API进程，新启动条件用并行交接时的新API并固定原模型；API不兼容或任何技术异常均两路联停，不切模型、不重试批次。若发现异常但控制器未停止，用同run run_ablation.py --stop停止两路及后续条件，保留现场并立即报告依据；监督器退出但引擎残留也要请求停止并继续监测。按实际更新本run README，不改主项目机器状态或无关文件。全部完成或监督器和全部引擎均明确退出后，报告最终状态并暂停本定时器；有残留则明确报告并保留监测。不要重复启动实验。引擎实际文件在workspace/hypothesis_4/experiment_3/runtime/timestamp_bdr_v1_attempt_02/<run_id>/，results对应目录为持久镜像，优先读取每路current_run_dir；共享账本仍为原attempt_02/_extra_attempts.count，既往消耗必须计入，总请求上界10890。首次403失败原样保留，串行到并行交接证据在evidence/parallel。截止严格按runtime_plan.remaining_budget.deadline_at，为北京时间2026-10-17 20:21:11，不重置或延长。"
+status = "PAUSED"
+rrule = "FREQ=MINUTELY;INTERVAL=30"
+target_thread_id = "01a13f67-8b55-7c50-a73e-0240b0519351"
+created_at = 1792066850460
+updated_at = 1792097302805

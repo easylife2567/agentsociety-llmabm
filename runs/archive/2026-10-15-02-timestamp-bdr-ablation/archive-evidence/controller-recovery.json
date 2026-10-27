@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "patch_application_order": [
+    "output-layout.patch",
+    "parallel-control.patch"
+  ],
+  "final_byte_identical": true,
+  "controller_sha256": "044b391e5702d3abab5e4b2302a4cfb1fd331b2eaf848710e3b4d8051098b0c0",
+  "overlay_files_verified": 45
+}

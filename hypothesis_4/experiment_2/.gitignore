@@ -1,2 +1,8 @@
 # 可丢弃的候选代码、离线执行日志与临时工作区
 tmp/
+
+# 统一主实验原始运行记录留在本机，不纳入Git
+/runs/timestamp_v1/timestamp_v1_*/
+/runs/timestamp_v1/execution_records/*/*.log
+/runs/timestamp_v1/execution_records/*/supervisor.lock
+/runs/timestamp_v1/execution_records/*/_extra_attempts.count

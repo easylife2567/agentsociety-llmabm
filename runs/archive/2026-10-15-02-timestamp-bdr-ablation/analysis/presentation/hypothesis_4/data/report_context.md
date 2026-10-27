@@ -1,0 +1,40 @@
+# Evidence context
+
+{
+  "scope": "timestamp-interest, 3 paired seeds, Full + no_b/no_d/no_r, 12 runs",
+  "primary_metrics": [
+    [
+      "B",
+      "13.83",
+      "6.83",
+      "-7.00",
+      "[-7.75, -6.25]"
+    ],
+    [
+      "D",
+      "47.81",
+      "17.11",
+      "-30.70",
+      "[-35.53, -27.63]"
+    ],
+    [
+      "R",
+      "19.13",
+      "49.20",
+      "+30.07",
+      "[+27.00, +31.80]"
+    ]
+  ],
+  "key_findings": [
+    "B retains late supply; removing B lowers late mean by 7.00 posts/week in every seed.",
+    "D response shapes selective timing; removing it lowers late meme-author speaking by 30.70 pp although early and total author supply rises.",
+    "R decay/return-to-B limits overall post-event activity; no R raises W14–W18 speaking by 30.07 pp.",
+    "Higher meme-author share after no B coexists with lower absolute meme-author output; author types are not semantic labels."
+  ],
+  "limitations": "n=3 with same population/schedule; all effects conditional on frozen timestamp-interest and params; closed-loop total changes, not additive or direct effects; R=1 also removes B weight; reused Full is a separate generation batch and API routes/returned model identifiers differ; no human semantic gold or extra independent model review.",
+  "evidence_index_path": "data/evidence_index.json",
+  "analysis_release": "candidate, not user-approved or independently reviewed",
+  "additional_LLM_calls": 0
+}
+
+Primary metrics: paired_summary.csv; all seed deltas: paired_differences.csv; observed processes: decisions.csv and weekly_exposure_by_cohort.csv; raw file hashes: source_index.json.

@@ -1,0 +1,618 @@
+{
+  "figure": "figure_05_bdr_ablation",
+  "size_mm": [
+    180.0,
+    112.0
+  ],
+  "panels": [
+    "Fig. 5a",
+    "Fig. 5b",
+    "Fig. 5c",
+    "Fig. 5d",
+    "Fig. 5e"
+  ],
+  "font": "Times New Roman",
+  "base_font_pt": 9,
+  "python": "3.13.9",
+  "matplotlib": "3.10.0",
+  "labels": [],
+  "rendered_text_boxes": [
+    {
+      "text": "13.8",
+      "bbox_px": [
+        139.42,
+        561.41,
+        170.42,
+        578.41
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "6.0",
+      "bbox_px": [
+        285.79,
+        474.27,
+        307.92,
+        491.27
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Fig. 5a",
+      "bbox_px": [
+        100.98,
+        614.26,
+        160.86,
+        633.26
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W19–W22",
+      "bbox_px": [
+        268.66,
+        614.26,
+        350.79,
+        632.26
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Full",
+      "bbox_px": [
+        139.73,
+        344.42,
+        170.11,
+        362.42
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "B = 0",
+      "bbox_px": [
+        275.92,
+        344.42,
+        317.79,
+        362.42
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Total output\n(posts per week)",
+      "bbox_px": [
+        26.95,
+        430.57,
+        61.44,
+        548.32
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0",
+      "bbox_px": [
+        78.03,
+        367.01,
+        86.4,
+        383.01
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "5",
+      "bbox_px": [
+        78.15,
+        423.23,
+        86.4,
+        439.23
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "10",
+      "bbox_px": [
+        69.78,
+        479.45,
+        86.4,
+        495.45
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "15",
+      "bbox_px": [
+        69.9,
+        535.67,
+        86.4,
+        551.67
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "20",
+      "bbox_px": [
+        69.78,
+        591.89,
+        86.4,
+        607.89
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "49.7%",
+      "bbox_px": [
+        475.95,
+        573.55,
+        524.83,
+        590.55
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "17.0%",
+      "bbox_px": [
+        617.95,
+        459.42,
+        666.7,
+        476.42
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Fig. 5b",
+      "bbox_px": [
+        446.46,
+        614.26,
+        507.58,
+        633.26
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W19–W22",
+      "bbox_px": [
+        614.13,
+        614.26,
+        696.26,
+        632.26
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Full",
+      "bbox_px": [
+        485.2,
+        344.42,
+        515.58,
+        362.42
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "D = 1",
+      "bbox_px": [
+        620.76,
+        344.42,
+        663.89,
+        362.42
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Memetic-type\nspeaking rate (%)",
+      "bbox_px": [
+        372.3,
+        426.76,
+        406.79,
+        552.14
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0",
+      "bbox_px": [
+        423.5,
+        367.01,
+        431.87,
+        383.01
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "20",
+      "bbox_px": [
+        415.25,
+        431.26,
+        431.87,
+        447.26
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "40",
+      "bbox_px": [
+        415.12,
+        495.51,
+        431.87,
+        511.51
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "60",
+      "bbox_px": [
+        415.12,
+        559.76,
+        431.87,
+        575.76
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "19.4%",
+      "bbox_px": [
+        821.43,
+        468.34,
+        870.3,
+        485.34
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "50.2%",
+      "bbox_px": [
+        963.36,
+        575.6,
+        1012.24,
+        592.6
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Fig. 5c",
+      "bbox_px": [
+        791.93,
+        614.26,
+        850.68,
+        633.26
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W14–W18",
+      "bbox_px": [
+        959.73,
+        614.26,
+        1041.73,
+        632.26
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Full",
+      "bbox_px": [
+        830.68,
+        344.42,
+        861.05,
+        362.42
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "R = 1",
+      "bbox_px": [
+        966.8,
+        344.42,
+        1008.8,
+        362.42
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Overall\nspeaking rate (%)",
+      "bbox_px": [
+        717.77,
+        426.76,
+        752.26,
+        552.14
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0",
+      "bbox_px": [
+        768.97,
+        367.01,
+        777.35,
+        383.01
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "20",
+      "bbox_px": [
+        760.72,
+        436.2,
+        777.35,
+        452.2
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "40",
+      "bbox_px": [
+        760.6,
+        505.4,
+        777.35,
+        521.4
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "60",
+      "bbox_px": [
+        760.6,
+        574.59,
+        777.35,
+        590.59
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "68.5%",
+      "bbox_px": [
+        167.84,
+        249.22,
+        216.59,
+        266.22
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "12.0%",
+      "bbox_px": [
+        407.86,
+        99.65,
+        456.73,
+        116.65
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Fig. 5d",
+      "bbox_px": [
+        100.98,
+        280.24,
+        161.98,
+        299.24
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W19–W22",
+      "bbox_px": [
+        441.4,
+        280.24,
+        523.52,
+        298.24
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Full",
+      "bbox_px": [
+        177.03,
+        10.41,
+        207.4,
+        28.41
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "R = 1",
+      "bbox_px": [
+        411.29,
+        10.41,
+        453.29,
+        28.41
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Memetic-type\nsupply share (%)",
+      "bbox_px": [
+        26.95,
+        95.12,
+        61.44,
+        215.75
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0",
+      "bbox_px": [
+        78.03,
+        32.99,
+        86.4,
+        48.99
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "25",
+      "bbox_px": [
+        69.9,
+        95.46,
+        86.4,
+        111.46
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "50",
+      "bbox_px": [
+        69.78,
+        157.93,
+        86.4,
+        173.93
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "75",
+      "bbox_px": [
+        69.78,
+        220.39,
+        86.4,
+        236.39
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "20.8%",
+      "bbox_px": [
+        685.99,
+        224.5,
+        734.86,
+        241.5
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "8.0%",
+      "bbox_px": [
+        930.56,
+        128.48,
+        970.44,
+        145.48
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Fig. 5e",
+      "bbox_px": [
+        619.19,
+        280.24,
+        677.94,
+        299.24
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W19–W22",
+      "bbox_px": [
+        959.61,
+        280.24,
+        1041.73,
+        298.24
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Full",
+      "bbox_px": [
+        695.24,
+        10.41,
+        725.61,
+        28.41
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "R = 1",
+      "bbox_px": [
+        929.5,
+        10.41,
+        971.5,
+        28.41
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Memetic content in\nothers’ feeds (%)",
+      "bbox_px": [
+        545.25,
+        86.37,
+        579.65,
+        224.5
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0",
+      "bbox_px": [
+        596.23,
+        32.99,
+        604.61,
+        48.99
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "10",
+      "bbox_px": [
+        587.98,
+        107.95,
+        604.61,
+        123.95
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "20",
+      "bbox_px": [
+        587.98,
+        182.91,
+        604.61,
+        198.91
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "30",
+      "bbox_px": [
+        587.98,
+        257.87,
+        604.61,
+        273.87
+      ],
+      "outside_canvas": false
+    }
+  ],
+  "axes": [
+    [
+      0.095,
+      0.57,
+      0.23499999999999996,
+      0.33999999999999997
+    ],
+    [
+      0.42,
+      0.57,
+      0.23500000000000004,
+      0.33999999999999997
+    ],
+    [
+      0.745,
+      0.57,
+      0.235,
+      0.33999999999999997
+    ],
+    [
+      0.095,
+      0.065,
+      0.3975000000000001,
+      0.34
+    ],
+    [
+      0.5825,
+      0.065,
+      0.39749999999999996,
+      0.34
+    ]
+  ],
+  "outputs": {
+    "svg": "5b1707b692e2240d6fc9bdbc70945dc6c46d6d5cf7c705a2930fd011ce607ca9",
+    "pdf": "21730be0e1eae56ca1b0bfaebe8ea2d37dc0166ffb4e2fcf97bacb882e86db8b",
+    "png": "b4323a8d2632cf7b6eb93ef84aa59f6d41bfbc9040098ae381e0b3caefb024c8"
+  }
+}

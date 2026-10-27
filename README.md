@@ -1,6 +1,6 @@
 # 算法策展与公众人物身后数字表征
 
-本仓库使用 AgentSociety 研究：推荐机制如何通过改变既有表达群体的可见度与参与，影响公众人物身后的公共数字表征。
+本仓库先以原始数据挖掘与分析回答逝者数字形象的时序结构及平台差异，再使用 AgentSociety 的LLM多智能体仿真，主要回答算法与发帖行为的循环机制及不同策展制度是否差异化推动悼念向玩梗转变。总体上研究算法策展如何通过“可见性配置—选择性表达—内容回流”的传播反馈回路，在公众原有倾向未发生普遍改变的情况下，逐步生成主导逝者形象。研究目标是机制重演与解释，完整理论框架见[TOPIC.md](TOPIC.md)。
 
 **工作区继续采用 AgentSociety2 官方推荐的文件夹结构；默认在正式项目中工作，只有用户明确要求才开启根级 run 隔离探索。** 工作规范见 [AGENTS.md](AGENTS.md)，已有探索与决策记录从 [runs/README.md](runs/README.md) 查阅。正式任务/实验 README 提供目标、资产、实时进度和下一步；实验方案和结果放对应官方目录。项目总览不重复维护各任务进度。
 
@@ -9,7 +9,7 @@
 1. [TOPIC.md](TOPIC.md)：研究问题、理论目标和既有规模预算。
 2. [AGENTS.md](AGENTS.md)：唯一工作规范正文；[CLAUDE.md](CLAUDE.md) 是指向它的兼容链接。
 3. [hypothesis_4/](hypothesis_4/README.md)：当前官方主实验入口；experiment_2采用共同timestamp与W13局部顺延，官方按各臂规则普通推荐，暂时保留17条历史池。
-4. [runs/](runs/README.md)：用户显式开启的隔离探索入口与历史对话决策导航；当前无活跃探索。
+4. [runs/](runs/README.md)：用户显式开启的隔离探索入口与历史对话决策导航，活跃探索以该目录索引为准。
 5. [ARCHIVE_MANIFEST_H4E1.md](ARCHIVE_MANIFEST_H4E1.md)：已运行批次、敏感性及撤回设计的证据分类。
 
 根级 `runs/` 仅在用户显式开启时承载隔离探索，候选成果须获采用授权才落到正式项目；普通任务不自动创建或续接 run。已有对话决策和探索资产保留历史索引，不自动迁移、归档或重新启动。`data/` 同样由用户新增，用于本实验的预处理数据及相关处理材料。正式代码、实验配置和结果留在原来的官方对应位置，通过任务文档引用。一个算法×seed 的仿真运行是实验单元，不自动成为一个新工作任务。历史报告和机器来源清单可能存在口径冲突，使用前核对实际入口与冻结配置；相关冲突及验收状态见当前官方实验README。
@@ -29,6 +29,9 @@
 | [ARCHIVE_MANIFEST_H4E1.md](ARCHIVE_MANIFEST_H4E1.md) | H4E1 批次证据分类 |
 | [ARCHIVE_MANIFEST_H4E1_formal_20260913.md](ARCHIVE_MANIFEST_H4E1_formal_20260913.md)、[ARCHIVE_MANIFEST_H4E1_history_20260915.md](ARCHIVE_MANIFEST_H4E1_history_20260915.md) | 历史冻结批次与运行记录索引 |
 | [词表_哀悼型_最终版.md](词表_哀悼型_最终版.md)、[词表_玩梗型_最终版.md](词表_玩梗型_最终版.md)、[词表_教育型_最终版.md](词表_教育型_最终版.md)、[词表_营销型_最终版.md](词表_营销型_最终版.md) | 各类型词表资产，使用时说明测量与生成用途 |
+| [悼念退潮之后：基于多智能体仿真的逝者数字形象塑造机制研究.pdf](悼念退潮之后：基于多智能体仿真的逝者数字形象塑造机制研究.pdf) | 作者PDF初稿，供章节结构与历史结果核对 |
+| [【1009批注版】ICA-研究背景和文献综述.docx](<【1009批注版】ICA-研究背景和文献综述.docx>) | 当前研究背景、三条文献脉络与三个研究问题的作者来源 |
+| [【修订1】1008 理论框架.docx](<【修订1】1008 理论框架.docx>) | 当前传播反馈回路视角与策展流框架的作者来源 |
 | [图表解读.docx](图表解读.docx) | 用户提供的经验图表解读 |
 | [AgentSociety 2- An Integrated Research Environment for Executable Social Science.pdf](<AgentSociety 2- An Integrated Research Environment for Executable Social Science.pdf>) | 研究环境参考文档 |
 | [env.template](env.template) | 不含真实凭据的环境模板 |
@@ -49,6 +52,7 @@
 | [papers/](papers/) | 文献检索与阅读材料 |
 | [paper/](paper/README.md) | 论文、附录与审稿材料 |
 | [presentation/](presentation/) | 分析图表、演示及相关来源清单 |
+| [synthesis/](synthesis/README.md) | 已采用的研究综合，回指正式实验及原始证据 |
 | [research/](research/) | 研究背景与探索材料 |
 | [change/](change/)、[refine-logs/](refine-logs/) | 已有机制修改和方案探索记录；普通任务使用对应正式目录 |
 | [archive/](archive/) | 本地冻结历史与批次原始结果，按根目录归档清单查找；不入 Git |

@@ -1,0 +1,543 @@
+--- a/runs/2026-09-29-02-injection-timing/2026-10-07-03-content-numerical-expectation.py
++++ b/runs/2026-09-29-02-injection-timing/2026-10-07-03-content-numerical-expectation.py
+@@ -1,6 +1,6 @@
+-"""内容修复的离线数值预期：固定归档正文/发言安排，只应用发布前门控。
++"""内容修复的离线数值预期：固定归档正文/发言安排，修正细节并保留每次发布。
+ 
+-全四格复算4,400次效用判定；原始正文按新门控静态分类，不更新库存或生成新文本。
++全四格复算4,400次效用判定；对归档正文离线修正，拒答使用标明来源的兜底；不重新驱动库存或调用LLM。
+ 五类计数仍是作者类型。额外风险命中单列待核查，不自动认作真实错误。
+ """
+ import csv
+@@ -96,32 +96,38 @@
+                 # 历史服务结构化拒答字段未留存，静态复核只使用已存完整发布正文。
+                 response = {'choices': [{'message': {'content': d['content']}, 'finish_reason': 'stop'}]}
+                 checked = QUALITY.inspect_response(response, context)
++                initial_status = checked['content_status']
++                candidate = QUALITY.publication_candidate(checked, context) or QUALITY.fallback_content(agent, context)
++                assert QUALITY.assess_text(candidate['content'], context)[0] == 'accepted'
+                 key = run['run_id'], aid, d['week']
+                 known = key in mandatory
+                 if known:
+                     expected = 'refusal' if mandatory[key]['review']['verdict'] == 'service_refusal' else 'unsupported_detail'
+                     assert checked['content_status'] == expected, key
+                     checked_samples.append(dict(run_id=key[0], agent_id=aid, week=d['week'],
+-                                                content_status=checked['content_status'], checks=checked['content_checks']))
++                                                initial_status=initial_status, final_status='accepted', content_origin=candidate['content_origin'], edits=candidate['detail_edits'], checks=checked['content_checks']))
+                 elif checked['content_status'] != 'accepted':
+                     extra.append(dict(agent_id=aid, week=d['week'], post_id=d['post_id'],
+                                       status=checked['content_status'], checks=checked['content_checks']))
+-                accepted = checked['content_status'] == 'accepted'
++                accepted = True
+                 archived[d['week'], profile['agent_type']] += 1
+                 counts[d['week'], profile['agent_type']] += accepted
+                 rows.append(dict(condition=condition, run_id=run['run_id'], agent_id=aid, week=d['week'],
+                                  post_id=d['post_id'], author_type=profile['agent_type'], known_issue=known,
+-                                 status=checked['content_status'], checks=json.dumps(checked['content_checks'], ensure_ascii=False),
++                                 initial_status=initial_status, final_status='accepted', content_origin=candidate['content_origin'],
++                                 edits=json.dumps(candidate['detail_edits'], ensure_ascii=False), repaired_content=candidate['content'],
++                                 checks=json.dumps(checked['content_checks'], ensure_ascii=False),
+                                  archived_published=True, statically_accepted=accepted))
+         assert opportunities == 1100
+-        status_counts = dict(Counter(r['status'] for r in rows if r['condition'] == condition))
+-        summary[condition] = dict(archived_published=sum(archived.values()), statically_accepted=sum(counts.values()),
++        status_counts = dict(Counter(r['initial_status'] for r in rows if r['condition'] == condition))
++        summary[condition] = dict(archived_published=sum(archived.values()), preserved_posts=sum(counts.values()),
+                                   known_cases=sum(x['run_id'] == run['run_id'] for x in checked_samples),
+                                   extra_screen_hits=len(extra), extra_cases_for_review=extra,
+-                                  content_status_counts=status_counts, opportunities=opportunities, max_u_error=max_error)
++                                  initial_status_counts=status_counts, content_origin_counts=dict(Counter(r['content_origin'] for r in rows if r['condition']==condition)), opportunities=opportunities, max_u_error=max_error)
+         weekly = [dict(condition=condition, week=w, **{k: counts[w, k] for k in KINDS},
+                        total=sum(counts[w, k] for k in KINDS), archived_total=sum(archived[w, k] for k in KINDS)) for w in WEEKS]
+-        assert sum(w['total'] for w in weekly) == sum(counts.values())
++        assert sum(w['total'] for w in weekly) == sum(counts.values()) == sum(archived.values())
++        assert all(w['total']==w['archived_total'] for w in weekly)
+         weekly_rows.extend(weekly)
+         # 用户模板仅提供样式；不把旧归档经门控的静态计数称为新仿真产出。
+         fig, ax = STYLE.plt.subplots(figsize=(10, 5.4)); x = list(range(11))
+@@ -134,11 +140,11 @@
+             ax.text(i, max(w['total'],w['archived_total'])+1.4, str(w['total']), ha='center', fontsize=9)
+         assert max(w['archived_total'] for w in weekly) <= 80
+         ax.set_xticks(x, WEEKS, rotation=45); ax.set_ylim(0,80); ax.set_yticks(range(0,81,10))
+-        ax.set_ylabel('门控后拟接纳数（条 / 周）')
++        ax.set_ylabel('内容修复后保留发布数（条 / 周）')
+         ax.set_title(f'内容修复的数值预期（无 LLM · {condition}）', fontsize=13)
+         ax.legend(loc='upper right', frameon=False, fontsize=9); STYLE._tidy(ax)
+-        fig.text(.07,.035, f"100人 · seed 0 · 归档{sum(archived.values())}条 → 拟接纳{sum(counts.values())}条 · 类型=作者身份\n"
+-                 f"固定原发言与正文；非闭环预测；额外{len(extra)}条规则命中待核查；timestamp时机方案暂停", fontsize=8, color='#555555')
++        fig.text(.07,.035, f"100人 · seed 0 · 归档{sum(archived.values())}条 → 保留{sum(counts.values())}条 · 类型=作者身份\n"
++                 f"固定原供给；离线修正文；非闭环预测；额外{len(extra)}条细节筛查待核查；timestamp时机方案暂停", fontsize=8, color='#555555')
+         fig.tight_layout(rect=(0,.10,1,1))
+         stem = f'2026-10-07-0{4+len(summary)}-content-{condition}'
+         fig.savefig(OUT/f'{stem}.png',dpi=300)
+@@ -154,9 +160,9 @@
+     write_csv('2026-10-07-02-content-weekly.csv',weekly_rows)
+     result = dict(conditions=summary, mandatory_results=checked_samples, source_sha256=hashes,
+                   network_attempts=0, model_calls=0, numeric_actions=4400,
+-                  scope='static archive acceptance; frozen original supply and texts; not closed-loop prediction')
++                  scope='static detail repair with preserved original supply; refusal uses labelled offline fallback; not closed-loop prediction')
+     (OUT/'2026-10-07-03-content-summary.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+-    print(json.dumps({k:{n:v[n] for n in ('archived_published','statically_accepted','known_cases','extra_screen_hits','max_u_error')} for k,v in summary.items()},ensure_ascii=False,indent=2))
++    print(json.dumps({k:{n:v[n] for n in ('archived_published','preserved_posts','known_cases','extra_screen_hits','max_u_error')} for k,v in summary.items()},ensure_ascii=False,indent=2))
+ 
+ 
+ if __name__ == '__main__':
+--- a/custom/tests/test_arrival_timing.py
++++ b/custom/tests/test_arrival_timing.py
+@@ -182,9 +182,10 @@
+             attempts.append(1)
+             raise RuntimeError('frozen fake service failure')
+         with patch.object(ACTION, 'generate_once', fail_generate), patch.object(ACTION, 'reserve_retry', return_value=True):
+-            self.assertEqual(await ACTION.act(agent, 3600, start), 'generation_failed')
++            self.assertEqual(await ACTION.act(agent, 3600, start), 'published')
+             self.assertEqual(len(attempts), 2)
+-            self.assertFalse(agent._decision_log[0]['posted'])
++            self.assertTrue(agent._decision_log[0]['posted'])
++            self.assertEqual(agent._decision_log[0]['content_origin'], 'fallback')
+         agent._decision_log = []
+         attempts.clear()
+         with patch.object(ACTION, 'generate_once', fail_generate), patch.object(ACTION, 'reserve_retry', return_value=False):
+--- a/custom/tests/test_content_quality.py
++++ b/custom/tests/test_content_quality.py
+@@ -81,25 +81,34 @@
+         for sample in FIXTURES:
+             for arrival in (False, True):
+                 with self.subTest(run=sample['review']['run_id'], aid=sample['review']['agent_id'], arrival=arrival):
+-                    fake = FakeAgent(sample, [response(sample['decision']['content'])])
++                    fake = FakeAgent(sample, [response(sample['decision']['content']), response('看完这些讨论，我想认真听听不同人的经历，再说说自己的想法。')])
+                     t = datetime.fromisoformat(sample['decision']['acted_at'])
+                     if arrival:
+                         fake._chronological_action_hour = t.weekday()*24+t.hour
+                         async def generate(agent, prompts):
+                             return await agent.acompletion(prompts)
+-                        with patch.object(ACTION, 'generate_once', generate):
++                        with patch.object(ACTION, 'generate_once', generate), patch.object(ACTION, 'reserve_retry', return_value=True):
+                             result = await ACTION.act(fake, 0, t)
+                     else:
+                         result = await AGENT.step(fake, 0, t)
+-                    expected = 'content_refusal' if sample['review']['verdict'] == 'service_refusal' else 'content_rejected'
++                    expected = 'published'
+                     self.assertEqual(result, expected)
+                     row = fake._decision_log[-1]
+                     self.assertTrue(row['speak'])
+-                    self.assertFalse(row['posted'])
+-                    self.assertIsNone(row['post_id'])
+-                    self.assertEqual(fake.writes, 0)
+-                    self.assertEqual(fake.requests, 1)
+-                    self.assertEqual(row['generated_content'], sample['decision']['content'])
++                    self.assertTrue(row['posted'])
++                    self.assertIsNotNone(row['post_id'])
++                    self.assertEqual(fake.writes, 1)
++                    self.assertEqual(fake.requests, 2 if sample['review']['verdict'] == 'service_refusal' else 1)
++                    self.assertEqual(row['generation_results'][0]['generated_content'], sample['decision']['content'])
++                    self.assertEqual(row['content_status'], 'accepted')
++                    self.assertEqual(QUALITY.assess_text(row['content'], row['prompt_context'])[0], 'accepted')
++                    self.assertEqual(row['content_origin'], 'model_rewrite' if sample['review']['verdict'] == 'service_refusal' else 'local_detail_repair')
++                    if sample['review']['verdict'] == 'service_refusal':
++                        self.assertEqual(row['generation_results'][1]['purpose'], 'rewrite')
++                        self.assertEqual(len(row['generation_results'][1]['messages']), 3)
++                    if row['content_origin'] == 'local_detail_repair':
++                        self.assertTrue(row['detail_edits'])
++                        self.assertGreater(len(row['content']), len(sample['decision']['content'])*0.7)
+                     self.assertFalse(QUALITY.ledger_summary(fake._decision_log)['failures'])
+                     self.assertIn('只属于发言者', row['messages'][0]['content'])
+                     for p in row['prompt_context']:
+@@ -152,16 +161,17 @@
+         async def generate(agent, prompts):
+             return await agent.acompletion(prompts)
+         with patch.object(ACTION, 'generate_once', generate), patch.object(ACTION, 'reserve_retry', return_value=True) as retry:
+-            self.assertEqual(await ACTION.act(fake, 0, t), 'content_refusal')
++            self.assertEqual(await ACTION.act(fake, 0, t), 'published')
+             self.assertEqual(fake._decision_log[0]['generation_attempts'], 2)
+             retry.assert_called_once()
+             self.assertEqual(await ACTION.act(fake, 0, t), 'arrival decision already recorded')
+             self.assertEqual(fake.requests, 2)
+-            self.assertEqual(fake.writes, 0)
++            self.assertEqual(fake.writes, 1)
++            self.assertEqual(fake._decision_log[0]['content_origin'], 'fallback')
+ 
+     async def test_failure_accounting_and_publication_confirmation(self):
+-        cases = [(response(''), True, 'generation_failed'),
+-                 (TimeoutError(), True, 'generation_failed'),
++        cases = [(response(''), True, 'published'),
++                 (TimeoutError(), True, 'published'),
+                  (response('我不认同这些观点。'), False, 'publication_failed'),
+                  (response('我不认同这些观点。'), True, 'published')]
+         t = datetime.fromisoformat(FIXTURES[0]['decision']['acted_at'])
+@@ -179,6 +189,53 @@
+         self.assertEqual(await AGENT.step(bad, 0, t), 'no_context')
+         self.assertEqual(bad.requests, 0)
+ 
++    async def test_actual_detail_repairs_keep_referents_and_punctuation(self):
++        # 原始具体样本约束局部编辑的语义；不是只复检同一正则。
++        for aid, week in ((50, '2026-W14'), (64, '2026-W13'), (66, '2026-W13'), (74, '2026-W13'), (97, '2026-W13')):
++            if aid == 50:
++                path = ROOT/'hypothesis_4/experiment_1/runs/arrival_timing_diagnostic/arrival_timing_diagnostic_timestamp_random_s0/agents/agent_0050/AGENT.json'
++                decision = next(d for d in json.loads(path.read_text())['decision_log'] if d['week']==week)
++                text, _, _ = QUALITY.repair_details(decision['content'], [])
++                self.assertNotIn('第。', text)
++            else:
++                sample = next(x for x in FIXTURES if x['review']['agent_id']==aid and x['review']['week']==week)
++                text, edits, _ = QUALITY.repair_details(sample['decision']['content'], QUALITY.prompt_context(sample['snapshot']['feed']))
++                self.assertTrue(edits)
++                self.assertNotIn('，。', text)
++                if aid == 66:
++                    self.assertIn('这场离别太突然了', text)
++                if aid == 74:
++                    self.assertIn('这场离别来得太突然了', text)
++                if aid == 97:
++                    self.assertNotIn('同岁', text)
++        fake = FakeAgent(FIXTURES[0], [TimeoutError(), response('我不认同这些观点。')])
++        t = datetime.fromisoformat(FIXTURES[0]['decision']['acted_at'])
++        self.assertEqual(await AGENT.step(fake, 0, t), 'published')
++        row = fake._decision_log[0]
++        self.assertEqual(row['content_origin'], 'model_retry')
++        self.assertEqual(row['generation_results'][1]['purpose'], 'technical_retry')
++        self.assertEqual(row['generation_results'][0]['messages'], row['generation_results'][1]['messages'])
++
++    async def test_refusal_filter_and_budget_exhaustion_keep_one_post(self):
++        # 模型拒答、过滤、空返回以及技术故障不再取消已经决定的发言。
++        for first in (response('正文', refusal='refusal'), response('正文', finish='content_filter'), response(''), TimeoutError()):
++            fake = FakeAgent(FIXTURES[-1], [first])
++            t = datetime.fromisoformat(FIXTURES[-1]['decision']['acted_at'])
++            fake._chronological_action_hour = t.weekday()*24+t.hour
++            async def generate(agent, prompts):
++                return await agent.acompletion(prompts)
++            with patch.object(ACTION, 'generate_once', generate), patch.object(ACTION, 'reserve_retry', return_value=False):
++                self.assertEqual(await ACTION.act(fake, 0, t), 'published')
++            self.assertEqual(fake.requests, 1)
++            self.assertEqual(fake.writes, 1)
++            self.assertEqual(fake._decision_log[0]['content_origin'], 'fallback')
++            self.assertFalse(QUALITY.ledger_summary(fake._decision_log)['failures'])
++        for kind in QUALITY.STYLES:
++            agent = SimpleNamespace(_agent_type=kind)
++            result = QUALITY.fallback_content(agent, [{'source': 'agent', 'text': '大家各有不同感受。'}])
++            self.assertEqual(QUALITY.assess_text(result['content'], [])[0], 'accepted')
++            self.assertTrue(result['content'])
++
+     async def test_real_environment_exposure_inventory_and_recirculation(self):
+         cfg = json.loads((ROOT/'hypothesis_4/experiment_1/init/arrival_timing_diagnostic/arrival_timing_diagnostic_timestamp_interest_s0.json').read_text())
+         env = ENV.CurationDynamicsSpace(**cfg['env_modules'][0]['kwargs'])
+@@ -193,11 +250,15 @@
+         async def generate(agent, prompts):
+             return await agent.acompletion(prompts)
+         with patch.object(ACTION, 'generate_once', generate):
+-            self.assertEqual(await ACTION.act(fake, 0, t), 'content_refusal')
+-        self.assertEqual(env._next_post_id, next_id)
+-        self.assertEqual(env._pending_agent_posts, [])
++            self.assertEqual(await ACTION.act(fake, 0, t), 'published')
++        self.assertEqual(env._next_post_id, next_id+1)
++        self.assertEqual(len(env._pending_agent_posts), 1)
++        pid = env._pending_agent_posts[0]['post_id']
++        self.assertEqual(fake._decision_log[0]['content_origin'], 'fallback')
+         await env.step(3600, t)
+         self.assertEqual(sum(env._cumulative_exposures[aid].values()), len(env._arrival.state['actions'][0]['feed']))
++        self.assertNotIn(pid, env._posts)
++        self.assertTrue(any(p['post_id'] == pid for p in env._arrival.state['delayed']))
+         # 正常正文仍交给原环境；不把内容修复变成回流规则修改。
+         normal = ENV.CurationDynamicsSpace(**cfg['env_modules'][0]['kwargs'])
+         await normal.init(t)
+--- a/custom/agents/curation_arrival_action.py
++++ b/custom/agents/curation_arrival_action.py
+@@ -101,32 +101,8 @@
+             return 'below_threshold'
+         prompts = messages(agent, snap)
+         row['messages'] = prompts
+-        content = ''
+-        # 技术故障/空返回沿用原额外重试预算；拒答和事实风险是终止内容结果。
+-        for attempt in range(2):
+-            if attempt and not reserve_retry():
+-                break
+-            row['generation_attempts'] += 1
+-            try:
+-                response = await generate_once(agent, prompts)
+-                checked = quality.inspect_response(response, row['prompt_context'])
+-                row.update(checked, generation_status='service_success')
+-                row['generation_results'].append(dict(attempt=attempt+1, **checked))
+-                row['response_model'] = quality.value(response, 'model')
+-                usage = quality.value(response, 'usage')
+-                row['usage'] = usage.model_dump() if hasattr(usage, 'model_dump') else None
+-                if checked['content_status'] in ('refusal', 'unsupported_detail'):
+-                    row['reason'] = 'content_refusal' if checked['content_status'] == 'refusal' else 'content_rejected'
+-                    return row['reason']
+-                content = checked['content']
+-                if content:
+-                    break
+-            except Exception as exc:
+-                row.update(generation_error=type(exc).__name__, generation_status='service_failed')
+-                row['generation_results'].append(dict(attempt=attempt+1, error_type=type(exc).__name__))
+-        if not content:
+-            row['reason'] = 'generation_failed'
+-            return 'generation_failed'
++        await quality.prepare_publication(agent, row, lambda p: generate_once(agent, p), reserve_retry)
++        content = row['content']
+         phase = 'publication'
+         result, _ = await agent.ask_env(
+             {'variables': {'agent_id': str(agent._id), 'content': content}},
+--- a/custom/agents/curation_content_quality.py
++++ b/custom/agents/curation_content_quality.py
+@@ -1,11 +1,12 @@
+ """共享内容输入与发布前检查：时间/身份溯源、服务拒答、有限事实支持。
+ 
+ 只处理生成消息和返回，不读推荐参数或改变选帖/回流。检查通过不等于语义金标；
+-可识别的风险终止发布并保留原文，不用猜测的事实替换。历史缺时刻保持未知。
++可识别的风险只修正局部细节；必要时重写或主观短帖兜底，保留发言意图与原始返回。
+ """
+ from __future__ import annotations
+ 
+ import re
++import difflib
+ from datetime import datetime
+ from zoneinfo import ZoneInfo
+ 
+@@ -67,7 +68,7 @@
+     user = (f"当前模拟行动时间={snap.get('event_time') or '未知'}。\n你看到的帖子：\n"+'\n'.join(lines)+
+             '\n来源发布时间不是事件发生时间。“昨天/明天”只能按原发帖语境理解，不能照搬到当前时间；'
+             '事件时间有明确依据时用绝对日期，转载/引语指代不明时不补日期或年龄，不机械换算。'
+-            f'请基于这些内容写不超过{max_chars}字的帖子，只输出正文；无内容时不自由补事件事实。')
++            f'你已决定发言，请写不超过{max_chars}字的有效帖子，只输出正文。缺乏事实细节时表达个人感受或观点，不补事件事实。')
+     visible = '\n'.join(p['text'] for p in context)
+     words = [w for w in getattr(agent, '_type_vocab', []) if w and w in visible]
+     if words:
+@@ -75,18 +76,35 @@
+     return [{'role': 'system', 'content': system}, {'role': 'user', 'content': user}]
+ 
+ 
+-def assess_text(text, context):
+-    """有限检查：未在外部片段出现的年龄/活动/热搜，及事件日期错位风险。
+-
+-    精确字符串支持只验证可见依据，不保证指代对象或外部来源真实。相对事件日期要求
+-    改为有据绝对日期或不补细节；不自动把它按来源发布时间换算。
+-    """
+-    # 引用服务拒答不是本人拒答；完整返回仍留在账本供人工核查。
+-    plain = re.sub(r"“[^”]*”|‘[^’]*’|「[^」]*」|『[^』]*』|\"[^\"]*\"|'[^']*'", '', text, flags=re.S)
+-    if REFUSAL.search(plain) or re.match(r'^\s*抱歉[，,。！!\s]*这个我写不了', plain):
+-        return 'refusal', ['service_refusal_text']
++def _clause_span(text, start, end):
++    """定位中文局部分句，必要时连同逗号删除，避免留下孤立主语。"""
++    boundaries = '，,。！？；;\n'
++    left = max((text.rfind(c, 0, start) for c in boundaries), default=-1)+1
++    right = min((i for i in range(end, len(text)) if text[i] in boundaries), default=len(text))
++    if right < len(text) and text[right] in '，,':
++        right += 1
++    return left, right
++
++
++def _age_span(text, match):
++    """优先只去掉无依据年龄；年龄是整个分句时才去掉该分句。"""
++    start, end = match.span()
++    modifier = re.search(r'(?:年仅|只有|仅|才)$', text[:start])
++    if modifier:
++        start = modifier.start()
++    if text[end:end+1] == '的':
++        end += 1
++    left, right = _clause_span(text, start, end)
++    remainder = (text[left:start]+text[end:right]).strip(' ，,。！？；;\n')
++    if remainder in ('', '他', '她', '女儿', '儿子', '张老师', '张雪峰') or text[match.end():right].strip(' ，,。！？；;\n') == '的人':
++        return left, right
++    return start, end
++
++
++def _detail_issues(text, context):
++    """有限来源支持检查同时给出可删除的最小位置，不推断未知真值。"""
+     external = '\n'.join(p['text'] for p in context if p.get('source') == 'external' or p.get('is_official'))
+-    checks = []
++    checks, edits = [], []
+     for m in AGE.finditer(text):
+         # 仅检查被讨论人物/家人的年龄；个人自述和一般教育年龄段不属于事件事实。
+         before = text[max(0, m.start()-12):m.start()]
+@@ -99,23 +117,69 @@
+             continue
+         if m.group() not in external:
+             checks.append('unsupported_age:'+m.group())
++            edits.append(_age_span(text, m))
+     # 阅读发生在昨天不等于告别仪式发生在昨天；保留作者自己的阅读经历。
+     for m in EVENT_RELATIVE.finditer(text):
+         if not re.search(r'看到|看见|刷到|听到|读到', m.group()):
+             checks.append('event_relative_date_requires_absolute_or_omission')
++            word = re.match(r'昨天|明天|前天|后天|今早|明早|昨晚|今晚', m.group())
++            edits.append((m.start(), m.start()+len(word.group())))
+     for m in ELAPSED.finditer(text):
+         prefix = text[:m.start()].strip()
+         local = text[max(0, m.start()-20):m.end()+20]
+         event_elapsed = (not prefix or prefix == '第') and re.search(r'张雪峰|张老师|离世|去世|送他|悼念', text)
+         if (event_elapsed or re.search(r'离世|去世|周年|悼念', local)) and m.group() not in external:
+             checks.append('unsupported_elapsed_time:'+m.group())
++            edits.append((m.start()-1 if text[max(0, m.start()-1):m.start()] == '第' else m.start(), m.end()))
+     for m in RECENT_ACTIVITY.finditer(text):
+         # “还在听他讲课”是读者行为，不等于人物近期仍在讲课。
+         if not re.search(r'听|看|刷到|读到', m.group()) and m.group() not in external:
+             checks.append('unsupported_recent_activity:'+m.group())
++            edits.append(_clause_span(text, m.start(), m.end()))
+     if HOT_STATUS.search(text) and '热搜' not in external:
+         checks.append('unsupported_hot_status')
++        edits.extend(_clause_span(text, m.start(), m.end()) for m in HOT_STATUS.finditer(text))
++    return checks, edits
++
++
++def assess_text(text, context):
++    """检测明确拒答及有限事实风险；通过不等于事实/语义金标。"""
++    # 引用服务拒答不是本人拒答；完整返回仍留在账本供人工核查。
++    plain = re.sub(r"“[^”]*”|‘[^’]*’|「[^」]*」|『[^』]*』|\"[^\"]*\"|'[^']*'", '', text, flags=re.S)
++    if REFUSAL.search(plain) or re.match(r'^\s*抱歉[，,。！!\s]*这个我写不了', plain):
++        return 'refusal', ['service_refusal_text']
++    checks, _ = _detail_issues(text, context)
+     return ('unsupported_detail' if checks else 'accepted'), checks
++
++
++def repair_details(text, context):
++    """删除无依据的局部细节，保留其余字符和每项编辑证据，再检查结果。"""
++    checks, spans = _detail_issues(text, context)
++    age_removed = any(c.startswith('unsupported_age:') for c in checks)
++    if age_removed:
++        # 同龄断言依赖被移除的年龄，不能留下这条隐含事实。
++        spans.extend(_clause_span(text, m.start(), m.end()) for m in re.finditer(r'同岁', text))
++    merged = []
++    for start, end in sorted(set(spans)):
++        if merged and start <= merged[-1][1]:
++            merged[-1] = (merged[-1][0], max(end, merged[-1][1]))
++        else:
++            merged.append((start, end))
++    repaired = text
++    for start, end in reversed(merged):
++        repaired = repaired[:start]+repaired[end:]
++    # 仅整理局部删除留下的标点，不替换原立场或用发布时间猜事件日期。
++    if age_removed:
++        # 年龄主语删除后明确谈的是离别，避免女儿年龄成为去世的默认主语。
++        repaired = re.sub(r'这个年纪(?:走得|离开得)', '这场离别', repaired)
++        repaired = re.sub(r'((?:女儿|儿子)[^。！？\n]{0,20}[，,]\s*)说走就走了', r'\1这场离别来得太突然了', repaired)
++    repaired = re.sub(r'[，,]+([。！？；])', r'\1', repaired)
++    repaired = re.sub(r'([。！？；])(?:[，,。])+', r'\1', repaired)
++    repaired = re.sub(r'^[\s，,。；;]+', '', repaired).strip()
++    # 最终编辑坐标始终指向原文，涵盖删除后的标点和指代修正。
++    edits = [{'start': a, 'end': b, 'removed': text[a:b], 'replacement': repaired[c:d]}
++             for tag, a, b, c, d in difflib.SequenceMatcher(None, text, repaired, autojunk=False).get_opcodes() if tag != 'equal']
++    return repaired, edits, checks
+ 
+ 
+ def inspect_response(response, context, max_chars=400):
+@@ -136,6 +200,76 @@
+     return {'generated_content': raw, 'content_status': status, 'content_checks': checks,
+             'provider_refusal': refusal, 'finish_reason': finish,
+             'content': text[:max_chars] if status == 'accepted' else ''}
++
++
++def publication_candidate(checked, context, max_chars=400):
++    """普通正文直接保留；有局部风险时修细节，不能把拒答文本删成帖子。"""
++    if checked['content_status'] == 'accepted':
++        return {'content': checked['content'], 'content_origin': 'model', 'detail_edits': []}
++    if checked['content_status'] != 'unsupported_detail':
++        return None
++    repaired, edits, checks = repair_details(checked['generated_content'].strip().strip('"“”'), context)
++    status, _ = assess_text(repaired, context)
++    if re.search(r'[\w\u4e00-\u9fff]', repaired) and status == 'accepted':
++        return {'content': repaired[:max_chars], 'content_origin': 'local_detail_repair',
++                'detail_edits': edits, 'repaired_checks': checks}
++    return None
++
++
++def fallback_content(agent, context, max_chars=400):
++    """兜底只表达读过可见帖后的主观感受；单列来源，不能冒充模型生成。"""
++    texts = {
++        'meme': '刷完这些讨论，我的脑子像开了十个网页：观点还没排好队，情绪先加载满了。',
++        'mourning': '看完这些分享，心里有些感触。我想认真听听大家的经历，也提醒自己珍惜身边的人。',
++        'marketing': '看完这些讨论，我想把相关资料和自己的想法整理清楚，愿意交流的可以一起聊聊。',
++        'education': '看完这些讨论，我更想分清事实与观点。不同处境下的选择很难用一句话概括，还是把依据和个人感受说清楚。',
++        'other': '刷到这些讨论后有些感触。我还想多看看不同人的经历，再说说自己的想法。',
++    }
++    if not context:
++        raise ValueError('fallback requires a visible reading context')
++    content = texts[agent._agent_type][:max_chars]
++    assert content and assess_text(content, context)[0] == 'accepted'
++    return {'content': content, 'content_origin': 'fallback', 'detail_edits': []}
++
++
++async def prepare_publication(agent, row, generate, reserve_extra=None, max_chars=400):
++    """两次外层尝试共用技术重试/内容重写额度；最后兜底，发言意图不减量。
++
++    只生成发布候选，不调用create_post；环境发布由原入口唯一执行。regular记录
++    completion_calls，arrival记录无内部重试的provider_requests，两者不混称HTTP次数。
++    """
++    context, prompts = row['prompt_context'], row['messages']
++    row['generation_results'] = []
++    rewrite_requested = False
++    for attempt in range(2):
++        if attempt and reserve_extra is not None and not reserve_extra():
++            break
++        row['generation_attempts'] += 1
++        try:
++            response = await generate(prompts)
++            checked = inspect_response(response, context, max_chars)
++            row.setdefault('initial_content_status', checked['content_status'])
++            row.setdefault('initial_content_checks', checked['content_checks'])
++            row.update(checked, generation_status='service_success', response_model=value(response, 'model'))
++            usage = value(response, 'usage')
++            row['usage'] = usage.model_dump() if hasattr(usage, 'model_dump') else None
++            row['generation_results'].append({'attempt': attempt+1, 'purpose': 'rewrite' if rewrite_requested else 'generation' if not attempt else 'technical_retry', 'messages': prompts, **checked})
++            candidate = publication_candidate(checked, context, max_chars)
++            if candidate:
++                if attempt:
++                    prefix = 'model_rewrite' if rewrite_requested else 'model_retry'
++                    candidate['content_origin'] = prefix if candidate['content_origin'] == 'model' else prefix+'_detail_repair'
++                row.update(candidate, content_status='accepted', content_checks=[])
++                return
++            # 原拒答/空输出保留在尝试记录；请求同一来源下的观点，不重复传播拒答。
++            rewrite_requested = True
++            prompts = row['messages']+[{'role': 'user', 'content':
++                '你已经决定发言。请只表达阅读上述帖后的个人感受、观点或交流意愿；'
++                '保留人设语气，不补人物年龄、事件日期、近期活动或热搜等事实。只输出一条有效短帖。'}]
++        except Exception as exc:
++            row.update(generation_status='service_failed', generation_error=type(exc).__name__)
++            row['generation_results'].append({'attempt': attempt+1, 'purpose': 'rewrite' if rewrite_requested else 'generation' if not attempt else 'technical_retry', 'messages': prompts, 'error_type': type(exc).__name__})
++    row.update(fallback_content(agent, context, max_chars), content_status='accepted', content_checks=[])
+ 
+ 
+ def published_result(result):
+@@ -189,5 +323,7 @@
+     # 新账本的每次行动恰属一个最终结果；外层调用数和实际请求数分别标明口径。
+     return {'counts': counts, 'failures': sorted(set(failures)), 'classified_actions': sum(counts.values()),
+             'speak_opportunities': sum(r.get('speak') is True for r in rows if 'content_status' in r),
++            'content_origins': {origin: sum(r.get('content_origin') == origin for r in rows) for origin in sorted({r['content_origin'] for r in rows if r.get('content_origin')})},
++            'initial_content_statuses': {status: sum(r.get('initial_content_status') == status for r in rows) for status in sorted({r['initial_content_status'] for r in rows if r.get('initial_content_status')})},
+             'attempts_by_scope': {scope: sum(r.get('generation_attempts', 0) for r in rows if r.get('attempt_count_scope') == scope)
+                                  for scope in ('completion_calls', 'provider_requests')}}
+--- a/custom/agents/curation_discourse_agent.py
++++ b/custom/agents/curation_discourse_agent.py
+@@ -405,31 +405,20 @@
+                           components=comps, speak=speak, reason='below_threshold')
+             if not speak:
+                 return 'below_threshold'
+-            # 常规入口仍只请求一次，完整结果检查先于正文长度截断。
++            # 内容问题只修正文；最多两次外层调用，兜底单列而不取消发言。
+             prompts = self._content_messages(snap, comps)
+-            record.update(messages=prompts, generation_attempts=1)
+-            try:
+-                response = await self.acompletion(prompts)
+-                checked = quality.inspect_response(response, record['prompt_context'],
+-                            max_chars=int(self._config.get('max_content_chars', 300))+100)
+-                record.update(checked, generation_status='service_success',
+-                              response_model=quality.value(response, 'model'))
+-            except Exception as exc:
+-                record.update(reason='generation_failed', generation_status='service_failed', error_type=type(exc).__name__)
+-                return 'generation_failed'
+-            if checked['content_status'] != 'accepted':
+-                record['reason'] = {'refusal': 'content_refusal', 'unsupported_detail': 'content_rejected',
+-                                    'empty': 'generation_failed'}[checked['content_status']]
+-                return record['reason']
++            record['messages'] = prompts
++            await quality.prepare_publication(self, record, self.acompletion,
++                        max_chars=int(self._config.get('max_content_chars', 300))+100)
+             phase = 'publication'
+             result, _ = await self.ask_env(
+-                {'variables': {'agent_id': agent_id, 'content': checked['content']}},
++                {'variables': {'agent_id': agent_id, 'content': record['content']}},
+                 "Please call create_post() using agent_id and content from ctx['variables'] to publish my post.",
+                 readonly=False, template_mode=True)
+             published = quality.published_result(result)
+             record.update(posted=bool(published), reason='published' if published else 'publication_failed')
+             if published:
+-                record.update(post_id=published['post_id'], content_preview=checked['content'][:80])
++                record.update(post_id=published['post_id'], content_preview=record['content'][:80])
+             return record['reason']
+         except Exception as exc:
+             record.update(reason='publication_failed' if phase == 'publication' else 'action_failed',

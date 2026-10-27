@@ -1,0 +1,53 @@
+{
+  "authorization": "用户2026-10-24授权准备消融及最小接口测试，明确暂不启动仿真",
+  "scope": "一次短文本接口/返回模型核对；非仿真或正文生成实验",
+  "execution_authorized_for_simulation": false,
+  "requested_model": "deepseek-v4.1-flash",
+  "expected_response_model": "deepseek-v4-1-flash-261017",
+  "service_host": "ark.cn-beijing.volces.com",
+  "api_path": "/api/plan/v3",
+  "parameters": {
+    "max_tokens": 128,
+    "temperature": 1.0,
+    "timeout": 60,
+    "num_retries": 0,
+    "caching": false,
+    "stream": false
+  },
+  "max_requests": 1,
+  "attempted_requests": 1,
+  "completed_requests": 1,
+  "simulation_requests": 0,
+  "counted_in_formal_body_budget": false,
+  "status": "passed",
+  "started_at": "2026-10-24T08:21:18.740426+00:00",
+  "script_sha256": "f7ce93888e214c08ae7591f5f90dd7430f3c759477c90a968f815a1a8fde8d50",
+  "token_cap_correction": true,
+  "original_probe_record": "hypothesis_4/experiment_3/checks/model_probe_seed3_9.json",
+  "correction_reason": "首个8-token探针全部用于推理而无可见正文；仅修正测试上限，非服务失败重试或仿真重跑",
+  "response_model": "deepseek-v4-1-flash-261017",
+  "content": "OK",
+  "usage": {
+    "completion_tokens": 12,
+    "prompt_tokens": 35,
+    "total_tokens": 47,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 10,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null,
+      "image_tokens": null,
+      "video_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 0,
+      "text_tokens": null,
+      "image_tokens": null,
+      "video_tokens": null
+    }
+  },
+  "formal_ledger_unchanged": true,
+  "finished_at": "2026-10-24T08:21:19.509077+00:00"
+}

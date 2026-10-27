@@ -1,0 +1,203 @@
+--- a/runs/2026-10-15-02-timestamp-bdr-ablation/run_ablation.py
++++ b/runs/2026-10-15-02-timestamp-bdr-ablation/run_ablation.py
+@@ -5,13 +5,14 @@
+ """
+ import argparse
+ from collections import Counter
+-from datetime import datetime, timezone
++from datetime import datetime, timezone, timedelta
+ import fcntl
+ import hashlib
+ import json
+ import os
+ from pathlib import Path
+ import signal
++import shutil
+ import subprocess
+ import sys
+ import time
+@@ -23,7 +24,10 @@
+ PROJECT = RUN.parents[1]
+ WORKSPACE = RUN/'workspace'
+ INIT = WORKSPACE/'hypothesis_4/experiment_3/init'
+-BATCH = RUN/'results/timestamp_bdr_v1'
++ORIGINAL_BATCH = RUN/'results/timestamp_bdr_v1'
++ATTEMPT = 'timestamp_bdr_v1_attempt_02'
++BATCH = RUN/'results'/ATTEMPT
++ENGINE_BATCH = WORKSPACE/'hypothesis_4/experiment_3/runtime'/ATTEMPT
+ STATE = BATCH/'batch_execution.json'
+ LEDGER = BATCH/'_extra_attempts.count'
+ MAX_HOURS = 48
+@@ -123,6 +127,54 @@
+     return result
+ 
+ 
++def remaining_budget():
++    """沿用首次启动后的绝对48小时截止时刻；不因重新启动顺延。"""
++    original = read(ORIGINAL_BATCH/'runtime_plan.json')
++    failure = read(RUN/'evidence/startup-failure/RESULT.json')
++    require(failure['LLM_calls']==failure['extra_requests_consumed']==0, '前次请求预算不是零，需重新核算')
++    require(read(ORIGINAL_BATCH/'batch_execution.json')['status']=='stopped', '前次尚未停止')
++    deadline = datetime.fromisoformat(original['started_at']) + timedelta(hours=original['max_wall_hours'])
++    seconds = (deadline-datetime.now(timezone.utc)).total_seconds()
++    require(seconds>0, '原48小时预算已到期，不允许重新启动')
++    return dict(original_started_at=original['started_at'], deadline_at=deadline.isoformat(),
++                remaining_seconds_at_check=seconds, previous_LLM_calls=0, previous_extra_requests=0,
++                remaining_extra_requests=MAX_EXTRA, provider_requests_upper_bound=MAX_REQUESTS)
++
++
++def mirror_run(source, destination, cache, final=False):
++    """实际输出保持在隔离区；验证稳定文件后原子镜像，结束时逐文件核对。"""
++    destination.mkdir(parents=True,exist_ok=True)
++    final_hashes = {}
++    for item in sorted(source.rglob('*')):
++        if not item.is_file() or '__pycache__' in item.parts or item.name.endswith('.tmp'):
++            continue
++        rel = item.relative_to(source)
++        stat = item.stat()
++        fingerprint = (stat.st_mtime_ns,stat.st_size)
++        target = destination/rel
++        if cache.get(str(rel))!=fingerprint or final:
++            data = item.read_bytes()
++            after = item.stat()
++            if not final and (after.st_mtime_ns,after.st_size)!=fingerprint:
++                continue
++            if item.suffix=='.json':
++                try: json.loads(data)
++                except json.JSONDecodeError:
++                    if final: raise
++                    continue
++            target.parent.mkdir(parents=True,exist_ok=True)
++            temp = target.with_name(target.name+'.mirror-tmp')
++            temp.write_bytes(data)
++            temp.replace(target)
++            cache[str(rel)] = fingerprint
++        if final:
++            require(digest(item)==digest(target), '最终镜像不一致: '+str(rel))
++            final_hashes[str(rel)] = digest(target)
++    if final:
++        write(destination/'mirror_manifest.json',dict(source=str(source),sha256=final_hashes,verified_at=now()))
++    return dict(files=len(cache),final_hashes_verified=len(final_hashes))
++
++
+ def preflight():
+     manifest = read(INIT/'manifest.json')
+     require(len(manifest['runs'])==9 and manifest['decision_opportunities']==9900, '矩阵或机会预算不符')
+@@ -156,6 +208,7 @@
+     # 离线验收钩子只供验收使用；实际运行不继承其PYTHONPATH或审计日志变量。
+     env.pop('BDR_NETWORK_AUDIT',None)
+     require('offline_guard' not in env.get('PYTHONPATH',''), '进程仍带离线网络钩子')
++    remaining_budget()
+     return manifest,frozen,env,main
+ 
+ 
+@@ -165,21 +218,28 @@
+     fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+     require(not STATE.exists(), '已有运行记录，禁止重复启动或覆盖')
+     manifest,frozen,env,main = preflight()
++    budget = remaining_budget()
++    require(not ENGINE_BATCH.is_symlink() and ENGINE_BATCH.resolve().is_relative_to(WORKSPACE), '引擎输出必须实际位于隔离worktree')
++    ENGINE_BATCH.mkdir(parents=True,exist_ok=True)
+     require(not LEDGER.exists() or LEDGER.read_text().strip() in ('','0'), '新账本不是零')
+     alias = WORKSPACE/'hypothesis_4/experiment_3/runs/timestamp_bdr_v1'
+     require(alias.is_symlink() and alias.resolve()==BATCH, '隔离账本未映射到本run持久目录')
+     for run in manifest['runs']:
+-        require(not (BATCH/run['run_id']).exists(), '输出目录已存在: '+run['run_id'])
+-    plan = dict(authorized=True,authorization='2026-10-15用户明确授权：按方案启动9次正式LLM消融，沿用主实验模型和既定预算，异常先停并保留记录。',
++        require(not (BATCH/run['run_id']).exists() and not (ENGINE_BATCH/run['run_id']).exists(), '输出目录已存在: '+run['run_id'])
++    plan = dict(authorized=True,authorization='2026-10-15用户明确授权：修正输出布局、完整CLI禁网验收通过后，按原模型及剩余预算重新启动九次消融；保留首次失败，异常先停。',
+         baseline_commit=manifest['baseline_commit'],source_sha256=frozen,supervisor_sha256=digest(Path(__file__)),
+         model=main['model'],service_host=main['service_host'],runs=manifest['runs'],serial=True,
+         decision_opportunities=9900,extra_requests_limit=MAX_EXTRA,provider_requests_upper_bound=MAX_REQUESTS,
+         max_wall_hours=MAX_HOURS,stall_stop_minutes=30,stop_policy='异常或技术请求错误即停；保留记录，不自动重启/续跑/调参',
+-        workspace=str(WORKSPACE),persistent_output=str(BATCH),ledger_alias=str(alias),started_at=now())
++        workspace=str(WORKSPACE),engine_output=str(ENGINE_BATCH),persistent_output=str(BATCH),ledger_alias=str(alias),
++        previous_attempt=str(ORIGINAL_BATCH),remaining_budget=budget,started_at=now())
+     write(BATCH/'runtime_plan.json',plan)
+-    state = dict(supervisor_pid=os.getpid(),status='running',started_at=now(),completed=[],current_run=None)
++    state = dict(supervisor_pid=os.getpid(),status='running',started_at=now(),completed=[],current_run=None,deadline_at=budget['deadline_at'])
+     write(STATE,state)
+     child = None
++    directory = None
++    persistent = None
++    mirror_cache = {}
+     stop_reason = None
+     stop_at = None
+     started = time.monotonic()
+@@ -201,8 +261,10 @@
+     try:
+         for run in manifest['runs']:
+             require(stop_reason is None,'已请求停止')
+-            directory = BATCH/run['run_id']
++            directory = ENGINE_BATCH/run['run_id']
++            persistent = BATCH/run['run_id']
+             directory.mkdir()
++            mirror_cache = {}
+             child_env = dict(env,AGENTSOCIETY_HOME_DIR=str(directory/'workspace'))
+             command = [env.get('PYTHON_PATH') or sys.executable,'-m','agentsociety2.society.cli',
+                        '--config',str(WORKSPACE/run['config']),'--steps',str(WORKSPACE/run['steps']),
+@@ -210,14 +272,15 @@
+                        '--log-file',str(directory/'engine.log'),'--batch-size','100']
+             with (directory/'stdout.log').open('ab') as stdout,(directory/'stderr.log').open('ab') as stderr:
+                 child = subprocess.Popen(command,cwd=WORKSPACE,env=child_env,stdout=stdout,stderr=stderr,start_new_session=True)
+-            state.update(current_run=run['run_id'],child_pid=child.pid,command=command,updated_at=now())
++            state.update(current_run=run['run_id'],current_run_dir=str(directory),persistent_mirror_dir=str(persistent),
++                         child_pid=child.pid,command=command,updated_at=now())
+             write(STATE,state)
+             last_progress,last_at = None,time.monotonic()
+             offsets = {}
+             while child.poll() is None:
+                 time.sleep(10)
+                 try:
+-                    require(time.monotonic()-started < MAX_HOURS*3600,'达到48小时总时限')
++                    require(datetime.now(timezone.utc)<datetime.fromisoformat(budget['deadline_at']),'达到原48小时截止时刻')
+                     require(all(digest(WORKSPACE/p)==h for p,h in frozen.items()),'运行期间源码或输入改变')
+                     progress = inspect_run(directory)
+                     signature = (progress.get('SOCIETY_STEP.json',{}).get('step_count'),progress['agent_decisions'])
+@@ -233,7 +296,10 @@
+                             with logfile.open(errors='replace') as log:
+                                 log.seek(offsets.get(name,0));recent = log.read();offsets[name]=log.tell()
+                             require(not any(s in recent for s in ('Error executing step','Traceback (most recent call last)','RayTaskError','OutOfMemoryError')),'引擎出现异常，见 '+name)
+-                    state.update(progress=progress,provider_requests=requests,extra_requests=extra,updated_at=now(),elapsed_seconds=time.monotonic()-started)
++                    mirror = mirror_run(directory,persistent,mirror_cache)
++                    state.update(progress=progress,mirror=mirror,provider_requests=requests,extra_requests=extra,
++                                 budget_remaining_seconds=max(0,(datetime.fromisoformat(budget['deadline_at'])-datetime.now(timezone.utc)).total_seconds()),
++                                 updated_at=now(),elapsed_seconds=time.monotonic()-started)
+                     write(STATE,state)
+                 except Exception as exc:
+                     request_stop(str(exc))
+@@ -243,6 +309,7 @@
+             require(stop_reason is None,stop_reason or '已停止')
+             require(child.returncode==0,f'官方引擎退出码异常 {child.returncode}')
+             progress = inspect_run(directory,final=True)
++            mirror_run(directory,persistent,mirror_cache,final=True)
+             state['completed'].append(dict(run_id=run['run_id'],finished_at=now(),progress=progress))
+             state.update(progress=progress,updated_at=now())
+             write(STATE,state)
+@@ -258,6 +325,9 @@
+         state.update(status='stopped' if stop_reason else 'failed',error=str(exc),finished_at=now())
+         print(str(exc),file=sys.stderr,flush=True)
+     finally:
++        if directory is not None and directory.exists():
++            try: mirror_run(directory,persistent,mirror_cache,final=child is not None and child.poll() is not None)
++            except Exception as exc: state['mirror_error']=str(exc)
+         state.update(updated_at=now(),elapsed_seconds=time.monotonic()-started)
+         write(STATE,state)
+ 
+@@ -271,7 +341,7 @@
+     if args.status:
+         state = read(STATE) if STATE.exists() else {'status':'not_started'}
+         if state.get('current_run'):
+-            try: state['actual_progress']=inspect_run(BATCH/state['current_run'])
++            try: state['actual_progress']=inspect_run(Path(state.get('current_run_dir',str(ENGINE_BATCH/state['current_run']))))
+             except RuntimeError as exc: state['actual_audit_error']=str(exc)
+         for key in ('supervisor_pid','child_pid'):
+             if key in state:
+@@ -287,6 +357,6 @@
+     elif args.check:
+         manifest,frozen,env,main = preflight()
+         print(json.dumps({'preflight':'PASS','runs':len(manifest['runs']),'frozen_files':len(frozen),
+-                          'model':main['model'],'service_host':main['service_host'],'LLM_calls':0},ensure_ascii=False))
++                          'model':main['model'],'service_host':main['service_host'],'remaining_budget':remaining_budget(),'LLM_calls':0},ensure_ascii=False))
+     else:
+         supervise()

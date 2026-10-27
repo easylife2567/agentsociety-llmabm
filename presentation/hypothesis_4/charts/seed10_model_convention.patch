@@ -1,0 +1,20 @@
+--- a/presentation/hypothesis_4/charts/seed10_plot.py
++++ b/presentation/hypothesis_4/charts/seed10_plot.py
+@@ -14,7 +14,7 @@
+ CHARTS = BASE / 'charts'
+ COLORS = {'random': '#737373', 'chronological': '#0F4D92', 'interest': '#B64342'}
+ LABELS = {'random': 'Random', 'chronological': 'Chronological', 'interest': 'Interest'}
+-COHORTS = [('old3', 'Old 3 (request 260910)'), ('new7', 'New 7 (response 261017)'), ('all10', 'All 10 (mixed versions)')]
++COHORTS = [('old3', 'Old 3 (request 260910)'), ('new7', 'New 7 (response 261017)'), ('all10', 'All 10 (primary analysis)')]
+ plt.rcParams.update({'font.family': 'sans-serif', 'font.sans-serif': ['Arial', 'DejaVu Sans', 'Liberation Sans'],
+     'svg.fonttype': 'none', 'pdf.fonttype': 42, 'font.size': 10, 'axes.titlesize': 11,
+     'axes.spines.top': False, 'axes.spines.right': False, 'legend.frameon': False, 'axes.linewidth': 1.1})
+@@ -71,7 +71,7 @@
+         ax.grid(axis='y', alpha=.18)
+     axes.flat[-1].axis('off')
+     axes.flat[-1].legend(handles=handles, loc='upper left', fontsize=12)
+-    axes.flat[-1].text(0, .60, 'W19-W22, original denominators\n\nOpen dots: individual seeds\nSolid dots: arithmetic seed means\nWhiskers: approximate 95% t intervals\n\nAll 10 reuses the same 3 + 7 seeds.\nVersions and seed ranges are confounded.', transform=axes.flat[-1].transAxes, fontsize=10, linespacing=1.4, va='top')
++    axes.flat[-1].text(0, .60, 'W19-W22, original denominators\n\nOpen dots: individual seeds\nSolid dots: arithmetic seed means\nWhiskers: approximate 95% t intervals\n\nAll 10 reuses the same 3 + 7 seeds.\nVersions treated as equivalent for this study.', transform=axes.flat[-1].transAxes, fontsize=10, linespacing=1.4, va='top')
+     fig.tight_layout(); save(fig, 'chart_02_seed10_model_cohorts')
+ 
+     fig, axes = plt.subplots(1, 2, figsize=(12.7, 4.7))

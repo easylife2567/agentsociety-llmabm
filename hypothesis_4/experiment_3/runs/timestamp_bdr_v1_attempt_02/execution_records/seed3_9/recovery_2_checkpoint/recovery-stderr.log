@@ -1,0 +1,1072 @@
+[2026-10-24 21:27:52] INFO    Environment validation passed
+[2026-10-24 21:27:52] INFO    Loading config from /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s6.json
+[2026-10-24 21:27:52] INFO    Loading steps from /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/init/steps_s6.yaml
+[2026-10-24 21:27:52] INFO    Resuming from /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_r_s6_resume1/SOCIETY.json: 297 top-level step(s) done, 297 sim tick(s) (time=2026-04-17T10:00:00)
+[2026-10-24 21:27:52] INFO    Scanning custom modules from /Users/easylife/Project/AgentSociety
+[2026-10-24 21:27:52] INFO    ModuleRegistry initialized (lazy loading enabled)
+[2026-10-24 21:27:52] INFO    Cleared 0 custom modules
+[2026-10-24 21:27:52] INFO    Registered 1 custom env modules and 1 custom agents
+2026-10-24 21:27:52,910	INFO worker.py:1672 -- Using address local set in the environment variable RAY_ADDRESS
+2026-10-24 21:27:54,993	INFO worker.py:2012 -- Started a local Ray instance.
+/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/lib/python3.13/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[2026-10-24 21:27:55] INFO    LLM dispatchers ready (per-process, no central pool)
+[2026-10-24 21:27:55] INFO    Replay proxy initialized (enabled=True, dir=/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_r_s6_resume1/replay)
+[2026-10-24 21:27:56] INFO    Registered 16 env modules and 7 agents from built-in modules
+[2026-10-24 21:27:56] INFO    Cleared 1 custom modules
+[2026-10-24 21:27:56] INFO    Registered 1 custom env modules and 1 custom agents
+[2026-10-24 21:27:56] INFO    Resuming AgentSociety from /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_r_s6_resume1/SOCIETY.json (agent workspaces reused, env modules restored by the actor)
+[2026-10-24 21:27:56] INFO    LLM dispatchers ready (per-process, no central pool)
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:27:57] INFO    ModuleRegistry initialized (lazy loading enabled)
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:27:58] INFO    Registered 16 env modules and 7 agents from built-in modules
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:27:58] INFO    Cleared 0 custom modules
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:27:58] INFO    Registered 1 custom env modules and 1 custom agents
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:27:58] INFO    Loaded 2 cache entries (env=[["CurationDynamicsSpace", "custom_env_CurationDynamicsSpace.CurationDynamicsSpa...), FAISS index size: 2
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:28:02] INFO    Generated observe code using LLM
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:28:06] INFO    Generated statistics code using LLM
+[2026-10-24 21:28:06] INFO    AgentSociety initialized
+[2026-10-24 21:28:06] INFO    Executing 693 steps...
+[2026-10-24 21:28:06] INFO    Skipping step 0 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 1 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 2 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 3 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 4 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 5 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 6 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 7 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 8 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 9 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 10 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 11 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 12 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 13 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 14 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 15 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 16 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 17 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 18 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 19 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 20 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 21 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 22 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 23 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 24 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 25 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 26 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 27 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 28 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 29 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 30 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 31 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 32 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 33 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 34 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 35 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 36 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 37 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 38 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 39 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 40 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 41 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 42 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 43 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 44 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 45 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 46 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 47 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 48 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 49 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 50 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 51 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 52 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 53 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 54 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 55 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 56 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 57 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 58 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 59 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 60 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 61 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 62 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 63 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 64 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 65 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 66 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 67 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 68 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 69 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 70 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 71 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 72 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 73 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 74 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 75 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 76 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 77 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 78 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 79 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 80 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 81 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 82 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 83 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 84 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 85 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 86 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 87 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 88 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 89 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 90 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 91 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 92 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 93 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 94 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 95 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 96 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 97 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 98 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 99 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 100 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 101 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 102 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 103 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 104 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 105 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 106 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 107 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 108 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 109 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 110 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 111 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 112 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 113 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 114 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 115 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 116 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 117 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 118 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 119 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 120 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 121 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 122 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 123 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 124 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 125 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 126 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 127 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 128 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 129 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 130 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 131 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 132 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 133 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 134 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 135 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 136 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 137 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 138 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 139 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 140 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 141 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 142 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 143 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 144 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 145 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 146 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 147 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 148 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 149 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 150 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 151 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 152 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 153 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 154 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 155 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 156 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 157 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 158 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 159 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 160 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 161 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 162 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 163 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 164 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 165 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 166 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 167 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 168 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 169 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 170 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 171 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 172 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 173 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 174 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 175 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 176 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 177 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 178 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 179 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 180 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 181 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 182 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 183 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 184 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 185 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 186 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 187 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 188 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 189 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 190 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 191 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 192 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 193 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 194 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 195 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 196 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 197 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 198 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 199 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 200 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 201 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 202 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 203 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 204 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 205 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 206 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 207 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 208 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 209 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 210 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 211 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 212 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 213 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 214 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 215 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 216 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 217 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 218 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 219 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 220 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 221 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 222 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 223 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 224 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 225 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 226 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 227 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 228 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 229 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 230 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 231 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 232 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 233 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 234 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 235 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 236 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 237 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 238 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 239 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 240 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 241 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 242 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 243 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 244 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 245 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 246 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 247 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 248 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 249 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 250 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 251 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 252 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 253 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 254 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 255 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 256 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 257 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 258 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 259 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 260 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 261 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 262 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 263 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 264 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 265 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 266 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 267 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 268 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 269 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 270 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 271 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 272 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 273 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 274 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 275 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 276 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 277 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 278 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 279 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 280 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 281 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 282 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 283 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 284 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 285 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 286 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 287 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 288 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 289 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 290 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 291 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 292 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 293 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 294 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 295 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Skipping step 296 (RunStep) — already completed before resume
+[2026-10-24 21:28:06] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [2026-10-24 21:28:08] INFO    ModuleRegistry initialized (lazy loading enabled)
+[36m(step_agent_batch pid=71824)[0m [2026-10-24 21:28:09] INFO    Registered 16 env modules and 7 agents from built-in modules
+[36m(step_agent_batch pid=71824)[0m [2026-10-24 21:28:09] INFO    Cleared 0 custom modules
+[36m(step_agent_batch pid=71824)[0m [2026-10-24 21:28:09] INFO    Registered 1 custom env modules and 1 custom agents
+[2026-10-24 21:28:17] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:28:25] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:28:29] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:28:40] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:28:42] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:28:44] INFO    Running 1/1 steps with tick=43200
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:28:45] INFO    [AdaptiveSem] INCREASE: 16 -> 17 (next_step=2)
+[2026-10-24 21:28:49] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:28:51] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:28:59] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:29:05] INFO    Running 1/1 steps with tick=14400
+[2026-10-24 21:29:14] INFO    Running 1/1 steps with tick=50400
+[2026-10-24 21:29:18] INFO    Running 1/1 steps with tick=14400
+[2026-10-24 21:29:20] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:29:25] INFO    Running 1/1 steps with tick=3600
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:29:26] INFO    [AdaptiveSem] INCREASE: 17 -> 19 (next_step=4)
+[2026-10-24 21:29:31] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:29:32] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:29:37] INFO    Running 1/1 steps with tick=28800
+[2026-10-24 21:29:43] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:29:45] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:29:47] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:29:50] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:29:56] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:30:04] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:30:08] INFO    Running 1/1 steps with tick=3600
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:30:09] INFO    [AdaptiveSem] INCREASE: 19 -> 23 (next_step=8)
+[2026-10-24 21:30:13] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:30:21] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:30:30] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:31:05] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:31:16] INFO    Running 1/1 steps with tick=43200
+[2026-10-24 21:31:21] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:31:24] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:31:42] INFO    Running 1/1 steps with tick=3600
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:31:43] INFO    [AdaptiveSem] INCREASE: 23 -> 31 (next_step=16)
+[2026-10-24 21:31:43] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:31:46] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:31:54] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:31:59] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:32:04] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:32:10] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:32:15] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:32:20] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:32:21] INFO    Running 1/1 steps with tick=25200
+[2026-10-24 21:32:27] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:32:32] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:32:38] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:32:45] INFO    Running 1/1 steps with tick=3600
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:34:09] WARNING Request failed for 'deepseek-v4.1-flash' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=0.0 seconds
+[36m(EnvRouterActor pid=71799)[0m 
+[36m(EnvRouterActor pid=71799)[0m Deployment Info: request_timeout: None
+[36m(EnvRouterActor pid=71799)[0m timeout: None. Received Model Group=deepseek-v4.1-flash
+[36m(EnvRouterActor pid=71799)[0m Available Model Group Fallbacks=None
+[2026-10-24 21:34:11] INFO    Running 1/1 steps with tick=3600
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:34:12] INFO    [AdaptiveSem] INCREASE: 31 -> 47 (next_step=16)
+[2026-10-24 21:34:12] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:35:05] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:35:48] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:35:54] INFO    Running 1/1 steps with tick=10800
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:37:03] WARNING Request failed for 'deepseek-v4.1-flash' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=60.01 seconds
+[36m(EnvRouterActor pid=71799)[0m 
+[36m(EnvRouterActor pid=71799)[0m Deployment Info: request_timeout: None
+[36m(EnvRouterActor pid=71799)[0m timeout: None. Received Model Group=deepseek-v4.1-flash
+[36m(EnvRouterActor pid=71799)[0m Available Model Group Fallbacks=None
+[2026-10-24 21:37:04] INFO    Running 1/1 steps with tick=32400
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:38:05] WARNING Request failed for 'deepseek-v4.1-flash' via LLMClient(default) (attempt 1/11). Retrying immediately. Error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=60.0, time taken=60.01 seconds
+[36m(EnvRouterActor pid=71799)[0m 
+[36m(EnvRouterActor pid=71799)[0m Deployment Info: request_timeout: None
+[36m(EnvRouterActor pid=71799)[0m timeout: None. Received Model Group=deepseek-v4.1-flash
+[36m(EnvRouterActor pid=71799)[0m Available Model Group Fallbacks=None
+[2026-10-24 21:38:09] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:38:11] INFO    Running 1/1 steps with tick=14400
+[2026-10-24 21:38:19] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:38:25] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:38:34] INFO    Running 1/1 steps with tick=18000
+[2026-10-24 21:38:42] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:38:43] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:38:45] INFO    Running 1/1 steps with tick=25200
+[2026-10-24 21:38:51] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:38:57] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:39:01] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:39:12] INFO    Running 1/1 steps with tick=3600
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:39:20] INFO    [AdaptiveSem] INCREASE: 47 -> 63 (next_step=16)
+[2026-10-24 21:39:20] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:39:28] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:39:29] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:39:41] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:39:43] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:39:44] INFO    Running 1/1 steps with tick=43200
+[2026-10-24 21:39:51] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:39:53] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:40:01] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:40:09] INFO    Running 1/1 steps with tick=14400
+[2026-10-24 21:40:19] INFO    Running 1/1 steps with tick=50400
+[2026-10-24 21:40:22] INFO    Running 1/1 steps with tick=14400
+[2026-10-24 21:40:23] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:40:29] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:40:30] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:40:36] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:40:44] INFO    Running 1/1 steps with tick=28800
+[2026-10-24 21:40:52] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:40:54] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:41:00] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:41:02] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:41:07] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:41:14] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:41:23] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:41:24] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:41:28] INFO    Running 1/1 steps with tick=10800
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:41:38] INFO    [AdaptiveSem] INCREASE: 63 -> 79 (next_step=16)
+[2026-10-24 21:41:40] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:41:45] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:41:55] INFO    Running 1/1 steps with tick=43200
+[2026-10-24 21:42:00] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:42:04] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:42:12] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:42:13] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:42:16] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:42:23] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:42:25] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:42:29] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:42:38] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:42:46] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:42:51] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:42:52] INFO    Running 1/1 steps with tick=25200
+[2026-10-24 21:43:03] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:43:09] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:43:14] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:43:21] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:43:23] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:43:25] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:43:28] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:43:33] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:43:45] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:43:55] INFO    Running 1/1 steps with tick=32400
+[2026-10-24 21:43:58] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:44:01] INFO    Running 1/1 steps with tick=14400
+[2026-10-24 21:44:12] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:44:15] INFO    Running 1/1 steps with tick=3600
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:44:15] INFO    [AdaptiveSem] INCREASE: 79 -> 95 (next_step=16)
+[2026-10-24 21:44:20] INFO    Running 1/1 steps with tick=18000
+[2026-10-24 21:44:27] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:44:29] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:44:31] INFO    Running 1/1 steps with tick=25200
+[2026-10-24 21:44:36] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:44:42] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:44:49] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:44:58] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:45:00] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:45:09] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:45:15] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:45:26] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:45:28] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:45:30] INFO    Running 1/1 steps with tick=43200
+[2026-10-24 21:45:37] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:45:39] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:45:45] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:45:52] INFO    Running 1/1 steps with tick=14400
+[2026-10-24 21:46:00] INFO    Running 1/1 steps with tick=50400
+[2026-10-24 21:46:04] INFO    Running 1/1 steps with tick=14400
+[2026-10-24 21:46:11] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:46:17] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:46:19] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:46:25] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:46:30] INFO    Running 1/1 steps with tick=28800
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:46:32] INFO    [AdaptiveSem] INCREASE: 95 -> 111 (next_step=16)
+[2026-10-24 21:46:39] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:46:46] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:46:53] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:46:58] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:47:02] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:47:09] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:47:17] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:47:24] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:47:33] INFO    Running 1/1 steps with tick=10800
+[36m(step_agent_batch pid=71824)[0m [92m21:47:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:47:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:47:41] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:47:43 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:47:43 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:47:43 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:47:43 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:47:47] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:47:49 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:47:49 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:47:49 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:47:49 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:47:56] INFO    Running 1/1 steps with tick=43200
+[2026-10-24 21:48:00] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:48:03] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:48:06 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:06 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:06 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:06 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:48:10] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:48:13] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:48:15] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:48:17 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:17 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:17 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:17 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:48:20] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:48:22 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:22 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:22 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:22 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:48:26] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:48:27 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:27 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:27 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:27 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:48:31] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:48:33 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:33 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:33 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:33 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:48:37] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:48:39 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:39 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:39 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:39 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:48:43] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:48:44 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:44 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:44 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:44 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:48:47] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:48:49 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:49 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:49 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:49 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:48:52] INFO    Running 1/1 steps with tick=25200
+[36m(step_agent_batch pid=71824)[0m [92m21:48:53 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:53 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:53 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:48:53 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:48:58] INFO    Running 1/1 steps with tick=10800
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:49:01] INFO    [AdaptiveSem] INCREASE: 111 -> 127 (next_step=16)
+[36m(step_agent_batch pid=71824)[0m [92m21:49:01 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:01 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:01 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:01 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:49:06] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:49:08 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:08 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:08 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:08 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:49:12] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:49:14 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:14 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:14 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:14 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:49:18] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:49:20] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:49:21] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:49:23] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:49:25 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:25 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:25 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:25 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:49:27] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:49:29 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:29 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:29 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:29 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:49:33] INFO    Running 1/1 steps with tick=10800
+[36m(step_agent_batch pid=71824)[0m [92m21:49:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:49:40] INFO    Running 1/1 steps with tick=32400
+[36m(step_agent_batch pid=71824)[0m [92m21:49:41 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:41 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:41 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:41 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:49:45] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:49:47] INFO    Running 1/1 steps with tick=14400
+[2026-10-24 21:49:50] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:49:52 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:52 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:52 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:52 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:49:56] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:49:59 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:59 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:59 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:49:59 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:50:04] INFO    Running 1/1 steps with tick=18000
+[36m(step_agent_batch pid=71824)[0m [92m21:50:05 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:05 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:05 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:05 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:50:10] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:50:12] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:50:13] INFO    Running 1/1 steps with tick=25200
+[36m(step_agent_batch pid=71824)[0m [92m21:50:15 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:15 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:15 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:15 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:50:18] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:50:20 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:20 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:20 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:20 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:50:24] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:50:27 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:27 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:27 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:27 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:50:31] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:50:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:50:41] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:50:43 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:43 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:43 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:43 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:50:50] INFO    Running 1/1 steps with tick=10800
+[36m(step_agent_batch pid=71824)[0m [92m21:50:52 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:52 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:52 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:52 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:50:57] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:50:59 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:59 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:59 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:50:59 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:51:04] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:51:07 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:51:07 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:51:07 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:51:07 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:51:14] INFO    Running 1/1 steps with tick=10800
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:51:18] INFO    [AdaptiveSem] INCREASE: 127 -> 143 (next_step=16)
+[36m(step_agent_batch pid=71824)[0m [92m21:51:18 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:51:18 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:51:18 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:51:18 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:51:24] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:51:26] INFO    Running 1/1 steps with tick=43200
+[36m(step_agent_batch pid=71824)[0m [92m21:51:28 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:51:28 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:51:28 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:51:28 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:51:35] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:51:37] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:51:38 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:51:38 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:51:38 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:51:38 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:51:44] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:51:47] INFO    Running 1/1 steps with tick=14400
+[36m(step_agent_batch pid=71824)[0m [92m21:51:51 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:51:51 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:51:51 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:51:51 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:51:57] INFO    Running 1/1 steps with tick=50400
+[2026-10-24 21:52:00] INFO    Running 1/1 steps with tick=14400
+[36m(step_agent_batch pid=71824)[0m [92m21:52:02 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:02 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:02 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:02 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:52:06] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:52:08 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:08 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:08 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:08 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:52:12] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:52:13] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:52:15 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:15 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:15 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:15 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:52:19] INFO    Running 1/1 steps with tick=10800
+[36m(step_agent_batch pid=71824)[0m [92m21:52:21 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:21 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:21 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:21 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:52:26] INFO    Running 1/1 steps with tick=28800
+[36m(step_agent_batch pid=71824)[0m [92m21:52:27 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:27 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:27 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:27 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:52:32] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:52:34] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:52:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:52:41] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:52:42 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:42 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:42 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:42 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:52:46] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:52:47 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:47 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:47 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:47 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:52:49] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:52:53 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:53 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:53 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:52:53 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:52:58] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:53:00] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:53:02] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:53:05 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:05 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:05 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:05 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:53:10] INFO    Running 1/1 steps with tick=10800
+[36m(step_agent_batch pid=71824)[0m [92m21:53:13 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:13 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:13 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:13 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:53:19] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:53:20 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:20 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:20 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:20 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:53:23] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:53:28 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:28 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:28 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:28 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:53:34] INFO    Running 1/1 steps with tick=43200
+[2026-10-24 21:53:37] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:53:41] INFO    Running 1/1 steps with tick=3600
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:53:42] INFO    [AdaptiveSem] INCREASE: 143 -> 159 (next_step=16)
+[36m(step_agent_batch pid=71824)[0m [92m21:53:44 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:44 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:44 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:44 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:53:48] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:53:50] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:53:52] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:53:54 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:54 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:54 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:53:54 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:54:01] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:54:03 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:03 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:03 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:03 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:54:07] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:54:09 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:09 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:09 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:09 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:54:13] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:54:15 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:15 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:15 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:15 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:54:19] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:54:21 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:21 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:21 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:21 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:54:25] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:54:27 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:27 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:27 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:27 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:54:31] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:54:33 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:33 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:33 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:33 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:54:37] INFO    Running 1/1 steps with tick=25200
+[2026-10-24 21:54:38] INFO    Running 1/1 steps with tick=10800
+[36m(step_agent_batch pid=71824)[0m [92m21:54:41 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:41 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:41 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:41 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:54:44] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:54:46 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:46 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:46 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:46 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:54:49] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:54:50 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:50 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:50 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:50 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:54:54] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:54:56 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:56 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:56 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:54:56 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:55:00] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:55:01] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 21:55:03] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:55:04 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:04 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:04 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:04 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:55:09] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:55:11 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:11 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:11 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:11 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:55:14] INFO    Running 1/1 steps with tick=10800
+[36m(step_agent_batch pid=71824)[0m [92m21:55:15 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:15 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:15 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:15 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:55:21] INFO    Running 1/1 steps with tick=32400
+[2026-10-24 21:55:25] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:55:27] INFO    Running 1/1 steps with tick=14400
+[2026-10-24 21:55:31] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:55:33 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:33 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:33 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:33 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:55:40] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:55:43 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:43 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:43 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:43 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:55:49] INFO    Running 1/1 steps with tick=18000
+[2026-10-24 21:55:52] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:55:55] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:55:56] INFO    Running 1/1 steps with tick=25200
+[36m(step_agent_batch pid=71824)[0m [92m21:55:59 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:59 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:59 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:55:59 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:56:02] INFO    Running 1/1 steps with tick=3600
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:56:04] INFO    [AdaptiveSem] INCREASE: 159 -> 175 (next_step=16)
+[36m(step_agent_batch pid=71824)[0m [92m21:56:04 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:04 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:04 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:04 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:56:08] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:56:11 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:11 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:11 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:11 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:56:15] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:56:17 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:17 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:17 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:17 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:56:21] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:56:22 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:22 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:22 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:22 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:56:31] INFO    Running 1/1 steps with tick=10800
+[36m(step_agent_batch pid=71824)[0m [92m21:56:33 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:33 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:33 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:33 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:56:39] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:56:41 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:41 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:41 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:41 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:56:45] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:56:48 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:48 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:48 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:56:48 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:56:54] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:56:57] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:56:59] INFO    Running 1/1 steps with tick=43200
+[36m(step_agent_batch pid=71824)[0m [92m21:57:01 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:01 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:01 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:01 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:57:07] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:57:09] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:57:10 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:10 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:10 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:10 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:57:15] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:57:16 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:16 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:16 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:16 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:57:22] INFO    Running 1/1 steps with tick=14400
+[36m(step_agent_batch pid=71824)[0m [92m21:57:29 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:29 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:29 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:29 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:57:34] INFO    Running 1/1 steps with tick=50400
+[2026-10-24 21:57:37] INFO    Running 1/1 steps with tick=14400
+[36m(step_agent_batch pid=71824)[0m [92m21:57:39 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:39 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:39 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:39 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:57:43] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:57:44 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:44 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:44 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:44 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:57:47] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:57:50] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:57:51] INFO    Running 1/1 steps with tick=10800
+[36m(step_agent_batch pid=71824)[0m [92m21:57:52 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:52 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:52 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:52 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:57:56] INFO    Running 1/1 steps with tick=28800
+[36m(step_agent_batch pid=71824)[0m [92m21:57:57 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:57 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:57 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:57:57 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:58:02] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:58:03] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:58:05 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:05 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:05 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:05 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:58:09] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:58:10 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:10 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:10 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:10 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:58:15] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:58:16 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:16 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:16 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:16 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:58:21] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:58:22 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:22 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:22 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:22 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 21:58:24] INFO    [AdaptiveSem] INCREASE: 175 -> 191 (next_step=16)
+[2026-10-24 21:58:27] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:58:30] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:58:31] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:58:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:35 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:58:40] INFO    Running 1/1 steps with tick=10800
+[36m(step_agent_batch pid=71824)[0m [92m21:58:42 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:42 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:42 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:42 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:58:45] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:58:46 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:46 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:46 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:46 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:58:51] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:58:53 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:53 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:53 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:58:53 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:59:01] INFO    Running 1/1 steps with tick=43200
+[2026-10-24 21:59:03] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:59:07 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:07 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:07 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:07 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:59:12] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:59:14 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:14 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:14 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:14 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:59:18] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:59:19] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 21:59:24] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:59:25 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:25 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:25 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:25 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:59:30] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:59:32] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m21:59:34 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:34 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:34 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:34 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:59:37] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:59:39 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:39 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:39 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:39 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:59:42] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:59:46 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:46 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:46 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:46 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:59:51] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m21:59:53 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:53 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:53 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m21:59:53 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 21:59:56] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 21:59:58] INFO    Running 1/1 steps with tick=25200
+[2026-10-24 22:00:00] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 22:00:02] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m22:00:04 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:04 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:04 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:04 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 22:00:09] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m22:00:10 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:10 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:10 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:10 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 22:00:17] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m22:00:19 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:19 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:19 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:19 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 22:00:23] INFO    Running 1/1 steps with tick=3600
+[2026-10-24 22:00:24] INFO    Running 1/1 steps with tick=7200
+[36m(step_agent_batch pid=71824)[0m [92m22:00:26 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:26 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:26 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:26 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 22:00:30] INFO    Running 1/1 steps with tick=3600
+[36m(step_agent_batch pid=71824)[0m [92m22:00:31 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:31 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:31 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:31 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 22:00:35] INFO    Running 1/1 steps with tick=7200
+[2026-10-24 22:00:37] INFO    Running 1/1 steps with tick=10800
+[36m(step_agent_batch pid=71824)[0m [92m22:00:38 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:38 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:38 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:38 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(EnvRouterActor pid=71799)[0m [2026-10-24 22:00:44] INFO    [AdaptiveSem] INCREASE: 191 -> 207 (next_step=16)
+[2026-10-24 22:00:44] INFO    Running 1/1 steps with tick=32400
+[2026-10-24 22:00:47] INFO    Running 1/1 steps with tick=10800
+[2026-10-24 22:00:49] INFO    Running 1/1 steps with tick=14400
+[36m(step_agent_batch pid=71824)[0m [92m22:00:52 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:52 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:52 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[36m(step_agent_batch pid=71824)[0m [92m22:00:52 - LiteLLM:WARNING[0m: logging_callback_manager.py:192 - Cannot add callback - would exceed MAX_CALLBACKS limit of 100. Current callbacks: 100
+[2026-10-24 22:00:56] INFO    Interrupted by user

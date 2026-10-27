@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="63.75mm" viewBox="0 0 2400 850" role="img" aria-labelledby="title desc"><title id="title">Two complementary studies of postmortem representation</title><desc id="desc">Two complementary studies of postmortem public representation. Empirical and simulation panel areas: 30:70. Visibility configuration, selective expression and content recirculation form the proposed mechanism. All authors retain fixed types. Candle and flower icons indicate the mourning context, not a variable or a result.</desc><defs>
+<marker id="ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#111827"/></marker>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#2167A5"/></marker>
+<marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#A72E3B"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#704097"/></marker>
+<marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#4D7A27"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#48515D"/></marker>
+</defs><style>text{font-family:Arial,Helvetica,sans-serif;fill:#111827;font-size:32px}.title{font-size:42px;font-weight:700}.h{font-size:36px;font-weight:700}.b{font-size:32px}.s{font-size:30px}.xs{font-size:27px}.big{font-size:50px;font-weight:700}.math{font-family:Times New Roman,Times,serif;font-style:italic}</style><rect width="2400" height="850" fill="white"/>
+<rect x="30" y="30" width="684" height="680" rx="0" fill="#FFFFFF" stroke="#4D7A27" stroke-width="3" id="empirical-panel"/>
+<rect x="774" y="30" width="1596" height="680" rx="0" fill="#FFFFFF" stroke="#111827" stroke-width="3" id="simulation-panel"/>
+<rect x="30" y="30" width="684" height="64" rx="0" fill="#A9D47D" stroke="#4D7A27" stroke-width="2"/>
+<text x="54" y="75" class="h" text-anchor="start">I  Platform data analysis</text>
+<text x="798" y="75" class="h" text-anchor="start">II  Agent-based simulation</text>
+<text x="2345" y="75" class="s" text-anchor="end">Proposed mechanism</text>
+<g transform="translate(65 126) scale(0.9)"><path d="M0 0 H45 L62 17 V78 H0 Z" fill="#FFFFFF" stroke="#111827" stroke-width="2"/><path d="M45 0 V17 H62 M11 34 H48 M11 48 H48 M11 62 H39" fill="none" stroke="#48515D" stroke-width="2"/></g>
+<g aria-label="Mourning context" transform="translate(634 168) scale(0.8)"><ellipse cx="0" cy="52" rx="28" ry="5" fill="#D5D8DC"/><rect x="-13" y="-3" width="26" height="52" rx="4" fill="white" stroke="#111827" stroke-width="2"/><path d="M-5 0 V42" stroke="#D5D8DC" stroke-width="5"/><path d="M0 -3 V-10" stroke="#111827" stroke-width="2"/><path d="M0 -12 C-18 -23 -4 -36 0 -41 C13 -27 15 -19 0 -12 Z" fill="#F47D7D" stroke="#111827" stroke-width="1.5"/><path d="M0 -15 C-7 -22 -1 -27 1 -30 C7 -23 7 -19 0 -15 Z" fill="white"/>
+<g transform="translate(-36 17)"><path d="M0 4 L4 36 M2 25 L-9 17 M2 21 L13 13" fill="none" stroke="#48515D" stroke-width="2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(0)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(60)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(120)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(180)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(240)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(300)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<circle r="4" fill="#111827"/></g>
+<g transform="translate(37 19)"><path d="M0 4 L4 36 M2 25 L-9 17 M2 21 L13 13" fill="none" stroke="#48515D" stroke-width="2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(0)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(60)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(120)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(180)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(240)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<ellipse cx="0" cy="-8" rx="5" ry="10" transform="rotate(300)" fill="white" stroke="#48515D" stroke-width="1.2"/>
+<circle r="4" fill="#111827"/></g>
+</g>
+<text x="150" y="142" class="big" text-anchor="start">49,930 posts</text>
+<text x="150" y="180" class="b" text-anchor="start">Douyin · Xiaohongshu</text>
+<text x="150" y="218" class="s" text-anchor="start">Jan–May 2026</text>
+<path d="M372 226 V250" fill="none" stroke="#4D7A27" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#green)"/>
+<rect x="54" y="252" width="636" height="112" rx="0" fill="#FFFFFF" stroke="#4D7A27" stroke-width="2" stroke-dasharray="9 6"/>
+<text x="76" y="287" class="h" text-anchor="start">Content coding</text>
+<text x="76" y="323" class="s" text-anchor="start">Education · Mourning · Meme</text>
+<text x="76" y="352" class="xs" text-anchor="start">Other · Marketing · Noise</text>
+<path d="M372 364 V391" fill="none" stroke="#4D7A27" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#green)"/>
+<rect x="54" y="394" width="636" height="274" rx="0" fill="#FFFFFF" stroke="#4D7A27" stroke-width="2"/>
+<text x="76" y="434" class="h" text-anchor="start">Empirical characterization</text>
+<rect x="76" y="454" width="282" height="156" rx="0" fill="#A9D47D" stroke="#4D7A27" stroke-width="2"/>
+<rect x="386" y="454" width="282" height="156" rx="0" fill="#FFFFFF" stroke="#4D7A27" stroke-width="2" stroke-dasharray="8 5"/>
+<text x="94" y="493" class="b" text-anchor="start" style="font-weight:700">Temporal</text>
+<text x="94" y="529" class="b" text-anchor="start" style="font-weight:700">evolution</text>
+<text x="94" y="568" class="xs" text-anchor="start">Weekly counts</text>
+<text x="94" y="599" class="xs" text-anchor="start">Content composition</text>
+<text x="404" y="493" class="b" text-anchor="start" style="font-weight:700">Platform</text>
+<text x="404" y="529" class="b" text-anchor="start" style="font-weight:700">differences</text>
+<text x="404" y="568" class="xs" text-anchor="start">Compare trajectories</text>
+<text x="404" y="599" class="xs" text-anchor="start">across platforms</text>
+<path d="M217 610 V627" fill="none" stroke="#4D7A27" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#green)"/>
+<path d="M527 610 V627" fill="none" stroke="#4D7A27" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#green)"/>
+<text x="372" y="653" class="s" text-anchor="middle">Patterns → mechanism questions</text>
+<rect x="798" y="111" width="1548" height="92" rx="0" fill="#FFFFFF" stroke="#A9AFB8" stroke-width="2" stroke-dasharray="9 6"/>
+<text x="820" y="148" class="b" text-anchor="start" style="font-weight:700">Frozen external posts</text>
+<text x="820" y="185" class="xs" text-anchor="start">Shared across regimes within seed</text>
+<path d="M1263 124 V190" fill="none" stroke="#A9AFB8" stroke-width="2"/>
+<text x="1290" y="148" class="b" text-anchor="start" style="font-weight:700">100 fixed-type agents · W12–W22</text>
+<text x="1290" y="185" class="s" text-anchor="start">Case-grounded author mix + B / D / R</text>
+<path d="M714 683 H750 V236 H1560 V204" fill="none" stroke="#4D7A27" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#green)"/>
+<path d="M1020 203 V275" fill="none" stroke="#2167A5" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#blue)"/>
+<text x="1110" y="266" class="xs" text-anchor="start" style="fill:#4D7A27">Case-grounded specification</text>
+<path d="M1690 203 V275" fill="none" stroke="#48515D" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#gray)" stroke-dasharray="8 7"/>
+<rect x="804" y="275" width="430" height="305" rx="0" fill="#FFFFFF" stroke="#2167A5" stroke-width="2.4"/>
+<rect x="804" y="275" width="430" height="88" rx="0" fill="#88BFF2" stroke="#2167A5" stroke-width="2.4"/>
+<text x="822" y="313" class="h" text-anchor="start">Visibility</text>
+<text x="822" y="351" class="h" text-anchor="start">configuration</text>
+<rect x="1280" y="275" width="570" height="305" rx="0" fill="#FFFFFF" stroke="#A72E3B" stroke-width="2.4"/>
+<rect x="1280" y="275" width="570" height="88" rx="0" fill="#F47D7D" stroke="#A72E3B" stroke-width="2.4"/>
+<text x="1298" y="313" class="h" text-anchor="start">Selective</text>
+<text x="1298" y="351" class="h" text-anchor="start">expression</text>
+<rect x="1902" y="275" width="430" height="305" rx="0" fill="#FFFFFF" stroke="#704097" stroke-width="2.4"/>
+<rect x="1902" y="275" width="430" height="88" rx="0" fill="#BE9AE3" stroke="#704097" stroke-width="2.4"/>
+<text x="1920" y="313" class="h" text-anchor="start">Content</text>
+<text x="1920" y="351" class="h" text-anchor="start">recirculation</text>
+<text x="824" y="407" class="s" text-anchor="start">Random / Chronological</text>
+<text x="824" y="445" class="s" text-anchor="start">/ Interest-based</text>
+<path d="M824 464 H1214" fill="none" stroke="#2167A5" stroke-width="2"/>
+<text x="824" y="510" class="s" text-anchor="start">Eligible pool → Feed ≤10</text>
+<text x="824" y="551" class="s" text-anchor="start">posts per opportunity</text>
+<path d="M1234 502 H1280" fill="none" stroke="#111827" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ink)"/>
+<text x="1565" y="405" class="math" text-anchor="middle" style="font-size:36px">U<tspan baseline-shift="sub" font-size="24.48">it</tspan><tspan> = B</tspan><tspan baseline-shift="sub" font-size="24.48">i</tspan><tspan> + R</tspan><tspan baseline-shift="sub" font-size="24.48">it</tspan><tspan>(D</tspan><tspan baseline-shift="sub" font-size="24.48">it</tspan><tspan> − B</tspan><tspan baseline-shift="sub" font-size="24.48">i</tspan><tspan>)</tspan></text>
+<text x="1300" y="445" class="s" text-anchor="start">B baseline · D feed response</text>
+<text x="1300" y="483" class="s" text-anchor="start">R prior-exposure weight</text>
+<text x="1565" y="526" class="s" text-anchor="middle" style="font-weight:700">U ≥ fixed individual threshold?</text>
+<text x="1565" y="564" class="s" text-anchor="middle">Yes: LLM → publish   |   No: skip</text>
+<path d="M1850 550 H1902" fill="none" stroke="#111827" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ink)"/>
+<text x="1922" y="407" class="xs" text-anchor="start" style="font-weight:700">Successfully published posts</text>
+<text x="1922" y="453" class="s" text-anchor="start">Chronological:</text>
+<text x="1922" y="489" class="s" text-anchor="start">later action batches</text>
+<text x="1922" y="535" class="xs" text-anchor="start">Random / Interest-based:</text>
+<text x="1922" y="571" class="xs" text-anchor="start">eligible next week</text>
+<rect x="1268" y="610" width="582" height="50" rx="0" fill="#F3F4F6" stroke="#48515D" stroke-width="2" stroke-dasharray="8 6"/>
+<text x="1559" y="645" class="xs" text-anchor="middle">Feed → later exposure history → R</text>
+<path d="M1020 580 V635 H1268" fill="none" stroke="#48515D" stroke-width="2.7" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#gray)" stroke-dasharray="8 7"/>
+<path d="M1850 635 H1874 V481 H1850" fill="none" stroke="#48515D" stroke-width="2.7" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#gray)" stroke-dasharray="8 7"/>
+<path d="M2117 580 V690 H790 V505 H804" fill="none" stroke="#704097" stroke-width="4.6" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#purple)"/>
+<rect x="928" y="672" width="272" height="34" rx="0" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+<text x="1064" y="697" class="xs" text-anchor="middle" style="fill:#704097">Recirculation loop</text>
+<path d="M372 710 V750" fill="none" stroke="#111827" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ink)"/>
+<path d="M1572 710 V750" fill="none" stroke="#111827" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ink)"/>
+<rect x="30" y="750" width="2340" height="64" rx="0" fill="#F3F4F6" stroke="#111827" stroke-width="2"/>
+<text x="1200" y="792" class="h" text-anchor="middle">Complementary evidence → public representation reorganization</text>
+<text x="30" y="842" class="xs" text-anchor="start">3 regimes × 3 seeds  |  Interest-based interventions: B=0 / D=1 / R=1</text>
+<text x="2370" y="842" class="xs" text-anchor="end">Fixed types; changing participation and supply.</text>
+</svg>

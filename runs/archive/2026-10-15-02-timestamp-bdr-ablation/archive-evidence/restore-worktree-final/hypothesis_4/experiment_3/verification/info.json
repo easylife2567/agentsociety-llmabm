@@ -1,0 +1,55 @@
+{
+  "agent_classes": [
+    {
+      "type": "CurationDiscourseAgent",
+      "class": "CurationDiscourseAgent",
+      "description": "CurationDiscourseAgent: 固定内容类型的社媒发言者。每 tick 先读推荐 feed，再按锚定式表达效用模型（常态锚点 + 注意力衰减 × 气候冲击偏离）数值决策是否公开发言；发言内容严格限于自身类型并融入类型词表词。",
+      "init_description": "CurationDiscourseAgent: 固定内容类型的社媒发言者。\n\n通过 ``CurationDiscourseAgent.create(workspace_path, profile, config)`` 创建。\n\n**Profile fields:**\n- id (int): 唯一 agent id。\n- name (str): 显示名（中文网名）。\n- agent_type (str): 固定类型，取值 meme/mourning/marketing/education/other。\n- persona (str): 完整人设文本（类型模板 + 个体人口学特征），内容生成风格依据。\n- params (dict): 发言决策数值参数 {activity, spiral, spiral_scale, decay,\n  baseline_utility}（可选，\n  缺失回退类型均值）。activity = 表达门槛（越低越容易发言）；\n  （旧版第四个参数 emergence/θ 已于 2026-09-12 退役，缺省即忽略）。\n- type_vocab (list[str]): 本类型词表个人常用词库（可选），发言须自然融入 1-3 词。\n\n**Config fields（均可选）:**\n- max_content_chars (int, 默认 300): 单帖最大字符数。\n- feed_context_n (int, 默认 5): 内容生成提示词中包含的本周 feed 帖子条数\n  （发言须基于所见帖子：回应/讨论/二创/跟帖）。\n\n**Example config:**\n```json\n{\"id\": 1, \"profile\": {\"name\": \"抽象老雪\", \"agent_type\": \"meme\", \"persona\": \"...\",\n  \"params\": {\"activity\": 0.5, \"spiral\": 1.2, \"spiral_scale\": 0.4297,\n             \"decay\": 1.243, \"baseline_utility\": 0.7755},\n  \"type_vocab\": [\"抽象\", \"乐子\"]}, \"config\": {\"feed_context_n\": 5}}\n```\n",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "int",
+          "purpose": "unique agent id (in kwargs/profile)"
+        },
+        {
+          "name": "name",
+          "type": "str",
+          "purpose": "display name (in kwargs/profile)"
+        },
+        {
+          "name": "max_react_turns",
+          "type": "int",
+          "default": "10",
+          "purpose": "runtime config key (split into config record by CLI)"
+        },
+        {
+          "name": "enable_memory",
+          "type": "bool",
+          "default": "True",
+          "purpose": "runtime config key (PersonAgent)"
+        },
+        {
+          "name": "enable_todo_list",
+          "type": "bool",
+          "default": "True",
+          "purpose": "runtime config key"
+        }
+      ],
+      "construction_note": "New API: agents are created via AgentBase.create(workspace_path, profile, config) and reconstructed via from_workspace(...). __init__ is arg-less; the CLI splits agent kwargs into profile (id + persona) + config (runtime keys). See references/config-structure.md."
+    }
+  ],
+  "env_modules": [
+    {
+      "type": "CurationDynamicsSpace",
+      "class": "CurationDynamicsSpace",
+      "description": "舆论场数字表征转移模拟环境（CurationDynamicsSpace）：推荐算法单因子三臂（random / chronological / interest）下，100 个固定类型 Agent 的差异化激活与公共表征构成变化（张雪峰 2026-03-24 去世 W13，W12→W22 共 11 周）。Agent 每周通过 **get_feed(agent_id)** 查看本周推荐信息流、意见气候、玩梗涌现环境与全局供给/曝光份额，再决定是否发言；发言通过 **create_post(agent_id, content)** 发布一篇类型由其固定 Agent 类型决定的内容（每 tick 至多 1 帖，重复调用无效）。环境按周注入真实打标内容、按推荐算法装配 feed、逐周计算涌现环境（存量丰沛度 × 流量空旷度），并把供给/曝光/发言漏斗指标写入 replay 表供分析。",
+      "init_description": "CurationDynamicsSpace：舆论场数字表征转移模拟环境。全部构造参数均为关键字参数且含默认值（cls() 无必填参数）：**recommendation_algorithm** 推荐算法（random 从截至当周全部历史帖中全槽位均匀随机且无置顶/保底 / chronological 活帖池时间倒序 / interest 活帖池纯兴趣匹配，默认 random）；**meme_emergence_mode** 玩梗涌现环境模式（normal 正常演化 / sustained_hot 反事实臂：空旷度 S 冻结在事件周值、丰沛度 B 保持内生，默认 normal）；**random_seed** cell 种子（注入/随机臂/兴趣噪声三条 RNG 流由同一种子加固定偏移派生，默认 0）；**feed_size** 每 Agent 每 tick feed 槽位数（默认 20）；**sampling_ratio** 每周注入抽样比例（默认 0.05）；**injection_data_path** 注入数据集 JSON 路径（顶层含 posts 数组，空串=无外部注入）；**weekly_real_post_lag_weeks** 周级 random/interest 普通真实帖相对产生周的可用滞后（默认 0）；**weekly_initial_injection_data_path** 周级首轮历史初始化资产；**weekly_same_week_official_source_pids** 不受滞后影响、在产生周直接进入的官方事件 pid；**vocab_path** 四词表判类器 JSON 路径（空串=词表为空，判类回落 other）；**agent_types** Agent 类型字典（{agent_id: meme|mourning|marketing|education|other}，未列出默认 other）；**start_week** 起始 ISO 周（默认 2026-W12）；**num_ticks** 总 tick 数（默认 11）；**event_week** 去世周（默认 2026-W13）；**official_pin_extend_weeks** 官方置顶延伸周数（默认 1）；**arrival_official_policy** 精确到达模式的官方推荐策略（agenda 默认议程 / ordinary 普通推荐，不进入置顶或保底）；**event_signal_type** 外生事件直接激活的内容类型（空串=关闭）、**event_signal_salience_slots** 该事件在意见气候中等效的普通信息槽位数（默认 0）；interest 臂权重 **alpha**/**beta**/**gamma**、噪声幅度 **interest_noise_eps**、已曝光处理 **exposure_mode**（none/penalize/exclude）与 **exposure_penalty_weight**；**帖子生命周期**（仅 chronological / interest 使用；random 忽略）：**life_half_life_weeks** 时间冷却半衰期（默认 1.5）、**life_saturation_scale** 曝光饱和尺度（累计曝光达该值生命折半，默认 20）、**life_retire_floor** 退场线（时间生命低于此值退出候选池，默认 0.05≈6.5 周龄）；**interest_sample_temp** interest 臂比例抽样温度（按 exp(score/temp) 无放回抽 feed_size 条，默认 4.0；<=0 退化为确定性 top-k）；涌现环境 **emergence_flow_by_week**（真实周新增帖量镜像调度 {周: 帖数}，空旷度 S 的外生流量口径，缺省回退内生 arena 计数）、**emergence_window_stock**（存量回看窗口周数，默认 6）、**emergence_ka**/**emergence_kf**（半饱和形状常数，缺省自动取注入计划的事件周存量与基线周流量）、**emergence_beta**/**emergence_sigma**（B/S 指数，默认 1）、**emergence_gain_min**/**emergence_gain_max**（G 截断，默认 0.2/3.0）。",
+      "parameters": [
+        {
+          "name": "kwargs",
+          "type": "Any"
+        }
+      ]
+    }
+  ]
+}

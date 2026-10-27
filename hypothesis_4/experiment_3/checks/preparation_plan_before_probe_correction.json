@@ -1,0 +1,75 @@
+{
+  "batch_id": "timestamp_bdr_v1_seed3_9",
+  "hypothesis_id": 4,
+  "experiment_id": 3,
+  "status": "prepared_not_started",
+  "authorization": "2026-10-24用户授权准备21次兴趣B/D/R消融、离线验收及最小接口测试；明确不启动仿真",
+  "execution_authorized": false,
+  "api_probe_authorized": true,
+  "max_probe_requests": 1,
+  "probe_accounting": "单列，不计入正文账本；无自动重试",
+  "budget": {
+    "decision_opportunities": 23100,
+    "extra_requests_limit": 2310,
+    "max_agent_body_requests": 25410,
+    "extra_requests_per_action": 1,
+    "max_wall_hours": 48,
+    "started_at": null,
+    "deadline_at": null,
+    "ledger_path": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/execution_records/seed3_9/_extra_attempts.count",
+    "execution_authorized": false,
+    "api_probe_included": false
+  },
+  "runtime_controls": {
+    "max_wall_hours": 48,
+    "started_at": null,
+    "deadline_at": null,
+    "budget_starts": "未来正式启动时开始，不从准备或API探针开始",
+    "max_parallel": 2,
+    "launch_order": "seed3→9，各seed按no_b→no_d→no_r补空位；完成顺序取决于耗时",
+    "stop_policy": "任一异常/技术请求错误时两路联停；保全记录，不自动恢复、重跑或接续checkpoint",
+    "run_root": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02"
+  },
+  "model": {
+    "configured_alias": "deepseek-v4.1-flash",
+    "expected_response_model": "deepseek-v4-1-flash-261017",
+    "equivalence_basis": "用户明确确认沿用当前模型；Full实际响应见逐seed完成证据",
+    "server_identity": "记录可得标识；名称及用户确认不提供后台权重可验证证明"
+  },
+  "model_equivalence": "按用户确认新旧版本视为本研究等价，准确标识保留溯源",
+  "budget_guard": "hypothesis_4/experiment_3/seed_extension_guard.py",
+  "execution_conditions": {
+    "batch_size": 100,
+    "model_workers": 4,
+    "model_concurrency": 16,
+    "temperature": 1.0,
+    "timeout_seconds": 60,
+    "num_retries": 0,
+    "caching": false,
+    "stream": false,
+    "MEM0_TELEMETRY": "False",
+    "ANONYMIZED_TELEMETRY": "False",
+    "LITELLM_LOCAL_MODEL_COST_MAP": "True"
+  },
+  "counts": {
+    "new_conditions": 21,
+    "reused_full": 7,
+    "agents": 100,
+    "weeks": 11,
+    "batches_per_condition": 693,
+    "opportunities_per_condition": 1100
+  },
+  "source_manifest": "hypothesis_4/experiment_3/init/manifest_seed3_9.json",
+  "control_sha256": {
+    "hypothesis_4/experiment_3/seed_extension_guard.py": "989ad9e78468512f9b4d5c7761350f97e96d2bef945e35fab018305a253f010a",
+    "hypothesis_4/experiment_3/verify_seed_extension.py": "55fb1fa12bf683184ec23cb520c1f3781cbcbf6db02809273f5d35948e838a57",
+    "hypothesis_4/experiment_3/probe_seed_extension.py": "32a29e62278d84545d0cd53d49560e43999985eaa270b3e81f5485b78b159d51",
+    "hypothesis_4/experiment_3/init/manifest_seed3_9.json": "e9dceec363143979089fca21c15835a730d5ef8f39cab8ef41a31c4009c79f92"
+  },
+  "deadline_policy": "未来首次正式启动时一次性冻结started_at和started_at+48h；交接、停机等待和后续恢复不重置",
+  "stop_policy": "任一路错误/服务失败/行动或发布失败/返回模型变化/预算或截止到达，停止补位并联停活动引擎；保留证据，不自动重跑或接续checkpoint",
+  "sdk_requests_note": "正文预算不包含SDK辅助请求或内部重试，不称全部API请求总数",
+  "offline_verification": "hypothesis_4/experiment_3/checks/seed3_9_offline_verification.json",
+  "offline_verification_status": "passed",
+  "probe_record": "hypothesis_4/experiment_3/checks/model_probe_seed3_9.json"
+}

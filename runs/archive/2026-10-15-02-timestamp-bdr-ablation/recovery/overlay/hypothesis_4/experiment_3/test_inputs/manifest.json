@@ -1,0 +1,12 @@
+{
+  "scope": "仅供基线既有内容修复测试，不是新消融输入或结果",
+  "files": [
+    {
+      "fixture": "agent_0050.json",
+      "source": "hypothesis_4/experiment_1/runs/arrival_timing_diagnostic/arrival_timing_diagnostic_timestamp_random_s0/agents/agent_0050/AGENT.json",
+      "target": "hypothesis_4/experiment_1/runs/arrival_timing_diagnostic/arrival_timing_diagnostic_timestamp_random_s0/agents/agent_0050/AGENT.json",
+      "sha256": "f748faaf0b4d734c4dc505f0de38c4aed93f74edea9a2ed216adb4f3c1df7400",
+      "bytes": 43162
+    }
+  ]
+}

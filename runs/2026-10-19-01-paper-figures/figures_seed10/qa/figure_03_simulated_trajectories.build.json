@@ -1,0 +1,851 @@
+{
+  "figure": "figure_03_simulated_trajectories",
+  "size_mm": [
+    180.0,
+    128.0
+  ],
+  "panels": [
+    "Fig. 3a",
+    "Fig. 3b",
+    "Fig. 3c",
+    "Fig. 3d"
+  ],
+  "font": "Times New Roman",
+  "base_font_pt": 9,
+  "python": "3.13.9",
+  "matplotlib": "3.10.0",
+  "labels": [],
+  "rendered_text_boxes": [
+    {
+      "text": "Fig. 3a",
+      "bbox_px": [
+        108.43,
+        714.96,
+        168.3,
+        733.96
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Random",
+      "bbox_px": [
+        446.65,
+        714.96,
+        510.15,
+        732.96
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Simulation week (2026)",
+      "bbox_px": [
+        218.73,
+        428.29,
+        399.85,
+        446.47
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W12",
+      "bbox_px": [
+        92.3,
+        454.8,
+        124.55,
+        470.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W13",
+      "bbox_px": [
+        132.47,
+        454.8,
+        164.72,
+        470.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W14",
+      "bbox_px": [
+        172.58,
+        454.8,
+        204.96,
+        470.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W16",
+      "bbox_px": [
+        252.93,
+        454.8,
+        285.3,
+        470.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W18",
+      "bbox_px": [
+        333.27,
+        454.8,
+        365.65,
+        470.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W20",
+      "bbox_px": [
+        413.62,
+        454.8,
+        446.0,
+        470.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W22",
+      "bbox_px": [
+        494.03,
+        454.8,
+        526.28,
+        470.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Successful posts per week",
+      "bbox_px": [
+        50.88,
+        496.06,
+        68.88,
+        692.31
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "−5",
+      "bbox_px": [
+        76.22,
+        431.86,
+        93.84,
+        447.86
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0",
+      "bbox_px": [
+        85.47,
+        475.38,
+        93.84,
+        491.38
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "5",
+      "bbox_px": [
+        85.59,
+        518.9,
+        93.84,
+        534.9
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "10",
+      "bbox_px": [
+        77.22,
+        562.43,
+        93.84,
+        578.43
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "15",
+      "bbox_px": [
+        77.34,
+        605.95,
+        93.84,
+        621.95
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "20",
+      "bbox_px": [
+        77.22,
+        649.47,
+        93.84,
+        665.47
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "25",
+      "bbox_px": [
+        77.34,
+        692.99,
+        93.84,
+        708.99
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "30",
+      "bbox_px": [
+        77.22,
+        736.51,
+        93.84,
+        752.51
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Fig. 3b",
+      "bbox_px": [
+        634.69,
+        714.96,
+        695.81,
+        733.96
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Chronological",
+      "bbox_px": [
+        929.17,
+        714.96,
+        1036.42,
+        732.96
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Simulation week (2026)",
+      "bbox_px": [
+        744.99,
+        428.29,
+        926.12,
+        446.47
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W12",
+      "bbox_px": [
+        618.56,
+        454.8,
+        650.81,
+        470.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W13",
+      "bbox_px": [
+        658.74,
+        454.8,
+        690.99,
+        470.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W14",
+      "bbox_px": [
+        698.85,
+        454.8,
+        731.22,
+        470.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W16",
+      "bbox_px": [
+        779.19,
+        454.8,
+        811.57,
+        470.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W18",
+      "bbox_px": [
+        859.54,
+        454.8,
+        891.91,
+        470.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W20",
+      "bbox_px": [
+        939.88,
+        454.8,
+        972.26,
+        470.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W22",
+      "bbox_px": [
+        1020.29,
+        454.8,
+        1052.54,
+        470.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Successful posts per week",
+      "bbox_px": [
+        577.15,
+        496.06,
+        595.15,
+        692.31
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "−5",
+      "bbox_px": [
+        602.48,
+        431.86,
+        620.11,
+        447.86
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0",
+      "bbox_px": [
+        611.73,
+        475.38,
+        620.11,
+        491.38
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "5",
+      "bbox_px": [
+        611.86,
+        518.9,
+        620.11,
+        534.9
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "10",
+      "bbox_px": [
+        603.48,
+        562.43,
+        620.11,
+        578.43
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "15",
+      "bbox_px": [
+        603.61,
+        605.95,
+        620.11,
+        621.95
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "20",
+      "bbox_px": [
+        603.48,
+        649.47,
+        620.11,
+        665.47
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "25",
+      "bbox_px": [
+        603.61,
+        692.99,
+        620.11,
+        708.99
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "30",
+      "bbox_px": [
+        603.48,
+        736.51,
+        620.11,
+        752.51
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Fig. 3c",
+      "bbox_px": [
+        108.43,
+        358.08,
+        167.18,
+        377.08
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Interest-based",
+      "bbox_px": [
+        404.9,
+        358.08,
+        510.15,
+        376.08
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Simulation week (2026)",
+      "bbox_px": [
+        218.73,
+        71.42,
+        399.85,
+        89.59
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W12",
+      "bbox_px": [
+        92.3,
+        97.92,
+        124.55,
+        113.92
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W13",
+      "bbox_px": [
+        132.47,
+        97.92,
+        164.72,
+        113.92
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W14",
+      "bbox_px": [
+        172.58,
+        97.92,
+        204.96,
+        113.92
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W16",
+      "bbox_px": [
+        252.93,
+        97.92,
+        285.3,
+        113.92
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W18",
+      "bbox_px": [
+        333.27,
+        97.92,
+        365.65,
+        113.92
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W20",
+      "bbox_px": [
+        413.62,
+        97.92,
+        446.0,
+        113.92
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W22",
+      "bbox_px": [
+        494.03,
+        97.92,
+        526.28,
+        113.92
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Successful posts per week",
+      "bbox_px": [
+        50.88,
+        139.18,
+        68.88,
+        335.43
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "−5",
+      "bbox_px": [
+        76.22,
+        74.98,
+        93.84,
+        90.98
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0",
+      "bbox_px": [
+        85.47,
+        118.5,
+        93.84,
+        134.5
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "5",
+      "bbox_px": [
+        85.59,
+        162.03,
+        93.84,
+        178.03
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "10",
+      "bbox_px": [
+        77.22,
+        205.55,
+        93.84,
+        221.55
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "15",
+      "bbox_px": [
+        77.34,
+        249.07,
+        93.84,
+        265.07
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "20",
+      "bbox_px": [
+        77.22,
+        292.59,
+        93.84,
+        308.59
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "25",
+      "bbox_px": [
+        77.34,
+        336.11,
+        93.84,
+        352.11
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "30",
+      "bbox_px": [
+        77.22,
+        379.63,
+        93.84,
+        395.63
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "10.8%",
+      "bbox_px": [
+        675.83,
+        174.88,
+        727.46,
+        191.88
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "75.0%",
+      "bbox_px": [
+        809.8,
+        314.65,
+        861.3,
+        331.65
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "68.5%",
+      "bbox_px": [
+        943.65,
+        300.42,
+        995.28,
+        317.42
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Fig. 3d",
+      "bbox_px": [
+        634.69,
+        358.08,
+        695.69,
+        377.08
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W19–W22",
+      "bbox_px": [
+        954.29,
+        358.08,
+        1036.42,
+        376.08
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Curation regime",
+      "bbox_px": [
+        774.24,
+        71.59,
+        896.87,
+        89.59
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Random",
+      "bbox_px": [
+        673.39,
+        97.92,
+        729.89,
+        113.92
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Chronological",
+      "bbox_px": [
+        787.87,
+        97.92,
+        883.24,
+        113.92
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Interest-based",
+      "bbox_px": [
+        922.59,
+        97.92,
+        1016.34,
+        113.92
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Memetic-type supply share",
+      "bbox_px": [
+        554.9,
+        135.18,
+        572.9,
+        339.43
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "-25%",
+      "bbox_px": [
+        584.23,
+        64.1,
+        620.11,
+        80.1
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0%",
+      "bbox_px": [
+        597.86,
+        118.5,
+        620.11,
+        134.5
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "25%",
+      "bbox_px": [
+        589.73,
+        172.91,
+        620.11,
+        188.91
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "50%",
+      "bbox_px": [
+        589.61,
+        227.31,
+        620.11,
+        243.31
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "75%",
+      "bbox_px": [
+        589.61,
+        281.71,
+        620.11,
+        297.71
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "100%",
+      "bbox_px": [
+        581.23,
+        336.11,
+        620.11,
+        352.11
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "125%",
+      "bbox_px": [
+        581.48,
+        390.52,
+        620.11,
+        406.52
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Education",
+      "bbox_px": [
+        255.26,
+        52.8,
+        322.88,
+        68.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Mourning",
+      "bbox_px": [
+        388.71,
+        52.8,
+        455.34,
+        68.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Memetic",
+      "bbox_px": [
+        521.17,
+        52.8,
+        580.55,
+        68.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Other discussion",
+      "bbox_px": [
+        646.38,
+        52.8,
+        758.13,
+        68.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Marketing",
+      "bbox_px": [
+        823.96,
+        52.8,
+        893.59,
+        68.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W13: Zhang Xuefeng's death (24 Mar 2026)",
+      "bbox_px": [
+        429.82,
+        21.05,
+        725.69,
+        37.11
+      ],
+      "outside_canvas": false
+    }
+  ],
+  "axes": [
+    [
+      0.102,
+      0.6421212121212122,
+      0.37792207792207794,
+      0.28787878787878785
+    ],
+    [
+      0.5970779220779221,
+      0.6421212121212122,
+      0.3779220779220779,
+      0.28787878787878785
+    ],
+    [
+      0.102,
+      0.17000000000000015,
+      0.37792207792207794,
+      0.28787878787878785
+    ],
+    [
+      0.5970779220779221,
+      0.17000000000000015,
+      0.3779220779220779,
+      0.28787878787878785
+    ]
+  ],
+  "outputs": {
+    "svg": "ec3d612876c2152931848cf66de5a5aac42093c241ce90a07a6ae3b06a8499f0",
+    "pdf": "4d9d89cec61f81d558be7b8a2e61706dbf07a5259916db5bec48f2a48a51e395",
+    "png": "ede928a1c99a4afd54b8a2d5d5ae674b28ce4b4b76e22fe4122335b087530f22"
+  }
+}

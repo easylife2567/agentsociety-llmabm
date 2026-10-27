@@ -1,0 +1,136 @@
+{
+  "purpose": "正文图1/图2采用的两平台真实帖文主分类周级数据",
+  "labeler": "DeepSeek",
+  "platform_mapping": {
+    "gsdata": "douyin",
+    "sinamidu": "xiaohongshu"
+  },
+  "category_order": [
+    "education",
+    "mourning",
+    "meme",
+    "other",
+    "marketing"
+  ],
+  "event_week": "2026-W13",
+  "acceptance_reference": {
+    "path": "runs/2026-10-15-01-ica2027-cat-writing/section_3.accepted.md",
+    "sha256": "d1a79d1332c2bacaaafe5257384fed1184d8fddaa7b3884d45a4613470f0b355",
+    "role": "historical_acceptance_reference_not_runtime_input"
+  },
+  "window": {
+    "first_iso_week": "2026-W05",
+    "last_iso_week": "2026-W22",
+    "first_week_monday": "2026-01-26",
+    "last_week_monday": "2026-05-25",
+    "week_count": 18,
+    "note": "保留采用矩阵的全部周；不是W01起始。不补造W01—W04的零记录。ISO周直接由源published_at解析，沿用原生成器且不转本地时区。"
+  },
+  "sources": [
+    {
+      "path": "hypothesis_4/experiment_1/results/platform_heterogeneity/platform_weekly_matrices.json",
+      "sha256": "c8752e6cf5ef6cdfa16ff8151cc24fdd511020767df8e9caad80de5dd607d97f"
+    },
+    {
+      "path": "data/baseline/抖音微博小红书-全量已打标.xlsx",
+      "sha256": "0c51e7f8d4cbcb60de8783dfd43b990ec80d7854c983c83b89709c6c5433a8e0"
+    },
+    {
+      "path": "hypothesis_4/experiment_1/platform_heterogeneity.py",
+      "sha256": "2a79cf9148a6313ba07f0aea67813e4fa1b8c0f7bcff2f27e513b56d744c46b8"
+    }
+  ],
+  "source_audit": {
+    "raw_rows_by_platform": {
+      "xiaohongshu": 33328,
+      "douyin": 16602
+    },
+    "raw_rows_two_platforms": 49930,
+    "published_at_min_by_platform": {
+      "xiaohongshu": "2026-01-31T16:40:13+00:00",
+      "douyin": "2026-01-31T22:00:03+00:00"
+    },
+    "published_at_max_by_platform": {
+      "xiaohongshu": "2026-05-31T15:59:46+00:00",
+      "douyin": "2026-05-31T15:59:27+00:00"
+    },
+    "raw_week_counts_by_platform": {
+      "xiaohongshu": {
+        "2026-W05": 114,
+        "2026-W06": 991,
+        "2026-W07": 327,
+        "2026-W08": 189,
+        "2026-W09": 315,
+        "2026-W10": 812,
+        "2026-W11": 672,
+        "2026-W12": 849,
+        "2026-W13": 8448,
+        "2026-W14": 6314,
+        "2026-W15": 3357,
+        "2026-W16": 2552,
+        "2026-W17": 1793,
+        "2026-W18": 1251,
+        "2026-W19": 1254,
+        "2026-W20": 1291,
+        "2026-W21": 1193,
+        "2026-W22": 1606
+      },
+      "douyin": {
+        "2026-W05": 14,
+        "2026-W06": 120,
+        "2026-W07": 88,
+        "2026-W08": 45,
+        "2026-W09": 74,
+        "2026-W10": 152,
+        "2026-W11": 175,
+        "2026-W12": 367,
+        "2026-W13": 2226,
+        "2026-W14": 1750,
+        "2026-W15": 1393,
+        "2026-W16": 942,
+        "2026-W17": 484,
+        "2026-W18": 378,
+        "2026-W19": 457,
+        "2026-W20": 1384,
+        "2026-W21": 2933,
+        "2026-W22": 3620
+      }
+    },
+    "missing_time_or_outside_matrix_window_by_platform": {},
+    "unmapped_categories_excluded_before_matrix_by_platform": {
+      "xiaohongshu": {
+        "存疑": 11
+      },
+      "douyin": {
+        "存疑": 2
+      }
+    },
+    "counts_match_original_labeled_workbook": true,
+    "category_rule": "沿用原矩阵：六类标签可映射；存疑等未映射标签不计入矩阵；不是按有效性字段剔除全部无效帖。"
+  },
+  "denominator": {
+    "categories": [
+      "education",
+      "mourning",
+      "meme",
+      "other",
+      "marketing"
+    ],
+    "five_category_rows_by_platform": {
+      "douyin": 15186,
+      "xiaohongshu": 31416,
+      "pooled": 46602
+    },
+    "noise_rows_excluded_from_denominator_by_platform": {
+      "douyin": 1414,
+      "xiaohongshu": 1901,
+      "pooled": 3315
+    },
+    "note": "分母包含借势营销；爬取噪音只记排除账，不纳入五类比例或CSV。存疑的既有排除另见原表核对。"
+  },
+  "outputs": [
+    "paper/figures/source_data/observed_weekly.csv",
+    "paper/figures/source_data/observed_sources.json",
+    "paper/figures/source_data/observed_checks.json"
+  ]
+}

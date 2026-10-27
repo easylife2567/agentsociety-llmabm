@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "authorization": "用户2026-10-24明确授权额度恢复后继续剩余消融",
+  "started_at": "2026-10-24T13:26:06.995942+00:00",
+  "attempted_requests": 1,
+  "completed_requests": 1,
+  "simulation_requests": 0,
+  "counted_in_formal_body_budget": false,
+  "requested_model": "deepseek-v4.1-flash",
+  "response_model": "deepseek-v4-1-flash-261017",
+  "content": "OK",
+  "usage": {
+    "completion_tokens": 16,
+    "prompt_tokens": 35,
+    "total_tokens": 51,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 14,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null,
+      "image_tokens": null,
+      "video_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 0,
+      "text_tokens": null,
+      "image_tokens": null,
+      "video_tokens": null
+    }
+  },
+  "finished_at": "2026-10-24T13:26:07.791241+00:00",
+  "ledger_unchanged": true
+}

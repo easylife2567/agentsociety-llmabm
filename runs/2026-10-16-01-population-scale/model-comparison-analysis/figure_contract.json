@@ -1,0 +1,16 @@
+{
+ "core_finding":"Switching service changes interest-curation feedback, while the paired late-period institution ordering remains chronological > interest > random.",
+ "figure_scope":"composite figure",
+ "chart_role":"comparison and trend",
+ "evidence_source":["data/weekly_metrics.csv: seed0 interest supply_share_meme,exposure_share_mourning,exposure_share_meme","data/metrics_summary.json: late_meme_author_participation,late_agent_meme_supply_share,late_meme_exposure_share"],
+ "analysis_scope":"W12-W22 paired s0; late period W19-W22; one new run per institution",
+ "figure_archetype":"mechanism-sensitive trajectory row plus institution comparison row",
+ "visual_center":"Interest supply composition changes more than aggregate exposure; ordering remains",
+ "audience":"experiment comparison reader",
+ "highlight":"old s0 solid gray versus new CUC dashed teal in interest trajectories; fixed colors for institutions in comparison",
+ "axes_grouping":"a-c weekly proportions, percent from zero; d-f late window proportions from zero; category labels include denominators",
+ "legend_strategy":"shared old/new legend per row; institution identity by x-axis and consistent color",
+ "output_files":["assets/figure_01_model_comparison.png","assets/figure_01_model_comparison.svg"],
+ "panel_map":{"a":"interest mourning exposure","b":"interest meme supply among Agent posts","c":"interest meme exposure","d":"all institutions late meme-author participation","e":"all institutions late Agent meme-supply share","f":"all institutions late meme exposure"},
+ "reviewer_check":"No confidence intervals: single new run. Trajectories use fixed author/pool labels, not semantic body gold labels. W13 mourning exposure is 1000 slots/week; late exposure is 4000 slots. Late participation denominator76 is 19 authors x4 weeks. Late supply denominator differs by arm. Old s1/s2 are not paired and are excluded from plot."
+}

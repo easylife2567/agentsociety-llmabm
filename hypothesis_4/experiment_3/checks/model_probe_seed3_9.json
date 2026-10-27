@@ -1,0 +1,52 @@
+{
+  "authorization": "用户2026-10-24授权准备消融及最小接口测试，明确暂不启动仿真",
+  "scope": "一次短文本接口/返回模型核对；非仿真或正文生成实验",
+  "execution_authorized_for_simulation": false,
+  "requested_model": "deepseek-v4.1-flash",
+  "expected_response_model": "deepseek-v4-1-flash-261017",
+  "service_host": "ark.cn-beijing.volces.com",
+  "api_path": "/api/plan/v3",
+  "parameters": {
+    "max_tokens": 8,
+    "temperature": 1.0,
+    "timeout": 60,
+    "num_retries": 0,
+    "caching": false,
+    "stream": false
+  },
+  "max_requests": 1,
+  "attempted_requests": 1,
+  "completed_requests": 1,
+  "simulation_requests": 0,
+  "counted_in_formal_body_budget": false,
+  "status": "failed",
+  "started_at": "2026-10-24T08:18:56.868782+00:00",
+  "script_sha256": "32a29e62278d84545d0cd53d49560e43999985eaa270b3e81f5485b78b159d51",
+  "response_model": "deepseek-v4-1-flash-261017",
+  "content": "",
+  "usage": {
+    "completion_tokens": 8,
+    "prompt_tokens": 35,
+    "total_tokens": 43,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 8,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null,
+      "image_tokens": null,
+      "video_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 0,
+      "text_tokens": null,
+      "image_tokens": null,
+      "video_tokens": null
+    }
+  },
+  "error_type": "AssertionError",
+  "status_code": null,
+  "formal_ledger_unchanged": true,
+  "finished_at": "2026-10-24T08:18:57.688316+00:00"
+}

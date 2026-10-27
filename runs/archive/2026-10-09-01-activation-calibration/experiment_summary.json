@@ -1,0 +1,2105 @@
+{
+  "complete": true,
+  "cells": 45,
+  "opportunities": 49500,
+  "model_calls": 0,
+  "network_attempts": 0,
+  "baseline_independent_validation": false,
+  "aggregate": [
+    {
+      "scale_name": "current",
+      "arm": "random",
+      "type": "meme",
+      "all_posts": 3.3333333333333335,
+      "late_posts": 3,
+      "late_supply_share": 0.10324196875921014,
+      "late_exposure_share": 0.03216666666666666,
+      "late_agent_post_exposures": 4.666666666666667,
+      "W13_posts": 0,
+      "W22_posts": 2,
+      "W22_minus_W13_posts": 2,
+      "peak_weeks_by_seed": [
+        "2026-W22",
+        "2026-W22",
+        "2026-W16|2026-W21"
+      ]
+    },
+    {
+      "scale_name": "current",
+      "arm": "random",
+      "type": "mourning",
+      "all_posts": 36,
+      "late_posts": 4,
+      "late_supply_share": 0.1417035072207486,
+      "late_exposure_share": 0.1755,
+      "late_agent_post_exposures": 372,
+      "W13_posts": 4,
+      "W22_posts": 0.3333333333333333,
+      "W22_minus_W13_posts": -3.6666666666666665,
+      "peak_weeks_by_seed": [
+        "2026-W14",
+        "2026-W16",
+        "2026-W14"
+      ]
+    },
+    {
+      "scale_name": "current",
+      "arm": "random",
+      "type": "marketing",
+      "all_posts": 69.33333333333333,
+      "late_posts": 12,
+      "late_supply_share": 0.42511052166224583,
+      "late_exposure_share": 0.37683333333333335,
+      "late_agent_post_exposures": 649,
+      "W13_posts": 13,
+      "W22_posts": 3,
+      "W22_minus_W13_posts": -10,
+      "peak_weeks_by_seed": [
+        "2026-W12",
+        "2026-W12",
+        "2026-W12"
+      ]
+    },
+    {
+      "scale_name": "current",
+      "arm": "random",
+      "type": "education",
+      "all_posts": 44,
+      "late_posts": 5.666666666666667,
+      "late_supply_share": 0.20106100795755968,
+      "late_exposure_share": 0.20691666666666667,
+      "late_agent_post_exposures": 423.3333333333333,
+      "W13_posts": 9,
+      "W22_posts": 0.3333333333333333,
+      "W22_minus_W13_posts": -8.666666666666666,
+      "peak_weeks_by_seed": [
+        "2026-W13",
+        "2026-W12",
+        "2026-W13"
+      ]
+    },
+    {
+      "scale_name": "current",
+      "arm": "random",
+      "type": "other",
+      "all_posts": 21.666666666666668,
+      "late_posts": 3.6666666666666665,
+      "late_supply_share": 0.1288829944002358,
+      "late_exposure_share": 0.15525,
+      "late_agent_post_exposures": 222,
+      "W13_posts": 0.6666666666666666,
+      "W22_posts": 0.3333333333333333,
+      "W22_minus_W13_posts": -0.3333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W17|2026-W19",
+        "2026-W15",
+        "2026-W14|2026-W15"
+      ]
+    },
+    {
+      "scale_name": "current",
+      "arm": "chronological",
+      "type": "meme",
+      "all_posts": 43,
+      "late_posts": 43,
+      "late_supply_share": 0.7330021429962985,
+      "late_exposure_share": 0.41491666666666666,
+      "late_agent_post_exposures": 914.3333333333334,
+      "W13_posts": 0,
+      "W22_posts": 15.666666666666666,
+      "W22_minus_W13_posts": 15.666666666666666,
+      "peak_weeks_by_seed": [
+        "2026-W21",
+        "2026-W21",
+        "2026-W21"
+      ]
+    },
+    {
+      "scale_name": "current",
+      "arm": "chronological",
+      "type": "mourning",
+      "all_posts": 30.333333333333332,
+      "late_posts": 0.3333333333333333,
+      "late_supply_share": 0.005649717514124294,
+      "late_exposure_share": 0.04625,
+      "late_agent_post_exposures": 10,
+      "W13_posts": 18.333333333333332,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -18.333333333333332,
+      "peak_weeks_by_seed": [
+        "2026-W13",
+        "2026-W13",
+        "2026-W13"
+      ]
+    },
+    {
+      "scale_name": "current",
+      "arm": "chronological",
+      "type": "marketing",
+      "all_posts": 71.33333333333333,
+      "late_posts": 12.666666666666666,
+      "late_supply_share": 0.21595558153126826,
+      "late_exposure_share": 0.2826666666666667,
+      "late_agent_post_exposures": 436.6666666666667,
+      "W13_posts": 11,
+      "W22_posts": 3,
+      "W22_minus_W13_posts": -8,
+      "peak_weeks_by_seed": [
+        "2026-W12",
+        "2026-W12",
+        "2026-W12"
+      ]
+    },
+    {
+      "scale_name": "current",
+      "arm": "chronological",
+      "type": "education",
+      "all_posts": 36.666666666666664,
+      "late_posts": 2,
+      "late_supply_share": 0.03409312293006039,
+      "late_exposure_share": 0.12166666666666666,
+      "late_agent_post_exposures": 70.33333333333333,
+      "W13_posts": 6.333333333333333,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -6.333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W14",
+        "2026-W12",
+        "2026-W13|2026-W14"
+      ]
+    },
+    {
+      "scale_name": "current",
+      "arm": "chronological",
+      "type": "other",
+      "all_posts": 31.333333333333332,
+      "late_posts": 0.6666666666666666,
+      "late_supply_share": 0.011299435028248588,
+      "late_exposure_share": 0.074,
+      "late_agent_post_exposures": 28.333333333333332,
+      "W13_posts": 8,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -8,
+      "peak_weeks_by_seed": [
+        "2026-W13|2026-W14",
+        "2026-W14",
+        "2026-W14"
+      ]
+    },
+    {
+      "scale_name": "current",
+      "arm": "interest",
+      "type": "meme",
+      "all_posts": 37,
+      "late_posts": 36.666666666666664,
+      "late_supply_share": 0.6753257671290458,
+      "late_exposure_share": 0.21091666666666667,
+      "late_agent_post_exposures": 259.6666666666667,
+      "W13_posts": 0,
+      "W22_posts": 18.666666666666668,
+      "W22_minus_W13_posts": 18.666666666666668,
+      "peak_weeks_by_seed": [
+        "2026-W22",
+        "2026-W21",
+        "2026-W22"
+      ]
+    },
+    {
+      "scale_name": "current",
+      "arm": "interest",
+      "type": "mourning",
+      "all_posts": 39.333333333333336,
+      "late_posts": 0,
+      "late_supply_share": 0.0,
+      "late_exposure_share": 0.05683333333333333,
+      "late_agent_post_exposures": 5,
+      "W13_posts": 21,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -21,
+      "peak_weeks_by_seed": [
+        "2026-W13",
+        "2026-W13",
+        "2026-W13"
+      ]
+    },
+    {
+      "scale_name": "current",
+      "arm": "interest",
+      "type": "marketing",
+      "all_posts": 68.66666666666667,
+      "late_posts": 12.333333333333334,
+      "late_supply_share": 0.2289071038251366,
+      "late_exposure_share": 0.35291666666666666,
+      "late_agent_post_exposures": 443,
+      "W13_posts": 12.666666666666666,
+      "W22_posts": 3,
+      "W22_minus_W13_posts": -9.666666666666666,
+      "peak_weeks_by_seed": [
+        "2026-W12",
+        "2026-W12",
+        "2026-W12"
+      ]
+    },
+    {
+      "scale_name": "current",
+      "arm": "interest",
+      "type": "education",
+      "all_posts": 42.333333333333336,
+      "late_posts": 3.6666666666666665,
+      "late_supply_share": 0.06389239176124423,
+      "late_exposure_share": 0.17133333333333334,
+      "late_agent_post_exposures": 204.66666666666666,
+      "W13_posts": 7.666666666666667,
+      "W22_posts": 0.3333333333333333,
+      "W22_minus_W13_posts": -7.333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W12|2026-W13|2026-W14",
+        "2026-W13",
+        "2026-W15"
+      ]
+    },
+    {
+      "scale_name": "current",
+      "arm": "interest",
+      "type": "other",
+      "all_posts": 26.333333333333332,
+      "late_posts": 1.6666666666666667,
+      "late_supply_share": 0.03187473728457335,
+      "late_exposure_share": 0.13608333333333333,
+      "late_agent_post_exposures": 190,
+      "W13_posts": 0.3333333333333333,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -0.3333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W16",
+        "2026-W16",
+        "2026-W16"
+      ]
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "random",
+      "type": "meme",
+      "all_posts": 4.333333333333333,
+      "late_posts": 4,
+      "late_supply_share": 0.15147198480531812,
+      "late_exposure_share": 0.036583333333333336,
+      "late_agent_post_exposures": 8.333333333333334,
+      "W13_posts": 0,
+      "W22_posts": 2.6666666666666665,
+      "W22_minus_W13_posts": 2.6666666666666665,
+      "peak_weeks_by_seed": [
+        "2026-W22",
+        "2026-W22",
+        "2026-W21"
+      ]
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "random",
+      "type": "mourning",
+      "all_posts": 32.666666666666664,
+      "late_posts": 3.3333333333333335,
+      "late_supply_share": 0.12488129154795821,
+      "late_exposure_share": 0.17458333333333334,
+      "late_agent_post_exposures": 354.3333333333333,
+      "W13_posts": 4,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -4,
+      "peak_weeks_by_seed": [
+        "2026-W17",
+        "2026-W13|2026-W14|2026-W17",
+        "2026-W14"
+      ]
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "random",
+      "type": "marketing",
+      "all_posts": 60,
+      "late_posts": 11,
+      "late_supply_share": 0.4131054131054131,
+      "late_exposure_share": 0.3610833333333333,
+      "late_agent_post_exposures": 563.3333333333334,
+      "W13_posts": 12.333333333333334,
+      "W22_posts": 2.6666666666666665,
+      "W22_minus_W13_posts": -9.666666666666666,
+      "peak_weeks_by_seed": [
+        "2026-W12",
+        "2026-W12",
+        "2026-W12"
+      ]
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "random",
+      "type": "education",
+      "all_posts": 44,
+      "late_posts": 5.333333333333333,
+      "late_supply_share": 0.19895536562203228,
+      "late_exposure_share": 0.214,
+      "late_agent_post_exposures": 451.3333333333333,
+      "W13_posts": 9,
+      "W22_posts": 0.6666666666666666,
+      "W22_minus_W13_posts": -8.333333333333334,
+      "peak_weeks_by_seed": [
+        "2026-W13",
+        "2026-W12",
+        "2026-W13"
+      ]
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "random",
+      "type": "other",
+      "all_posts": 22,
+      "late_posts": 3,
+      "late_supply_share": 0.11158594491927824,
+      "late_exposure_share": 0.1605,
+      "late_agent_post_exposures": 230.66666666666666,
+      "W13_posts": 0.6666666666666666,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -0.6666666666666666,
+      "peak_weeks_by_seed": [
+        "2026-W14",
+        "2026-W14",
+        "2026-W17"
+      ]
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "chronological",
+      "type": "meme",
+      "all_posts": 43,
+      "late_posts": 43,
+      "late_supply_share": 0.754742459597269,
+      "late_exposure_share": 0.41741666666666666,
+      "late_agent_post_exposures": 918,
+      "W13_posts": 0,
+      "W22_posts": 15.666666666666666,
+      "W22_minus_W13_posts": 15.666666666666666,
+      "peak_weeks_by_seed": [
+        "2026-W21",
+        "2026-W21",
+        "2026-W21"
+      ]
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "chronological",
+      "type": "mourning",
+      "all_posts": 29.333333333333332,
+      "late_posts": 0.3333333333333333,
+      "late_supply_share": 0.005747126436781609,
+      "late_exposure_share": 0.04816666666666667,
+      "late_agent_post_exposures": 10,
+      "W13_posts": 18.333333333333332,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -18.333333333333332,
+      "peak_weeks_by_seed": [
+        "2026-W13",
+        "2026-W13",
+        "2026-W13"
+      ]
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "chronological",
+      "type": "marketing",
+      "all_posts": 58.666666666666664,
+      "late_posts": 11.666666666666666,
+      "late_supply_share": 0.2047215740500677,
+      "late_exposure_share": 0.2791666666666667,
+      "late_agent_post_exposures": 405,
+      "W13_posts": 9,
+      "W22_posts": 2.6666666666666665,
+      "W22_minus_W13_posts": -6.333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W12",
+        "2026-W12",
+        "2026-W12"
+      ]
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "chronological",
+      "type": "education",
+      "all_posts": 37.333333333333336,
+      "late_posts": 1.3333333333333333,
+      "late_supply_share": 0.02319376026272578,
+      "late_exposure_share": 0.11858333333333333,
+      "late_agent_post_exposures": 50,
+      "W13_posts": 6.333333333333333,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -6.333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W14",
+        "2026-W12",
+        "2026-W13|2026-W14"
+      ]
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "chronological",
+      "type": "other",
+      "all_posts": 32,
+      "late_posts": 0.6666666666666666,
+      "late_supply_share": 0.011595079653155878,
+      "late_exposure_share": 0.07591666666666667,
+      "late_agent_post_exposures": 28.333333333333332,
+      "W13_posts": 8,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -8,
+      "peak_weeks_by_seed": [
+        "2026-W13|2026-W14",
+        "2026-W14",
+        "2026-W14"
+      ]
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "interest",
+      "type": "meme",
+      "all_posts": 38.333333333333336,
+      "late_posts": 38,
+      "late_supply_share": 0.690486564996369,
+      "late_exposure_share": 0.21833333333333332,
+      "late_agent_post_exposures": 273.6666666666667,
+      "W13_posts": 0,
+      "W22_posts": 19,
+      "W22_minus_W13_posts": 19,
+      "peak_weeks_by_seed": [
+        "2026-W22",
+        "2026-W22",
+        "2026-W22"
+      ]
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "interest",
+      "type": "mourning",
+      "all_posts": 40.666666666666664,
+      "late_posts": 0,
+      "late_supply_share": 0.0,
+      "late_exposure_share": 0.059083333333333335,
+      "late_agent_post_exposures": 9.666666666666666,
+      "W13_posts": 21,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -21,
+      "peak_weeks_by_seed": [
+        "2026-W13",
+        "2026-W13",
+        "2026-W13"
+      ]
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "interest",
+      "type": "marketing",
+      "all_posts": 61.666666666666664,
+      "late_posts": 12,
+      "late_supply_share": 0.21917211328976036,
+      "late_exposure_share": 0.32708333333333334,
+      "late_agent_post_exposures": 367.6666666666667,
+      "W13_posts": 11.666666666666666,
+      "W22_posts": 3,
+      "W22_minus_W13_posts": -8.666666666666666,
+      "peak_weeks_by_seed": [
+        "2026-W12",
+        "2026-W12",
+        "2026-W12"
+      ]
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "interest",
+      "type": "education",
+      "all_posts": 41.333333333333336,
+      "late_posts": 3.6666666666666665,
+      "late_supply_share": 0.06615831517792302,
+      "late_exposure_share": 0.18058333333333335,
+      "late_agent_post_exposures": 247,
+      "W13_posts": 7.666666666666667,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -7.666666666666667,
+      "peak_weeks_by_seed": [
+        "2026-W12|2026-W13",
+        "2026-W13",
+        "2026-W13|2026-W14|2026-W16"
+      ]
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "interest",
+      "type": "other",
+      "all_posts": 30.333333333333332,
+      "late_posts": 1.3333333333333333,
+      "late_supply_share": 0.024183006535947713,
+      "late_exposure_share": 0.14241666666666666,
+      "late_agent_post_exposures": 195.66666666666666,
+      "W13_posts": 0.3333333333333333,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -0.3333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W16",
+        "2026-W15",
+        "2026-W16"
+      ]
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "random",
+      "type": "meme",
+      "all_posts": 4.333333333333333,
+      "late_posts": 4,
+      "late_supply_share": 0.15147198480531812,
+      "late_exposure_share": 0.036583333333333336,
+      "late_agent_post_exposures": 8.333333333333334,
+      "W13_posts": 0,
+      "W22_posts": 2.6666666666666665,
+      "W22_minus_W13_posts": 2.6666666666666665,
+      "peak_weeks_by_seed": [
+        "2026-W22",
+        "2026-W22",
+        "2026-W21"
+      ]
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "random",
+      "type": "mourning",
+      "all_posts": 32.666666666666664,
+      "late_posts": 3.3333333333333335,
+      "late_supply_share": 0.12488129154795821,
+      "late_exposure_share": 0.17458333333333334,
+      "late_agent_post_exposures": 354.3333333333333,
+      "W13_posts": 4,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -4,
+      "peak_weeks_by_seed": [
+        "2026-W17",
+        "2026-W13|2026-W14|2026-W17",
+        "2026-W14"
+      ]
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "random",
+      "type": "marketing",
+      "all_posts": 60,
+      "late_posts": 11,
+      "late_supply_share": 0.4131054131054131,
+      "late_exposure_share": 0.3610833333333333,
+      "late_agent_post_exposures": 563.3333333333334,
+      "W13_posts": 12.333333333333334,
+      "W22_posts": 2.6666666666666665,
+      "W22_minus_W13_posts": -9.666666666666666,
+      "peak_weeks_by_seed": [
+        "2026-W12",
+        "2026-W12",
+        "2026-W12"
+      ]
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "random",
+      "type": "education",
+      "all_posts": 44,
+      "late_posts": 5.333333333333333,
+      "late_supply_share": 0.19895536562203228,
+      "late_exposure_share": 0.214,
+      "late_agent_post_exposures": 451.3333333333333,
+      "W13_posts": 9,
+      "W22_posts": 0.6666666666666666,
+      "W22_minus_W13_posts": -8.333333333333334,
+      "peak_weeks_by_seed": [
+        "2026-W13",
+        "2026-W12",
+        "2026-W13"
+      ]
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "random",
+      "type": "other",
+      "all_posts": 22,
+      "late_posts": 3,
+      "late_supply_share": 0.11158594491927824,
+      "late_exposure_share": 0.1605,
+      "late_agent_post_exposures": 230.66666666666666,
+      "W13_posts": 0.6666666666666666,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -0.6666666666666666,
+      "peak_weeks_by_seed": [
+        "2026-W14",
+        "2026-W14",
+        "2026-W17"
+      ]
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "chronological",
+      "type": "meme",
+      "all_posts": 43,
+      "late_posts": 43,
+      "late_supply_share": 0.754742459597269,
+      "late_exposure_share": 0.41741666666666666,
+      "late_agent_post_exposures": 918,
+      "W13_posts": 0,
+      "W22_posts": 15.666666666666666,
+      "W22_minus_W13_posts": 15.666666666666666,
+      "peak_weeks_by_seed": [
+        "2026-W21",
+        "2026-W21",
+        "2026-W21"
+      ]
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "chronological",
+      "type": "mourning",
+      "all_posts": 29.333333333333332,
+      "late_posts": 0.3333333333333333,
+      "late_supply_share": 0.005747126436781609,
+      "late_exposure_share": 0.04816666666666667,
+      "late_agent_post_exposures": 10,
+      "W13_posts": 18.333333333333332,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -18.333333333333332,
+      "peak_weeks_by_seed": [
+        "2026-W13",
+        "2026-W13",
+        "2026-W13"
+      ]
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "chronological",
+      "type": "marketing",
+      "all_posts": 58.666666666666664,
+      "late_posts": 11.666666666666666,
+      "late_supply_share": 0.2047215740500677,
+      "late_exposure_share": 0.2791666666666667,
+      "late_agent_post_exposures": 405,
+      "W13_posts": 9,
+      "W22_posts": 2.6666666666666665,
+      "W22_minus_W13_posts": -6.333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W12",
+        "2026-W12",
+        "2026-W12"
+      ]
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "chronological",
+      "type": "education",
+      "all_posts": 37.333333333333336,
+      "late_posts": 1.3333333333333333,
+      "late_supply_share": 0.02319376026272578,
+      "late_exposure_share": 0.11858333333333333,
+      "late_agent_post_exposures": 50,
+      "W13_posts": 6.333333333333333,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -6.333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W14",
+        "2026-W12",
+        "2026-W13|2026-W14"
+      ]
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "chronological",
+      "type": "other",
+      "all_posts": 32,
+      "late_posts": 0.6666666666666666,
+      "late_supply_share": 0.011595079653155878,
+      "late_exposure_share": 0.07591666666666667,
+      "late_agent_post_exposures": 28.333333333333332,
+      "W13_posts": 8,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -8,
+      "peak_weeks_by_seed": [
+        "2026-W13|2026-W14",
+        "2026-W14",
+        "2026-W14"
+      ]
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "interest",
+      "type": "meme",
+      "all_posts": 38.333333333333336,
+      "late_posts": 38,
+      "late_supply_share": 0.690486564996369,
+      "late_exposure_share": 0.21833333333333332,
+      "late_agent_post_exposures": 273.6666666666667,
+      "W13_posts": 0,
+      "W22_posts": 19,
+      "W22_minus_W13_posts": 19,
+      "peak_weeks_by_seed": [
+        "2026-W22",
+        "2026-W22",
+        "2026-W22"
+      ]
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "interest",
+      "type": "mourning",
+      "all_posts": 40.666666666666664,
+      "late_posts": 0,
+      "late_supply_share": 0.0,
+      "late_exposure_share": 0.059083333333333335,
+      "late_agent_post_exposures": 9.666666666666666,
+      "W13_posts": 21,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -21,
+      "peak_weeks_by_seed": [
+        "2026-W13",
+        "2026-W13",
+        "2026-W13"
+      ]
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "interest",
+      "type": "marketing",
+      "all_posts": 61.666666666666664,
+      "late_posts": 12,
+      "late_supply_share": 0.21917211328976036,
+      "late_exposure_share": 0.32708333333333334,
+      "late_agent_post_exposures": 367.6666666666667,
+      "W13_posts": 11.666666666666666,
+      "W22_posts": 3,
+      "W22_minus_W13_posts": -8.666666666666666,
+      "peak_weeks_by_seed": [
+        "2026-W12",
+        "2026-W12",
+        "2026-W12"
+      ]
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "interest",
+      "type": "education",
+      "all_posts": 41.333333333333336,
+      "late_posts": 3.6666666666666665,
+      "late_supply_share": 0.06615831517792302,
+      "late_exposure_share": 0.18058333333333335,
+      "late_agent_post_exposures": 247,
+      "W13_posts": 7.666666666666667,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -7.666666666666667,
+      "peak_weeks_by_seed": [
+        "2026-W12|2026-W13",
+        "2026-W13",
+        "2026-W13|2026-W14|2026-W16"
+      ]
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "interest",
+      "type": "other",
+      "all_posts": 30.333333333333332,
+      "late_posts": 1.3333333333333333,
+      "late_supply_share": 0.024183006535947713,
+      "late_exposure_share": 0.14241666666666666,
+      "late_agent_post_exposures": 195.66666666666666,
+      "W13_posts": 0.3333333333333333,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -0.3333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W16",
+        "2026-W15",
+        "2026-W16"
+      ]
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "random",
+      "type": "meme",
+      "all_posts": 3.6666666666666665,
+      "late_posts": 3.6666666666666665,
+      "late_supply_share": 0.14944444444444444,
+      "late_exposure_share": 0.03658333333333333,
+      "late_agent_post_exposures": 0,
+      "W13_posts": 0,
+      "W22_posts": 3.6666666666666665,
+      "W22_minus_W13_posts": 3.6666666666666665,
+      "peak_weeks_by_seed": [
+        "2026-W22",
+        "2026-W22",
+        "2026-W22"
+      ]
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "random",
+      "type": "mourning",
+      "all_posts": 33.333333333333336,
+      "late_posts": 4.333333333333333,
+      "late_supply_share": 0.17444444444444446,
+      "late_exposure_share": 0.17466666666666666,
+      "late_agent_post_exposures": 347,
+      "W13_posts": 4,
+      "W22_posts": 0.6666666666666666,
+      "W22_minus_W13_posts": -3.3333333333333335,
+      "peak_weeks_by_seed": [
+        "2026-W17",
+        "2026-W13|2026-W14|2026-W16",
+        "2026-W14"
+      ]
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "random",
+      "type": "marketing",
+      "all_posts": 56,
+      "late_posts": 9,
+      "late_supply_share": 0.365,
+      "late_exposure_share": 0.3606666666666667,
+      "late_agent_post_exposures": 565,
+      "W13_posts": 12.333333333333334,
+      "W22_posts": 2,
+      "W22_minus_W13_posts": -10.333333333333334,
+      "peak_weeks_by_seed": [
+        "2026-W12",
+        "2026-W12",
+        "2026-W12"
+      ]
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "random",
+      "type": "education",
+      "all_posts": 45.333333333333336,
+      "late_posts": 5.333333333333333,
+      "late_supply_share": 0.21666666666666667,
+      "late_exposure_share": 0.20975,
+      "late_agent_post_exposures": 445.3333333333333,
+      "W13_posts": 9,
+      "W22_posts": 1.6666666666666667,
+      "W22_minus_W13_posts": -7.333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W13",
+        "2026-W12",
+        "2026-W13"
+      ]
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "random",
+      "type": "other",
+      "all_posts": 24.666666666666668,
+      "late_posts": 2.3333333333333335,
+      "late_supply_share": 0.09444444444444444,
+      "late_exposure_share": 0.15908333333333333,
+      "late_agent_post_exposures": 245.33333333333334,
+      "W13_posts": 0.6666666666666666,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -0.6666666666666666,
+      "peak_weeks_by_seed": [
+        "2026-W17",
+        "2026-W14",
+        "2026-W17"
+      ]
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "chronological",
+      "type": "meme",
+      "all_posts": 42.666666666666664,
+      "late_posts": 42.666666666666664,
+      "late_supply_share": 0.7757575757575758,
+      "late_exposure_share": 0.4226666666666667,
+      "late_agent_post_exposures": 924.3333333333334,
+      "W13_posts": 0,
+      "W22_posts": 15.333333333333334,
+      "W22_minus_W13_posts": 15.333333333333334,
+      "peak_weeks_by_seed": [
+        "2026-W21",
+        "2026-W21",
+        "2026-W21"
+      ]
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "chronological",
+      "type": "mourning",
+      "all_posts": 30,
+      "late_posts": 0.3333333333333333,
+      "late_supply_share": 0.006060606060606061,
+      "late_exposure_share": 0.04958333333333333,
+      "late_agent_post_exposures": 10,
+      "W13_posts": 18.333333333333332,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -18.333333333333332,
+      "peak_weeks_by_seed": [
+        "2026-W13",
+        "2026-W13",
+        "2026-W13"
+      ]
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "chronological",
+      "type": "marketing",
+      "all_posts": 55.666666666666664,
+      "late_posts": 10.333333333333334,
+      "late_supply_share": 0.1878787878787879,
+      "late_exposure_share": 0.27275,
+      "late_agent_post_exposures": 374,
+      "W13_posts": 8.666666666666666,
+      "W22_posts": 2,
+      "W22_minus_W13_posts": -6.666666666666667,
+      "peak_weeks_by_seed": [
+        "2026-W12",
+        "2026-W12",
+        "2026-W12"
+      ]
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "chronological",
+      "type": "education",
+      "all_posts": 37.333333333333336,
+      "late_posts": 1.3333333333333333,
+      "late_supply_share": 0.024242424242424242,
+      "late_exposure_share": 0.11983333333333333,
+      "late_agent_post_exposures": 50,
+      "W13_posts": 6.333333333333333,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -6.333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W14",
+        "2026-W12",
+        "2026-W13|2026-W14"
+      ]
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "chronological",
+      "type": "other",
+      "all_posts": 32.333333333333336,
+      "late_posts": 0.3333333333333333,
+      "late_supply_share": 0.006060606060606061,
+      "late_exposure_share": 0.07441666666666666,
+      "late_agent_post_exposures": 15.666666666666666,
+      "W13_posts": 8,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -8,
+      "peak_weeks_by_seed": [
+        "2026-W13|2026-W14",
+        "2026-W14",
+        "2026-W14"
+      ]
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "interest",
+      "type": "meme",
+      "all_posts": 39,
+      "late_posts": 38.333333333333336,
+      "late_supply_share": 0.7049738918639374,
+      "late_exposure_share": 0.22033333333333333,
+      "late_agent_post_exposures": 301.3333333333333,
+      "W13_posts": 0,
+      "W22_posts": 18.666666666666668,
+      "W22_minus_W13_posts": 18.666666666666668,
+      "peak_weeks_by_seed": [
+        "2026-W22",
+        "2026-W21",
+        "2026-W22"
+      ]
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "interest",
+      "type": "mourning",
+      "all_posts": 41,
+      "late_posts": 0.3333333333333333,
+      "late_supply_share": 0.006289308176100628,
+      "late_exposure_share": 0.06316666666666666,
+      "late_agent_post_exposures": 33.666666666666664,
+      "W13_posts": 21,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -21,
+      "peak_weeks_by_seed": [
+        "2026-W13",
+        "2026-W13",
+        "2026-W13"
+      ]
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "interest",
+      "type": "marketing",
+      "all_posts": 56.333333333333336,
+      "late_posts": 10.333333333333334,
+      "late_supply_share": 0.19075621840748713,
+      "late_exposure_share": 0.3239166666666667,
+      "late_agent_post_exposures": 351,
+      "W13_posts": 10.666666666666666,
+      "W22_posts": 2,
+      "W22_minus_W13_posts": -8.666666666666666,
+      "peak_weeks_by_seed": [
+        "2026-W12",
+        "2026-W12",
+        "2026-W12"
+      ]
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "interest",
+      "type": "education",
+      "all_posts": 42.666666666666664,
+      "late_posts": 5.333333333333333,
+      "late_supply_share": 0.09798058155247485,
+      "late_exposure_share": 0.1875,
+      "late_agent_post_exposures": 265.6666666666667,
+      "W13_posts": 7.666666666666667,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -7.666666666666667,
+      "peak_weeks_by_seed": [
+        "2026-W12|2026-W13",
+        "2026-W13|2026-W14",
+        "2026-W15"
+      ]
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "interest",
+      "type": "other",
+      "all_posts": 29,
+      "late_posts": 0,
+      "late_supply_share": 0.0,
+      "late_exposure_share": 0.13424999999999998,
+      "late_agent_post_exposures": 168.66666666666666,
+      "W13_posts": 0.3333333333333333,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -0.3333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W15",
+        "2026-W16",
+        "2026-W16"
+      ]
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "random",
+      "type": "meme",
+      "all_posts": 2.3333333333333335,
+      "late_posts": 2.3333333333333335,
+      "late_supply_share": 0.05542377833926331,
+      "late_exposure_share": 0.03275,
+      "late_agent_post_exposures": 1.3333333333333333,
+      "W13_posts": 0,
+      "W22_posts": 1.3333333333333333,
+      "W22_minus_W13_posts": 1.3333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W22",
+        "2026-W21|2026-W22",
+        "2026-W21|2026-W22"
+      ]
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "random",
+      "type": "mourning",
+      "all_posts": 33.333333333333336,
+      "late_posts": 6.333333333333333,
+      "late_supply_share": 0.14756613210952405,
+      "late_exposure_share": 0.16183333333333333,
+      "late_agent_post_exposures": 306,
+      "W13_posts": 4,
+      "W22_posts": 1.3333333333333333,
+      "W22_minus_W13_posts": -2.6666666666666665,
+      "peak_weeks_by_seed": [
+        "2026-W14",
+        "2026-W16",
+        "2026-W16"
+      ]
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "random",
+      "type": "marketing",
+      "all_posts": 98,
+      "late_posts": 23,
+      "late_supply_share": 0.5389745440794789,
+      "late_exposure_share": 0.42125,
+      "late_agent_post_exposures": 863.6666666666666,
+      "W13_posts": 13.333333333333334,
+      "W22_posts": 5.333333333333333,
+      "W22_minus_W13_posts": -8,
+      "peak_weeks_by_seed": [
+        "2026-W12",
+        "2026-W12",
+        "2026-W12"
+      ]
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "random",
+      "type": "education",
+      "all_posts": 51,
+      "late_posts": 9.666666666666666,
+      "late_supply_share": 0.2270020110349095,
+      "late_exposure_share": 0.20274999999999999,
+      "late_agent_post_exposures": 446,
+      "W13_posts": 9.333333333333334,
+      "W22_posts": 2.3333333333333335,
+      "W22_minus_W13_posts": -7,
+      "peak_weeks_by_seed": [
+        "2026-W13",
+        "2026-W12",
+        "2026-W13"
+      ]
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "random",
+      "type": "other",
+      "all_posts": 18.666666666666668,
+      "late_posts": 1.3333333333333333,
+      "late_supply_share": 0.031033534436824283,
+      "late_exposure_share": 0.13,
+      "late_agent_post_exposures": 168.66666666666666,
+      "W13_posts": 0.6666666666666666,
+      "W22_posts": 0.3333333333333333,
+      "W22_minus_W13_posts": -0.3333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W14",
+        "2026-W14|2026-W15",
+        "2026-W14|2026-W15"
+      ]
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "chronological",
+      "type": "meme",
+      "all_posts": 43.333333333333336,
+      "late_posts": 43.333333333333336,
+      "late_supply_share": 0.5700668337510443,
+      "late_exposure_share": 0.38608333333333333,
+      "late_agent_post_exposures": 861.3333333333334,
+      "W13_posts": 0,
+      "W22_posts": 16,
+      "W22_minus_W13_posts": 16,
+      "peak_weeks_by_seed": [
+        "2026-W21",
+        "2026-W21",
+        "2026-W21"
+      ]
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "chronological",
+      "type": "mourning",
+      "all_posts": 28,
+      "late_posts": 0.3333333333333333,
+      "late_supply_share": 0.0044444444444444444,
+      "late_exposure_share": 0.03983333333333333,
+      "late_agent_post_exposures": 10,
+      "W13_posts": 18.333333333333332,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -18.333333333333332,
+      "peak_weeks_by_seed": [
+        "2026-W13",
+        "2026-W13",
+        "2026-W13"
+      ]
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "chronological",
+      "type": "marketing",
+      "all_posts": 101,
+      "late_posts": 24,
+      "late_supply_share": 0.3158259284575074,
+      "late_exposure_share": 0.3164166666666667,
+      "late_agent_post_exposures": 669.3333333333334,
+      "W13_posts": 11.333333333333334,
+      "W22_posts": 5.666666666666667,
+      "W22_minus_W13_posts": -5.666666666666667,
+      "peak_weeks_by_seed": [
+        "2026-W12",
+        "2026-W12",
+        "2026-W12"
+      ]
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "chronological",
+      "type": "education",
+      "all_posts": 46.666666666666664,
+      "late_posts": 8,
+      "late_supply_share": 0.10521834890255943,
+      "late_exposure_share": 0.15083333333333332,
+      "late_agent_post_exposures": 247,
+      "W13_posts": 6.333333333333333,
+      "W22_posts": 1,
+      "W22_minus_W13_posts": -5.333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W14",
+        "2026-W12",
+        "2026-W13|2026-W14"
+      ]
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "chronological",
+      "type": "other",
+      "all_posts": 29.333333333333332,
+      "late_posts": 0.3333333333333333,
+      "late_supply_share": 0.0044444444444444444,
+      "late_exposure_share": 0.05475,
+      "late_agent_post_exposures": 8.666666666666666,
+      "W13_posts": 8,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -8,
+      "peak_weeks_by_seed": [
+        "2026-W13",
+        "2026-W14",
+        "2026-W14"
+      ]
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "interest",
+      "type": "meme",
+      "all_posts": 35.666666666666664,
+      "late_posts": 35.666666666666664,
+      "late_supply_share": 0.5048289738430584,
+      "late_exposure_share": 0.1895,
+      "late_agent_post_exposures": 216.33333333333334,
+      "W13_posts": 0,
+      "W22_posts": 18.666666666666668,
+      "W22_minus_W13_posts": 18.666666666666668,
+      "peak_weeks_by_seed": [
+        "2026-W22",
+        "2026-W22",
+        "2026-W22"
+      ]
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "interest",
+      "type": "mourning",
+      "all_posts": 36.333333333333336,
+      "late_posts": 0,
+      "late_supply_share": 0.0,
+      "late_exposure_share": 0.04691666666666667,
+      "late_agent_post_exposures": 4.333333333333333,
+      "W13_posts": 21,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -21,
+      "peak_weeks_by_seed": [
+        "2026-W13",
+        "2026-W13",
+        "2026-W13"
+      ]
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "interest",
+      "type": "marketing",
+      "all_posts": 99.66666666666667,
+      "late_posts": 25,
+      "late_supply_share": 0.3538564721663313,
+      "late_exposure_share": 0.38775,
+      "late_agent_post_exposures": 723,
+      "W13_posts": 13.333333333333334,
+      "W22_posts": 6,
+      "W22_minus_W13_posts": -7.333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W12",
+        "2026-W12",
+        "2026-W12"
+      ]
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "interest",
+      "type": "education",
+      "all_posts": 51.666666666666664,
+      "late_posts": 8.333333333333334,
+      "late_supply_share": 0.11784037558685447,
+      "late_exposure_share": 0.19058333333333333,
+      "late_agent_post_exposures": 351,
+      "W13_posts": 7.666666666666667,
+      "W22_posts": 1.3333333333333333,
+      "W22_minus_W13_posts": -6.333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W14",
+        "2026-W13|2026-W14",
+        "2026-W14|2026-W15"
+      ]
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "interest",
+      "type": "other",
+      "all_posts": 23.333333333333332,
+      "late_posts": 1.6666666666666667,
+      "late_supply_share": 0.023474178403755867,
+      "late_exposure_share": 0.12133333333333333,
+      "late_agent_post_exposures": 174,
+      "W13_posts": 0.3333333333333333,
+      "W22_posts": 0,
+      "W22_minus_W13_posts": -0.3333333333333333,
+      "peak_weeks_by_seed": [
+        "2026-W14|2026-W15|2026-W17|2026-W18",
+        "2026-W16",
+        "2026-W16"
+      ]
+    }
+  ],
+  "closed_feedback_changes": [
+    {
+      "scale_name": "current",
+      "arm": "random",
+      "seed": 0,
+      "decision_changes": 0,
+      "changed_decisions_by_type": {},
+      "feed_changes": 0,
+      "cumulative_changes": 0,
+      "agent_post_exposures": 4186,
+      "earliest_feed_changed_week": null
+    },
+    {
+      "scale_name": "current",
+      "arm": "random",
+      "seed": 1,
+      "decision_changes": 0,
+      "changed_decisions_by_type": {},
+      "feed_changes": 0,
+      "cumulative_changes": 0,
+      "agent_post_exposures": 4144,
+      "earliest_feed_changed_week": null
+    },
+    {
+      "scale_name": "current",
+      "arm": "random",
+      "seed": 2,
+      "decision_changes": 0,
+      "changed_decisions_by_type": {},
+      "feed_changes": 0,
+      "cumulative_changes": 0,
+      "agent_post_exposures": 4160,
+      "earliest_feed_changed_week": null
+    },
+    {
+      "scale_name": "current",
+      "arm": "chronological",
+      "seed": 0,
+      "decision_changes": 0,
+      "changed_decisions_by_type": {},
+      "feed_changes": 0,
+      "cumulative_changes": 0,
+      "agent_post_exposures": 4471,
+      "earliest_feed_changed_week": null
+    },
+    {
+      "scale_name": "current",
+      "arm": "chronological",
+      "seed": 1,
+      "decision_changes": 0,
+      "changed_decisions_by_type": {},
+      "feed_changes": 0,
+      "cumulative_changes": 0,
+      "agent_post_exposures": 4509,
+      "earliest_feed_changed_week": null
+    },
+    {
+      "scale_name": "current",
+      "arm": "chronological",
+      "seed": 2,
+      "decision_changes": 0,
+      "changed_decisions_by_type": {},
+      "feed_changes": 0,
+      "cumulative_changes": 0,
+      "agent_post_exposures": 4455,
+      "earliest_feed_changed_week": null
+    },
+    {
+      "scale_name": "current",
+      "arm": "interest",
+      "seed": 0,
+      "decision_changes": 0,
+      "changed_decisions_by_type": {},
+      "feed_changes": 0,
+      "cumulative_changes": 0,
+      "agent_post_exposures": 3718,
+      "earliest_feed_changed_week": null
+    },
+    {
+      "scale_name": "current",
+      "arm": "interest",
+      "seed": 1,
+      "decision_changes": 0,
+      "changed_decisions_by_type": {},
+      "feed_changes": 0,
+      "cumulative_changes": 0,
+      "agent_post_exposures": 3731,
+      "earliest_feed_changed_week": null
+    },
+    {
+      "scale_name": "current",
+      "arm": "interest",
+      "seed": 2,
+      "decision_changes": 0,
+      "changed_decisions_by_type": {},
+      "feed_changes": 0,
+      "cumulative_changes": 0,
+      "agent_post_exposures": 3484,
+      "earliest_feed_changed_week": null
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "random",
+      "seed": 0,
+      "decision_changes": 86,
+      "changed_decisions_by_type": {
+        "marketing": 8,
+        "education": 16,
+        "mourning": 31,
+        "other": 24,
+        "meme": 7
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 796,
+      "agent_post_exposures": 4010,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "random",
+      "seed": 1,
+      "decision_changes": 88,
+      "changed_decisions_by_type": {
+        "marketing": 9,
+        "education": 12,
+        "mourning": 31,
+        "other": 30,
+        "meme": 6
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 797,
+      "agent_post_exposures": 4022,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "random",
+      "seed": 2,
+      "decision_changes": 76,
+      "changed_decisions_by_type": {
+        "marketing": 11,
+        "mourning": 24,
+        "education": 10,
+        "other": 27,
+        "meme": 4
+      },
+      "feed_changes": 800,
+      "cumulative_changes": 699,
+      "agent_post_exposures": 4053,
+      "earliest_feed_changed_week": "2026-W15"
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "chronological",
+      "seed": 0,
+      "decision_changes": 18,
+      "changed_decisions_by_type": {
+        "marketing": 13,
+        "education": 3,
+        "other": 2
+      },
+      "feed_changes": 327,
+      "cumulative_changes": 610,
+      "agent_post_exposures": 4340,
+      "earliest_feed_changed_week": "2026-W13"
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "chronological",
+      "seed": 1,
+      "decision_changes": 20,
+      "changed_decisions_by_type": {
+        "marketing": 10,
+        "mourning": 3,
+        "education": 7
+      },
+      "feed_changes": 337,
+      "cumulative_changes": 680,
+      "agent_post_exposures": 4280,
+      "earliest_feed_changed_week": "2026-W13"
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "chronological",
+      "seed": 2,
+      "decision_changes": 17,
+      "changed_decisions_by_type": {
+        "marketing": 15,
+        "education": 2
+      },
+      "feed_changes": 268,
+      "cumulative_changes": 436,
+      "agent_post_exposures": 4261,
+      "earliest_feed_changed_week": "2026-W13"
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "interest",
+      "seed": 0,
+      "decision_changes": 63,
+      "changed_decisions_by_type": {
+        "marketing": 9,
+        "other": 29,
+        "mourning": 8,
+        "education": 13,
+        "meme": 4
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 795,
+      "agent_post_exposures": 3680,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "interest",
+      "seed": 1,
+      "decision_changes": 76,
+      "changed_decisions_by_type": {
+        "marketing": 5,
+        "mourning": 11,
+        "education": 18,
+        "other": 38,
+        "meme": 4
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 797,
+      "agent_post_exposures": 3670,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "sample_population",
+      "arm": "interest",
+      "seed": 2,
+      "decision_changes": 71,
+      "changed_decisions_by_type": {
+        "marketing": 7,
+        "education": 18,
+        "other": 33,
+        "mourning": 11,
+        "meme": 2
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 797,
+      "agent_post_exposures": 3467,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "random",
+      "seed": 0,
+      "decision_changes": 86,
+      "changed_decisions_by_type": {
+        "marketing": 8,
+        "education": 16,
+        "mourning": 31,
+        "other": 24,
+        "meme": 7
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 796,
+      "agent_post_exposures": 4010,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "random",
+      "seed": 1,
+      "decision_changes": 88,
+      "changed_decisions_by_type": {
+        "marketing": 9,
+        "education": 12,
+        "mourning": 31,
+        "other": 30,
+        "meme": 6
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 797,
+      "agent_post_exposures": 4022,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "random",
+      "seed": 2,
+      "decision_changes": 76,
+      "changed_decisions_by_type": {
+        "marketing": 11,
+        "mourning": 24,
+        "education": 10,
+        "other": 27,
+        "meme": 4
+      },
+      "feed_changes": 800,
+      "cumulative_changes": 699,
+      "agent_post_exposures": 4053,
+      "earliest_feed_changed_week": "2026-W15"
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "chronological",
+      "seed": 0,
+      "decision_changes": 18,
+      "changed_decisions_by_type": {
+        "marketing": 13,
+        "education": 3,
+        "other": 2
+      },
+      "feed_changes": 327,
+      "cumulative_changes": 610,
+      "agent_post_exposures": 4340,
+      "earliest_feed_changed_week": "2026-W13"
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "chronological",
+      "seed": 1,
+      "decision_changes": 20,
+      "changed_decisions_by_type": {
+        "marketing": 10,
+        "mourning": 3,
+        "education": 7
+      },
+      "feed_changes": 337,
+      "cumulative_changes": 680,
+      "agent_post_exposures": 4280,
+      "earliest_feed_changed_week": "2026-W13"
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "chronological",
+      "seed": 2,
+      "decision_changes": 17,
+      "changed_decisions_by_type": {
+        "marketing": 15,
+        "education": 2
+      },
+      "feed_changes": 268,
+      "cumulative_changes": 436,
+      "agent_post_exposures": 4261,
+      "earliest_feed_changed_week": "2026-W13"
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "interest",
+      "seed": 0,
+      "decision_changes": 63,
+      "changed_decisions_by_type": {
+        "marketing": 9,
+        "other": 29,
+        "mourning": 8,
+        "education": 13,
+        "meme": 4
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 795,
+      "agent_post_exposures": 3680,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "interest",
+      "seed": 1,
+      "decision_changes": 76,
+      "changed_decisions_by_type": {
+        "marketing": 5,
+        "mourning": 11,
+        "education": 18,
+        "other": 38,
+        "meme": 4
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 797,
+      "agent_post_exposures": 3670,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "unique_authors",
+      "arm": "interest",
+      "seed": 2,
+      "decision_changes": 71,
+      "changed_decisions_by_type": {
+        "marketing": 7,
+        "education": 18,
+        "other": 33,
+        "mourning": 11,
+        "meme": 2
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 797,
+      "agent_post_exposures": 3467,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "random",
+      "seed": 0,
+      "decision_changes": 90,
+      "changed_decisions_by_type": {
+        "marketing": 13,
+        "education": 13,
+        "mourning": 34,
+        "other": 25,
+        "meme": 5
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 796,
+      "agent_post_exposures": 4070,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "random",
+      "seed": 1,
+      "decision_changes": 93,
+      "changed_decisions_by_type": {
+        "marketing": 13,
+        "education": 14,
+        "mourning": 28,
+        "other": 33,
+        "meme": 5
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 798,
+      "agent_post_exposures": 4020,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "random",
+      "seed": 2,
+      "decision_changes": 83,
+      "changed_decisions_by_type": {
+        "marketing": 14,
+        "mourning": 26,
+        "education": 13,
+        "other": 25,
+        "meme": 5
+      },
+      "feed_changes": 800,
+      "cumulative_changes": 699,
+      "agent_post_exposures": 4024,
+      "earliest_feed_changed_week": "2026-W15"
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "chronological",
+      "seed": 0,
+      "decision_changes": 33,
+      "changed_decisions_by_type": {
+        "marketing": 17,
+        "mourning": 2,
+        "education": 1,
+        "other": 13
+      },
+      "feed_changes": 481,
+      "cumulative_changes": 718,
+      "agent_post_exposures": 4326,
+      "earliest_feed_changed_week": "2026-W13"
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "chronological",
+      "seed": 1,
+      "decision_changes": 22,
+      "changed_decisions_by_type": {
+        "marketing": 12,
+        "mourning": 3,
+        "education": 7
+      },
+      "feed_changes": 398,
+      "cumulative_changes": 684,
+      "agent_post_exposures": 4233,
+      "earliest_feed_changed_week": "2026-W13"
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "chronological",
+      "seed": 2,
+      "decision_changes": 21,
+      "changed_decisions_by_type": {
+        "marketing": 18,
+        "education": 2,
+        "meme": 1
+      },
+      "feed_changes": 347,
+      "cumulative_changes": 463,
+      "agent_post_exposures": 4194,
+      "earliest_feed_changed_week": "2026-W13"
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "interest",
+      "seed": 0,
+      "decision_changes": 71,
+      "changed_decisions_by_type": {
+        "marketing": 13,
+        "other": 32,
+        "mourning": 12,
+        "education": 9,
+        "meme": 5
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 795,
+      "agent_post_exposures": 3652,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "interest",
+      "seed": 1,
+      "decision_changes": 67,
+      "changed_decisions_by_type": {
+        "marketing": 12,
+        "other": 29,
+        "mourning": 12,
+        "education": 12,
+        "meme": 2
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 800,
+      "agent_post_exposures": 3649,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "half_stress",
+      "arm": "interest",
+      "seed": 2,
+      "decision_changes": 83,
+      "changed_decisions_by_type": {
+        "marketing": 12,
+        "mourning": 15,
+        "education": 16,
+        "other": 33,
+        "meme": 7
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 799,
+      "agent_post_exposures": 3556,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "random",
+      "seed": 0,
+      "decision_changes": 119,
+      "changed_decisions_by_type": {
+        "marketing": 29,
+        "mourning": 40,
+        "other": 28,
+        "education": 17,
+        "meme": 5
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 800,
+      "agent_post_exposures": 4380,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "random",
+      "seed": 1,
+      "decision_changes": 96,
+      "changed_decisions_by_type": {
+        "marketing": 30,
+        "education": 9,
+        "other": 24,
+        "mourning": 27,
+        "meme": 6
+      },
+      "feed_changes": 800,
+      "cumulative_changes": 698,
+      "agent_post_exposures": 4377,
+      "earliest_feed_changed_week": "2026-W15"
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "random",
+      "seed": 2,
+      "decision_changes": 108,
+      "changed_decisions_by_type": {
+        "education": 21,
+        "marketing": 27,
+        "mourning": 31,
+        "other": 23,
+        "meme": 6
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 799,
+      "agent_post_exposures": 4277,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "chronological",
+      "seed": 0,
+      "decision_changes": 41,
+      "changed_decisions_by_type": {
+        "marketing": 29,
+        "other": 4,
+        "education": 8
+      },
+      "feed_changes": 579,
+      "cumulative_changes": 618,
+      "agent_post_exposures": 5062,
+      "earliest_feed_changed_week": "2026-W13"
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "chronological",
+      "seed": 1,
+      "decision_changes": 51,
+      "changed_decisions_by_type": {
+        "marketing": 32,
+        "mourning": 7,
+        "other": 1,
+        "education": 10,
+        "meme": 1
+      },
+      "feed_changes": 694,
+      "cumulative_changes": 705,
+      "agent_post_exposures": 5108,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "chronological",
+      "seed": 2,
+      "decision_changes": 43,
+      "changed_decisions_by_type": {
+        "marketing": 28,
+        "education": 12,
+        "other": 3
+      },
+      "feed_changes": 644,
+      "cumulative_changes": 649,
+      "agent_post_exposures": 5105,
+      "earliest_feed_changed_week": "2026-W14"
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "interest",
+      "seed": 0,
+      "decision_changes": 73,
+      "changed_decisions_by_type": {
+        "marketing": 28,
+        "education": 13,
+        "other": 26,
+        "mourning": 4,
+        "meme": 2
+      },
+      "feed_changes": 800,
+      "cumulative_changes": 699,
+      "agent_post_exposures": 4134,
+      "earliest_feed_changed_week": "2026-W15"
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "interest",
+      "seed": 1,
+      "decision_changes": 85,
+      "changed_decisions_by_type": {
+        "marketing": 35,
+        "education": 11,
+        "other": 27,
+        "mourning": 5,
+        "meme": 7
+      },
+      "feed_changes": 800,
+      "cumulative_changes": 700,
+      "agent_post_exposures": 4222,
+      "earliest_feed_changed_week": "2026-W15"
+    },
+    {
+      "scale_name": "double_stress",
+      "arm": "interest",
+      "seed": 2,
+      "decision_changes": 101,
+      "changed_decisions_by_type": {
+        "marketing": 30,
+        "education": 26,
+        "mourning": 12,
+        "other": 28,
+        "meme": 5
+      },
+      "feed_changes": 900,
+      "cumulative_changes": 799,
+      "agent_post_exposures": 4065,
+      "earliest_feed_changed_week": "2026-W14"
+    }
+  ],
+  "duplicate_anchor_trajectories": [
+    {
+      "arm": "random",
+      "seed": 0,
+      "sample_population_equals_unique_authors": true
+    },
+    {
+      "arm": "random",
+      "seed": 1,
+      "sample_population_equals_unique_authors": true
+    },
+    {
+      "arm": "random",
+      "seed": 2,
+      "sample_population_equals_unique_authors": true
+    },
+    {
+      "arm": "chronological",
+      "seed": 0,
+      "sample_population_equals_unique_authors": true
+    },
+    {
+      "arm": "chronological",
+      "seed": 1,
+      "sample_population_equals_unique_authors": true
+    },
+    {
+      "arm": "chronological",
+      "seed": 2,
+      "sample_population_equals_unique_authors": true
+    },
+    {
+      "arm": "interest",
+      "seed": 0,
+      "sample_population_equals_unique_authors": true
+    },
+    {
+      "arm": "interest",
+      "seed": 1,
+      "sample_population_equals_unique_authors": true
+    },
+    {
+      "arm": "interest",
+      "seed": 2,
+      "sample_population_equals_unique_authors": true
+    }
+  ],
+  "nonzero_weekly_arm_mean_reversals": {
+    "current": 0,
+    "sample_population": 53,
+    "unique_authors": 53,
+    "half_stress": 67,
+    "double_stress": 58
+  },
+  "note": "Descriptive 3-input-seed conditional content proxy; no confidence interval or universal robustness claim"
+}

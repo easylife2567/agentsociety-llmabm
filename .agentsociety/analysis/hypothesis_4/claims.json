@@ -1,0 +1,29 @@
+{
+  "hypothesis_id": "4",
+  "claims": [
+    {
+      "claim_id": "seed10_c1",
+      "statement": "沿用W19–W22作者供给口径，兴趣与时序均高于随机，新增7seed和合计10seed方向一致。",
+      "mode": "confirmatory",
+      "evidence": "data/seed10_runs.csv: late_meme_posts, late_meme_share; data/seed10_paired_contrasts.csv: interest-random, chronological-random; seed0–9同seed配对",
+      "needs_chart": true,
+      "approved": true
+    },
+    {
+      "claim_id": "seed10_c2",
+      "statement": "当前时序制度在同类所见和跨群体生成玩梗再展示上高于兴趣；供给份额9正1负，不支持兴趣最强。排序与生成帖更快入池、周内回流及候选规则未分离。",
+      "mode": "exploratory",
+      "evidence": "data/seed10_paired_contrasts.csv: chronological-interest; data/seed10_runs.csv: own_share, meme_post_rate, cross_generated_share; custom/envs/curation_arrival_schedule.py:131-173,278-297",
+      "needs_chart": true,
+      "approved": true
+    },
+    {
+      "claim_id": "seed10_c3",
+      "statement": "按用户确认将新旧模型版本视为本研究等价，三臂各10seed合并作为主分析；旧3与新7制度排序一致，分批结果作为补充检查，精确版本标识保留溯源。",
+      "mode": "confirmatory",
+      "evidence": "用户2026-10-24明确采用等价口径；data/analysis_summary.json:model_equivalence; data/seed10_sources.json:response_model_counts; data/seed10_arm_summary.csv:old3,new7,all10",
+      "needs_chart": true,
+      "approved": true
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+--- a/runs/2026-10-19-01-paper-figures/figures_seed10/scripts/validate_delivery.py
++++ b/runs/2026-10-19-01-paper-figures/figures_seed10/scripts/validate_delivery.py
+@@ -1,4 +1,4 @@
+-"""离线核对最终四图的数据身份、可编辑SVG、PDF字体与文字边界。"""
++"""离线核对最终五图的数据身份、可编辑SVG、PDF字体与文字边界。"""
+ from pathlib import Path
+ import argparse,hashlib,json,sys,xml.etree.ElementTree as E
+ from datetime import date
+@@ -8,7 +8,8 @@
+ OUT=Path(__file__).resolve().parents[1]
+ DATA=OUT/'source_data'
+ STEMS=['figure_01_observed_pooled','figure_02_observed_platforms',
+-       'figure_03_simulated_trajectories','figure_04_feedback_exposure']
++       'figure_03_simulated_trajectories','figure_04_feedback_exposure',
++       'figure_05_bdr_ablation']
+ sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+ 
+ def main():
+@@ -35,13 +36,35 @@
+  assert np.allclose(o.groupby(['platform','week']).share.sum(),1)
+  assert date(2026,3,24).isocalendar().week==13
+  summaries=r.groupby('arm')[['late_meme_posts','late_meme_share','own_share','meme_post_rate','cross_generated_share']].mean().to_dict('index')
++ ablation=pd.read_csv(DATA/'ablation_seed10_metrics.csv')
++ assert len(ablation)==100 and not ablation.duplicated(['panel','condition','seed']).any()
++ assert np.allclose(ablation.value,ablation.numerator/ablation.denominator)
++ for letter,condition in zip('abcde',['no_b','no_d','no_r','no_r','no_r']):
++  part=ablation[ablation.panel.eq(letter)]
++  assert len(part)==20 and set(part.condition)=={'full',condition}
++  assert all(set(group.seed)==set(range(10)) for _,group in part.groupby('condition'))
++  if letter in 'abce':assert part.denominator.nunique()==1
++  assert (part.denominator>0).all()
++ ablation_source=json.loads((DATA/'ablation_seed10_sources.json').read_text())
++ for name,digest in ablation_source['output_sha256'].items():assert sha(DATA/name)==digest,name
++ assert len(ablation_source['runs'])==40
++ assert {(item['condition'],item['seed']) for item in ablation_source['runs']}=={(condition,seed) for condition in ['full','no_b','no_d','no_r'] for seed in range(10)}
++ assert len(ablation_source['scientific_comparability'])==30
++ # Full在图3—5复用同一批十个兴趣制度运行，运行级数值应完全对应。
++ full_main=r[r.arm.eq('interest')].set_index('seed')
++ full_share=ablation[ablation.panel.eq('d')&ablation.condition.eq('full')].set_index('seed')
++ assert np.allclose(full_share.loc[full_main.index,'value'],full_main.late_meme_share)
++ full_participation=ablation[ablation.panel.eq('b')&ablation.condition.eq('full')].set_index('seed')
++ assert np.allclose(full_participation.loc[full_main.index,'value'],full_main.meme_post_rate)
++ caption5=(OUT/'CAPTIONS_ZH.md').read_text().split('## 图5\n',1)[1].split('\n## ',1)[0]
++ assert all(label in caption5 for label in ('10个种子','同一种子','黑色短横线','外部帖','生成帖'))
+  records=[]
+  for i,stem in enumerate(STEMS,1):
+   svg=E.parse(OUT/f'{stem}.svg').getroot()
+   texts=[''.join(t.itertext()) for t in svg.findall('.//{http://www.w3.org/2000/svg}text')]
+   assert not svg.findall('.//{http://www.w3.org/2000/svg}image')
+   assert svg.get('preserveAspectRatio')=='xMidYMid meet'
+-  expected=2 if i<3 else 4 if i==3 else 3
++  expected={1:2,2:2,3:4,4:3,5:5}[i]
+   assert all(f'Fig. {i}{chr(97+j)}' in texts for j in range(expected))
+   assert 'viewBox' in svg.attrib
+   if i<4:assert any("W13: Zhang Xuefeng's death (24 Mar 2026)" in t for t in texts)
+@@ -72,7 +95,8 @@
+     'clipped_pdf_text':clipped,'overlapping_pdf_text':overlaps,
+     'outputs':{ext:sha(OUT/f'{stem}.{ext}') for ext in ['svg','pdf','png']}})
+   pdf.close()
+- report={'date':'2026-10-24','primary_figures':[1,2,3,4],'deferred_figure':5,
++ report={'date':'2026-10-26','primary_figures':[1,2,3,4,5],'legacy_ablation_n':3,
++  'ablation_runs':40,'ablation_seeds_per_condition':10,
+   'main_runs':30,'seeds_per_regime':10,'successful_agent_posts':6041,
+   'observed_five_category_posts':46602,'original_observed_records':49930,
+   'summary_by_regime':summaries,'figures':records,'pymupdf':fitz.VersionBind,
+--- a/runs/2026-10-19-01-paper-figures/figures_seed10/scripts/package_delivery.py
++++ b/runs/2026-10-19-01-paper-figures/figures_seed10/scripts/package_delivery.py
+@@ -1,4 +1,4 @@
+-"""生成四图预览、矢量图册、LaTeX片段及不含原图5的交付包。"""
++"""生成五图预览、矢量图册、LaTeX片段及最新十种子图件交付包。"""
+ from pathlib import Path
+ import argparse,hashlib,json,re,sys,zipfile
+ from PIL import Image,ImageDraw,ImageFont,ImageOps
+@@ -19,21 +19,29 @@
+  book.save(OUT/'all_figures.pdf');book.close()
+  tiles=[];font=ImageFont.truetype('/System/Library/Fonts/Supplemental/Arial.ttf',29)
+  for i,stem in enumerate(STEMS,1):
+-  im=Image.open(OUT/f'{stem}.png').convert('RGB');im.thumbnail((1120,1100),Image.Resampling.LANCZOS)
+-  tile=Image.new('RGB',(1200,im.height+86),'white')
++  # 奇数张图的最后一张独占整行，避免五图总览留下空白单元。
++  full_row=len(STEMS)%2==1 and i==len(STEMS)
++  width=2400 if full_row else 1200
++  im=Image.open(OUT/f'{stem}.png').convert('RGB')
++  im.thumbnail((width-80,1500 if full_row else 1100),Image.Resampling.LANCZOS)
++  tile=Image.new('RGB',(width,im.height+86),'white')
+   ImageDraw.Draw(tile).text((40,17),f'Figure {i}',font=font,fill='#17212B')
+-  tile.paste(im,((1200-im.width)//2,66));tiles.append(tile)
+- rowh=[max(t.height for t in tiles[:2]),max(t.height for t in tiles[2:])]
+- sheet=Image.new('RGB',(2400,sum(rowh)+20),'#E8EDF1')
+- for i,tile in enumerate(tiles):
+-  row=i//2;cell=Image.new('RGB',(1200,rowh[row]),'white');cell.paste(tile,(0,0))
+-  sheet.paste(cell,((i%2)*1200,0 if not row else rowh[0]+20))
++  tile.paste(im,((width-im.width)//2,66));tiles.append(tile)
++ rows=[tiles[start:start+2] for start in range(0,len(tiles),2)]
++ rowh=[max(tile.height for tile in row) for row in rows]
++ sheet=Image.new('RGB',(2400,sum(rowh)+20*(len(rows)-1)),'#E8EDF1')
++ y=0
++ for row,height in zip(rows,rowh):
++  for i,tile in enumerate(row):
++   cell=Image.new('RGB',(tile.width,height),'white');cell.paste(tile,(0,0))
++   sheet.paste(cell,(i*1200,y))
++  y+=height+20
+  sheet.save(OUT/'all_figures_preview.png')
+  ImageOps.grayscale(sheet).save(OUT/'qa/all_figures_grayscale.png')
+  caption=(OUT/'CAPTIONS_ZH.md').read_text();tex=[]
+  for i,stem in enumerate(STEMS,1):
+   paragraph=caption.split(f'## 图{i}\n',1)[1].split('\n## ',1)[0].strip().replace('**','')
+-  paragraph=re.sub(rf'^图{i}\s*','',paragraph).replace('%',r'\%')
++  paragraph=re.sub(rf'^图{i}[：:]?\s*','',paragraph).replace('%',r'\%')
+   tex.append('% 中文图注需要支持中文的LaTeX文档。\n'+
+     '\\begin{figure*}[t]\n\\centering\n'+
+     f'\\includegraphics[width=\\textwidth]{{{stem}.pdf}}\n'+
+@@ -45,15 +53,15 @@
+  members=[OUT/f'{s}.{e}' for s in STEMS for e in ('svg','pdf','png')]
+  members += [OUT/n for n in ('CAPTIONS_ZH.md','REVISION_ADVICE.md','latex_includes.tex','all_figures.pdf','all_figures_preview.png')]
+  members += list((OUT/'scripts').glob('*.py'))+list((OUT/'source_data').glob('*.csv'))+list((OUT/'source_data').glob('*.json'))
+- members += [OUT/'qa/delivery_checks.json',OUT/'qa/REVIEW.md']
++ members += [OUT/'qa/delivery_checks.json',OUT/'qa/REVIEW.md',OUT/'qa/fig5_extraction.json']
+  members += list((OUT/'qa').glob('*.build.json'))
+  members += [OUT/'source_data/README.md',OUT/'scripts/README.md']
+- assert not any('figure_05' in str(p) or 'deferred_ablation' in str(p) for p in members)
++ assert not any('deferred_ablation' in str(p) for p in members)
+  archive=OUT/'figures_seed10_delivery.zip'
+  with zipfile.ZipFile(archive,'w',compression=zipfile.ZIP_DEFLATED) as z:
+-  z.writestr('README.md','# ICA2027四图交付：十组主实验\n\n图1、2为现实内容分析；图3、4为每制度10个种子的30次主运行。原图5按用户决定不纳入本包。SVG文字和路径可编辑，PDF同为矢量，PNG只作预览。插入Word请锁定纵横比。\n\nCAPTIONS_ZH.md为四段中文图注；REVISION_ADVICE.md为正文数字与论证修改意见。其涉及旧稿/延后资料的链接只在原run完整目录可用，本包不包含原Word与旧图5。\n\nsource_data保存冻结CSV与来源；scripts/gen_fig1.py—gen_fig4.py按顺序离线重绘，依赖Python、Matplotlib、Pandas、NumPy、Pillow和Times New Roman（缺失时使用字体fallback）。无需重跑仿真。qa保存数据与图件检查。\n')
++  z.writestr('README.md','# ICA2027五图交付：十组主实验与消融\n\n图1、2为现实内容分析；图3、4为每制度10个种子的30次主运行。图5为兴趣制度Full/B=0/D=1/R=1各10种子，配对复用主实验Full。SVG文字和路径可编辑，PDF同为矢量，PNG只作预览。插入Word请锁定纵横比。\n\nCAPTIONS_ZH.md为五段中文图注；REVISION_ADVICE.md为正文数字与论证修改意见。其涉及旧稿/延后资料的链接只在原run完整目录可用，本包不包含原Word与旧图5。\n\nsource_data保存冻结CSV与来源；scripts/gen_fig1.py—gen_fig5.py按顺序离线重绘，依赖Python、Matplotlib、Pandas、NumPy、Pillow和Times New Roman（缺失时使用字体fallback）。无需重跑仿真。qa保存数据与图件检查。\n')
+   for path in members:z.write(path,path.relative_to(OUT))
+- check={'date':'2026-10-24','primary_figures':[1,2,3,4],'excluded_figure':5,
++ check={'date':'2026-10-26','primary_figures':[1,2,3,4,5],'excluded_legacy_ablation_n':3,
+   'word_original_unchanged':True,'word_sha256':manifest['sha256'],
+   'zip_file':archive.name,'zip_sha256':sha(archive),
+   'files':{str(p.relative_to(OUT)):sha(p) for p in members},

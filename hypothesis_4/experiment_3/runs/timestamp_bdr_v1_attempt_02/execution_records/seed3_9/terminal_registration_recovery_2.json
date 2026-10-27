@@ -1,0 +1,14 @@
+{
+  "registered_at": "2026-10-24T16:31:11.325153+00:00",
+  "pipeline_status": "failed",
+  "verification_status": "partial",
+  "hypothesis_id": 4,
+  "experiment_id": 3,
+  "batch_id": "timestamp_bdr_v1_seed3_9",
+  "completed_verified": 16,
+  "automation_id": "b-d-r-seed3-9-30",
+  "automation_action": "deleted",
+  "automation_configuration_backup": "automation_before_terminal_recovery_2.toml",
+  "terminal_evidence": "terminal_check_recovery_2.json",
+  "no_analysis_no_retry_no_resume": true
+}

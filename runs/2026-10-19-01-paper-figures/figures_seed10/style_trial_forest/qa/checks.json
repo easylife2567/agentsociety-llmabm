@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-26",
+  "trial_only": true,
+  "passed": true,
+  "data_unchanged": true,
+  "source_rows": 100,
+  "paired_seeds": 10,
+  "size_mm": [
+    180.0,
+    112.0
+  ],
+  "minimum_font_pt": 8.0,
+  "svg_text_objects": 61,
+  "svg_embedded_images": 0,
+  "pdf_raster_images": 0,
+  "outside_pdf_text": [],
+  "overlapping_pdf_text": [],
+  "mean_values": [
+    {
+      "panel": "a",
+      "condition": "full",
+      "mean": 13.8,
+      "displayed": "13.8"
+    },
+    {
+      "panel": "a",
+      "condition": "no_b",
+      "mean": 5.975,
+      "displayed": "6.0"
+    },
+    {
+      "panel": "b",
+      "condition": "full",
+      "mean": 49.736842105263165,
+      "displayed": "49.7%"
+    },
+    {
+      "panel": "b",
+      "condition": "no_d",
+      "mean": 16.9736842105263,
+      "displayed": "17.0%"
+    },
+    {
+      "panel": "c",
+      "condition": "full",
+      "mean": 19.42,
+      "displayed": "19.4%"
+    },
+    {
+      "panel": "c",
+      "condition": "no_r",
+      "mean": 50.18,
+      "displayed": "50.2%"
+    },
+    {
+      "panel": "d",
+      "condition": "full",
+      "mean": 68.47204814807236,
+      "displayed": "68.5%"
+    },
+    {
+      "panel": "d",
+      "condition": "no_r",
+      "mean": 12.02681007844802,
+      "displayed": "12.0%"
+    },
+    {
+      "panel": "e",
+      "condition": "full",
+      "mean": 20.81481481481483,
+      "displayed": "20.8%"
+    },
+    {
+      "panel": "e",
+      "condition": "no_r",
+      "mean": 7.962962962962964,
+      "displayed": "8.0%"
+    }
+  ],
+  "original_deliverables_unchanged": true,
+  "word_unchanged": true,
+  "existing_package_unchanged": true,
+  "data_sha256": "61d24bcf31ddc99431559b10c00022cc85713483e2e8dedfa395007e5bc26a6b",
+  "outputs": {
+    "svg": "b095d3e2d480bc25451f47246eafe8c00d107cb4efa3d421f1bd259b94819a0e",
+    "pdf": "91624bb1b3f37dc2fa92b023a1b1385815b931da5af394b19c8ae832efda848e",
+    "png": "52beb66692f77301deb4c3005fcd8f8645a99cac20169193c29d08d2be86e79a"
+  },
+  "review": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "xhigh",
+    "result": "pass",
+    "scope": "Figure 5 style-only candidate; actual PNG inspected"
+  }
+}

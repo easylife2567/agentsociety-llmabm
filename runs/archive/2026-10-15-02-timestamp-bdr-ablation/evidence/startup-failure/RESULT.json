@@ -1,0 +1,22 @@
+{
+  "attempt_started_at": "2026-10-15T12:21:11.584547+00:00",
+  "finished_at": "2026-10-15T12:21:21.608297+00:00",
+  "status": "stopped_on_startup_error",
+  "attempted_run": "timestamp_bdr_v1_interest_no_b_s0",
+  "completed_runs": 0,
+  "remaining_conditions_not_started": 8,
+  "agent_workspaces": 0,
+  "agent_actions": 0,
+  "LLM_calls": 0,
+  "extra_requests_consumed": 0,
+  "supervisor_alive": false,
+  "engine_alive": false,
+  "error": "403: Workspace path is not allowed",
+  "root_cause": "官方CLI从run_dir.resolve向上查找custom；持久输出在worktree外，找到主项目custom，而WORKSPACE_PATH已指向隔离worktree。",
+  "sdk_evidence": "agentsociety2/society/cli.py:442-451；失败发生在init_dispatchers之前。",
+  "next_step": "需修正官方CLI的输出目录和模块根解析布局，覆盖该真实入口的离线检查；本次不自动重启、不删除失败输出。",
+  "automatic_restart": false,
+  "budget_extended": false,
+  "timer_id": "b-d-r-30",
+  "timer_status": "PAUSED"
+}

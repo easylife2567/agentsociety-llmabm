@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261016t030806_0f9cc79d88",
+  "operation_id": "run-eda",
+  "operation_contract_version": 1,
+  "execution_key": "c055892c844d7c390c9ebf36b9dea8f0dad9dde998b50de8581d619069016fbc",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "",
+  "input_names": [
+    "data_path",
+    "hypothesis_id",
+    "output_dir",
+    "tables",
+    "type",
+    "workspace"
+  ],
+  "input_fingerprint": "ab51da6687934e4e42702f8f9a674cf7e88b292aed5a126b7bc4963c7d3e263b",
+  "safe_inputs": {
+    "type": "quick-stats",
+    "hypothesis_id": "4"
+  },
+  "preflight": {
+    "operation_id": "run-eda",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {
+      "eda.quick-stats": "available"
+    }
+  },
+  "result_summary": {},
+  "error": null,
+  "declared_artifacts": [
+    "presentation/hypothesis_{id}/data/eda_*"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "80d356b956a86a23476c7b9966d40b684393293897132ddf299b552f91e11dad",
+    "presentation/hypothesis_4/data/eda_representative/eda_quick_stats.md": "c931494f882ca43b6c0ade172223bb45e323df1d1667228a5b89cfd5e0803c40"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 3018,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-16T03:08:06.993622Z",
+  "updated_at": "2026-10-16T03:08:08.078982Z",
+  "completed_at": "2026-10-16T03:08:08.078937Z",
+  "duration_ms": 1085
+}

@@ -1,0 +1,41 @@
+{
+  "archive_date": "2026-10-18",
+  "scope": "Offline document restoration and path migration; no LLM, experiment, Word regeneration or citation audit",
+  "git_baseline": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "worktree_for_this_run": false,
+  "tmp_before_archive": false,
+  "recovered_files": 123,
+  "recovered_bytes": 21090485,
+  "result": "PASS",
+  "empty_directory_restore_sha256": "PASS",
+  "assembled_blocks_unchanged": 74,
+  "assembly_from_formal_frozen_inputs": "PASS",
+  "patch_reapply_from_saved_original": "PASS",
+  "word_packages": [
+    {
+      "file": "悼念退潮之后_完整中文稿.docx",
+      "figures": 5,
+      "tables": 1,
+      "comments": 0,
+      "zip_check": "PASS"
+    },
+    {
+      "file": "悼念退潮之后_完整中文稿_保留批注修订.docx",
+      "figures": 5,
+      "tables": 1,
+      "comments": 39,
+      "zip_check": "PASS"
+    }
+  ],
+  "initial_frozen_inputs_verified": 9,
+  "original_run_document_hashes_verified": 11,
+  "migration": "PASS",
+  "current_navigation_local_links_verified": 215,
+  "formal_deliverable_sha256_verified": 123,
+  "frozen_inputs_after_move": "PASS",
+  "other_worktrees_preserved": true,
+  "old_path_absent": true,
+  "new_path": "runs/archive/2026-10-15-01-ica2027-cat-writing",
+  "historical_paths_preserved": true,
+  "git_commit_or_push": false
+}

@@ -1,0 +1,8 @@
+{
+  "claim_id": "CB",
+  "statement": "在冻结timestamp-interest的3个配对seed中，去B使W19–W22每周成功发布数平均降低7.00帖（差值范围-7.75至-6.25）；晚期玩梗作者份额上升同时其绝对产量下降。",
+  "mode": "confirmatory",
+  "evidence": "paired_summary.csv condition=no_b metric=late_posts_per_week; paired_differences.csv all three seeds; late_posts_by_type",
+  "needs_chart": true,
+  "approved": true
+}

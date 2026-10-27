@@ -1,0 +1,66 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-22T16:46:18.286426+00:00",
+  "supervisor_pid": 83453,
+  "old_supervisor_exited": true,
+  "original_engine_pid_preserved": true,
+  "original_engine_start_time_unchanged": true,
+  "parallel_routes": 2,
+  "completed": 1,
+  "active_runs": [
+    {
+      "run_id": "timestamp_v1_chronological_s3",
+      "pid": 78411,
+      "adopted": true,
+      "steps": 426,
+      "agent_summary": {
+        "agent_files": 100,
+        "decisions": 674,
+        "unique_decisions": 674,
+        "posted": 154,
+        "requests": 154,
+        "action_failures": 0,
+        "response_models": {
+          "deepseek-v4-1-flash-261017": 154
+        }
+      },
+      "engine_start_time": "2026-10-22T16:20:36.995705+00:00"
+    },
+    {
+      "run_id": "timestamp_v1_interest_s3",
+      "pid": 83462,
+      "adopted": false,
+      "steps": 36,
+      "agent_summary": {
+        "agent_files": 100,
+        "decisions": 53,
+        "unique_decisions": 53,
+        "posted": 17,
+        "requests": 17,
+        "action_failures": 0,
+        "response_models": {
+          "deepseek-v4-1-flash-261017": 17
+        }
+      },
+      "engine_start_time": "2026-10-22T16:43:55.655729+00:00"
+    }
+  ],
+  "fixed_plan_fields_unchanged": [
+    "started_at",
+    "max_wall_hours",
+    "decision_opportunities",
+    "extra_requests_limit",
+    "max_agent_body_requests",
+    "model",
+    "expected_response_model",
+    "service_host",
+    "api_path",
+    "runs",
+    "source_sha256"
+  ],
+  "original_frozen_files_verified": 105,
+  "deadline_at": "2026-10-24T15:40:45.950453+00:00",
+  "extra_requests": 0,
+  "extra_limit": 2310,
+  "controller_sha256": "54f37a11ecd5d217a59db231d769a786f1e15a86782e0bce9bf53b07971aa2e5"
+}

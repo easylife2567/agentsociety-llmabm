@@ -1,0 +1,36 @@
+{
+  "hypothesis_id": "4",
+  "reviewer_role": "independent",
+  "verdict": "PASS",
+  "overall_score": 5,
+  "dimensions": {
+    "evidence_traceability": 5,
+    "narrative_clarity": 5,
+    "limitations_honesty": 5,
+    "bilingual_parity": 5,
+    "chart_integration": 4
+  },
+  "blocking_issues": [],
+  "revision_instructions": [],
+  "report_fingerprint": "6b7c9d1d190042311b1ca295",
+  "reviewed_artifact_paths": [
+    "presentation/hypothesis_4/report_zh.md",
+    "presentation/hypothesis_4/report_en.md",
+    "presentation/hypothesis_4/report_zh.html",
+    "presentation/hypothesis_4/report_en.html",
+    "presentation/hypothesis_4/report_outline.json",
+    "presentation/hypothesis_4/artifact_manifest.json",
+    "presentation/hypothesis_4/data/analysis_summary.json",
+    "presentation/hypothesis_4/data/seed10_runs.csv",
+    "presentation/hypothesis_4/data/seed10_weekly.csv",
+    "presentation/hypothesis_4/data/seed10_arm_summary.csv",
+    "presentation/hypothesis_4/data/seed10_paired_contrasts.csv",
+    "presentation/hypothesis_4/data/seed10_sources.json",
+    "presentation/hypothesis_4/assets/chart_01_seed10_trajectories.png",
+    "presentation/hypothesis_4/assets/chart_02_seed10_model_cohorts.png",
+    "presentation/hypothesis_4/assets/chart_03_seed10_paired_seeds.png",
+    ".agentsociety/analysis/hypothesis_4/claims.json",
+    "custom/envs/curation_arrival_schedule.py"
+  ],
+  "completed_at": "2026-10-24T05:51:06.582215Z"
+}

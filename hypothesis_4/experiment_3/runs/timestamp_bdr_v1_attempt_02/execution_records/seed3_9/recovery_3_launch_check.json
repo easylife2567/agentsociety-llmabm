@@ -1,0 +1,65 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-25T16:11:36.738672+00:00",
+  "supervisor_pid": 92491,
+  "supervisor_alive": true,
+  "supervisor_command": "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/run_seed_extension_recovery_3.py --continue-authorized",
+  "completed_runs": 16,
+  "active_runs": [
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s8",
+      "run_dir": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_d_s8_resume1",
+      "child_pid": 92524,
+      "steps": 260,
+      "week": "2026-W16",
+      "actions": 411,
+      "unique_actions": 411,
+      "weeks": 4,
+      "summary": {
+        "agent_files": 100,
+        "decisions": 411,
+        "unique_decisions": 411,
+        "posted": 184,
+        "requests": 184,
+        "action_failures": 0,
+        "response_models": {
+          "deepseek-v4-1-flash-261017": 184
+        },
+        "service_failures": 0,
+        "posted_model_failures": 0
+      },
+      "actual_command": "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python -m agentsociety2.society.cli --config /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s8.json --steps /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/init/steps_s8.yaml --run-dir /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_d_s8_resume1 --experiment-id timestamp_bdr_v1_interest_no_d_s8 --log-file /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_d_s8_resume1/recovery3-engine.log --batch-size 100 --resume"
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s8",
+      "run_dir": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_r_s8_resume1",
+      "child_pid": 92526,
+      "steps": 186,
+      "week": "2026-W14",
+      "actions": 296,
+      "unique_actions": 296,
+      "weeks": 2,
+      "summary": {
+        "agent_files": 100,
+        "decisions": 296,
+        "unique_decisions": 296,
+        "posted": 121,
+        "requests": 121,
+        "action_failures": 0,
+        "response_models": {
+          "deepseek-v4-1-flash-261017": 121
+        },
+        "service_failures": 0,
+        "posted_model_failures": 0
+      },
+      "actual_command": "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python -m agentsociety2.society.cli --config /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s8.json --steps /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/init/steps_s8.yaml --run-dir /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_r_s8_resume1 --experiment-id timestamp_bdr_v1_interest_no_r_s8 --log-file /Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_r_s8_resume1/recovery3-engine.log --batch-size 100 --resume"
+    }
+  ],
+  "body_requests_including_discarded": 4886,
+  "extra_requests": 8,
+  "preserved_original_files_verified": 19381,
+  "frozen_files_verified": 148,
+  "automation_id": "b-d-r-seed3-9-30",
+  "automation_status": "ACTIVE",
+  "no_analysis_performed": true
+}

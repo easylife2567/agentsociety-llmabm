@@ -1,0 +1,46 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261024t054550_2a22e71029",
+  "operation_id": "record-contract",
+  "operation_contract_version": 1,
+  "execution_key": "c0d949c5922b731e8d0cedf650b275ec9d55bb10775a714d5f8b35624c209cfe",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "",
+  "input_names": [
+    "hypothesis_id",
+    "payload",
+    "workspace"
+  ],
+  "input_fingerprint": "a38d88b2a82cf04e2621f11d605515bdc0c5032d0e84b066db46a0ba43ce61bf",
+  "safe_inputs": {
+    "hypothesis_id": "4"
+  },
+  "preflight": {
+    "operation_id": "record-contract",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {},
+  "error": null,
+  "declared_artifacts": [
+    "figure contract in harness state"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "9f160d6fbdaeaad9bf80ce419da48b33b746253866c9ffcdc73e1567d341137d"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 22136,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-24T05:45:50.426444Z",
+  "updated_at": "2026-10-24T05:45:50.439969Z",
+  "completed_at": "2026-10-24T05:45:50.439940Z",
+  "duration_ms": 13
+}

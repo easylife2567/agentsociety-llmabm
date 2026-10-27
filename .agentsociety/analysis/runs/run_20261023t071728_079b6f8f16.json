@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261023t071728_079b6f8f16",
+  "operation_id": "record-phase-artifacts",
+  "operation_contract_version": 1,
+  "execution_key": "a7a1a1f348438d7fc461ccd3bad832bb839a9e7e44bd232191d03d0166ba672a",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4",
+  "experiment_id": "",
+  "input_names": [
+    "artifacts",
+    "hypothesis_id",
+    "phase",
+    "workspace"
+  ],
+  "input_fingerprint": "d517e54f8209de5d0abb524858016df6761de4732f5a03ccf4a097cd25817ad0",
+  "safe_inputs": {
+    "hypothesis_id": "4",
+    "phase": "explore"
+  },
+  "preflight": {
+    "operation_id": "record-phase-artifacts",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "phase": "explore"
+  },
+  "error": null,
+  "declared_artifacts": [
+    "phase artifact registration in harness state"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4/state.yaml": "c129df7d61d1b1be48a9f5294f11e9a05ddf1bc5e010d00a6f9de00ce7b12083",
+    "presentation/hypothesis_4/data/seed10_arm_summary.csv": "619de97839e688ade3b85aae6520e9abe840bf7551763df18506638ff0554f3b",
+    "presentation/hypothesis_4/data/seed10_explore.md": "53c8802163c605bdf1857523902c74546da20ef18cfe952c121768ec1162f44b",
+    "presentation/hypothesis_4/data/seed10_paired_contrasts.csv": "caef842345b7d30f4a7ba328aa1d4016abd9ba942b08d7f4279a915e589f62cc",
+    "presentation/hypothesis_4/data/seed10_quick_stats/eda_quick_stats.md": "7970b01a1ba102b2926df6f6f12cbb660344a2165c256fbdf9fc4e70e5dc8f23",
+    "presentation/hypothesis_4/data/seed10_runs.csv": "4fb2fb651c80cb038b748cf07bd42bce8b93a559bcd2d3b9d369294b9f503ac1",
+    "presentation/hypothesis_4/data/seed10_sources.json": "b81ce40336a2431be04694f457c1e9afb857d062dc326ab2f7d29821f9227905",
+    "presentation/hypothesis_4/data/seed10_weekly.csv": "0153d8f36eaafde3807855270570da34b86bd419faa99b8ca592f08af3686c7d"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 52009,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-23T07:17:28.999492Z",
+  "updated_at": "2026-10-23T07:17:29.013824Z",
+  "completed_at": "2026-10-23T07:17:29.013775Z",
+  "duration_ms": 14
+}

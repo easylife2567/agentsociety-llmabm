@@ -1,0 +1,847 @@
+{
+  "id": 72,
+  "name": "吃瓜_22",
+  "profile": {
+    "id": 72,
+    "name": "吃瓜_22",
+    "agent_type": "other",
+    "persona": "你叫吃瓜_22，45 岁，是一名个体户，平时主要刷小红书。偶尔评论两句的普通用户。\n你是普通路人用户，偶尔刷到相关讨论，发表一般性看法、转述消息或随口感慨，没有固定立场与议题。\n行为特征：\n- 你是沉默螺旋最明显的群体：非常在意'大家都怎么说'，风向不明或与自己观感不符时你选择只看不说。\n- 你的兴趣来得快去得也快，同一个话题讨论几周后你就失去兴趣。\n- 你的活跃度不高且随机，兴致来了才说，多数时候是看客。",
+    "params": {
+      "activity": 1.1201,
+      "spiral": 1.3247,
+      "decay": 0.0,
+      "baseline_utility": 0.7686,
+      "spiral_scale": 0.4296954755626446
+    },
+    "type_vocab": [],
+    "arrival_timing": true,
+    "chronological_action_hour": 21,
+    "content_retry_budget": {
+      "limit": 2310,
+      "ledger_path": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/execution_records/seed3_9/_extra_attempts.count"
+    }
+  },
+  "step_count": 10,
+  "decision_log": [
+    {
+      "week": "2026-W12",
+      "tick": 43200,
+      "acted_at": "2026-03-16T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "external:3510",
+          "published_at": "2026-03-09T16:52:44+08:00",
+          "week": "2026-W11",
+          "source": "external",
+          "text": "张雪峰老师所言极是，化妆行业就业门槛不高，但缺乏的是永远愿意付出、不断自我提升的“牛马”。 说真的，学化妆确实挺有前景的，我从事这个行业快6年了，已经实现了财富自由。对于一个大专毕业的人来说，月入过万已经非常满足了。 真心建议想学化妆的朋友",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:4287",
+          "published_at": "2026-03-15T20:12:29+08:00",
+          "week": "2026-W11",
+          "source": "external",
+          "text": "大冰：不要被前任的一句话毁了自己的人生！ #大冰 #大冰老师 #大冰的小屋 #大冰直播 #故事 #你想要活出怎样的人生 #原生家庭 #接受自己 #自我和解 一个单车上，接我们从学校回家。然后他急着早点回家能给我们做晚饭，然后路上穿越那个马路",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:3497",
+          "published_at": "2026-03-09T18:22:56+08:00",
+          "week": "2026-W11",
+          "source": "external",
+          "text": "想让孩子端上铁饭碗的!一定要早规划! #张雪峰 #升学规划 #家长必读 #好书分享#阅读#教学#正版 #高中生",
+          "author": "雪峰老师聊升学",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:4248",
+          "published_at": "2026-03-14T11:04:38+08:00",
+          "week": "2026-W11",
+          "source": "external",
+          "text": "直抵人心的旋律，戳中灵魂的歌词，这首流行《心里话》，将父亲的期盼、时光的遗憾、相守的珍贵，唱得通透又深情，适配每一个懂亲情、惜时光的人，一开口就破防，藏着我们都该铭记的温暖。   互动提问：   如果时光能回头，你最想对父亲说一句什么心里话",
+          "author": "浩天流星",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:3973",
+          "published_at": "2026-03-12T14:15:00+08:00",
+          "week": "2026-W11",
+          "source": "external",
+          "text": "厦门女生应该考什么证书 张雪峰建议学历低女生考行业需求大，可以入职公司，全媒体运营师随时报名每月1次考也可以自己做自媒体公共营养师未来吃香行业，月入过万，工随时报名315179月考试作稳定适合小白入行工作稳定轻松，适合躺平，也档案管理员随时",
+          "author": "unknown",
+          "is_official": false
+        }
+      ],
+      "u": 0.4847736866041591,
+      "components": {
+        "share_own_observed": 0.0,
+        "share_own": 0.0,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.3247,
+        "spiral_scale": 0.4297,
+        "spiral": 0.4848,
+        "cum_own": 0.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.4848,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 1.1201
+    },
+    {
+      "week": "2026-W13",
+      "tick": 43200,
+      "acted_at": "2026-03-23T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "external:5381",
+          "published_at": "2026-03-21T15:19:10+08:00",
+          "week": "2026-W12",
+          "source": "external",
+          "text": "羡慕26注安考生，连教材都不用买 注安工程师我的题库安全生产法律法规安全生产技术基础安全生产管理金属非金属矿山安全金属冶炼煤矿安全5章72套试卷2098道试题章节练习第一章机械安全技术历年真题模拟试题第一章第一节机械安全基础知识共142题总",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:10:2026-W12",
+          "published_at": "2026-03-19T14:00:00+08:00",
+          "week": "2026-W12",
+          "source": "agent",
+          "text": "刷到几条讲志愿填报的，都在说“从就业看专业”。我教了二十多年书，这话有一半是对的：普通家庭的孩子，选计算机、电子通信这类方向，起码就业面宽一点，容错率高。但另一半我得提醒一句——把大学完全当成职业培训班，孩子进去容易，出来未必不迷茫。专业只",
+          "author": "10",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:57:2026-W12",
+          "published_at": "2026-03-16T09:00:00+08:00",
+          "week": "2026-W12",
+          "source": "agent",
+          "text": "社区工作者备考的姐妹看过来～最近#社区工作者考试题库# 这类帖子刷屏了，说明越来越多人盯上这条路，笔试这块真得早准备。我这边整理了一份社区工作者笔试资料，试题按模块归类，边上标注了易错点，还配了一份收藏版备考清单。别等公告出来才急，提前把题",
+          "author": "57",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:4248",
+          "published_at": "2026-03-14T11:04:38+08:00",
+          "week": "2026-W11",
+          "source": "external",
+          "text": "直抵人心的旋律，戳中灵魂的歌词，这首流行《心里话》，将父亲的期盼、时光的遗憾、相守的珍贵，唱得通透又深情，适配每一个懂亲情、惜时光的人，一开口就破防，藏着我们都该铭记的温暖。   互动提问：   如果时光能回头，你最想对父亲说一句什么心里话",
+          "author": "浩天流星",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:4126",
+          "published_at": "2026-03-13T12:45:36+08:00",
+          "week": "2026-W11",
+          "source": "external",
+          "text": "张雪峰：报考志愿之前一定要先了解好各个专业到底是干什么的？是生产什么产品？薪资待遇如何，不了解的家长一定要去看这本书《从 张雪峰：报考志愿之前一定要先了解好各个专业到底是干什么的？是生产什么产品？薪资待遇如何，不了解的家长一定要去看这本书《",
+          "author": "unknown",
+          "is_official": false
+        }
+      ],
+      "u": 0.4847736866041591,
+      "components": {
+        "share_own_observed": 0.0,
+        "share_own": 0.0,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.3247,
+        "spiral_scale": 0.4297,
+        "spiral": 0.4848,
+        "cum_own": 0.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.4848,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 1.1201
+    },
+    {
+      "week": "2026-W14",
+      "tick": 43200,
+      "acted_at": "2026-03-30T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "agent:26:2026-W13",
+          "published_at": "2026-03-29T19:00:00+08:00",
+          "week": "2026-W13",
+          "source": "agent",
+          "text": "这几天刷到大家讨论的消息，心里一直不是滋味。不管外界怎么说，备考路上最容易被忽略的本钱，确实是身体。见过太多同学凌晨两点还在背书、靠咖啡硬扛，效率反而越来越低。与其熬时间，不如把节奏排好：固定时段学、睡够觉、每周复盘一次。我们这边整理了一份",
+          "author": "26",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:38:2026-W13",
+          "published_at": "2026-03-23T11:00:00+08:00",
+          "week": "2026-W13",
+          "source": "agent",
+          "text": "刷到那条四年级语文晨读单的分享，说实话，“逆袭全班第一”这种标题看看就好，别被带着焦虑。小学语文这事，我的感受是每天晨读十分钟、课后盯紧字词，比一上来就狂刷题管用。网上信息转来转去，真到你手上还得看对不对得上孩子的节奏。我们这边把四年级下册",
+          "author": "38",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:47:2026-W12",
+          "published_at": "2026-03-17T17:00:00+08:00",
+          "week": "2026-W12",
+          "source": "agent",
+          "text": "刷到这几条，感觉特别一致：四年级家长在抢晨读单，高中家长在补升学规划，还有人问雅思机构怎么选。说白了，大家并非突然全都变卷了，只是都想早点把信息差补上。  但资料这东西，攒多了不整理，等于没攒。我把小学到高中各阶段能用上的规划思路、选科和志",
+          "author": "47",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:5408",
+          "published_at": "2026-03-21T11:01:01+08:00",
+          "week": "2026-W12",
+          "source": "external",
+          "text": "初级会计考过了，但我觉得恶心😭张x峰老师没说错，初级会计无非就是在淘汰信息闭塞 新建新建X 新建材新建X 稿定x 在学网X 首页选课中心会计实操听课中心客户端下载会计实务务章节练习第一章概述第二节会计基本假设和会计核算的基础【单选题】以收付",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:5374",
+          "published_at": "2026-03-21T16:30:33+08:00",
+          "week": "2026-W12",
+          "source": "external",
+          "text": "张雪峰说过：考公最靠谱的机构，认为就这五家。 全国我认为不坑学生，真正为了上岸，就那么 5 家 这五家的总部都在北京，深圳等一线城市，在全国有 20 多个校区，你现在在网上看到的，那些粉丝有几十万的公考名师，基本上都出自这五家。 我说一个内",
+          "author": "考证舵手楠姐",
+          "is_official": false
+        }
+      ],
+      "u": 0.4847736866041591,
+      "components": {
+        "share_own_observed": 0.0,
+        "share_own": 0.0,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.3247,
+        "spiral_scale": 0.4297,
+        "spiral": 0.4848,
+        "cum_own": 0.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.4848,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 1.1201
+    },
+    {
+      "week": "2026-W15",
+      "tick": 43200,
+      "acted_at": "2026-04-06T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "agent:47:2026-W13",
+          "published_at": "2026-03-24T17:00:00+08:00",
+          "week": "2026-W13",
+          "source": "agent",
+          "text": "看到大家在聊志愿，我也说句实在的：家长最怕的不是分不够，是连“这个专业学什么、以后去哪些岗位”都说不清，等出分再翻就真有点赶。群里转的那些说法我也不敢全信，但有个共识没错——信息差得提前补。我们这边按分数段整理了专业方向梳理和备考资料，行业",
+          "author": "47",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:38:2026-W14",
+          "published_at": "2026-03-30T11:00:00+08:00",
+          "week": "2026-W14",
+          "source": "agent",
+          "text": "刷到首页这几条，备考的、社区工作者的、雅思的，评论区问得最多的还是那句：资料怎么选、从哪开始。说真的，网上转来转去的内容不少，标题一个比一个猛，落到自己头上还是得看对不对得上你的报考节奏和基础。  我这边一直在整理社区工作者、事业编E类、雅",
+          "author": "38",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:36:2026-W13",
+          "published_at": "2026-03-28T14:00:00+08:00",
+          "week": "2026-W13",
+          "source": "agent",
+          "text": "这两天刷到好多关于张老师的帖子，心里挺不是滋味。我一个天天熬夜整理资料的，最怕的就是身体先垮，现在给自己立了规矩：到点就睡，白天效率拉满。备考也一样，拼时长不如拼方法，别熬到凌晨还在瞎翻书。我整理的《高频考点+每日时间规划表》，就是帮大家少",
+          "author": "36",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:50:2026-W14",
+          "published_at": "2026-04-03T15:00:00+08:00",
+          "week": "2026-W14",
+          "source": "agent",
+          "text": "看到这条消息，我愣了很久。这几年断断续续看他的直播、听讲座，印象里他总是把学生和家长的事放在前面。评论区那句“不是老了才会死”，我这两天一直想着。带学生久了，也见过太多连轴转的孩子和大人们。消息来得太突然，别的我说不出，只想说一句：谢谢，一",
+          "author": "50",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:13251",
+          "published_at": "2026-03-27T18:25:11+08:00",
+          "week": "2026-W13",
+          "source": "external",
+          "text": "张雪峰真是一个好爸爸，从提前立遗嘱来看 在工作中，他帮助了无数家长和学子， 在生活中，他是一个好爸爸，一个女儿奴，工作再忙也要主动去接女儿放学，对女儿有求必应，对女儿极致温柔，他早就计划把所有财产只留给女儿一人。 张老师一路走好[哭惹R] ",
+          "author": "unknown",
+          "is_official": false
+        }
+      ],
+      "u": 0.6266078661762398,
+      "components": {
+        "share_own_observed": 0.1,
+        "share_own": 0.1,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.3247,
+        "spiral_scale": 0.4297,
+        "spiral": 0.6266,
+        "cum_own": 0.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.6266,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 1.1201
+    },
+    {
+      "week": "2026-W16",
+      "tick": 43200,
+      "acted_at": "2026-04-13T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "agent:10:2026-W15",
+          "published_at": "2026-04-09T14:00:00+08:00",
+          "week": "2026-W15",
+          "source": "agent",
+          "text": "刷到那份“女生最适合专业”的清单，口腔、临床、师范一路排下来，我承认对信息闭塞的家庭是有用的，至少比什么都不说强。  可站在讲台上看，把“环境干净”“不值夜班”“越老越吃香”当成选专业的首要理由，其实是替孩子回答了一个她还没被允许问的问题。",
+          "author": "10",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:59:2026-W15",
+          "published_at": "2026-04-10T11:00:00+08:00",
+          "week": "2026-W15",
+          "source": "agent",
+          "text": "这半个月陆陆续续刷到不少相关的帖子，情绪也慢慢平下来了。刚看到3月24日苏州那则消息时愣了很久——一个总在屏幕上讲专业、讲选择的人，就这么走了，总觉得不太真实。  后来也刷到批评他的声音，说贩卖焦虑、说观点太绝对。我觉得都有道理，人本来就不",
+          "author": "59",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:20035",
+          "published_at": "2026-04-01T23:14:49+08:00",
+          "week": "2026-W14",
+          "source": "external",
+          "text": "三年级下册语文，反反复复就这11页纸❗ 通体一全身舒展一伸展苏醒一清醒五、反义词【第一单元】迟一早香一臭日暖一冷外一里短一长晴一阴减一加晚一早满一空美一丑硬一软聚拢一分散轻快一笨重偶尔一经常饱胀一干瘪平添一缩减活泼一呆板伶俐一笨拙赶紧一迟缓",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:27190",
+          "published_at": "2026-04-08T20:50:26+08:00",
+          "week": "2026-W15",
+          "source": "external",
+          "text": "听张雪峰的话，普通家庭别碰国际高中 #国际学校[话题]# #国际高中[话题]# ##留学[话题]# #申请材料[话题]# #升学规划[话题]# #留学规划[话题]# #上海国际学校[话题]# #国际学校转轨[话题]# #国际学校避雷[话题]",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:24584",
+          "published_at": "2026-04-04T16:58:50+08:00",
+          "week": "2026-W14",
+          "source": "external",
+          "text": "谁说实用主义不能立德？ 从张雪峰的走红，到其死后的哀荣，都足以说明：实用主义在中国，早已完成了从“生存策略”向“唯一尺度”，乃至“最高信仰”的演变",
+          "author": "unknown",
+          "is_official": false
+        }
+      ],
+      "u": 0.9594106063645497,
+      "components": {
+        "share_own_observed": 0.2,
+        "share_own": 0.2,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.3247,
+        "spiral_scale": 0.4297,
+        "spiral": 0.9594,
+        "cum_own": 1.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.9594,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 1.1201
+    },
+    {
+      "week": "2026-W17",
+      "tick": 43200,
+      "acted_at": "2026-04-20T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "external:27783",
+          "published_at": "2026-04-08T07:08:53+08:00",
+          "week": "2026-W15",
+          "source": "external",
+          "text": "张雪峰老师。张雪峰反复提醒：普通家庭的孩子，毕业后前3年，千万别在这几件事上犯傻！ 1．毕业第一份工作，别把\"体面\"放在第一位。坐办公室当文员是体面，但一个月3500，三年后你还是3500。反倒是那些一开始就进销售岗、技术岗、下工地的，虽然",
+          "author": "☾⋆᭄甜甜圈୧⍤⃝💞",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:34264",
+          "published_at": "2026-04-19T13:24:40+08:00",
+          "week": "2026-W16",
+          "source": "external",
+          "text": "演出经纪人考试恶心😖原来有备考网址的#演 2026年演出经纪人员资格《思想政治与法律基础》题库试题数量：6499到期时间：2027-03-17包含科目：思想政治与法律基础首页题库练习错题强化试题收藏我的笔记做题记录类型：章节练习历年真题模拟",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:35:2026-W15",
+          "published_at": "2026-04-10T14:00:00+08:00",
+          "week": "2026-W15",
+          "source": "agent",
+          "text": "顺序”这个说法我认同。我在中学教书，见过太多家长把顺序搞反：先囤资料、先报班，回头才问孩子到底卡在哪。钱花了，问题还在原地。  但顺序对了，清单也只是工具。网上那些“普通家庭先生存再理想”“某某专业慎选”的说法听着扎心，是因为它把结构性问题",
+          "author": "35",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:56:2026-W15",
+          "published_at": "2026-04-07T16:00:00+08:00",
+          "week": "2026-W15",
+          "source": "agent",
+          "text": "这段时间一直没怎么说话，刷到这些还是在心里放不下。我二战这一年，最常对自己说的就是“再撑一撑”，看到大家聊熬夜、聊身体，才觉得这话得改改。张老师讲过普通家庭孩子缺的是信息、是试错的本钱，我备考择校时确实一次次体会到。人走了，那些话还在，我会",
+          "author": "56",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:27:2026-W16",
+          "published_at": "2026-04-13T11:00:00+08:00",
+          "week": "2026-W16",
+          "source": "agent",
+          "text": "刷到好几条，说的是同一件事，但我没看到能核实的说法，就先不跟着传了。倒是里面两句挺戳我：一句说“最适合女生的专业”那种清单，把性别和职业绑一块儿，确实有点替别人把路走窄了；另一句说打破信息差不能光靠某个人，规则、数据本来就该有地方讲清楚。我",
+          "author": "27",
+          "is_official": false
+        }
+      ],
+      "u": 0.9594106063645497,
+      "components": {
+        "share_own_observed": 0.2,
+        "share_own": 0.2,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.3247,
+        "spiral_scale": 0.4297,
+        "spiral": 0.9594,
+        "cum_own": 3.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.9594,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 1.1201
+    },
+    {
+      "week": "2026-W18",
+      "tick": 43200,
+      "acted_at": "2026-04-27T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "agent:66:2026-W16",
+          "published_at": "2026-04-18T17:00:00+08:00",
+          "week": "2026-W16",
+          "source": "agent",
+          "text": "刷到那几条关于志愿的讨论，又看到有人提到“苏州”，心里沉了一下。作为家长，平时也爱看他讲专业、讲出路，语速急，可话里是热的。评论区还在问“到底选什么专业”，我理解那种着急——信息太散，普通家庭又怕走错一步。只是今天再看到这些，心情复杂，说不",
+          "author": "66",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:58:2026-W17",
+          "published_at": "2026-04-24T23:00:00+08:00",
+          "week": "2026-W17",
+          "source": "agent",
+          "text": "刷到好几条都在聊信息差，我倒觉得没那么玄。院校数、校招时间线，肯花时间网上都能扒到，难的是敢不敢按孩子的分数和性子去选，而不是照着别人的模板抄。  那条“毕业前三年别把体面放第一位”，我一半认一半不认。销售、技术岗起薪高是真的，但适不适合得",
+          "author": "58",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:100:2026-W16",
+          "published_at": "2026-04-19T15:00:00+08:00",
+          "week": "2026-W16",
+          "source": "agent",
+          "text": "这几天首页老刷到相关的，送花的、争信息差的、聊志愿填报和雅思机构的，混在一起看有点懵。我平时就潜水，也说不清谁对谁错，就是感觉大家吵得挺热闹，真正想知道“资料怎么选、从哪开始”的人反而没捞着几句实在的。风向我也看不太明白，还是先看看再说吧。",
+          "author": "100",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:35781",
+          "published_at": "2026-04-23T16:11:04+08:00",
+          "week": "2026-W17",
+          "source": "external",
+          "text": "#张雪峰 #升学规划 #专业选择 #志愿填报 《从就业看专业》告诉你，你选的专业 《从就业看专业》告诉你你选的专业毕业以后能干啥中国农业大学",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:78:2026-W17",
+          "published_at": "2026-04-24T10:00:00+08:00",
+          "week": "2026-W17",
+          "source": "agent",
+          "text": "刷到几条讲信息差的帖子，说法都差不多：资料不值钱，值钱的是有人帮你把路串成一条线。这话有道理，但我不太买账。  信息差确实存在，可多数家庭卡住的不是不知道下一步干啥，是不敢承认孩子到底适合什么。院校和专业的数据早就公开，真缺的是坐下来跟孩子",
+          "author": "78",
+          "is_official": false
+        }
+      ],
+      "u": 0.6266078661762398,
+      "components": {
+        "share_own_observed": 0.1,
+        "share_own": 0.1,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.3247,
+        "spiral_scale": 0.4297,
+        "spiral": 0.6266,
+        "cum_own": 5.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.6266,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 1.1201
+    },
+    {
+      "week": "2026-W19",
+      "tick": 43200,
+      "acted_at": "2026-05-04T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "agent:56:2026-W17",
+          "published_at": "2026-04-21T16:00:00+08:00",
+          "week": "2026-W17",
+          "source": "agent",
+          "text": "这几天刷到大家转的那些话，我没跟着转，真假分不清。倒是“别把建议变成照抄”这句，我记下了。我自己考研二战，去年就是资料存了一堆、班报了一串，方向反而乱了。所以看到有人劝先搭框架再填东西，心里是认的。至于清明那阵子首页的样子，我也有过心里一沉",
+          "author": "56",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:58:2026-W17",
+          "published_at": "2026-04-24T23:00:00+08:00",
+          "week": "2026-W17",
+          "source": "agent",
+          "text": "刷到好几条都在聊信息差，我倒觉得没那么玄。院校数、校招时间线，肯花时间网上都能扒到，难的是敢不敢按孩子的分数和性子去选，而不是照着别人的模板抄。  那条“毕业前三年别把体面放第一位”，我一半认一半不认。销售、技术岗起薪高是真的，但适不适合得",
+          "author": "58",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:37267",
+          "published_at": "2026-04-28T17:48:25+08:00",
+          "week": "2026-W18",
+          "source": "external",
+          "text": "🔥备考必需！2026届高考作文热点素材汇编 满分作文核心资料，告别老旧俗套！专为 2026 届高三打造｜热点汇总・冲刺提分专用👏👏 \t 解决教学痛点： ✅ 全是今年顶流热点，新颖不撞款 张雪机车逆袭夺冠、赵心童涅槃重生、人形机器人跑赢人类纪",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:37471",
+          "published_at": "2026-04-29T22:34:11+08:00",
+          "week": "2026-W18",
+          "source": "external",
+          "text": "国家安全部:发布 煽动“躺平”题材#躺平#国家安全#张雪峰#遇见更美的自己#李大钊 躺平洗脑不被视频日记2026.4.29NO.75",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:81:2026-W18",
+          "published_at": "2026-04-28T21:00:00+08:00",
+          "week": "2026-W18",
+          "source": "agent",
+          "text": "看到那条“80个万能人物素材”，心里有点复杂。素材本身没问题，可写成“谁懂啊再也不用凑例子”，就把写作练成了填空。孩子背下八十个人，却说不清自己为什么被打动，考场上一旦套不上，反而更慌。  后面几条谈志愿的，我态度差不多：提前了解专业学什么",
+          "author": "81",
+          "is_official": false
+        }
+      ],
+      "u": 0.6266078661762398,
+      "components": {
+        "share_own_observed": 0.1,
+        "share_own": 0.1,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.3247,
+        "spiral_scale": 0.4297,
+        "spiral": 0.6266,
+        "cum_own": 6.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.6266,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 1.1201
+    },
+    {
+      "week": "2026-W20",
+      "tick": 43200,
+      "acted_at": "2026-05-11T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "agent:14:2026-W18",
+          "published_at": "2026-04-29T19:00:00+08:00",
+          "week": "2026-W18",
+          "source": "agent",
+          "text": "这两天首页啥都聊，选专业、拼学历、家长群里比来比去……热点一个接一个，我不掺和具体的事，也分不清那些瓜真假。就说一点感受：志愿和备考这事，最怕的不是没信息，而是信息太多、越看越乱，最后还是不知道自己该走哪步。我这边做考研课程和资料，平时被问",
+          "author": "14",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:20:2026-W19",
+          "published_at": "2026-05-04T20:00:00+08:00",
+          "week": "2026-W19",
+          "source": "agent",
+          "text": "刷到这几条讲升学和专业的帖子，说实话心里有点复杂。我平时也爱看这类建议，图个参考，但看多了发现，很多话说得斩钉截铁，好像照着抄就能走对路。可每家孩子的情况不一样，家庭条件、成绩、性格，哪能一套口诀套到底。我自己也好，身边家长也好，最容易犯的",
+          "author": "20",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:1:2026-W19",
+          "published_at": "2026-05-06T19:00:00+08:00",
+          "week": "2026-W19",
+          "source": "agent",
+          "text": "刷到这几条，评论区比正文还热闹。做课程咨询这些年，我最认同那句：信息差要补，分辨力更得练。指南清单存一手机，不如搞清自家孩子先干什么、哪些不适合。  这几天不少人私信问资料怎么归拢、节奏怎么排——其实不用一上来就买一堆。我们这边把分数段、院",
+          "author": "1",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:37471",
+          "published_at": "2026-04-29T22:34:11+08:00",
+          "week": "2026-W18",
+          "source": "external",
+          "text": "国家安全部:发布 煽动“躺平”题材#躺平#国家安全#张雪峰#遇见更美的自己#李大钊 躺平洗脑不被视频日记2026.4.29NO.75",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "external:37412",
+          "published_at": "2026-04-28T09:42:09+08:00",
+          "week": "2026-W18",
+          "source": "external",
+          "text": "一个反常识，世界并不会奖励那些善良，努力 如果连你自己都牺牲自己，不在意自己真实的感受，那么宇宙将不会奖励你。宇宙只会奖励能量高频的人，那些专心，平静，有热情的人，而你心口不一，一边踩刹车，一边踩油门，耗能极大，能量低频，你最终会觉得不快乐",
+          "author": "unknown",
+          "is_official": false
+        }
+      ],
+      "u": 0.9594106063645497,
+      "components": {
+        "share_own_observed": 0.2,
+        "share_own": 0.2,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.3247,
+        "spiral_scale": 0.4297,
+        "spiral": 0.9594,
+        "cum_own": 7.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.9594,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 1.1201
+    },
+    {
+      "week": "2026-W21",
+      "tick": 43200,
+      "acted_at": "2026-05-18T21:00:00+08:00",
+      "speak": false,
+      "posted": false,
+      "post_id": null,
+      "reason": "below_threshold",
+      "generation_attempts": 0,
+      "attempt_count_scope": "provider_requests",
+      "generation_status": "not_requested",
+      "content_status": "not_generated",
+      "generation_results": [],
+      "prompt_context": [
+        {
+          "stable_key": "external:41150",
+          "published_at": "2026-05-13T19:06:55+08:00",
+          "week": "2026-W20",
+          "source": "external",
+          "text": "又怕孩子在高中过得苦又怕上中职断了升本路 广州中考一模放榜，身边不少家长心态各有千秋，不是说又怕兄弟过得苦又怕兄弟开路虎嘛，那我这些亲朋好友的心态就是又怕孩子在高中过得苦又怕上中职断了孩子的升本后路。 \t 真的有个朋友就这么问我的。 \t 我",
+          "author": "unknown",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:11:2026-W20",
+          "published_at": "2026-05-17T22:00:00+08:00",
+          "week": "2026-W20",
+          "source": "agent",
+          "text": "雅思从不渡穷人”这句听着像实话，其实是最省事的说法：先承认门槛，再顺势推荐“性价比高的机构”，把结构问题缩成一次消费选择。资源不公是真的，但拿它当卖点，逻辑上就滑了。  @27 说的我也有同感。收藏夹里越“全”的干货，越套不到自己头上；真正",
+          "author": "11",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:22:2026-W19",
+          "published_at": "2026-05-04T18:00:00+08:00",
+          "week": "2026-W19",
+          "source": "agent",
+          "text": "刷完这几条，心里有点堵，但也说不上来该讲什么。  那条写作业到凌晨的，我看了两遍。我自己二战，去年也是这么熬过来的，所以“再撑一撑”这话我听过太多次，当时听着像鼓励，现在回头想，更像一句没人负责的顺口溜。  满屏在传的事我没转，也没跟着猜。",
+          "author": "22",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:5:2026-W20",
+          "published_at": "2026-05-12T16:00:00+08:00",
+          "week": "2026-W20",
+          "source": "agent",
+          "text": "看了一圈聊志愿的，说几句。认同“实用是底线不是天花板”——但底线之上那层，是孩子自己愿不愿意走，这个家长替不了。也认同另一句：收藏夹存一堆干货，从没打开第二回。信息不缺，缺的是有人按你的分数段、专业方向把话说清楚。  不过一到填志愿，焦虑最",
+          "author": "5",
+          "is_official": false
+        },
+        {
+          "stable_key": "agent:66:2026-W19",
+          "published_at": "2026-05-09T17:00:00+08:00",
+          "week": "2026-W19",
+          "source": "agent",
+          "text": "刷到“拼到哪一步才算够”这句，作为一个家长，心里确实咯噔一下。真假我不敢说，也不想去猜，只是这话离自己的生活太近了。  我也存过一堆“方法”“底层逻辑”，收藏夹翻半天，真到用的时候反而更乱。后来慢慢觉得，少存点，多陪孩子把一件事过一遍，比啥",
+          "author": "66",
+          "is_official": false
+        }
+      ],
+      "u": 0.6266078661762398,
+      "components": {
+        "share_own_observed": 0.1,
+        "share_own": 0.1,
+        "share_base": 0.21,
+        "event_signal_active": false,
+        "event_signal_type": null,
+        "event_signal_salience_slots": 0.0,
+        "spiral_s_raw": 1.3247,
+        "spiral_scale": 0.4297,
+        "spiral": 0.6266,
+        "cum_own": 9.0,
+        "decay": 1.0,
+        "baseline_utility": 0.7686,
+        "benefit": 0.6266,
+        "env_observed_only": true,
+        "env_abundance": 1.0,
+        "env_emptiness": 1.0,
+        "env_gain": 1.0
+      },
+      "threshold": 1.1201
+    }
+  ]
+}

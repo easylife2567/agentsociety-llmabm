@@ -1,0 +1,29 @@
+{
+  "batch": "hypothesis_4/experiment_2/runs/timestamp_v1",
+  "checks": {
+    "weekly_rows": 495,
+    "run_late_rows": 9,
+    "run_exposure_rows": 9,
+    "successful_posts": 1818,
+    "weekly_type_comparisons": 495,
+    "all_passed": true
+  },
+  "arm_mean_exposure": {
+    "random": {
+      "own_share": 0.03201754385964912,
+      "meme_post_rate": 0.039473684210526314,
+      "cross_generated_share": 0.0011316872427983538
+    },
+    "chronological": {
+      "own_share": 0.4201754385964912,
+      "meme_post_rate": 0.5657894736842105,
+      "cross_generated_share": 0.2273662551440329
+    },
+    "interest": {
+      "own_share": 0.2517543859649123,
+      "meme_post_rate": 0.4780701754385965,
+      "cross_generated_share": 0.06841563786008231
+    }
+  },
+  "source_manifest": "paper/figures/source_data/simulation_sources.json"
+}

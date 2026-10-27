@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-13",
+  "outcome": "已采用（timestamp设计与保留发言的内容修复）",
+  "old_path": "runs/2026-09-29-02-injection-timing",
+  "new_path": "runs/archive/2026-09-29-02-injection-timing",
+  "active_run_preserved": "2026-10-09-01-activation-calibration",
+  "no_llm_runs": true,
+  "no_commit": true,
+  "adaptation_baseline": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "code_after_sha256": {
+    "runs/archive/2026-09-29-02-injection-timing/2026-09-30-12-timestamp-stacked-area.py": "2c94b3a678e742e6b4fc5dcaee7fa7f414521cb53dde38d76adf88eb620d3d28",
+    "runs/archive/2026-09-29-02-injection-timing/2026-09-30-11-knowledge-coverage.py": "8fb7e0dcb86ab59638b0307b0bf15cdceaf3061b5dd509b0d71d8d198a56e599",
+    "runs/archive/2026-09-29-02-injection-timing/2026-10-07-06-content-overview.py": "943ad5431ee5a8f1880ec020d7aba916e202e657ab2e4d2921d00d6f35fd6b8e",
+    "runs/archive/2026-09-29-02-injection-timing/2026-10-06-02-plot-numerical-expectation.py": "53ed9fb8a592ec72399f7dc60a82135bd98fbf90836026d77ef21c48b729bd30",
+    "runs/archive/2026-09-29-02-injection-timing/2026-09-30-02-audit.py": "0eba77d04953a123e6873922bd6ee652bd9bf602d9ed4d47c9a62b70e202fa85",
+    "runs/archive/2026-09-29-02-injection-timing/2026-09-30-03-run-batch.py": "516028bc3028abd62aba2ffc4482598632fff3c8948c2cd6d54541f065daab91",
+    "runs/archive/2026-09-29-02-injection-timing/2026-09-30-01-generate-configs.py": "0bcaa5d089a869b281d2b2b71b15ed0fb0cc6c7b3a83f17235157e8aff4d33b5",
+    "runs/archive/2026-09-29-02-injection-timing/2026-10-07-03-content-numerical-expectation.py": "45a4b2f86259b2d8fda107d98a70b130aeb5b4b4ab9c2a856a53defa55282a7b",
+    "runs/archive/2026-09-29-02-injection-timing/2026-09-30-09-plot.py": "c81b292115d9e1a12de774650f3d93fda05c68c7f98514628e1e3acfab2138f6",
+    "runs/archive/2026-09-29-02-injection-timing/2026-10-06-01-numerical-check.py": "7b182be478bdb356a1f0d2b5189fbf34f710b0196a6a501276c4813e1d73570b",
+    "runs/archive/2026-09-29-02-injection-timing/2026-09-30-04-analyze.py": "a92622570a798c0bd3f349043ae65aea4eb6993910d818081b09cec094cbfa0b"
+  },
+  "restoration_inputs_sha256": "67af0c120540f418b51e144082fa5b8ebda1fe28bc820ab2a7c6a1d46199dc8c",
+  "checks": {
+    "original_files_preserved": true,
+    "current_run_unchanged": true,
+    "archive_path_patch_reapplication_matches": true,
+    "post_archive_tests": 18,
+    "post_archive_tests_passed": true,
+    "network_attempts": 0,
+    "navigation_links_valid": true,
+    "git_diff_check_passed": true,
+    "staging_empty": true
+  },
+  "python_version": "3.13.9"
+}

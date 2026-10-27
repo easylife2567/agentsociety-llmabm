@@ -1,0 +1,82 @@
+{
+  "batch_id": "cuc_model_v1",
+  "execution_authorized": true,
+  "authorization": "2026-10-16用户明确要求用指定服务跑100人三种策展各一次，仅检验模型服务敏感性",
+  "baseline_commit": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "model": "cuc/deepseek",
+  "api_base": "https://openai.cuc.edu.cn/v1",
+  "population": 100,
+  "weeks": 11,
+  "repeats_per_algorithm": 1,
+  "api_seed_sent": false,
+  "explicit_environment_seed": false,
+  "effective_environment_default_seed": 0,
+  "input_selection": "旧主批s0的冻结人口、样本、行动表；不重抽，不做seed矩阵",
+  "decision_opportunities": 3300,
+  "extra_requests_limit": 330,
+  "formal_requests_upper_bound": 3630,
+  "service_check_requests": 1,
+  "max_wall_hours": 12,
+  "runs": [
+    {
+      "run_id": "cuc_model_v1_random",
+      "algorithm": "random",
+      "config": "hypothesis_4/experiment_4/init/configs/cuc_model_v1_random.json",
+      "steps": "hypothesis_4/experiment_4/init/steps.yaml",
+      "run_dir": "hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_random",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11,
+      "old_reference": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_random_s0"
+    },
+    {
+      "run_id": "cuc_model_v1_chronological",
+      "algorithm": "chronological",
+      "config": "hypothesis_4/experiment_4/init/configs/cuc_model_v1_chronological.json",
+      "steps": "hypothesis_4/experiment_4/init/steps.yaml",
+      "run_dir": "hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_chronological",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11,
+      "old_reference": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s0"
+    },
+    {
+      "run_id": "cuc_model_v1_interest",
+      "algorithm": "interest",
+      "config": "hypothesis_4/experiment_4/init/configs/cuc_model_v1_interest.json",
+      "steps": "hypothesis_4/experiment_4/init/steps.yaml",
+      "run_dir": "hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_interest",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11,
+      "old_reference": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s0"
+    }
+  ],
+  "stop_policy": "引擎失败、动作失败或完成一臂后发现持续服务失败即停止；不自动重启或补跑",
+  "source_sha256": {
+    "custom/agents/curation_arrival_action.py": "d494fd814e2467ec3b69ce430659cc00043b763c2886b3cf9cd389cebb5636aa",
+    "custom/agents/curation_content_quality.py": "4e0903091e14db09c379ce65cbe665abd57aae2af0aa66b5aeca38d35ca1045f",
+    "custom/agents/curation_discourse_agent.py": "ac08888fdbd5000abb2526da83a7a9363e4b3349623f459213241b721c2e4072",
+    "custom/agents/curation_personas.py": "0642fe6890a025abf956f7cf67fb25d390db8ff9bda542c71ee687a65db5c9f9",
+    "custom/envs/curation_arrival_schedule.py": "e422e73bc43ff699e20cbf640e06a14430d2e3493001fbe62b4eb182d9de488d",
+    "custom/envs/curation_assets/build_assets.py": "6469632d0fae168ac7eebc63882bdf32f473b95b8f94105e4fe86cbef4e5a81b",
+    "custom/envs/curation_assets/injection_posts.json": "6240360f1a792b98208d1999f4d064359ad44363f5aa261a5a78c5700b166b03",
+    "custom/envs/curation_assets/vocabs.json": "7db323585fdc98594da4a4b97e49ce5d3d1654c89839da7c2a754c7515b15e69",
+    "custom/envs/curation_dynamics_space.py": "794f19b45dfdd6548246feb49b86b4b557a0c9c637a019549025f4663e2fa160",
+    "custom/envs/curation_mechanisms.py": "1acbc7deafbd61c0e7d04f81673ad1ef0497acd8ef308b0a6a1b26a558a4baec"
+  },
+  "payload_sha256": {
+    "configs/cuc_model_v1_chronological.json": "4afcbad0953d95cf1513a7e8a1bc788a3073deff3250c4301e5a0c8598671f51",
+    "configs/cuc_model_v1_interest.json": "16ea0875a03dcac5ca0305626233836f40e522573bb058d68fe0ff313167c543",
+    "configs/cuc_model_v1_random.json": "7db5f210d8e70afbd249459b0b0ae7a0ee2b3f033c61eec81803445d8f7278b6",
+    "init_config.json": "16ea0875a03dcac5ca0305626233836f40e522573bb058d68fe0ff313167c543",
+    "inputs/action_schedule_s0.json": "a864f4d09e9e291446c24618a3e980939d8c16f964f73d07d3f76667081f8ccf",
+    "inputs/initial_sample_weekly_lag_s0.json": "8915813f6b4258c03a137e3c8b0e27dc763a724bd0947b3a0190ee1cc04fe6bf",
+    "inputs/injection_sample_s0.json": "5b0f9efedffac94ba2b3a8a639aa8b0b3c0ef2bb2c1f31a8377ac76ec29608d5",
+    "inputs/population_s0.json": "8debff3a0349a5cc5d732b7e494f71c312fa7e22aa9458c6a80c7980ffe35d65",
+    "references/chronological.json": "c647d5a56be35ad529422f12c8e6e55a9d6b4e8efd5f382473cdc5de23b854a9",
+    "references/interest.json": "68afdd91e46e6d4cde1eee1f7696b004e1ae4ddce292fd8dbb43706eb6d74a37",
+    "references/random.json": "5036a7d253cc13809f96320b78ecef8529258b80c53efe7282a0ab2c96280213",
+    "steps.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8"
+  }
+}

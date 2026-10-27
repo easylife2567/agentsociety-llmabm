@@ -1,0 +1,53 @@
+{
+  "source": "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/data/weekly_metrics.csv",
+  "source_sha256": "259f1f42eedc927488b0b0b14182bc542602d09cca3daee3e246266b56067820",
+  "rows": 33,
+  "weekly_identity_checked": "posted_all == agent_supply == sum(posted_five_types)",
+  "totals": {
+    "random": 176,
+    "chronological": 210,
+    "interest": 217
+  },
+  "counts": {
+    "random": [
+      24,
+      27,
+      29,
+      19,
+      19,
+      16,
+      12,
+      10,
+      6,
+      6,
+      8
+    ],
+    "chronological": [
+      26,
+      51,
+      31,
+      16,
+      11,
+      12,
+      4,
+      8,
+      10,
+      22,
+      19
+    ],
+    "interest": [
+      26,
+      41,
+      33,
+      25,
+      20,
+      13,
+      8,
+      6,
+      6,
+      18,
+      21
+    ]
+  },
+  "scope": "new runs only, no model calls"
+}

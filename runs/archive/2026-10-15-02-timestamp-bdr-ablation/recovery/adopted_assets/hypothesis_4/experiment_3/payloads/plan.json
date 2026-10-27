@@ -1,0 +1,33 @@
+{
+  "research_question": "在冻结timestamp-interest中，分别关闭B、D响应或R衰减，相对同seed Full怎样改变晚期供给、晚期玩梗作者表达和事件后退潮？",
+  "primary_metrics": [
+    "B: W19–W22每周Agent成功发布数（先run内取四周均值）",
+    "D: W19–W22玩梗作者speak=true / 76机会",
+    "R: W14–W18全体speak=true / 500机会"
+  ],
+  "target_tables": [
+    "curation_dynamics_env_state",
+    "curation_dynamics_agent_state"
+  ],
+  "confirmatory_claims": [
+    "预设检验B对晚期供给的维持作用，允许无效或反向结果",
+    "预设检验D响应对晚期玩梗作者表达的选择性作用，允许无效或反向结果",
+    "预设检验R衰减对W14–W18事件后发言率的影响，允许无效或反向结果"
+  ],
+  "exploratory_notes": "同seed闭环总差值；作者类型数量与份额分开；实际feed标签、Agent回流阅读、U/D/R/阈值余量只作过程证据。",
+  "simulation_limitations": "n=3，人口和行动表相同；同seed不保证相同LLM正文或推荐随机消费；Full与消融分批且API路径有变，不能确认服务端无漂移；仅interest。",
+  "eda_profile": "quick-stats",
+  "table_checks": [
+    {
+      "table": "curation_dynamics_env_state",
+      "min_rows": 11,
+      "columns": [
+        "week",
+        "agent_supply"
+      ]
+    }
+  ],
+  "synthesis_scope_hypothesis_ids": [
+    "4"
+  ]
+}

@@ -1,0 +1,265 @@
+{
+  "authorization": "用户2026-10-23：额度已经恢复，尝试继续",
+  "prepared_at": "2026-10-23T02:24:08.397689+00:00",
+  "original_plan_sha256": "9182fbc5294a8c3175d760e5cf688e199ab9920f55e3dd3e3397945a485ff849",
+  "controller_sha256": "64c5f566befe7f3a8a68cdb4c47e0b49430987a035adf332106fdce8fc34edde",
+  "original_deadline_at": "2026-10-24T15:40:45.950453+00:00",
+  "source_state": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/stopped_execution_1.json",
+  "runs": [
+    {
+      "run_id": "timestamp_v1_random_s3",
+      "algorithm": "random",
+      "seed": 3,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s3.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s3.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_random_s3",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s3",
+      "algorithm": "chronological",
+      "seed": 3,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s3.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s3.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_chronological_s3",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_interest_s3",
+      "algorithm": "interest",
+      "seed": 3,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s3.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s3.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_interest_s3",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_random_s4",
+      "algorithm": "random",
+      "seed": 4,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s4.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s4.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_random_s4",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s4",
+      "algorithm": "chronological",
+      "seed": 4,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s4.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s4.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_chronological_s4",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_interest_s4",
+      "algorithm": "interest",
+      "seed": 4,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s4.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s4.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_interest_s4",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_random_s5",
+      "algorithm": "random",
+      "seed": 5,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s5.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s5.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_random_s5",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s5",
+      "algorithm": "chronological",
+      "seed": 5,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s5.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s5.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_chronological_s5",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_interest_s5",
+      "algorithm": "interest",
+      "seed": 5,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s5.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s5.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_interest_s5",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_random_s6",
+      "algorithm": "random",
+      "seed": 6,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s6.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s6.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_random_s6",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s6",
+      "algorithm": "chronological",
+      "seed": 6,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s6.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s6.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_chronological_s6",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_interest_s6",
+      "algorithm": "interest",
+      "seed": 6,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s6.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s6.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_interest_s6_resume1",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11,
+      "source_run_dir": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_interest_s6",
+      "resume": true
+    },
+    {
+      "run_id": "timestamp_v1_random_s7",
+      "algorithm": "random",
+      "seed": 7,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s7.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s7.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_random_s7_retry1",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11,
+      "source_run_dir": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_random_s7",
+      "resume": false
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s7",
+      "algorithm": "chronological",
+      "seed": 7,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s7.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s7.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_chronological_s7",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_interest_s7",
+      "algorithm": "interest",
+      "seed": 7,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s7.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s7.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_interest_s7",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_random_s8",
+      "algorithm": "random",
+      "seed": 8,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s8.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s8.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_random_s8",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s8",
+      "algorithm": "chronological",
+      "seed": 8,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s8.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s8.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_chronological_s8",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_interest_s8",
+      "algorithm": "interest",
+      "seed": 8,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s8.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s8.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_interest_s8",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_random_s9",
+      "algorithm": "random",
+      "seed": 9,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s9.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s9.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_random_s9",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s9",
+      "algorithm": "chronological",
+      "seed": 9,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s9.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s9.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_chronological_s9",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    },
+    {
+      "run_id": "timestamp_v1_interest_s9",
+      "algorithm": "interest",
+      "seed": 9,
+      "config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s9.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s9.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_interest_s9",
+      "expected_batches": 693,
+      "expected_action_records": 1100,
+      "expected_week_records": 11
+    }
+  ],
+  "discarded_attempts": [
+    {
+      "run_id": "timestamp_v1_random_s7",
+      "run_dir": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_random_s7",
+      "agent_files": 100,
+      "decisions": 224,
+      "unique_decisions": 224,
+      "posted": 54,
+      "requests": 54,
+      "action_failures": 1,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 54
+      }
+    }
+  ],
+  "prior_probe_requests": 3,
+  "recovery_probe_requests": 1,
+  "extra_requests_at_resume": 5,
+  "scientific_config_changed": false,
+  "rule": "保留11次完成；兴趣seed6复制检查点接续；随机seed7原失败保留，独立重试；后续再失败即联停，不自动再试"
+}

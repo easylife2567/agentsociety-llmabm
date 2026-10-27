@@ -1,0 +1,27 @@
+current_phase: synthesis
+synthesis_scope_hypothesis_ids:
+- '4'
+synthesis_question: ''
+workspace_release: ready
+phase_attestation:
+  phase: synthesis
+  status: DONE
+  key_findings:
+  - 合计各10seed为采用等价约定下主分析，版本仅溯源；方向稳定，时序完整制度总体较高，不能归因纯排序。
+  artifacts_read: []
+  artifacts_written:
+  - synthesis/synthesis_brief.json
+  - synthesis/synthesis_report_zh.md
+  - synthesis/synthesis_report_en.md
+  - synthesis/synthesis_report_zh.html
+  - synthesis/synthesis_report_en.html
+  blocking_reason: null
+  recommended_next_step: null
+  rubric:
+    scope_sources_integrated: H4E2三臂30次主实验、原指标、配对/批次补充表、运行源码机制及用户解释决定；消融保持。
+    limitations_stated: 时序生成帖批末资格与另外两臂次周资格不同，当前制度组合差异不能拆分；外部帖资格共同。
+    independent_review_pass: true
+  artifact_fingerprint: 44cc98a56f892ee49308a3ab
+  completed_at: '2026-10-24T05:51:19.255350Z'
+validation_history: []
+updated_at: '2026-10-24T05:51:21.598855Z'

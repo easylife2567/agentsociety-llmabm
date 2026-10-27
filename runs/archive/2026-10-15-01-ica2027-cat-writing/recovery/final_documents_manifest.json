@@ -1,0 +1,617 @@
+[
+  {
+    "path": "paper/README.md",
+    "bytes": 9736,
+    "sha256": "c49a5bf541cd657c498fc0a7e56fb4063188a3ef6292fbb9964dcf766fcbbf73"
+  },
+  {
+    "path": "paper/figures/CAPTIONS.md",
+    "bytes": 6890,
+    "sha256": "622ff48c74636385f377cbd73dc33abea26822a08a22fe004aac60cf69e573f4"
+  },
+  {
+    "path": "paper/figures/README.md",
+    "bytes": 5168,
+    "sha256": "ea0dad781f9b079ffabf3b0967f98a4fb0d279236c48d5a28fa07059cb32ba21"
+  },
+  {
+    "path": "paper/figures/all_figures.pdf",
+    "bytes": 62689,
+    "sha256": "90fd5dbb55a1df66a62da3e5dda36f6fd168f1198f6d771eb86459049ef88bf4"
+  },
+  {
+    "path": "paper/figures/all_figures_preview.png",
+    "bytes": 1516013,
+    "sha256": "08ec09d334952b22d1c34dbe0713b0b5a68cd74e1af08ef1e080a622109c0a89"
+  },
+  {
+    "path": "paper/figures/figure_01_observed_pooled.pdf",
+    "bytes": 35309,
+    "sha256": "1de8939a477d24282d2585d8d974a91df89f11cdf80f96723c405a9605a3c483"
+  },
+  {
+    "path": "paper/figures/figure_01_observed_pooled.png",
+    "bytes": 413768,
+    "sha256": "82de1bacb0339f8f8b8ecd207f45570aaebd1612a02502185ce486bd8b5a9bc7"
+  },
+  {
+    "path": "paper/figures/figure_01_observed_pooled.svg",
+    "bytes": 34917,
+    "sha256": "931557452b0b69c2e387017adaae64110a946abec25c6a32d9ea18e2537061c7"
+  },
+  {
+    "path": "paper/figures/figure_02_observed_platforms.pdf",
+    "bytes": 35843,
+    "sha256": "1df2e5408594fde70b7f7833a2843b6fcb41087bd5bee76ce1cbf2a3f7be3743"
+  },
+  {
+    "path": "paper/figures/figure_02_observed_platforms.png",
+    "bytes": 421347,
+    "sha256": "4a0b2b1810959550cd24a862f121818c6eee4b11a7e612d3507c86a85d2cde60"
+  },
+  {
+    "path": "paper/figures/figure_02_observed_platforms.svg",
+    "bytes": 36195,
+    "sha256": "52e0f8f7bed820d6962eb337d5976133133ee9273c239f7a42c32b7077d98d18"
+  },
+  {
+    "path": "paper/figures/figure_03_simulated_trajectories.pdf",
+    "bytes": 41533,
+    "sha256": "09727c5c38edb4010c4e52452bcfcc46a5ca5c2b2474a75a427a6869c01af652"
+  },
+  {
+    "path": "paper/figures/figure_03_simulated_trajectories.png",
+    "bytes": 1049967,
+    "sha256": "ecdf091eb1c891d0adec7d59b7345a6dc84a6e27fb4307a4fd3c2628c39645c5"
+  },
+  {
+    "path": "paper/figures/figure_03_simulated_trajectories.svg",
+    "bytes": 74510,
+    "sha256": "d5f5e4ec54c1b3c3f652e3a6140fede90e5b79567f4faa7cd15e68423c63fb58"
+  },
+  {
+    "path": "paper/figures/figure_04_feedback_exposure.pdf",
+    "bytes": 37637,
+    "sha256": "487450e579546f1d09d52316b6992b7d753f8368e882f822cc3f1137653285b2"
+  },
+  {
+    "path": "paper/figures/figure_04_feedback_exposure.png",
+    "bytes": 223208,
+    "sha256": "ed9320c47dc59ea600abd9f6f37bd084908b9f2eb4e792020c9aae45e48811a9"
+  },
+  {
+    "path": "paper/figures/figure_04_feedback_exposure.svg",
+    "bytes": 29627,
+    "sha256": "f3d87228a782a7bed3ef7aca8042f06dbd2615bb0a93cf5188648178ba97da7e"
+  },
+  {
+    "path": "paper/figures/figure_05_bdr_ablation.pdf",
+    "bytes": 41751,
+    "sha256": "8f46d78e56732f306173ee8df54a1b5884540be631ff7356f4056bab4146a9ab"
+  },
+  {
+    "path": "paper/figures/figure_05_bdr_ablation.png",
+    "bytes": 542705,
+    "sha256": "6b54a3a3493c4ab4f15cc64b27c93254e2bc9fb80fb7249ece4b965b2f7da3f2"
+  },
+  {
+    "path": "paper/figures/figure_05_bdr_ablation.svg",
+    "bytes": 47113,
+    "sha256": "979cff85868b4a579102453071f787dba6078c196d69870034be83c2278c64dc"
+  },
+  {
+    "path": "paper/figures/qa/README.md",
+    "bytes": 4431,
+    "sha256": "5b03e20e85666c5c17cbac43ba22094cfcc5f95a8ec92ace7371d3ba0a3e40ea"
+  },
+  {
+    "path": "paper/figures/qa/ablation_checks.json",
+    "bytes": 4702,
+    "sha256": "fcfb02b055ae6819af49391866d61e4d18aa3a1734cc9114901af98ac7cb9e54"
+  },
+  {
+    "path": "paper/figures/qa/build_manifest.json",
+    "bytes": 4180,
+    "sha256": "a534539aa03f315aa1fe6fc8bcdf12291184d29b6d26b2053ecd69880008936d"
+  },
+  {
+    "path": "paper/figures/qa/export_checks.json",
+    "bytes": 1490,
+    "sha256": "5686760e97008bf522f14faf815efb9cea248c2297afd9b5278dac0e3c814dc9"
+  },
+  {
+    "path": "paper/figures/qa/figure_01_observed_pooled.alignment.json",
+    "bytes": 1608,
+    "sha256": "29dafab2764a4518ec2c41acd70f6ccc96f8c7a28e1e54c7320b5d5fb664fd5c"
+  },
+  {
+    "path": "paper/figures/qa/figure_01_observed_pooled.alignment.svg",
+    "bytes": 731,
+    "sha256": "5e5bf839ac781ea6b4a0874d765adc32aa671fa2d34c7799241d4eaa3f51d4a7"
+  },
+  {
+    "path": "paper/figures/qa/figure_01_observed_pooled.collisions.json",
+    "bytes": 547,
+    "sha256": "610655c01dcfa2b99c0657a83b5575cb1a9f40ae2ff95ddf5d731ef5bc26a019"
+  },
+  {
+    "path": "paper/figures/qa/figure_01_observed_pooled.fonts.json",
+    "bytes": 267,
+    "sha256": "03ee1e4a41a24cb27d9392cab4fa14c661233096e2c650fec6deaa9ded6f41ec"
+  },
+  {
+    "path": "paper/figures/qa/figure_02_observed_platforms.alignment.json",
+    "bytes": 1608,
+    "sha256": "29dafab2764a4518ec2c41acd70f6ccc96f8c7a28e1e54c7320b5d5fb664fd5c"
+  },
+  {
+    "path": "paper/figures/qa/figure_02_observed_platforms.alignment.svg",
+    "bytes": 731,
+    "sha256": "5e5bf839ac781ea6b4a0874d765adc32aa671fa2d34c7799241d4eaa3f51d4a7"
+  },
+  {
+    "path": "paper/figures/qa/figure_02_observed_platforms.collisions.json",
+    "bytes": 550,
+    "sha256": "dd2a504ebf29550c2cda5742a290e99c36a50761a7365b2c6216fd9cf4526130"
+  },
+  {
+    "path": "paper/figures/qa/figure_02_observed_platforms.fonts.json",
+    "bytes": 270,
+    "sha256": "c3374ce57d9d7be800137bf27b67dab0b861ccfbd6f9bee033490e923438d0ba"
+  },
+  {
+    "path": "paper/figures/qa/figure_03_simulated_trajectories.alignment.json",
+    "bytes": 2836,
+    "sha256": "269cc94a4e2b73a596d2b2ac36d92208d56916bf092f732a8711128ab9382b3f"
+  },
+  {
+    "path": "paper/figures/qa/figure_03_simulated_trajectories.alignment.svg",
+    "bytes": 1155,
+    "sha256": "dfac526a5a401647193d825a73997c909144cafc85f8526da0e882aeb7ccea9e"
+  },
+  {
+    "path": "paper/figures/qa/figure_03_simulated_trajectories.collisions.json",
+    "bytes": 555,
+    "sha256": "00a5ad03e29dba5ff024b1ed9efba6a8e88ff7eb6bd789703109d0236fc9725d"
+  },
+  {
+    "path": "paper/figures/qa/figure_03_simulated_trajectories.fonts.json",
+    "bytes": 274,
+    "sha256": "216ffad11ab39529b4a321bed5a4d9e9b3a69965bca87f67ba9f9e5a825900ae"
+  },
+  {
+    "path": "paper/figures/qa/figure_04_feedback_exposure.alignment.json",
+    "bytes": 2073,
+    "sha256": "68b9fca767af19666cbe7691146adc3402b81fa6dc4e27bb8fc4e186197a6fb5"
+  },
+  {
+    "path": "paper/figures/qa/figure_04_feedback_exposure.alignment.svg",
+    "bytes": 944,
+    "sha256": "a7373f5e8668c58c658d7c4a5d6dec99210d2f888953daca1ddbdd85e156d402"
+  },
+  {
+    "path": "paper/figures/qa/figure_04_feedback_exposure.collisions.json",
+    "bytes": 549,
+    "sha256": "fdb917b3a69179ef7720de72152fb7667e92675f95da65f3c051cf91310ad3aa"
+  },
+  {
+    "path": "paper/figures/qa/figure_04_feedback_exposure.fonts.json",
+    "bytes": 269,
+    "sha256": "7179c5d5f1c0bb572d8c2770c787a1bbc83f6dd088e82d67b9640bb2954c2259"
+  },
+  {
+    "path": "paper/figures/qa/figure_05_bdr_ablation.alignment.json",
+    "bytes": 3303,
+    "sha256": "7a5fa20c0d26e4d1e1123fa2dd2dd2ccf3ae95742c2e1e4d587bb60a1484183e"
+  },
+  {
+    "path": "paper/figures/qa/figure_05_bdr_ablation.alignment.svg",
+    "bytes": 1366,
+    "sha256": "68603089680cc837feac7305d0a14386e1d73f6dae3294666c2c8a9fb034bad0"
+  },
+  {
+    "path": "paper/figures/qa/figure_05_bdr_ablation.collisions.json",
+    "bytes": 545,
+    "sha256": "412aeb98a3cf066bd345f360b0bdb95717946c845f3bff57fd76478dabfb3a07"
+  },
+  {
+    "path": "paper/figures/qa/figure_05_bdr_ablation.fonts.json",
+    "bytes": 264,
+    "sha256": "97baa319b6e9320c96360a18f164f0bafb899e8f37d8b66f6769dba0d529e6f3"
+  },
+  {
+    "path": "paper/figures/qa/package_checks.json",
+    "bytes": 663,
+    "sha256": "a310eee81a26c52626d13daaa619a296382a9b5c935a3244158b7e00de837128"
+  },
+  {
+    "path": "paper/figures/qa/simulation_checks.json",
+    "bytes": 832,
+    "sha256": "14b549cd5cb98843d8d180db31ff1d62ab0734deecec8a2a1a293977432614dc"
+  },
+  {
+    "path": "paper/figures/qa/source_preflight.json",
+    "bytes": 3964,
+    "sha256": "33f5cf48bfe4113025d306071242cd8d16f51dc0d2aef0f274ac590685f33a41"
+  },
+  {
+    "path": "paper/figures/scripts/README.md",
+    "bytes": 1921,
+    "sha256": "bd7b40f0d3ffa500f0ee778050d7709d56fdf1dcb46298280e1db914f5a8e42f"
+  },
+  {
+    "path": "paper/figures/scripts/audit_figure_collisions.py",
+    "bytes": 27709,
+    "sha256": "4bd020238a9f207c8a67c61d7209cef5959f2995a1d9cd95911d6fa93de7aa36"
+  },
+  {
+    "path": "paper/figures/scripts/audit_panel_alignment.py",
+    "bytes": 39364,
+    "sha256": "43958e6b49d897f326ff64e73cbed0bf057e17c06533b5b57d3dededf8111e76"
+  },
+  {
+    "path": "paper/figures/scripts/audit_pdf_text.py",
+    "bytes": 8586,
+    "sha256": "0b3d3e30ce9ec7191b8ba6dd053226487ab41594297005afcd127acda3b08281"
+  },
+  {
+    "path": "paper/figures/scripts/build_figures.py",
+    "bytes": 18193,
+    "sha256": "b1c04832528c0da0a7129b7b7d8ef923c0bc5149df1ee8f95413226af9f0f13a"
+  },
+  {
+    "path": "paper/figures/scripts/prepare_ablation.py",
+    "bytes": 12848,
+    "sha256": "c51fe6da9e3e4c09dac4be756eb3b488e681f5ac155ac18872efb7f1957ae313"
+  },
+  {
+    "path": "paper/figures/scripts/prepare_observed.py",
+    "bytes": 11840,
+    "sha256": "a6825929d2520d4acb80dcc1294fc749739219ad9eeced48e5a28e51bc042b21"
+  },
+  {
+    "path": "paper/figures/scripts/prepare_simulation.py",
+    "bytes": 10335,
+    "sha256": "fd2e925bffc5084139e25b64e810a150dd3627351867a89cdc1fa69b507797c9"
+  },
+  {
+    "path": "paper/figures/scripts/run_qa.py",
+    "bytes": 4015,
+    "sha256": "1c0e8646d53f575b10bfc599d22e86b44b4af3b05ebe4bf2e5369bbf530dcb13"
+  },
+  {
+    "path": "paper/figures/scripts/validate_figure.py",
+    "bytes": 33178,
+    "sha256": "c548e180d31fc1557cbfcd452ab78c7a969273a80b311068aa80acfe86ecfd90"
+  },
+  {
+    "path": "paper/figures/source_data/README.md",
+    "bytes": 2257,
+    "sha256": "c8191873b9694aed4cb89e4daec238e4ce862207190c43c1d50c02f13f7709c9"
+  },
+  {
+    "path": "paper/figures/source_data/ablation_metrics.csv",
+    "bytes": 4360,
+    "sha256": "8fcddb869221d10007dde4e1fc507195fcbb78e62332e8259e5035a3f8e60588"
+  },
+  {
+    "path": "paper/figures/source_data/ablation_sources.json",
+    "bytes": 8994,
+    "sha256": "bee807b973e4100d7f4cdbcadff60f6b70dea4c30264fd8e9a7cbd8d997bbf06"
+  },
+  {
+    "path": "paper/figures/source_data/observed_checks.json",
+    "bytes": 2305,
+    "sha256": "57eba6262f0affad687b82e9c058c7708058d706b83ab200e67585589457ba0a"
+  },
+  {
+    "path": "paper/figures/source_data/observed_sources.json",
+    "bytes": 4090,
+    "sha256": "c734249725104a1460fbf4dc5cbe8a41e58f5744b3a63a44c5be706fdb8f7fee"
+  },
+  {
+    "path": "paper/figures/source_data/observed_weekly.csv",
+    "bytes": 14107,
+    "sha256": "0fcebc205d10e1f8bb7408c870bb685bc276a539ad7a4896576275bd830841be"
+  },
+  {
+    "path": "paper/figures/source_data/simulation_exposure.csv",
+    "bytes": 670,
+    "sha256": "eed64451d581fbc824194601191c1e1883270f9c66e5d99d9347cea2bdd6c33c"
+  },
+  {
+    "path": "paper/figures/source_data/simulation_late.csv",
+    "bytes": 377,
+    "sha256": "b81087b6ef641287293e2550f8021a9c3a9619b87d930d27dd2b9be618dc6316"
+  },
+  {
+    "path": "paper/figures/source_data/simulation_sources.json",
+    "bytes": 252477,
+    "sha256": "15f8eed531f095d1dc38b8696241638f43b6452a6ea64917877eda5048d18b09"
+  },
+  {
+    "path": "paper/figures/source_data/simulation_weekly.csv",
+    "bytes": 15424,
+    "sha256": "7445ce9b8d0169981e19b40dd6440a5a5e2599901b947e96338f5fd2faa45ac0"
+  },
+  {
+    "path": "paper/manuscript/INTAKE_AUDIT.md",
+    "bytes": 16008,
+    "sha256": "a0edf5f13bf31ea2d00dacd68e5dde88b025fbe1960023470d9bd6be1123eed3"
+  },
+  {
+    "path": "paper/manuscript/manuscript.accepted.md",
+    "bytes": 57707,
+    "sha256": "7b82052396fcd4119b89064da75b0b85bdbdcddd928d7ce8c1b7d86c1bd969c6"
+  },
+  {
+    "path": "paper/word/ASSEMBLY_NOTES.md",
+    "bytes": 4399,
+    "sha256": "d5b900b364da7315fc4997d8b39de5bd3747b6576070e07b036158a5217d4334"
+  },
+  {
+    "path": "paper/word/README.md",
+    "bytes": 4581,
+    "sha256": "04535fbd4266c208cb2f1e93665994d52e61ccba9c6e1720b0ca8a77f6fd9ddf"
+  },
+  {
+    "path": "paper/word/article.json",
+    "bytes": 178930,
+    "sha256": "d9896f941932b6c0dfda91ba4b22cf75a7ce32e7aaa170b1ef845f072c3c30b7"
+  },
+  {
+    "path": "paper/word/article.review.json",
+    "bytes": 254736,
+    "sha256": "e201a5f231bf8ec7c8f0dd364bcd95d58a3a326963117784c5c1c7eb6ddbbf42"
+  },
+  {
+    "path": "paper/word/assembly_changes.json",
+    "bytes": 95317,
+    "sha256": "564e65e129f9eb651608f14dbaff2a50dd71e4298f294192755dacd2ff9151e5"
+  },
+  {
+    "path": "paper/word/manuscript.full.zh.md",
+    "bytes": 38005,
+    "sha256": "fd9f6fbdfd4666c7c7ba89cdc74e713d8bc1bdbae96e6a7687aaac9c95d891df"
+  },
+  {
+    "path": "paper/word/qa/README.md",
+    "bytes": 2239,
+    "sha256": "31fff5d9c3220332dee47d6709668af4f06b7bb4d2347914aba45fad79063eea"
+  },
+  {
+    "path": "paper/word/qa/docx_schema_clean.txt",
+    "bytes": 54,
+    "sha256": "e6c8fbaebdeafa6d7a3e0e48c8886827570f74ac903bf38357ffcd25e7ca7964"
+  },
+  {
+    "path": "paper/word/qa/docx_schema_review.txt",
+    "bytes": 54,
+    "sha256": "5868d1532cea831127c368546d3b45143374865f602c329ed82731243ef78bb5"
+  },
+  {
+    "path": "paper/word/qa/package_checks.json",
+    "bytes": 812,
+    "sha256": "f95707443ba92db6ec1d5ae135ddc54ae57b91e91c18208fb24df828f740bb82"
+  },
+  {
+    "path": "paper/word/qa/page_01.png",
+    "bytes": 288986,
+    "sha256": "13090123236dc48af07984771c6a29f4541205091e84687cdc3c69cfac755f90"
+  },
+  {
+    "path": "paper/word/qa/page_02.png",
+    "bytes": 261225,
+    "sha256": "db0d98356b23c504800bee888d7b8e19b50a7bb8d1f69cec01786b7f64c87863"
+  },
+  {
+    "path": "paper/word/qa/page_03.png",
+    "bytes": 292624,
+    "sha256": "ddd1ca1d9c6ffacf6bb8b458ed0d8d29b9818a4fcd83d1cd0bdf8c2d3f3c41c4"
+  },
+  {
+    "path": "paper/word/qa/page_04.png",
+    "bytes": 285922,
+    "sha256": "31f4dda316050ac1d3e851b813f05ded369334395ea00c908a5965349c2b57a4"
+  },
+  {
+    "path": "paper/word/qa/page_05.png",
+    "bytes": 188381,
+    "sha256": "1250771cba34a3fb2b93aa95ab4d22037d218f4959d90719dd3601a09aa1e3ff"
+  },
+  {
+    "path": "paper/word/qa/page_06.png",
+    "bytes": 161128,
+    "sha256": "91f2ba32558d31f91ed2246c22dbced66c2d5d49868127ad829445720fae7c3a"
+  },
+  {
+    "path": "paper/word/qa/page_07.png",
+    "bytes": 270223,
+    "sha256": "95f2f366474978c482c0624a3b8bcc412c7200d32f59da8dd6ff1cfaf5bee1d5"
+  },
+  {
+    "path": "paper/word/qa/page_08.png",
+    "bytes": 251865,
+    "sha256": "9329006c16b8a17d0902ae43b8fc01ec1853f2057958cb3762b5750c8f69eb35"
+  },
+  {
+    "path": "paper/word/qa/page_09.png",
+    "bytes": 281569,
+    "sha256": "257654cd2859768503f49fd2cfe41b8d0c3ce5df21a4d03138aa894bcba79121"
+  },
+  {
+    "path": "paper/word/qa/page_10.png",
+    "bytes": 247911,
+    "sha256": "26c5241d6757e9b15c0c50a81bc30b225a21ac40f2888670597041965a31f61a"
+  },
+  {
+    "path": "paper/word/qa/page_11.png",
+    "bytes": 241237,
+    "sha256": "66ada1a75f02b2074d0bb207c5005bc14491b74f1733794baa24cce26ed2b3ad"
+  },
+  {
+    "path": "paper/word/qa/page_12.png",
+    "bytes": 265941,
+    "sha256": "be05057fd81fcfd43052125b7d2307a3d1b777a6c69c078a1909d0e5ce02cfd7"
+  },
+  {
+    "path": "paper/word/qa/page_13.png",
+    "bytes": 242811,
+    "sha256": "27726553000224c6652ff6a4f49c537127191f7c1aff35ddbb274887f28e8f66"
+  },
+  {
+    "path": "paper/word/qa/page_14.png",
+    "bytes": 108499,
+    "sha256": "dde3fb3428342fdbf78c18477983c0e5b5f6aaa985ec2e48af8519b2a50ecb68"
+  },
+  {
+    "path": "paper/word/qa/page_15.png",
+    "bytes": 199305,
+    "sha256": "e45d6b8fce6ae2eb6f275a881cccfdbeeb1009cbb44a8266e8e3241eb732e865"
+  },
+  {
+    "path": "paper/word/qa/page_16.png",
+    "bytes": 148640,
+    "sha256": "91357b3a9fb7cf2e1d66a53469857f55b7429be81f34def01bd5c2b878344cfc"
+  },
+  {
+    "path": "paper/word/qa/page_contact_sheet.png",
+    "bytes": 1360271,
+    "sha256": "ff33edaf75fc16a3fc2f1af1a0859de252816b536c761d11a396b48085adbfad"
+  },
+  {
+    "path": "paper/word/qa/reference_format.json",
+    "bytes": 13990,
+    "sha256": "fc88a3bf08379bf0a846188f04b2e9b9b33656d26673eb8cffe647a080daaae1"
+  },
+  {
+    "path": "paper/word/qa/reference_page_01.png",
+    "bytes": 352662,
+    "sha256": "16dab381ae4fc6c3737b8c435acfc323759941252de8af459d79d670d3906474"
+  },
+  {
+    "path": "paper/word/qa/reference_page_13.png",
+    "bytes": 297694,
+    "sha256": "058910044de225f88962dac48c7a5d07ed0152bd26d260d8a45b104f6610ef18"
+  },
+  {
+    "path": "paper/word/qa/reference_page_19.png",
+    "bytes": 282017,
+    "sha256": "f48eb24bf73a167007a48fa39a5582b4a273d26fbfc51ab7e0c2bf4476aa9247"
+  },
+  {
+    "path": "paper/word/qa/review_preservation.json",
+    "bytes": 18628,
+    "sha256": "c3a638fe0eb492282ba655d1b765e2b3ac3e35d8aff07baa378e44168c572de1"
+  },
+  {
+    "path": "paper/word/qa/word_checks.json",
+    "bytes": 3874,
+    "sha256": "3a5911f2c915bda742328cf7a2d22eb2e6bc87cc4774bc70e77ed67c424a4e0c"
+  },
+  {
+    "path": "paper/word/qa/word_revision_mapping.json",
+    "bytes": 15545,
+    "sha256": "ba6728c03d5a75dcc6f05a7e295e5a895463aa5900ca227af127dbf79ea5f6a1"
+  },
+  {
+    "path": "paper/word/references.json",
+    "bytes": 26023,
+    "sha256": "957a4c503d29a72b34467181e76896369bb0b6fcb06a9ce0f883cc30fe46a6ad"
+  },
+  {
+    "path": "paper/word/references_sources.json",
+    "bytes": 9037,
+    "sha256": "79b589121417f567f2e614ab7c75dac24b96c0ecb7e9114e926b175b9801d433"
+  },
+  {
+    "path": "paper/word/scripts/README.md",
+    "bytes": 2183,
+    "sha256": "661fb55b27dcc12375a2f029412124c96586b5f16cef741d723769570b4cba1e"
+  },
+  {
+    "path": "paper/word/scripts/assemble_article.py",
+    "bytes": 18641,
+    "sha256": "bef0c236e465ffcce6193e4dc578fa69cbdb1d0c5e77394536df496f8843778d"
+  },
+  {
+    "path": "paper/word/scripts/attach_reviews.py",
+    "bytes": 11568,
+    "sha256": "fdafd6e035674153e4bbbc107322d269cb6c1a1eb9b33fb204a426105bdbf62e"
+  },
+  {
+    "path": "paper/word/scripts/build_word.cjs",
+    "bytes": 16392,
+    "sha256": "2c6d7e532300fa8586cc3bb1da56f8560cbed4f1191ccaf40b0b3273c0f138c0"
+  },
+  {
+    "path": "paper/word/scripts/finalize_word.py",
+    "bytes": 7816,
+    "sha256": "eb3a40315b97f8a9cc8ea7e87676911afab1f60ef1da7b093093d285b7dd0fe2"
+  },
+  {
+    "path": "paper/word/scripts/render_preview.py",
+    "bytes": 1714,
+    "sha256": "39e8bff6b37730fcfc68170cf858cc87f9997256310366b73a53f07f43c0e899"
+  },
+  {
+    "path": "paper/word/scripts/verify_word.py",
+    "bytes": 7166,
+    "sha256": "5c24aea83c1af4854bd2d4ee7b0d7b9118de6a0ba33c58e71e9dccd58d8f256a"
+  },
+  {
+    "path": "paper/word/source_materials/ARTICLE_STRUCTURE.md",
+    "bytes": 13389,
+    "sha256": "43b030e2735c440a2ec18bbf65405e6f2acf20e7c2147f7d1d69e2a69a8a63ef"
+  },
+  {
+    "path": "paper/word/source_materials/README.md",
+    "bytes": 1256,
+    "sha256": "ba37082007b795f76e9ab5175a04922ce69357774e0bb9dc780ada49802990dd"
+  },
+  {
+    "path": "paper/word/source_materials/section_4_1.accepted.md",
+    "bytes": 16314,
+    "sha256": "a7985538d3d51cee71638b14e8a8c7a0f14ea5388a16cc45c304acf0f9948e8a"
+  },
+  {
+    "path": "paper/word/source_reviews.json",
+    "bytes": 1482161,
+    "sha256": "b2c825c7b8a2778f0113f95bff1456633b1c5d5c2156a41c369ededc95d12be4"
+  },
+  {
+    "path": "paper/word/悼念退潮之后_完整中文稿.docx",
+    "bytes": 2454974,
+    "sha256": "61dd9a0e5a8f0246236f826d68ee13134846b9af4f365095898633877d176e6a"
+  },
+  {
+    "path": "paper/word/悼念退潮之后_完整中文稿.pdf",
+    "bytes": 1322610,
+    "sha256": "a72f3519eba140baf6eb5738c50e44d040e5b81df8d8dacb5deb2b44beb72886"
+  },
+  {
+    "path": "paper/word/悼念退潮之后_完整中文稿_保留批注修订.docx",
+    "bytes": 2476171,
+    "sha256": "782bd09279fb62b954438cc72dbfc43ff44d27d09fea9812a10637e9b19cbd8d"
+  },
+  {
+    "path": "paper/二（二）至全文结尾思维链.md",
+    "bytes": 11447,
+    "sha256": "039d6a3fef9669a6ffe8acd07ea0ca734d95087697b91c2bc38576398e2208ce"
+  },
+  {
+    "path": "【1009批注版】ICA-研究背景和文献综述.docx",
+    "bytes": 29248,
+    "sha256": "135642f68e41afcd508fac54f38f3d960ad97673493251807a722f0ed9d5d775"
+  },
+  {
+    "path": "【修订1】1008 理论框架.docx",
+    "bytes": 18709,
+    "sha256": "5f3208734f2f1ac8cb6f64f56db0ccb2a1be07374c8fb4209c6fffc75f4e8bff"
+  },
+  {
+    "path": "悼念退潮之后：基于多智能体仿真的逝者数字形象塑造机制研究.pdf",
+    "bytes": 1250193,
+    "sha256": "48a4111f22b7b8952d591e2e61721a1382b73e7c4579e4f0da25558cd2aa7340"
+  }
+]

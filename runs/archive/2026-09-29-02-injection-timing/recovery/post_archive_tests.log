@@ -1,0 +1,25 @@
+test_action_failures_empty_context_and_retry (test_arrival_timing.TimingTests.test_action_failures_empty_context_and_retry) ... ok
+test_complete_window_and_final_arrivals (test_arrival_timing.TimingTests.test_complete_window_and_final_arrivals) ... ok
+test_empty_and_short_feed (test_arrival_timing.TimingTests.test_empty_and_short_feed) ... ok
+test_initial_and_official_boundary (test_arrival_timing.TimingTests.test_initial_and_official_boundary) ... ok
+test_legacy_not_activated (test_arrival_timing.TimingTests.test_legacy_not_activated) ... ok
+test_metrics_empty_and_different_candidate_pools (test_arrival_timing.TimingTests.test_metrics_empty_and_different_candidate_pools) ... ok
+test_prompt_budget_and_success_parser (test_arrival_timing.TimingTests.test_prompt_budget_and_success_parser) ... ok
+test_restore_matches_uninterrupted (test_arrival_timing.TimingTests.test_restore_matches_uninterrupted) ... ok
+test_stable_candidates_batch_order_and_delayed_posts (test_arrival_timing.TimingTests.test_stable_candidates_batch_order_and_delayed_posts) ... ok
+test_actual_detail_repairs_keep_referents_and_punctuation (test_content_quality.ContentTests.test_actual_detail_repairs_keep_referents_and_punctuation) ... ok
+test_failure_accounting_and_publication_confirmation (test_content_quality.ContentTests.test_failure_accounting_and_publication_confirmation) ... ok
+test_inconsistent_ledgers_are_rejected (test_content_quality.ContentTests.test_inconsistent_ledgers_are_rejected) ... ok
+test_legitimate_views_quotes_and_supported_facts_survive (test_content_quality.ContentTests.test_legitimate_views_quotes_and_supported_facts_survive) ... ok
+test_real_environment_exposure_inventory_and_recirculation (test_content_quality.ContentTests.test_real_environment_exposure_inventory_and_recirculation) ... ok
+test_refusal_filter_and_budget_exhaustion_keep_one_post (test_content_quality.ContentTests.test_refusal_filter_and_budget_exhaustion_keep_one_post) ... ok
+test_technical_retry_then_refusal_keeps_attempts (test_content_quality.ContentTests.test_technical_retry_then_refusal_keeps_attempts) ... ok
+test_twenty_historical_cases_on_both_actual_paths (test_content_quality.ContentTests.test_twenty_historical_cases_on_both_actual_paths) ... ok
+test_unknown_historical_time_is_not_fabricated (test_content_quality.ContentTests.test_unknown_historical_time_is_not_fabricated) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 1.536s
+
+OK
+
+network_attempts=0

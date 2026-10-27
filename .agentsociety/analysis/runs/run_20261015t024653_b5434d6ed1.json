@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261015t024653_b5434d6ed1",
+  "operation_id": "compose-figure",
+  "operation_contract_version": 2,
+  "execution_key": "afafe9e15d3c073e6893446a58503cc13bee1ef5b5be15244e0b102e766f8738",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "BLOCKED",
+  "hypothesis_id": "4",
+  "experiment_id": "",
+  "input_names": [
+    "hypothesis_id",
+    "spec",
+    "workspace"
+  ],
+  "input_fingerprint": "d72d93bd5360964354a38eba9ca3e291bf816b2c1a9fba693f2f0ac127862c33",
+  "safe_inputs": {
+    "hypothesis_id": "4"
+  },
+  "preflight": {
+    "operation_id": "compose-figure",
+    "status": "BLOCKED_BY_GATE",
+    "reasons": [
+      "required gate(s) not passed: claims"
+    ],
+    "missing_inputs": [],
+    "missing_gates": [
+      "claims"
+    ],
+    "checked_capabilities": {}
+  },
+  "result_summary": {},
+  "error": {
+    "type": "BLOCKED_BY_GATE",
+    "message": "required gate(s) not passed: claims",
+    "retryable": true
+  },
+  "declared_artifacts": [
+    "presentation/hypothesis_{id}/charts/figure_*"
+  ],
+  "artifact_fingerprints": {},
+  "repeatable": true,
+  "retryable": true,
+  "recommended_action": "Fix preflight blockers and rerun the operation.",
+  "pid": 2371,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-15T02:46:53.369178Z",
+  "updated_at": "2026-10-15T02:46:53.369340Z",
+  "completed_at": "2026-10-15T02:46:53.369315Z",
+  "duration_ms": 0
+}

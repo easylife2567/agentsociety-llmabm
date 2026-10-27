@@ -1,0 +1,7 @@
+{
+  "baseline": "b2fa8ec0293d96f604068c19666a116594caef29",
+  "restored_script_sha256": "96a4210ba48cfad4f0fa84590698124b6642b33c0ff29783064358703fde7418",
+  "syntax_valid": true,
+  "stable_results_sha256_match": true,
+  "scope": "恢复新增脚本并核验冻结结果；不重跑LLM，不重新读取工作簿或生成图表。"
+}

@@ -1,0 +1,31 @@
+{
+  "status": "failed",
+  "simulation_started": false,
+  "execution_authorized": false,
+  "llm_calls": 0,
+  "network_attempts": 0,
+  "agent_actions": 0,
+  "environment_steps": 0,
+  "ray_started": false,
+  "configs": [],
+  "errors": [
+    "Traceback (most recent call last):\n  File \"/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/verify_seed_extension.py\", line 190, in main\n    asyncio.run(verify())\n    ~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py\", line 195, in run\n    return runner.run(main)\n           ~~~~~~~~~~^^^^^^\n  File \"/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py\", line 118, in run\n    return self._loop.run_until_complete(task)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\n  File \"/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/base_events.py\", line 725, in run_until_complete\n    return future.result()\n           ~~~~~~~~~~~~~^^\n  File \"/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/verify_seed_extension.py\", line 121, in verify\n    assert t == datetime(2026, 3, 16)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+  ],
+  "runtime": {
+    "python": "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python",
+    "sdk_version": "2.8.4",
+    "sdk_source": "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/__init__.py",
+    "loaded_modules": {
+      "agent": "/Users/easylife/Project/AgentSociety/custom/agents/curation_discourse_agent.py",
+      "env": "/Users/easylife/Project/AgentSociety/custom/envs/curation_dynamics_space.py"
+    }
+  },
+  "limit_boundary_checks": {
+    "passed": true,
+    "rejected_cases": 4,
+    "deadline_starts_at": "future first formal launch",
+    "ledger_value": 0,
+    "old_ledger_value": 5
+  },
+  "verifier_sha256": "2733a673e7b12ee581166c5aafd74ac23886e4ab5669eba7295e3627e541e91a"
+}

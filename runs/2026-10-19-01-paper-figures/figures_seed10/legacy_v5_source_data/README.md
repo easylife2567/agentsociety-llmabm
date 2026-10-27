@@ -1,0 +1,5 @@
+# V5原三种子作图基线
+
+本目录保存任务开始时从paper/figures/source_data复制的原V5作图数据与来源，供修改意见比较旧数值。observed_weekly及observed来源对应现实五类分析；simulation_weekly、simulation_late、simulation_exposure及simulation_sources对应旧9次主运行；ablation_metrics及ablation_sources对应原3配对干预。README原文以本说明代替，其他复制内容未改。
+
+本轮图3、4使用上一级source_data的seed10表，不读取本目录。不得将旧三种子均值与十组均值混用；本目录不纳入主交付包。

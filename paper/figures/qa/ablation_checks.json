@@ -1,0 +1,190 @@
+{
+  "figure": 5,
+  "checks": {
+    "all_passed": true,
+    "long_table_rows": 30,
+    "metric_pairs": 5,
+    "numeric_crosschecks": 55
+  },
+  "metric_summaries": [
+    {
+      "panel": "a",
+      "metric": "late_posts_per_week",
+      "comparison": "no_b",
+      "unit": "posts_per_week",
+      "window": [
+        "2026-W19",
+        "2026-W20",
+        "2026-W21",
+        "2026-W22"
+      ],
+      "n_paired_seeds": 3,
+      "full_values_by_seed": [
+        13.5,
+        15.25,
+        12.75
+      ],
+      "ablation_values_by_seed": [
+        6.5,
+        7.5,
+        6.5
+      ],
+      "full_mean": 13.833333333333334,
+      "ablation_mean": 6.833333333333333,
+      "paired_deltas_by_seed": [
+        -7.0,
+        -7.75,
+        -6.25
+      ],
+      "delta_mean": -7.0,
+      "delta_min": -7.75,
+      "delta_max": -6.25,
+      "all_paired_deltas_negative": true,
+      "all_paired_deltas_positive": false
+    },
+    {
+      "panel": "b",
+      "metric": "late_meme_post_rate",
+      "comparison": "no_d",
+      "unit": "proportion",
+      "window": [
+        "2026-W19",
+        "2026-W20",
+        "2026-W21",
+        "2026-W22"
+      ],
+      "n_paired_seeds": 3,
+      "full_values_by_seed": [
+        0.4473684210526316,
+        0.5394736842105263,
+        0.4473684210526316
+      ],
+      "ablation_values_by_seed": [
+        0.15789473684210525,
+        0.18421052631578946,
+        0.17105263157894737
+      ],
+      "full_mean": 0.4780701754385965,
+      "ablation_mean": 0.17105263157894737,
+      "paired_deltas_by_seed": [
+        -0.2894736842105263,
+        -0.35526315789473684,
+        -0.2763157894736842
+      ],
+      "delta_mean": -0.30701754385964913,
+      "delta_min": -0.35526315789473684,
+      "delta_max": -0.2763157894736842,
+      "all_paired_deltas_negative": true,
+      "all_paired_deltas_positive": false
+    },
+    {
+      "panel": "c",
+      "metric": "mid_post_rate",
+      "comparison": "no_r",
+      "unit": "proportion",
+      "window": [
+        "2026-W14",
+        "2026-W15",
+        "2026-W16",
+        "2026-W17",
+        "2026-W18"
+      ],
+      "n_paired_seeds": 3,
+      "full_values_by_seed": [
+        0.18,
+        0.198,
+        0.196
+      ],
+      "ablation_values_by_seed": [
+        0.498,
+        0.512,
+        0.466
+      ],
+      "full_mean": 0.19133333333333333,
+      "ablation_mean": 0.492,
+      "paired_deltas_by_seed": [
+        0.318,
+        0.314,
+        0.27
+      ],
+      "delta_mean": 0.3006666666666667,
+      "delta_min": 0.27,
+      "delta_max": 0.318,
+      "all_paired_deltas_negative": false,
+      "all_paired_deltas_positive": true
+    },
+    {
+      "panel": "d",
+      "metric": "late_meme_author_share",
+      "comparison": "no_r",
+      "unit": "proportion",
+      "window": [
+        "2026-W19",
+        "2026-W20",
+        "2026-W21",
+        "2026-W22"
+      ],
+      "n_paired_seeds": 3,
+      "full_values_by_seed": [
+        0.6296296296296297,
+        0.6721311475409836,
+        0.6666666666666666
+      ],
+      "ablation_values_by_seed": [
+        0.12121212121212122,
+        0.14215686274509803,
+        0.11330049261083744
+      ],
+      "full_mean": 0.6561424812790932,
+      "ablation_mean": 0.12555649218935222,
+      "paired_deltas_by_seed": [
+        -0.5084175084175084,
+        -0.5299742847958855,
+        -0.5533661740558292
+      ],
+      "delta_mean": -0.5305859890897411,
+      "delta_min": -0.5533661740558292,
+      "delta_max": -0.5084175084175084,
+      "all_paired_deltas_negative": true,
+      "all_paired_deltas_positive": false
+    },
+    {
+      "panel": "e",
+      "metric": "late_meme_exposure_non_meme",
+      "comparison": "no_r",
+      "unit": "proportion",
+      "window": [
+        "2026-W19",
+        "2026-W20",
+        "2026-W21",
+        "2026-W22"
+      ],
+      "n_paired_seeds": 3,
+      "full_values_by_seed": [
+        0.18765432098765433,
+        0.21419753086419754,
+        0.20555555555555555
+      ],
+      "ablation_values_by_seed": [
+        0.07592592592592592,
+        0.08425925925925926,
+        0.0734567901234568
+      ],
+      "full_mean": 0.20246913580246914,
+      "ablation_mean": 0.07788065843621399,
+      "paired_deltas_by_seed": [
+        -0.11172839506172841,
+        -0.1299382716049383,
+        -0.13209876543209875
+      ],
+      "delta_mean": -0.12458847736625515,
+      "delta_min": -0.13209876543209875,
+      "delta_max": -0.11172839506172841,
+      "all_paired_deltas_negative": true,
+      "all_paired_deltas_positive": false
+    }
+  ],
+  "source_manifest": "paper/figures/source_data/ablation_sources.json",
+  "source_manifest_sha256": "bee807b973e4100d7f4cdbcadff60f6b70dea4c30264fd8e9a7cbd8d997bbf06",
+  "conflicts": []
+}

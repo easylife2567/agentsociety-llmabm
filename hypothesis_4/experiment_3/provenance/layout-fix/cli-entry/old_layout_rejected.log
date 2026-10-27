@@ -1,0 +1,53 @@
+[2026-10-15 22:43:36] INFO    Environment validation passed
+[2026-10-15 22:43:36] INFO    Loading config from /Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_b_s0.json
+[2026-10-15 22:43:36] INFO    Loading steps from /Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/hypothesis_4/experiment_3/init/steps_s0.yaml
+[2026-10-15 22:43:36] INFO    Scanning custom modules from /Users/easylife/Project/AgentSociety
+[2026-10-15 22:43:36] INFO    ModuleRegistry initialized (lazy loading enabled)
+[2026-10-15 22:43:36] INFO    Cleared 0 custom modules
+[2026-10-15 22:43:36] ERROR   Experiment failed: 403: Workspace path is not allowed
+Traceback (most recent call last):
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/society/cli.py", line 451, in run
+    scan_and_register_custom_modules(custom_root)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/registry/modules.py", line 286, in scan_and_register_custom_modules
+    registry.set_workspace(workspace_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/registry/base.py", line 165, in set_workspace
+    self._workspace_path = resolve_workspace_root(str(workspace_path))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/backend/path_security.py", line 29, in resolve_workspace_root
+    raise HTTPException(status_code=403, detail="Workspace path is not allowed")
+fastapi.exceptions.HTTPException: 403: Workspace path is not allowed
+[2026-10-15 22:43:36] ERROR   Failed to run experiment: 403: Workspace path is not allowed
+Traceback (most recent call last):
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/society/cli.py", line 872, in main
+    asyncio.run(
+    ~~~~~~~~~~~^
+        runner.run(
+        ^^^^^^^^^^^
+    ...<6 lines>...
+        )
+        ^
+    )
+    ^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/society/cli.py", line 451, in run
+    scan_and_register_custom_modules(custom_root)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/registry/modules.py", line 286, in scan_and_register_custom_modules
+    registry.set_workspace(workspace_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/registry/base.py", line 165, in set_workspace
+    self._workspace_path = resolve_workspace_root(str(workspace_path))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/backend/path_security.py", line 29, in resolve_workspace_root
+    raise HTTPException(status_code=403, detail="Workspace path is not allowed")
+fastapi.exceptions.HTTPException: 403: Workspace path is not allowed

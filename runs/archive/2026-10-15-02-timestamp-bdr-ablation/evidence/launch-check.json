@@ -1,0 +1,15 @@
+{
+  "preflight": "PASS",
+  "frozen_files": 40,
+  "positive_action_pass": true,
+  "anomaly_checks_rejected": [
+    "action_failure",
+    "technical_error",
+    "attempt_overflow",
+    "publication_mismatch",
+    "duplicate_agent_week"
+  ],
+  "LLM_calls": 0,
+  "network_calls": 0,
+  "scope": "仅控制器状态检查，不重跑已通过的科学功能验收"
+}

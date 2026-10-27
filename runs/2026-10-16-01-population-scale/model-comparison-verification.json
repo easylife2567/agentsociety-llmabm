@@ -1,0 +1,29 @@
+{
+  "arms": [
+    {
+      "algorithm": "chronological",
+      "agents": 100,
+      "opportunities": 1100,
+      "batches": 693,
+      "effective_seed": 0
+    },
+    {
+      "algorithm": "interest",
+      "agents": 100,
+      "opportunities": 1100,
+      "batches": 693,
+      "effective_seed": 0
+    },
+    {
+      "algorithm": "random",
+      "agents": 100,
+      "opportunities": 1100,
+      "batches": 693,
+      "effective_seed": 0
+    }
+  ],
+  "network_attempts": 0,
+  "llm_calls": 0,
+  "env_source": "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace/custom/envs/curation_dynamics_space.py",
+  "success": true
+}

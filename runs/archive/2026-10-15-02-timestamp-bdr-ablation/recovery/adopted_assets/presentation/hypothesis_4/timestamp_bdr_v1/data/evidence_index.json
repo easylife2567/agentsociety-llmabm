@@ -1,0 +1,38 @@
+{
+  "hypothesis_id": "4",
+  "sources": [
+    {
+      "path": "data/paired_differences.csv",
+      "kind": "paired_metrics",
+      "report_section": "findings",
+      "label": "三个同seed差值",
+      "fields": [
+        "condition",
+        "seed",
+        "metric",
+        "full",
+        "ablation",
+        "delta"
+      ]
+    },
+    {
+      "path": "data/weekly_by_type.csv",
+      "kind": "weekly_counts",
+      "report_section": "findings",
+      "label": "零周保留的作者类型供给"
+    },
+    {
+      "path": "data/weekly_exposure_by_cohort.csv",
+      "kind": "observed_feeds",
+      "report_section": "findings",
+      "label": "实际阅读标签/来源分母"
+    },
+    {
+      "path": "data/source_index.json",
+      "kind": "provenance",
+      "report_section": "data",
+      "label": "12次来源哈希、冻结配置与三路对账"
+    }
+  ],
+  "notice": "User-approved and adopted evidence bundle; no independent model review or formal harness release sign-off."
+}

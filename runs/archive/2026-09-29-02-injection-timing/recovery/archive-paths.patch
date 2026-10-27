@@ -1,0 +1,163 @@
+--- a/runs/archive/2026-09-29-02-injection-timing/2026-09-30-12-timestamp-stacked-area.py
++++ b/runs/archive/2026-09-29-02-injection-timing/2026-09-30-12-timestamp-stacked-area.py
+@@ -12,7 +12,7 @@
+ from pathlib import Path
+ 
+ TASK = Path(__file__).resolve().parent
+-ROOT = TASK.parents[1]
++ROOT = TASK.parents[2]
+ OUT = ROOT/'presentation/hypothesis_4/2026-09-30-01-arrival-timing'
+ # 将绘图库临时缓存留在任务tmp，不写入用户全局配置目录。
+ cache = TASK/'tmp/matplotlib'
+--- a/runs/archive/2026-09-29-02-injection-timing/2026-09-30-11-knowledge-coverage.py
++++ b/runs/archive/2026-09-29-02-injection-timing/2026-09-30-11-knowledge-coverage.py
+@@ -11,7 +11,7 @@
+ from pathlib import Path
+ 
+ TASK = Path(__file__).resolve().parent
+-ROOT = TASK.parents[1]
++ROOT = TASK.parents[2]
+ OUT = ROOT/'presentation/hypothesis_4/2026-09-30-01-arrival-timing'
+ spec = importlib.util.spec_from_file_location('frozen_tagger', ROOT/'custom/envs/curation_assets/build_assets.py')
+ tagger = importlib.util.module_from_spec(spec)
+--- a/runs/archive/2026-09-29-02-injection-timing/2026-10-07-06-content-overview.py
++++ b/runs/archive/2026-09-29-02-injection-timing/2026-10-07-06-content-overview.py
+@@ -11,7 +11,7 @@
+ from pathlib import Path
+ 
+ TASK = Path(__file__).resolve().parent
+-ROOT = TASK.parents[1]
++ROOT = TASK.parents[2]
+ OUT = ROOT/'presentation/hypothesis_4/2026-09-30-01-arrival-timing'
+ os.environ['MPLCONFIGDIR'] = str(TASK/'tmp/matplotlib')
+ SOURCE = OUT/'2026-10-07-02-content-weekly.csv'
+--- a/runs/archive/2026-09-29-02-injection-timing/2026-10-06-02-plot-numerical-expectation.py
++++ b/runs/archive/2026-09-29-02-injection-timing/2026-10-06-02-plot-numerical-expectation.py
+@@ -13,7 +13,7 @@
+ from pathlib import Path
+ 
+ TASK = Path(__file__).resolve().parent
+-ROOT = TASK.parents[1]
++ROOT = TASK.parents[2]
+ OUT = ROOT/'presentation/hypothesis_4/2026-09-30-01-arrival-timing'
+ SOURCE = OUT/'2026-10-06-01-numerical-decisions.csv'
+ SUMMARY = OUT/'2026-10-06-03-numerical-summary.json'
+--- a/runs/archive/2026-09-29-02-injection-timing/2026-09-30-02-audit.py
++++ b/runs/archive/2026-09-29-02-injection-timing/2026-09-30-02-audit.py
+@@ -11,7 +11,7 @@
+ 
+ 
+ # 新内容账本与生产门控共用分类核对；旧记录保留原审计语义。
+-_quality_path = Path(__file__).resolve().parents[2] / 'custom/agents/curation_content_quality.py'
++_quality_path = Path(__file__).resolve().parents[3] / 'custom/agents/curation_content_quality.py'
+ _quality_spec = importlib.util.spec_from_file_location('audit_content_quality', _quality_path)
+ quality = importlib.util.module_from_spec(_quality_spec)
+ _quality_spec.loader.exec_module(quality)
+@@ -99,7 +99,7 @@
+         expected_labels = [f'2026-W{12+i:02d}' for i in range(expected_weeks)]
+         if dict(week_counts) != dict.fromkeys(expected_labels, 100):
+             failures.append('week opportunity matrix mismatch')
+-        schedule = read_json(Path(__file__).resolve().parents[2] / 'hypothesis_4/experiment_1/init/arrival_timing_diagnostic/action_schedule.json')
++        schedule = read_json(Path(__file__).resolve().parents[3] / 'hypothesis_4/experiment_1/init/arrival_timing_diagnostic/action_schedule.json')
+         hours = schedule.get('action_hours', schedule.get('chronological_action_hours', schedule))
+         for r in actions:
+             t = datetime.fromisoformat(r['acted_at'])
+--- a/runs/archive/2026-09-29-02-injection-timing/2026-09-30-03-run-batch.py
++++ b/runs/archive/2026-09-29-02-injection-timing/2026-09-30-03-run-batch.py
+@@ -20,7 +20,7 @@
+ from pathlib import Path
+ 
+ TASK = Path(__file__).resolve().parent
+-ROOT = TASK.parents[1]
++ROOT = TASK.parents[2]
+ MANIFEST = ROOT / 'hypothesis_4/experiment_1/init/arrival_timing_diagnostic/manifest.json'
+ BATCH = ROOT / 'hypothesis_4/experiment_1/runs/arrival_timing_diagnostic'
+ STATE = BATCH / 'batch_execution.json'
+--- a/runs/archive/2026-09-29-02-injection-timing/2026-09-30-01-generate-configs.py
++++ b/runs/archive/2026-09-29-02-injection-timing/2026-09-30-01-generate-configs.py
+@@ -10,7 +10,7 @@
+ import json
+ from pathlib import Path
+ 
+-ROOT = Path(__file__).resolve().parents[2]
++ROOT = Path(__file__).resolve().parents[3]
+ INIT = ROOT / "hypothesis_4/experiment_1/init"
+ OUTPUT = INIT / "arrival_timing_diagnostic"
+ BATCH = "arrival_timing_diagnostic"
+--- a/runs/archive/2026-09-29-02-injection-timing/2026-10-07-03-content-numerical-expectation.py
++++ b/runs/archive/2026-09-29-02-injection-timing/2026-10-07-03-content-numerical-expectation.py
+@@ -14,7 +14,7 @@
+ from types import SimpleNamespace
+ 
+ TASK = Path(__file__).resolve().parent
+-ROOT = TASK.parents[1]
++ROOT = TASK.parents[2]
+ OUT = ROOT/'presentation/hypothesis_4/2026-09-30-01-arrival-timing'
+ os.environ['LITELLM_LOCAL_MODEL_COST_MAP'] = 'True'
+ os.environ['MPLCONFIGDIR'] = str(TASK/'tmp/matplotlib')
+--- a/runs/archive/2026-09-29-02-injection-timing/2026-09-30-09-plot.py
++++ b/runs/archive/2026-09-29-02-injection-timing/2026-09-30-09-plot.py
+@@ -10,7 +10,7 @@
+ import matplotlib.pyplot as plt
+ import pandas as pd
+ 
+-ROOT = Path(__file__).resolve().parents[2]
++ROOT = Path(__file__).resolve().parents[3]
+ OUT = ROOT / 'presentation/hypothesis_4/2026-09-30-01-arrival-timing'
+ plt.rcParams.update({'font.family':'sans-serif', 'font.sans-serif':['Arial','DejaVu Sans'],
+                      'svg.fonttype':'none', 'pdf.fonttype':42, 'font.size':10,
+--- a/runs/archive/2026-09-29-02-injection-timing/2026-10-06-01-numerical-check.py
++++ b/runs/archive/2026-09-29-02-injection-timing/2026-10-06-01-numerical-check.py
+@@ -16,7 +16,7 @@
+ from types import SimpleNamespace
+ 
+ TASK = Path(__file__).resolve().parent
+-ROOT = TASK.parents[1]
++ROOT = TASK.parents[2]
+ OUT = ROOT/'presentation/hypothesis_4/2026-09-30-01-arrival-timing'
+ CONFIG = ROOT/'hypothesis_4/experiment_1/init/arrival_timing_diagnostic'
+ TYPES = ('meme', 'mourning', 'education', 'marketing', 'other', 'noise')
+--- a/runs/archive/2026-09-29-02-injection-timing/2026-09-30-04-analyze.py
++++ b/runs/archive/2026-09-29-02-injection-timing/2026-09-30-04-analyze.py
+@@ -14,7 +14,7 @@
+ 
+ import numpy as np
+ 
+-ROOT = Path(__file__).resolve().parents[2]
++ROOT = Path(__file__).resolve().parents[3]
+ TASK = Path(__file__).resolve().parent
+ OUT = ROOT / 'presentation/hypothesis_4/2026-09-30-01-arrival-timing'
+ MANIFEST = ROOT / 'hypothesis_4/experiment_1/init/arrival_timing_diagnostic/manifest.json'
+--- a/runs/archive/2026-10-06-01-baseline-anchor/2026-10-06-02-check.py
++++ b/runs/archive/2026-10-06-01-baseline-anchor/2026-10-06-02-check.py
+@@ -18,7 +18,7 @@
+ 
+ import pandas as pd
+ 
+-ROOT = Path(__file__).resolve().parents[2]
++ROOT = Path(__file__).resolve().parents[3]
+ RAW = ROOT / "archive/hypothesis_4_experiment_1_batches/formal_current/anchored_v1/raw"
+ OUT = ROOT / "presentation/hypothesis_4/2026-10-06-01-baseline-anchor"
+ WORKBOOK = ROOT / "data/baseline/抖音微博小红书-全量已打标.xlsx"
+--- a/custom/tests/test_arrival_timing.py
++++ b/custom/tests/test_arrival_timing.py
+@@ -199,7 +199,7 @@
+         self.assertIsNone(agent._decision_log[0]['u'])
+ 
+     async def test_metrics_empty_and_different_candidate_pools(self):
+-        audit = load_module('test_audit', ROOT / 'runs/2026-09-29-02-injection-timing/2026-09-30-02-audit.py')
++        audit = load_module('test_audit', ROOT / 'runs/archive/2026-09-29-02-injection-timing/2026-09-30-02-audit.py')
+         rows = [{'feed': [{'type': 'meme'}, {'type': 'other'}], 'candidate_count': 10, 'candidate_meme': 2},
+                 {'feed': [], 'candidate_count': 0, 'candidate_meme': 0}]
+         result = audit.metrics(rows)
+--- a/custom/tests/test_content_quality.py
++++ b/custom/tests/test_content_quality.py
+@@ -14,7 +14,7 @@
+ 
+ os.environ['LITELLM_LOCAL_MODEL_COST_MAP'] = 'True'
+ ROOT = Path(__file__).resolve().parents[2]
+-TASK = ROOT/'runs/2026-09-29-02-injection-timing'
++TASK = ROOT/'runs/archive/2026-09-29-02-injection-timing'
+ 
+ 
+ def load(name, path):

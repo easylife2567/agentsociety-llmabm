@@ -1,0 +1,22 @@
+--- a/custom/agents/curation_arrival_action.py
++++ b/custom/agents/curation_arrival_action.py
+@@ -78,7 +78,7 @@
+     agent._step_count += 1
+     row = {'week': week, 'tick': tick, 'acted_at': quality.clock_time(t), 'speak': None,
+            'posted': False, 'post_id': None, 'reason': '', 'generation_attempts': 0,
+-           'generation_status': 'not_requested', 'content_status': 'not_generated', 'generation_results': []}
++           'attempt_count_scope': 'provider_requests', 'generation_status': 'not_requested', 'content_status': 'not_generated', 'generation_results': []}
+     phase = 'before_decision'
+     try:
+         result, _ = await agent.ask_env(
+--- a/custom/agents/curation_discourse_agent.py
++++ b/custom/agents/curation_discourse_agent.py
+@@ -382,7 +382,7 @@
+         agent_id = str(self._id)
+         record = {'tick': tick, 'week': week, 'acted_at': quality.clock_time(t), 'speak': None,
+                   'posted': False, 'post_id': None, 'generation_attempts': 0,
+-                  'generation_status': 'not_requested', 'content_status': 'not_generated'}
++                  'attempt_count_scope': 'completion_calls', 'generation_status': 'not_requested', 'content_status': 'not_generated'}
+         phase = 'before_decision'
+         try:
+             results, _ = await self.ask_env(

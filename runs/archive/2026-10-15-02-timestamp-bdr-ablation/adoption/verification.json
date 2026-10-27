@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "formal_batch_files_byte_verified": 8182,
+  "scientific_tables_identical": [
+    "weekly_by_type.csv",
+    "weekly_totals.csv",
+    "run_metrics.csv",
+    "paired_differences.csv",
+    "paired_summary.csv",
+    "weekly_exposure_by_cohort.csv",
+    "exposure_by_opportunity.csv",
+    "vocab_label_counts.csv"
+  ],
+  "PNG_images_pixel_identical_to_accepted_candidate": 19,
+  "formal_schema": true,
+  "formal_analysis": {
+    "passed": true,
+    "units": 12,
+    "raw_opportunities": 13200,
+    "independent_primary_pair_checks": 27,
+    "source_files_sha256_verified": 5394,
+    "weekly_type_rows": 660,
+    "weekly_total_rows": 132,
+    "zero_output_weeks_preserved": 10,
+    "peak_weekly_posts": 63,
+    "template_axis": [
+      0,
+      80
+    ],
+    "PNG_files": 19,
+    "SVG_files": 19,
+    "report_image_links": "all local and resolved",
+    "plot_font_warnings": 0,
+    "network_attempts": 0,
+    "additional_LLM_calls": 0,
+    "main_machine_state_unchanged": true,
+    "ablation_results_and_ledger_unchanged": true,
+    "scientific_review": "user approved adoption; primary-agent consistency review only; no independent model reviewer"
+  },
+  "mechanism": {
+    "passed": true,
+    "late_meme_opportunities_per_comparison": 228,
+    "late_no_d_transition_full_to_ablation": {
+      "0->0": 96,
+      "0->1": 23,
+      "1->0": 93,
+      "1->1": 16
+    },
+    "late_no_r_transition_full_to_ablation": {
+      "0->0": 118,
+      "0->1": 1,
+      "1->0": 34,
+      "1->1": 75
+    },
+    "all_34_no_r_losses_have_lower_D": true,
+    "all_meme_author_thresholds_exceed_B": true,
+    "direct_implication": "At a fixed Full state that already speaks, setting R=1 cannot silence a meme author in this population.",
+    "inference_limit": "No new counterfactual runs or identified mediation decomposition; observed feedback changes do not isolate each path.",
+    "raw_example_count": 5,
+    "additional_LLM_calls": 0
+  },
+  "changed_preexisting_tracked_files_this_turn": [
+    "README.md",
+    "hypothesis_4/README.md",
+    "hypothesis_4/experiment_2/README.md",
+    "paper/README.md",
+    "presentation/hypothesis_4/README.md",
+    "runs/README.md"
+  ],
+  "unrelated_preexisting_tracked_files_preserved": true,
+  "main_progress_unchanged": true,
+  "original_results_and_ledger_unchanged": true,
+  "formal_analysis_private_run_dependencies": 0,
+  "credentials_copied": 0,
+  "new_LLM_calls": 0,
+  "git_staged_changes": false
+}

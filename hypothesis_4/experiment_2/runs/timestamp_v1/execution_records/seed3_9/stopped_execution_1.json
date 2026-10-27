@@ -1,0 +1,298 @@
+{
+  "supervisor_pid": 83453,
+  "status": "stopped",
+  "started_at": "2026-10-22T15:40:45.951303+00:00",
+  "completed": [
+    {
+      "run_id": "timestamp_v1_random_s3",
+      "finished_at": "2026-10-22T16:20:35.209824+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 174,
+      "requests": 174,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 174
+      }
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s3",
+      "finished_at": "2026-10-22T17:00:48.904449+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 224,
+      "requests": 224,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 224
+      }
+    },
+    {
+      "run_id": "timestamp_v1_interest_s3",
+      "finished_at": "2026-10-22T17:23:26.648732+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 218,
+      "requests": 218,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 218
+      }
+    },
+    {
+      "run_id": "timestamp_v1_random_s4",
+      "finished_at": "2026-10-22T17:38:01.573431+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 158,
+      "requests": 158,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 158
+      }
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s4",
+      "finished_at": "2026-10-22T18:03:10.315876+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 220,
+      "requests": 220,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 220
+      }
+    },
+    {
+      "run_id": "timestamp_v1_interest_s4",
+      "finished_at": "2026-10-22T18:18:05.809059+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 228,
+      "requests": 229,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 228
+      }
+    },
+    {
+      "run_id": "timestamp_v1_random_s5",
+      "finished_at": "2026-10-22T18:38:32.713065+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 165,
+      "requests": 166,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 165
+      }
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s5",
+      "finished_at": "2026-10-22T18:54:48.458455+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 206,
+      "requests": 206,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 206
+      }
+    },
+    {
+      "run_id": "timestamp_v1_interest_s5",
+      "finished_at": "2026-10-22T19:15:25.390546+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 216,
+      "requests": 217,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 216
+      }
+    },
+    {
+      "run_id": "timestamp_v1_random_s6",
+      "finished_at": "2026-10-22T19:29:00.014948+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 169,
+      "requests": 170,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 169
+      }
+    },
+    {
+      "run_id": "timestamp_v1_chronological_s6",
+      "finished_at": "2026-10-22T19:50:06.881821+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 205,
+      "requests": 206,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 205
+      }
+    }
+  ],
+  "total_runs": 21,
+  "extra_requests_used": 5,
+  "updated_at": "2026-10-22T20:01:14.921738+00:00",
+  "elapsed_seconds": 15628.970464,
+  "max_parallel": 2,
+  "active_runs": [
+    {
+      "run_id": "timestamp_v1_interest_s6",
+      "child_pid": 1346,
+      "run_dir": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_interest_s6",
+      "command": [
+        "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python",
+        "-m",
+        "agentsociety2.society.cli",
+        "--config",
+        "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s6.json",
+        "--steps",
+        "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/init/steps_s6.yaml",
+        "--run-dir",
+        "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_interest_s6",
+        "--experiment-id",
+        "timestamp_v1_interest_s6",
+        "--log-file",
+        "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_interest_s6/engine.log",
+        "--batch-size",
+        "100"
+      ],
+      "adopted": false,
+      "agent_summary": {
+        "agent_files": 100,
+        "decisions": 921,
+        "unique_decisions": 921,
+        "posted": 175,
+        "requests": 175,
+        "action_failures": 0,
+        "response_models": {
+          "deepseek-v4-1-flash-261017": 175
+        }
+      },
+      "progress": {
+        "pid.json": {
+          "pid": 1346,
+          "status": "running",
+          "start_time": "2026-10-22T19:29:01.660087+00:00",
+          "experiment_id": "timestamp_v1_interest_s6",
+          "simulation_time": "2026-05-19T11:00:00",
+          "step_count": 580
+        },
+        "SOCIETY_STEP.json": {
+          "current_time": "2026-05-19T11:00:00",
+          "step_count": 580,
+          "completed_step_count": 580,
+          "terminated": false
+        }
+      }
+    },
+    {
+      "run_id": "timestamp_v1_random_s7",
+      "child_pid": 3539,
+      "run_dir": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_random_s7",
+      "command": [
+        "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python",
+        "-m",
+        "agentsociety2.society.cli",
+        "--config",
+        "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s7.json",
+        "--steps",
+        "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/init/steps_s7.yaml",
+        "--run-dir",
+        "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_random_s7",
+        "--experiment-id",
+        "timestamp_v1_random_s7",
+        "--log-file",
+        "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_random_s7/engine.log",
+        "--batch-size",
+        "100"
+      ],
+      "adopted": false,
+      "agent_summary": {
+        "agent_files": 100,
+        "decisions": 224,
+        "unique_decisions": 224,
+        "posted": 54,
+        "requests": 54,
+        "action_failures": 1,
+        "response_models": {
+          "deepseek-v4-1-flash-261017": 54
+        }
+      },
+      "progress": {
+        "pid.json": {
+          "pid": 3539,
+          "status": "running",
+          "start_time": "2026-10-22T19:50:08.546145+00:00",
+          "experiment_id": "timestamp_v1_random_s7",
+          "simulation_time": "2026-03-31T13:00:00",
+          "step_count": 141
+        },
+        "SOCIETY_STEP.json": {
+          "current_time": "2026-03-31T13:00:00",
+          "step_count": 141,
+          "completed_step_count": 141,
+          "terminated": false
+        }
+      }
+    }
+  ],
+  "deadline_at": "2026-10-24T15:40:45.950453+00:00",
+  "handoff_at": "2026-10-22T16:43:52.861996+00:00",
+  "budget_remaining_seconds": 157171.028676,
+  "total_body_requests": 2417,
+  "stop_reason": "行动/发布失败: timestamp_v1_random_s7",
+  "error": "行动/发布失败: timestamp_v1_random_s7",
+  "children_needing_attention": [],
+  "finished_at": "2026-10-22T20:01:14.886204+00:00"
+}

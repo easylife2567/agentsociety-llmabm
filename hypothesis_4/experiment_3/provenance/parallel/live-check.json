@@ -1,0 +1,52 @@
+{
+  "at": "2026-10-15T16:02:49.633022+00:00",
+  "supervisor_alive": true,
+  "old_supervisor_alive": false,
+  "completed": 1,
+  "deadline_at": "2026-10-17T12:21:11.583919+00:00",
+  "shared_ledger_path": "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/results/timestamp_bdr_v1_attempt_02/_extra_attempts.count",
+  "ledger_alias_correct": true,
+  "ledger_count": 0,
+  "active": [
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s0",
+      "pid": 6985,
+      "alive": true,
+      "requested_model": "deepseek-v4-1-flash-260910",
+      "new_env_key_matches": false,
+      "new_env_base_matches": false,
+      "response_models": {
+        "deepseek-v4-1-flash": 169
+      },
+      "step": 221,
+      "actions": 345,
+      "weeks": 3,
+      "posts": 169,
+      "requests": 169,
+      "extra": 0,
+      "ray_address": null
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s0",
+      "pid": 11135,
+      "alive": true,
+      "requested_model": "deepseek-v4-1-flash-260910",
+      "new_env_key_matches": true,
+      "new_env_base_matches": true,
+      "response_models": {
+        "deepseek-v4-1-flash-260910": 5
+      },
+      "step": 7,
+      "actions": 9,
+      "weeks": 0,
+      "posts": 5,
+      "requests": 5,
+      "extra": 0,
+      "ray_address": "local"
+    }
+  ],
+  "frozen_files_verified": 40,
+  "no_new_probe_calls": true,
+  "budget_remaining_seconds": 159501.621741,
+  "total_requests_actual": 262
+}

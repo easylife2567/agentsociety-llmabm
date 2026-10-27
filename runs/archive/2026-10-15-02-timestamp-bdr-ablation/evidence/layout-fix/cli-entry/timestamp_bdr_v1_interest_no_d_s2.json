@@ -1,0 +1,22 @@
+{
+  "success": true,
+  "official_cli_main": true,
+  "run_dir": "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/hypothesis_4/experiment_3/runtime/cli-entry-checks/timestamp_bdr_v1_interest_no_d_s2",
+  "workspace": "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace",
+  "modules": {
+    "env": "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/custom/envs/curation_dynamics_space.py",
+    "agent": "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/custom/agents/curation_discourse_agent.py"
+  },
+  "config": "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s2.json",
+  "steps": "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace/hypothesis_4/experiment_3/init/steps_s2.yaml",
+  "profiles": 100,
+  "environment_batches": 693,
+  "unique_actions": 1100,
+  "weeks": 11,
+  "future_exposures": 0,
+  "checkpoint_restore_equal": true,
+  "network_attempts": 0,
+  "LLM_calls": 0,
+  "stopped_before_ray_and_provider": true,
+  "scope": "完整真实CLI入口/模块/路径/配置/人口及无生成环境全窗；不运行真实Ray与模型服务"
+}

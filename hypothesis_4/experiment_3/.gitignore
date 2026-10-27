@@ -1,0 +1,12 @@
+# 原始引擎资产本机保全，不自动纳入Git；忽略不授权删除。
+/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_*/
+/runs/timestamp_bdr_v1_attempt_02/*supervisor.log
+/runs/timestamp_bdr_v1_attempt_02/supervisor.lock
+/runs/timestamp_bdr_v1_attempt_02/_extra_attempts.count
+/checks/mplconfig/
+**/__pycache__/
+
+# 新增seed3–9独立账本和未来调度日志（原始证据本机保全）
+/runs/timestamp_bdr_v1_attempt_02/execution_records/*/_extra_attempts.count
+/runs/timestamp_bdr_v1_attempt_02/execution_records/*/*.log
+/runs/timestamp_bdr_v1_attempt_02/execution_records/*/supervisor.lock

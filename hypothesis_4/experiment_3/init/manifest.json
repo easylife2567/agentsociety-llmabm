@@ -1,0 +1,241 @@
+{
+  "baseline_commit": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "execution_authorized": false,
+  "llm_calls": 0,
+  "source_lock_sha256": "ef9e22a842389d1e16e1419f3a7fe1f82d7836d9433ffe83614bf882d6c80051",
+  "generator_sha256": "15553444005017ac289cc3f0e8f99d2b36c02ca7e80fc6d97d878f399d216ddd",
+  "source_sha256": {
+    "hypothesis_4/experiment_3/init/inputs/action_schedule_s0.json": "a864f4d09e9e291446c24618a3e980939d8c16f964f73d07d3f76667081f8ccf",
+    "hypothesis_4/experiment_3/init/inputs/action_schedule_s1.json": "a864f4d09e9e291446c24618a3e980939d8c16f964f73d07d3f76667081f8ccf",
+    "hypothesis_4/experiment_3/init/inputs/action_schedule_s2.json": "a864f4d09e9e291446c24618a3e980939d8c16f964f73d07d3f76667081f8ccf",
+    "hypothesis_4/experiment_3/init/inputs/initial_sample_weekly_lag_s0.json": "8915813f6b4258c03a137e3c8b0e27dc763a724bd0947b3a0190ee1cc04fe6bf",
+    "hypothesis_4/experiment_3/init/inputs/initial_sample_weekly_lag_s1.json": "da75d5861bf9bffbcb97a5b13130bd30bfc2bbfe1f11b2ed4eb4f29f92029813",
+    "hypothesis_4/experiment_3/init/inputs/initial_sample_weekly_lag_s2.json": "d5b25c42b27b468925e4112bfac60daf8f2a5362b227a83572e47b446ee19d49",
+    "hypothesis_4/experiment_3/init/inputs/injection_sample_s0.json": "5b0f9efedffac94ba2b3a8a639aa8b0b3c0ef2bb2c1f31a8377ac76ec29608d5",
+    "hypothesis_4/experiment_3/init/inputs/injection_sample_s1.json": "bf0768ec6c2fa9510188c676f901311feaec43ae8db2319408a6b4a5905e9601",
+    "hypothesis_4/experiment_3/init/inputs/injection_sample_s2.json": "44d37a4ddc04fa34c940dff80415c81a6376832e69d7d7299b4b2b9177c15708",
+    "hypothesis_4/experiment_3/init/inputs/population_s0.json": "8debff3a0349a5cc5d732b7e494f71c312fa7e22aa9458c6a80c7980ffe35d65",
+    "hypothesis_4/experiment_3/init/inputs/population_s1.json": "8debff3a0349a5cc5d732b7e494f71c312fa7e22aa9458c6a80c7980ffe35d65",
+    "hypothesis_4/experiment_3/init/inputs/population_s2.json": "8debff3a0349a5cc5d732b7e494f71c312fa7e22aa9458c6a80c7980ffe35d65",
+    "hypothesis_4/experiment_3/init/reference/main_runtime_plan.json": "1a7d257df6ce4f194937de0e30ceb7d574688c577e6b358fce148c8a220bda2f",
+    "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s0.json": "68afdd91e46e6d4cde1eee1f7696b004e1ae4ddce292fd8dbb43706eb6d74a37",
+    "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s1.json": "3a740043abe77d7fed9b281fc4180530a9dbffffaa3d540ec8746acc03be241f",
+    "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s2.json": "5b4e1cc16a830a99d6ac71398e8b681f3cdceb1b1e3efa0196720ba0d59993fd",
+    "hypothesis_4/experiment_3/init/steps_s0.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_3/init/steps_s1.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_3/init/steps_s2.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8"
+  },
+  "mechanism_sha256": {
+    "custom/agents/curation_arrival_action.py": "d494fd814e2467ec3b69ce430659cc00043b763c2886b3cf9cd389cebb5636aa",
+    "custom/agents/curation_content_quality.py": "4e0903091e14db09c379ce65cbe665abd57aae2af0aa66b5aeca38d35ca1045f",
+    "custom/agents/curation_discourse_agent.py": "ac08888fdbd5000abb2526da83a7a9363e4b3349623f459213241b721c2e4072",
+    "custom/envs/curation_arrival_schedule.py": "e422e73bc43ff699e20cbf640e06a14430d2e3493001fbe62b4eb182d9de488d",
+    "custom/envs/curation_assets/vocabs.json": "7db323585fdc98594da4a4b97e49ce5d3d1654c89839da7c2a754c7515b15e69",
+    "custom/envs/curation_dynamics_space.py": "794f19b45dfdd6548246feb49b86b4b557a0c9c637a019549025f4663e2fa160",
+    "custom/envs/curation_mechanisms.py": "1acbc7deafbd61c0e7d04f81673ad1ef0497acd8ef308b0a6a1b26a558a4baec"
+  },
+  "output_sha256": {
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_b_s0.json": "d22f73052925933c5a0ee215acbe12d591cfa81f1764efbbaafdf724620d105f",
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s0.json": "ca31eb0584b9695278c227cf81b3e0736755b4ef784fd22a104d2ca6d00e4d84",
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s0.json": "ec1e1e4f55615571a4c033f6d92549f6aba7dc1cf1d3c166e3c8be7143ea92f1",
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_b_s1.json": "d6bfaa44ef02b3100ec27d516107db5cb6bbd7004a7a8c19f01b2cb7d0ae42ad",
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s1.json": "96badd9baaf8d3f1211db175fffed9d8c23805acb14e985af2a7abc6f3aca21d",
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s1.json": "f969b12f498839e2ada2a7941fa2a1ca37bb528624339ed4a20e8b6df50b436a",
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_b_s2.json": "c65892add78a24ae89316130be750fc3f010538a40564d35278233cd38abfa79",
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s2.json": "5abc2cbd7c4f37a2c94019dbb4393fd1f523d3d2f949b91df3d9b72eb2f080aa",
+    "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s2.json": "e54740c18d3f5fad460b9aad9beb39c37da2a3098addce157da5414bc5c71393",
+    "hypothesis_4/experiment_3/init/init_config.json": "d22f73052925933c5a0ee215acbe12d591cfa81f1764efbbaafdf724620d105f",
+    "hypothesis_4/experiment_3/init/steps.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8"
+  },
+  "runs": [
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s0",
+      "algorithm": "interest",
+      "seed": 0,
+      "condition": "no_b",
+      "ablation_parameter": "kwargs.params.baseline_utility",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s0.json",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_b_s0.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s0.yaml",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s0",
+      "algorithm": "interest",
+      "seed": 0,
+      "condition": "no_d",
+      "ablation_parameter": "kwargs.params.spiral_scale",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s0.json",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s0.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s0.yaml",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s0",
+      "algorithm": "interest",
+      "seed": 0,
+      "condition": "no_r",
+      "ablation_parameter": "kwargs.params.decay",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s0.json",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s0.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s0.yaml",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s1",
+      "algorithm": "interest",
+      "seed": 1,
+      "condition": "no_b",
+      "ablation_parameter": "kwargs.params.baseline_utility",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s1.json",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_b_s1.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s1.yaml",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s1",
+      "algorithm": "interest",
+      "seed": 1,
+      "condition": "no_d",
+      "ablation_parameter": "kwargs.params.spiral_scale",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s1.json",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s1.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s1.yaml",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s1",
+      "algorithm": "interest",
+      "seed": 1,
+      "condition": "no_r",
+      "ablation_parameter": "kwargs.params.decay",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s1.json",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s1.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s1.yaml",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_b_s2",
+      "algorithm": "interest",
+      "seed": 2,
+      "condition": "no_b",
+      "ablation_parameter": "kwargs.params.baseline_utility",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s2.json",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_b_s2.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s2.yaml",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_d_s2",
+      "algorithm": "interest",
+      "seed": 2,
+      "condition": "no_d",
+      "ablation_parameter": "kwargs.params.spiral_scale",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s2.json",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_d_s2.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s2.yaml",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    },
+    {
+      "run_id": "timestamp_bdr_v1_interest_no_r_s2",
+      "algorithm": "interest",
+      "seed": 2,
+      "condition": "no_r",
+      "ablation_parameter": "kwargs.params.decay",
+      "ablation_value": 0.0,
+      "full_reference": "hypothesis_4/experiment_3/init/reference/timestamp_v1_interest_s2.json",
+      "config": "hypothesis_4/experiment_3/init/configs/timestamp_bdr_v1_interest_no_r_s2.json",
+      "steps": "hypothesis_4/experiment_3/init/steps_s2.yaml",
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "execution_authorized": false
+    }
+  ],
+  "execution_order": [
+    "timestamp_bdr_v1_interest_no_b_s0",
+    "timestamp_bdr_v1_interest_no_d_s0",
+    "timestamp_bdr_v1_interest_no_r_s0",
+    "timestamp_bdr_v1_interest_no_b_s1",
+    "timestamp_bdr_v1_interest_no_d_s1",
+    "timestamp_bdr_v1_interest_no_r_s1",
+    "timestamp_bdr_v1_interest_no_b_s2",
+    "timestamp_bdr_v1_interest_no_d_s2",
+    "timestamp_bdr_v1_interest_no_r_s2"
+  ],
+  "decision_opportunities": 9900,
+  "extra_requests_limit": 990,
+  "retry_budget": {
+    "scope": "all_9_runs",
+    "ledger_path": "hypothesis_4/experiment_3/runs/timestamp_bdr_v1/_extra_attempts.count",
+    "unique_ledger_paths": [
+      "hypothesis_4/experiment_3/runs/timestamp_bdr_v1/_extra_attempts.count"
+    ],
+    "initial_count_required": 0,
+    "ledger_created": false
+  },
+  "operational_changes": [
+    "env_modules[0].kwargs.injection_data_path",
+    "env_modules[0].kwargs.weekly_initial_injection_data_path",
+    "agents[*].kwargs.content_retry_budget.ledger_path"
+  ]
+}

@@ -1,0 +1,36 @@
+[
+  {
+    "contract_id": "supply",
+    "claim_id": "C0",
+    "core_finding": "固定同一尺度与作者类型口径，Full及三个单因素消融在供给轨迹上分叉。",
+    "scope": "single faceted chart",
+    "evidence": "weekly_by_type.csv, grouped by condition/week/type, arithmetic mean over three seeds",
+    "outputs": [
+      "chart_03_supply_mean_comparison.png"
+    ],
+    "template": "exact chart3b palette/order, W13 marker, 0–80 scale; individual charts use frozen template function",
+    "caveat": "mean is not a single realized run; see all twelve per-seed charts; author type is not semantic gold"
+  },
+  {
+    "contract_id": "primary",
+    "claim_id": "CB,CD,CR",
+    "core_finding": "三项预设窗口指标分别显示B供给维持、D晚期选择性表达和R整体衰减。",
+    "scope": "single faceted paired comparison",
+    "evidence": "run_metrics.csv and paired_summary.csv; no pooling opportunities as independent replicates",
+    "outputs": [
+      "chart_04_primary_paired_effects.png"
+    ],
+    "caveat": "three paired runs only; different metric units separated across facets"
+  },
+  {
+    "contract_id": "trajectories",
+    "claim_id": "CD,CR",
+    "core_finding": "总体持续表达与玩梗型作者晚期优势并不同时提高，去D使表达前移。",
+    "scope": "single two-facet trend chart",
+    "evidence": "weekly_by_type.csv; exact speak/opportunities, mean and actual range by seed",
+    "outputs": [
+      "chart_05_speaking_trajectories.png"
+    ],
+    "caveat": "min-max band is not CI; author types and post meaning differ"
+  }
+]

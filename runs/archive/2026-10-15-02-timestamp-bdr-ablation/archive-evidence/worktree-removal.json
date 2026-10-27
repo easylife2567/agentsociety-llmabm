@@ -1,0 +1,10 @@
+{
+  "removed": [
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/workspace",
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/tmp/archive-restore-workspace"
+  ],
+  "method": "git worktree remove; no --force; preserved then removed only identified deltas",
+  "other_run_worktree_kept": "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace",
+  "final_worktrees": "worktree /Users/easylife/Project/AgentSociety\nHEAD 69d243955d341444ae769fae5bf23dc160465cd6\nbranch refs/heads/main\n\nworktree /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/workspace\nHEAD 69d243955d341444ae769fae5bf23dc160465cd6\ndetached\n\n",
+  "main_progress_unchanged": true
+}

@@ -1,0 +1,74 @@
+{
+  "matched_scope": "three s0 arms, serial; wall interval includes scheduling and framework calls",
+  "old_s0_wall_started_at": "2026-10-14T14:47:28.343831+00:00",
+  "old_s0_wall_finished_at": "2026-10-14T17:43:48.840092+00:00",
+  "old_s0_wall_minutes": 176.34160435,
+  "new_wall_started_at": "2026-10-16T05:51:50.076168+00:00",
+  "new_wall_finished_at": "2026-10-16T11:35:25.494734+00:00",
+  "new_wall_minutes": 343.59030943333335,
+  "new_to_old_wall_ratio": 1.948435882160745,
+  "old_engine_total_minutes": 175.82639878333333,
+  "new_engine_total_minutes": 343.12586468333336,
+  "arms": [
+    {
+      "algorithm": "random",
+      "old_s0_engine_minutes": 57.96992566666667,
+      "new_engine_minutes": 117.73367338333334,
+      "old_pid_source": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_random_s0/pid.json",
+      "new_pid_source": "runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_random/pid.json"
+    },
+    {
+      "algorithm": "chronological",
+      "old_s0_engine_minutes": 58.482746883333334,
+      "new_engine_minutes": 119.80798051666667,
+      "old_pid_source": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s0/pid.json",
+      "new_pid_source": "runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_chronological/pid.json"
+    },
+    {
+      "algorithm": "interest",
+      "old_s0_engine_minutes": 59.37372623333333,
+      "new_engine_minutes": 105.58421078333335,
+      "old_pid_source": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s0/pid.json",
+      "new_pid_source": "runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_interest/pid.json"
+    }
+  ],
+  "limitation": "Cross-time service/batch observation, not isolated provider latency or intrinsic model throughput; price unknown.",
+  "sources": [
+    {
+      "path": "hypothesis_4/experiment_2/runs/timestamp_v1/batch_execution.json",
+      "sha256": "91e69c2f4077d44c4982302b78aca19c7124ade646d587d527d97bf7264d92eb"
+    },
+    {
+      "path": "runs/2026-10-16-01-population-scale/model-comparison-execution.json",
+      "sha256": "6b5f9450d6524a880f1fd12eeec1d55cc46998602c05df423217dc793eda4ff2"
+    },
+    {
+      "path": "runs/2026-10-16-01-population-scale/model-comparison-analysis/build_appendices.py",
+      "sha256": "5b7ac2dcd6ce1e1f9dca8c4ada06d18c601d38dba9bd039e73b5a473cd8986f4"
+    },
+    {
+      "path": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_random_s0/pid.json",
+      "sha256": "f64a6607cdca9c54e37f743a1036ac05ccb7e0bcb2a25d0cf097482f724201fa"
+    },
+    {
+      "path": "runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_random/pid.json",
+      "sha256": "2dc8c80a1b5ddea3c1b7c7627aa8aafc37cd8ec7585b3f6499ed685ed86cd94c"
+    },
+    {
+      "path": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s0/pid.json",
+      "sha256": "92a620376aad811c6863b44f4b67dad0cbd28bb578b9b81e6b9f7bcbe7c41456"
+    },
+    {
+      "path": "runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_chronological/pid.json",
+      "sha256": "f511a640ddb4845401413b2854c08a7769f18255e55a2d336c0882247fdb3194"
+    },
+    {
+      "path": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s0/pid.json",
+      "sha256": "c010310a695f1e1e808e80ba7c1e4c54e13ec58fa3e0efc6f2b1bb02aaea720a"
+    },
+    {
+      "path": "runs/2026-10-16-01-population-scale/workspace/hypothesis_4/experiment_4/runs/cuc_model_v1/cuc_model_v1_interest/pid.json",
+      "sha256": "6a2e9bf7a8f704a6e68c67871e0586547507a9dd03c19910e0e0b4249a54979a"
+    }
+  ]
+}

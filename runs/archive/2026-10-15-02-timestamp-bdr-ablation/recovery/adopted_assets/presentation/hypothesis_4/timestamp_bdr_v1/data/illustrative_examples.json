@@ -1,0 +1,131 @@
+[
+  {
+    "role": "B",
+    "condition": "no_b",
+    "seed": 0,
+    "agent_id": 13,
+    "agent_type": "marketing",
+    "week": "2026-W19",
+    "selection_rule": "first by seed/week/agent_id satisfying the declared posted divergence; illustrative, not representative",
+    "records": [
+      {
+        "condition": "full",
+        "speak": true,
+        "posted": true,
+        "U": 0.865032534366,
+        "D": 1.091,
+        "R": 0.15,
+        "B": 0.8252,
+        "threshold": 0.7958,
+        "margin": 0.0692325343657,
+        "content": "刷到@58和@13在聊信息差，说句实在的：把坑提前讲明白，确实不等于替你走完路，升学不是做对几道题就能改命，方向、分数、家里的底子得放一块儿算。\n\n但另一面也得说：连有哪些选项都不知道，谈“看孩子自己”就有点奢侈。我这几年干的就是把这些摊开讲——院校专业梯度怎么排、不同分数段怎么搭、哪些项目千万别碰，讲清楚，再让孩子自己选，这两件事不冲突。\n\n最近整理了一份志愿填报避坑思路，评论区扣“信息”我发你，想听直播拆解也可以说一声。别等出分那几天才慌。",
+        "source_file": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s0/agents/agent_0013/AGENT.json",
+        "source_sha256": "c2db8d9d0d761b37089ebb4bf198bfcacfed4b8f1eea2c44d604e3de1b7c447e",
+        "record_index": 7,
+        "assigned_type": "marketing"
+      },
+      {
+        "condition": "no_b",
+        "speak": false,
+        "posted": false,
+        "U": 0.238126369691,
+        "D": 1.0862,
+        "R": 0.2192,
+        "B": 0.0,
+        "threshold": 0.7958,
+        "margin": -0.557673630309,
+        "content": null,
+        "source_file": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_b_s0/agents/agent_0013/AGENT.json",
+        "source_sha256": "8838ef20fc15ddd7e514b2bd7fb55320fdd480b00710e63dad41d414554d7561",
+        "record_index": 7,
+        "assigned_type": null
+      }
+    ]
+  },
+  {
+    "role": "D",
+    "condition": "no_d",
+    "seed": 0,
+    "agent_id": 12,
+    "agent_type": "meme",
+    "week": "2026-W20",
+    "selection_rule": "first by seed/week/agent_id satisfying the declared posted divergence; illustrative, not representative",
+    "records": [
+      {
+        "condition": "full",
+        "speak": true,
+        "posted": true,
+        "U": 0.979485366401,
+        "D": 1.0413,
+        "R": 0.7676,
+        "B": 0.7755,
+        "threshold": 0.9445,
+        "margin": 0.0349853664014,
+        "content": "刷到张雪峰那句\"我倒要看看你儿子报不报新闻学\"，我整个人：这孩子的志愿填报能不能开个直播[吃瓜] 全程无广，纯真人秀。\n\n然后同框又刷到个\"雪糕怎么发紫 看我三口一个#张雪峰\"，好家伙这紫雪糕怕不是新闻学专业毕业的，被问急了。\n\n再往下滑，六升七暑假计划表比我打工排班还满……六升七，升完七还得升八，建议一步到位升到退休[裂开] 准初一的爹妈先放过孩子也放过自己吧。\n\n（至于刷到悼念帖那种，这会儿就不抖机灵了，安静划过。）",
+        "source_file": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s0/agents/agent_0012/AGENT.json",
+        "source_sha256": "ff3ec499277e066b8cb445b56c9621625dc834422a5fa904b50de56001d26513",
+        "record_index": 8,
+        "assigned_type": "mourning"
+      },
+      {
+        "condition": "no_d",
+        "speak": false,
+        "posted": false,
+        "U": 0.853420818139,
+        "D": 1.0,
+        "R": 0.3471,
+        "B": 0.7755,
+        "threshold": 0.9445,
+        "margin": -0.0910791818614,
+        "content": null,
+        "source_file": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_d_s0/agents/agent_0012/AGENT.json",
+        "source_sha256": "9ef0afc20a1eb186e425a21afe2c55a5ce1fa69f66582ab1dcc66d81c7366e98",
+        "record_index": 8,
+        "assigned_type": null
+      }
+    ]
+  },
+  {
+    "role": "R",
+    "condition": "no_r",
+    "seed": 0,
+    "agent_id": 30,
+    "agent_type": "mourning",
+    "week": "2026-W14",
+    "selection_rule": "first by seed/week/agent_id satisfying the declared posted divergence; illustrative, not representative",
+    "records": [
+      {
+        "condition": "full",
+        "speak": false,
+        "posted": false,
+        "U": 0.986409945526,
+        "D": 1.3069,
+        "R": 0.4055,
+        "B": 0.7678,
+        "threshold": 1.0399,
+        "margin": -0.0534900544741,
+        "content": null,
+        "source_file": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_interest_s0/agents/agent_0030/AGENT.json",
+        "source_sha256": "49dc36e41a3ab44b5762e0246d00f819d5b8e752a1e41e5f46b26f00aac4d91b",
+        "record_index": 2,
+        "assigned_type": null
+      },
+      {
+        "condition": "no_r",
+        "speak": true,
+        "posted": true,
+        "U": 1.3068953056,
+        "D": 1.3069,
+        "R": 1.0,
+        "B": 0.7678,
+        "threshold": 1.0399,
+        "margin": 0.266995305596,
+        "content": "刷到几条相关帖子，有讣告、殡仪馆外排队的描述，也有“走了”这个词。但我看到的来源多是转述或标注未核实，没法替谁确认。真正让我停下来的是留言里的那些话：考研二战的晚上靠直播撑过去，普通家庭的孩子少走弯路。争论之外，有人确实被那些直白的话托住过。别让未经证实的图再跑来跑去；还在熬的人，也别硬扛，先照顾好自己。",
+        "source_file": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/runs/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_interest_no_r_s0/agents/agent_0030/AGENT.json",
+        "source_sha256": "365a2fc8a1adbda43233a4c3f9041388dd4f802a7cb888d2c6379b165c1446b4",
+        "record_index": 2,
+        "assigned_type": "mourning"
+      }
+    ]
+  }
+]

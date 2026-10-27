@@ -1,0 +1,33 @@
+{
+  "authorization": "用户：额度已经恢复，尝试继续",
+  "started_at": "2026-10-23T02:18:15.529772+00:00",
+  "attempted_requests": 1,
+  "simulation_requests": 0,
+  "retries": 0,
+  "model": "deepseek-v4.1-flash",
+  "status": "passed",
+  "response_model": "deepseek-v4-1-flash-261017",
+  "content": "OK",
+  "usage": {
+    "completion_tokens": 2,
+    "prompt_tokens": 34,
+    "total_tokens": 36,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null,
+      "image_tokens": null,
+      "video_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cached_tokens": 0,
+      "text_tokens": null,
+      "image_tokens": null,
+      "video_tokens": null
+    }
+  },
+  "finished_at": "2026-10-23T02:18:16.364607+00:00"
+}

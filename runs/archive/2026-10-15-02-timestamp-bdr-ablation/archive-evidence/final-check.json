@@ -1,0 +1,29 @@
+{
+  "archived": true,
+  "adoption_status": "adopted",
+  "archive_date": "2026-10-18",
+  "old_root": "runs/2026-10-15-02-timestamp-bdr-ablation",
+  "new_root": "runs/archive/2026-10-15-02-timestamp-bdr-ablation",
+  "local_navigation_links": 133,
+  "missing_current_links": [],
+  "archive_files_sha256_verified": 10789,
+  "raw_batch_files_unchanged": 8182,
+  "archive_manifest_sha256": "68ac88383d9348efc480fecf5e548a067db65e2c3b7f024bb2e77d232b8a273c",
+  "recovery_overlay_files": 45,
+  "adopted_files_restored_and_verified": 201,
+  "Full_dependency_files_verified": 2707,
+  "workspace_preserved_files_checked": 10056,
+  "completed_runs": 9,
+  "new_LLM_calls": 0,
+  "private_run_processes": [],
+  "automation_status": "PAUSED",
+  "own_worktrees_removed_without_force": true,
+  "other_run_worktree_preserved": true,
+  "main_machine_state_unchanged": true,
+  "changed_preexisting_tracked_files": [
+    "runs/README.md"
+  ],
+  "formal_experiment_change": "README archive navigation only; saved before in formal-experiment-README.before.md",
+  "commit_or_push": false,
+  "formal_report_or_raw_data_rewritten": false
+}

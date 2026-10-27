@@ -1,0 +1,63 @@
+{
+  "captured_on": "2026-10-15",
+  "timezone": "Asia/Shanghai",
+  "git_commit": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "scope": "仅冻结写作输入；不是完整代码或实验结果恢复包",
+  "source_state": "当前工作区实际文件，含任务开始前已有未提交及未跟踪材料；不把这些差异计为本run成果",
+  "files": [
+    {
+      "source": "/Users/easylife/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_8bpqz6howtoq22_e0f4/msg/file/2026-10/README.md",
+      "snapshot": "WRITING_GUIDELINES.original.md",
+      "sha256": "77de348ed07d061ac64cc5bed1a3570d324a89dab459559f1ba674082a6166e9",
+      "bytes": 3126
+    },
+    {
+      "source": "/Users/easylife/Project/AgentSociety/AGENTS.md",
+      "snapshot": "inputs/project-agents.md",
+      "sha256": "0f523965c2f238781381d5a0ea9666ba016dbd2d5ebc677af15e6e43cc920de9",
+      "bytes": 31595
+    },
+    {
+      "source": "/Users/easylife/Project/AgentSociety/paper/manuscript/manuscript.accepted.md",
+      "snapshot": "inputs/manuscript.accepted.md",
+      "sha256": "850b81cb1857f93e99c665d8526562a26ae7ad674aab14b68efc735c74999bbf",
+      "bytes": 66035
+    },
+    {
+      "source": "/Users/easylife/Project/AgentSociety/paper/manuscript/INTAKE_AUDIT.md",
+      "snapshot": "inputs/INTAKE_AUDIT.md",
+      "sha256": "c3dee32e1fe40ea31ae472420532e6735cdc724811b45d0c3cba667d73db4ec1",
+      "bytes": 6588
+    },
+    {
+      "source": "/Users/easylife/Project/AgentSociety/【1009批注版】ICA-研究背景和文献综述.docx",
+      "snapshot": "inputs/background-literature.final.docx",
+      "sha256": "135642f68e41afcd508fac54f38f3d960ad97673493251807a722f0ed9d5d775",
+      "bytes": 29248
+    },
+    {
+      "source": "/Users/easylife/Project/AgentSociety/【修订1】1008 理论框架.docx",
+      "snapshot": "inputs/theory-framework.final.docx",
+      "sha256": "5f3208734f2f1ac8cb6f64f56db0ccb2a1be07374c8fb4209c6fffc75f4e8bff",
+      "bytes": 18709
+    },
+    {
+      "source": "/Users/easylife/Project/AgentSociety/paper/后续论文具体写作报告.md",
+      "snapshot": "inputs/后续论文具体写作报告.md",
+      "sha256": "2c10b5a21761361e9ca9d53972dd760c987e5ecee4c1e59a1395f690c48178b4",
+      "bytes": 51952
+    },
+    {
+      "source": "/Users/easylife/Project/AgentSociety/paper/必要实验与结果整理.md",
+      "snapshot": "inputs/必要实验与结果整理.md",
+      "sha256": "e0577b733faa8084ef04253892deec6f0fadef0bece41238963ac8f9a32e6728",
+      "bytes": 9849
+    },
+    {
+      "source": "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/README.md",
+      "snapshot": "inputs/experiment_2.README.md",
+      "sha256": "a5e5684fe34e9780620eb73ac8218a44bc0ee833d791dffc03123d3734f3d3fa",
+      "bytes": 9581
+    }
+  ]
+}

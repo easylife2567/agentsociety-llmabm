@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "operation": "prepare-produce",
+  "hypothesis_id": "4",
+  "experiment_id": "2",
+  "steps": {
+    "report_context": {
+      "input_fingerprint": "f5695a0c6fad4e70981ec9e8901bb94cd532a63d34c9437fed0948182b7fa5c5",
+      "output_fingerprints": {
+        "presentation/hypothesis_4/data/evidence_index.json": "d34bf9db0a997a1f1d9dc8187a14ad377fad9e2bff8986c6d222beab00f4940c",
+        "presentation/hypothesis_4/data/report_context.md": "1632a004c276cf05d69848585e2f2ea783526aaee141183a022492fbf4611c1a",
+        "presentation/hypothesis_4/data/analysis_summary.json": "2a010a35b918cf3b742dc007ad6dc7f340e5e54185b51e4920832e241389472b"
+      },
+      "completed_at": "2026-10-24T05:48:46.905955Z"
+    },
+    "report_assets": {
+      "input_fingerprint": "d8c0afe7cb8e71499a574027df671cbc2864494c41a1bcf035fadc2f857dfb9a",
+      "output_fingerprints": {
+        "presentation/hypothesis_4/assets/agentsociety_icon.svg": "9244e5581292b9e6e46961a188d158ce44949d321dad0a822e10f41063b13141",
+        "presentation/hypothesis_4/assets/chart_01_seed10_trajectories.png": "8c39777d0c2747c8dacaaaa430919420464c348ab81a5e6af592cbfd7fc1c653",
+        "presentation/hypothesis_4/assets/chart_02_seed10_model_cohorts.png": "0421aa579af52f0e06ac65f2cb90650f9d384b8f8e99c9a24726bd4a4f0c30b0",
+        "presentation/hypothesis_4/assets/chart_03_seed10_paired_seeds.png": "c9dc6a35749bb7ad510bec3c58a2fea0017ce5d0b5c0c97482735dac68d15642"
+      },
+      "completed_at": "2026-10-24T05:48:46.912708Z"
+    },
+    "interactive_eda": {
+      "input_fingerprint": "0f9b28766aac94d900a9625241365e5f2e459f38d6888957101ef280dd5f23a5",
+      "output_fingerprints": {
+        "presentation/hypothesis_4/data/interactive_eda_section.html": "e10ff2ad130bbe7024ef2159ef1356a206b71a988fea2108e04d62dc9b7b30fd",
+        "presentation/hypothesis_4/report_zh.html": "2e5387686a811601a8c92b34ce18b3e4d86278709de1898b3f54725cb7120351",
+        "presentation/hypothesis_4/report_en.html": "c27ea861fd253c2b8b3744ce6918839986f3509a5d12b707f61508f7bdb43b8d"
+      },
+      "completed_at": "2026-10-24T05:48:46.914646Z"
+    }
+  },
+  "updated_at": "2026-10-24T05:48:46.914661Z"
+}

@@ -1,0 +1,8 @@
+workspace/
+tmp/
+results/timestamp_bdr_v1/timestamp_bdr_v1_*/
+results/timestamp_bdr_v1/*.log
+results/timestamp_bdr_v1/supervisor.lock
+results/timestamp_bdr_v1_attempt_02/timestamp_bdr_v1_*/
+results/timestamp_bdr_v1_attempt_02/*.log
+results/timestamp_bdr_v1_attempt_02/supervisor.lock

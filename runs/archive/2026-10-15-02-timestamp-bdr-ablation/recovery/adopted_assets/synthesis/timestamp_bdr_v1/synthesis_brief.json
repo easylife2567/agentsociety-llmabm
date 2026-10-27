@@ -1,0 +1,17 @@
+{
+  "synthesis_question": "冻结timestamp-interest中的B、D、R如何共同改变表达参与与作者供给？",
+  "scope_hypothesis_ids": [
+    "4"
+  ],
+  "experiment_id": "3",
+  "user_approved": true,
+  "source_artifacts": [
+    "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/timestamp_bdr_v1/report_zh.md",
+    "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/timestamp_bdr_v1/report_en.md",
+    "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/timestamp_bdr_v1/data/paired_summary.csv",
+    "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/timestamp_bdr_v1/data/weekly_exposure_by_cohort.csv",
+    "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/timestamp_bdr_v1/data/source_index.json"
+  ],
+  "comparison_mode": "within_hypothesis_paired_ablation",
+  "release": "user-approved and adopted; no independent LLM review"
+}

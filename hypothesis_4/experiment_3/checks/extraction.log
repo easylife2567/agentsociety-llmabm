@@ -1,0 +1,4 @@
+condition               metric  full_mean  ablation_mean  delta_mean  delta_min  delta_max  n
+     no_b  late_posts_per_week  13.833333       6.833333   -7.000000  -7.750000  -6.250000  3
+     no_d late_meme_speak_rate   0.478070       0.171053   -0.307018  -0.355263  -0.276316  3
+     no_r       mid_speak_rate   0.191333       0.492000    0.300667   0.270000   0.318000  3

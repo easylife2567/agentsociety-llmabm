@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-15T15:57:43.062179+00:00",
+  "git_commit": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "code_start_sha256": "0be2c2cf0391c1c5632f9da1d0acab704a5dc96104dfcbccef46b69982710697",
+  "runtime_plan_sha256": "e18efddab7f0846ac673f97848cf94fcbbdcd6576fab2f1a20c5f48436681e9c",
+  "code_path": "runs/2026-10-15-02-timestamp-bdr-ablation/run_ablation.py",
+  "new_env_model": "deepseek-v4.1-flash",
+  "pinned_model": "deepseek-v4-1-flash-260910",
+  "key_changed": true,
+  "base_path_changed": [
+    "/api/coding/v3",
+    "/api/plan/v3"
+  ],
+  "credentials_saved": false
+}

@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "case": "adoption_and_all_nine",
+      "passed": true,
+      "launches": [
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ],
+      "max_parallel": 2
+    },
+    {
+      "case": "joint_stop",
+      "passed": true,
+      "launches": [
+        "r2"
+      ],
+      "max_parallel": 2
+    },
+    {
+      "case": "sum_both_lanes_and_shared_extra_limit",
+      "passed": true
+    }
+  ],
+  "network_calls": 0,
+  "LLM_calls": 0
+}

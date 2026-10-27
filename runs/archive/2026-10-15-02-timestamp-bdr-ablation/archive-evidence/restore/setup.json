@@ -1,0 +1,18 @@
+{
+  "validate": {
+    "success": true
+  },
+  "info": {
+    "success": true
+  },
+  "success": true,
+  "phase": "setup",
+  "loaded_modules": {
+    "agent": "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/tmp/archive-restore-workspace/custom/agents/curation_discourse_agent.py",
+    "env": "/Users/easylife/Project/AgentSociety/runs/2026-10-15-02-timestamp-bdr-ablation/tmp/archive-restore-workspace/custom/envs/curation_dynamics_space.py"
+  },
+  "provider_calls": 0,
+  "network_attempts": 0,
+  "llm_execution_authorized": false,
+  "scope": "配置与固定返回离线功能验收"
+}

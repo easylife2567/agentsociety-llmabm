@@ -1,0 +1,73 @@
+{
+  "supervisor_pid": 69988,
+  "status": "running",
+  "started_at": "2026-10-22T15:40:45.951303+00:00",
+  "completed": [
+    {
+      "run_id": "timestamp_v1_random_s3",
+      "finished_at": "2026-10-22T16:20:35.209824+00:00",
+      "steps": 693,
+      "actions": 1100,
+      "weeks": 11,
+      "agent_files": 100,
+      "decisions": 1100,
+      "unique_decisions": 1100,
+      "posted": 174,
+      "requests": 174,
+      "action_failures": 0,
+      "response_models": {
+        "deepseek-v4-1-flash-261017": 174
+      }
+    }
+  ],
+  "total_runs": 21,
+  "current_run": "timestamp_v1_chronological_s3",
+  "extra_requests_used": 0,
+  "child_pid": 78411,
+  "command": [
+    "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python",
+    "-m",
+    "agentsociety2.society.cli",
+    "--config",
+    "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s3.json",
+    "--steps",
+    "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/init/steps_s3.yaml",
+    "--run-dir",
+    "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_chronological_s3",
+    "--experiment-id",
+    "timestamp_v1_chronological_s3",
+    "--log-file",
+    "/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1_seed3_9/timestamp_v1_chronological_s3/engine.log",
+    "--batch-size",
+    "100"
+  ],
+  "current_agent_summary": {
+    "agent_files": 100,
+    "decisions": 591,
+    "unique_decisions": 591,
+    "posted": 147,
+    "requests": 147,
+    "action_failures": 0,
+    "response_models": {
+      "deepseek-v4-1-flash-261017": 147
+    }
+  },
+  "updated_at": "2026-10-22T16:43:49.382234+00:00",
+  "progress": {
+    "pid.json": {
+      "pid": 78411,
+      "status": "running",
+      "start_time": "2026-10-22T16:20:36.995705+00:00",
+      "experiment_id": "timestamp_v1_chronological_s3",
+      "simulation_time": "2026-04-25T17:00:00",
+      "step_count": 370
+    },
+    "SOCIETY_STEP.json": {
+      "current_time": "2026-04-25T17:00:00",
+      "step_count": 370,
+      "completed_step_count": 370,
+      "terminated": false
+    }
+  },
+  "elapsed_seconds": 3783.3670504579786
+}

@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-12",
+  "git_commit": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "sources_sha256": {
+    "悼念退潮之后：基于多智能体仿真的逝者数字形象塑造机制研究.pdf": "48a4111f22b7b8952d591e2e61721a1382b73e7c4579e4f0da25558cd2aa7340",
+    "【1009批注版】ICA-研究背景和文献综述.docx": "135642f68e41afcd508fac54f38f3d960ad97673493251807a722f0ed9d5d775",
+    "【修订1】1008 理论框架.docx": "5f3208734f2f1ac8cb6f64f56db0ccb2a1be07374c8fb4209c6fffc75f4e8bff"
+  },
+  "updated_paths": [
+    "README.md",
+    "TOPIC.md",
+    "hypothesis_4/README.md",
+    "hypothesis_4/HYPOTHESIS.md",
+    "hypothesis_4/experiment_2/README.md",
+    "hypothesis_4/experiment_2/EXPERIMENT.md",
+    "锚定式事件表达激活模型.md",
+    "data/README.md",
+    "paper/README.md",
+    "paper/manuscript/INTAKE_AUDIT.md",
+    "paper/manuscript/manuscript.accepted.md",
+    "runs/README.md",
+    "runs/2026-10-09-01-activation-calibration/README.md"
+  ],
+  "before_sha256": {
+    "README.md": "81ce822c33f7faf17ebd0b026de4189f4fe069cb249b31f1c576ae74fd99e8bf",
+    "TOPIC.md": "11308f1164f23a4bc717f4d362a2b5a5f51a4280bc7194be51feb6eca2e28946",
+    "hypothesis_4/README.md": "60256c3a375d445999a844c4bc259fda87ebf7b7c04d555c6071238211286566",
+    "hypothesis_4/HYPOTHESIS.md": "7cf3f27e62179c3e4aee7fd39783f5c97dfcdad164a276ab4c7de973c2194e0b",
+    "hypothesis_4/experiment_2/README.md": "0ef959f676834725bfe0e2905c6535f0cdd62090af2dc43982b4300efc6057f8",
+    "hypothesis_4/experiment_2/EXPERIMENT.md": "2a4a1a7ab6d1246ff1eb0c219f860e87758ab06e89de3d20df6d46c200a71166",
+    "锚定式事件表达激活模型.md": "0ca69469ec00651ba018970305c2682a6820a146810a02658758f4c7cfbf23d5",
+    "data/README.md": "7935d9932e3aeda1091784d1ea9b22cfab8fca8b0054d77ac3d009b637d179d2",
+    "paper/README.md": "b2755cecb09efbb2f8257051bfc49307c729b98d83b0018d1a8bf234e7f04bd1",
+    "paper/manuscript/INTAKE_AUDIT.md": "56e84df4822b5f34a67baa7996bcfba0f91b5435ed3f18df978ea5ba35456194",
+    "paper/manuscript/manuscript.accepted.md": "39b33aecc87bd554bf00fd83a4719e82bd3b38ebed179a0c564906ef12e410c9",
+    "runs/README.md": "341b3ad67e709be00dd0007589a8868a9772016cb2252598ea1363fd992114b7",
+    "runs/2026-10-09-01-activation-calibration/README.md": "8b1ce2538080b6f48195240b163ab54a5eccde096353b2af37378bc5184bd589"
+  },
+  "after_sha256": {
+    "README.md": "48d2e48850067db97d7f3eef7b8c9377a3492ad15e64f2bc9624f77910cbbd1f",
+    "TOPIC.md": "734203d0e19f03780f55001fb7c54c8522a4b67665a3b4987c21042b9f351ed2",
+    "hypothesis_4/README.md": "1dda2b46cf9a5d72f7ad83131af58913b9908fb7fef74e42323be8a45728c60f",
+    "hypothesis_4/HYPOTHESIS.md": "8822154ad9b570b4be97cf40ea793ccd1d060cc5d172f18885fd5fa5bd3f76f5",
+    "hypothesis_4/experiment_2/README.md": "9f9b4574aad751399bae505c4eea4d7b956b9198b48cb1ce1b72582ead69ed2d",
+    "hypothesis_4/experiment_2/EXPERIMENT.md": "7e4acad442302e8129c3d3870decd791611b9289757d28ba022fe026c94b4762",
+    "锚定式事件表达激活模型.md": "3a36dc0ec4fae6133d0ae343e1af35b4bf959d2e85e8ef1e462d320578ce18ee",
+    "data/README.md": "7cdb3a407d164d1f8c7f5a9bea8bde5e81038612c81a984e259403355354c08b",
+    "paper/README.md": "d2095bef492748b955522c3e9349c48c3d0be39bbc301b6ed7fd69a7fb3b6de1",
+    "paper/manuscript/INTAKE_AUDIT.md": "b21c4e436c59a87dfa54da0c40e3c70d8c0d15f6d944e6907cd04740ec741437",
+    "paper/manuscript/manuscript.accepted.md": "850b81cb1857f93e99c665d8526562a26ae7ad674aab14b68efc735c74999bbf",
+    "runs/README.md": "0d0ad181d11e0cf89ac08045341942cec369d5442afa4b947e7da8817eb41345",
+    "runs/2026-10-09-01-activation-calibration/README.md": "a7cf9cb87e4c46adb38da73a948399abc670bd954241b28bcecee484ab723796"
+  },
+  "checks": {
+    "original_sources_unchanged": true,
+    "before_snapshots_match_recorded_hashes": true,
+    "docx_counts_match_audit": true,
+    "later_chapters_and_old_footnotes_preserved": true,
+    "abstract_keywords_preserved": true,
+    "prior_revision_notes_preserved": true,
+    "new_footnotes_resolved_once": true,
+    "latest_author_sections_imported": true,
+    "three_research_questions_match": true,
+    "new_local_links_exist": true,
+    "git_diff_check_passed": true,
+    "new_tracked_diff_paths_within_scope": true,
+    "no_code_config_or_data_paths_in_tracked_diff": true,
+    "staging_unchanged_empty": true
+  },
+  "docx_structure_counts": {
+    "【1009批注版】ICA-研究背景和文献综述.docx": {
+      "insertions": 7,
+      "deletions": 0,
+      "comments": 7,
+      "notes": 14
+    },
+    "【修订1】1008 理论框架.docx": {
+      "insertions": 24,
+      "deletions": 11,
+      "comments": 8,
+      "notes": 4
+    }
+  },
+  "broken_new_links": [],
+  "validation_scope": "文稿来源、同步范围、引用及链接检查；未运行模型、代码测试或仿真。"
+}

@@ -1,0 +1,156 @@
+{
+  "date": "2026-10-26",
+  "primary_figures": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "legacy_ablation_n": 3,
+  "ablation_runs": 40,
+  "ablation_seeds_per_condition": 10,
+  "main_runs": 30,
+  "seeds_per_regime": 10,
+  "successful_agent_posts": 6041,
+  "observed_five_category_posts": 46602,
+  "original_observed_records": 49930,
+  "summary_by_regime": {
+    "chronological": {
+      "late_meme_posts": 45.4,
+      "late_meme_share": 0.750112612349,
+      "own_share": 0.43631578947370003,
+      "meme_post_rate": 0.5973684210526,
+      "cross_generated_share": 0.24919753086430002
+    },
+    "interest": {
+      "late_meme_posts": 37.8,
+      "late_meme_share": 0.6847204814808,
+      "own_share": 0.2631578947368,
+      "meme_post_rate": 0.49736842105269996,
+      "cross_generated_share": 0.07373456790125
+    },
+    "random": {
+      "late_meme_posts": 3.1,
+      "late_meme_share": 0.10780051793392001,
+      "own_share": 0.03223684210526,
+      "meme_post_rate": 0.04078947368422,
+      "cross_generated_share": 0.0011419753086416
+    }
+  },
+  "figures": [
+    {
+      "figure": 1,
+      "stem": "figure_01_observed_pooled",
+      "panels": 2,
+      "svg_text_objects": 43,
+      "svg_embedded_images": 0,
+      "pdf_raster_images": 0,
+      "minimum_font_pt": 8.0,
+      "size_mm": [
+        180.0,
+        99.0
+      ],
+      "clipped_pdf_text": [],
+      "overlapping_pdf_text": [],
+      "outputs": {
+        "svg": "48ba91250812b7b28db2782f42bbb4c00ba091c09b76fb73c1af20087d98d3d8",
+        "pdf": "858b0cbad8dcbaf1651e7a20bc096cab34dd30a83fc8a59a877dc00a807d92b6",
+        "png": "7f35e19f4a0eabe15f4b5701ea5216c72aab75b231bff14716614b8fd3c26e0d"
+      }
+    },
+    {
+      "figure": 2,
+      "stem": "figure_02_observed_platforms",
+      "panels": 2,
+      "svg_text_objects": 44,
+      "svg_embedded_images": 0,
+      "pdf_raster_images": 0,
+      "minimum_font_pt": 8.0,
+      "size_mm": [
+        180.0,
+        99.0
+      ],
+      "clipped_pdf_text": [],
+      "overlapping_pdf_text": [],
+      "outputs": {
+        "svg": "78af3bf1403bd33dfd247640a2465d34ce28bf65552693a1bbdf70bbab4faaaf",
+        "pdf": "a1fa27b855da3789793ac283c6ff840dd51fb880e808cb3fc3c403b16f12f755",
+        "png": "1953fc4d8d4c1a412e5aeb291f49fb6583e35da490671abd093edb3867601214"
+      }
+    },
+    {
+      "figure": 3,
+      "stem": "figure_03_simulated_trajectories",
+      "panels": 4,
+      "svg_text_objects": 72,
+      "svg_embedded_images": 0,
+      "pdf_raster_images": 0,
+      "minimum_font_pt": 8.0,
+      "size_mm": [
+        180.0,
+        128.0
+      ],
+      "clipped_pdf_text": [],
+      "overlapping_pdf_text": [],
+      "outputs": {
+        "svg": "ec3d612876c2152931848cf66de5a5aac42093c241ce90a07a6ae3b06a8499f0",
+        "pdf": "4d9d89cec61f81d558be7b8a2e61706dbf07a5259916db5bec48f2a48a51e395",
+        "png": "ede928a1c99a4afd54b8a2d5d5ae674b28ce4b4b76e22fe4122335b087530f22"
+      }
+    },
+    {
+      "figure": 4,
+      "stem": "figure_04_feedback_exposure",
+      "panels": 3,
+      "svg_text_objects": 39,
+      "svg_embedded_images": 0,
+      "pdf_raster_images": 0,
+      "minimum_font_pt": 8.0,
+      "size_mm": [
+        180.0,
+        98.0
+      ],
+      "clipped_pdf_text": [],
+      "overlapping_pdf_text": [],
+      "outputs": {
+        "svg": "fb80a167ea5f94a2eda67bdd0d988fb0e8ec960511b1daab21f6d9cb58c52dd0",
+        "pdf": "d976ba805bfe637656a078cdf0ed4486194a3223dca11c2a77241248bc9ce50d",
+        "png": "98cd453229b54cf44dfc5886d13256589faec525535fef4dbe0b738b172c6076"
+      }
+    },
+    {
+      "figure": 5,
+      "stem": "figure_05_bdr_ablation",
+      "panels": 5,
+      "svg_text_objects": 61,
+      "svg_embedded_images": 0,
+      "pdf_raster_images": 0,
+      "minimum_font_pt": 8.0,
+      "size_mm": [
+        180.0,
+        112.0
+      ],
+      "clipped_pdf_text": [],
+      "overlapping_pdf_text": [],
+      "outputs": {
+        "svg": "5b1707b692e2240d6fc9bdbc70945dc6c46d6d5cf7c705a2930fd011ce607ca9",
+        "pdf": "21730be0e1eae56ca1b0bfaebe8ea2d37dc0166ffb4e2fcf97bacb882e86db8b",
+        "png": "b4323a8d2632cf7b6eb93ef84aa59f6d41bfbc9040098ae381e0b3caefb024c8"
+      }
+    }
+  ],
+  "pymupdf": "1.25.2",
+  "scope": "重新核验冻结作图表、源清单哈希、比例和输出；未重跑仿真，未重新扫描3416项原始输入。",
+  "source_csv_sha256": {
+    "ablation_seed10_weekly.csv": "f2cd46fa115c740c82627bab3391eb795c68defb5e2f36b992e492f8595f10f1",
+    "seed10_runs.csv": "4fb2fb651c80cb038b748cf07bd42bce8b93a559bcd2d3b9d369294b9f503ac1",
+    "ablation_seed10_runs.csv": "1c4e18a5245b5dd46adbc3fb98fc6ab326c250c7a75962aa8bd419e998d82d81",
+    "seed10_paired_contrasts.csv": "caef842345b7d30f4a7ba328aa1d4016abd9ba942b08d7f4279a915e589f62cc",
+    "seed10_weekly.csv": "0153d8f36eaafde3807855270570da34b86bd419faa99b8ca592f08af3686c7d",
+    "seed10_arm_summary.csv": "619de97839e688ade3b85aae6520e9abe840bf7551763df18506638ff0554f3b",
+    "observed_weekly.csv": "0fcebc205d10e1f8bb7408c870bb685bc276a539ad7a4896576275bd830841be",
+    "seed10_weekly_summary.csv": "2c5ac17c0211a49fc09b7501eef8d8646889c7896c76ed4cb276be7e85dd0f58",
+    "ablation_seed10_metrics.csv": "61d24bcf31ddc99431559b10c00022cc85713483e2e8dedfa395007e5bc26a6b"
+  }
+}

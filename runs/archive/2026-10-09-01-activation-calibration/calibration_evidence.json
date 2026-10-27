@@ -1,0 +1,176 @@
+{
+  "status": "independent_arithmetic_audit_only",
+  "llm_calls": 0,
+  "project_code_imports": 0,
+  "simulation_runs": 0,
+  "scale": 0.004666949512091642,
+  "W13_mourning_posts": 4714,
+  "three_seed_numeric_populations_identical": true,
+  "rows": [
+    {
+      "type": "meme",
+      "agents": 19,
+      "pre_posts_sum": 16,
+      "pre_posts_weekly_mean": 2,
+      "W12_posts": 0,
+      "expected_count": 0.009333899024183284,
+      "B": 0.7755,
+      "min_activity": 0.7955,
+      "R0_speakers": 0,
+      "hypothetical_scale_stress": [
+        {
+          "scale_multiplier": 0.5,
+          "expected_count": 0.004666949512091642,
+          "B": 0.7755,
+          "R0_speakers": 0
+        },
+        {
+          "scale_multiplier": 1.0,
+          "expected_count": 0.009333899024183284,
+          "B": 0.7755,
+          "R0_speakers": 0
+        },
+        {
+          "scale_multiplier": 2.0,
+          "expected_count": 0.018667798048366567,
+          "B": 0.7755,
+          "R0_speakers": 0
+        }
+      ]
+    },
+    {
+      "type": "mourning",
+      "agents": 22,
+      "pre_posts_sum": 1,
+      "pre_posts_weekly_mean": 0.125,
+      "W12_posts": 0,
+      "expected_count": 0.0005833686890114552,
+      "B": 0.7678,
+      "min_activity": 0.7878,
+      "R0_speakers": 0,
+      "hypothetical_scale_stress": [
+        {
+          "scale_multiplier": 0.5,
+          "expected_count": 0.0002916843445057276,
+          "B": 0.7677999999999999,
+          "R0_speakers": 0
+        },
+        {
+          "scale_multiplier": 1.0,
+          "expected_count": 0.0005833686890114552,
+          "B": 0.7677999999999999,
+          "R0_speakers": 0
+        },
+        {
+          "scale_multiplier": 2.0,
+          "expected_count": 0.0011667373780229104,
+          "B": 0.7677999999999999,
+          "R0_speakers": 0
+        }
+      ]
+    },
+    {
+      "type": "marketing",
+      "agents": 23,
+      "pre_posts_sum": 4500,
+      "pre_posts_weekly_mean": 562.5,
+      "W12_posts": 970,
+      "expected_count": 2.6251591005515484,
+      "B": 0.82515,
+      "min_activity": 0.7613,
+      "R0_speakers": 3,
+      "hypothetical_scale_stress": [
+        {
+          "scale_multiplier": 0.5,
+          "expected_count": 1.3125795502757742,
+          "B": 0.76515,
+          "R0_speakers": 1
+        },
+        {
+          "scale_multiplier": 1.0,
+          "expected_count": 2.6251591005515484,
+          "B": 0.82515,
+          "R0_speakers": 3
+        },
+        {
+          "scale_multiplier": 2.0,
+          "expected_count": 5.250318201103097,
+          "B": 0.87195,
+          "R0_speakers": 5
+        }
+      ]
+    },
+    {
+      "type": "education",
+      "agents": 15,
+      "pre_posts_sum": 489,
+      "pre_posts_weekly_mean": 61.125,
+      "W12_posts": 140,
+      "expected_count": 0.2852672889266016,
+      "B": 0.7412,
+      "min_activity": 0.7612,
+      "R0_speakers": 0,
+      "hypothetical_scale_stress": [
+        {
+          "scale_multiplier": 0.5,
+          "expected_count": 0.1426336444633008,
+          "B": 0.7412,
+          "R0_speakers": 0
+        },
+        {
+          "scale_multiplier": 1.0,
+          "expected_count": 0.2852672889266016,
+          "B": 0.7412,
+          "R0_speakers": 0
+        },
+        {
+          "scale_multiplier": 2.0,
+          "expected_count": 0.5705345778532032,
+          "B": 0.7736000000000001,
+          "R0_speakers": 1
+        }
+      ]
+    },
+    {
+      "type": "other",
+      "agents": 21,
+      "pre_posts_sum": 123,
+      "pre_posts_weekly_mean": 15.375,
+      "W12_posts": 23,
+      "expected_count": 0.071754348748409,
+      "B": 0.7686,
+      "min_activity": 0.7886,
+      "R0_speakers": 0,
+      "hypothetical_scale_stress": [
+        {
+          "scale_multiplier": 0.5,
+          "expected_count": 0.0358771743742045,
+          "B": 0.7686,
+          "R0_speakers": 0
+        },
+        {
+          "scale_multiplier": 1.0,
+          "expected_count": 0.071754348748409,
+          "B": 0.7686,
+          "R0_speakers": 0
+        },
+        {
+          "scale_multiplier": 2.0,
+          "expected_count": 0.143508697496818,
+          "B": 0.7686,
+          "R0_speakers": 0
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "hypothesis_4/benchmark_curves.json": "f5feca17298fa67d0529b61574f72cb58e3f86c7bf9ac08751b36dadaab45a40",
+    "hypothesis_4/experiment_1/data/anchored_utility_prediction.json": "0535579aee3bd365334d10554fc1b8a5acd78288368233cc1e15d7be6cfad5b6",
+    "hypothesis_4/experiment_2/init/inputs/population_s0.json": "8debff3a0349a5cc5d732b7e494f71c312fa7e22aa9458c6a80c7980ffe35d65",
+    "hypothesis_4/experiment_2/init/inputs/population_s1.json": "8debff3a0349a5cc5d732b7e494f71c312fa7e22aa9458c6a80c7980ffe35d65",
+    "hypothesis_4/experiment_2/init/inputs/population_s2.json": "8debff3a0349a5cc5d732b7e494f71c312fa7e22aa9458c6a80c7980ffe35d65",
+    "hypothesis_4/experiment_1/predict_anchored_utility.py": "97c7cfc9395a9df377807dfdefea401a4f031737355435afb7e43684596b062f",
+    "custom/agents/curation_discourse_agent.py": "ac08888fdbd5000abb2526da83a7a9363e4b3349623f459213241b721c2e4072",
+    "custom/envs/curation_mechanisms.py": "1acbc7deafbd61c0e7d04f81673ad1ef0497acd8ef308b0a6a1b26a558a4baec"
+  }
+}

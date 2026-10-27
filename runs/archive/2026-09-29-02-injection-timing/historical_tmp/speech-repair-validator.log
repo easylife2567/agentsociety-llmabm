@@ -1,0 +1,23 @@
+{
+  "valid": true,
+  "errors": [],
+  "warnings": [
+    "ask_env at line 414: readonly=False with template_mode=True. This pattern caches a closure keyed on instruction-text similarity + argument names (NOT tool name) and can silently collide between writes. Default to template_mode=False for writes. See references/pitfalls.md P3."
+  ],
+  "class_name": "CurationDiscourseAgent",
+  "has_init_description": true,
+  "methods": [
+    "description",
+    "init_description",
+    "create",
+    "from_workspace",
+    "restore",
+    "to_workspace",
+    "_find_feed_dict",
+    "_speak_stimulus",
+    "_content_messages",
+    "ask",
+    "step"
+  ]
+}
+校验、四格兼容审计、效用AST与最终哈希通过；网络0

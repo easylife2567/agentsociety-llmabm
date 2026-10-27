@@ -1,0 +1,11 @@
+{
+  "status": "failed",
+  "started_at": "2026-10-25T16:07:36.025956+00:00",
+  "network_attempts": 0,
+  "llm_calls": 0,
+  "controller_sha256": "8bcb9efef813819521da7ff0d0b770ea137debe0035d61a27fb11414e52856f1",
+  "verifier_sha256": "e31ce4338ac724b6491d365b17beb02de757825bd245a015b7eadf50568c0b9f",
+  "error": "",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/verify_seed_extension_recovery_3.py\", line 185, in main\n    report['controller_checks']=controller_checks()\n                                ~~~~~~~~~~~~~~~~~^^\n  File \"/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_3/verify_seed_extension_recovery_3.py\", line 82, in controller_checks\n    assert base.process_alive(1, controller.SELF.name + ' --continue-authorized')\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+  "finished_at": "2026-10-25T16:07:36.053751+00:00"
+}

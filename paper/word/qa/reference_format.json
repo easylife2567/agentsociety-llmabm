@@ -1,0 +1,571 @@
+{
+  "source_pdf": "悼念退潮之后：基于多智能体仿真的逝者数字形象塑造机制研究.pdf",
+  "source_sha256": "48a4111f22b7b8952d591e2e61721a1382b73e7c4579e4f0da25558cd2aa7340",
+  "page_count": 20,
+  "page_size_pt": [
+    595.2999877929688,
+    841.9000244140625
+  ],
+  "page_size_mm": [
+    210.009,
+    297.004
+  ],
+  "page_format": "A4 portrait, single column",
+  "observed_text_area": {
+    "usual_left_pt": 90,
+    "usual_right_pt": 505.32,
+    "width_pt": 415.32,
+    "side_margin_mm": 31.75,
+    "first_body_baseline_pt": 88.009,
+    "typical_body_first_glyph_top_pt": 78.109,
+    "note": "PDF只能实测字形与基线，不能直接读取Word节页边距；个别标点悬挂越过版心，不能据最大字框反推统一边距。"
+  },
+  "body": {
+    "dominant_chinese_font": "HYShuSongErKW",
+    "additional_chinese_fonts": [
+      "STSongti-SC-Regular"
+    ],
+    "latin_font": "TimesNewRomanPSMT",
+    "font_size_pt": 12,
+    "first_line_indent_pt": 24,
+    "first_line_indent_characters_at_12pt": 2,
+    "typical_baseline_gap_pt": 20.04,
+    "baseline_gap_mode_counts": [
+      [
+        20.041,
+        112
+      ],
+      [
+        20.04,
+        83
+      ],
+      [
+        19.919,
+        77
+      ],
+      [
+        19.92,
+        49
+      ],
+      [
+        20.039,
+        39
+      ],
+      [
+        19.921,
+        3
+      ]
+    ],
+    "observed_left_positions": [
+      [
+        90.0,
+        341
+      ],
+      [
+        114.0,
+        70
+      ],
+      [
+        188.64,
+        1
+      ],
+      [
+        175.2,
+        1
+      ]
+    ],
+    "alignment": "Two-side justification inferred from repeated full lines to x=505.32",
+    "paragraph_space": "正文相邻段落通常继续20pt基线节奏，未见额外空行；首行缩进用于识别新段。"
+  },
+  "headings": {
+    "title": {
+      "font": "FZHTK--GBK1-0",
+      "size_pt": 14.05,
+      "alignment": "center"
+    },
+    "level_1": {
+      "font": "FZHTK--GBK1-0",
+      "size_pt": 14.05,
+      "alignment": "left",
+      "indent_pt": 0,
+      "numbering": "一、二、…"
+    },
+    "level_2": {
+      "font": "FZKTK--GBK1-0",
+      "size_pt": 12,
+      "alignment": "left",
+      "indent_pt": 0,
+      "numbering": "（一）（二）…"
+    },
+    "spacing_note": "一级与二级标题前后有额外留白；PDF无法唯一分解为段前/段后与行高，Word宜用明确样式并保留与下段同页。",
+    "level_1_samples": [
+      {
+        "page": 2,
+        "text": "一、文献综述",
+        "bbox_pt": [
+          90.0,
+          263.19207763671875,
+          174.36880493164062,
+          278.9842834472656
+        ],
+        "baseline_pt": 275.8089904785156,
+        "fonts": [
+          {
+            "name": "FZHTK--GBK1-0",
+            "size_pt": 14.05
+          }
+        ]
+      },
+      {
+        "page": 4,
+        "text": "二、研究设计",
+        "bbox_pt": [
+          90.0,
+          538.8331298828125,
+          174.36880493164062,
+          554.6253051757812
+        ],
+        "baseline_pt": 551.4500122070312,
+        "fonts": [
+          {
+            "name": "FZHTK--GBK1-0",
+            "size_pt": 14.05
+          }
+        ]
+      },
+      {
+        "page": 10,
+        "text": "三、仿真执行与数据产出",
+        "bbox_pt": [
+          90.0,
+          75.39210510253906,
+          244.56808471679688,
+          91.1843032836914
+        ],
+        "baseline_pt": 88.00900268554688,
+        "fonts": [
+          {
+            "name": "FZHTK--GBK1-0",
+            "size_pt": 14.05
+          }
+        ]
+      },
+      {
+        "page": 12,
+        "text": "四、仿真结果：现实复现与机制比较",
+        "bbox_pt": [
+          90.0,
+          246.7530975341797,
+          314.8868713378906,
+          262.5452880859375
+        ],
+        "baseline_pt": 259.3699951171875,
+        "fonts": [
+          {
+            "name": "FZHTK--GBK1-0",
+            "size_pt": 14.05
+          }
+        ]
+      }
+    ],
+    "level_2_samples": [
+      {
+        "page": 2,
+        "text": "（一）数字哀悼与逝后表征：从“被记住多少”到“被记住什么”",
+        "bbox_pt": [
+          90.0,
+          381.0140075683594,
+          439.32000732421875,
+          394.03399658203125
+        ],
+        "baseline_pt": 391.3699951171875,
+        "fonts": [
+          {
+            "name": "FZKTK--GBK1-0",
+            "size_pt": 12.0
+          }
+        ]
+      },
+      {
+        "page": 3,
+        "text": "（二）迷因化参与亚文化主流化：从“梗如何传播”到“梗如何改写人物形象”",
+        "bbox_pt": [
+          90.0,
+          77.65299987792969,
+          511.20001220703125,
+          90.67300415039062
+        ],
+        "baseline_pt": 88.00900268554688,
+        "fonts": [
+          {
+            "name": "FZKTK--GBK1-0",
+            "size_pt": 12.0
+          }
+        ]
+      },
+      {
+        "page": 3,
+        "text": "（三）平台信息分发机制：从可见性配置到“用户—算法”互动反馈",
+        "bbox_pt": [
+          90.0,
+          453.2530212402344,
+          451.3195495605469,
+          466.27301025390625
+        ],
+        "baseline_pt": 463.6090087890625,
+        "fonts": [
+          {
+            "name": "FZKTK--GBK1-0",
+            "size_pt": 12.0
+          }
+        ]
+      },
+      {
+        "page": 4,
+        "text": "（四）当前学术界研究空白与本研究创新点",
+        "bbox_pt": [
+          90.0,
+          205.4530029296875,
+          318.83685302734375,
+          218.47300720214844
+        ],
+        "baseline_pt": 215.8090057373047,
+        "fonts": [
+          {
+            "name": "FZKTK--GBK1-0",
+            "size_pt": 12.0
+          }
+        ]
+      }
+    ]
+  },
+  "figures": {
+    "placement": "centered inline images, captions below image",
+    "observed_caption_font": "HYShuSongErKW + TimesNewRomanPSMT",
+    "observed_caption_size_pt": 10.45,
+    "caption_alignment": "center",
+    "image_bboxes": [
+      {
+        "page": 6,
+        "bbox_pt": [
+          110.63999938964844,
+          76.19998168945312,
+          483.0,
+          286.0799865722656
+        ]
+      },
+      {
+        "page": 13,
+        "bbox_pt": [
+          94.68000030517578,
+          77.16000366210938,
+          499.0799865722656,
+          440.5199890136719
+        ]
+      },
+      {
+        "page": 14,
+        "bbox_pt": [
+          90.0,
+          74.04000854492188,
+          505.0799865722656,
+          226.0800018310547
+        ]
+      },
+      {
+        "page": 14,
+        "bbox_pt": [
+          92.4000015258789,
+          340.0799865722656,
+          502.79998779296875,
+          493.0799865722656
+        ]
+      },
+      {
+        "page": 15,
+        "bbox_pt": [
+          111.0,
+          353.760009765625,
+          521.4000244140625,
+          629.8800048828125
+        ]
+      }
+    ],
+    "caption_number_samples": [
+      {
+        "page": 6,
+        "text": "图1",
+        "bbox_pt": [
+          235.9199981689453,
+          298.89630126953125,
+          254.22500610351562,
+          313.1396484375
+        ],
+        "baseline_pt": 309.40899658203125,
+        "fonts": [
+          {
+            "name": "HYShuSongErKW",
+            "size_pt": 10.45
+          },
+          {
+            "name": "TimesNewRomanPSMT",
+            "size_pt": 10.45
+          }
+        ]
+      },
+      {
+        "page": 10,
+        "text": "表1",
+        "bbox_pt": [
+          225.47999572753906,
+          223.89630126953125,
+          243.7840118408203,
+          238.1396484375
+        ],
+        "baseline_pt": 234.40899658203125,
+        "fonts": [
+          {
+            "name": "HYShuSongErKW",
+            "size_pt": 10.45
+          },
+          {
+            "name": "TimesNewRomanPSMT",
+            "size_pt": 10.45
+          }
+        ]
+      },
+      {
+        "page": 10,
+        "text": "表2",
+        "bbox_pt": [
+          231.72000122070312,
+          526.5372924804688,
+          250.02500915527344,
+          540.7806396484375
+        ],
+        "baseline_pt": 537.0499877929688,
+        "fonts": [
+          {
+            "name": "HYShuSongErKW",
+            "size_pt": 10.45
+          },
+          {
+            "name": "TimesNewRomanPSMT",
+            "size_pt": 10.45
+          }
+        ]
+      },
+      {
+        "page": 11,
+        "text": "表3",
+        "bbox_pt": [
+          208.0800018310547,
+          316.0563049316406,
+          226.38400268554688,
+          330.2996520996094
+        ],
+        "baseline_pt": 326.5690002441406,
+        "fonts": [
+          {
+            "name": "HYShuSongErKW",
+            "size_pt": 10.45
+          },
+          {
+            "name": "TimesNewRomanPSMT",
+            "size_pt": 10.45
+          }
+        ]
+      },
+      {
+        "page": 11,
+        "text": "表4",
+        "bbox_pt": [
+          209.63999938964844,
+          601.4172973632812,
+          228.06500244140625,
+          615.66064453125
+        ],
+        "baseline_pt": 611.9299926757812,
+        "fonts": [
+          {
+            "name": "HYShuSongErKW",
+            "size_pt": 10.45
+          },
+          {
+            "name": "TimesNewRomanPSMT",
+            "size_pt": 10.45
+          }
+        ]
+      },
+      {
+        "page": 13,
+        "text": "图2",
+        "bbox_pt": [
+          168.83999633789062,
+          454.89630126953125,
+          187.14500427246094,
+          469.1396484375
+        ],
+        "baseline_pt": 465.40899658203125,
+        "fonts": [
+          {
+            "name": "HYShuSongErKW",
+            "size_pt": 10.45
+          },
+          {
+            "name": "TimesNewRomanPSMT",
+            "size_pt": 10.45
+          }
+        ]
+      },
+      {
+        "page": 14,
+        "text": "图3a",
+        "bbox_pt": [
+          165.35899353027344,
+          231.69630432128906,
+          188.34934997558594,
+          245.9396514892578
+        ],
+        "baseline_pt": 242.20899963378906,
+        "fonts": [
+          {
+            "name": "HYShuSongErKW",
+            "size_pt": 10.45
+          },
+          {
+            "name": "TimesNewRomanPSMT",
+            "size_pt": 10.45
+          }
+        ]
+      },
+      {
+        "page": 14,
+        "text": "图3b",
+        "bbox_pt": [
+          202.0800018310547,
+          498.3373107910156,
+          225.66500854492188,
+          512.5806274414062
+        ],
+        "baseline_pt": 508.8500061035156,
+        "fonts": [
+          {
+            "name": "HYShuSongErKW",
+            "size_pt": 10.45
+          },
+          {
+            "name": "TimesNewRomanPSMT",
+            "size_pt": 10.45
+          }
+        ]
+      },
+      {
+        "page": 15,
+        "text": "图4",
+        "bbox_pt": [
+          187.44000244140625,
+          633.9373168945312,
+          205.74501037597656,
+          648.1806640625
+        ],
+        "baseline_pt": 644.4500122070312,
+        "fonts": [
+          {
+            "name": "HYShuSongErKW",
+            "size_pt": 10.45
+          },
+          {
+            "name": "TimesNewRomanPSMT",
+            "size_pt": 10.45
+          }
+        ]
+      }
+    ],
+    "note": "原件图4存在右偏并越出版心，不应复制该偏移。新图保持等比例并限制在版心内。"
+  },
+  "references": {
+    "heading_font": "FZHTK--GBK1-0",
+    "heading_size_pt": 14.05,
+    "starts_new_page": true,
+    "body_font_size_pt": 12,
+    "chinese_font": "HYShuSongErKW",
+    "latin_font": "TimesNewRomanPSMT",
+    "typical_latin_baseline_gap_pt": 13.8,
+    "reference_gap_modes": [
+      [
+        13.8,
+        59
+      ],
+      [
+        15.121,
+        8
+      ],
+      [
+        14.279,
+        7
+      ],
+      [
+        15.6,
+        5
+      ]
+    ],
+    "indent": "首行x=90pt，续行通常x=114pt，即24pt悬挂缩进；少量120pt为原有空格，不建议复制。",
+    "numbering": "[1] [2] … numeric sequence",
+    "citation_markers": "正文数字方括号上标，约7.8pt；参考文献表为12pt正常基线。",
+    "style": "顺序编码制，中文/英文混排，带[J]/[M]/[C]文献类型；不能仅凭PDF断言完全符合GB/T 7714。",
+    "line_break_note": "原件有英文单词被硬拆行，Word中不照搬这些断行。"
+  },
+  "page_number": {
+    "location": "bottom center",
+    "font": "HelveticaNeue",
+    "size_pt": 9,
+    "baseline_y_pt": 790.609,
+    "baseline_distance_from_bottom_pt": 51.291,
+    "approx_footer_distance_from_bottom_cm": 1.8,
+    "all_pages_including_first": true,
+    "sample": {
+      "page": 1,
+      "text": "1",
+      "bbox_pt": [
+        295.20001220703125,
+        780.916015625,
+        300.2040100097656,
+        794.93798828125
+      ],
+      "baseline_pt": 790.6090087890625,
+      "fonts": [
+        {
+          "name": "HelveticaNeue",
+          "size_pt": 9.0
+        }
+      ]
+    }
+  },
+  "word_recommendation": {
+    "page_width_cm": 21,
+    "page_height_cm": 29.7,
+    "margin_left_cm": 3.175,
+    "margin_right_cm": 3.175,
+    "margin_top_cm": 2.54,
+    "margin_bottom_cm": 2.54,
+    "vertical_margin_note": "上下2.54cm是据常见原稿布局与首行位置的重建参数，并非PDF可唯一反推出的节属性。",
+    "body_chinese_font": "宋体",
+    "body_latin_font": "Times New Roman",
+    "body_size_pt": 12,
+    "body_line_spacing_exact_pt": 20,
+    "body_first_line_indent_pt": 24,
+    "body_space_before_pt": 0,
+    "body_space_after_pt": 0,
+    "image_max_width_cm": 14.65,
+    "footer_distance_cm": 1.8,
+    "reference_hanging_indent_pt": 24,
+    "reference_line_spacing": "建议至少16pt（原PDF英文约13.8pt、中文约15.6pt混合；12pt宋体不照搬过紧的13.8pt）",
+    "priority": "用户明确的中文宋体12pt、英文TNR12pt优先；旧PDF题名/标题/图注字号可作为层级参考，若要求全文统一12pt则同样按用户要求统一。"
+  },
+  "rendered_pages": [
+    "paper/word/qa/reference_page_01.png",
+    "paper/word/qa/reference_page_13.png",
+    "paper/word/qa/reference_page_19.png"
+  ]
+}

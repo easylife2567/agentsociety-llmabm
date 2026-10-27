@@ -1,0 +1,15 @@
+{
+  "core_finding": "Across the three completed CUC runs, posting volume declines after the early event period; chronological and interest recover at the end while random remains lower.",
+  "figure_scope": "single chart",
+  "chart_role": "trend and comparison",
+  "evidence_source": "data/weekly_metrics.csv, version=new, posted_all; cross-check agent_supply and sum(posted_{five author types})",
+  "analysis_scope": "100 Agents, 2026-W12 through W22, random/chronological/interest each once; no old-model arms or seed averaging",
+  "figure_archetype": "three overlaid weekly count lines with point markers",
+  "visual_center": "weekly absolute successful Agent publications",
+  "audience": "user comparing the three just-completed runs",
+  "highlight": "event-week peak and late recovery; no smoothing",
+  "axes_grouping": "x=simulation week; y=successful Agent posts/week, zero baseline and common scale",
+  "legend_strategy": "shared English-only legend with regime and total; colors retained from earlier comparison",
+  "output_files": ["assets/chart_02_weekly_agent_posts.png", "assets/chart_02_weekly_agent_posts.svg", "data/weekly_agent_posts.csv"],
+  "reviewer_check": "Agent posts exclude external injected material. At most one post per Agent-week means weekly posts equal weekly speakers in these runs. Each new regime has one run only, so no error bars or statistical claims."
+}
