@@ -1,0 +1,319 @@
+{
+  "passed": true,
+  "mode": "restore",
+  "network_calls": 0,
+  "simulation_calls": 0,
+  "geometry_tolerance": 0,
+  "manifest": {
+    "passed": true,
+    "files": 127,
+    "manifest_sha256": "f29e743ea2a0b697022776ac260d0f483998839aac9463ceece069ee9f000720"
+  },
+  "source_figure_audits": [
+    {
+      "figure": "figure_01_framework",
+      "passed": true,
+      "size_mm": [
+        180,
+        66
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "20001bbc3e868f232db2cc79dac85025274960a3e9e3bdd9206e8489a47e2919",
+      "pdf_sha256": "126b7d3b9d75b1017f136eb4e2dee1578efe17d8e054de92a62518f073e4faad",
+      "png_sha256": "5802bc9bd234fa4fbd4ec8ff24adaab40d2e24f412f251ae9f42d9e904383705"
+    },
+    {
+      "figure": "figure_02_observed_trends",
+      "passed": true,
+      "size_mm": [
+        180,
+        52
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "a63236802c1006a3f2245ef69b6938cc5530244ce9b1c125e21854326a29ec8a",
+      "pdf_sha256": "179a74a49568ad0b0964be0c8c900f679b652e57efa2bc5af1568f2b69bff0b6",
+      "png_sha256": "cc75344fdb40ce9aba0f18b65df09a5652a9f81b8064475aca868dc49c688070"
+    },
+    {
+      "figure": "figure_03_observed_platforms",
+      "passed": true,
+      "size_mm": [
+        180,
+        52
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "873fcac75d7555c01858c2567f4a95bffc1b357c52b73ea11aa6b831fd7b4058",
+      "pdf_sha256": "3736c7fc7254d4847dd184c90116792e2eaba77e3c9f95be3003245648843e48",
+      "png_sha256": "e946f5a29d3762f292aadcb2d1f1c1c3c9d80d829333646e4e575902fd0fa710"
+    },
+    {
+      "figure": "figure_04_simulated_trajectories",
+      "passed": true,
+      "size_mm": [
+        180,
+        52
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "d948b60f4094baf22c49006f4c24c8dc7dea82fa3448c4d029911df6f9acf796",
+      "pdf_sha256": "da0fc65afb69ffce42cde2335918acbae707dc572414251a783a21635f515f9a",
+      "png_sha256": "2c333525aa00c2ea54c00b9bc8ddeb9e6d63ffd304218b0a309012bcb9cd75a9"
+    },
+    {
+      "figure": "figure_05_feedback_exposure",
+      "passed": true,
+      "size_mm": [
+        180,
+        54
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "67ec3d592a1ebbe289f00d0399fce99be80b58522f19c3bc9572e8e77ef7c6ff",
+      "pdf_sha256": "3504f129a71a4ae1361eddb823a3b34015b9f2027be12c73747cb2f98875fde4",
+      "png_sha256": "b1b20ad02e8b8b28bd4a9e42d523c560ac9138bb3564926dd04af1fa477a8417"
+    },
+    {
+      "figure": "figure_06_bdr_ablation",
+      "passed": true,
+      "size_mm": [
+        180,
+        84
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "37aa559e54055b3b1c42280c8b480f892051361892f50af2a89770dfac375ec2",
+      "pdf_sha256": "519d040901a21df3cc590d020991fd4ff9a72c598d09593e449fbd371e995327",
+      "png_sha256": "466fd1e5ff6dab3d0b8007ede506ccd43b9e601ef7d6e3c99a1cfb145b7fe7dd"
+    }
+  ],
+  "generation": [
+    {
+      "figure": 1,
+      "exit_code": 0,
+      "stdout": "Saved figure_01_framework: 180×66 mm, SVG/PDF/PNG",
+      "stderr": ""
+    },
+    {
+      "figure": 2,
+      "exit_code": 0,
+      "stdout": "Saved figure_02_observed_trends: SVG/PDF/PNG",
+      "stderr": ""
+    },
+    {
+      "figure": 3,
+      "exit_code": 0,
+      "stdout": "Saved figure_03_observed_platforms: SVG/PDF/PNG",
+      "stderr": ""
+    },
+    {
+      "figure": 4,
+      "exit_code": 0,
+      "stdout": "Saved figure_04_simulated_trajectories: SVG/PDF/PNG",
+      "stderr": ""
+    },
+    {
+      "figure": 5,
+      "exit_code": 0,
+      "stdout": "Saved figure_05_feedback_exposure: SVG/PDF/PNG",
+      "stderr": ""
+    },
+    {
+      "figure": 6,
+      "exit_code": 0,
+      "stdout": "Saved figure_06_bdr_ablation: SVG/PDF/PNG",
+      "stderr": ""
+    }
+  ],
+  "restored_figure_audits": [
+    {
+      "figure": "figure_01_framework",
+      "passed": true,
+      "size_mm": [
+        180,
+        66
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "65a5d0a56c591a0fab9bc4b9765eeeb655dcc325daa79ac4bb7dcc9d153c0ff8",
+      "pdf_sha256": "31c5abfc1ee90a5b57ab68f84939f9dd23ff8e82ce25315a5c5dcc4ef3fe59f1",
+      "png_sha256": "5802bc9bd234fa4fbd4ec8ff24adaab40d2e24f412f251ae9f42d9e904383705"
+    },
+    {
+      "figure": "figure_02_observed_trends",
+      "passed": true,
+      "size_mm": [
+        180,
+        52
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "36fa0eb46917ee6b5b326c47de58142ecc1447348f2bd4359f482a376fd0680e",
+      "pdf_sha256": "a3d3986f5cfb2b2777f5df2a0d0fe1cef985f403085df8853cc2dc6eb207ce31",
+      "png_sha256": "cc75344fdb40ce9aba0f18b65df09a5652a9f81b8064475aca868dc49c688070"
+    },
+    {
+      "figure": "figure_03_observed_platforms",
+      "passed": true,
+      "size_mm": [
+        180,
+        52
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "fec7c490e36d79cc25b6f1b431e45929d5d28863a59fe012c6e328527d1f6e1f",
+      "pdf_sha256": "3c9920659687efc64461229531622991eeb3f52984116e4c79e105de7cf65553",
+      "png_sha256": "e946f5a29d3762f292aadcb2d1f1c1c3c9d80d829333646e4e575902fd0fa710"
+    },
+    {
+      "figure": "figure_04_simulated_trajectories",
+      "passed": true,
+      "size_mm": [
+        180,
+        52
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "79ae95f77d5c54a28d604318e2a1638a622e1f388d4f98d213971cbc47a7ef55",
+      "pdf_sha256": "d7fa73242d38085ed49c24f8fd4348e33954591ac07b015b7082f298c8438e1c",
+      "png_sha256": "2c333525aa00c2ea54c00b9bc8ddeb9e6d63ffd304218b0a309012bcb9cd75a9"
+    },
+    {
+      "figure": "figure_05_feedback_exposure",
+      "passed": true,
+      "size_mm": [
+        180,
+        54
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "56ba8f72ab25449d5edcc9c735b9911bb0f7477fd52440397401e9b1d7273b1b",
+      "pdf_sha256": "05bc6ca2f9ccff9dfa5a1d9b809887d21a83349ed648fe5572ac23443426dc9d",
+      "png_sha256": "b1b20ad02e8b8b28bd4a9e42d523c560ac9138bb3564926dd04af1fa477a8417"
+    },
+    {
+      "figure": "figure_06_bdr_ablation",
+      "passed": true,
+      "size_mm": [
+        180,
+        84
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "29556a8aaf921177b954a398660a398715a0e0380e19fa04e17a3676d3d10c6b",
+      "pdf_sha256": "de7688e657510a1322e5e9a0d58a813c139f7ca196329f0be3729dca0b0cb20b",
+      "png_sha256": "466fd1e5ff6dab3d0b8007ede506ccd43b9e601ef7d6e3c99a1cfb145b7fe7dd"
+    }
+  ],
+  "comparisons": [
+    {
+      "figure": "figure_01_framework",
+      "passed": true,
+      "comparisons": {
+        "svg_xml_without_metadata": {
+          "passed": true
+        },
+        "pdf_text_and_vector_geometry": {
+          "passed": true
+        },
+        "png_exact_bytes": {
+          "passed": true,
+          "expected_sha256": "5802bc9bd234fa4fbd4ec8ff24adaab40d2e24f412f251ae9f42d9e904383705",
+          "actual_sha256": "5802bc9bd234fa4fbd4ec8ff24adaab40d2e24f412f251ae9f42d9e904383705",
+          "expected_bytes": 479111,
+          "actual_bytes": 479111
+        }
+      }
+    },
+    {
+      "figure": "figure_02_observed_trends",
+      "passed": true,
+      "comparisons": {
+        "svg_xml_without_metadata": {
+          "passed": true
+        },
+        "pdf_text_and_vector_geometry": {
+          "passed": true
+        },
+        "png_exact_bytes": {
+          "passed": true,
+          "expected_sha256": "cc75344fdb40ce9aba0f18b65df09a5652a9f81b8064475aca868dc49c688070",
+          "actual_sha256": "cc75344fdb40ce9aba0f18b65df09a5652a9f81b8064475aca868dc49c688070",
+          "expected_bytes": 299862,
+          "actual_bytes": 299862
+        }
+      }
+    },
+    {
+      "figure": "figure_03_observed_platforms",
+      "passed": true,
+      "comparisons": {
+        "svg_xml_without_metadata": {
+          "passed": true
+        },
+        "pdf_text_and_vector_geometry": {
+          "passed": true
+        },
+        "png_exact_bytes": {
+          "passed": true,
+          "expected_sha256": "e946f5a29d3762f292aadcb2d1f1c1c3c9d80d829333646e4e575902fd0fa710",
+          "actual_sha256": "e946f5a29d3762f292aadcb2d1f1c1c3c9d80d829333646e4e575902fd0fa710",
+          "expected_bytes": 354284,
+          "actual_bytes": 354284
+        }
+      }
+    },
+    {
+      "figure": "figure_04_simulated_trajectories",
+      "passed": true,
+      "comparisons": {
+        "svg_xml_without_metadata": {
+          "passed": true
+        },
+        "pdf_text_and_vector_geometry": {
+          "passed": true
+        },
+        "png_exact_bytes": {
+          "passed": true,
+          "expected_sha256": "2c333525aa00c2ea54c00b9bc8ddeb9e6d63ffd304218b0a309012bcb9cd75a9",
+          "actual_sha256": "2c333525aa00c2ea54c00b9bc8ddeb9e6d63ffd304218b0a309012bcb9cd75a9",
+          "expected_bytes": 896961,
+          "actual_bytes": 896961
+        }
+      }
+    },
+    {
+      "figure": "figure_05_feedback_exposure",
+      "passed": true,
+      "comparisons": {
+        "svg_xml_without_metadata": {
+          "passed": true
+        },
+        "pdf_text_and_vector_geometry": {
+          "passed": true
+        },
+        "png_exact_bytes": {
+          "passed": true,
+          "expected_sha256": "b1b20ad02e8b8b28bd4a9e42d523c560ac9138bb3564926dd04af1fa477a8417",
+          "actual_sha256": "b1b20ad02e8b8b28bd4a9e42d523c560ac9138bb3564926dd04af1fa477a8417",
+          "expected_bytes": 257937,
+          "actual_bytes": 257937
+        }
+      }
+    },
+    {
+      "figure": "figure_06_bdr_ablation",
+      "passed": true,
+      "comparisons": {
+        "svg_xml_without_metadata": {
+          "passed": true
+        },
+        "pdf_text_and_vector_geometry": {
+          "passed": true
+        },
+        "png_exact_bytes": {
+          "passed": true,
+          "expected_sha256": "466fd1e5ff6dab3d0b8007ede506ccd43b9e601ef7d6e3c99a1cfb145b7fe7dd",
+          "actual_sha256": "466fd1e5ff6dab3d0b8007ede506ccd43b9e601ef7d6e3c99a1cfb145b7fe7dd",
+          "expected_bytes": 699254,
+          "actual_bytes": 699254
+        }
+      }
+    }
+  ],
+  "combined_pdf": {
+    "passed": true,
+    "pages": 6,
+    "sha256": "715550ebaa3b4f9244068d5b027b6e5777d929438a9cc05952092f6cc9800743"
+  }
+}

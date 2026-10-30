@@ -1,0 +1,48 @@
+{
+  "pdf": "/Users/easylife/Project/AgentSociety/runs/archive/2026-10-19-01-paper-figures/figures_unified_v1/figure_06_bdr_ablation.pdf",
+  "auditable": true,
+  "verdict": "REVIEW REQUIRED",
+  "page_count": 1,
+  "visible_text_box_count": 56,
+  "text_trace_count": 56,
+  "stroke_path_count": 201,
+  "filled_region_count": 137,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 0,
+    "warn": 1,
+    "contained_fill_overlays": 14,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "68.5%",
+      "text_bbox": [
+        86.3775405883789,
+        127.36544036865234,
+        110.47640228271484,
+        135.8654327392578
+      ],
+      "other_text": null,
+      "other_bbox": [
+        48.472442626953125,
+        128.69760131835938,
+        251.67401123046875,
+        214.29920959472656
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        125000
+      ]
+    }
+  ]
+}

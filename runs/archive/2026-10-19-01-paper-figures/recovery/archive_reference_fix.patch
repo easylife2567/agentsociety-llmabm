@@ -1,0 +1,11 @@
+--- a/paper/word/hourly_return_v8/figures/update_framework.py
++++ b/paper/word/hourly_return_v8/figures/update_framework.py
+@@ -10,7 +10,7 @@
+ 
+ HERE=Path(__file__).resolve().parent
+ ROOT=HERE.parents[3]
+-SOURCE=ROOT/'runs/2026-10-19-01-paper-figures/framework/fusion/v2/framework_fusion_en_v2.svg'
++SOURCE=HERE/'source_figure1.svg'
+ SOURCE_PNG=SOURCE.with_suffix('.png')
+ DOCX_IMAGE=HERE.parent/'qa/image1.png'
+ NODE='/Users/easylife/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node'

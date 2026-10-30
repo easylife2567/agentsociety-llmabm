@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "patch": "code_changes/framework_utility/utility_layout.patch",
+      "passed": true
+    },
+    {
+      "patch": "code_changes/revision_all_print/print_layout.patch",
+      "passed": true
+    },
+    {
+      "patch": "code_changes/revision_fig4_print/fig4_print_layout.patch",
+      "passed": true
+    },
+    {
+      "patch": "archive_reference_fix.patch",
+      "passed": true
+    },
+    {
+      "patch": "archive_reference_input_png.patch",
+      "passed": true
+    },
+    {
+      "patch": "prior_user_edits/drawio_edit.patch",
+      "passed": true
+    },
+    {
+      "patch": "prior_user_edits/drawio_backup.patch",
+      "passed": true
+    }
+  ],
+  "format_repair": "Initial draw.io unified diff lacked the no-newline marker; regenerated with Git binary diff and verified exact bytes before cleanup."
+}

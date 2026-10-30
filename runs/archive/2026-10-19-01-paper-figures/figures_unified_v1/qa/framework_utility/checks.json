@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "size_mm": [
+    180.0,
+    66.0
+  ],
+  "protected_assets_unchanged": 32,
+  "formula_fact_inputs_unchanged": 4,
+  "patch_replay_matches": true,
+  "exact_utility_formula": "U_it = B_i + R_it(D_it - B_i)",
+  "exact_generation_condition": "U_it >= activity_i",
+  "formula_font_pt": 12,
+  "pdf_min_font_pt": 8.0,
+  "math_subscript_min_pt": 8.399999618530273,
+  "pdf_fonts": [
+    "Arial-BoldMT",
+    "ArialMT",
+    "STIXGeneral-Italic",
+    "STIXGeneral-Regular"
+  ],
+  "vector_svg_pdf": true,
+  "collision_summary": {
+    "fail": 0,
+    "warn": 0,
+    "contained_fill_overlays": 22,
+    "contained_image_overlays": 0
+  },
+  "outputs": {
+    "svg": "20001bbc3e868f232db2cc79dac85025274960a3e9e3bdd9206e8489a47e2919",
+    "pdf": "126b7d3b9d75b1017f136eb4e2dee1578efe17d8e054de92a62518f073e4faad",
+    "png": "5802bc9bd234fa4fbd4ec8ff24adaab40d2e24f412f251ae9f42d9e904383705"
+  }
+}

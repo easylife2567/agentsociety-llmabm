@@ -1,0 +1,183 @@
+--- a/runs/2026-10-19-01-paper-figures/figures_unified_v1/scripts/gen_fig1.py
++++ b/runs/2026-10-19-01-paper-figures/figures_unified_v1/scripts/gen_fig1.py
+@@ -11,8 +11,8 @@
+     require_matplotlib_panel_alignment, audit_layout_manifest, write_json_report,
+ )
+ 
+-WIDTH, HEIGHT = 180, 56
+-QA = OUT / 'qa/framework_density'
++WIDTH, HEIGHT = 180, 66
++QA = OUT / 'qa/framework_utility'
+ STEM = 'figure_01_framework'
+ NEUTRAL = '#879098'
+ EDGE = '#AAB2B8'
+@@ -70,97 +70,98 @@
+         edgecolor='none', zorder=7))
+     for artist in ax.get_children():
+         if artist not in original_artists:
+-            artist.set_transform(Affine2D().translate(0, -8.1) + ax.transData)
++            artist.set_transform(Affine2D().translate(0, 1.9) + ax.transData)
+ 
+ 
+ def fixed_authors(ax):
+     """五色图标表示作者类型异质，图标数不编码人群比例。"""
+-    for x, category in zip([119.3, 122.9, 126.5, 130.1, 133.7], CATS):
+-        ax.add_patch(Circle((x, 33.8), .82, facecolor=FILL_COLORS[category],
++    for x, category in zip([90.3, 93.9, 97.5, 101.1, 104.7], CATS):
++        ax.add_patch(Circle((x, 31.8), .82, facecolor=FILL_COLORS[category],
+             edgecolor=INK, linewidth=.4, zorder=6))
+-        ax.add_patch(FancyBboxPatch((x - 1.1, 30.2), 2.2, 2.4,
++        ax.add_patch(FancyBboxPatch((x - 1.1, 28.2), 2.2, 2.4,
+             boxstyle='round,pad=0,rounding_size=.6', facecolor=FILL_COLORS[category],
+             edgecolor=INK, linewidth=.4, zorder=6))
+-    text(ax, 126.5, 26.3, 'Fixed author types', size=8.5)
++    text(ax, 97.5, 25, 'Fixed author types', size=8.5)
+ 
+ 
+ def node_icons(ax):
+-    """信息流、表达和成功发布图标只说明原有节点，不添加观测值。"""
+-    ax.add_patch(FancyBboxPatch((79, 38.9), 5.3, 6.1,
++    """信息流与成功发布图标；选择性表达核心由公式和门槛直接显示。"""
++    ax.add_patch(FancyBboxPatch((76.5, 46.7), 5.3, 6.1,
+         boxstyle='round,pad=0,rounding_size=.45', facecolor='white',
+         edgecolor=INK, linewidth=.5, zorder=6))
+-    for y, category in zip([43.9, 42.9, 41.9, 40.9, 39.9], CATS):
+-        ax.plot([80, 83.3], [y, y], color=COLORS[category], lw=.85, zorder=7)
+-    ax.add_patch(Circle((141.8, 42.6), .8, facecolor='white',
+-        edgecolor=INK, linewidth=.5, zorder=6))
+-    ax.add_patch(FancyBboxPatch((140.6, 39.3), 2.4, 2.3,
+-        boxstyle='round,pad=0,rounding_size=.55', facecolor='white',
+-        edgecolor=INK, linewidth=.5, zorder=6))
+-    bubble = Path([(143.7, 44.5), (147.4, 44.5), (147.4, 42.2),
+-                   (145.3, 42.2), (144.1, 41.2), (144.1, 42.2),
+-                   (143.7, 42.2), (143.7, 44.5)],
+-                  [Path.MOVETO] + [Path.LINETO] * 6 + [Path.CLOSEPOLY])
+-    ax.add_patch(PathPatch(bubble, facecolor='white', edgecolor=INK,
+-        linewidth=.5, zorder=6))
+-    for x, y in [(109, 17), (110.2, 15.8)]:
++    for y, category in zip([51.7, 50.7, 49.7, 48.7, 47.7], CATS):
++        ax.plot([77.5, 80.8], [y, y], color=COLORS[category], lw=.85, zorder=7)
++    for x, y in [(81, 17), (82.2, 15.8)]:
+         ax.add_patch(FancyBboxPatch((x, y), 4.4, 4.7,
+             boxstyle='round,pad=0,rounding_size=.35', facecolor='white',
+             edgecolor=INK, linewidth=.5, zorder=6))
+-    ax.plot([111.1, 112.1, 113.8], [18, 17.2, 19.1],
++    ax.plot([83.1, 84.1, 85.8], [18, 17.2, 19.1],
+             color=COLORS['other'], lw=.85, zorder=7)
+ 
+ 
+ def main():
+     fig = plt.figure(figsize=(mm(WIDTH), mm(HEIGHT)))
+-    # 两模块实际区域等高，左右约三七开；文字字号不随画布收紧而缩小。
+-    left = fig.add_axes([2 / WIDTH, 8 / HEIGHT, 56 / WIDTH, 42 / HEIGHT])
+-    right = fig.add_axes([64 / WIDTH, 8 / HEIGHT, 114 / WIDTH, 42 / HEIGHT])
++    left = fig.add_axes([2 / WIDTH, 8 / HEIGHT, 56 / WIDTH, 52 / HEIGHT])
++    right = fig.add_axes([64 / WIDTH, 8 / HEIGHT, 114 / WIDTH, 52 / HEIGHT])
+     for ax, xlim in [(left, (2, 58)), (right, (64, 178))]:
+         ax.set_xlim(*xlim)
+-        ax.set_ylim(8, 50)
++        ax.set_ylim(8, 60)
+         ax.set_axis_off()
+-    headings = [text(left, 2, 53, '(a) Platform data analysis', size=10.5, bold=True, ha='left'),
+-                text(right, 64, 53, '(b) Simulation modeling', size=10.5, bold=True, ha='left')]
+-
+-    box(left, 3, 36.8, 53, 11, fill=FILL_COLORS['marketing'])
++    headings = [text(left, 2, 63.5, '(a) Platform data analysis', size=10.5, bold=True, ha='left'),
++                text(right, 64, 63.5, '(b) Simulation modeling', size=10.5, bold=True, ha='left')]
++
++    box(left, 3, 46, 53, 13, fill=FILL_COLORS['marketing'])
+     mourning_icon(left)
+-    text(left, 36.2, 42.3, 'Douyin · Rednote', size=9.2, bold=True)
+-    box(left, 9, 26.7, 41, 7.2)
+-    text(left, 29.5, 30.3, 'Content coding')
+-    arrow(left, [(29.5, 36.8), (29.5, 33.9)])
++    text(left, 36.2, 52.5, 'Douyin · Rednote', size=9.2, bold=True)
++    box(left, 9, 33.5, 41, 8)
++    text(left, 29.5, 37.5, 'Content coding')
++    arrow(left, [(29.5, 46), (29.5, 41.5)])
+     for x, label in [(15.5, 'Temporal\npatterns'), (43.5, 'Platform\ndifferences')]:
+-        box(left, x - 12.5, 12.9, 25, 10.6)
+-        text(left, x, 18.2, label, size=8.8)
+-        arrow(left, [(29.5, 26.7), (29.5, 25.4), (x, 25.4), (x, 23.5)])
+-
+-    # 两实证出口汇合后提出机制问题；并非整份经验样本直接输入模型。
+-    arrow(left, [(29.5, 10.2), (70, 10.2), (70, 38.45), (76, 38.45)], color=NEUTRAL)
+-    text(right, 62, 27.5, 'Mechanism\nquestions', size=8, color='#59636B')
+-
+-    box(right, 76, 31.2, 40, 14.5, accent=COLORS['education'])
+-    text(right, 99, 41.5, 'Visibility\nconfiguration', size=9.5, bold=True,
++        box(left, x - 12.5, 16, 25, 11)
++        text(left, x, 21.5, label, size=8.8)
++        arrow(left, [(29.5, 33.5), (29.5, 30.5), (x, 30.5), (x, 27)])
++
++    arrow(left, [(29.5, 13.3), (67, 13.3), (67, 45.5), (73, 45.5)], color=NEUTRAL)
++    text(right, 64, 55, 'Mechanism\nquestions', size=8, color='#59636B')
++
++    box(right, 73, 37, 41, 17, accent=COLORS['education'])
++    text(right, 98.5, 49.3, 'Visibility\nconfiguration', size=9.5, bold=True,
+          color=COLORS['education'])
+-    text(right, 96, 34.5, 'Random · Chronological\nInterest-based', size=8)
+-    box(right, 137, 31.2, 40, 14.5, accent=COLORS['mourning'])
+-    text(right, 160, 41.5, 'Selective\nexpression', size=9.5, bold=True)
+-    text(right, 157, 34.4, 'LLM post generation', size=8)
+-    box(right, 106.5, 8.5, 40, 14, accent=COLORS['other'])
+-    text(right, 130, 18.4, 'Content\nrecirculation', size=9.5, bold=True,
++    text(right, 93.5, 40.3, 'Random · Chronological\nInterest-based', size=8)
++
++    # 原生公式为选择性表达主卡；门槛沿用实际参数activity，不新增机制符号。
++    box(right, 121, 22.5, 56, 36.5, accent=COLORS['mourning'])
++    text(right, 149, 55.8, 'Selective expression', size=10, bold=True)
++    text(right, 149, 50.7, r'$U_{it}=B_i+R_{it}(D_{it}-B_i)$', size=12)
++    for y, label in [
++        (45.7, 'U  Expression utility'),
++        (42.4, 'B  Baseline expression utility'),
++        (39.1, 'D  Opinion-climate response'),
++        (35.8, 'R  Exposure-dependent attention weight'),
++    ]:
++        text(right, 124, y, label, size=8, ha='left')
++    text(right, 125.5, 30.5, r'$U_{it}\geq\mathrm{activity}_i$', size=12, ha='left')
++    arrow(right, [(149.8, 30.5), (152.4, 30.5)], color=INK, width=.8, head=6.5).set_zorder(7)
++    text(right, 164, 30.5, 'LLM generation', size=8)
++    text(right, 149, 25.8, 'activity: Fixed individual threshold', size=8)
++
++    box(right, 78, 8.5, 42, 14, accent=COLORS['other'])
++    text(right, 102.5, 18.4, 'Content\nrecirculation', size=9.5, bold=True,
+          color=COLORS['other'])
+-    text(right, 126.5, 11.4, 'Hourly return', size=8.5)
++    text(right, 99, 11.4, 'Hourly return', size=8.5)
+     node_icons(right)
+     fixed_authors(right)
+-    arrow(right, [(104, 45.7), (114, 51), (143, 51), (151, 45.7)],
++    arrow(right, [(104, 54), (112, 63), (132, 64), (145, 59)],
+           color=COLORS['education'], width=2, head=9, curved=True)
+-    arrow(right, [(162, 31.2), (174, 22), (158, 13), (146.5, 15.5)],
++    arrow(right, [(160, 22.5), (167, 9), (137, 10), (120, 15.5)],
+           color=COLORS['mourning'], width=2, head=9, curved=True)
+-    arrow(right, [(106.5, 15.5), (92, 11), (82, 21), (87, 31.2)],
++    arrow(right, [(78, 15.5), (72, 17), (73, 31), (82, 37)],
+           color=COLORS['other'], width=2, head=9, curved=True)
+ 
+     transform = Affine2D().scale(1 / WIDTH, 1 / HEIGHT) + fig.transFigure
+     for vertices in [
+-        [(15.5, 12.9), (15.5, 10.2), (43.5, 10.2), (43.5, 12.9)],
+-        [(29.5, 10.2), (29.5, 6.7), (126.5, 6.7), (126.5, 8.5)],
++        [(15.5, 16), (15.5, 13.3), (43.5, 13.3), (43.5, 16)],
++        [(29.5, 13.3), (29.5, 6.7), (99, 6.7), (99, 8.5)],
+     ]:
+         fig.add_artist(PathPatch(Path(vertices, [Path.MOVETO] + [Path.LINETO] * (len(vertices) - 1)),
+             transform=transform, facecolor='none', edgecolor=NEUTRAL, linewidth=.7,
+@@ -204,12 +205,12 @@
+     (QA / f'{STEM}.build.json').write_text(json.dumps({
+         'size_mm': [WIDTH, HEIGHT], 'font': 'Arial', 'minimum_font_pt': min(b['font_pt'] for b in boxes),
+         'word_count': sum(len(b['text'].split()) for b in boxes), 'text_objects': boxes,
+-        'backend': 'Python/Matplotlib', 'axes_mm': [[2, 8, 56, 42], [64, 8, 114, 42]],
++        'backend': 'Python/Matplotlib', 'axes_mm': [[2, 8, 56, 52], [64, 8, 114, 52]],
+         'outputs': {fmt: hashlib.sha256((OUT / f'{STEM}.{fmt}').read_bytes()).hexdigest()
+                     for fmt in ['svg', 'pdf', 'png']},
+     }, ensure_ascii=False, indent=2) + '\n')
+     plt.close(fig)
+-    print(f'Saved {STEM}: 180×56 mm, SVG/PDF/PNG')
++    print(f'Saved {STEM}: 180×66 mm, SVG/PDF/PNG')
+ 
+ 
+ if __name__ == '__main__':

@@ -1,0 +1,44 @@
+{
+  "old_run": "runs/2026-10-19-01-paper-figures",
+  "new_run": "runs/archive/2026-10-19-01-paper-figures",
+  "local_source_mappings": {
+    "runs/2026-10-19-01-paper-figures/figures_seed10/source_data/observed_sources.json": {
+      "archived_relative_path": "figures_unified_v1/source_data/observed_sources.json",
+      "sha256": "c734249725104a1460fbf4dc5cbe8a41e58f5744b3a63a44c5be706fdb8f7fee"
+    },
+    "runs/2026-10-19-01-paper-figures/figures_seed10/source_data/observed_weekly.csv": {
+      "archived_relative_path": "figures_unified_v1/source_data/observed_weekly.csv",
+      "sha256": "0fcebc205d10e1f8bb7408c870bb685bc276a539ad7a4896576275bd830841be"
+    },
+    "runs/2026-10-19-01-paper-figures/figures_hourly_return_v1/source_data/figure_sources.json": {
+      "archived_relative_path": "recovery/upstream_sources/figure_sources.json",
+      "sha256": "81ef81626d456663c19f851a77755f301a82d45ea4420c3886a9161de2b51f10"
+    },
+    "runs/2026-10-19-01-paper-figures/figures_hourly_return_v1/source_data/weekly_supply.csv": {
+      "archived_relative_path": "figures_unified_v1/source_data/weekly_supply.csv",
+      "sha256": "db422a1eeba034c13cd6d66ca0c8d24d5e5767a3cb71b47c3cc3daf9d3a0cb29"
+    },
+    "runs/2026-10-19-01-paper-figures/figures_hourly_return_v1/source_data/main_runs.csv": {
+      "archived_relative_path": "figures_unified_v1/source_data/main_runs.csv",
+      "sha256": "da2d0d10264540714f7165107edc84ddece3bbf3d19aa4793b5a9e563508efdb"
+    },
+    "runs/2026-10-19-01-paper-figures/figures_seed10/source_data/ablation_seed10_sources.json": {
+      "archived_relative_path": "recovery/upstream_sources/ablation_seed10_sources.json",
+      "sha256": "2ca630717f7018f55532c055e037c2a8231afaf13dab1d599470050bb2088bfe"
+    },
+    "runs/2026-10-19-01-paper-figures/figures_seed10/source_data/ablation_seed10_metrics.csv": {
+      "archived_relative_path": "figures_unified_v1/source_data/ablation_metrics.csv",
+      "sha256": "61d24bcf31ddc99431559b10c00022cc85713483e2e8dedfa395007e5bc26a6b"
+    }
+  },
+  "formal_frozen_dependency_mapping": {
+    "runs/2026-10-19-01-paper-figures/framework/fusion/v2/framework_fusion_en_v2.svg": {
+      "project_relative_path": "paper/word/hourly_return_v8/figures/source_figure1.svg",
+      "sha256": "ba2d2166b3ed9182e1fa52d17036f739b9476d166b99152d1f0ecc6f63d9ca51"
+    },
+    "runs/2026-10-19-01-paper-figures/framework/fusion/v2/framework_fusion_en_v2.png": {
+      "project_relative_path": "paper/word/hourly_return_v8/figures/source_figure1.png",
+      "sha256": "c10ad2b8a3e5f9ebf13d7435d2856815333ef006215ef8a59e2d4af32c7da9cd"
+    }
+  }
+}

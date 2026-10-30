@@ -1,0 +1,390 @@
+{
+  "figure": "figure_02_observed_trends",
+  "size_mm": [
+    180.0,
+    52.0
+  ],
+  "panels": [
+    "a",
+    "b"
+  ],
+  "font": "Arial",
+  "base_font_pt": 9,
+  "python": "3.13.9",
+  "matplotlib": "3.10.0",
+  "rendered_text_boxes": [
+    {
+      "text": "(a)",
+      "font_pt": 9.0,
+      "bbox_px": [
+        117.86,
+        270.55,
+        140.74,
+        288.55
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W05",
+      "font_pt": 8.0,
+      "bbox_px": [
+        98.92,
+        73.84,
+        133.05,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W09",
+      "font_pt": 8.0,
+      "bbox_px": [
+        195.88,
+        73.84,
+        230.26,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W13",
+      "font_pt": 8.0,
+      "bbox_px": [
+        293.04,
+        73.84,
+        327.29,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W17",
+      "font_pt": 8.0,
+      "bbox_px": [
+        390.13,
+        73.84,
+        424.38,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W22",
+      "font_pt": 8.0,
+      "bbox_px": [
+        511.49,
+        73.84,
+        545.74,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Posts per week",
+      "font_pt": 9.0,
+      "bbox_px": [
+        21.91,
+        133.82,
+        39.91,
+        262.32
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0",
+      "font_pt": 8.0,
+      "bbox_px": [
+        89.86,
+        92.34,
+        99.11,
+        107.34
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "2,500",
+      "font_pt": 8.0,
+      "bbox_px": [
+        57.61,
+        136.31,
+        99.11,
+        151.31
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "5,000",
+      "font_pt": 8.0,
+      "bbox_px": [
+        57.61,
+        180.28,
+        99.11,
+        195.28
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "7,500",
+      "font_pt": 8.0,
+      "bbox_px": [
+        57.61,
+        224.25,
+        99.11,
+        239.25
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "10,000",
+      "font_pt": 8.0,
+      "bbox_px": [
+        48.24,
+        268.22,
+        99.11,
+        283.22
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "(b)",
+      "font_pt": 9.0,
+      "bbox_px": [
+        631.93,
+        270.55,
+        655.93,
+        288.55
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W05",
+      "font_pt": 8.0,
+      "bbox_px": [
+        612.99,
+        73.84,
+        647.11,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W09",
+      "font_pt": 8.0,
+      "bbox_px": [
+        709.95,
+        73.84,
+        744.33,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W13",
+      "font_pt": 8.0,
+      "bbox_px": [
+        807.1,
+        73.84,
+        841.35,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W17",
+      "font_pt": 8.0,
+      "bbox_px": [
+        904.19,
+        73.84,
+        938.44,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W22",
+      "font_pt": 8.0,
+      "bbox_px": [
+        1025.55,
+        73.84,
+        1059.8,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0",
+      "font_pt": 8.0,
+      "bbox_px": [
+        603.93,
+        92.34,
+        613.18,
+        107.34
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "1,000",
+      "font_pt": 8.0,
+      "bbox_px": [
+        571.56,
+        127.51,
+        613.18,
+        142.51
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "2,000",
+      "font_pt": 8.0,
+      "bbox_px": [
+        571.56,
+        162.69,
+        613.18,
+        177.69
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "3,000",
+      "font_pt": 8.0,
+      "bbox_px": [
+        571.68,
+        197.86,
+        613.18,
+        212.86
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "4,000",
+      "font_pt": 8.0,
+      "bbox_px": [
+        571.56,
+        233.04,
+        613.18,
+        248.04
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "5,000",
+      "font_pt": 8.0,
+      "bbox_px": [
+        571.68,
+        268.22,
+        613.18,
+        283.22
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Publication week (2026)",
+      "font_pt": 9.0,
+      "bbox_px": [
+        479.02,
+        35.53,
+        679.64,
+        53.53
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Education",
+      "font_pt": 8.0,
+      "bbox_px": [
+        176.41,
+        10.35,
+        250.53,
+        25.35
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Mourning",
+      "font_pt": 8.0,
+      "bbox_px": [
+        289.7,
+        10.35,
+        359.2,
+        25.35
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Memetic expression",
+      "font_pt": 8.0,
+      "bbox_px": [
+        398.37,
+        10.35,
+        546.49,
+        25.43
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Other discussion",
+      "font_pt": 8.0,
+      "bbox_px": [
+        585.66,
+        10.35,
+        709.53,
+        25.35
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Marketing",
+      "font_pt": 8.0,
+      "bbox_px": [
+        748.7,
+        10.35,
+        821.95,
+        25.43
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Official obituary",
+      "font_pt": 8.0,
+      "bbox_px": [
+        861.12,
+        10.35,
+        988.49,
+        25.46
+      ],
+      "outside_canvas": false
+    }
+  ],
+  "outside_canvas": [],
+  "axes": [
+    [
+      0.105,
+      0.33000000000000007,
+      0.39639639639639634,
+      0.6299999999999999
+    ],
+    [
+      0.5886036036036035,
+      0.33000000000000007,
+      0.39639639639639634,
+      0.6299999999999999
+    ]
+  ],
+  "event_star_count": 2,
+  "event_alignment": [
+    {
+      "panel": 0,
+      "visible_center_delta_pt": 0.0
+    },
+    {
+      "panel": 1,
+      "visible_center_delta_pt": 0.0
+    }
+  ],
+  "legend_rows": 1,
+  "outputs": {
+    "svg": "a63236802c1006a3f2245ef69b6938cc5530244ce9b1c125e21854326a29ec8a",
+    "pdf": "179a74a49568ad0b0964be0c8c900f679b652e57efa2bc5af1568f2b69bff0b6",
+    "png": "cc75344fdb40ce9aba0f18b65df09a5652a9f81b8064475aca868dc49c688070"
+  }
+}

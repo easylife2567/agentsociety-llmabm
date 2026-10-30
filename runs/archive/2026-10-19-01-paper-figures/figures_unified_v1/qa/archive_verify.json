@@ -1,0 +1,86 @@
+{
+  "passed": true,
+  "mode": "verify",
+  "network_calls": 0,
+  "simulation_calls": 0,
+  "geometry_tolerance": 0,
+  "manifest": {
+    "passed": true,
+    "files": 127,
+    "manifest_sha256": "2dcc1fdc4b26ab2818b01d1b8b515d30d985acc495624d214c6449e5ee23e771"
+  },
+  "source_figure_audits": [
+    {
+      "figure": "figure_01_framework",
+      "passed": true,
+      "size_mm": [
+        180,
+        66
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "20001bbc3e868f232db2cc79dac85025274960a3e9e3bdd9206e8489a47e2919",
+      "pdf_sha256": "126b7d3b9d75b1017f136eb4e2dee1578efe17d8e054de92a62518f073e4faad",
+      "png_sha256": "5802bc9bd234fa4fbd4ec8ff24adaab40d2e24f412f251ae9f42d9e904383705"
+    },
+    {
+      "figure": "figure_02_observed_trends",
+      "passed": true,
+      "size_mm": [
+        180,
+        52
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "a63236802c1006a3f2245ef69b6938cc5530244ce9b1c125e21854326a29ec8a",
+      "pdf_sha256": "179a74a49568ad0b0964be0c8c900f679b652e57efa2bc5af1568f2b69bff0b6",
+      "png_sha256": "cc75344fdb40ce9aba0f18b65df09a5652a9f81b8064475aca868dc49c688070"
+    },
+    {
+      "figure": "figure_03_observed_platforms",
+      "passed": true,
+      "size_mm": [
+        180,
+        52
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "873fcac75d7555c01858c2567f4a95bffc1b357c52b73ea11aa6b831fd7b4058",
+      "pdf_sha256": "3736c7fc7254d4847dd184c90116792e2eaba77e3c9f95be3003245648843e48",
+      "png_sha256": "e946f5a29d3762f292aadcb2d1f1c1c3c9d80d829333646e4e575902fd0fa710"
+    },
+    {
+      "figure": "figure_04_simulated_trajectories",
+      "passed": true,
+      "size_mm": [
+        180,
+        52
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "d948b60f4094baf22c49006f4c24c8dc7dea82fa3448c4d029911df6f9acf796",
+      "pdf_sha256": "da0fc65afb69ffce42cde2335918acbae707dc572414251a783a21635f515f9a",
+      "png_sha256": "2c333525aa00c2ea54c00b9bc8ddeb9e6d63ffd304218b0a309012bcb9cd75a9"
+    },
+    {
+      "figure": "figure_05_feedback_exposure",
+      "passed": true,
+      "size_mm": [
+        180,
+        54
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "67ec3d592a1ebbe289f00d0399fce99be80b58522f19c3bc9572e8e77ef7c6ff",
+      "pdf_sha256": "3504f129a71a4ae1361eddb823a3b34015b9f2027be12c73747cb2f98875fde4",
+      "png_sha256": "b1b20ad02e8b8b28bd4a9e42d523c560ac9138bb3564926dd04af1fa477a8417"
+    },
+    {
+      "figure": "figure_06_bdr_ablation",
+      "passed": true,
+      "size_mm": [
+        180,
+        84
+      ],
+      "pdf_min_font_pt": 8.0,
+      "svg_sha256": "37aa559e54055b3b1c42280c8b480f892051361892f50af2a89770dfac375ec2",
+      "pdf_sha256": "519d040901a21df3cc590d020991fd4ff9a72c598d09593e449fbd371e995327",
+      "png_sha256": "466fd1e5ff6dab3d0b8007ede506ccd43b9e601ef7d6e3c99a1cfb145b7fe7dd"
+    }
+  ]
+}

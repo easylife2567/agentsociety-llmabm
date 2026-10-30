@@ -1,0 +1,9 @@
+{
+  "changed_code": "paper/word/hourly_return_v8/figures/update_framework.py",
+  "patch": "archive_reference_fix.patch",
+  "same_svg_sha256": "ba2d2166b3ed9182e1fa52d17036f739b9476d166b99152d1f0ecc6f63d9ca51",
+  "added_frozen_png": "paper/word/hourly_return_v8/figures/source_figure1.png",
+  "same_png_sha256": "c10ad2b8a3e5f9ebf13d7435d2856815333ef006215ef8a59e2d4af32c7da9cd",
+  "validation": "source SVG/PNG exact-byte copies; AST parse passed; historical script not executed; Word and figure outputs untouched",
+  "final_script_sha256": "c1fec751e1a507b3bb8ff3339d0f680b00c801ca5bfeffa35e22c1fdfd229439"
+}

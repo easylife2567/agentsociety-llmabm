@@ -1,0 +1,95 @@
+{
+  "passed": true,
+  "jobs": [
+    {
+      "figure": "figure_01_framework",
+      "audit": "source",
+      "exit_code": 0
+    },
+    {
+      "figure": "figure_01_framework",
+      "audit": "text",
+      "exit_code": 0
+    },
+    {
+      "figure": "figure_01_framework",
+      "audit": "collisions",
+      "exit_code": 0
+    },
+    {
+      "figure": "figure_02_observed_trends",
+      "audit": "source",
+      "exit_code": 0
+    },
+    {
+      "figure": "figure_02_observed_trends",
+      "audit": "text",
+      "exit_code": 0
+    },
+    {
+      "figure": "figure_02_observed_trends",
+      "audit": "collisions",
+      "exit_code": 0
+    },
+    {
+      "figure": "figure_03_observed_platforms",
+      "audit": "source",
+      "exit_code": 0
+    },
+    {
+      "figure": "figure_03_observed_platforms",
+      "audit": "text",
+      "exit_code": 0
+    },
+    {
+      "figure": "figure_03_observed_platforms",
+      "audit": "collisions",
+      "exit_code": 0
+    },
+    {
+      "figure": "figure_04_simulated_trajectories",
+      "audit": "source",
+      "exit_code": 0
+    },
+    {
+      "figure": "figure_04_simulated_trajectories",
+      "audit": "text",
+      "exit_code": 0
+    },
+    {
+      "figure": "figure_04_simulated_trajectories",
+      "audit": "collisions",
+      "exit_code": 0
+    },
+    {
+      "figure": "figure_05_feedback_exposure",
+      "audit": "source",
+      "exit_code": 0
+    },
+    {
+      "figure": "figure_05_feedback_exposure",
+      "audit": "text",
+      "exit_code": 0
+    },
+    {
+      "figure": "figure_05_feedback_exposure",
+      "audit": "collisions",
+      "exit_code": 0
+    },
+    {
+      "figure": "figure_06_bdr_ablation",
+      "audit": "source",
+      "exit_code": 0
+    },
+    {
+      "figure": "figure_06_bdr_ablation",
+      "audit": "text",
+      "exit_code": 0
+    },
+    {
+      "figure": "figure_06_bdr_ablation",
+      "audit": "collisions",
+      "exit_code": 0
+    }
+  ]
+}

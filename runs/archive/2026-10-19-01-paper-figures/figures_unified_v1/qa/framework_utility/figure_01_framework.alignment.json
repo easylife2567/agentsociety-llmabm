@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "applicable": true,
+  "auditable": true,
+  "verdict": "PASS",
+  "backend": "python-matplotlib",
+  "summary": {
+    "fail": 0,
+    "warn": 0,
+    "comparisons": 1,
+    "exemptions": 1
+  },
+  "tolerances": {
+    "alignment_pt": 1.5,
+    "gutter_pt": 1.5
+  },
+  "layout": {
+    "schema_version": 1,
+    "backend": "python-matplotlib",
+    "figure": {
+      "width_pt": 510.236220472441,
+      "height_pt": 187.08661417322836
+    },
+    "panels": [
+      {
+        "id": "a",
+        "bbox_pt": [
+          5.669291338582678,
+          22.67716535433071,
+          164.40944881889766,
+          170.07874015748033
+        ],
+        "panel_label": "a",
+        "panel_label_anchor_pt": [
+          5.669291338582678,
+          175.16625000000002
+        ]
+      },
+      {
+        "id": "b",
+        "bbox_pt": [
+          181.4173228346457,
+          22.67716535433071,
+          504.56692913385837,
+          170.07874015748033
+        ],
+        "panel_label": "b",
+        "panel_label_anchor_pt": [
+          181.4173228346457,
+          175.16625000000002
+        ]
+      }
+    ],
+    "row_groups": [
+      {
+        "id": "complementary-modules",
+        "panels": [
+          "a",
+          "b"
+        ]
+      }
+    ],
+    "column_groups": [],
+    "boundary_groups": [],
+    "exemptions": [
+      {
+        "panels": [
+          "a",
+          "b"
+        ],
+        "checks": [
+          "panel-width"
+        ],
+        "reason": "Complementary evidence modules intentionally use 56:114 mm content widths; the circular mechanism is the hero."
+      }
+    ]
+  },
+  "findings": []
+}

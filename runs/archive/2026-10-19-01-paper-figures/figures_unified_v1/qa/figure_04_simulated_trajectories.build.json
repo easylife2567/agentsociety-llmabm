@@ -1,0 +1,412 @@
+{
+  "figure": "figure_04_simulated_trajectories",
+  "size_mm": [
+    180.0,
+    52.0
+  ],
+  "panels": [
+    "a",
+    "b",
+    "c"
+  ],
+  "font": "Arial",
+  "base_font_pt": 9,
+  "python": "3.13.9",
+  "matplotlib": "3.10.0",
+  "rendered_text_boxes": [
+    {
+      "text": "(a) Random",
+      "font_pt": 9.0,
+      "bbox_px": [
+        101.92,
+        270.55,
+        205.17,
+        288.55
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W12",
+      "font_pt": 8.0,
+      "bbox_px": [
+        66.12,
+        73.84,
+        100.37,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W13",
+      "font_pt": 8.0,
+      "bbox_px": [
+        109.33,
+        73.84,
+        143.58,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W16",
+      "font_pt": 8.0,
+      "bbox_px": [
+        187.59,
+        73.84,
+        221.84,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W19",
+      "font_pt": 8.0,
+      "bbox_px": [
+        265.8,
+        73.84,
+        300.17,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W22",
+      "font_pt": 8.0,
+      "bbox_px": [
+        344.13,
+        73.84,
+        378.38,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Successful posts\nper week",
+      "font_pt": 9.0,
+      "bbox_px": [
+        17.54,
+        127.51,
+        56.34,
+        268.63
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0",
+      "font_pt": 8.0,
+      "bbox_px": [
+        73.92,
+        92.34,
+        83.17,
+        107.34
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "5",
+      "font_pt": 8.0,
+      "bbox_px": [
+        74.04,
+        131.03,
+        83.17,
+        146.03
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "10",
+      "font_pt": 8.0,
+      "bbox_px": [
+        64.67,
+        169.72,
+        83.17,
+        184.72
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "15",
+      "font_pt": 8.0,
+      "bbox_px": [
+        64.79,
+        208.42,
+        83.17,
+        223.42
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "20",
+      "font_pt": 8.0,
+      "bbox_px": [
+        64.67,
+        247.11,
+        83.17,
+        262.11
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "25",
+      "font_pt": 8.0,
+      "bbox_px": [
+        64.79,
+        285.8,
+        83.17,
+        300.8
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "(b) Chronological",
+      "font_pt": 9.0,
+      "bbox_px": [
+        442.47,
+        270.55,
+        597.72,
+        288.55
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W12",
+      "font_pt": 8.0,
+      "bbox_px": [
+        406.67,
+        73.84,
+        440.92,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W13",
+      "font_pt": 8.0,
+      "bbox_px": [
+        449.88,
+        73.84,
+        484.13,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W16",
+      "font_pt": 8.0,
+      "bbox_px": [
+        528.14,
+        73.84,
+        562.39,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W19",
+      "font_pt": 8.0,
+      "bbox_px": [
+        606.35,
+        73.84,
+        640.72,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W22",
+      "font_pt": 8.0,
+      "bbox_px": [
+        684.68,
+        73.84,
+        718.93,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "(c) Interest-based",
+      "font_pt": 9.0,
+      "bbox_px": [
+        783.02,
+        270.55,
+        939.39,
+        288.55
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W12",
+      "font_pt": 8.0,
+      "bbox_px": [
+        747.22,
+        73.84,
+        781.47,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W13",
+      "font_pt": 8.0,
+      "bbox_px": [
+        790.43,
+        73.84,
+        824.68,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W16",
+      "font_pt": 8.0,
+      "bbox_px": [
+        868.69,
+        73.84,
+        902.94,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W19",
+      "font_pt": 8.0,
+      "bbox_px": [
+        946.9,
+        73.84,
+        981.27,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "W22",
+      "font_pt": 8.0,
+      "bbox_px": [
+        1025.23,
+        73.84,
+        1059.48,
+        88.84
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Simulation week (2026)",
+      "font_pt": 9.0,
+      "bbox_px": [
+        473.23,
+        35.53,
+        669.48,
+        53.53
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Education",
+      "font_pt": 8.0,
+      "bbox_px": [
+        218.97,
+        10.35,
+        293.1,
+        25.35
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Mourning",
+      "font_pt": 8.0,
+      "bbox_px": [
+        332.26,
+        10.35,
+        401.76,
+        25.35
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Memetic",
+      "font_pt": 8.0,
+      "bbox_px": [
+        440.93,
+        10.35,
+        503.93,
+        25.35
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Other discussion",
+      "font_pt": 8.0,
+      "bbox_px": [
+        543.1,
+        10.35,
+        666.97,
+        25.35
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Marketing",
+      "font_pt": 8.0,
+      "bbox_px": [
+        706.14,
+        10.35,
+        779.39,
+        25.43
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Official obituary",
+      "font_pt": 8.0,
+      "bbox_px": [
+        818.55,
+        10.35,
+        945.93,
+        25.46
+      ],
+      "outside_canvas": false
+    }
+  ],
+  "outside_canvas": [],
+  "axes": [
+    [
+      0.09,
+      0.33000000000000007,
+      0.25426136363636365,
+      0.6299999999999999
+    ],
+    [
+      0.4103693181818182,
+      0.33000000000000007,
+      0.25426136363636365,
+      0.6299999999999999
+    ],
+    [
+      0.7307386363636365,
+      0.33000000000000007,
+      0.25426136363636365,
+      0.6299999999999999
+    ]
+  ],
+  "event_star_count": 3,
+  "event_alignment": [
+    {
+      "panel": 0,
+      "visible_center_delta_pt": 0.0
+    },
+    {
+      "panel": 1,
+      "visible_center_delta_pt": 0.0
+    },
+    {
+      "panel": 2,
+      "visible_center_delta_pt": 0.0
+    }
+  ],
+  "legend_rows": 1,
+  "outputs": {
+    "svg": "d948b60f4094baf22c49006f4c24c8dc7dea82fa3448c4d029911df6f9acf796",
+    "pdf": "da0fc65afb69ffce42cde2335918acbae707dc572414251a783a21635f515f9a",
+    "png": "2c333525aa00c2ea54c00b9bc8ddeb9e6d63ffd304218b0a309012bcb9cd75a9"
+  }
+}

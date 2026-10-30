@@ -1,0 +1,12 @@
+Nature Figure Rendered Collision Audit
+pdf: /Users/easylife/Project/AgentSociety/runs/archive/2026-10-19-01-paper-figures/figures_unified_v1/figure_06_bdr_ablation.pdf
+pages: 1
+visible text boxes: 56
+stroke paths: 201
+
+[WARN] page 1 text-fill-edge: Text partially overlaps the edge of 1 filled region(s) — '68.5%'
+  text bbox: (86.3775405883789, 127.36544036865234, 110.47640228271484, 135.8654327392578)
+
+summary: 0 fail, 1 warn, 14 contained fill overlays, 0 contained image overlays
+verdict: REVIEW REQUIRED
+note: contained overlays can be intentional; WARN findings need final-size visual review

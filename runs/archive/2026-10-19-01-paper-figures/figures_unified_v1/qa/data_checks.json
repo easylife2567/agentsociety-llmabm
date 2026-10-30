@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "observed_raw_workbook_rows_verified": 49930,
+  "observed_five_category_rows_verified": 46602,
+  "observed_weeks": 18,
+  "raw_total_peak_W13": 10674,
+  "observed_total_rows": 54,
+  "observed_category_rows": 270,
+  "main_runs": 30,
+  "main_week_rows": 330,
+  "raw_feedback_ENV_verified": 30,
+  "actual_denominators": {
+    "own": 760,
+    "meme_opportunities": 76,
+    "cross": 3240
+  },
+  "feedback_means_percent": {
+    "chronological": {
+      "own_share": 43.631578947368425,
+      "meme_post_rate": 59.73684210526316,
+      "cross_generated_share": 24.919753086419753
+    },
+    "interest": {
+      "own_share": 29.80263157894737,
+      "meme_post_rate": 53.289473684210535,
+      "cross_generated_share": 13.141975308641976
+    },
+    "random": {
+      "own_share": 3.25,
+      "meme_post_rate": 3.421052631578947,
+      "cross_generated_share": 0.23148148148148145
+    }
+  },
+  "ablation_metric_rows": 100,
+  "ablation_full_origin": "timestamp_v1_interest_s0–s9",
+  "display_R": "R → 1",
+  "actual_no_r": "decay=0 yields R=1",
+  "network_calls": 0,
+  "simulation_calls": 0
+}

@@ -1,0 +1,421 @@
+{
+  "figure": "figure_05_feedback_exposure",
+  "size_mm": [
+    180.0,
+    54.0
+  ],
+  "panels": [
+    "a",
+    "b",
+    "c"
+  ],
+  "font": "Arial",
+  "base_font_pt": 9,
+  "python": "3.13.9",
+  "matplotlib": "3.10.0",
+  "rendered_text_boxes": [
+    {
+      "text": "3.2%",
+      "font_pt": 8.5,
+      "bbox_px": [
+        200.65,
+        259.47,
+        240.9,
+        277.47
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "43.6%",
+      "font_pt": 8.5,
+      "bbox_px": [
+        349.66,
+        193.87,
+        399.91,
+        211.87
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "29.8%",
+      "font_pt": 8.5,
+      "bbox_px": [
+        290.09,
+        128.27,
+        340.21,
+        146.27
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "(a)",
+      "font_pt": 9.0,
+      "bbox_px": [
+        186.96,
+        285.08,
+        209.83,
+        303.08
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Same-type feed\nitems (%)",
+      "font_pt": 9.0,
+      "bbox_px": [
+        236.07,
+        3.01,
+        368.45,
+        41.81
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0",
+      "font_pt": 8.0,
+      "bbox_px": [
+        182.01,
+        52.22,
+        191.26,
+        67.22
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "10",
+      "font_pt": 8.0,
+      "bbox_px": [
+        220.51,
+        52.22,
+        239.01,
+        67.22
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "20",
+      "font_pt": 8.0,
+      "bbox_px": [
+        263.63,
+        52.22,
+        282.13,
+        67.22
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "30",
+      "font_pt": 8.0,
+      "bbox_px": [
+        306.82,
+        52.22,
+        325.19,
+        67.22
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "40",
+      "font_pt": 8.0,
+      "bbox_px": [
+        349.88,
+        52.22,
+        368.38,
+        67.22
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "50",
+      "font_pt": 8.0,
+      "bbox_px": [
+        393.06,
+        52.22,
+        411.43,
+        67.22
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Curation regime",
+      "font_pt": 9.0,
+      "bbox_px": [
+        31.46,
+        127.59,
+        49.46,
+        261.47
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Random",
+      "font_pt": 8.0,
+      "bbox_px": [
+        111.46,
+        231.45,
+        174.46,
+        246.45
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Chronological",
+      "font_pt": 8.0,
+      "bbox_px": [
+        72.83,
+        165.85,
+        174.46,
+        180.85
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Interest-based",
+      "font_pt": 8.0,
+      "bbox_px": [
+        68.21,
+        100.25,
+        174.46,
+        115.25
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "3.4%",
+      "font_pt": 8.5,
+      "bbox_px": [
+        503.08,
+        259.47,
+        543.46,
+        277.47
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "59.7%",
+      "font_pt": 8.5,
+      "bbox_px": [
+        644.91,
+        193.87,
+        695.16,
+        211.87
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "53.3%",
+      "font_pt": 8.5,
+      "bbox_px": [
+        625.8,
+        128.27,
+        676.05,
+        146.27
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "(b)",
+      "font_pt": 9.0,
+      "bbox_px": [
+        493.26,
+        285.08,
+        517.26,
+        303.08
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Successful posts /\nopportunities (%)",
+      "font_pt": 9.0,
+      "bbox_px": [
+        532.75,
+        3.01,
+        684.38,
+        41.81
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0",
+      "font_pt": 8.0,
+      "bbox_px": [
+        488.32,
+        52.22,
+        497.57,
+        67.22
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "20",
+      "font_pt": 8.0,
+      "bbox_px": [
+        542.99,
+        52.22,
+        561.49,
+        67.22
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "40",
+      "font_pt": 8.0,
+      "bbox_px": [
+        602.28,
+        52.22,
+        620.78,
+        67.22
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "60",
+      "font_pt": 8.0,
+      "bbox_px": [
+        661.57,
+        52.22,
+        680.07,
+        67.22
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "80",
+      "font_pt": 8.0,
+      "bbox_px": [
+        720.86,
+        52.22,
+        739.36,
+        67.22
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0.2%",
+      "font_pt": 8.5,
+      "bbox_px": [
+        805.18,
+        259.47,
+        845.43,
+        277.47
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "24.9%",
+      "font_pt": 8.5,
+      "bbox_px": [
+        943.05,
+        193.87,
+        993.17,
+        211.87
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "13.1%",
+      "font_pt": 8.5,
+      "bbox_px": [
+        863.18,
+        128.27,
+        913.43,
+        146.27
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "(c)",
+      "font_pt": 9.0,
+      "bbox_px": [
+        799.57,
+        285.08,
+        822.44,
+        303.08
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "Generated memetic posts /\nother authors' feed items (%)",
+      "font_pt": 9.0,
+      "bbox_px": [
+        794.37,
+        3.01,
+        1035.37,
+        41.81
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "0",
+      "font_pt": 8.0,
+      "bbox_px": [
+        794.62,
+        52.22,
+        803.87,
+        67.22
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "10",
+      "font_pt": 8.0,
+      "bbox_px": [
+        857.76,
+        52.22,
+        876.26,
+        67.22
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "20",
+      "font_pt": 8.0,
+      "bbox_px": [
+        925.52,
+        52.22,
+        944.02,
+        67.22
+      ],
+      "outside_canvas": false
+    },
+    {
+      "text": "30",
+      "font_pt": 8.0,
+      "bbox_px": [
+        993.35,
+        52.22,
+        1011.72,
+        67.22
+      ],
+      "outside_canvas": false
+    }
+  ],
+  "outside_canvas": [],
+  "axes": [
+    [
+      0.17,
+      0.25,
+      0.2286931818181818,
+      0.72
+    ],
+    [
+      0.45815340909090907,
+      0.25,
+      0.22869318181818188,
+      0.72
+    ],
+    [
+      0.7463068181818182,
+      0.25,
+      0.22869318181818177,
+      0.72
+    ]
+  ],
+  "event_star_count": 0,
+  "event_alignment": [],
+  "legend_rows": 0,
+  "outputs": {
+    "svg": "67ec3d592a1ebbe289f00d0399fce99be80b58522f19c3bc9572e8e77ef7c6ff",
+    "pdf": "3504f129a71a4ae1361eddb823a3b34015b9f2027be12c73747cb2f98875fde4",
+    "png": "b1b20ad02e8b8b28bd4a9e42d523c560ac9138bb3564926dd04af1fa477a8417"
+  }
+}
