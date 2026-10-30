@@ -1,0 +1,38 @@
+{
+  "status": "moved",
+  "old_path": "runs/2026-10-28-01-hourly-interest",
+  "new_path": "runs/archive/2026-10-28-01-hourly-interest",
+  "at_utc": "2026-10-30T08:58:54.502830+00:00",
+  "protected_inventory": "evidence/archive/preserved_files_before_move.json.gz",
+  "protected_inventory_sha256": "65666b1a83117ab1f82be07edf6457baa2d40f3c7228d9d0f80d89282937c41b",
+  "protected_files": 18997,
+  "edited_navigation": [
+    "README.md",
+    "adoption/README.md",
+    "evidence/README.md",
+    "pilot/README.md",
+    "seed_extension/README.md",
+    "analysis/README.md"
+  ],
+  "ignored_raw_directories": {
+    "pilot/results": {
+      "files": 2338,
+      "bytes": 66854082
+    },
+    "seed_extension/results": {
+      "files": 16141,
+      "bytes": 571026306
+    },
+    "pilot/agent_supply/inputs/chronological_s0": {
+      "files": 116,
+      "bytes": 29797337
+    }
+  },
+  "ignored_raw_files": 18595,
+  "ignored_raw_bytes": 667677725,
+  "original_frozen_paths_rewritten": false,
+  "worktree_removed_without_force": true,
+  "tmp_preservation": "evidence/archive/tmp_preservation.json",
+  "formal_files_modified_by_archive": [],
+  "shared_indices_modified": false
+}

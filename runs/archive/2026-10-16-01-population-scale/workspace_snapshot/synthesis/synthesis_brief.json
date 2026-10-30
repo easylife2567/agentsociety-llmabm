@@ -1,0 +1,27 @@
+{
+  "synthesis_question": "服务替换后生成质量与主要实验结论是否改变，正文变化如何进入数值回流？",
+  "scope_hypothesis_ids": [
+    "4_cuc"
+  ],
+  "research_hypothesis_id": "4",
+  "source_artifacts": [
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/report_zh.md",
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/report_en.md",
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/data/paired_metric_differences.csv",
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/data/institution_contrasts.csv",
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/data/late_author_participation.csv",
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/data/quality_summary.json",
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/data/text_review_findings.md",
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/data/text_review_annotations.jsonl",
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/data/mechanism_trace.json",
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/data/runtime_comparison.json",
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/data/source_index.json"
+  ],
+  "comparison_mode": "within_hypothesis_service_replacement",
+  "formal_release_approved": false,
+  "limitations": [
+    "one new run per regime",
+    "backend identity unknown",
+    "contextual assistant audit, not human gold standard"
+  ]
+}

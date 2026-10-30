@@ -1,0 +1,11 @@
+test_explicit_selection_only_reads_two_completed_arms_and_counts_withdrawn_cost (test_analysis.AnalysisTests.test_explicit_selection_only_reads_two_completed_arms_and_counts_withdrawn_cost) ... ok
+test_incomplete_batch_never_creates_analysis (test_analysis.AnalysisTests.test_incomplete_batch_never_creates_analysis) ... ok
+test_plot_keeps_empty_denominators_and_rejects_filled_zero (test_analysis.AnalysisTests.test_plot_keeps_empty_denominators_and_rejects_filled_zero) ... ok
+test_real_exposure_denominators_and_empty_feed (test_analysis.AnalysisTests.test_real_exposure_denominators_and_empty_feed) ... ok
+test_same_batch_and_delayed_queue_are_rejected (test_analysis.AnalysisTests.test_same_batch_and_delayed_queue_are_rejected) ... ok
+test_two_curve_plot_requires_matching_explicit_selection (test_analysis.AnalysisTests.test_two_curve_plot_requires_matching_explicit_selection) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.003s
+
+OK

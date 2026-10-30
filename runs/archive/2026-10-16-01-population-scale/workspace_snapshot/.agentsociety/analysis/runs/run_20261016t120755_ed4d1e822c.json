@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261016t120755_ed4d1e822c",
+  "operation_id": "build-report-context",
+  "operation_contract_version": 1,
+  "execution_key": "f52d9306c8c783eed133767f7fe8ce5b1f5b7b52e94af65cb6479d05c61d9f5c",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "BLOCKED",
+  "hypothesis_id": "4_cuc",
+  "experiment_id": "",
+  "input_names": [
+    "hypothesis_id",
+    "workspace"
+  ],
+  "input_fingerprint": "c875987ac663265a95c5ff55e1741261823fe40ddf9bbb2e8a3e64219449f549",
+  "safe_inputs": {
+    "hypothesis_id": "4_cuc"
+  },
+  "preflight": {
+    "operation_id": "build-report-context",
+    "status": "BLOCKED_BY_GATE",
+    "reasons": [
+      "required gate(s) not passed: refine"
+    ],
+    "missing_inputs": [],
+    "missing_gates": [
+      "refine"
+    ],
+    "checked_capabilities": {}
+  },
+  "result_summary": {},
+  "error": {
+    "type": "BLOCKED_BY_GATE",
+    "message": "required gate(s) not passed: refine",
+    "retryable": true
+  },
+  "declared_artifacts": [
+    "presentation/hypothesis_{id}/data/evidence_index.json",
+    "presentation/hypothesis_{id}/data/report_context.md"
+  ],
+  "artifact_fingerprints": {},
+  "repeatable": true,
+  "retryable": true,
+  "recommended_action": "Fix preflight blockers and rerun the operation.",
+  "pid": 82236,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-16T12:07:55.016121Z",
+  "updated_at": "2026-10-16T12:07:55.016251Z",
+  "completed_at": "2026-10-16T12:07:55.016227Z",
+  "duration_ms": 0
+}

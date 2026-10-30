@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "files": [
+    {
+      "path": "custom/tests/README.md",
+      "before_sha256": "8c9bb2ae88dd69190eda73e10bc72b8e330acf56d5ad445e04e60f065fe1db2f",
+      "after_sha256": "dfe0b157b4e42464ce0ed262de4729349b173100c79ac87a27d84da43e5a106f",
+      "only_link_target_changed": true,
+      "formal_file_staged": false,
+      "reason": "Containing new formal adoption paragraphs are pre-existing unstaged work; only archive link adjusted locally."
+    },
+    {
+      "path": "hypothesis_4/experiment_2/README.md",
+      "before_sha256": "b871bdd4a4b98d312c943b333e7e7bc5526023e3b8dc0346edb32fc5fc65f03f",
+      "after_sha256": "65f59ba06909dac6484442133b449a02bd58b59a113cf3fdc416a431c7276842",
+      "only_link_target_changed": true,
+      "formal_file_staged": false,
+      "reason": "Containing new formal adoption paragraphs are pre-existing unstaged work; only archive link adjusted locally."
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "scope": "已采用的小时回流random/interest各seed0–9与历史完整chronological各seed0–9；正式主工作区离线分析，不运行LLM",
+  "arms": [
+    "random",
+    "chronological",
+    "interest"
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "weeks": [
+    "2026-W12",
+    "2026-W13",
+    "2026-W14",
+    "2026-W15",
+    "2026-W16",
+    "2026-W17",
+    "2026-W18",
+    "2026-W19",
+    "2026-W20",
+    "2026-W21",
+    "2026-W22"
+  ],
+  "late_weeks": [
+    "2026-W19",
+    "2026-W20",
+    "2026-W21",
+    "2026-W22"
+  ],
+  "author_types": [
+    "meme",
+    "mourning",
+    "education",
+    "marketing",
+    "other"
+  ],
+  "supply_plot": {
+    "measure": "每seed每周五类固定作者成功posted的绝对数量，之后各seed等权取算术均值；不含外部/官方/历史帖",
+    "template": "chart3b",
+    "y_axis": [
+      0,
+      80
+    ],
+    "y_tick": 10,
+    "colors": [
+      "#DD8452",
+      "#4C72B0",
+      "#55A868",
+      "#CCB974",
+      "#64B5CD"
+    ],
+    "event_week": "2026-W13"
+  },
+  "dtw": {
+    "benchmark": "presentation/hypothesis_4/hourly_return_v1/inputs/reality_week_boundary.csv",
+    "primary_share_field": "shanghai_clean_share",
+    "secondary_share_field": "utc_clean_share",
+    "window_weeks": 1,
+    "local_distance": "Euclidean five-type shares",
+    "z_normalization": false,
+    "optimization": "minimum cumulative cost; diagonal/up/left tie order",
+    "score": "cumulative distance / selected path length *100",
+    "primary_summary": "先每run计算DTW，之后10seed均值、样本SD(ddof=1)、min/max",
+    "mean_trajectory": "各seed份额向量等权平均后另算DTW，独立列示，不代替逐run DTW均值"
+  },
+  "stability": {
+    "paired_unit": "相同seed的两制度完整run，非周/帖子/Agent",
+    "pairs": [
+      [
+        "interest",
+        "random"
+      ],
+      [
+        "chronological",
+        "random"
+      ],
+      [
+        "interest",
+        "chronological"
+      ]
+    ],
+    "report": [
+      "逐seed DTW和差值/胜出次数/排名频率",
+      "all10 mean/sampleSD/min/max",
+      "去掉已看结果的seed0，保留1–9",
+      "实际模型相同的seed3–9分层，先核实际返回标识",
+      "leave-one-seed-out均值排名"
+    ],
+    "inferential_tests": false
+  },
+  "limitations": [
+    "10个seed只支持当前冻结设置下的重复稳定性",
+    "历史chrono0–2返回别名与当前261017不同，研究等价是既有约定而非底层严格同版",
+    "模拟固定作者类型与现实正文语义标签不完全同口径",
+    "现实benchmark与注入样本同源，属描述拟合而非独立预测验证",
+    "即使DTW更小也不等于所有指标或所有目标最优",
+    "seed0先导已看结果，后续seed1–9须单独展示"
+  ],
+  "source_sha256": {
+    "presentation/hypothesis_4/hourly_return_v1/inputs/dtw_method.py": "6a2b473d85082f64213b1a87d3cd15b425e3fe976ec4464ca94bb5c9b3a1e631",
+    "presentation/hypothesis_4/hourly_return_v1/inputs/reality_week_boundary.csv": "57dc6cd0cfcce3eaf770889ab3f34177c5020736e95a59a62e051472b1e7769a",
+    "presentation/hypothesis_4/hourly_return_v1/inputs/reality_measurement_audit.json": "2fc23ce8a91c00b0811ffb925f5f86b7f99d907b0dd89092ccf8d60c571b108e"
+  }
+}

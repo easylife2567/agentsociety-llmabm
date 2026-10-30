@@ -1,0 +1,75 @@
+test_configuration_cannot_escape_workspace_or_change_budget (__main__.RunnerTests.test_configuration_cannot_escape_workspace_or_change_budget) ... FAIL
+test_deadline_prevents_start_and_ledger_creation (__main__.RunnerTests.test_deadline_prevents_start_and_ledger_creation) ... ok
+test_final_service_failure_stops_without_next_condition (__main__.RunnerTests.test_final_service_failure_stops_without_next_condition) ... ERROR
+test_model_drift_stops_and_preserves_first_completion (__main__.RunnerTests.test_model_drift_stops_and_preserves_first_completion) ... ERROR
+test_serial_success_checks_real_fixture_records (__main__.RunnerTests.test_serial_success_checks_real_fixture_records) ... ERROR
+test_stop_refuses_foreign_pid (__main__.RunnerTests.test_stop_refuses_foreign_pid) ... ok
+
+======================================================================
+ERROR: test_final_service_failure_stops_without_next_condition (__main__.RunnerTests.test_final_service_failure_stops_without_next_condition)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/test_runner.py", line 99, in test_final_service_failure_stops_without_next_condition
+    self.assertFalse(runner.supervise(0))
+                     ~~~~~~~~~~~~~~~~^^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/run_pilot.py", line 226, in supervise
+    root, ledger, environment = preflight(plan)
+                                ~~~~~~~~~^^^^^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/run_pilot.py", line 170, in preflight
+    require(ledger.parent == HERE and not ledger.exists(), '本批账本必须独立、尚不存在')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/run_pilot.py", line 46, in require
+    raise RuntimeError(message)
+RuntimeError: 本批账本必须独立、尚不存在
+
+======================================================================
+ERROR: test_model_drift_stops_and_preserves_first_completion (__main__.RunnerTests.test_model_drift_stops_and_preserves_first_completion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/test_runner.py", line 110, in test_model_drift_stops_and_preserves_first_completion
+    self.assertFalse(runner.supervise(0))
+                     ~~~~~~~~~~~~~~~~^^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/run_pilot.py", line 226, in supervise
+    root, ledger, environment = preflight(plan)
+                                ~~~~~~~~~^^^^^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/run_pilot.py", line 170, in preflight
+    require(ledger.parent == HERE and not ledger.exists(), '本批账本必须独立、尚不存在')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/run_pilot.py", line 46, in require
+    raise RuntimeError(message)
+RuntimeError: 本批账本必须独立、尚不存在
+
+======================================================================
+ERROR: test_serial_success_checks_real_fixture_records (__main__.RunnerTests.test_serial_success_checks_real_fixture_records)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/test_runner.py", line 87, in test_serial_success_checks_real_fixture_records
+    self.assertTrue(runner.supervise(0))
+                    ~~~~~~~~~~~~~~~~^^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/run_pilot.py", line 226, in supervise
+    root, ledger, environment = preflight(plan)
+                                ~~~~~~~~~^^^^^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/run_pilot.py", line 170, in preflight
+    require(ledger.parent == HERE and not ledger.exists(), '本批账本必须独立、尚不存在')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/run_pilot.py", line 46, in require
+    raise RuntimeError(message)
+RuntimeError: 本批账本必须独立、尚不存在
+
+======================================================================
+FAIL: test_configuration_cannot_escape_workspace_or_change_budget (__main__.RunnerTests.test_configuration_cannot_escape_workspace_or_change_budget)
+----------------------------------------------------------------------
+RuntimeError: 本批账本必须独立、尚不存在
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/test_runner.py", line 124, in test_configuration_cannot_escape_workspace_or_change_budget
+    with self.assertRaisesRegex(RuntimeError, '越出'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "越出" does not match "本批账本必须独立、尚不存在"
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.012s
+
+FAILED (failures=1, errors=3)

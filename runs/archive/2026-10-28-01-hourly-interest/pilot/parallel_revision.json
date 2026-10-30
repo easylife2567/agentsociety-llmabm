@@ -1,0 +1,21 @@
+{
+  "execution_authorized": true,
+  "authorization": "用户：尝试开启并行提高速度。仅调整已授权三臂seed0为最多两路；保留活跃引擎，不扩矩阵/科学参数/预算/时限，不自动重跑。",
+  "created_at": "2026-10-28T14:16:17.504083+00:00",
+  "max_parallel": 2,
+  "runtime_plan_sha256": "2efe9db8e9f797196e2fc0244eedd5b9e09cdb76593242f79a295f58fd08d1e6",
+  "controller_sha256": "83749039f268e4d630d04dac3363a409039d34d7a15cee5de6b810857e540281",
+  "deadline_at": "2026-10-28T21:38:46.079787+00:00",
+  "decision_opportunities": 3300,
+  "extra_requests_limit": 330,
+  "body_outer_requests_limit": 3630,
+  "expected_returned_model": "deepseek-v4-1-flash-261017",
+  "source_config_changes": false,
+  "restart_existing_engine": false,
+  "preserve_original_started_at": true,
+  "reset_ledger": false,
+  "test_sha256": "24e38fbb3a3a6078b43bf95bd18480dca5b56ff96aee150ba06eb6ec7fd0b8ad",
+  "offline_checks": "parallel_check.json",
+  "review": "independent read-only review: no blocking issues",
+  "frozen_at": "2026-10-28T14:20:39.725945+00:00"
+}

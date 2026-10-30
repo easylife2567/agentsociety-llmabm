@@ -1,0 +1,854 @@
+{
+  "baseline_commit": "aad3267fc9929a08a453ba427bdf25919bbffc70",
+  "generator": "hypothesis_4/experiment_2/init/prepare_hourly_return.py",
+  "execution_authorized": false,
+  "llm_calls": 0,
+  "timezone": "Asia/Shanghai",
+  "arrival_agent_return_policy": "next_batch",
+  "source_sha256": {
+    "hypothesis_4/experiment_2/init/manifest.json": "8e917116af252f4b9fcc369191583f9957d0faec0d815621980cb6f31572de34",
+    "hypothesis_4/experiment_2/init/manifest_seed3_9.json": "524a048206c35474367785e43fc79c528b4e8a038e311daa5ba6502e9d93564d",
+    "hypothesis_4/experiment_2/init/steps_s0.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s0.json": "5b0f9efedffac94ba2b3a8a639aa8b0b3c0ef2bb2c1f31a8377ac76ec29608d5",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s0.json": "8915813f6b4258c03a137e3c8b0e27dc763a724bd0947b3a0190ee1cc04fe6bf",
+    "hypothesis_4/experiment_2/init/inputs/population_s0.json": "8debff3a0349a5cc5d732b7e494f71c312fa7e22aa9458c6a80c7980ffe35d65",
+    "hypothesis_4/experiment_2/init/inputs/action_schedule_s0.json": "a864f4d09e9e291446c24618a3e980939d8c16f964f73d07d3f76667081f8ccf",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s0.json": "5036a7d253cc13809f96320b78ecef8529258b80c53efe7282a0ab2c96280213",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s0.json": "c647d5a56be35ad529422f12c8e6e55a9d6b4e8efd5f382473cdc5de23b854a9",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s0.json": "68afdd91e46e6d4cde1eee1f7696b004e1ae4ddce292fd8dbb43706eb6d74a37",
+    "hypothesis_4/experiment_2/init/steps_s1.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s1.json": "bf0768ec6c2fa9510188c676f901311feaec43ae8db2319408a6b4a5905e9601",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s1.json": "da75d5861bf9bffbcb97a5b13130bd30bfc2bbfe1f11b2ed4eb4f29f92029813",
+    "hypothesis_4/experiment_2/init/inputs/population_s1.json": "8debff3a0349a5cc5d732b7e494f71c312fa7e22aa9458c6a80c7980ffe35d65",
+    "hypothesis_4/experiment_2/init/inputs/action_schedule_s1.json": "a864f4d09e9e291446c24618a3e980939d8c16f964f73d07d3f76667081f8ccf",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s1.json": "ea0da1cbe7b3bcff671c9265d438dde27a9b21d9c1bd0fd12af86c086d525acb",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s1.json": "5e5f75d6f2ea52e9f5826e0868032582ca5427aee2c66d11727412f0bf9a025e",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s1.json": "3a740043abe77d7fed9b281fc4180530a9dbffffaa3d540ec8746acc03be241f",
+    "hypothesis_4/experiment_2/init/steps_s2.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s2.json": "44d37a4ddc04fa34c940dff80415c81a6376832e69d7d7299b4b2b9177c15708",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s2.json": "d5b25c42b27b468925e4112bfac60daf8f2a5362b227a83572e47b446ee19d49",
+    "hypothesis_4/experiment_2/init/inputs/population_s2.json": "8debff3a0349a5cc5d732b7e494f71c312fa7e22aa9458c6a80c7980ffe35d65",
+    "hypothesis_4/experiment_2/init/inputs/action_schedule_s2.json": "a864f4d09e9e291446c24618a3e980939d8c16f964f73d07d3f76667081f8ccf",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s2.json": "f1719531ef10311b517ad74f9a8a47dce3162f2720dd31eabfd5001b4ef7f162",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s2.json": "ea7dfb942c5d433403fb55267d184801f833ba071fb83c6bbc14a966c1e3fff8",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s2.json": "5b4e1cc16a830a99d6ac71398e8b681f3cdceb1b1e3efa0196720ba0d59993fd",
+    "hypothesis_4/experiment_2/init/steps_s3.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s3.json": "40c8f5af76321fce92ce797393aa44d2ee80499a222b65ead24e758577dabcce",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s3.json": "e7c21d47a9c8f4398fc56afdf85bdcec6816e9f56e08458e73b75563dd8938e2",
+    "hypothesis_4/experiment_2/init/inputs/population_s3.json": "ef8936225ac123bff336a0a49604027f7742cc51ac90e526de780d51d896244c",
+    "hypothesis_4/experiment_2/init/inputs/action_schedule_s3.json": "a864f4d09e9e291446c24618a3e980939d8c16f964f73d07d3f76667081f8ccf",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s3.json": "f44e5859ad9347301d863bcc856c9eb49e2209aa44ab07deebb0a16570267eff",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s3.json": "8ef8719c4bdfc472ce004bb9d28a042bd0da0f8a92a40117cbb1caafefa562a8",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s3.json": "59f8d470a7a696f55dd7403621ae7bcef5d3b125a7aa6f1e47805a6cfbe4ba6e",
+    "hypothesis_4/experiment_2/init/steps_s4.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s4.json": "45d4b0ca331ed9e49b3120e933676bc353c5efe180a6e7f2ecdc4c855dc388c0",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s4.json": "f3614a0c0b235fad6e15b54a438ba7b81c58c4c85b91721ec84b85cf07f4d082",
+    "hypothesis_4/experiment_2/init/inputs/population_s4.json": "ef8936225ac123bff336a0a49604027f7742cc51ac90e526de780d51d896244c",
+    "hypothesis_4/experiment_2/init/inputs/action_schedule_s4.json": "a864f4d09e9e291446c24618a3e980939d8c16f964f73d07d3f76667081f8ccf",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s4.json": "e379cc63d3166e5c86727ef7016478130755a08528b212a54da36c0b2d08a859",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s4.json": "9318f3fce113a0aa7b54adb4afbf46b7964a37fc6aed8839c347c103fdbbccbc",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s4.json": "5a2f43989632c11455d42c97e3498993f5a8d239ce1db3010c0a9c0eef4b5ade",
+    "hypothesis_4/experiment_2/init/steps_s5.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s5.json": "5727720dfedf08bf3001ce545a1ae1acec3bf419ef36aae315fc269dee58b438",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s5.json": "f077f253df7ea79b197162ac2c40413fd9933384b8f76555b7fdfc1022c98da3",
+    "hypothesis_4/experiment_2/init/inputs/population_s5.json": "ef8936225ac123bff336a0a49604027f7742cc51ac90e526de780d51d896244c",
+    "hypothesis_4/experiment_2/init/inputs/action_schedule_s5.json": "a864f4d09e9e291446c24618a3e980939d8c16f964f73d07d3f76667081f8ccf",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s5.json": "054f9d99a0b936b05a073407a4129e66ea1d420f7138f2e98e0fddb34d8e4744",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s5.json": "0b62fd83dcc02956952ce1bb1bfdfbe4808682d49ee89a182e1e08f2faa0120f",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s5.json": "713475d55c8c6a301757172171a20250f0841c1b6afebfc020d5f67b8cd0324d",
+    "hypothesis_4/experiment_2/init/steps_s6.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s6.json": "f46964154cc60b4344d01c0d819596572c42f907efc5a7d4773f41fb61474a40",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s6.json": "47e3968785b357efc6d0bebac803f877e7f0f726b48bdbc48c61c30fdbcd217b",
+    "hypothesis_4/experiment_2/init/inputs/population_s6.json": "ef8936225ac123bff336a0a49604027f7742cc51ac90e526de780d51d896244c",
+    "hypothesis_4/experiment_2/init/inputs/action_schedule_s6.json": "a864f4d09e9e291446c24618a3e980939d8c16f964f73d07d3f76667081f8ccf",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s6.json": "a4dc85089e5cb723783c48966ff7091814792c64fb050f5432ce4a2915f68897",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s6.json": "1dea890d4b861f46a042146d413c2f8544e137cba6860afd95ce5aff6444f878",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s6.json": "c04e2a091db38c3b7cd40f1405e8fe406c4e6dee80e5d582e185991d157ef580",
+    "hypothesis_4/experiment_2/init/steps_s7.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s7.json": "32268f834ce823494553d938f89ff3ecad8072db842fe69e66f62e397dde6a64",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s7.json": "3d181c232007efa8ad57bb18ae500c2183d4d1d2abb49cee82ff35870862a3f5",
+    "hypothesis_4/experiment_2/init/inputs/population_s7.json": "ef8936225ac123bff336a0a49604027f7742cc51ac90e526de780d51d896244c",
+    "hypothesis_4/experiment_2/init/inputs/action_schedule_s7.json": "a864f4d09e9e291446c24618a3e980939d8c16f964f73d07d3f76667081f8ccf",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s7.json": "c61f2696a047ef2d795678f42073bcbc8ab1d936be873bcb15cacc09cc3583d1",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s7.json": "3f66c22176fa82471318179d3c104435fd125efa63e78e23dc3b9d7754eef79c",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s7.json": "fc796e4b735bdd89c40d5a34fb75abfa545c1eb8ef56b56c6c630762840646ea",
+    "hypothesis_4/experiment_2/init/steps_s8.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s8.json": "3a1e7ab111380cc68ab07181eb86d721abfc1cffd1e64bdb968c5fde798eba3f",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s8.json": "e88cc97b0eed0feeb7403c6c950a5fbdf2aed0e269358a6f35b57e8d3808eaa9",
+    "hypothesis_4/experiment_2/init/inputs/population_s8.json": "ef8936225ac123bff336a0a49604027f7742cc51ac90e526de780d51d896244c",
+    "hypothesis_4/experiment_2/init/inputs/action_schedule_s8.json": "a864f4d09e9e291446c24618a3e980939d8c16f964f73d07d3f76667081f8ccf",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s8.json": "a5c42368bea02a43a0136f9de9f569354a6396cb7aa3527fc3504d487f772a67",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s8.json": "a0a76bdb8b527d1be45994f59fee56319c2eb5fee8ea3a3447ec27a9e575e449",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s8.json": "54153b7da77167a81aa5b090bc4964c59a74d82eef6be5fd9cfa4c2301a9a796",
+    "hypothesis_4/experiment_2/init/steps_s9.yaml": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+    "hypothesis_4/experiment_2/init/inputs/injection_sample_s9.json": "672de67128375241e22da01d275175bdd349e2fa7277a3e2d73f49119cf02e4e",
+    "hypothesis_4/experiment_2/init/inputs/initial_sample_weekly_lag_s9.json": "1ac2ad83f2fc72ba1905927bd98f8aff7d09ba4b3630d3b21e222ee57b0c1f52",
+    "hypothesis_4/experiment_2/init/inputs/population_s9.json": "ef8936225ac123bff336a0a49604027f7742cc51ac90e526de780d51d896244c",
+    "hypothesis_4/experiment_2/init/inputs/action_schedule_s9.json": "a864f4d09e9e291446c24618a3e980939d8c16f964f73d07d3f76667081f8ccf",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s9.json": "20d08573420ab71986ee8716181d625b79338b97125ef81c428fb1cd9344b72a",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s9.json": "9cd0be3e8b04bb71d6a12fe645f7ff16ce3517cc4106d566fe27462f903b3d35",
+    "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s9.json": "0c24555328d158ba4eb2e01787d20edac5576d9d1291c1cc5f8c1ad3ff4397bc",
+    "hypothesis_4/experiment_2/init/prepare_hourly_return.py": "db92ba3a24088d042b70fdd043deb1e2327d0b5d90eea58a53dd221c9d01df92"
+  },
+  "mechanism_sha256": {
+    "custom/agents/curation_arrival_action.py": "d494fd814e2467ec3b69ce430659cc00043b763c2886b3cf9cd389cebb5636aa",
+    "custom/agents/curation_content_quality.py": "4e0903091e14db09c379ce65cbe665abd57aae2af0aa66b5aeca38d35ca1045f",
+    "custom/agents/curation_discourse_agent.py": "ac08888fdbd5000abb2526da83a7a9363e4b3349623f459213241b721c2e4072",
+    "custom/envs/curation_arrival_schedule.py": "e0097344b87f7797afdc9b82f2784979b19313ab5eb70d3488a2732a21e54098",
+    "custom/envs/curation_dynamics_space.py": "3989c1782f2d18f336b0d5241722403f6588e8d41c8da6da3ec11471f244985b",
+    "custom/envs/curation_mechanisms.py": "1acbc7deafbd61c0e7d04f81673ad1ef0497acd8ef308b0a6a1b26a558a4baec",
+    "custom/envs/curation_assets/vocabs.json": "7db323585fdc98594da4a4b97e49ce5d3d1654c89839da7c2a754c7515b15e69"
+  },
+  "combined_unique_conditions": 60,
+  "combined_planned_new_runs": 50,
+  "combined_planned_reuse_pending": 10,
+  "combined_planned_new_decision_opportunities": 55000,
+  "scientific_changes": [
+    "env_modules[0].kwargs.arrival_agent_return_policy"
+  ],
+  "operational_changes": [
+    "agents[*].kwargs.content_retry_budget.limit",
+    "agents[*].kwargs.content_retry_budget.ledger_path"
+  ],
+  "preserved": [
+    "外部输入/样本/人口/提示",
+    "行动表与W13共同覆盖",
+    "每人每周一次及693批steps",
+    "整数周龄生命周期和曝光机制",
+    "原始历史结果与checkpoint"
+  ],
+  "batch_id": "hourly_return_v1",
+  "experiment_id": 2,
+  "runs": [
+    {
+      "run_id": "hourly_return_v1_random_s0",
+      "algorithm": "random",
+      "seed": 0,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s0.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s0.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s0.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_random_s0",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s0",
+      "algorithm": "chronological",
+      "seed": 0,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s0.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s0.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s0.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_chronological_s0",
+      "status": "planned_reuse_pending",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "reuse_candidate": {
+        "run_id": "timestamp_v1_chronological_s0",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s0",
+        "status": "pending",
+        "checks_required": [
+          "实际完成性",
+          "时序新旧行为等价",
+          "输入及行动表一致",
+          "模型/提示/运行参数可比"
+        ],
+        "approved": false
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s0",
+      "algorithm": "interest",
+      "seed": 0,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s0.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s0.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s0.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_interest_s0",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_random_s1",
+      "algorithm": "random",
+      "seed": 1,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s1.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s1.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s1.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_random_s1",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s1",
+      "algorithm": "chronological",
+      "seed": 1,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s1.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s1.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s1.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_chronological_s1",
+      "status": "planned_reuse_pending",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "reuse_candidate": {
+        "run_id": "timestamp_v1_chronological_s1",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s1",
+        "status": "pending",
+        "checks_required": [
+          "实际完成性",
+          "时序新旧行为等价",
+          "输入及行动表一致",
+          "模型/提示/运行参数可比"
+        ],
+        "approved": false
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s1",
+      "algorithm": "interest",
+      "seed": 1,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s1.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s1.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s1.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_interest_s1",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_random_s2",
+      "algorithm": "random",
+      "seed": 2,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s2.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s2.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s2.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_random_s2",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s2",
+      "algorithm": "chronological",
+      "seed": 2,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s2.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s2.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s2.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_chronological_s2",
+      "status": "planned_reuse_pending",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "reuse_candidate": {
+        "run_id": "timestamp_v1_chronological_s2",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s2",
+        "status": "pending",
+        "checks_required": [
+          "实际完成性",
+          "时序新旧行为等价",
+          "输入及行动表一致",
+          "模型/提示/运行参数可比"
+        ],
+        "approved": false
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s2",
+      "algorithm": "interest",
+      "seed": 2,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s2.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s2.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s2.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_interest_s2",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_random_s3",
+      "algorithm": "random",
+      "seed": 3,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s3.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s3.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s3.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_random_s3",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s3",
+      "algorithm": "chronological",
+      "seed": 3,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s3.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s3.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s3.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_chronological_s3",
+      "status": "planned_reuse_pending",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "reuse_candidate": {
+        "run_id": "timestamp_v1_chronological_s3",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s3",
+        "status": "pending",
+        "checks_required": [
+          "实际完成性",
+          "时序新旧行为等价",
+          "输入及行动表一致",
+          "模型/提示/运行参数可比"
+        ],
+        "approved": false
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s3",
+      "algorithm": "interest",
+      "seed": 3,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s3.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s3.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s3.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_interest_s3",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_random_s4",
+      "algorithm": "random",
+      "seed": 4,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s4.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s4.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s4.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_random_s4",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s4",
+      "algorithm": "chronological",
+      "seed": 4,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s4.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s4.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s4.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_chronological_s4",
+      "status": "planned_reuse_pending",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "reuse_candidate": {
+        "run_id": "timestamp_v1_chronological_s4",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s4",
+        "status": "pending",
+        "checks_required": [
+          "实际完成性",
+          "时序新旧行为等价",
+          "输入及行动表一致",
+          "模型/提示/运行参数可比"
+        ],
+        "approved": false
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s4",
+      "algorithm": "interest",
+      "seed": 4,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s4.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s4.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s4.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_interest_s4",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_random_s5",
+      "algorithm": "random",
+      "seed": 5,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s5.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s5.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s5.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_random_s5",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s5",
+      "algorithm": "chronological",
+      "seed": 5,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s5.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s5.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s5.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_chronological_s5",
+      "status": "planned_reuse_pending",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "reuse_candidate": {
+        "run_id": "timestamp_v1_chronological_s5",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s5",
+        "status": "pending",
+        "checks_required": [
+          "实际完成性",
+          "时序新旧行为等价",
+          "输入及行动表一致",
+          "模型/提示/运行参数可比"
+        ],
+        "approved": false
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s5",
+      "algorithm": "interest",
+      "seed": 5,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s5.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s5.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s5.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_interest_s5",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_random_s6",
+      "algorithm": "random",
+      "seed": 6,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s6.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s6.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s6.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_random_s6",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s6",
+      "algorithm": "chronological",
+      "seed": 6,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s6.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s6.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s6.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_chronological_s6",
+      "status": "planned_reuse_pending",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "reuse_candidate": {
+        "run_id": "timestamp_v1_chronological_s6",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s6",
+        "status": "pending",
+        "checks_required": [
+          "实际完成性",
+          "时序新旧行为等价",
+          "输入及行动表一致",
+          "模型/提示/运行参数可比"
+        ],
+        "approved": false
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s6",
+      "algorithm": "interest",
+      "seed": 6,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s6.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s6.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s6.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_interest_s6",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_random_s7",
+      "algorithm": "random",
+      "seed": 7,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s7.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s7.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s7.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_random_s7",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s7",
+      "algorithm": "chronological",
+      "seed": 7,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s7.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s7.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s7.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_chronological_s7",
+      "status": "planned_reuse_pending",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "reuse_candidate": {
+        "run_id": "timestamp_v1_chronological_s7",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s7",
+        "status": "pending",
+        "checks_required": [
+          "实际完成性",
+          "时序新旧行为等价",
+          "输入及行动表一致",
+          "模型/提示/运行参数可比"
+        ],
+        "approved": false
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s7",
+      "algorithm": "interest",
+      "seed": 7,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s7.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s7.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s7.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_interest_s7",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_random_s8",
+      "algorithm": "random",
+      "seed": 8,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s8.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s8.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s8.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_random_s8",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s8",
+      "algorithm": "chronological",
+      "seed": 8,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s8.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s8.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s8.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_chronological_s8",
+      "status": "planned_reuse_pending",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "reuse_candidate": {
+        "run_id": "timestamp_v1_chronological_s8",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s8",
+        "status": "pending",
+        "checks_required": [
+          "实际完成性",
+          "时序新旧行为等价",
+          "输入及行动表一致",
+          "模型/提示/运行参数可比"
+        ],
+        "approved": false
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s8",
+      "algorithm": "interest",
+      "seed": 8,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s8.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s8.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s8.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_interest_s8",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_random_s9",
+      "algorithm": "random",
+      "seed": 9,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s9.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_random_s9.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s9.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_random_s9",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s9",
+      "algorithm": "chronological",
+      "seed": 9,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s9.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_chronological_s9.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s9.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_chronological_s9",
+      "status": "planned_reuse_pending",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      },
+      "reuse_candidate": {
+        "run_id": "timestamp_v1_chronological_s9",
+        "run_dir": "hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s9",
+        "status": "pending",
+        "checks_required": [
+          "实际完成性",
+          "时序新旧行为等价",
+          "输入及行动表一致",
+          "模型/提示/运行参数可比"
+        ],
+        "approved": false
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s9",
+      "algorithm": "interest",
+      "seed": 9,
+      "condition": "full",
+      "config": "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s9.json",
+      "source_config": "hypothesis_4/experiment_2/init/configs/timestamp_v1_interest_s9.json",
+      "steps": "hypothesis_4/experiment_2/init/steps_s9.yaml",
+      "run_dir": "hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_interest_s9",
+      "status": "planned_new",
+      "execution_authorized": false,
+      "expected_counts": {
+        "agents": 100,
+        "batches": 693,
+        "action_records": 1100,
+        "weeks": 11
+      }
+    }
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "generated_configs": 30,
+  "runtime_conditions": {
+    "execution_authorized": false,
+    "status": "preparation_only",
+    "new_runtime_budget_frozen": false,
+    "planned_new_runs": 20,
+    "planned_decision_opportunities": 22000,
+    "extra_requests_preparation_limit": 2200,
+    "body_outer_requests_preparation_limit": 24200,
+    "max_extra_per_opportunity": 1,
+    "retry_ratio": 0.1,
+    "ledger_path": "hypothesis_4/experiment_2/runs/hourly_return_v1/_extra_attempts.count",
+    "ledger_created": false,
+    "walltime_hours": null,
+    "cost_limit": null,
+    "model": null,
+    "max_concurrent_runs": null,
+    "started_at": null,
+    "deadline_at": null,
+    "note": "配置上界不构成运行授权；模型、费用、时限、顺序和停止规则须在未来执行前冻结。"
+  },
+  "output_sha256": {
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s0.json": "3a4d8598a75c8a87d12f1fc3a14ad483380edbf6b61a2a07b36c3d9d733d62c2",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s0.json": "ed58485a981f65154b148fb916855ec8f015ab7d110b96303afe638624f87546",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s0.json": "208e8dbe08926f90ae5acfb623ec31080759feddadd39d4f7c40de16186871bc",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s1.json": "0fb47adabb82cce4bf77f3fae1f67b21e4fdcbf461eeef3c1f4f522c6e08f712",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s1.json": "14a2ead7f106dcf848f6933775a4b278e2d82596fd1f862bbf48b860151296b1",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s1.json": "21824a0bf6b81e4853a5cbd93e0f64fe1e382da309e6e393f56b1c5b09d13648",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s2.json": "27ffac332ed97aa013cb180d8cf5238aa7442ba993cb8a3c5ce65a3a3417097c",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s2.json": "5fa9ba2242048af84c5ff891fc2d85fdc8fc115caf58324319691b6999270682",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s2.json": "92ae3bacadd5d593ba54b26a0d019cbd37ede9962280576c1ac9ec64d200e15c",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s3.json": "6b8f162894c133f4134e919f5e0ba24e15152c10548cf1e89a71e645e61f8b47",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s3.json": "5a936ba16be3cd1728aee7a72bdf473718cb4a91909f293307396f499b768511",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s3.json": "60c0a8559338b08f9ad36ea73fd4fe3cba412120eab4bbf4427f70fd839a1f6b",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s4.json": "9979e6ac3890a54b685d929e9d40f6ed567b48c5ce39cc6d0893713262055a34",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s4.json": "212a75c92f39d00c7c8df10eca1779f7578307ee826d567afaccf4791c0e1d82",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s4.json": "d1c23bd34d1b7f555d708a237cdcd87b1f297e8b9f021049d24544c84ca69701",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s5.json": "93abcbdbe9a8a5c6cdfa266ed995b5eb92eb290129342b6231ca416a829517bd",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s5.json": "1d82310f35c4de853f8cb141603ccd55f262ef39c23eba62ae9be3b709e92044",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s5.json": "4cf0a7a54dd6d7f5e12476dcfe8b4fb85d74dc054d424b5a80ac1fd25c05bbb3",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s6.json": "1ee76e1804d0a0fecba43bd9de8a55492642a65c4f3002a93df048a855eb04a9",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s6.json": "2e5f28702e7264a4d1b0755f5207d286dc8f79759aea769e53e4a14cf8e0b344",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s6.json": "e5ca10cb9338a35c6d4f752e7bd281ed1c90608afd57d22826375264869668bd",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s7.json": "5e7207dc26a99e9300b4d28e32af500d44a9c695400080a82d7dee60fb97604d",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s7.json": "059655c3048bdbc4d459e8ca9980e39a66d7f49d86c50899c624cf1b05876aa4",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s7.json": "f62938ce12964df448e9c7e8f086691a684a9c907442f8e156482bd330fcede9",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s8.json": "969b99f4d843942ebbde59995452f86e13d9c3123523991d7b44b44f198f378f",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s8.json": "6a3b4ce7b191ab3dff693aace0d753abc4ea6aff064afd8c2e1fc8c907e9ddfa",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s8.json": "45c1b022a92abc76bdf954024ce9c3672ecb0b8598533248d38e8bb9bbb245f9",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_random_s9.json": "bc279743368dcaa0c8f0dfe974615988266fee8e06e8645dbcdf2dbf67bbd205",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_chronological_s9.json": "b4566c9367687878ee3597656635b6740c56e439828dcbbbdde6595ede7fb5ed",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/hourly_return_v1_interest_s9.json": "af72de76864281a727650490f5ac5506bacaf258182370ddfb36452a8078a5bb",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/README.md": "d14f5db52a041379b602794616aee6a252fd210a769ccd38cbb1590d1387119c",
+    "hypothesis_4/experiment_2/init/hourly_return_v1/configs/README.md": "cbd3f689ca4eb1803fb50b15d0b6641b8c245ca0304f1f41a3e7bda89cd4f294"
+  },
+  "comparison_cells": 30,
+  "planned_new_runs": 20,
+  "planned_reuse_pending": 10
+}

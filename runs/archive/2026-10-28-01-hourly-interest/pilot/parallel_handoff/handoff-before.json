@@ -1,0 +1,38 @@
+{
+  "captured_at": "2026-10-28T14:20:45.163393+00:00",
+  "old_supervisor_pid": 70791,
+  "preserved_child_pid": 70792,
+  "run_id": "hourly_return_pilot_random_s0",
+  "progress": {
+    "pid.json": {
+      "pid": 70792,
+      "status": "running",
+      "start_time": "2026-10-28T13:42:21.722627+00:00",
+      "experiment_id": "4_2_hourly_return_pilot_s0",
+      "simulation_time": "2026-05-18T09:00:00",
+      "step_count": 569
+    },
+    "SOCIETY_STEP.json": {
+      "current_time": "2026-05-18T09:00:00",
+      "step_count": 569,
+      "completed_step_count": 569,
+      "terminated": false
+    }
+  },
+  "agent_summary": {
+    "agent_files": 100,
+    "decisions": 902,
+    "unique_decisions": 902,
+    "posted": 153,
+    "requests": 153,
+    "action_failures": 0,
+    "service_failures": 0,
+    "posted_model_failures": 0,
+    "response_models": {
+      "deepseek-v4-1-flash-261017": 153
+    },
+    "invalid_publications": 0
+  },
+  "extra_requests_used": 0,
+  "original_deadline_at": "2026-10-28T21:38:46.079787+00:00"
+}

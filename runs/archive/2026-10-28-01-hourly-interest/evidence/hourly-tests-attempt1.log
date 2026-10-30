@@ -1,0 +1,21 @@
+test_all_regimes_freeze_same_hour_and_pool_at_batch_end (test_hourly_return.HourlyReturnTests.test_all_regimes_freeze_same_hour_and_pool_at_batch_end)
+至少两位同行动者共享旧快照；新帖只需取得资格，不要求被抽中。 ... Executing <Task finished name='Task-2' coro=<HourlyReturnTests.test_all_regimes_freeze_same_hour_and_pool_at_batch_end() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_hourly_return.py:82> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 0.207 seconds
+ok
+test_chronological_new_policy_preserves_legacy_dynamics (test_hourly_return.HourlyReturnTests.test_chronological_new_policy_preserves_legacy_dynamics)
+同一固定供给逐批比较；策略声明不同不应改变已有时序动力学。 ... Executing <Task finished name='Task-7' coro=<HourlyReturnTests.test_chronological_new_policy_preserves_legacy_dynamics() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_hourly_return.py:219> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 1.569 seconds
+ok
+test_complete_windows_conserve_supply_and_unique_actions (test_hourly_return.HourlyReturnTests.test_complete_windows_conserve_supply_and_unique_actions)
+固定正文走环境入池，不运行Agent/LLM；包含周末和窗口末批。 ... Executing <Task finished name='Task-12' coro=<HourlyReturnTests.test_complete_windows_conserve_supply_and_unique_actions() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_hourly_return.py:181> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 2.255 seconds
+ok
+test_legacy_random_interest_still_wait_for_next_week (test_hourly_return.HourlyReturnTests.test_legacy_random_interest_still_wait_for_next_week) ... Executing <Task finished name='Task-17' coro=<HourlyReturnTests.test_legacy_random_interest_still_wait_for_next_week() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_hourly_return.py:121> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 0.157 seconds
+ok
+test_old_checkpoint_missing_policy_remains_legacy (test_hourly_return.HourlyReturnTests.test_old_checkpoint_missing_policy_remains_legacy) ... Executing <Task finished name='Task-22' coro=<HourlyReturnTests.test_old_checkpoint_missing_policy_remains_legacy() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_hourly_return.py:164> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 0.126 seconds
+ok
+test_policy_is_explicit_and_restricted_to_arrival (test_hourly_return.HourlyReturnTests.test_policy_is_explicit_and_restricted_to_arrival) ... ok
+test_restore_matches_continuous_execution (test_hourly_return.HourlyReturnTests.test_restore_matches_continuous_execution) ... Executing <Task finished name='Task-31' coro=<HourlyReturnTests.test_restore_matches_continuous_execution() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_hourly_return.py:140> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 0.120 seconds
+ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 4.510s
+
+OK

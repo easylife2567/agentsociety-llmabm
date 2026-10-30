@@ -1,0 +1,29 @@
+{
+  "hypothesis_id": "4_cuc",
+  "claims": [
+    {
+      "claim_id": "c1",
+      "statement": "同一冻结输入配对下，三制度后期玩梗参与、Agent供给与曝光主要排序保持时序>兴趣>随机。",
+      "mode": "confirmatory",
+      "evidence": "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/data/institution_contrasts.csv",
+      "needs_chart": true,
+      "approved": false
+    },
+    {
+      "claim_id": "c2",
+      "statement": "服务切换并非数值无影响：随机与时序轨迹完全相同，兴趣有73个发布切换，后期Agent玩梗供给份额62.96%升至68.63%。",
+      "mode": "confirmatory",
+      "evidence": "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/data/agent_decision_differences.json; /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/data/metrics_summary.json",
+      "needs_chart": true,
+      "approved": false
+    },
+    {
+      "claim_id": "c3",
+      "statement": "本轮新服务没有首次空输出、正文重写或兜底；但有3条原始年龄细节被本地修正，不能据自动接受或数值保持声称内容质量等价。",
+      "mode": "confirmatory",
+      "evidence": "/Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/data/quality_summary.json; /Users/easylife/Project/AgentSociety/runs/2026-10-16-01-population-scale/model-comparison-analysis/data/paired_text_samples.jsonl",
+      "needs_chart": false,
+      "approved": false
+    }
+  ]
+}

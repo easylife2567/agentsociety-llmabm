@@ -1,0 +1,36 @@
+{
+  "execution_authorized": true,
+  "authorization": "用户：时序臂好像不用跑，能否只跑随机臂、兴趣臂。范围缩小为当前随机及兴趣seed0；时序已撤回不重跑，保留部分现场但不计科学比较。",
+  "created_at": "2026-10-28T14:28:07.310487+00:00",
+  "selected_algorithms": [
+    "random",
+    "interest"
+  ],
+  "excluded_algorithms": [
+    "chronological"
+  ],
+  "max_parallel": 2,
+  "runtime_plan_sha256": "2efe9db8e9f797196e2fc0244eedd5b9e09cdb76593242f79a295f58fd08d1e6",
+  "parallel_revision_sha256": "533cabb96b63704f9d4ce72fdafff4284ee080bfd3a6ca2e3bec91b62059ff44",
+  "controller_sha256": "12151dd72cd588e71111a8f370f1a37d9a7cea22ed474f660a9208d2e641f6e0",
+  "deadline_at": "2026-10-28T21:38:46.079787+00:00",
+  "decision_opportunities": 3300,
+  "selected_decision_opportunities": 2200,
+  "extra_requests_limit": 330,
+  "body_outer_requests_limit": 3630,
+  "expected_returned_model": "deepseek-v4-1-flash-261017",
+  "withdrawal_record": "scope_handoff/withdrawn_chronological.json",
+  "withdrawal_sha256": "2c0df783725eadf266ef4461b9e5f6c5b43224f186687273ddc83fdbbac5026c",
+  "old_supervisor_pid": 85266,
+  "old_supervisor_script": "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/run_parallel.py",
+  "old_supervisor_paused": true,
+  "budget_policy": "原全批上界不扩大；total_body_requests必须包含时序撤回前已消耗30次。不清零ledger、不用撤回额度新增seed。",
+  "source_config_changes": false,
+  "preserve_original_started_at": true,
+  "reset_ledger": false,
+  "reuse_old_chronological_for_comparison": false,
+  "test_sha256": "a4203c8a8ac61afe7156fd06f0319efd1c39aee53660ed1dc2d8b83182859278",
+  "offline_checks": "selected_check_attempt1.log",
+  "review": "independent read-only review: no blocking issues",
+  "frozen_at": "2026-10-28T14:29:51.807129+00:00"
+}

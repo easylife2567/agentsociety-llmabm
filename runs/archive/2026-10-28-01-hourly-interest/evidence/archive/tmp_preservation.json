@@ -1,0 +1,94 @@
+{
+  "passed": true,
+  "failed_recovery_and_small_candidates_archive": "evidence/archive/historical_preparation_tmp.tar.gz",
+  "archive_sha256": "10584457ac22a92439ef35d4ea2cf5a4004fe93499b0ab5b8765dc88e78f70ee",
+  "tar_members": 166,
+  "successful_recovery_cache_classifications": {
+    "unchanged_git_baseline": 505,
+    "python_cache": 17,
+    "candidate_snapshot": 78,
+    "frozen_test_fixture": 1,
+    "frozen_validation_skill": 21,
+    "preserved_generated_validation": 5
+  },
+  "preserved_generated_files": [
+    {
+      "source": ".agentsociety/custom_env_skill/runs/hourly-return-offline/request.json",
+      "preserved": "evidence/archive/previous_recovery_validation/.agentsociety/custom_env_skill/runs/hourly-return-offline/request.json",
+      "sha256": "879403bbfb7c6a06c2537b30729fed6f59ca5eef778906729dcaba3a1e27d1f8",
+      "bytes": 128
+    },
+    {
+      "source": ".agentsociety/custom_env_skill/runs/hourly-return-offline/run_state.json",
+      "preserved": "evidence/archive/previous_recovery_validation/.agentsociety/custom_env_skill/runs/hourly-return-offline/run_state.json",
+      "sha256": "6ffd3e55557bfd09975488accb252d352fb7b1361dde7b80889c012c447fe1e4",
+      "bytes": 907
+    },
+    {
+      "source": ".agentsociety/custom_env_skill/runs/hourly-return-offline/run.log",
+      "preserved": "evidence/archive/previous_recovery_validation/.agentsociety/custom_env_skill/runs/hourly-return-offline/run.log",
+      "sha256": "d96d0a59dafd5f1b49878765ec9c8c70443cadfb00c0b0f9fffd1995704235c7",
+      "bytes": 127
+    },
+    {
+      "source": ".agentsociety/custom_env_skill/runs/hourly-return-offline/validation_report.json",
+      "preserved": "evidence/archive/previous_recovery_validation/.agentsociety/custom_env_skill/runs/hourly-return-offline/validation_report.json",
+      "sha256": "db5e00e9eb06d0fc5aa062d82446b69907367296647b28343adea4eebeb99838",
+      "bytes": 3395
+    },
+    {
+      "source": ".agentsociety/custom_env_skill/runs/hourly-return-offline/validation_summary.md",
+      "preserved": "evidence/archive/previous_recovery_validation/.agentsociety/custom_env_skill/runs/hourly-return-offline/validation_summary.md",
+      "sha256": "b900122508ee5841a1ca167fcc83e89b5d690538cf17ee35e6d951eabd3216b1",
+      "bytes": 369
+    }
+  ],
+  "new_recovery_check_passed": true,
+  "archive_check_clean_classifications": {
+    "unchanged_git_baseline": 505,
+    "candidate_snapshot": 78,
+    "frozen_test_fixture": 1,
+    "frozen_validation_skill": 21,
+    "preserved_generated_validation": 5
+  },
+  "new_recovery_generated_files": [
+    {
+      "source": ".agentsociety/custom_env_skill/runs/hourly-return-offline/request.json",
+      "preserved": "evidence/archive/current_recovery_validation/.agentsociety/custom_env_skill/runs/hourly-return-offline/request.json",
+      "sha256": "879403bbfb7c6a06c2537b30729fed6f59ca5eef778906729dcaba3a1e27d1f8",
+      "bytes": 128
+    },
+    {
+      "source": ".agentsociety/custom_env_skill/runs/hourly-return-offline/run_state.json",
+      "preserved": "evidence/archive/current_recovery_validation/.agentsociety/custom_env_skill/runs/hourly-return-offline/run_state.json",
+      "sha256": "834e54498b26a101fc630a09217fe37c31269c3f6c1f0546bf31033350b5da7b",
+      "bytes": 914
+    },
+    {
+      "source": ".agentsociety/custom_env_skill/runs/hourly-return-offline/run.log",
+      "preserved": "evidence/archive/current_recovery_validation/.agentsociety/custom_env_skill/runs/hourly-return-offline/run.log",
+      "sha256": "bb5977ccac19a2d970186c8867ac30787c02bfe4b19fd9454b56709a9fd67373",
+      "bytes": 127
+    },
+    {
+      "source": ".agentsociety/custom_env_skill/runs/hourly-return-offline/validation_report.json",
+      "preserved": "evidence/archive/current_recovery_validation/.agentsociety/custom_env_skill/runs/hourly-return-offline/validation_report.json",
+      "sha256": "1995adbd63d766c6547b16082b433fda411fc75df795a864d3bee471e8d8987e",
+      "bytes": 3409
+    },
+    {
+      "source": ".agentsociety/custom_env_skill/runs/hourly-return-offline/validation_summary.md",
+      "preserved": "evidence/archive/current_recovery_validation/.agentsociety/custom_env_skill/runs/hourly-return-offline/validation_summary.md",
+      "sha256": "b900122508ee5841a1ca167fcc83e89b5d690538cf17ee35e6d951eabd3216b1",
+      "bytes": 369
+    }
+  ],
+  "cleaned_tmp_directories": [
+    "analysis_patch_final",
+    "mechanism_candidates",
+    "recovered",
+    "recovered_v2",
+    "archive_check_clean"
+  ],
+  "cleanup_at_utc": "2026-10-30T08:56:58.884816+00:00"
+}

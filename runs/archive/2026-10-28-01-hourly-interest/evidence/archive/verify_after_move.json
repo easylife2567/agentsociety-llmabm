@@ -1,0 +1,183 @@
+{
+  "passed": true,
+  "simulation_calls": 0,
+  "network_calls": 0,
+  "raw_checked": true,
+  "recovery": {
+    "baseline_commit": "aad3267fc9929a08a453ba427bdf25919bbffc70",
+    "patch_matches": true,
+    "files_verified": 76,
+    "skills_verified": 21,
+    "candidate_files": 78
+  },
+  "raw": {
+    "runs": [
+      {
+        "batch": "pilot",
+        "run_id": "hourly_return_pilot_random_s0",
+        "status": "completed",
+        "files": 895,
+        "bytes": 31871502
+      },
+      {
+        "batch": "pilot",
+        "run_id": "hourly_return_pilot_chronological_s0",
+        "status": "withdrawn_by_user",
+        "files": 545,
+        "bytes": 3963493
+      },
+      {
+        "batch": "pilot",
+        "run_id": "hourly_return_pilot_interest_s0",
+        "status": "completed",
+        "files": 897,
+        "bytes": 31018823
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_random_s1",
+        "status": "completed",
+        "files": 895,
+        "bytes": 32546362
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_interest_s1",
+        "status": "completed",
+        "files": 895,
+        "bytes": 31243495
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_random_s2",
+        "status": "completed",
+        "files": 897,
+        "bytes": 31779201
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_interest_s2",
+        "status": "completed",
+        "files": 893,
+        "bytes": 31777553
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_random_s3",
+        "status": "completed",
+        "files": 899,
+        "bytes": 32231042
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_interest_s3",
+        "status": "completed",
+        "files": 901,
+        "bytes": 30571170
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_random_s4",
+        "status": "completed",
+        "files": 895,
+        "bytes": 32060212
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_interest_s4",
+        "status": "completed",
+        "files": 891,
+        "bytes": 31192511
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_random_s5",
+        "status": "completed",
+        "files": 899,
+        "bytes": 32079000
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_interest_s5",
+        "status": "completed",
+        "files": 897,
+        "bytes": 31374285
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_random_s6",
+        "status": "completed",
+        "files": 889,
+        "bytes": 31936086
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_interest_s6",
+        "status": "completed",
+        "files": 895,
+        "bytes": 31424837
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_random_s7",
+        "status": "completed",
+        "files": 903,
+        "bytes": 33676290
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_interest_s7",
+        "status": "completed",
+        "files": 895,
+        "bytes": 32536032
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_random_s8",
+        "status": "completed",
+        "files": 899,
+        "bytes": 32172061
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_interest_s8",
+        "status": "completed",
+        "files": 901,
+        "bytes": 31763213
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_random_s9",
+        "status": "completed",
+        "files": 897,
+        "bytes": 30634945
+      },
+      {
+        "batch": "seed_extension",
+        "run_id": "hourly_return_v1_interest_s9",
+        "status": "completed",
+        "files": 899,
+        "bytes": 30025109
+      }
+    ],
+    "run_count": 21,
+    "file_count": 18477,
+    "bytes": 637877222
+  },
+  "frozen_analysis_sources": {
+    "verified_files": 120,
+    "skipped_raw_files": 0,
+    "bytes": 30254572
+  },
+  "preserved_files": {
+    "verified_files": 18997,
+    "skipped_local_raw_files": 0,
+    "historical_paths_and_original_bytes_unchanged": true
+  },
+  "raw_ignored_by_git": {
+    "pilot/results": true,
+    "seed_extension/results": true,
+    "pilot/agent_supply/inputs/chronological_s0": true
+  },
+  "env_ignored_by_git": true
+}

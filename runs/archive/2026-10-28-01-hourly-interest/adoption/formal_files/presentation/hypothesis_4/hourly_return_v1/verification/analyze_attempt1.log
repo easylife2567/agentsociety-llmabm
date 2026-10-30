@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/hourly_return_v1/analyze_seed10.py", line 495, in <module>
+    main()
+    ~~~~^^
+  File "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/hourly_return_v1/analyze_seed10.py", line 476, in main
+    payloads=calculate(args)
+  File "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/hourly_return_v1/analyze_seed10.py", line 345, in calculate
+    extracted = list(pool.map(extract, descriptors))
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/hourly_return_v1/analyze_seed10.py", line 284, in extract
+    track(path)
+    ~~~~~^^^^^^
+  File "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/hourly_return_v1/analyze_seed10.py", line 189, in track
+    raise ValueError(f"来源未冻结或已改变：{path}")
+ValueError: 来源未冻结或已改变：/Users/easylife/Project/AgentSociety/hypothesis_4/experiment_2/runs/timestamp_v1/timestamp_v1_chronological_s0/replay/curation_dynamics_env_state.05.jsonl

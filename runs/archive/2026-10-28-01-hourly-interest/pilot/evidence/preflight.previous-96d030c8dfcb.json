@@ -1,0 +1,131 @@
+{
+  "status": "passed",
+  "preflight_only": true,
+  "engine_started": false,
+  "environment_steps": 0,
+  "agent_actions": 0,
+  "network_attempts": 0,
+  "llm_calls": 0,
+  "checks": [
+    {
+      "name": "运行授权仅覆盖三臂seed0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "预算为独立3300机会与330次共享额外请求",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "本批8小时绝对截止尚未到达",
+      "passed": true,
+      "details": {
+        "created_at": "2026-10-28T13:38:46.079787+00:00",
+        "deadline_at": "2026-10-28T21:38:46.079787+00:00"
+      }
+    },
+    {
+      "name": "共享账本为本pilot独立绝对路径且尚未创建",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "125项冻结来源保持",
+      "passed": true,
+      "details": 125
+    },
+    {
+      "name": "实际registry加载隔离workspace的custom",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "三臂官方schema/steps/环境构造及300份profile恢复通过",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "三配置仅调整候选的预算上限及独立绝对账本",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "预检未创建共享账本或三个引擎输出目录",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "未启动Ray",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "网络和模型调用尝试均为零",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "configs": [
+    {
+      "run_id": "hourly_return_pilot_random_s0",
+      "algorithm": "random",
+      "seed": 0,
+      "config_sha256": "ba5177ea2c106ecbf9509b6f8829e775e978a67c4a684855cd6477540c4d131c",
+      "source_sha256": "3a4d8598a75c8a87d12f1fc3a14ad483380edbf6b61a2a07b36c3d9d733d62c2",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_pilot_chronological_s0",
+      "algorithm": "chronological",
+      "seed": 0,
+      "config_sha256": "582177c38a6ef7d459eae49c798c43f02c2e327adccbc8d08c3a247c404a5a8c",
+      "source_sha256": "ed58485a981f65154b148fb916855ec8f015ab7d110b96303afe638624f87546",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_pilot_interest_s0",
+      "algorithm": "interest",
+      "seed": 0,
+      "config_sha256": "13283c524d1d57a5b8a9393c295b86d00f024af1a9c4f7c1df45bc596ce61747",
+      "source_sha256": "208e8dbe08926f90ae5acfb623ec31080759feddadd39d4f7c40de16186871bc",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    }
+  ],
+  "errors": [],
+  "runtime": {
+    "python": "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python",
+    "python_version": "3.13.9",
+    "sdk_version": "2.8.4",
+    "sdk_source": "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/__init__.py",
+    "loaded_modules": {
+      "env": "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/envs/curation_dynamics_space.py",
+      "agent": "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/agents/curation_discourse_agent.py"
+    }
+  },
+  "runtime_plan_sha256": "c0ecf24d04aa9175529cc7f1e2c607cf8dabbf28e35a50445fa3738e6ebecc6c",
+  "profiles_created_and_restored": 300,
+  "source_files_verified": 125,
+  "environment_instances": 3,
+  "scope": "仅三份运行配置的离线预检；未审查启动控制器、未试探接口、未运行引擎",
+  "checked_at": "2026-10-28T13:40:33.311518+00:00",
+  "verifier_sha256": "4b19fb9c5848888e51226bde09c8f7e68116e5abaf6ed97d0df60b63e63f61e7"
+}

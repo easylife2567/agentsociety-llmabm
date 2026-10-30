@@ -1,0 +1,19 @@
+--- a/custom/tests/README.md
++++ b/custom/tests/README.md
+@@ -12,4 +12,4 @@
+ 
+ `test_ordinary_official.py`核验官方普通评分/抽样、候选资格和20:00门控、不进入置顶/保底、可选中或漏读、历史agenda兼容、换策略恢复拒绝及真实registry源码位于custom。当前35项联合验收输出为实验目录2026-10-09-06-ordinary-official-verification.json。
+ 
+-`test_hourly_return.py`新增7项统一回流检查：三臂批末入池、同批隔离、跨周/末批供给守恒、legacy兼容、保存恢复拒绝换策略及新旧时序逐批等价。2026-10-29正式位置联合上述六个测试文件共42项通过，网络尝试0；记录见[落地验收](../../runs/2026-10-28-01-hourly-interest/adoption/README.md)。固定测试正文是功能验证，不是新LLM仿真。
++`test_hourly_return.py`新增7项统一回流检查：三臂批末入池、同批隔离、跨周/末批供给守恒、legacy兼容、保存恢复拒绝换策略及新旧时序逐批等价。2026-10-29正式位置联合上述六个测试文件共42项通过，网络尝试0；记录见[落地验收](../../runs/archive/2026-10-28-01-hourly-interest/adoption/README.md)。固定测试正文是功能验证，不是新LLM仿真。
+--- a/hypothesis_4/experiment_2/README.md
++++ b/hypothesis_4/experiment_2/README.md
+@@ -10,7 +10,7 @@
+ 
+ 解释边界：DTW衡量对现实五类周份额的描述拟合，兴趣平均较优不代表玩梗传播最大，晚期玩梗量仍时序更高。时序seed0–2返回旧别名，同版7seed另列。现实效标与输入同源，且与当前作者正文实证样本口径不同，加入正文前需交代来源。旧timestamp报告、旧统计检验和旧组件消融保留版本身份，不作为新版的既有显著性或配对消融证据；新版消融本轮未采用或补跑。
+ 
+-正式位置42项功能/回归、30配置及3000profile创建恢复验收均通过，网络尝试0。正式路径分析、绘图和7份数据--check通过，科学数值与探索结果一致。操作、首次失败及保护用户差异的记录见[落地验收](../../runs/2026-10-28-01-hourly-interest/adoption/README.md)。未改论文正文/DOCX、未commit/push或归档。全局机器analysis尚有旧E3待分析范围，本次不将其冒标完成。
++正式位置42项功能/回归、30配置及3000profile创建恢复验收均通过，网络尝试0。正式路径分析、绘图和7份数据--check通过，科学数值与探索结果一致。操作、首次失败及保护用户差异的记录见[落地验收](../../runs/archive/2026-10-28-01-hourly-interest/adoption/README.md)。未改论文正文/DOCX、未commit/push或归档。全局机器analysis尚有旧E3待分析范围，本次不将其冒标完成。
+ 
+ ## timestamp_v1旧回流制度的历史记录
+ 

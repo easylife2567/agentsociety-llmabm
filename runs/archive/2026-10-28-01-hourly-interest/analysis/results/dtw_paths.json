@@ -1,0 +1,4149 @@
+{
+  "mean_trajectory_paths": [
+    {
+      "algorithm": "random",
+      "dtw_x100": 26.23350861499069,
+      "measure": "DTW of equally weighted mean share trajectory; distinct from mean run DTW",
+      "path_length": 12,
+      "primary_path": [
+        {
+          "local_cost": 0.18272994091013897,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.5142058023613028,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.20807475868696856,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.14177974727516077,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.14388051487056544,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.140076695169978,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.24328491046762296,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.12005090463089349,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.09857065675356728,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.3166945146333446,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.5047609841225794,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W22"
+        },
+        {
+          "local_cost": 0.533911603916761,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.17749471409426654,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.5149470165496665,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.20835850167875117,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.14296021688660848,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.14553337691350415,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.14088560481098014,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.2410415753158481,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.12120066572364867,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.1010791162330402,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.32347297811191605,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.5077320856285722,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W22"
+        },
+        {
+          "local_cost": 0.5318357288759613,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 26.30451317352303
+    },
+    {
+      "algorithm": "chronological",
+      "dtw_x100": 22.865598134776786,
+      "measure": "DTW of equally weighted mean share trajectory; distinct from mean run DTW",
+      "path_length": 12,
+      "primary_path": [
+        {
+          "local_cost": 0.24167526440284057,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.11759788440622071,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.17580074791675657,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.16098709114231238,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.1310471294058344,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.23642787481173205,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.14183247428230075,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.33843332698460266,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.4961312353687936,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.21811314505720356,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.2618701613211897,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.22395544107342716,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.2363886209990411,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.11813390480217029,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.1746073106062093,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.1588843665360418,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.13105350531495777,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.23676277785203978,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.134528097620491,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.3439040449821494,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.5028433372279025,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.2170444033047653,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.2625837048091109,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.22435064495025878,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 22.842372658376146
+    },
+    {
+      "algorithm": "interest",
+      "dtw_x100": 20.284225221609674,
+      "measure": "DTW of equally weighted mean share trajectory; distinct from mean run DTW",
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.18116886688651798,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.2792866130236984,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.25071190195228366,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.14825255823835465,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.2013189370554963,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.24836354776412392,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.115456442974127,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.1229542938411837,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.14414335484378651,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.2865412321948843,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.2530670256026078,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.1759355764226129,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.279523494566078,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.25103708175033007,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.15036755727293385,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.20024917928482375,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.25028052826566766,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.11669882853153556,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.12834842917307643,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.14022841594524377,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.2846388579041569,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.25370185360461717,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 20.281907297464326
+    }
+  ],
+  "run_paths": [
+    {
+      "algorithm": "random",
+      "dtw_x100": 33.279642322946216,
+      "path_length": 12,
+      "primary_path": [
+        {
+          "local_cost": 0.23654725977846863,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.5020233214095647,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.1668214756444806,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.02931498766306774,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.09373972040114209,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.15484576879773337,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.20740546315921551,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.39863004681491726,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.3531424804633805,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.5534493276075373,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.6726039641457119,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.6250332628683263,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 0,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.23126386819085532,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.496873535982693,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.16751978160528067,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.028776738087696464,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.09446228249468291,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.15457559483211541,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.20548296865095725,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.4050316684146576,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.3510671326029824,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.5600598245006012,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.6751780430109867,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.6231408968106771,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 33.27860279320155
+    },
+    {
+      "algorithm": "random",
+      "dtw_x100": 23.31498446868248,
+      "path_length": 12,
+      "primary_path": [
+        {
+          "local_cost": 0.19850578267132632,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.42777316572026874,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.27842068402058384,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.13923798335668158,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.17924754310034613,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.18290834712535745,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.28750781838992856,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.23868625060583,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.15581541348735137,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.19475648860350397,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.25495046157387,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W22"
+        },
+        {
+          "local_cost": 0.25998819758684955,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 1,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.1932530848813417,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.4284671973813449,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.2787924481837057,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.1387021511317245,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.1805888182921054,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.1835920337640968,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.2860071551429923,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.24357769516019123,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.1537450867674235,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.19785630330877316,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.2573543720544233,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W22"
+        },
+        {
+          "local_cost": 0.25762254868557033,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 23.32965745628077
+    },
+    {
+      "algorithm": "random",
+      "dtw_x100": 26.726132318134315,
+      "path_length": 12,
+      "primary_path": [
+        {
+          "local_cost": 0.11349161974589721,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.40880332170262396,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.18086716280460854,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.05046665387978858,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.29228837293135346,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.19417268475746502,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.24781333293188848,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.18062515665300724,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.2823682417258943,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.1530281614534984,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.4033764377904781,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.6998347317996149,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 2,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.10841445155250808,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.4095027556179696,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.1811928040055207,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.05081465625238859,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.29298261416801413,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.19426516269478164,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.24604848456279044,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.18696902232765505,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.2811503621241253,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.1559349164528471,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.40624669586449896,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.6974390704542615,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 26.758008300644676
+    },
+    {
+      "algorithm": "random",
+      "dtw_x100": 29.691681679623915,
+      "path_length": 12,
+      "primary_path": [
+        {
+          "local_cost": 0.2719305395639172,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.40374967456314154,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.43359023393918883,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.192856649996183,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.22118423583830002,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.25565336349485335,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.3774476332815119,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.11065484551058315,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.25900682195614866,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.43596656063271516,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.2860485036576082,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W22"
+        },
+        {
+          "local_cost": 0.31491273912071893,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 3,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.2666276625140517,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.3986594200561648,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.43431605488183456,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.19356399881705688,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.22295604246400674,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.256305072081795,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.37438799328363737,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.11327813185478477,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.25953913422155833,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.44333136456084626,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.28838560194858903,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W22"
+        },
+        {
+          "local_cost": 0.31347316154688537,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 29.706863651926756
+    },
+    {
+      "algorithm": "random",
+      "dtw_x100": 35.861805315282474,
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.15754887705724116,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.5346723132625553,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.1878275876346784,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.3621357540819341,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.22617997567132217,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.273928475800056,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.3033374599420434,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.2832652011312458,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.26971478922426056,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.8484738408426564,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.49771431003307864,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 4,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.15235092136159042,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.5354162483385341,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.18852178021262342,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.3635524294460403,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.226278462096922,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.271037686414345,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.3092037067153107,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.28226763740970995,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.27767628413976764,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.8513225267610813,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.4952593944618134,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 35.935337066888536
+    },
+    {
+      "algorithm": "random",
+      "dtw_x100": 33.43827968804392,
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.15754887705724116,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.45384714599454745,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.22593930750629354,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.09755960344987892,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.31850861120438007,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.2192283926342485,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.26341479073474244,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.24452598970023126,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.5534493276075373,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.6848070163945135,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.45938170340121787,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 5,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.15235092136159042,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.454562810960562,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.22550513031192837,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.09847057096166546,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.2882992840539319,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.1835920337640968,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.2488595166931277,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.3007800934640213,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.3782663392231302,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.4635747781328044,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.4316749083681213,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W22"
+        },
+        {
+          "local_cost": 0.4574531908207297,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 30.694913150964243
+    },
+    {
+      "algorithm": "random",
+      "dtw_x100": 37.47063932126407,
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.19850578267132632,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.4806273653022113,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.18648972586355053,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.19597135831774098,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.14462111356317942,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.2779758523904638,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.339210949740387,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.20379252985431826,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.4173744809814494,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.800751133256877,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.8764500333975437,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 6,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.1932530848813417,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.481353740177057,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.1867058769567396,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.19826014318991933,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.14451799907615606,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.2764792825590151,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.34619657078302724,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.20951527635599537,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.42314129124689087,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.803327038630928,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.8743651663655777,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 37.610140638387705
+    },
+    {
+      "algorithm": "random",
+      "dtw_x100": 37.31338868284648,
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.06670934903899517,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.5728448629667897,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.18168563534017382,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.24980678027015962,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.25725061620133666,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.14107973432883086,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.339210949740387,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.3915339031776648,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.4259399801395461,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.8484738408426564,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.6299371030665735,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 7,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.06204657396104395,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.573593391948246,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.1815053510208465,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.2506535393567816,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.2571913073189958,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.13850582423142527,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.34619657078302724,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.3905778168801541,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.4325575789401257,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.8513225267610813,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.6285822775804116,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 37.38847962529217
+    },
+    {
+      "algorithm": "random",
+      "dtw_x100": 27.335129439938648,
+      "path_length": 12,
+      "primary_path": [
+        {
+          "local_cost": 0.15754887705724116,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.3955721544513349,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.2753141486017156,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.06487102597238907,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.1309067015276632,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.09426254538229159,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.210063663396521,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.2787684827397276,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.23564473913124878,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.268548178249641,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.5436817534145375,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.6250332628683263,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 8,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.15235092136159042,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.3902320375749017,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.27581488568599916,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.06443190285011693,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.13120419981118575,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.09350962443701022,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.21029997414549897,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.28209845154520985,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.23428092475727208,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.2741231873604447,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.5465322499463374,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.6231408968106771,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 27.316827135718704
+    },
+    {
+      "algorithm": "random",
+      "dtw_x100": 31.857878758819847,
+      "path_length": 12,
+      "primary_path": [
+        {
+          "local_cost": 0.2719305395639172,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.5031634492253356,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.24281294437388343,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.309620816729468,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.19983442741193186,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.20235285021374966,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.24398019187934872,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.15550242046823246,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.14478865586811085,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.356940591106787,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.5669853013492907,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.6250332628683263,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 9,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.2666276625140517,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.49030940603046225,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.23848756844285043,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.3245379938868453,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.20083103973935001,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.20305435888647533,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.2414016402573483,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.16328000567289533,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.1476036661689148,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.36009142770788566,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.569429250760874,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.6231408968106771,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 31.906624307321913
+    },
+    {
+      "algorithm": "chronological",
+      "dtw_x100": 27.916822198090834,
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.19850578267132632,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.06012387618997094,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.1858275850570257,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.41256612471415643,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.3020939234005508,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.2600889083466511,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.6804690629474802,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.12189656466601247,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.2924669681519682,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.3162761685284992,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.24053547711635057,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 0,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.1932530848813417,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.060805785538450216,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.18441177717505852,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.41002658709091855,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.30236442715802025,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.26236348018720573,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.671289528012313,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.1248940854529351,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.2852398477577961,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.31432091590909783,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.24104139352663223,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 27.72737193354336
+    },
+    {
+      "algorithm": "chronological",
+      "dtw_x100": 28.6379869505116,
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.2719305395639172,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.19033940543045635,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.24577729461531106,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.12634520028411284,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.2856035444118011,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.1983697344400212,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.4730751001590832,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.41580342599783043,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.3942316378282419,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.3162761685284992,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.2324265132970018,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 1,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.2666276625140517,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.1906746325271119,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.24438855740460247,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.12869284595565697,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.2866988136211345,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.19805326823769637,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.4635521445601265,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.4210650630984771,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.3866117658277708,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.31432091590909783,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.23283582465743374,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 28.48655903921054
+    },
+    {
+      "algorithm": "chronological",
+      "dtw_x100": 26.929551715158855,
+      "path_length": 12,
+      "primary_path": [
+        {
+          "local_cost": 0.11349161974589721,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.09168053706581213,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.2277493535589249,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.21443398400958083,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.17194772483492818,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.35732345102502605,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.15115445556828824,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.6380634228526264,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.5815013027215348,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.18179471599890362,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.26187016132118973,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.24053547711635057,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 2,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.10841445155250808,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.09230388750700619,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.22633724056559457,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.211925154399609,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.17280698679219147,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.3580506576642317,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.15173660275680714,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.643534958843379,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.5867864586166017,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.18092382888705938,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.262583704809111,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.24104139352663223,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 26.970377716006094
+    },
+    {
+      "algorithm": "chronological",
+      "dtw_x100": 23.661866961037557,
+      "path_length": 12,
+      "primary_path": [
+        {
+          "local_cost": 0.23654725977846863,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.1183084548192585,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.11522590004129601,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.1968742109941394,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.18458906595609317,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.16286920269156738,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.3824963421407723,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.18791836186291458,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.4526188800049413,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.3162761685284992,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.26187016132118973,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.22383002718536577,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 3,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.23126386819085532,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.11904285267716555,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.11574087081322078,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.19712533399807214,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.1844757933382841,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.355334139235657,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.19989449035008883,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.2967905865426588,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.5859970972661711,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.31432091590909783,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.22412241938058297,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 25.673712433653222
+    },
+    {
+      "algorithm": "chronological",
+      "dtw_x100": 26.44547201029302,
+      "path_length": 12,
+      "primary_path": [
+        {
+          "local_cost": 0.23654725977846863,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.06749427437239791,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.21154425889439007,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.15903518136178676,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.1251939052667987,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.35375525498366545,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.24052824156378336,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.44685645827936554,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.5586722075298571,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.27953292458645734,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.26187016132118973,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.2324265132970018,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 4,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.23126386819085532,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.06822340432924709,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.2115778234273344,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.15736975353661795,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.12420296970413783,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.35458407428161715,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.24444929898712556,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.4495104565488055,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.5657809551404525,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.2779258519232605,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.262583704809111,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.23283582465743374,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 26.502566546133323
+    },
+    {
+      "algorithm": "chronological",
+      "dtw_x100": 32.32847190303756,
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.30490686853848664,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.22728545345680337,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.24464470148349912,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.21490747079729358,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.3434170788492909,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.4367064176331908,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.3580828546772478,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.41580342599783043,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.4616749560749879,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.3162761685284992,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.2324265132970018,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 5,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.2995905772375065,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.2275400831633498,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.24442976502885352,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.21388831281684623,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.34414276072084077,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.4367860239047286,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.3521120293841628,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.4210650630984771,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.4538299246013455,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.31432091590909783,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.23283582465743374,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 32.1867389138422
+    },
+    {
+      "algorithm": "chronological",
+      "dtw_x100": 35.495188267586094,
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.36452979081444625,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.1919972146555809,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.3981964033755841,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.38518127605935615,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.4309671666861835,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.23434269378591646,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.4730751001590832,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.41580342599783043,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.4616749560749879,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.3162761685284992,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.2324265132970018,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 6,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.35919629423761285,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.19245028019439572,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.39710697172317144,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.382564658805568,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.4323348741237595,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.2360490551393993,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.4635521445601265,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.4210650630984771,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.4538299246013455,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.31432091590909783,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.23283582465743374,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 35.320963700458066
+    },
+    {
+      "algorithm": "chronological",
+      "dtw_x100": 28.388939189805427,
+      "path_length": 12,
+      "primary_path": [
+        {
+          "local_cost": 0.19850578267132632,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.12414593467843171,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.2633700502283129,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.1798107145307424,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.13630911388226394,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.31523936833309235,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.3682358883082224,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.3485494920432486,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.7664872728400755,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.26132360361864043,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.26187016132118973,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.18282532032110513,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 7,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.1932530848813417,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.12481481481481481,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.26228815403158,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.1774732027137416,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.13618570935640886,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.3158331488210791,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.3621151608286576,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.3532306584974387,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.7709549676534205,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.2599844500877525,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.262583704809111,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.18354467309759637,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 28.35218107994119
+    },
+    {
+      "algorithm": "chronological",
+      "dtw_x100": 26.862695460914832,
+      "path_length": 12,
+      "primary_path": [
+        {
+          "local_cost": 0.15754887705724116,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.12599101710910351,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.14767880113208523,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.1617342838553774,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.3174510574909622,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.34718743816570463,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.242454485160934,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.20515462027473982,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.7664872728400755,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.27514700244088025,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.26187016132118973,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.21481843846148604,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 8,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.15235092136159042,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.12645768714962258,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.1462337708185245,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.16406436330426302,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.3174320028140026,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.3478723568818304,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.2410543989407775,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.20720775383025716,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.7709549676534205,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.2735963136393104,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.262583704809111,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.21496754992503264,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 26.87313159273119
+    },
+    {
+      "algorithm": "chronological",
+      "dtw_x100": 27.00866061812585,
+      "path_length": 12,
+      "primary_path": [
+        {
+          "local_cost": 0.33570517334546734,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.11113577549420672,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.27638847098264985,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.2930537151811782,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.2090710695207608,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.17389002000869172,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.38172859083017774,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.3250021788950107,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.46490345025423824,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.19347222988004484,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.26187016132118973,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.21481843846148604,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 9,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.3303791066154369,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.11154488660328361,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.2754752857993116,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.29274183177076346,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.21022169138293115,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.17220989866810113,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.37396548102088034,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.3290750253717176,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.47035524534980294,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.19229682321501693,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.262583704809111,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.21496754992503264,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 26.96513775442824
+    },
+    {
+      "algorithm": "interest",
+      "dtw_x100": 20.518046422992906,
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.2719305395639172,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.28683900604983875,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.33782338978225807,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.05575054112029126,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.21331776463962404,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.08522519278592988,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.15115445556828824,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.16160839462864648,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.22294835342677882,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.2085173076424571,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.26187016132118973,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 0,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.2666276625140517,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.2870208762673614,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.3380277455298,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.05406120650454723,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.21287001334287123,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.08715807200803377,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.15173660275680714,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.15977812155803384,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.22806383261065158,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.20727967355515522,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.262583704809111,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 20.501886467785678
+    },
+    {
+      "algorithm": "interest",
+      "dtw_x100": 25.22385979790714,
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.2719305395639172,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.28164649997205354,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.2527762903375379,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.22782269133521868,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.23206960498851706,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.290030785104853,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.232309816503826,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.2565203339655271,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.20729887818293136,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.266977929317659,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.2552412084977442,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 1,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.2666276625140517,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.28196960868531473,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.25309414014951653,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.22929221787307721,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.2316094724364763,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.29110555896370544,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.22370583420241646,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.2561747881696627,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.2021582142491294,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.2649737018842134,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.25589629341182873,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 25.060068113994475
+    },
+    {
+      "algorithm": "interest",
+      "dtw_x100": 28.253020937090362,
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.2719305395639172,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.2942245603323267,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.24599304743784894,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.1419265462502101,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.3616802281520943,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.37764001129450936,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.14292626193854605,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.3800036103620458,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.31336116789875207,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.3162761685284992,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.26187016132118973,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 2,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.2666276625140517,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.29436451439121963,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.2466066978253276,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.14426284756540347,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.3607325668187843,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.3792031801670949,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.1416481385642715,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.3838475876990226,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.3071783360146842,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.31432091590909783,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.262583704809111,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 28.19432865707335
+    },
+    {
+      "algorithm": "interest",
+      "dtw_x100": 27.32436501916324,
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.11349161974589721,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.3045352681284192,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.22345825948222872,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.22605551263921997,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.32297438293403047,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.325784123452569,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.23571209447968725,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.22034434105217712,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.4618071731674835,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.3162761685284992,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.2552412084977442,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 3,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.10841445155250808,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.30463244013687035,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.22381131793327202,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.22803897151395536,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.3217398207592437,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.32676706826407403,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.2419498237286405,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.22359120064735397,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.46863891086812637,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.31432091590909783,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.25589629341182873,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 27.434556497499734
+    },
+    {
+      "algorithm": "interest",
+      "dtw_x100": 25.73994768876482,
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.15754887705724116,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.2849297310862801,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.25837051666751293,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.24980678027015962,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.1385940555915808,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.2807304763181247,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.20759978188366585,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.3791376144965243,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.2965300825433514,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.3162761685284992,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.26187016132118973,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 4,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.15235092136159042,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.2851935615632229,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.25828936556570864,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.2506535393567816,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.13703555335346307,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.2829783110402713,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.2050826364696679,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.38387615830687655,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.29228682435626635,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.31432091590909783,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.262583704809111,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 25.67864992810961
+    },
+    {
+      "algorithm": "interest",
+      "dtw_x100": 21.288225850887954,
+      "path_length": 12,
+      "primary_path": [
+        {
+          "local_cost": 0.23654725977846863,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.2849297310862801,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.11010264226509173,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.15040170668007816,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.35542934753151817,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.20155718701437594,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.15327914024736383,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.14233091309666923,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.2117099796754806,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.23391158154417663,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.26187016132118973,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.21251745186586182,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 5,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.23126386819085532,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.2851935615632229,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.11139407441713788,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.15274665356370967,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.35450246750436654,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.20253473372343042,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.15275108989401134,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.14044241656770926,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.2155586655867837,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.2333168823601147,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.262583704809111,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.21262573504175541,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 21.290948776851735
+    },
+    {
+      "algorithm": "interest",
+      "dtw_x100": 22.651260151497798,
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.19850578267132632,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.2673262720087489,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.2873621031126278,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.17119917471359733,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.2038413816943971,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.3825164896186169,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.13790207252778253,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.12224237697164023,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.17095641384542035,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.2879163881794111,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.26187016132118973,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 6,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.1932530848813417,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.2678088889823018,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.28741503080711805,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.17366731420933948,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.20351980198640576,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.38448290042714967,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.13883017964942715,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.1216013159307284,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.16836549615534835,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.28621245192766326,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.262583704809111,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 22.615819725144856
+    },
+    {
+      "algorithm": "interest",
+      "dtw_x100": 25.875976375047056,
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.11349161974589721,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.24398350597480029,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.31598073804588384,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.29675092327962643,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.17404310571936624,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.23235438320121,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.22436517762391098,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.41580342599783043,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.2644245106706236,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.3099188024982824,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.2552412084977442,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 7,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.10841445155250808,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.2443255898463347,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.3163233535763654,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.29824451274776864,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.17279596737319222,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.2343443383201534,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.2231819172582785,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.4210650630984771,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.26780131673051244,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.3080117945960147,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.25589629341182873,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 25.91276907737667
+    },
+    {
+      "algorithm": "interest",
+      "dtw_x100": 23.681831624119738,
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.11349161974589721,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.3073054776303073,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.2713089229026584,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.23478917324005433,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.13951581572316274,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.2069663459278172,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.15115445556828824,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.18926346969712182,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.41968882119162065,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.3162761685284992,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.2552412084977442,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 8,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.10841445155250808,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.30748494919013997,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.27144307684450064,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.23688062509895996,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.13794115351927416,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.2098324711112997,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.15173660275680714,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.19403624925793755,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.4120269597257636,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.31432091590909783,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.25589629341182873,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 23.636488621619247
+    },
+    {
+      "algorithm": "interest",
+      "dtw_x100": 25.03709957133864,
+      "path_length": 11,
+      "primary_path": [
+        {
+          "local_cost": 0.06670934903899517,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.3045352681284192,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.3523304335232806,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.19983442741193186,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.11650448721848788,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.37719347333129605,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.3764088844250683,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.2558942341096927,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.21492370300940525,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.2345054841529289,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.2552412084977442,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "seed": 9,
+      "utc_secondary_path": [
+        {
+          "local_cost": 0.06204657396104395,
+          "observed_week": "2026-W12",
+          "simulated_week": "2026-W12"
+        },
+        {
+          "local_cost": 0.30463244013687035,
+          "observed_week": "2026-W13",
+          "simulated_week": "2026-W13"
+        },
+        {
+          "local_cost": 0.35276795190511406,
+          "observed_week": "2026-W14",
+          "simulated_week": "2026-W14"
+        },
+        {
+          "local_cost": 0.20083103973935001,
+          "observed_week": "2026-W15",
+          "simulated_week": "2026-W15"
+        },
+        {
+          "local_cost": 0.11510977024533744,
+          "observed_week": "2026-W16",
+          "simulated_week": "2026-W16"
+        },
+        {
+          "local_cost": 0.3791541354460092,
+          "observed_week": "2026-W17",
+          "simulated_week": "2026-W17"
+        },
+        {
+          "local_cost": 0.38340072005356013,
+          "observed_week": "2026-W18",
+          "simulated_week": "2026-W18"
+        },
+        {
+          "local_cost": 0.2560549108735456,
+          "observed_week": "2026-W19",
+          "simulated_week": "2026-W19"
+        },
+        {
+          "local_cost": 0.2178810967895552,
+          "observed_week": "2026-W20",
+          "simulated_week": "2026-W20"
+        },
+        {
+          "local_cost": 0.23244172594665885,
+          "observed_week": "2026-W21",
+          "simulated_week": "2026-W21"
+        },
+        {
+          "local_cost": 0.25589629341182873,
+          "observed_week": "2026-W22",
+          "simulated_week": "2026-W22"
+        }
+      ],
+      "utc_sensitivity_dtw_x100": 25.092878713717038
+    }
+  ]
+}

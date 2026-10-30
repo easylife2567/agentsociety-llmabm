@@ -1,0 +1,389 @@
+{
+  "status": "passed",
+  "preflight_only": true,
+  "engine_started": false,
+  "environment_steps": 0,
+  "agent_actions": 0,
+  "network_attempts": 0,
+  "llm_calls": 0,
+  "ray_start_attempts": 0,
+  "checks": [
+    {
+      "name": "计划属于当前run的seed_extension",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "使用计划指定项目解释器与现有环境文件",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "新授权严格为随机/兴趣seed1–9共18次",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "独立预算19800机会/1980额外/21780正文，两路上限",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "本批48小时固定绝对截止尚未到达",
+      "passed": true,
+      "details": {
+        "created_at": "2026-10-28T16:10:02.379083+00:00",
+        "deadline_at": "2026-10-30T16:10:02.379083+00:00"
+      }
+    },
+    {
+      "name": "请求别名与实际返回版本延续已完成pilot",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "独立账本为seed_extension内绝对路径且未创建",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "全部冻结来源字节保持",
+      "passed": true,
+      "details": 103
+    },
+    {
+      "name": "仅复用本run随机/兴趣两份完整seed0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "registry实际加载本run隔离custom",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "18份官方schema/steps/环境实例与1800份profile创建恢复通过",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "18配置仅改变候选预算；九组两臂科学参数配对相同",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "预检未创建账本或任何新引擎目录",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "预检后冻结来源与两份seed0保持",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "未启动Ray",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "网络、模型及Ray启动尝试均为零",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "configs": [
+    {
+      "run_id": "hourly_return_v1_random_s1",
+      "algorithm": "random",
+      "seed": 1,
+      "config_sha256": "50ef7f2eb1893194030c6d606303784fb3ec0be372c3b01497cfd38f744b315a",
+      "source_sha256": "0fb47adabb82cce4bf77f3fae1f67b21e4fdcbf461eeef3c1f4f522c6e08f712",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s1",
+      "algorithm": "interest",
+      "seed": 1,
+      "config_sha256": "80d013be0cf3b85e990112094307a593b3ae5eda291e9614280fb57085d08f1b",
+      "source_sha256": "21824a0bf6b81e4853a5cbd93e0f64fe1e382da309e6e393f56b1c5b09d13648",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_v1_random_s2",
+      "algorithm": "random",
+      "seed": 2,
+      "config_sha256": "d21ace8bd95a6a9ebb9e0a63f41d07959a976677f49af38392d3bccf0ebbdd4f",
+      "source_sha256": "27ffac332ed97aa013cb180d8cf5238aa7442ba993cb8a3c5ce65a3a3417097c",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s2",
+      "algorithm": "interest",
+      "seed": 2,
+      "config_sha256": "b7fa2b7bd8935310fdd920c72053c8266e5dcfc43dbbc8ef63933884b4b6b289",
+      "source_sha256": "92ae3bacadd5d593ba54b26a0d019cbd37ede9962280576c1ac9ec64d200e15c",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_v1_random_s3",
+      "algorithm": "random",
+      "seed": 3,
+      "config_sha256": "28ce2ee95a9eccdc9fd12ae7f77e45be4bca39d2e73b7e970e86f9b281752b93",
+      "source_sha256": "6b8f162894c133f4134e919f5e0ba24e15152c10548cf1e89a71e645e61f8b47",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s3",
+      "algorithm": "interest",
+      "seed": 3,
+      "config_sha256": "cdea01ac96c45b70bc42e3789bd97c2750a55269d2848f805afe6ad728f33d13",
+      "source_sha256": "60c0a8559338b08f9ad36ea73fd4fe3cba412120eab4bbf4427f70fd839a1f6b",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_v1_random_s4",
+      "algorithm": "random",
+      "seed": 4,
+      "config_sha256": "de59b612ac30703d5a4ff6acf973ea592dee377151efec7a774b77f1c31ebc14",
+      "source_sha256": "9979e6ac3890a54b685d929e9d40f6ed567b48c5ce39cc6d0893713262055a34",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s4",
+      "algorithm": "interest",
+      "seed": 4,
+      "config_sha256": "ccca9a7f62e578f9d015c935dc7467160b034eae870622747a3d1c2b9099a87f",
+      "source_sha256": "d1c23bd34d1b7f555d708a237cdcd87b1f297e8b9f021049d24544c84ca69701",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_v1_random_s5",
+      "algorithm": "random",
+      "seed": 5,
+      "config_sha256": "bd3a52d1ab34a93ca7878be679d2989c17fd0d699b0ceca859dffd6144e0bb0c",
+      "source_sha256": "93abcbdbe9a8a5c6cdfa266ed995b5eb92eb290129342b6231ca416a829517bd",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s5",
+      "algorithm": "interest",
+      "seed": 5,
+      "config_sha256": "09607aa34e84bd16a9ef12fac9097ea2d81b675242c41e0a0aa911e885c58483",
+      "source_sha256": "4cf0a7a54dd6d7f5e12476dcfe8b4fb85d74dc054d424b5a80ac1fd25c05bbb3",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_v1_random_s6",
+      "algorithm": "random",
+      "seed": 6,
+      "config_sha256": "8b991225e250e2dc27fd87cb9c5acb376c3b8a3d0419ebfb41d45fcf45353662",
+      "source_sha256": "1ee76e1804d0a0fecba43bd9de8a55492642a65c4f3002a93df048a855eb04a9",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s6",
+      "algorithm": "interest",
+      "seed": 6,
+      "config_sha256": "b403736bc3de2254d6614c9f1e32531be0129e595e65d486af4b928416d80bf7",
+      "source_sha256": "e5ca10cb9338a35c6d4f752e7bd281ed1c90608afd57d22826375264869668bd",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_v1_random_s7",
+      "algorithm": "random",
+      "seed": 7,
+      "config_sha256": "464821ad21206a5ef6f0f7cef0c4ca5375cea117093d9b0c7135c5ee6fe1764c",
+      "source_sha256": "5e7207dc26a99e9300b4d28e32af500d44a9c695400080a82d7dee60fb97604d",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s7",
+      "algorithm": "interest",
+      "seed": 7,
+      "config_sha256": "73887b5225ba44d0688970a57e5b77a43295a6e04731281194cc0d388b813eb4",
+      "source_sha256": "f62938ce12964df448e9c7e8f086691a684a9c907442f8e156482bd330fcede9",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_v1_random_s8",
+      "algorithm": "random",
+      "seed": 8,
+      "config_sha256": "ce87f7513b571aa92f4d1ab3119634cf8717ca1ae6f85ad53c2ebf6d9a164a60",
+      "source_sha256": "969b99f4d843942ebbde59995452f86e13d9c3123523991d7b44b44f198f378f",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s8",
+      "algorithm": "interest",
+      "seed": 8,
+      "config_sha256": "f9d22cdfeaf1ef05b9b49d6ea7f65e963f0c3fa80d0655b20a37c0d5712ab3d7",
+      "source_sha256": "45c1b022a92abc76bdf954024ce9c3672ecb0b8598533248d38e8bb9bbb245f9",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_v1_random_s9",
+      "algorithm": "random",
+      "seed": 9,
+      "config_sha256": "63e401d05140f32808927fba2fd421f61e0f74078203c5438db722e25cdefda8",
+      "source_sha256": "bc279743368dcaa0c8f0dfe974615988266fee8e06e8645dbcdf2dbf67bbd205",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s9",
+      "algorithm": "interest",
+      "seed": 9,
+      "config_sha256": "918ad2f07c04871e55c2407ac15d232a8a01df08218f7152ee2d7019d12e4792",
+      "source_sha256": "af72de76864281a727650490f5ac5506bacaf258182370ddfb36452a8078a5bb",
+      "steps_sha256": "cab7aeefa25292f208ecd6c03969e3b61d72802cac858121394d6e7479273ee8",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "profiles_created_restored": 100,
+      "expected_batches": 693,
+      "expected_actions": 1100,
+      "expected_weeks": 11
+    }
+  ],
+  "reused": [
+    {
+      "run_id": "hourly_return_pilot_random_s0",
+      "algorithm": "random",
+      "seed": 0,
+      "raw_files_verified": 105,
+      "posts": 165,
+      "completed_steps": 693,
+      "actions": 1100,
+      "newly_started": false
+    },
+    {
+      "run_id": "hourly_return_pilot_interest_s0",
+      "algorithm": "interest",
+      "seed": 0,
+      "raw_files_verified": 105,
+      "posts": 215,
+      "completed_steps": 693,
+      "actions": 1100,
+      "newly_started": false
+    }
+  ],
+  "errors": [],
+  "runtime": {
+    "python": "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python",
+    "python_version": "3.13.9",
+    "sdk_version": "2.8.4",
+    "sdk_source": "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/__init__.py",
+    "loaded_modules": {
+      "env": "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/envs/curation_dynamics_space.py",
+      "agent": "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/agents/curation_discourse_agent.py"
+    }
+  },
+  "runtime_plan_sha256": "0a6e08819156ccaa94bcce7258c9f86dd27a3d6a963da7f6d879c5201b03d7de",
+  "profiles_created_and_restored": 1800,
+  "source_files_verified": 103,
+  "environment_instances": 18,
+  "scope": "随机/兴趣seed1–9配置离线预检；复用seed0只读核对；不运行仿真或检查接口",
+  "checked_at": "2026-10-28T16:10:23.037640+00:00",
+  "verifier_sha256": "679083a1ea03b0ee2ab2e7f25f6d7c97e0e39d4f3277bec0f3322c867c289139"
+}

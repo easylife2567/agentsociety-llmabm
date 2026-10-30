@@ -1,0 +1,123 @@
+{
+  "status": "passed",
+  "scope": "正式路径落地前后科学数值一致性；仅读取历史分析作一次对照，后续复算不依赖探索run",
+  "checks": {
+    "weekly.csv": {
+      "before_sha256": "00c60fa93a03cb63be03eacd7833185c7049119b39a817a6a3d41cfea33f418d",
+      "formal_sha256": "00c60fa93a03cb63be03eacd7833185c7049119b39a817a6a3d41cfea33f418d",
+      "byte_identical": true
+    },
+    "paired_dtw.csv": {
+      "before_sha256": "edfb6ba3be82e505b9e9124a558bae710b867451fc07aede67bb4a306165d0c8",
+      "formal_sha256": "edfb6ba3be82e505b9e9124a558bae710b867451fc07aede67bb4a306165d0c8",
+      "byte_identical": true
+    },
+    "dtw_summary.csv": {
+      "before_sha256": "66cbf1062a73ed9b3aae41587744c3bdc9ab5f09ee94fa441cab0f28c9128697",
+      "formal_sha256": "66cbf1062a73ed9b3aae41587744c3bdc9ab5f09ee94fa441cab0f28c9128697",
+      "byte_identical": true
+    },
+    "dtw_paths.json": {
+      "before_sha256": "7a216d2332919f2940b82416a8231021e0097779f9970db9b49a02bf41063759",
+      "formal_sha256": "7a216d2332919f2940b82416a8231021e0097779f9970db9b49a02bf41063759",
+      "byte_identical": true
+    },
+    "run_metrics.csv": {
+      "scientific_fields_identical": true,
+      "changed_fields": [
+        "origin"
+      ],
+      "changes": [
+        {
+          "algorithm": "chronological",
+          "seed": 0,
+          "before": "historical_complete_chronological",
+          "formal": "reused_formal_timestamp_chronological"
+        },
+        {
+          "algorithm": "chronological",
+          "seed": 1,
+          "before": "historical_complete_chronological",
+          "formal": "reused_formal_timestamp_chronological"
+        },
+        {
+          "algorithm": "chronological",
+          "seed": 2,
+          "before": "historical_complete_chronological",
+          "formal": "reused_formal_timestamp_chronological"
+        },
+        {
+          "algorithm": "chronological",
+          "seed": 3,
+          "before": "historical_complete_chronological",
+          "formal": "reused_formal_timestamp_chronological"
+        },
+        {
+          "algorithm": "chronological",
+          "seed": 4,
+          "before": "historical_complete_chronological",
+          "formal": "reused_formal_timestamp_chronological"
+        },
+        {
+          "algorithm": "chronological",
+          "seed": 5,
+          "before": "historical_complete_chronological",
+          "formal": "reused_formal_timestamp_chronological"
+        },
+        {
+          "algorithm": "chronological",
+          "seed": 6,
+          "before": "historical_complete_chronological",
+          "formal": "reused_formal_timestamp_chronological"
+        },
+        {
+          "algorithm": "chronological",
+          "seed": 7,
+          "before": "historical_complete_chronological",
+          "formal": "reused_formal_timestamp_chronological"
+        },
+        {
+          "algorithm": "chronological",
+          "seed": 8,
+          "before": "historical_complete_chronological",
+          "formal": "reused_formal_timestamp_chronological"
+        },
+        {
+          "algorithm": "chronological",
+          "seed": 9,
+          "before": "historical_complete_chronological",
+          "formal": "reused_formal_timestamp_chronological"
+        }
+      ],
+      "before_sha256": "8477cbdf65fb2e02cf16cc875a3ff348759b5e355914ed1642bda6283c6259bb",
+      "formal_sha256": "1933f75aaa365cb66f17518ac855b396a35e4e498f858d792a3034236f25a875"
+    },
+    "summary.json": {
+      "scientific_fields_identical": true,
+      "changed_fields": [
+        "contract_sha256",
+        "method",
+        "scope"
+      ],
+      "before_sha256": "8f53edec0a2a5a7ea95eb235ab2e98767104a362a7b3af809578be5f977db9dd",
+      "formal_sha256": "cb0fb7c462f7adfe146cd48430513bdaa984681319bd3d4d34c97a7bb41d878b"
+    },
+    "three_arm_mean_supply.png": {
+      "before_sha256": "c9e1c3012e57245337009a5174fc0bce38a1a818dc28bdfb6f72b9faf7eb4cb7",
+      "formal_sha256": "c9e1c3012e57245337009a5174fc0bce38a1a818dc28bdfb6f72b9faf7eb4cb7",
+      "byte_identical": true
+    },
+    "dtw_stability.png": {
+      "before_sha256": "abf0b699150198cb6efab180b47dd8a541ace7860edac4152b0e3d4834405fe0",
+      "formal_sha256": "abf0b699150198cb6efab180b47dd8a541ace7860edac4152b0e3d4834405fe0",
+      "byte_identical": true
+    }
+  },
+  "source_loading_dependency_on_exploration_run": false,
+  "formal_source_count": 3468,
+  "formal_code_sha256": {
+    "plot_seed10.py": "523952a0f96f52d1ffae1adf8a522a34f874bbc49bd6ae5dea4df1fee0f14690",
+    "analyze_seed10.py": "025c840abab47358c4bbd719c0f296afa62e51771f885c7515a736f2875f7b7e"
+  },
+  "note": "原始metadata和历史审计中的旧路径保留为数据；正式来源清单只读取正式路径。时序origin由历史完整时序改为复用正式时序，未改科学字段；图像PNG逐字节一致。"
+}

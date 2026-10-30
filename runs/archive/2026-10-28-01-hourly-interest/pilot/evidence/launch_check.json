@@ -1,0 +1,50 @@
+{
+  "status": "running",
+  "supervisor_pid": 70791,
+  "started_at": "2026-10-28T13:42:20.026476+00:00",
+  "active_run": {
+    "run_id": "hourly_return_pilot_random_s0",
+    "algorithm": "random",
+    "run_dir": "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/runs/hourly_return_pilot_s0/hourly_return_pilot_random_s0",
+    "child_pid": 70792,
+    "command": [
+      "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python",
+      "-m",
+      "agentsociety2.society.cli",
+      "--config",
+      "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/configs/random_s0.json",
+      "--steps",
+      "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/init/steps_s0.yaml",
+      "--run-dir",
+      "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/runs/hourly_return_pilot_s0/hourly_return_pilot_random_s0",
+      "--experiment-id",
+      "4_2_hourly_return_pilot_s0",
+      "--log-file",
+      "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/runs/hourly_return_pilot_s0/hourly_return_pilot_random_s0/engine.log",
+      "--batch-size",
+      "100"
+    ],
+    "progress": {
+      "pid.json": {
+        "pid": 70792,
+        "status": "running",
+        "start_time": "2026-10-28T13:42:21.722627+00:00",
+        "experiment_id": "4_2_hourly_return_pilot_s0"
+      }
+    },
+    "agent_summary": {
+      "agent_files": 100,
+      "decisions": 0,
+      "unique_decisions": 0,
+      "posted": 0,
+      "requests": 0,
+      "action_failures": 0,
+      "service_failures": 0,
+      "posted_model_failures": 0,
+      "response_models": {},
+      "invalid_publications": 0
+    }
+  },
+  "runtime_plan_sha256": "2efe9db8e9f797196e2fc0244eedd5b9e09cdb76593242f79a295f58fd08d1e6",
+  "note": "实际引擎已创建100Agent；尚非完整性通过或实验结果"
+}

@@ -1,0 +1,121 @@
+{
+  "status": "passed",
+  "preserved_child_pid": 70792,
+  "new_supervisor_pid": 85266,
+  "active_runs": [
+    {
+      "run_id": "hourly_return_pilot_random_s0",
+      "algorithm": "random",
+      "run_dir": "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/runs/hourly_return_pilot_s0/hourly_return_pilot_random_s0",
+      "child_pid": 70792,
+      "command": [
+        "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python",
+        "-m",
+        "agentsociety2.society.cli",
+        "--config",
+        "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/configs/random_s0.json",
+        "--steps",
+        "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/init/steps_s0.yaml",
+        "--run-dir",
+        "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/runs/hourly_return_pilot_s0/hourly_return_pilot_random_s0",
+        "--experiment-id",
+        "4_2_hourly_return_pilot_s0",
+        "--log-file",
+        "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/runs/hourly_return_pilot_s0/hourly_return_pilot_random_s0/engine.log",
+        "--batch-size",
+        "100"
+      ],
+      "progress": {
+        "pid.json": {
+          "pid": 70792,
+          "status": "running",
+          "start_time": "2026-10-28T13:42:21.722627+00:00",
+          "experiment_id": "4_2_hourly_return_pilot_s0",
+          "simulation_time": "2026-05-19T16:00:00",
+          "step_count": 583
+        },
+        "SOCIETY_STEP.json": {
+          "current_time": "2026-05-19T16:00:00",
+          "step_count": 583,
+          "completed_step_count": 583,
+          "terminated": false
+        }
+      },
+      "agent_summary": {
+        "agent_files": 100,
+        "decisions": 927,
+        "unique_decisions": 927,
+        "posted": 155,
+        "requests": 155,
+        "action_failures": 0,
+        "service_failures": 0,
+        "posted_model_failures": 0,
+        "response_models": {
+          "deepseek-v4-1-flash-261017": 155
+        },
+        "invalid_publications": 0
+      },
+      "adopted": true
+    },
+    {
+      "run_id": "hourly_return_pilot_chronological_s0",
+      "algorithm": "chronological",
+      "run_dir": "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/runs/hourly_return_pilot_s0/hourly_return_pilot_chronological_s0",
+      "child_pid": 85275,
+      "command": [
+        "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python",
+        "-m",
+        "agentsociety2.society.cli",
+        "--config",
+        "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/configs/chronological_s0.json",
+        "--steps",
+        "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/init/steps_s0.yaml",
+        "--run-dir",
+        "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/runs/hourly_return_pilot_s0/hourly_return_pilot_chronological_s0",
+        "--experiment-id",
+        "4_2_hourly_return_pilot_s0",
+        "--log-file",
+        "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/runs/hourly_return_pilot_s0/hourly_return_pilot_chronological_s0/engine.log",
+        "--batch-size",
+        "100"
+      ],
+      "adopted": false,
+      "agent_summary": {
+        "agent_files": 100,
+        "decisions": 8,
+        "unique_decisions": 8,
+        "posted": 4,
+        "requests": 4,
+        "action_failures": 0,
+        "service_failures": 0,
+        "posted_model_failures": 0,
+        "response_models": {
+          "deepseek-v4-1-flash-261017": 4
+        },
+        "invalid_publications": 0
+      },
+      "progress": {
+        "pid.json": {
+          "pid": 85275,
+          "status": "running",
+          "start_time": "2026-10-28T14:20:47.093194+00:00",
+          "experiment_id": "4_2_hourly_return_pilot_s0",
+          "simulation_time": "2026-03-16T12:00:00",
+          "step_count": 5
+        },
+        "SOCIETY_STEP.json": {
+          "current_time": "2026-03-16T12:00:00",
+          "step_count": 5,
+          "completed_step_count": 5,
+          "terminated": false
+        }
+      }
+    }
+  ],
+  "started_at": "2026-10-28T13:42:20.026476+00:00",
+  "deadline_at": "2026-10-28T21:38:46.079787+00:00",
+  "extra_requests_used": 0,
+  "total_body_requests": 159,
+  "runtime_plan_sha256": "2efe9db8e9f797196e2fc0244eedd5b9e09cdb76593242f79a295f58fd08d1e6",
+  "note": "原引擎PID连续、原起点和截止不变、原账本未归零、两路以内；第二路实际推进另复核"
+}

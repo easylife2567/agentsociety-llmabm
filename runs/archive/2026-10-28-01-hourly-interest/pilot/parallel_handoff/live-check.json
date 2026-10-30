@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "supervisor_pid": 85266,
+  "active": [
+    {
+      "algorithm": "random",
+      "pid": 70792,
+      "adopted": true,
+      "step": 607,
+      "decisions": 961,
+      "posted": 157,
+      "models": [
+        "deepseek-v4-1-flash-261017"
+      ],
+      "failures": 0
+    },
+    {
+      "algorithm": "chronological",
+      "pid": 85275,
+      "adopted": false,
+      "step": 19,
+      "decisions": 30,
+      "posted": 11,
+      "models": [
+        "deepseek-v4-1-flash-261017"
+      ],
+      "failures": 0
+    }
+  ],
+  "preserved_child_pid": 70792,
+  "original_engine_continuous": true,
+  "runtime_plan_unchanged": true,
+  "started_at": "2026-10-28T13:42:20.026476+00:00",
+  "deadline_at": "2026-10-28T21:38:46.079787+00:00",
+  "requests": 167,
+  "extra_requests_used": 0,
+  "model": "deepseek-v4-1-flash-261017",
+  "budgets_unchanged": [
+    true,
+    true,
+    true
+  ],
+  "parallel_checks": 7
+}

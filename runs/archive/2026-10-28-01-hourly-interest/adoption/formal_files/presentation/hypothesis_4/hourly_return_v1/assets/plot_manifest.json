@@ -1,0 +1,579 @@
+{
+  "scope": "random/chronological/interest × seed0–9 × W12–W22; offline only",
+  "input_sha256": {
+    "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/hourly_return_v1/results/weekly.csv": "00c60fa93a03cb63be03eacd7833185c7049119b39a817a6a3d41cfea33f418d",
+    "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/hourly_return_v1/results/run_metrics.csv": "1933f75aaa365cb66f17518ac855b396a35e4e498f858d792a3034236f25a875",
+    "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/hourly_return_v1/results/summary.json": "cb0fb7c462f7adfe146cd48430513bdaa984681319bd3d4d34c97a7bb41d878b",
+    "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/hourly_return_v1/results/dtw_summary.csv": "66cbf1062a73ed9b3aae41587744c3bdc9ab5f09ee94fa441cab0f28c9128697",
+    "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/hourly_return_v1/contract.json": "05e6cbb9f7610e7f2b7844ee587128591234e8a9e8cb708d4a2dfe7e496992e8"
+  },
+  "code_sha256": {
+    "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/hourly_return_v1/plot_seed10.py": "523952a0f96f52d1ffae1adf8a522a34f874bbc49bd6ae5dea4df1fee0f14690"
+  },
+  "output_sha256": {
+    "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/hourly_return_v1/assets/three_arm_mean_supply.png": "c9e1c3012e57245337009a5174fc0bce38a1a818dc28bdfb6f72b9faf7eb4cb7",
+    "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/hourly_return_v1/assets/three_arm_mean_supply.svg": "89e3b2e01583db1b6f63b75680ad78bae1f5f635ef17c2cd5031278eaaaa18ea",
+    "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/hourly_return_v1/assets/dtw_stability.png": "abf0b699150198cb6efab180b47dd8a541ace7860edac4152b0e3d4834405fe0",
+    "/Users/easylife/Project/AgentSociety/presentation/hypothesis_4/hourly_return_v1/assets/dtw_stability.svg": "95c6dbf9dc454cba77aef85d3377213ad6617cb75e35b4c20177c555b5b76bea"
+  },
+  "validation": {
+    "runs": 30,
+    "weekly_rows": 330,
+    "arms": 3,
+    "seeds_per_arm": 10,
+    "weeks_per_run": 11,
+    "mean_week_rows": 33,
+    "five_author_types_conserve_posted": true,
+    "means_are_equal_seed_arithmetic_means": true,
+    "dtw_summary_matches_individual_runs": true,
+    "error_bar": "sample standard deviation (ddof=1), not confidence interval",
+    "chronological": "historical complete runs reused",
+    "seed0": "random/interest pilot; already observed"
+  },
+  "mean_weekly_counts": [
+    {
+      "algorithm": "random",
+      "week": "2026-W12",
+      "n": 10,
+      "meme": 0,
+      "mourning": 0,
+      "education": 6.7,
+      "marketing": 19,
+      "other": 0,
+      "posted_total": 25.7
+    },
+    {
+      "algorithm": "random",
+      "week": "2026-W13",
+      "n": 10,
+      "meme": 0,
+      "mourning": 4.7,
+      "education": 9.3,
+      "marketing": 13.2,
+      "other": 0.1,
+      "posted_total": 27.3
+    },
+    {
+      "algorithm": "random",
+      "week": "2026-W14",
+      "n": 10,
+      "meme": 0,
+      "mourning": 7.6,
+      "education": 7.5,
+      "marketing": 7.9,
+      "other": 3.5,
+      "posted_total": 26.5
+    },
+    {
+      "algorithm": "random",
+      "week": "2026-W15",
+      "n": 10,
+      "meme": 0.1,
+      "mourning": 6.4,
+      "education": 5.4,
+      "marketing": 5.7,
+      "other": 4.3,
+      "posted_total": 21.9
+    },
+    {
+      "algorithm": "random",
+      "week": "2026-W16",
+      "n": 10,
+      "meme": 0,
+      "mourning": 5.1,
+      "education": 4.3,
+      "marketing": 4.1,
+      "other": 4,
+      "posted_total": 17.5
+    },
+    {
+      "algorithm": "random",
+      "week": "2026-W17",
+      "n": 10,
+      "meme": 0.2,
+      "mourning": 3.6,
+      "education": 2.9,
+      "marketing": 4,
+      "other": 2.5,
+      "posted_total": 13.2
+    },
+    {
+      "algorithm": "random",
+      "week": "2026-W18",
+      "n": 10,
+      "meme": 0,
+      "mourning": 3.6,
+      "education": 1.9,
+      "marketing": 3.1,
+      "other": 2.5,
+      "posted_total": 11.1
+    },
+    {
+      "algorithm": "random",
+      "week": "2026-W19",
+      "n": 10,
+      "meme": 0,
+      "mourning": 1.6,
+      "education": 2,
+      "marketing": 3.2,
+      "other": 1.5,
+      "posted_total": 8.3
+    },
+    {
+      "algorithm": "random",
+      "week": "2026-W20",
+      "n": 10,
+      "meme": 0.2,
+      "mourning": 1.1,
+      "education": 1.4,
+      "marketing": 3.1,
+      "other": 1.1,
+      "posted_total": 6.9
+    },
+    {
+      "algorithm": "random",
+      "week": "2026-W21",
+      "n": 10,
+      "meme": 0.7,
+      "mourning": 0.9,
+      "education": 1,
+      "marketing": 3,
+      "other": 0.4,
+      "posted_total": 6
+    },
+    {
+      "algorithm": "random",
+      "week": "2026-W22",
+      "n": 10,
+      "meme": 1.7,
+      "mourning": 0.7,
+      "education": 0.2,
+      "marketing": 3,
+      "other": 0.2,
+      "posted_total": 5.8
+    },
+    {
+      "algorithm": "chronological",
+      "week": "2026-W12",
+      "n": 10,
+      "meme": 0,
+      "mourning": 0,
+      "education": 8.3,
+      "marketing": 19,
+      "other": 0,
+      "posted_total": 27.3
+    },
+    {
+      "algorithm": "chronological",
+      "week": "2026-W13",
+      "n": 10,
+      "meme": 0,
+      "mourning": 19.3,
+      "education": 7.2,
+      "marketing": 11.8,
+      "other": 7.2,
+      "posted_total": 45.5
+    },
+    {
+      "algorithm": "chronological",
+      "week": "2026-W14",
+      "n": 10,
+      "meme": 0,
+      "mourning": 6.6,
+      "education": 5.6,
+      "marketing": 7.2,
+      "other": 14.8,
+      "posted_total": 34.2
+    },
+    {
+      "algorithm": "chronological",
+      "week": "2026-W15",
+      "n": 10,
+      "meme": 0,
+      "mourning": 0.9,
+      "education": 5,
+      "marketing": 7.7,
+      "other": 6,
+      "posted_total": 19.6
+    },
+    {
+      "algorithm": "chronological",
+      "week": "2026-W16",
+      "n": 10,
+      "meme": 0,
+      "mourning": 1.2,
+      "education": 4.2,
+      "marketing": 6.6,
+      "other": 0.6,
+      "posted_total": 12.6
+    },
+    {
+      "algorithm": "chronological",
+      "week": "2026-W17",
+      "n": 10,
+      "meme": 0,
+      "mourning": 0.5,
+      "education": 2.7,
+      "marketing": 4.7,
+      "other": 2,
+      "posted_total": 9.9
+    },
+    {
+      "algorithm": "chronological",
+      "week": "2026-W18",
+      "n": 10,
+      "meme": 0,
+      "mourning": 0.3,
+      "education": 1,
+      "marketing": 4.1,
+      "other": 0.4,
+      "posted_total": 5.8
+    },
+    {
+      "algorithm": "chronological",
+      "week": "2026-W19",
+      "n": 10,
+      "meme": 0,
+      "mourning": 0.5,
+      "education": 1.3,
+      "marketing": 3.5,
+      "other": 0.2,
+      "posted_total": 5.5
+    },
+    {
+      "algorithm": "chronological",
+      "week": "2026-W20",
+      "n": 10,
+      "meme": 11.7,
+      "mourning": 0,
+      "education": 0.4,
+      "marketing": 3.1,
+      "other": 0,
+      "posted_total": 15.2
+    },
+    {
+      "algorithm": "chronological",
+      "week": "2026-W21",
+      "n": 10,
+      "meme": 19,
+      "mourning": 0,
+      "education": 0,
+      "marketing": 3,
+      "other": 0,
+      "posted_total": 22
+    },
+    {
+      "algorithm": "chronological",
+      "week": "2026-W22",
+      "n": 10,
+      "meme": 14.7,
+      "mourning": 0.1,
+      "education": 0,
+      "marketing": 3,
+      "other": 0,
+      "posted_total": 17.8
+    },
+    {
+      "algorithm": "interest",
+      "week": "2026-W12",
+      "n": 10,
+      "meme": 0,
+      "mourning": 0,
+      "education": 6.7,
+      "marketing": 19,
+      "other": 0,
+      "posted_total": 25.7
+    },
+    {
+      "algorithm": "interest",
+      "week": "2026-W13",
+      "n": 10,
+      "meme": 0,
+      "mourning": 20.1,
+      "education": 6,
+      "marketing": 12.4,
+      "other": 0.3,
+      "posted_total": 38.8
+    },
+    {
+      "algorithm": "interest",
+      "week": "2026-W14",
+      "n": 10,
+      "meme": 0,
+      "mourning": 9.9,
+      "education": 8.7,
+      "marketing": 9.1,
+      "other": 2.9,
+      "posted_total": 30.6
+    },
+    {
+      "algorithm": "interest",
+      "week": "2026-W15",
+      "n": 10,
+      "meme": 0,
+      "mourning": 6.5,
+      "education": 5.7,
+      "marketing": 4.9,
+      "other": 6.2,
+      "posted_total": 23.3
+    },
+    {
+      "algorithm": "interest",
+      "week": "2026-W16",
+      "n": 10,
+      "meme": 0.1,
+      "mourning": 1.6,
+      "education": 4.8,
+      "marketing": 4.2,
+      "other": 7,
+      "posted_total": 17.7
+    },
+    {
+      "algorithm": "interest",
+      "week": "2026-W17",
+      "n": 10,
+      "meme": 0.2,
+      "mourning": 0.7,
+      "education": 3.7,
+      "marketing": 3.8,
+      "other": 5.7,
+      "posted_total": 14.1
+    },
+    {
+      "algorithm": "interest",
+      "week": "2026-W18",
+      "n": 10,
+      "meme": 0.1,
+      "mourning": 0.2,
+      "education": 2.3,
+      "marketing": 3.7,
+      "other": 3.2,
+      "posted_total": 9.5
+    },
+    {
+      "algorithm": "interest",
+      "week": "2026-W19",
+      "n": 10,
+      "meme": 0.2,
+      "mourning": 0.4,
+      "education": 1.5,
+      "marketing": 3.6,
+      "other": 1.5,
+      "posted_total": 7.2
+    },
+    {
+      "algorithm": "interest",
+      "week": "2026-W20",
+      "n": 10,
+      "meme": 4.1,
+      "mourning": 0,
+      "education": 1,
+      "marketing": 3.3,
+      "other": 0.4,
+      "posted_total": 8.8
+    },
+    {
+      "algorithm": "interest",
+      "week": "2026-W21",
+      "n": 10,
+      "meme": 17.9,
+      "mourning": 0,
+      "education": 0.4,
+      "marketing": 3.1,
+      "other": 0,
+      "posted_total": 21.4
+    },
+    {
+      "algorithm": "interest",
+      "week": "2026-W22",
+      "n": 10,
+      "meme": 18.3,
+      "mourning": 0,
+      "education": 0,
+      "marketing": 3.1,
+      "other": 0,
+      "posted_total": 21.4
+    }
+  ],
+  "dtw_by_arm": {
+    "random": {
+      "n": 10,
+      "mean": 31.628956199558235,
+      "sample_sd": 4.781395152641322,
+      "min": 23.31498446868248,
+      "max": 37.47063932126407,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "values": [
+        33.279642322946216,
+        23.31498446868248,
+        26.726132318134315,
+        29.691681679623915,
+        35.861805315282474,
+        33.43827968804392,
+        37.47063932126407,
+        37.31338868284648,
+        27.335129439938648,
+        31.857878758819847
+      ]
+    },
+    "chronological": {
+      "n": 10,
+      "mean": 28.367565527456165,
+      "sample_sd": 3.3130335553695636,
+      "min": 23.661866961037557,
+      "max": 35.495188267586094,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "values": [
+        27.916822198090834,
+        28.6379869505116,
+        26.929551715158855,
+        23.661866961037557,
+        26.44547201029302,
+        32.32847190303756,
+        35.495188267586094,
+        28.388939189805427,
+        26.862695460914832,
+        27.00866061812585
+      ]
+    },
+    "interest": {
+      "n": 10,
+      "mean": 24.559363343880964,
+      "sample_sd": 2.5061896721459216,
+      "min": 20.518046422992906,
+      "max": 28.253020937090362,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "values": [
+        20.518046422992906,
+        25.22385979790714,
+        28.253020937090362,
+        27.32436501916324,
+        25.73994768876482,
+        21.288225850887954,
+        22.651260151497798,
+        25.875976375047056,
+        23.681831624119738,
+        25.03709957133864
+      ]
+    }
+  },
+  "mean_trajectory_dtw_not_plotted": {
+    "chronological": {
+      "dtw_x100": 22.865598134776786,
+      "path_length": 12,
+      "utc_sensitivity_dtw_x100": 22.842372658376146
+    },
+    "interest": {
+      "dtw_x100": 20.284225221609674,
+      "path_length": 11,
+      "utc_sensitivity_dtw_x100": 20.281907297464326
+    },
+    "random": {
+      "dtw_x100": 26.23350861499069,
+      "path_length": 12,
+      "utc_sensitivity_dtw_x100": 26.30451317352303
+    }
+  },
+  "method": {
+    "benchmark": "presentation/hypothesis_4/hourly_return_v1/inputs/reality_week_boundary.csv",
+    "primary_share_field": "shanghai_clean_share",
+    "secondary_share_field": "utc_clean_share",
+    "window_weeks": 1,
+    "local_distance": "Euclidean five-type shares",
+    "z_normalization": false,
+    "optimization": "minimum cumulative cost; diagonal/up/left tie order",
+    "score": "cumulative distance / selected path length *100",
+    "primary_summary": "先每run计算DTW，之后10seed均值、样本SD(ddof=1)、min/max",
+    "mean_trajectory": "各seed份额向量等权平均后另算DTW，独立列示，不代替逐run DTW均值"
+  },
+  "limitations": [
+    "10个seed只支持当前冻结设置下的重复稳定性",
+    "历史chrono0–2返回别名与当前261017不同，研究等价是既有约定而非底层严格同版",
+    "模拟固定作者类型与现实正文语义标签不完全同口径",
+    "现实benchmark与注入样本同源，属描述拟合而非独立预测验证",
+    "即使DTW更小也不等于所有指标或所有目标最优",
+    "seed0先导已看结果，后续seed1–9须单独展示"
+  ],
+  "style": {
+    "type_order": [
+      "meme",
+      "mourning",
+      "education",
+      "marketing",
+      "other"
+    ],
+    "type_labels": [
+      "Meme",
+      "Mourning",
+      "Education",
+      "Marketing",
+      "Other"
+    ],
+    "type_colors": [
+      "#DD8452",
+      "#4C72B0",
+      "#55A868",
+      "#CCB974",
+      "#64B5CD"
+    ],
+    "supply_y_axis": [
+      0,
+      80
+    ],
+    "y_tick": 10,
+    "event_week": "2026-W13",
+    "arm_colors": {
+      "random": "#737373",
+      "chronological": "#0F4D92",
+      "interest": "#B64342"
+    },
+    "fixed_seed_jitter": [
+      -0.18,
+      -0.14,
+      -0.1,
+      -0.06,
+      -0.02,
+      0.02,
+      0.06,
+      0.1,
+      0.14,
+      0.18
+    ],
+    "png_dpi": 300,
+    "svg_text_editable": true
+  },
+  "matplotlib": "3.10.0"
+}

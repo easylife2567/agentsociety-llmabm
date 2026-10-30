@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "main_protected_files": 322,
+  "main_protected_files_changed": [],
+  "candidate_files_verified": 78,
+  "candidate_files_changed": [],
+  "checks": {
+    "regression_attempt2.json": "passed",
+    "config_validation.json": "passed",
+    "recovery_structure.json": "passed",
+    "recovery_tests.json": "passed",
+    "recovery_config_validation.json": "passed"
+  },
+  "main_status": " M data/README.md\n M paper/OUTLINE.md\n M paper/README.md\n M paper/REMEDIATION_PLAN.md\n M paper/manuscript/INTAKE_AUDIT.md\n M paper/manuscript/manuscript.accepted.md\n M paper/spot_check/README.md\n M paper/word/ASSEMBLY_NOTES.md\n M runs/2026-10-19-01-paper-figures/framework/fusion/drawio/framework_fusion_en_v1.drawio\n M runs/README.md\n?? paper/spot_check/AGREEMENT_REPORT.md\n?? paper/spot_check/source/\n?? runs/2026-10-19-01-paper-figures/framework/fusion/drawio/.$framework_fusion_en_v1.drawio.bkp\n?? runs/2026-10-28-01-hourly-interest/\n",
+  "candidate_status": " M custom/envs/README.md\n M custom/envs/curation_arrival_schedule.py\n M custom/envs/curation_dynamics_space.py\n M custom/tests/README.md\n M hypothesis_4/experiment_2/EXPERIMENT.md\n M hypothesis_4/experiment_2/README.md\n M hypothesis_4/experiment_2/init/README.md\n M hypothesis_4/experiment_3/EXPERIMENT.md\n M hypothesis_4/experiment_3/README.md\n M hypothesis_4/experiment_3/init/README.md\n?? .agentsociety/custom_env_skill/runs/hourly-return-offline/\n?? custom/tests/test_hourly_return.py\n?? hypothesis_4/experiment_2/init/hourly_return_v1/\n?? hypothesis_4/experiment_2/init/prepare_hourly_return.py\n?? hypothesis_4/experiment_3/init/hourly_return_v1/\n",
+  "scientific_simulation_started": false,
+  "main_pipeline_unchanged": true,
+  "main_formal_assets_changed": false,
+  "commit_created": false,
+  "pushed": false
+}

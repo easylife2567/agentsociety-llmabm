@@ -1,0 +1,51 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261016t115841_2596def443",
+  "operation_id": "intake",
+  "operation_contract_version": 1,
+  "execution_key": "cb0e7574cffaecf469b716c90ab93ccbdc7e1afb0a80d98e6e6f53c1314905ac",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "BLOCKED",
+  "hypothesis_id": "4",
+  "experiment_id": "4",
+  "input_names": [
+    "experiment_id",
+    "hypothesis_id",
+    "workspace"
+  ],
+  "input_fingerprint": "59060e9af6183225ecac251d1b7389c4645d8bdfb013dc11802ac9f52e218f73",
+  "safe_inputs": {
+    "hypothesis_id": "4",
+    "experiment_id": "4"
+  },
+  "preflight": {
+    "operation_id": "intake",
+    "status": "BLOCKED_BY_PHASE",
+    "reasons": [
+      "operation is not available in phase claims; expected one of: frame"
+    ],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {},
+  "error": {
+    "type": "BLOCKED_BY_PHASE",
+    "message": "operation is not available in phase claims; expected one of: frame",
+    "retryable": false
+  },
+  "declared_artifacts": [
+    ".agentsociety/analysis/hypothesis_{id}/state.yaml"
+  ],
+  "artifact_fingerprints": {},
+  "repeatable": false,
+  "retryable": false,
+  "recommended_action": "Fix preflight blockers and rerun the operation.",
+  "pid": 80259,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-16T11:58:41.843152Z",
+  "updated_at": "2026-10-16T11:58:41.843300Z",
+  "completed_at": "2026-10-16T11:58:41.843276Z",
+  "duration_ms": 0
+}

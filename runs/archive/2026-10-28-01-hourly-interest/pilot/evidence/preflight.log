@@ -1,0 +1,10 @@
+[2026-10-28 21:40:31] INFO    ModuleRegistry initialized (lazy loading enabled)
+[2026-10-28 21:40:31] INFO    Cleared 0 custom modules
+[2026-10-28 21:40:32] INFO    Registered 1 custom env modules and 1 custom agents
+[2026-10-28 21:40:32] INFO    Registered 16 env modules and 7 agents from built-in modules
+[2026-10-28 21:40:32] INFO    Cleared 1 custom modules
+[2026-10-28 21:40:32] INFO    Registered 1 custom env modules and 1 custom agents
+PASS hourly_return_pilot_random_s0
+PASS hourly_return_pilot_chronological_s0
+PASS hourly_return_pilot_interest_s0
+{"status": "passed", "profiles_created_and_restored": 300, "source_files_verified": 125, "network_attempts": 0, "llm_calls": 0, "agent_actions": 0, "environment_steps": 0}

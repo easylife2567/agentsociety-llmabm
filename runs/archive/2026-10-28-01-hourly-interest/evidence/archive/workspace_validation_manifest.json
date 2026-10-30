@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "files": [
+    {
+      "workspace_path": ".agentsociety/custom_env_skill/runs/hourly-return-offline/request.json",
+      "preserved_path": "evidence/archive/workspace_validation/.agentsociety/custom_env_skill/runs/hourly-return-offline/request.json",
+      "sha256": "879403bbfb7c6a06c2537b30729fed6f59ca5eef778906729dcaba3a1e27d1f8",
+      "bytes": 128
+    },
+    {
+      "workspace_path": ".agentsociety/custom_env_skill/runs/hourly-return-offline/run.log",
+      "preserved_path": "evidence/archive/workspace_validation/.agentsociety/custom_env_skill/runs/hourly-return-offline/run.log",
+      "sha256": "f75d16d1954cdd0e3e34eb629781a2ba391f90c99002962c85e59fbc96055285",
+      "bytes": 127
+    },
+    {
+      "workspace_path": ".agentsociety/custom_env_skill/runs/hourly-return-offline/run_state.json",
+      "preserved_path": "evidence/archive/workspace_validation/.agentsociety/custom_env_skill/runs/hourly-return-offline/run_state.json",
+      "sha256": "cc6c4cf405b1e08ae7d815f74b27c6a2d913b901b52ddc25139011df4d583182",
+      "bytes": 900
+    },
+    {
+      "workspace_path": ".agentsociety/custom_env_skill/runs/hourly-return-offline/validation_report.json",
+      "preserved_path": "evidence/archive/workspace_validation/.agentsociety/custom_env_skill/runs/hourly-return-offline/validation_report.json",
+      "sha256": "dc0160db7efe0fbc4ff40cbd86dc0a07a19680afe1ccaaba03ca58c568496f23",
+      "bytes": 3381
+    },
+    {
+      "workspace_path": ".agentsociety/custom_env_skill/runs/hourly-return-offline/validation_summary.md",
+      "preserved_path": "evidence/archive/workspace_validation/.agentsociety/custom_env_skill/runs/hourly-return-offline/validation_summary.md",
+      "sha256": "b900122508ee5841a1ca167fcc83e89b5d690538cf17ee35e6d951eabd3216b1",
+      "bytes": 369
+    }
+  ],
+  "test_fixture_matches_bundle": true
+}

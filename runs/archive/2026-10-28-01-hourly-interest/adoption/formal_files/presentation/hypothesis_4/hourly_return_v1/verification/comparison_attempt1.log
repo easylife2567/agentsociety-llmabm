@@ -1,0 +1,1 @@
+首次逐字节比较在run_metrics.csv报AssertionError。逐字段检查发现仅10个时序origin从historical_complete_chronological改为reused_formal_timestamp_chronological；数值、run_id、模型、全部其他字段相同。最终比较单列该元数据变化，继续逐项核科学字段，见landing_comparison.json。

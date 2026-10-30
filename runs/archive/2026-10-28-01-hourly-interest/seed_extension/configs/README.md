@@ -1,0 +1,3 @@
+# 随机/兴趣seed1–9运行配置
+
+18份配置从隔离workspace的hourly_return_v1候选逐份复制，仅将content_retry_budget改为本批独立1980上限与账本绝对路径。每seed随机→兴趣，共两路填补；不含seed0、时序或消融。逐份路径、来源及SHA256以所属runtime_plan.json为准。配置准备不代替实际启动记录。

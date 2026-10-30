@@ -1,0 +1,45 @@
+diff --git a/.agentsociety/progress.json b/.agentsociety/progress.json
+index a552e78..7eb25f5 100644
+--- a/.agentsociety/progress.json
++++ b/.agentsociety/progress.json
+@@ -81,12 +81,17 @@
+       "revision_round": 10
+     },
+     "run_experiment": {
+-      "status": "needs_revision",
+-      "started_at": null,
++      "status": "in_progress",
++      "started_at": "2026-10-16T05:51:50.018872+00:00",
+       "completed_at": null,
+-      "attempts": 4,
++      "attempts": 5,
+       "error": null,
+-      "metadata": {},
++      "metadata": {
++        "hypothesis_id": 4,
++        "experiment_id": 4,
++        "batch_id": "cuc_model_v1",
++        "run_scope": "isolated population-scale run; three algorithms once; no seed matrix"
++      },
+       "verification_status": "not_started",
+       "revision_round": 10
+     },
+@@ -996,6 +1001,17 @@
+       "to_status": "completed",
+       "from_stage": "experiment_config",
+       "to_stage": "run_experiment"
++    },
++    {
++      "sequence": 40,
++      "timestamp": "2026-10-16T05:51:50.018883+00:00",
++      "kind": "stage_update",
++      "revision_round": 10,
++      "stage": "run_experiment",
++      "from_status": "needs_revision",
++      "to_status": "in_progress",
++      "from_stage": "run_experiment",
++      "to_stage": "run_experiment"
+     }
+   ]
+ }
+\ No newline at end of file

@@ -1,0 +1,22 @@
+test_budget_includes_done_and_both_active_and_rejects_overflow (__main__.ParallelTests.test_budget_includes_done_and_both_active_and_rejects_overflow) ... ok
+test_expired_original_deadline_blocks_handoff_without_signals (__main__.ParallelTests.test_expired_original_deadline_blocks_handoff_without_signals) ... ok
+test_failure_stops_two_slots_and_does_not_start_third (__main__.ParallelTests.test_failure_stops_two_slots_and_does_not_start_third) ... Agent行动、最终服务返回或确认发布记录失败
+ok
+test_foreign_engine_pid_is_not_signalled (__main__.ParallelTests.test_foreign_engine_pid_is_not_signalled) ... ok
+test_foreign_parent_pid_is_not_signalled (__main__.ParallelTests.test_foreign_parent_pid_is_not_signalled) ... ok
+test_parent_only_handoff_keeps_engine_and_ledger (__main__.ParallelTests.test_parent_only_handoff_keeps_engine_and_ledger) ... ok
+test_two_slots_adopt_without_duplicate_and_preserve_deadline (__main__.ParallelTests.test_two_slots_adopt_without_duplicate_and_preserve_deadline) ... ERROR
+
+======================================================================
+ERROR: test_two_slots_adopt_without_duplicate_and_preserve_deadline (__main__.ParallelTests.test_two_slots_adopt_without_duplicate_and_preserve_deadline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/test_parallel.py", line 184, in test_two_slots_adopt_without_duplicate_and_preserve_deadline
+    self.assertEqual(state['deadline_at'], self.plan['deadline_at'])
+                     ~~~~~^^^^^^^^^^^^^^^
+KeyError: 'deadline_at'
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.023s
+
+FAILED (errors=1)

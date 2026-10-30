@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "tests_run": 7,
+  "failures": 0,
+  "errors": 0,
+  "network_calls": 0,
+  "llm_calls": 0,
+  "real_cli_calls": 0,
+  "real_process_signals": 0,
+  "controller_sha256": "83749039f268e4d630d04dac3363a409039d34d7a15cee5de6b810857e540281",
+  "test_sha256": "24e38fbb3a3a6078b43bf95bd18480dca5b56ff96aee150ba06eb6ec7fd0b8ad",
+  "log": "parallel_check_attempt2.log",
+  "first_attempt": "parallel_check_attempt1.log",
+  "first_attempt_note": "测试夹具遗漏真实previous中的deadline_at；补齐后通过，未改机制或真实运行状态"
+}

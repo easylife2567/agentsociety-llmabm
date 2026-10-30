@@ -1,0 +1,22 @@
+--- a/pilot/analyze_pilot.py
++++ b/pilot/analyze_pilot.py
+@@ -228,7 +228,7 @@
+     state_path = Path(plan.get('state_path', plan_path.parent / 'batch_execution.json'))
+     state = read(state_path)
+     if state.get('status') != 'completed':
+-        raise ValueError('三臂尚未全部完成；不生成分析产物')
++        raise ValueError('所选制度尚未全部完成；不生成分析产物' if selection_path is not None else '三臂尚未全部完成；不生成分析产物')
+     all_runs = plan['runs']
+     if len(all_runs) != 3 or {row['algorithm'] for row in all_runs} != set(ARMS) or any(row['seed'] != 0 for row in all_runs):
+         raise ValueError('原计划必须完整保留三臂seed0，使用selection显式缩小本次比较范围')
+--- a/pilot/plot_pilot.py
++++ b/pilot/plot_pilot.py
+@@ -92,6 +92,8 @@
+     summary = json.loads(summary_path.read_text(encoding='utf-8'))
+     selection_path = args.selection.resolve() if args.selection else None
+     selection = json.loads(selection_path.read_text(encoding='utf-8')) if selection_path else None
++    if selection_path is not None and summary['source_sha256'].get(str(selection_path)) != digest(selection_path):
++        raise ValueError('绘图selection字节与分析冻结来源不同')
+     with weekly_path.open(encoding='utf-8', newline='') as stream:
+         grouped = verified_rows(summary, list(csv.DictReader(stream)), selection)
+     paths = [directory / f'weekly_comparison.{extension}' for extension in ('png', 'svg')]

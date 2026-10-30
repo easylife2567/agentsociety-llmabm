@@ -1,0 +1,112 @@
+{
+  "captured_at": "2026-10-28T16:13:38.016502+00:00",
+  "runtime_plan_sha256": "0a6e08819156ccaa94bcce7258c9f86dd27a3d6a963da7f6d879c5201b03d7de",
+  "controller_sha256": "aae6204910d708fb35632f75ec25d45fa8db7e138ee9b47d343620b0a0281968",
+  "status": "running",
+  "supervisor_pid": 15826,
+  "supervisor_command_matches": true,
+  "active_runs": [
+    {
+      "run_id": "hourly_return_v1_random_s1",
+      "seed": 1,
+      "pid": 15838,
+      "command_matches": true,
+      "actual_command": [
+        "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python",
+        "-m",
+        "agentsociety2.society.cli",
+        "--config",
+        "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/seed_extension/configs/random_s1.json",
+        "--steps",
+        "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/init/steps_s1.yaml",
+        "--run-dir",
+        "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_random_s1",
+        "--experiment-id",
+        "hourly_return_v1_random_s1",
+        "--log-file",
+        "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_random_s1/engine.log",
+        "--batch-size",
+        "100"
+      ],
+      "society_step": {
+        "current_time": "2026-03-17T18:00:00",
+        "step_count": 18,
+        "completed_step_count": 18,
+        "terminated": false
+      },
+      "environment_actions": 29,
+      "agent_summary": {
+        "agent_files": 100,
+        "decisions": 29,
+        "unique_decisions": 29,
+        "posted": 9,
+        "requests": 9,
+        "action_failures": 0,
+        "service_failures": 0,
+        "posted_model_failures": 0,
+        "response_models": {
+          "deepseek-v4-1-flash-261017": 9
+        },
+        "invalid_publications": 0
+      }
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s1",
+      "seed": 1,
+      "pid": 15839,
+      "command_matches": true,
+      "actual_command": [
+        "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python",
+        "-m",
+        "agentsociety2.society.cli",
+        "--config",
+        "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/seed_extension/configs/interest_s1.json",
+        "--steps",
+        "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/init/steps_s1.yaml",
+        "--run-dir",
+        "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_interest_s1",
+        "--experiment-id",
+        "hourly_return_v1_interest_s1",
+        "--log-file",
+        "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/runs/hourly_return_v1/hourly_return_v1_interest_s1/engine.log",
+        "--batch-size",
+        "100"
+      ],
+      "society_step": {
+        "current_time": "2026-03-17T18:00:00",
+        "step_count": 18,
+        "completed_step_count": 18,
+        "terminated": false
+      },
+      "environment_actions": 29,
+      "agent_summary": {
+        "agent_files": 100,
+        "decisions": 29,
+        "unique_decisions": 29,
+        "posted": 10,
+        "requests": 10,
+        "action_failures": 0,
+        "service_failures": 0,
+        "posted_model_failures": 0,
+        "response_models": {
+          "deepseek-v4-1-flash-261017": 10
+        },
+        "invalid_publications": 0
+      }
+    }
+  ],
+  "reused_seed0": [
+    [
+      "random",
+      0
+    ],
+    [
+      "interest",
+      0
+    ]
+  ],
+  "new_runs": 18,
+  "extra_requests_used": 0,
+  "automation_id": "18",
+  "scope": "启动核验，不是完成验收；运行中Agent与环境落盘可能先后一批"
+}

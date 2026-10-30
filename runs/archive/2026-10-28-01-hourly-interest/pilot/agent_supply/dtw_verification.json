@@ -1,0 +1,307 @@
+{
+  "status": "passed",
+  "scope": "independent offline numeric verification only; no LLM or simulation",
+  "historical_method_sha256": "6a2b473d85082f64213b1a87d3cd15b425e3fe976ec4464ca94bb5c9b3a1e631",
+  "three_arm_results_sha256": "a049644e9bf0b244081e2ab4080e3e1410b0e84f7804c420b2670297fa158812",
+  "contract_sha256": "4686ecb189d669f5063c8b477db4dba62a8f4bd0e85873dbdd60898152cf124a",
+  "reality_csv_sha256": "57dc6cd0cfcce3eaf770889ab3f34177c5020736e95a59a62e051472b1e7769a",
+  "approaches": [
+    "exhaustive enumeration of all legal band-constrained monotone paths for short binary sequences; reverse-step tie priority",
+    "standard-library math.dist plus memoized recursive optimum from endpoint for actual 11-week matrices",
+    "recompute simulated counts from 300 raw Agent decision logs and observed shares from integer real counts"
+  ],
+  "exhaustive_verification": {
+    "binary_sequence_pairs": 336,
+    "lengths": [
+      2,
+      3,
+      4
+    ],
+    "legal_paths_evaluated": 11248,
+    "minimum_cumulative_cost_and_tie_path_match": true,
+    "posthoc_length_normalization_match": true,
+    "optimization_objective_example": {
+      "simulated": [
+        0.0,
+        0.0
+      ],
+      "observed": [
+        0.0,
+        1.0
+      ],
+      "minimum_cumulative_cost": 1.0,
+      "selected_path_length": 2,
+      "reported_normalized_distance": 0.5,
+      "minimum_average_distance_over_all_paths": 0.3333333333333333,
+      "note": "Historical optimization minimizes cumulative cost first, then divides by selected path length."
+    }
+  },
+  "analytic_cases": [
+    {
+      "case": "identical",
+      "distance": 0.0,
+      "distance_x100": 0.0,
+      "path_length": 3,
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "all_paths_checked": 11,
+      "passed": true
+    },
+    {
+      "case": "one_week_shift",
+      "distance": 0.0,
+      "distance_x100": 0.0,
+      "path_length": 4,
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "all_paths_checked": 11,
+      "passed": true
+    },
+    {
+      "case": "constant_mismatch",
+      "distance": 1.4142135623730951,
+      "distance_x100": 141.4213562373095,
+      "path_length": 3,
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "all_paths_checked": 11,
+      "passed": true
+    }
+  ],
+  "actual_scores": [
+    {
+      "algorithm": "random",
+      "source": "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/results/hourly_return_pilot_random_s0",
+      "historical_reference": false,
+      "posts": 165,
+      "models": {
+        "deepseek-v4-1-flash-261017": 165
+      },
+      "independent_shanghai_dtw_x100": 33.279642322946216,
+      "independent_utc_dtw_x100": 33.27860279320155,
+      "cumulative_cost": 3.993557078753546,
+      "path_length": 12,
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          9,
+          9
+        ],
+        [
+          10,
+          10
+        ]
+      ],
+      "reported_values_match": true
+    },
+    {
+      "algorithm": "chronological",
+      "source": "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/agent_supply/inputs/chronological_s0",
+      "historical_reference": true,
+      "posts": 210,
+      "models": {
+        "deepseek-v4-1-flash": 210
+      },
+      "independent_shanghai_dtw_x100": 27.916822198090834,
+      "independent_utc_dtw_x100": 27.72737193354336,
+      "cumulative_cost": 3.070850441789992,
+      "path_length": 11,
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          9,
+          9
+        ],
+        [
+          10,
+          10
+        ]
+      ],
+      "reported_values_match": true
+    },
+    {
+      "algorithm": "interest",
+      "source": "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/results/hourly_return_pilot_interest_s0",
+      "historical_reference": false,
+      "posts": 215,
+      "models": {
+        "deepseek-v4-1-flash-261017": 215
+      },
+      "independent_shanghai_dtw_x100": 20.518046422992906,
+      "independent_utc_dtw_x100": 20.501886467785678,
+      "cumulative_cost": 2.2569851065292195,
+      "path_length": 11,
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          9,
+          9
+        ],
+        [
+          10,
+          10
+        ]
+      ],
+      "reported_values_match": true
+    }
+  ],
+  "ranking": [
+    "interest",
+    "chronological",
+    "random"
+  ],
+  "shanghai_primary_utc_secondary": true,
+  "historical_chronological_explicit_and_withdrawn_partial_excluded": true,
+  "different_historical_response_model_preserved": true,
+  "protected_execution_and_original_analysis_hashes_unchanged": true,
+  "limitations": "Numerical correctness does not remove the single-seed, historical model-version, fixed-author-type vs semantic-label or shared-reality-source limitations."
+}

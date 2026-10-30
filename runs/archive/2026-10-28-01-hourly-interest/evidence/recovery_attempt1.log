@@ -1,0 +1,3 @@
+首次恢复未通过：tarfile.AbsoluteLinkError: '.claude/skills/agentsociety-analysis' is a link to an absolute path
+原因：Git基线技能是指向本机扩展安装目录的绝对符号链接，安全解包拒绝；未绕过校验。保留tmp/recovered首次部分导出。
+修正：不导出.claude链接；冻结两项验收必需技能的实际文件及SHA256，恢复时复制为实体文件，再在新目标tmp/recovered_v2核验。

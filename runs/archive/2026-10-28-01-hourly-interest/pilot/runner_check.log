@@ -1,0 +1,13 @@
+test_configuration_cannot_escape_workspace_or_change_budget (__main__.RunnerTests.test_configuration_cannot_escape_workspace_or_change_budget) ... ok
+test_deadline_prevents_start_and_ledger_creation (__main__.RunnerTests.test_deadline_prevents_start_and_ledger_creation) ... ok
+test_final_service_failure_stops_without_next_condition (__main__.RunnerTests.test_final_service_failure_stops_without_next_condition) ... Agent行动、最终服务返回或确认发布记录失败
+ok
+test_model_drift_stops_and_preserves_first_completion (__main__.RunnerTests.test_model_drift_stops_and_preserves_first_completion) ... 实际返回模型与本批锁定版本不同
+ok
+test_serial_success_checks_real_fixture_records (__main__.RunnerTests.test_serial_success_checks_real_fixture_records) ... ok
+test_stop_refuses_foreign_pid (__main__.RunnerTests.test_stop_refuses_foreign_pid) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.429s
+
+OK

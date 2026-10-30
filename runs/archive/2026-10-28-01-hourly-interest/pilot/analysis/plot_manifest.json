@@ -1,0 +1,36 @@
+{
+  "scope": "single-seed descriptive pilot; not a manuscript figure",
+  "selected_algorithms": [
+    "random",
+    "interest"
+  ],
+  "excluded_algorithms": [
+    "chronological"
+  ],
+  "figure_role": "three aligned time trends",
+  "evidence": "complete summary.json and 22 actual weekly.csv rows",
+  "columns": [
+    "posted_meme_authors",
+    "meme_author_share",
+    "feed_meme_tag_share"
+  ],
+  "late_weeks": [
+    "2026-W19",
+    "2026-W20",
+    "2026-W21",
+    "2026-W22"
+  ],
+  "missing_values": "empty denominators shown as gaps, never filled with zero",
+  "uncertainty": "none; one run per arm, no confidence intervals or significance test",
+  "source_sha256": {
+    "summary.json": "19bd4df601aff307b6e68586d766694427193a273ba4e1c1155ebe9fea81cd61",
+    "weekly.csv": "369cf4ef1b3064b6e6e2a3386beb6748c9acd9cec1587e7ef3ddb23adf9c2d4c",
+    "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/pilot/selected_revision.json": "aebbd01585d25419055c47cd8feabe4c480df386115df4092b676e7a7f0dc034"
+  },
+  "script_sha256": "a6583668cab55cc74ca7024b2b23098ff99c605ed8cd1e58d84da51b08c5870b",
+  "matplotlib_version": "3.10.0",
+  "output_sha256": {
+    "weekly_comparison.png": "a26b5a02b891662035f1a24d289c42ac5d1ab25bb05ebaa3dc05367c4916ada7",
+    "weekly_comparison.svg": "97d217f9b1a0518fe753d376af172be89b6feb9edfa9022c5ff7f17455740260"
+  }
+}

@@ -2,13 +2,11 @@
 
 根级 `runs/` 用于用户明确开启的隔离探索，并保留已有对话决策与探索资产索引。普通任务直接在正式项目中按授权推进，不自动创建或续接 run。新 run 按“隔离探索 → 验证 → 授权采用 → 选择性落地 → 归档”处理，详细规则见[AGENTS.md](../AGENTS.md)。
 
-当前活跃探索见下表。正式研究从[experiment_2](../hypothesis_4/experiment_2/README.md)进入；它的引擎运行目录与本目录的探索 run 含义不同。
+当前无活跃的根级探索run，全部既有run已归档。正式研究仍从[experiment_2](../hypothesis_4/experiment_2/README.md)进入；引擎各次仿真运行保持正式目录与版本身份。
 
 ## 活跃探索
 
-| run | 目标与入口 |
-|---|---|
-| [2026-10-16-01-population-scale](2026-10-16-01-population-scale/README.md) | 扩容讨论暂缓；100人cuc/deepseek三制度完成，共603帖；新旧候选对比与独立审查已交付，主要排序保持、兴趣局部变化、质量未证等价；定时汇报已暂停，未正式采用或归档 |
+当前无活跃run。已归档材料见[归档索引](archive/README.md)。
 
 正式写作依据保留于paper目录；历史记录见[归档索引](archive/README.md)。
 
@@ -17,7 +15,6 @@
 | 资产 | 用途 |
 |---|---|
 | [README.md](README.md) | 活跃探索与使用约定 |
-| [2026-10-16-01-population-scale/](2026-10-16-01-population-scale/README.md) | 500／1000人下一轮主实验的规模、随机性与扩容规则讨论 |
 | [archive/](archive/README.md) | 已归档run索引、历史证据和恢复说明 |
 
 ## 使用约定

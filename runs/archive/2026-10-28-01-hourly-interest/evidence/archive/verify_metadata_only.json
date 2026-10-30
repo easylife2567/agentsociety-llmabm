@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "simulation_calls": 0,
+  "network_calls": 0,
+  "raw_checked": false,
+  "recovery": {
+    "baseline_commit": "aad3267fc9929a08a453ba427bdf25919bbffc70",
+    "patch_matches": true,
+    "files_verified": 76,
+    "skills_verified": 21,
+    "candidate_files": 78
+  },
+  "frozen_analysis_sources": {
+    "verified_files": 5,
+    "skipped_raw_files": 115,
+    "bytes": 457955
+  },
+  "preserved_files": {
+    "verified_files": 402,
+    "skipped_local_raw_files": 18595,
+    "historical_paths_and_original_bytes_unchanged": true
+  },
+  "raw_ignored_by_git": {
+    "pilot/results": true,
+    "seed_extension/results": true,
+    "pilot/agent_supply/inputs/chronological_s0": true
+  },
+  "env_ignored_by_git": true
+}

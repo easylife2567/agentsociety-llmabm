@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "files": 3,
+  "patch_sha256": "37c82c3e99b523c139331f270724390c82960782248ffd06edf817c0cea65c24",
+  "final_hashes": {
+    "analyze_pilot.py": "ef37509acbf38e2b4918c27292715ea4748cdae567c769c2ef26c2c694c1aef3",
+    "plot_pilot.py": "a6583668cab55cc74ca7024b2b23098ff99c605ed8cd1e58d84da51b08c5870b",
+    "test_analysis.py": "df318e7eb9a21f0f0e79df3797fb58d0edf96fb2087b0a9e3863649cd8a4297a"
+  }
+}

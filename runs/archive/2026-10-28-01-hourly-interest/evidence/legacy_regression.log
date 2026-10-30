@@ -1,0 +1,199 @@
+test_action_failures_empty_context_and_retry (test_arrival_timing.TimingTests.test_action_failures_empty_context_and_retry) ... ok
+test_complete_window_and_final_arrivals (test_arrival_timing.TimingTests.test_complete_window_and_final_arrivals) ... Executing <Task finished name='Task-7' coro=<TimingTests.test_complete_window_and_final_arrivals() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_arrival_timing.py:96> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 0.874 seconds
+ok
+test_empty_and_short_feed (test_arrival_timing.TimingTests.test_empty_and_short_feed) ... ok
+test_initial_and_official_boundary (test_arrival_timing.TimingTests.test_initial_and_official_boundary) ... Executing <Task finished name='Task-17' coro=<TimingTests.test_initial_and_official_boundary() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_arrival_timing.py:33> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 0.167 seconds
+ok
+test_legacy_not_activated (test_arrival_timing.TimingTests.test_legacy_not_activated) ... ok
+test_metrics_empty_and_different_candidate_pools (test_arrival_timing.TimingTests.test_metrics_empty_and_different_candidate_pools) ... ok
+test_prompt_budget_and_success_parser (test_arrival_timing.TimingTests.test_prompt_budget_and_success_parser) ... ok
+test_restore_matches_uninterrupted (test_arrival_timing.TimingTests.test_restore_matches_uninterrupted) ... ok
+test_stable_candidates_batch_order_and_delayed_posts (test_arrival_timing.TimingTests.test_stable_candidates_batch_order_and_delayed_posts) ... Executing <Task finished name='Task-42' coro=<TimingTests.test_stable_candidates_batch_order_and_delayed_posts() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_arrival_timing.py:51> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 0.174 seconds
+ok
+test_actual_detail_repairs_keep_referents_and_punctuation (test_content_quality.ContentTests.test_actual_detail_repairs_keep_referents_and_punctuation) ... ERROR
+test_failure_accounting_and_publication_confirmation (test_content_quality.ContentTests.test_failure_accounting_and_publication_confirmation) ... ok
+test_inconsistent_ledgers_are_rejected (test_content_quality.ContentTests.test_inconsistent_ledgers_are_rejected) ... ok
+test_legitimate_views_quotes_and_supported_facts_survive (test_content_quality.ContentTests.test_legitimate_views_quotes_and_supported_facts_survive) ... ok
+test_real_environment_exposure_inventory_and_recirculation (test_content_quality.ContentTests.test_real_environment_exposure_inventory_and_recirculation) ... ok
+test_refusal_filter_and_budget_exhaustion_keep_one_post (test_content_quality.ContentTests.test_refusal_filter_and_budget_exhaustion_keep_one_post) ... ok
+test_technical_retry_then_refusal_keeps_attempts (test_content_quality.ContentTests.test_technical_retry_then_refusal_keeps_attempts) ... ok
+test_twenty_historical_cases_on_both_actual_paths (test_content_quality.ContentTests.test_twenty_historical_cases_on_both_actual_paths) ... ok
+test_unknown_historical_time_is_not_fabricated (test_content_quality.ContentTests.test_unknown_historical_time_is_not_fabricated) ... ok
+test_chronological_stable_order_and_same_batch_visibility (test_timestamp_main.MainTimestampTests.test_chronological_stable_order_and_same_batch_visibility) ... ok
+test_chronological_weekly_supply_flow_is_conserved (test_timestamp_main.MainTimestampTests.test_chronological_weekly_supply_flow_is_conserved)
+时序帖当周入池，跨周观测只计本周新增供给，stock按窗口累积。 ... Executing <Task finished name='Task-94' coro=<MainTimestampTests.test_chronological_weekly_supply_flow_is_conserved() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_timestamp_main.py:145> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 0.121 seconds
+ok
+test_nine_complete_windows_have_no_future_exposure (test_timestamp_main.MainTimestampTests.test_nine_complete_windows_have_no_future_exposure)
+无生成演练仍走真实到达、周末排空、曝光累计与周写入路径。 ... Executing <Task finished name='Task-99' coro=<MainTimestampTests.test_nine_complete_windows_have_no_future_exposure() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_timestamp_main.py:71> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 6.109 seconds
+ok
+test_paired_matrix_and_input_hashes (test_timestamp_main.MainTimestampTests.test_paired_matrix_and_input_hashes)
+人口/参数/时刻/样本配对，推荐制度仍是唯一分臂配置键。 ... ok
+test_profile_budget_is_shared_and_exhaustion_keeps_speech (test_timestamp_main.MainTimestampTests.test_profile_budget_is_shared_and_exhaustion_keeps_speech)
+测试配置额度从profile进入真实生成路径，三臂共用一个ledger。 ... ok
+test_recirculation_and_restore_preserve_each_regime (test_timestamp_main.MainTimestampTests.test_recirculation_and_restore_preserve_each_regime) ... Executing <Task finished name='Task-113' coro=<MainTimestampTests.test_recirculation_and_restore_preserve_each_regime() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_timestamp_main.py:122> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 0.202 seconds
+ok
+test_actual_action_gate_and_restored_decision_do_not_repeat (test_event_week_schedule.EventWeekTests.test_actual_action_gate_and_restored_decision_do_not_repeat)
+五人的旧小时关闭、新小时正常判定；W12/W14回原小时，恢复不再决策。 ... ERROR
+test_actual_cli_profiles_and_agent_workspaces_preserve_overrides (test_event_week_schedule.EventWeekTests.test_actual_cli_profiles_and_agent_workspaces_preserve_overrides)
+正式schema、CLI profile拆分及900个Agent工作区读取均不丢覆盖字段。 ... [2026-10-28 21:18:58] INFO    ModuleRegistry initialized (lazy loading enabled)
+[2026-10-28 21:18:58] INFO    Cleared 0 custom modules
+ERROR
+test_invalid_override_does_not_silently_drop_an_opportunity (test_event_week_schedule.EventWeekTests.test_invalid_override_does_not_silently_drop_an_opportunity)
+未知Agent、窗口外周、无step小时及非arrival入口不能接受覆盖。 ... ok
+test_nine_windows_cover_all_mourning_agents_after_official (test_event_week_schedule.EventWeekTests.test_nine_windows_cover_all_mourning_agents_after_official)
+逐条核验1100机会与22人事件后时刻；三臂官方都没有强制槽。 ... Executing <Task finished name='Task-132' coro=<EventWeekTests.test_nine_windows_cover_all_mourning_agents_after_official() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_event_week_schedule.py:49> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 6.102 seconds
+ok
+test_only_five_weekly_opportunities_change (test_event_week_schedule.EventWeekTests.test_only_five_weekly_opportunities_change)
+逐配置对照Git基线，确保没有顺便改变人口、公式参数、feed或步骤。 ... ok
+test_w13_restore_equivalence_and_mismatched_schedule_rejected (test_event_week_schedule.EventWeekTests.test_w13_restore_equivalence_and_mismatched_schedule_rejected)
+W13已进入覆盖时段后恢复，状态/曝光一致；换表恢复明确失败。 ... ERROR
+test_actual_registry_resolves_formal_modules_from_custom (test_ordinary_official.OrdinaryOfficialTests.test_actual_registry_resolves_formal_modules_from_custom)
+扫描真实registry后检查类源码，配置目录没有替代正式运行类。 ... [2026-10-28 21:19:05] INFO    Cleared 0 custom modules
+ERROR
+test_historical_agenda_and_checkpoint_policy (test_ordinary_official.OrdinaryOfficialTests.test_historical_agenda_and_checkpoint_policy)
+默认历史路径仍置顶；ordinary恢复连续，改策略恢复明确拒绝。 ... ERROR
+test_invalid_or_unsupported_policy_is_rejected (test_ordinary_official.OrdinaryOfficialTests.test_invalid_or_unsupported_policy_is_rejected)
+拼错策略不能静默回到置顶；常规legacy入口不接受ordinary。 ... ok
+test_official_is_ordinary_in_candidate_and_feed_sampling (test_ordinary_official.OrdinaryOfficialTests.test_official_is_ordinary_in_candidate_and_feed_sampling)
+实际官方不占特殊槽；固定floor时，普通抽样不使用官方标记。 ... Executing <Task finished name='Task-159' coro=<OrdinaryOfficialTests.test_official_is_ordinary_in_candidate_and_feed_sampling() done, defined at /Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_ordinary_official.py:27> result=None created at /Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py:100> took 0.109 seconds
+ok
+test_ordinary_slot_can_select_or_miss_official (test_ordinary_official.OrdinaryOfficialTests.test_ordinary_slot_can_select_or_miss_official)
+确定性小池正反例：没有把官方禁推，也不为官方保留普通槽。 ... ok
+
+======================================================================
+ERROR: test_actual_detail_repairs_keep_referents_and_punctuation (test_content_quality.ContentTests.test_actual_detail_repairs_keep_referents_and_punctuation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_content_quality.py", line 197, in test_actual_detail_repairs_keep_referents_and_punctuation
+    decision = next(d for d in json.loads(path.read_text())['decision_log'] if d['week']==week)
+                                          ~~~~~~~~~~~~~~^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/pathlib/_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/pathlib/_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/pathlib/_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_1/runs/arrival_timing_diagnostic/arrival_timing_diagnostic_timestamp_random_s0/agents/agent_0050/AGENT.json'
+
+======================================================================
+ERROR: test_actual_action_gate_and_restored_decision_do_not_repeat (test_event_week_schedule.EventWeekTests.test_actual_action_gate_and_restored_decision_do_not_repeat)
+五人的旧小时关闭、新小时正常判定；W12/W14回原小时，恢复不再决策。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_event_week_schedule.py", line 133, in test_actual_action_gate_and_restored_decision_do_not_repeat
+    with tempfile.TemporaryDirectory(dir=INIT.parent / 'tmp') as folder:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/tempfile.py", line 887, in __init__
+    self.name = mkdtemp(suffix, prefix, dir)
+                ~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/tempfile.py", line 385, in mkdtemp
+    _os.mkdir(file, 0o700)
+    ~~~~~~~~~^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/tmp/tmpxdedw26l'
+
+======================================================================
+ERROR: test_actual_cli_profiles_and_agent_workspaces_preserve_overrides (test_event_week_schedule.EventWeekTests.test_actual_cli_profiles_and_agent_workspaces_preserve_overrides)
+正式schema、CLI profile拆分及900个Agent工作区读取均不丢覆盖字段。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_event_week_schedule.py", line 103, in test_actual_cli_profiles_and_agent_workspaces_preserve_overrides
+    scan_and_register_custom_modules(ROOT)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/registry/modules.py", line 286, in scan_and_register_custom_modules
+    registry.set_workspace(workspace_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/registry/base.py", line 165, in set_workspace
+    self._workspace_path = resolve_workspace_root(str(workspace_path))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/backend/path_security.py", line 29, in resolve_workspace_root
+    raise HTTPException(status_code=403, detail="Workspace path is not allowed")
+fastapi.exceptions.HTTPException: 403: Workspace path is not allowed
+
+======================================================================
+ERROR: test_w13_restore_equivalence_and_mismatched_schedule_rejected (test_event_week_schedule.EventWeekTests.test_w13_restore_equivalence_and_mismatched_schedule_rejected)
+W13已进入覆盖时段后恢复，状态/曝光一致；换表恢复明确失败。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_event_week_schedule.py", line 175, in test_w13_restore_equivalence_and_mismatched_schedule_rejected
+    with tempfile.TemporaryDirectory(dir=INIT.parent / 'tmp') as folder:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/tempfile.py", line 887, in __init__
+    self.name = mkdtemp(suffix, prefix, dir)
+                ~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/tempfile.py", line 385, in mkdtemp
+    _os.mkdir(file, 0o700)
+    ~~~~~~~~~^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/tmp/tmp8pxi_y6b'
+
+======================================================================
+ERROR: test_actual_registry_resolves_formal_modules_from_custom (test_ordinary_official.OrdinaryOfficialTests.test_actual_registry_resolves_formal_modules_from_custom)
+扫描真实registry后检查类源码，配置目录没有替代正式运行类。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_ordinary_official.py", line 103, in test_actual_registry_resolves_formal_modules_from_custom
+    scan_and_register_custom_modules(ROOT)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/registry/modules.py", line 286, in scan_and_register_custom_modules
+    registry.set_workspace(workspace_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/registry/base.py", line 165, in set_workspace
+    self._workspace_path = resolve_workspace_root(str(workspace_path))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/backend/path_security.py", line 29, in resolve_workspace_root
+    raise HTTPException(status_code=403, detail="Workspace path is not allowed")
+fastapi.exceptions.HTTPException: 403: Workspace path is not allowed
+
+======================================================================
+ERROR: test_historical_agenda_and_checkpoint_policy (test_ordinary_official.OrdinaryOfficialTests.test_historical_agenda_and_checkpoint_policy)
+默认历史路径仍置顶；ordinary恢复连续，改策略恢复明确拒绝。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/custom/tests/test_ordinary_official.py", line 82, in test_historical_agenda_and_checkpoint_policy
+    with tempfile.TemporaryDirectory(dir=INIT.parent / 'tmp') as folder:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/tempfile.py", line 887, in __init__
+    self.name = mkdtemp(suffix, prefix, dir)
+                ~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/easylife/.local/share/uv/python/cpython-3.13.9-macos-aarch64-none/lib/python3.13/tempfile.py", line 385, in mkdtemp
+    _os.mkdir(file, 0o700)
+    ~~~~~~~~~^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/tmp/tmpyud2bnjq'
+
+----------------------------------------------------------------------
+Ran 35 tests in 14.618s
+
+FAILED (errors=6)
+{"tests_run": 35, "failures": 0, "errors": 6, "network_attempts": 0, "llm_calls": 0, "scientific_simulation_started": false}

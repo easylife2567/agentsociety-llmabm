@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "finished_at": "2026-10-28T15:17:42.164861+00:00",
+  "selected_algorithms": [
+    "random",
+    "interest"
+  ],
+  "completed_runs": 2,
+  "actions": 2200,
+  "agent_decisions": 2200,
+  "week_rows": 22,
+  "selected_body_requests": 380,
+  "withdrawn_recorded_body_requests": 30,
+  "total_recorded_body_requests": 410,
+  "extra_requests": 0,
+  "response_model": "deepseek-v4-1-flash-261017",
+  "raw_snapshot_files": 2337,
+  "main_protected_files_unchanged": 322,
+  "active_processes": [],
+  "analysis_recomputed": true,
+  "numeric_summary_unchanged_by_metadata_revision": true,
+  "plot_checked": true,
+  "automation_id": "seed0",
+  "automation_deleted": true,
+  "main_pipeline_unchanged": true,
+  "commit_created": false,
+  "formal_adoption": false,
+  "source_sha256": {
+    "pilot/analysis/summary.json": "19bd4df601aff307b6e68586d766694427193a273ba4e1c1155ebe9fea81cd61",
+    "pilot/analysis/weekly.csv": "369cf4ef1b3064b6e6e2a3386beb6748c9acd9cec1587e7ef3ddb23adf9c2d4c",
+    "pilot/analysis/report.md": "f14c007a3fdaccef7409a4449af4c4363e778401bf3c66b6bd509f98ca06b361",
+    "pilot/analysis/weekly_comparison.png": "a26b5a02b891662035f1a24d289c42ac5d1ab25bb05ebaa3dc05367c4916ada7",
+    "pilot/analysis/plot_manifest.json": "f5b54444155be5b3284482296f576c33ef478e8ae25f64204a2070919ec0e0fb",
+    "pilot/raw_results_manifest.json": "a9424b21a99026327567cc9b65e017d079c642f406f44d648f7e16a8198d13e7"
+  }
+}

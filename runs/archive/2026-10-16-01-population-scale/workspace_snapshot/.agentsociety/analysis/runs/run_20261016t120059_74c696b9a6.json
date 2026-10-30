@@ -1,0 +1,48 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261016t120059_74c696b9a6",
+  "operation_id": "validate-plan",
+  "operation_contract_version": 1,
+  "execution_key": "dbd77c809f173d8503c3158c357556a9c44771cdce4e2c860ae579f5eb2ec6d6",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4_cuc",
+  "experiment_id": "",
+  "input_names": [
+    "hypothesis_id",
+    "workspace"
+  ],
+  "input_fingerprint": "c875987ac663265a95c5ff55e1741261823fe40ddf9bbb2e8a3e64219449f549",
+  "safe_inputs": {
+    "hypothesis_id": "4_cuc"
+  },
+  "preflight": {
+    "operation_id": "validate-plan",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "recommended_next_step": "Run record-attestation --phase frame after LLM review of this stage",
+    "status": "BLOCKED"
+  },
+  "error": null,
+  "declared_artifacts": [
+    "frame checkpoint in harness state"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4_cuc/state.yaml": "9ed01ccee4893a06c1d27d82aba1ad5d5258c011a8772ec183b9537cd8f46f3f"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 80809,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-16T12:00:59.300955Z",
+  "updated_at": "2026-10-16T12:00:59.306336Z",
+  "completed_at": "2026-10-16T12:00:59.306313Z",
+  "duration_ms": 5
+}

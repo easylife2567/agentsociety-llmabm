@@ -1,0 +1,318 @@
+--- a/pilot/analyze_pilot.py
++++ b/pilot/analyze_pilot.py
+@@ -1,4 +1,4 @@
+-"""三臂seed0试运行的确定性描述分析；只有全部真实运行完成后才产出。"""
++"""所选制度seed0试运行的确定性描述分析；只有全部所选运行完成后才产出。"""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -221,25 +221,44 @@
+     return '、'.join(selected) + ('并列最高' if len(selected) > 1 else '最高')
+ 
+ 
+-def outputs(plan_path, output):
++def outputs(plan_path, output, selection_path=None):
+     plan = read(plan_path)
+     if plan.get('execution_authorized') is not True:
+         raise ValueError('该计划没有运行授权标记')
+     state_path = Path(plan.get('state_path', plan_path.parent / 'batch_execution.json'))
+     state = read(state_path)
+     if state.get('status') != 'completed':
+-        raise ValueError('三臂尚未全部完成；不生成分析产物')
+-    runs = plan['runs']
+-    if len(runs) != 3 or {row['algorithm'] for row in runs} != set(ARMS) or any(row['seed'] != 0 for row in runs):
+-        raise ValueError('本脚本仅适用三臂各一次seed0测试')
++        raise ValueError('所选制度尚未全部完成；不生成分析产物' if selection_path is not None else '三臂尚未全部完成；不生成分析产物')
++    all_runs = plan['runs']
++    if len(all_runs) != 3 or {row['algorithm'] for row in all_runs} != set(ARMS) or any(row['seed'] != 0 for row in all_runs):
++        raise ValueError('原计划必须完整保留三臂seed0，使用selection显式缩小本次比较范围')
++    arms, excluded, excluded_runs = ARMS, (), []
++    if selection_path is not None:
++        selection = read(selection_path)
++        chosen = selection['selected_algorithms']
++        omitted = selection['excluded_algorithms']
++        if len(chosen) != 2 or set(chosen) != {'random', 'interest'} or omitted != ['chronological']:
++            raise ValueError('当前selection仅允许随机/兴趣，明确排除时序')
++        arms = tuple(arm for arm in ARMS if arm in chosen)
++        excluded = tuple(omitted)
++        excluded_runs = state.get('excluded_runs', [])
++        if len(excluded_runs) != 1 or excluded_runs[0].get('algorithm') != 'chronological':
++            raise ValueError('中止时序的排除记录缺失或不唯一')
++        consumed = excluded_runs[0].get('consumed_requests')
++        if not isinstance(consumed, int) or isinstance(consumed, bool) or consumed < 0:
++            raise ValueError('中止时序必须单列已消耗正文外层请求数')
++    runs = [row for row in all_runs if row['algorithm'] in arms]
++    scope_name = '随机与兴趣两臂' if selection_path is not None else '三臂'
+     if set(plan['analysis_contract']['late_weeks']) != set(LATE):
+         raise ValueError('主要观察窗口与已冻结约定不一致')
+     if {row['run_id'] for row in state['completed']} != {row['run_id'] for row in runs}:
+-        raise ValueError('完成登记未精确覆盖三臂')
++        raise ValueError('完成登记未精确覆盖所选制度；不得将中止时序混入比较')
+     workspace = Path(plan['workspace']).resolve()
+     hashes = {str(plan_path): digest(plan_path), str(state_path): digest(state_path), str(Path(__file__).resolve()): digest(Path(__file__).resolve())}
++    if selection_path is not None:
++        hashes[str(selection_path)] = digest(selection_path)
+     weekly, metrics = [], []
+-    for arm in ARMS:
++    for arm in arms:
+         run = next(row for row in runs if row['algorithm'] == arm)
+         rows, result = extract_run(run, workspace, hashes)
+         weekly.extend(rows)
+@@ -247,17 +266,23 @@
+         for name in ('config', 'steps'):
+             path = Path(run[name])
+             hashes[str(path)] = digest(path)
+-    if len(weekly) != 33:
+-        raise ValueError('周表不是三臂×11周')
++    if len(weekly) != len(arms) * 11:
++        raise ValueError('周表不是所选制度×11周')
+     models = set().union(*(set(row['response_model_counts']) for row in metrics))
+     if len(models) != 1 or 'missing' in models:
+         raise ValueError('实际成功正文模型不唯一或有缺失')
+     body_requests = sum(row['body_outer_requests'] for row in metrics)
+-    if body_requests > plan['body_outer_requests_limit']:
+-        raise ValueError('正文外层请求超过本pilot预算')
+-    summary = dict(status='complete', scope='three-arms-seed0-exploratory-only',
++    excluded_requests = sum(row['consumed_requests'] for row in excluded_runs)
++    accounted_requests = body_requests + excluded_requests
++    if accounted_requests > plan['body_outer_requests_limit']:
++        raise ValueError('含已中止制度的正文外层请求超过本pilot预算')
++    summary = dict(status='complete',
++                   scope='selected-arms-seed0-exploratory-only' if selection_path is not None else 'three-arms-seed0-exploratory-only',
++                   selected_algorithms=list(arms), excluded_algorithms=list(excluded),
++                   excluded_runs=excluded_runs, selected_body_outer_requests=body_requests,
++                   excluded_body_outer_requests=excluded_requests,
+                    late_weeks=list(LATE), requested_model=plan['requested_model'],
+-                   actual_response_models=sorted(models), runs=metrics, total_body_outer_requests=body_requests,
++                   actual_response_models=sorted(models), runs=metrics, total_body_outer_requests=accounted_requests,
+                    replay_query=REPLAY_SQL,
+                    primary_comparison='fixed-author-type-successful-posts; no semantic recoding',
+                    inference='single-seed descriptive comparison; no significance or prediction', source_sha256=hashes)
+@@ -270,17 +295,20 @@
+         exp = row['late_exposures']
+         source_table.append(f"| {NAMES[row['algorithm']]} | {exp['feed_total']} | {exp['feed_agent_total']} | {pct(exp['feed_agent_meme_tag_share'])} | {pct(exp['own_meme_tag_share'])} | {pct(exp['cross_generated_meme_share'])} |")
+     report = '\n'.join([
+-        '# 小时回流三臂seed0试运行观察', '',
+-        f"三臂均从W12初始状态新运行；每臂100人、11周、693批、1100次行动。实际正文返回模型为`{next(iter(models))}`。",
++        f'# 小时回流{scope_name}seed0试运行观察', '',
++        f"{scope_name}均从W12初始状态新运行；每臂100人、11周、693批、1100次行动。实际正文返回模型为`{next(iter(models))}`。",
+         '本次只有一个seed，结果用于观测当前规则的运行表现，不作显著性检验或跨seed稳定性判断。', '',
+         f"主要窗口固定为W19–W22。晚期玩梗型作者发帖数量为{winners(metrics, 'late_meme_posts')}，其供给份额为{winners(metrics, 'late_meme_share')}。数量与份额分别列出，不能只凭份额判断产量。", '',
+         *table, '',
++        '![两臂每周供给与曝光](weekly_comparison.png)',
++        '图：随机与兴趣的玩梗型作者发帖数量、供给份额和实际feed标签曝光；阴影为固定W19–W22窗口，仅单seed观察。', '',
+         '曝光统计直接汇总实际行动feed，分开标记外部真实帖和Agent生成帖；分母为实际曝光条数。', '',
+         *source_table, '',
+-        '三臂小时回流审计均通过：生成帖可用时刻与发布时间一致，同批生成帖曝光为0，未来曝光为0，发布与入池数量守恒。这里的入池不等于每条帖子必定被推荐。', '',
++        f'{scope_name}小时回流审计均通过：生成帖可用时刻与发布时间一致，同批生成帖曝光为0，未来曝光为0，发布与入池数量守恒。这里的入池不等于每条帖子必定被推荐。', '',
+         '作者类型是初始化固定身份；供给指标按成功posted计数，不是独立语义判定。feed中的玩梗标签是模型使用的pool type；Agent帖标签来自作者类型，外部帖沿用冻结输入标签。曝光接触也不等于证明全文理解。', '',
+-        '本次只比较统一回流下三套完整制度。生命周期、保底、兴趣抽样等原有制度差异保持，不能把臂间差异单独归为排序效应。结果不证明任何制度在所有目标下最优，也不据本seed结果调整参数。', '',
+-        f"成功发布正文外层请求合计{body_requests}次；这不是全部SDK请求量或token账单。逐run来源哈希、模型计数和回流审计见summary.json，逐周曲线数据见weekly.csv。", '',
++        f'本次只比较统一回流下{len(arms)}套完整制度。生命周期、保底、兴趣抽样等原有制度差异保持，不能把臂间差异单独归为排序效应。结果不证明任何制度在所有目标下最优，也不据本seed结果调整参数。', '',
++        f"所选制度正文外层请求合计{body_requests}次；已中止排除制度消耗{excluded_requests}次，预算累计{accounted_requests}次。这不是全部SDK请求量或token账单。逐run来源哈希、模型计数和回流审计见summary.json，逐周曲线数据见weekly.csv。", '',
++        ('时序已按用户指示中止，其不完整轨迹不进入供给、曝光、排序或图表比较；本次没有自动搬入旧时序结果。' if excluded else ''), '',
+     ])
+     buffer = io.StringIO(newline='')
+     writer = csv.DictWriter(buffer, fieldnames=list(weekly[0]), lineterminator='\n')
+@@ -289,7 +317,7 @@
+     return {
+         output / 'summary.json': json.dumps(summary, ensure_ascii=False, indent=2) + '\n',
+         output / 'weekly.csv': buffer.getvalue(), output / 'report.md': report,
+-        output / 'README.md': '# 三臂seed0试运行分析\n\n仅在三臂实际完成并独立核验后生成，不含占位图或预测。\n\n| 文件 | 用途 |\n|---|---|\n| [report.md](report.md) | 中文描述性观察、口径与限制 |\n| [summary.json](summary.json) | 逐run汇总、回流审计和原始来源SHA256 |\n| [weekly.csv](weekly.csv) | 三臂×11周供给与曝光长表，0分母留空 |\n'
++        output / 'README.md': f'# {scope_name}seed0试运行分析\n\n仅在所选制度实际完成并独立核验后生成，不含占位图或预测；排除制度不混入比较。\n\n| 文件 | 用途 |\n|---|---|\n| [report.md](report.md) | 中文描述性观察、口径与限制 |\n| [summary.json](summary.json) | 逐run汇总、回流审计、排除消耗和原始来源SHA256 |\n| [weekly.csv](weekly.csv) | {len(arms)}臂×11周供给与曝光长表，0分母留空 |\n| [weekly_comparison.png](weekly_comparison.png)、[SVG](weekly_comparison.svg) | 由本周表生成的两臂三面板比较图 |\n| [plot_manifest.json](plot_manifest.json) | 图表口径、来源与输出哈希 |\n'
+     }
+ 
+ 
+@@ -297,13 +325,14 @@
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument('--plan', type=Path, required=True)
+     parser.add_argument('--output-dir', type=Path)
++    parser.add_argument('--selection', type=Path, help='显式采用所选随机/兴趣两臂修订；不改原运行计划')
+     parser.add_argument('--check', action='store_true', help='只读重算并核对已有分析产物')
+     args = parser.parse_args()
+     plan_path = args.plan.resolve()
+     output = (args.output_dir or plan_path.parent / 'analysis').resolve()
+     if not output.is_relative_to(plan_path.parent):
+         raise ValueError('分析输出只能位于本pilot目录')
+-    products = outputs(plan_path, output)
++    products = outputs(plan_path, output, args.selection.resolve() if args.selection else None)
+     if args.check:
+         if any(not path.is_file() or path.read_text(encoding='utf-8') != data for path, data in products.items()):
+             raise ValueError('分析输出与独立重算不一致')
+--- a/pilot/plot_pilot.py
++++ b/pilot/plot_pilot.py
+@@ -1,4 +1,4 @@
+-"""从完整三臂分析周表绘制单seed观察图；不读取或启动运行中的引擎。"""
++"""从完整所选制度分析周表绘制单seed观察图；不读取或启动运行中的引擎。"""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -30,19 +30,28 @@
+         left is not None and right is not None and math.isclose(left, right, rel_tol=0, abs_tol=1e-12))
+ 
+ 
+-def verified_rows(summary, rows):
+-    """绘图前核对33个完整周单元及分母，与已经通过分析门禁的汇总一致。"""
+-    if summary.get('status') != 'complete' or summary.get('scope') != 'three-arms-seed0-exploratory-only':
+-        raise ValueError('绘图要求三臂已完整通过分析门禁')
++def verified_rows(summary, rows, selection=None):
++    """绘图前核对所选制度完整周单元，明确排除中止制度。"""
++    arms = ARMS
++    expected_scope = 'three-arms-seed0-exploratory-only'
++    if selection is not None:
++        if selection['selected_algorithms'] != ['random', 'interest'] or selection['excluded_algorithms'] != ['chronological']:
++            raise ValueError('绘图selection必须明确只含随机/兴趣')
++        arms = ('random', 'interest')
++        expected_scope = 'selected-arms-seed0-exploratory-only'
++        if summary.get('selected_algorithms') != list(arms) or summary.get('excluded_algorithms') != ['chronological']:
++            raise ValueError('绘图selection与已完成分析范围不一致')
++    if summary.get('status') != 'complete' or summary.get('scope') != expected_scope:
++        raise ValueError('绘图要求所选制度已完整通过分析门禁，并显式传入相同selection')
+     if set(summary.get('late_weeks', [])) != LATE:
+         raise ValueError('主要窗口不是已冻结W19–W22')
+-    if len(rows) != 33 or {row['algorithm'] for row in rows} != set(ARMS):
+-        raise ValueError('周表不是三臂×11周')
++    if len(rows) != len(arms) * 11 or {row['algorithm'] for row in rows} != set(arms):
++        raise ValueError('周表不是所选制度×11周')
+     metrics = {row['algorithm']: row for row in summary['runs']}
+-    if set(metrics) != set(ARMS):
+-        raise ValueError('汇总没有精确覆盖三臂')
++    if set(metrics) != set(arms):
++        raise ValueError('汇总没有精确覆盖所选制度')
+     grouped = {}
+-    for arm in ARMS:
++    for arm in arms:
+         selected = sorted((row for row in rows if row['algorithm'] == arm), key=lambda row: row['week'])
+         if tuple(row['week'] for row in selected) != WEEKS or any(int(row['seed']) != 0 for row in selected):
+             raise ValueError('周表存在重复/缺失周或不同seed')
+@@ -76,12 +85,17 @@
+ def main():
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument('--analysis-dir', type=Path, default=Path(__file__).parent / 'analysis')
++    parser.add_argument('--selection', type=Path, help='与分析时相同的显式制度选择修订')
+     args = parser.parse_args()
+     directory = args.analysis_dir.resolve()
+     summary_path, weekly_path = directory / 'summary.json', directory / 'weekly.csv'
+     summary = json.loads(summary_path.read_text(encoding='utf-8'))
++    selection_path = args.selection.resolve() if args.selection else None
++    selection = json.loads(selection_path.read_text(encoding='utf-8')) if selection_path else None
++    if selection_path is not None and summary['source_sha256'].get(str(selection_path)) != digest(selection_path):
++        raise ValueError('绘图selection字节与分析冻结来源不同')
+     with weekly_path.open(encoding='utf-8', newline='') as stream:
+-        grouped = verified_rows(summary, list(csv.DictReader(stream)))
++        grouped = verified_rows(summary, list(csv.DictReader(stream)), selection)
+     paths = [directory / f'weekly_comparison.{extension}' for extension in ('png', 'svg')]
+     manifest_path = directory / 'plot_manifest.json'
+     if any(path.exists() for path in [*paths, manifest_path]):
+@@ -108,7 +122,7 @@
+     x = list(range(12, 23))
+     for axis, (field, title, ylabel, scale) in zip(axes, panels):
+         axis.axvspan(18.5, 22.3, color='#F4EEE4', zorder=0)
+-        for arm in ARMS:
++        for arm in grouped:
+             values = [fraction(row[field]) for row in grouped[arm]]
+             y = [math.nan if value is None else value * scale for value in values]
+             axis.plot(x, y, color=COLORS[arm], marker='o', markersize=3.5, linewidth=1.8)
+@@ -117,8 +131,8 @@
+         axis.set_ylim(0, 19 if field == 'posted_meme_authors' else 100)
+         axis.grid(axis='y', alpha=.18, linewidth=.7)
+     handles = [Line2D([0], [0], color=COLORS[arm], lw=2, marker='o', ms=4, label=LABELS[arm])
+-               for arm in ARMS]
+-    figure.suptitle('Hourly recirculation: three-arm pilot, seed 0', x=.065, ha='left', fontsize=13)
++               for arm in grouped]
++    figure.suptitle(f'Hourly recirculation: {len(grouped)}-arm pilot, seed 0', x=.065, ha='left', fontsize=13)
+     figure.legend(handles=handles, loc='lower center', ncol=3, bbox_to_anchor=(.5, .055))
+     figure.text(.5, .015,
+                 'One run per arm; no uncertainty bands. Shading: W19–W22. Empty denominators remain gaps.\n'
+@@ -130,8 +144,9 @@
+     plt.close(figure)
+     contract = dict(
+         scope='single-seed descriptive pilot; not a manuscript figure',
++        selected_algorithms=list(grouped), excluded_algorithms=summary.get('excluded_algorithms', []),
+         figure_role='three aligned time trends',
+-        evidence='complete summary.json and 33 actual weekly.csv rows',
++        evidence=f'complete summary.json and {len(grouped) * len(WEEKS)} actual weekly.csv rows',
+         columns=[panel[0] for panel in panels], late_weeks=sorted(LATE),
+         missing_values='empty denominators shown as gaps, never filled with zero',
+         uncertainty='none; one run per arm, no confidence intervals or significance test',
+@@ -139,6 +154,8 @@
+         script_sha256=digest(Path(__file__)), matplotlib_version=matplotlib.__version__,
+         output_sha256={path.name: digest(path) for path in paths},
+     )
++    if selection_path is not None:
++        contract['source_sha256'][str(selection_path)] = digest(selection_path)
+     manifest_path.write_text(json.dumps(contract, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+     print(json.dumps(dict(status='written', files=[str(path) for path in [*paths, manifest_path]]), ensure_ascii=False))
+ 
+--- a/pilot/test_analysis.py
++++ b/pilot/test_analysis.py
+@@ -4,6 +4,7 @@
+ from pathlib import Path
+ import tempfile
+ import unittest
++from unittest.mock import patch
+ 
+ spec = importlib.util.spec_from_file_location('pilot_analysis', Path(__file__).with_name('analyze_pilot.py'))
+ analysis = importlib.util.module_from_spec(spec)
+@@ -67,5 +68,61 @@
+             plot.verified_rows(summary, rows)
+ 
+ 
++    def test_explicit_selection_only_reads_two_completed_arms_and_counts_withdrawn_cost(self):
++        with tempfile.TemporaryDirectory() as folder:
++            root = Path(folder)
++            config, steps = root / 'config.json', root / 'steps.yaml'
++            config.write_text('{}')
++            steps.write_text('steps: []')
++            runs = [dict(algorithm=arm, seed=0, run_id=arm, config=str(config), steps=str(steps)) for arm in analysis.ARMS]
++            state_path = root / 'batch_execution.json'
++            state = dict(status='completed', completed=[dict(run_id=arm) for arm in ('random', 'interest')],
++                         excluded_runs=[dict(algorithm='chronological', consumed_requests=30, status='withdrawn')])
++            state_path.write_text(json.dumps(state))
++            plan_path = root / 'runtime_plan.json'
++            plan_path.write_text(json.dumps(dict(execution_authorized=True, state_path=str(state_path),
++                workspace=str(root), runs=runs, analysis_contract=dict(late_weeks=list(analysis.LATE)),
++                body_outer_requests_limit=3630, requested_model='offline-fixture')))
++            selection_path = root / 'selected_revision.json'
++            selection = dict(selected_algorithms=['random', 'interest'], excluded_algorithms=['chronological'])
++            selection_path.write_text(json.dumps(selection))
++
++            def fixed_result(run, workspace, hashes):
++                rows = [dict(algorithm=run['algorithm'], week=week) for week in analysis.WEEKS]
++                exp = dict(feed_total=0, feed_agent_total=0, feed_meme_tag_share=None,
++                           feed_agent_meme_tag_share=None, own_meme_tag_share=None, cross_generated_meme_share=None)
++                metric = dict(algorithm=run['algorithm'], response_model_counts={'offline-fixture': 1},
++                    body_outer_requests=5, total_posts=0, late_meme_posts=0, late_total_posts=0,
++                    late_meme_share=None, late_exposures=exp)
++                return rows, metric
++
++            with patch.object(analysis, 'extract_run', side_effect=fixed_result) as extract:
++                result = analysis.outputs(plan_path, root / 'analysis', selection_path)
++                self.assertEqual([call.args[0]['algorithm'] for call in extract.call_args_list], ['random', 'interest'])
++            summary = json.loads(result[root / 'analysis/summary.json'])
++            self.assertEqual(summary['selected_algorithms'], ['random', 'interest'])
++            self.assertEqual(summary['total_body_outer_requests'], 40)
++            self.assertEqual(summary['excluded_body_outer_requests'], 30)
++            self.assertEqual(len(result[root / 'analysis/weekly.csv'].strip().splitlines()), 23)
++            state['completed'].append(dict(run_id='chronological'))
++            state_path.write_text(json.dumps(state))
++            with self.assertRaisesRegex(ValueError, '中止时序'):
++                analysis.outputs(plan_path, root / 'analysis', selection_path)
++
++    def test_two_curve_plot_requires_matching_explicit_selection(self):
++        arms = ('random', 'interest')
++        rows = [dict(algorithm=arm, seed='0', week=week, posted_total='0', posted_meme_authors='0',
++                     feed_total='0', feed_meme_tag='0', meme_author_share='', feed_meme_tag_share='')
++                for arm in arms for week in plot.WEEKS]
++        summary = dict(status='complete', scope='selected-arms-seed0-exploratory-only', late_weeks=list(plot.LATE),
++                       selected_algorithms=list(arms), excluded_algorithms=['chronological'],
++                       runs=[dict(algorithm=arm, total_posts=0, late_meme_posts=0, late_total_posts=0,
++                                  late_exposures=dict(feed_total=0, feed_meme_tag=0)) for arm in arms])
++        selection = dict(selected_algorithms=list(arms), excluded_algorithms=['chronological'])
++        self.assertEqual(list(plot.verified_rows(summary, rows, selection)), list(arms))
++        with self.assertRaisesRegex(ValueError, '显式'):
++            plot.verified_rows(summary, rows)
++
++
+ if __name__ == '__main__':
+     unittest.main()

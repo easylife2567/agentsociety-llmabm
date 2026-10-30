@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "at_utc": "2026-10-30T08:55:26.470569+00:00",
+  "baseline_commit": "aad3267fc9929a08a453ba427bdf25919bbffc70",
+  "tracked_files": [
+    "custom/envs/README.md",
+    "custom/envs/curation_arrival_schedule.py",
+    "custom/envs/curation_dynamics_space.py",
+    "custom/tests/README.md",
+    "hypothesis_4/experiment_2/EXPERIMENT.md",
+    "hypothesis_4/experiment_2/README.md",
+    "hypothesis_4/experiment_2/init/README.md",
+    "hypothesis_4/experiment_3/EXPERIMENT.md",
+    "hypothesis_4/experiment_3/README.md",
+    "hypothesis_4/experiment_3/init/README.md"
+  ],
+  "tracked_count": 10,
+  "untracked_count": 18550,
+  "ignored_count": 16,
+  "categories": {
+    "tracked_candidate": 10,
+    "validation_output": 5,
+    "candidate_snapshot": 68,
+    "raw_snapshot": 18477,
+    "python_cache": 15,
+    "frozen_test_fixture": 1
+  },
+  "unknown_assets": [],
+  "active_simulation_processes": [],
+  "open_handles": [],
+  "patch": "evidence/archive/workspace_final_before_retirement.patch",
+  "patch_sha256": "d2ffa9aa815ce20b79b5d65621773f601541bbb512212a1edfc021d6fe5b7017",
+  "inventory": "evidence/archive/workspace_inventory.json.gz",
+  "inventory_sha256": "f418500595afb539896f329f9f53cac3d09e9c7223fb489fc22ab41091255743",
+  "raw_sources_mapped": 18477,
+  "credential_values_copied": false,
+  "worktree_removed": true,
+  "remove_returncode": 0,
+  "remove_output": ""
+}

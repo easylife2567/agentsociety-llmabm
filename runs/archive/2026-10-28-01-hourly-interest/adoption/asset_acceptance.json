@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "copied_new_runs": 20,
+  "reused_chronological": 10,
+  "copied_raw_files": 17932,
+  "main_configs": 30,
+  "mechanism_sha256": {
+    "custom/envs/curation_dynamics_space.py": "3989c1782f2d18f336b0d5241722403f6588e8d41c8da6da3ec11471f244985b",
+    "custom/envs/curation_arrival_schedule.py": "e0097344b87f7797afdc9b82f2784979b19313ab5eb70d3488a2732a21e54098"
+  },
+  "protected_differences_unchanged": true,
+  "official_manifest": "hypothesis_4/experiment_2/runs/hourly_return_v1/manifest.json",
+  "new_simulations": 0,
+  "model_requests": 0
+}

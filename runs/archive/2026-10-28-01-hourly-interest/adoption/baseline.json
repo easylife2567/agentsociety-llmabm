@@ -1,0 +1,26 @@
+{
+  "commit": "aad3267fc9929a08a453ba427bdf25919bbffc70",
+  "git_status": " M data/README.md\n M paper/OUTLINE.md\n M paper/README.md\n M paper/REMEDIATION_PLAN.md\n M paper/manuscript/INTAKE_AUDIT.md\n M paper/manuscript/manuscript.accepted.md\n M paper/spot_check/README.md\n M paper/word/ASSEMBLY_NOTES.md\n D runs/2026-10-18-01-ica2027-text-verification/.gitignore\n D runs/2026-10-18-01-ica2027-text-verification/README.md\n D runs/2026-10-18-01-ica2027-text-verification/initial_git_status.txt\n D runs/2026-10-18-01-ica2027-text-verification/input.sha256\n D runs/2026-10-18-01-ica2027-text-verification/section_4_3.proposed.md\n D runs/2026-10-18-01-ica2027-text-verification/section_5_1_to_5_3.proposed.md\n M runs/2026-10-19-01-paper-figures/framework/fusion/drawio/framework_fusion_en_v1.drawio\n M runs/README.md\n M runs/archive/README.md\n?? paper/spot_check/AGREEMENT_REPORT.md\n?? paper/spot_check/source/\n?? presentation/hypothesis_4/hourly_return_v1/\n?? runs/2026-10-19-01-paper-figures/framework/fusion/drawio/.$framework_fusion_en_v1.drawio.bkp\n?? runs/2026-10-28-01-hourly-interest/\n?? runs/archive/2026-10-18-01-ica2027-text-verification/\n",
+  "protected_existing_differences": {
+    "data/README.md": "ac8074bc11acd29333c371029eb2f044dec441af3a2ed932acf7dba71da432e1",
+    "paper/OUTLINE.md": "15cf72360f5d471df8dc0b493e58453385f7d2de2b957dbf0e649953de5cc5c2",
+    "paper/README.md": "1902fb97a28e9dd0bdda5dd08a634adca764a85439bb211a3aa1aa103b1c08b3",
+    "paper/REMEDIATION_PLAN.md": "46e53ed73982c4555052a7ca1ec9d5c775dee9fe236b1fcbc7b93b47a5a231c7",
+    "paper/manuscript/INTAKE_AUDIT.md": "9ca741014012a20d7462df012bf73828bdbff65c11d8db18771baaa3444146a6",
+    "paper/manuscript/manuscript.accepted.md": "1f2292321d43798480f638b78bed29462017ccad0bdc657badd420ed4e8a8d02",
+    "paper/spot_check/README.md": "ee544ab84b929c7bd51dcb1a6a2028a05d07423480a9fd9faa392b41b3a9146a",
+    "paper/word/ASSEMBLY_NOTES.md": "74963fe2a4ceee797c82dad23c11a1f386a7cf4ae0e898101ab503d731f453f3",
+    "runs/2026-10-18-01-ica2027-text-verification/.gitignore": null,
+    "runs/2026-10-18-01-ica2027-text-verification/README.md": null,
+    "runs/2026-10-18-01-ica2027-text-verification/initial_git_status.txt": null,
+    "runs/2026-10-18-01-ica2027-text-verification/input.sha256": null,
+    "runs/2026-10-18-01-ica2027-text-verification/section_4_3.proposed.md": null,
+    "runs/2026-10-18-01-ica2027-text-verification/section_5_1_to_5_3.proposed.md": null,
+    "runs/2026-10-19-01-paper-figures/framework/fusion/drawio/framework_fusion_en_v1.drawio": "a6fd997dd1a9ab303ec61526e2b7deed8c5446b9766a639a14cacd53cdabb1d4",
+    "runs/archive/README.md": "e9164c286aa7c39228032c442d40f8de90b7cb0f41961a29d00d05ee2c6be940"
+  },
+  "mechanism_before": {
+    "custom/envs/curation_dynamics_space.py": "794f19b45dfdd6548246feb49b86b4b557a0c9c637a019549025f4663e2fa160",
+    "custom/envs/curation_arrival_schedule.py": "e422e73bc43ff699e20cbf640e06a14430d2e3493001fbe62b4eb182d9de488d"
+  }
+}

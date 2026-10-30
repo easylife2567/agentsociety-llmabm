@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "supervisor_pid": 89240,
+  "selected": [
+    "random",
+    "interest"
+  ],
+  "completed": [
+    {
+      "algorithm": "random",
+      "actions": 1100,
+      "posted": 165,
+      "requests": 165
+    }
+  ],
+  "active": [
+    {
+      "algorithm": "interest",
+      "pid": 89249,
+      "step": 20,
+      "decisions": 33,
+      "posted": 11,
+      "models": [
+        "deepseek-v4-1-flash-261017"
+      ]
+    }
+  ],
+  "withdrawn_algorithm": "chronological",
+  "withdrawn_recorded_body_requests": 30,
+  "total_body_requests": 206,
+  "extra_requests_used": 0,
+  "deadline_at": "2026-10-28T21:38:46.079787+00:00",
+  "old_plan_unchanged": true,
+  "random_not_restarted": true
+}

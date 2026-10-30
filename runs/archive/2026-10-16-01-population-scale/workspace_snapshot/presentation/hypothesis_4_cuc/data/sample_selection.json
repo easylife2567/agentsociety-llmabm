@@ -1,0 +1,223 @@
+{
+  "rule": "SHA256(algorithm|author_type|phase|agent_id|week), lexicographic ascending, first 2 per stratum; common posted Agent-week only",
+  "strata": [
+    {
+      "algorithm": "random",
+      "author_type": "education",
+      "phase": "W12",
+      "eligible_pairs": 5,
+      "selected": 2
+    },
+    {
+      "algorithm": "random",
+      "author_type": "education",
+      "phase": "W13-W18",
+      "eligible_pairs": 34,
+      "selected": 2
+    },
+    {
+      "algorithm": "random",
+      "author_type": "education",
+      "phase": "W19-W22",
+      "eligible_pairs": 6,
+      "selected": 2
+    },
+    {
+      "algorithm": "random",
+      "author_type": "marketing",
+      "phase": "W12",
+      "eligible_pairs": 19,
+      "selected": 2
+    },
+    {
+      "algorithm": "random",
+      "author_type": "marketing",
+      "phase": "W13-W18",
+      "eligible_pairs": 39,
+      "selected": 2
+    },
+    {
+      "algorithm": "random",
+      "author_type": "marketing",
+      "phase": "W19-W22",
+      "eligible_pairs": 12,
+      "selected": 2
+    },
+    {
+      "algorithm": "random",
+      "author_type": "meme",
+      "phase": "W19-W22",
+      "eligible_pairs": 4,
+      "selected": 2
+    },
+    {
+      "algorithm": "random",
+      "author_type": "mourning",
+      "phase": "W13-W18",
+      "eligible_pairs": 34,
+      "selected": 2
+    },
+    {
+      "algorithm": "random",
+      "author_type": "mourning",
+      "phase": "W19-W22",
+      "eligible_pairs": 4,
+      "selected": 2
+    },
+    {
+      "algorithm": "random",
+      "author_type": "other",
+      "phase": "W13-W18",
+      "eligible_pairs": 15,
+      "selected": 2
+    },
+    {
+      "algorithm": "random",
+      "author_type": "other",
+      "phase": "W19-W22",
+      "eligible_pairs": 4,
+      "selected": 2
+    },
+    {
+      "algorithm": "chronological",
+      "author_type": "education",
+      "phase": "W12",
+      "eligible_pairs": 7,
+      "selected": 2
+    },
+    {
+      "algorithm": "chronological",
+      "author_type": "education",
+      "phase": "W13-W18",
+      "eligible_pairs": 28,
+      "selected": 2
+    },
+    {
+      "algorithm": "chronological",
+      "author_type": "education",
+      "phase": "W19-W22",
+      "eligible_pairs": 3,
+      "selected": 2
+    },
+    {
+      "algorithm": "chronological",
+      "author_type": "marketing",
+      "phase": "W12",
+      "eligible_pairs": 19,
+      "selected": 2
+    },
+    {
+      "algorithm": "chronological",
+      "author_type": "marketing",
+      "phase": "W13-W18",
+      "eligible_pairs": 41,
+      "selected": 2
+    },
+    {
+      "algorithm": "chronological",
+      "author_type": "marketing",
+      "phase": "W19-W22",
+      "eligible_pairs": 13,
+      "selected": 2
+    },
+    {
+      "algorithm": "chronological",
+      "author_type": "meme",
+      "phase": "W19-W22",
+      "eligible_pairs": 41,
+      "selected": 2
+    },
+    {
+      "algorithm": "chronological",
+      "author_type": "mourning",
+      "phase": "W13-W18",
+      "eligible_pairs": 27,
+      "selected": 2
+    },
+    {
+      "algorithm": "chronological",
+      "author_type": "mourning",
+      "phase": "W19-W22",
+      "eligible_pairs": 1,
+      "selected": 1
+    },
+    {
+      "algorithm": "chronological",
+      "author_type": "other",
+      "phase": "W13-W18",
+      "eligible_pairs": 29,
+      "selected": 2
+    },
+    {
+      "algorithm": "chronological",
+      "author_type": "other",
+      "phase": "W19-W22",
+      "eligible_pairs": 1,
+      "selected": 1
+    },
+    {
+      "algorithm": "interest",
+      "author_type": "education",
+      "phase": "W12",
+      "eligible_pairs": 7,
+      "selected": 2
+    },
+    {
+      "algorithm": "interest",
+      "author_type": "education",
+      "phase": "W13-W18",
+      "eligible_pairs": 23,
+      "selected": 2
+    },
+    {
+      "algorithm": "interest",
+      "author_type": "education",
+      "phase": "W19-W22",
+      "eligible_pairs": 1,
+      "selected": 1
+    },
+    {
+      "algorithm": "interest",
+      "author_type": "marketing",
+      "phase": "W12",
+      "eligible_pairs": 19,
+      "selected": 2
+    },
+    {
+      "algorithm": "interest",
+      "author_type": "marketing",
+      "phase": "W13-W18",
+      "eligible_pairs": 38,
+      "selected": 2
+    },
+    {
+      "algorithm": "interest",
+      "author_type": "marketing",
+      "phase": "W19-W22",
+      "eligible_pairs": 13,
+      "selected": 2
+    },
+    {
+      "algorithm": "interest",
+      "author_type": "meme",
+      "phase": "W19-W22",
+      "eligible_pairs": 33,
+      "selected": 2
+    },
+    {
+      "algorithm": "interest",
+      "author_type": "mourning",
+      "phase": "W13-W18",
+      "eligible_pairs": 40,
+      "selected": 2
+    },
+    {
+      "algorithm": "interest",
+      "author_type": "other",
+      "phase": "W13-W18",
+      "eligible_pairs": 5,
+      "selected": 2
+    }
+  ],
+  "pairs": 59
+}

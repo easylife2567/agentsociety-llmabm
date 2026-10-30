@@ -1,0 +1,25 @@
+[2026-10-29 00:10:19] INFO    ModuleRegistry initialized (lazy loading enabled)
+[2026-10-29 00:10:19] INFO    Cleared 0 custom modules
+[2026-10-29 00:10:19] INFO    Registered 1 custom env modules and 1 custom agents
+[2026-10-29 00:10:20] INFO    Registered 16 env modules and 7 agents from built-in modules
+[2026-10-29 00:10:20] INFO    Cleared 1 custom modules
+[2026-10-29 00:10:20] INFO    Registered 1 custom env modules and 1 custom agents
+PASS hourly_return_v1_random_s1
+PASS hourly_return_v1_interest_s1
+PASS hourly_return_v1_random_s2
+PASS hourly_return_v1_interest_s2
+PASS hourly_return_v1_random_s3
+PASS hourly_return_v1_interest_s3
+PASS hourly_return_v1_random_s4
+PASS hourly_return_v1_interest_s4
+PASS hourly_return_v1_random_s5
+PASS hourly_return_v1_interest_s5
+PASS hourly_return_v1_random_s6
+PASS hourly_return_v1_interest_s6
+PASS hourly_return_v1_random_s7
+PASS hourly_return_v1_interest_s7
+PASS hourly_return_v1_random_s8
+PASS hourly_return_v1_interest_s8
+PASS hourly_return_v1_random_s9
+PASS hourly_return_v1_interest_s9
+{"status": "passed", "profiles_created_and_restored": 1800, "source_files_verified": 103, "network_attempts": 0, "llm_calls": 0, "ray_start_attempts": 0, "agent_actions": 0, "environment_steps": 0}

@@ -1,0 +1,51 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261016t120146_0629fd33ec",
+  "operation_id": "advance",
+  "operation_contract_version": 1,
+  "execution_key": "eb1cd032606e4bd969c7a0ffc1ab185ca70609c5923becd140728405c87edcae",
+  "attempt": 2,
+  "deduplicated_from_run_id": "",
+  "status": "SUCCEEDED",
+  "hypothesis_id": "4_cuc",
+  "experiment_id": "4",
+  "input_names": [
+    "experiment_id",
+    "hypothesis_id",
+    "phase",
+    "workspace"
+  ],
+  "input_fingerprint": "b871a63d0f68112ec214a1f0734bd0075bec170dfa417a8889d087ba4a3f2071",
+  "safe_inputs": {
+    "hypothesis_id": "4_cuc",
+    "experiment_id": "4",
+    "phase": "explore"
+  },
+  "preflight": {
+    "operation_id": "advance",
+    "status": "AVAILABLE",
+    "reasons": [],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {
+    "current_phase": "explore"
+  },
+  "error": null,
+  "declared_artifacts": [
+    "current phase in harness state"
+  ],
+  "artifact_fingerprints": {
+    ".agentsociety/analysis/hypothesis_4_cuc/state.yaml": "ce75ccf7f86c094410e768cf6a90ad40fec27f096c9dd69c7036e84c7981e88f"
+  },
+  "repeatable": true,
+  "retryable": false,
+  "recommended_action": "",
+  "pid": 80954,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-16T12:01:46.117868Z",
+  "updated_at": "2026-10-16T12:01:46.123259Z",
+  "completed_at": "2026-10-16T12:01:46.123237Z",
+  "duration_ms": 5
+}

@@ -1,0 +1,840 @@
+{
+  "status": "passed",
+  "simulation_started": false,
+  "execution_authorized": false,
+  "llm_calls": 0,
+  "network_attempts": 0,
+  "agent_actions": 0,
+  "environment_steps": 0,
+  "ray_started": false,
+  "checks": [
+    {
+      "name": "官方环境scanner/router/registry验收",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "实际registry加载本隔离工作区custom",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "experiment_2仅准备30配置，未授权运行",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "experiment_2矩阵完整",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "experiment_2的source_sha256匹配",
+      "passed": true,
+      "details": 83
+    },
+    {
+      "name": "experiment_2的mechanism_sha256匹配",
+      "passed": true,
+      "details": 7
+    },
+    {
+      "name": "experiment_2的output_sha256匹配",
+      "passed": true,
+      "details": 32
+    },
+    {
+      "name": "experiment_3仅准备30配置，未授权运行",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "experiment_3矩阵完整",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "experiment_3的source_sha256匹配",
+      "passed": true,
+      "details": 83
+    },
+    {
+      "name": "experiment_3的mechanism_sha256匹配",
+      "passed": true,
+      "details": 7
+    },
+    {
+      "name": "experiment_3的output_sha256匹配",
+      "passed": true,
+      "details": 32
+    },
+    {
+      "name": "60份官方schema/steps/check及实际环境构造通过",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "10组主三臂及30组消融科学参数严格配对",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "6条件代表seed的600份CLI profile创建恢复通过",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "两批独立预算账本与60个引擎目录尚未创建",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "未启动Ray",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "网络与LLM调用尝试均为零",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "configs": [
+    {
+      "run_id": "hourly_return_v1_random_s0",
+      "seed": 0,
+      "algorithm": "random",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 100
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s0",
+      "seed": 0,
+      "algorithm": "chronological",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 100
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s0",
+      "seed": 0,
+      "algorithm": "interest",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 100
+    },
+    {
+      "run_id": "hourly_return_v1_random_s1",
+      "seed": 1,
+      "algorithm": "random",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s1",
+      "seed": 1,
+      "algorithm": "chronological",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s1",
+      "seed": 1,
+      "algorithm": "interest",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_random_s2",
+      "seed": 2,
+      "algorithm": "random",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s2",
+      "seed": 2,
+      "algorithm": "chronological",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s2",
+      "seed": 2,
+      "algorithm": "interest",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_random_s3",
+      "seed": 3,
+      "algorithm": "random",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s3",
+      "seed": 3,
+      "algorithm": "chronological",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s3",
+      "seed": 3,
+      "algorithm": "interest",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_random_s4",
+      "seed": 4,
+      "algorithm": "random",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s4",
+      "seed": 4,
+      "algorithm": "chronological",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s4",
+      "seed": 4,
+      "algorithm": "interest",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_random_s5",
+      "seed": 5,
+      "algorithm": "random",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s5",
+      "seed": 5,
+      "algorithm": "chronological",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s5",
+      "seed": 5,
+      "algorithm": "interest",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_random_s6",
+      "seed": 6,
+      "algorithm": "random",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s6",
+      "seed": 6,
+      "algorithm": "chronological",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s6",
+      "seed": 6,
+      "algorithm": "interest",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_random_s7",
+      "seed": 7,
+      "algorithm": "random",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s7",
+      "seed": 7,
+      "algorithm": "chronological",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s7",
+      "seed": 7,
+      "algorithm": "interest",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_random_s8",
+      "seed": 8,
+      "algorithm": "random",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s8",
+      "seed": 8,
+      "algorithm": "chronological",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s8",
+      "seed": 8,
+      "algorithm": "interest",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_random_s9",
+      "seed": 9,
+      "algorithm": "random",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_chronological_s9",
+      "seed": 9,
+      "algorithm": "chronological",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_v1_interest_s9",
+      "seed": 9,
+      "algorithm": "interest",
+      "condition": "full",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_b_s0",
+      "seed": 0,
+      "algorithm": "interest",
+      "condition": "no_b",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 100
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_d_s0",
+      "seed": 0,
+      "algorithm": "interest",
+      "condition": "no_d",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 100
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_r_s0",
+      "seed": 0,
+      "algorithm": "interest",
+      "condition": "no_r",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 100
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_b_s1",
+      "seed": 1,
+      "algorithm": "interest",
+      "condition": "no_b",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_d_s1",
+      "seed": 1,
+      "algorithm": "interest",
+      "condition": "no_d",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_r_s1",
+      "seed": 1,
+      "algorithm": "interest",
+      "condition": "no_r",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_b_s2",
+      "seed": 2,
+      "algorithm": "interest",
+      "condition": "no_b",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_d_s2",
+      "seed": 2,
+      "algorithm": "interest",
+      "condition": "no_d",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_r_s2",
+      "seed": 2,
+      "algorithm": "interest",
+      "condition": "no_r",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_b_s3",
+      "seed": 3,
+      "algorithm": "interest",
+      "condition": "no_b",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_d_s3",
+      "seed": 3,
+      "algorithm": "interest",
+      "condition": "no_d",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_r_s3",
+      "seed": 3,
+      "algorithm": "interest",
+      "condition": "no_r",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_b_s4",
+      "seed": 4,
+      "algorithm": "interest",
+      "condition": "no_b",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_d_s4",
+      "seed": 4,
+      "algorithm": "interest",
+      "condition": "no_d",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_r_s4",
+      "seed": 4,
+      "algorithm": "interest",
+      "condition": "no_r",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_b_s5",
+      "seed": 5,
+      "algorithm": "interest",
+      "condition": "no_b",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_d_s5",
+      "seed": 5,
+      "algorithm": "interest",
+      "condition": "no_d",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_r_s5",
+      "seed": 5,
+      "algorithm": "interest",
+      "condition": "no_r",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_b_s6",
+      "seed": 6,
+      "algorithm": "interest",
+      "condition": "no_b",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_d_s6",
+      "seed": 6,
+      "algorithm": "interest",
+      "condition": "no_d",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_r_s6",
+      "seed": 6,
+      "algorithm": "interest",
+      "condition": "no_r",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_b_s7",
+      "seed": 7,
+      "algorithm": "interest",
+      "condition": "no_b",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_d_s7",
+      "seed": 7,
+      "algorithm": "interest",
+      "condition": "no_d",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_r_s7",
+      "seed": 7,
+      "algorithm": "interest",
+      "condition": "no_r",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_b_s8",
+      "seed": 8,
+      "algorithm": "interest",
+      "condition": "no_b",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_d_s8",
+      "seed": 8,
+      "algorithm": "interest",
+      "condition": "no_d",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_r_s8",
+      "seed": 8,
+      "algorithm": "interest",
+      "condition": "no_r",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_b_s9",
+      "seed": 9,
+      "algorithm": "interest",
+      "condition": "no_b",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_d_s9",
+      "seed": 9,
+      "algorithm": "interest",
+      "condition": "no_d",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    },
+    {
+      "run_id": "hourly_return_bdr_v1_interest_no_r_s9",
+      "seed": 9,
+      "algorithm": "interest",
+      "condition": "no_r",
+      "official_check_passed": true,
+      "environment_instantiated": true,
+      "steps": 693,
+      "profiles_restored": 0
+    }
+  ],
+  "errors": [],
+  "official_environment_validation": {
+    "success": true,
+    "workspace_path": "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/tmp/recovered_v2",
+    "module_path": "custom/envs/curation_dynamics_space.py",
+    "class_name": "CurationDynamicsSpace",
+    "scanner_diagnostics": [
+      {
+        "module_kind": "env_module",
+        "module_path": "custom/envs/curation_dynamics_space.py",
+        "file_path": "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/tmp/recovered_v2/custom/envs/curation_dynamics_space.py",
+        "class_name": "CurationDynamicsSpace",
+        "accepted": true,
+        "issues": [],
+        "metadata": {
+          "tool_names": [
+            "get_feed",
+            "create_post"
+          ],
+          "tool_count": 2,
+          "has_step": true,
+          "default_constructible": true,
+          "type": "CurationDynamicsSpace",
+          "class_name": "CurationDynamicsSpace",
+          "workspace_module_path": "custom/envs/curation_dynamics_space.py"
+        }
+      }
+    ],
+    "test_reports": [
+      {
+        "module_kind": "env_module",
+        "name": "CurationDynamicsSpace",
+        "success": true,
+        "output": "--- 测试 CurationDynamicsSpace ---\n✓ 创建成功\n✓ description() 返回 393 字符\n✓ init_description() 返回 2009 字符\n✓ 已注册 2 个工具\n✓ step() 方法已覆写\n✓ router smoke test 成功",
+        "error": null,
+        "checks": [
+          {
+            "name": "instantiation",
+            "passed": true,
+            "message": "cls() 实例化成功",
+            "details": {}
+          },
+          {
+            "name": "description",
+            "passed": true,
+            "message": "description() 可调用",
+            "details": {
+              "length": 393
+            }
+          },
+          {
+            "name": "init_description",
+            "passed": true,
+            "message": "init_description() 可调用",
+            "details": {
+              "length": 2009
+            }
+          },
+          {
+            "name": "registered_tools",
+            "passed": true,
+            "message": "已注册 2 个工具",
+            "details": {
+              "tool_names": [
+                "get_feed",
+                "create_post"
+              ]
+            }
+          },
+          {
+            "name": "step",
+            "passed": true,
+            "message": "step() 方法已覆写",
+            "details": {}
+          },
+          {
+            "name": "router_smoke",
+            "passed": true,
+            "message": "CodeGenRouter 可正常挂载该环境",
+            "details": {}
+          }
+        ],
+        "metadata": {
+          "description_length": 393,
+          "init_description_length": 2009,
+          "tool_names": [
+            "get_feed",
+            "create_post"
+          ],
+          "tool_count": 2,
+          "has_step": true,
+          "router_tool_manager": true
+        }
+      }
+    ],
+    "registry": {
+      "registered": true,
+      "visible_in_registry": true,
+      "metadata_refreshed": false,
+      "metadata_file": null,
+      "message": "CurationDynamicsSpace 已注册并可见"
+    },
+    "errors": [],
+    "summary": "# Validation Summary: CurationDynamicsSpace\n\n- Module path: `custom/envs/curation_dynamics_space.py`\n- Scanner accepted: `True`\n- Tester success: `True`\n- Registry visible: `True`\n- Overall success: `True`\n\n## Scanner Diagnostics\n- CurationDynamicsSpace: accepted\n\n## Tester Checks\n- CurationDynamicsSpace: passed\n\n## Registry\n- CurationDynamicsSpace 已注册并可见"
+  },
+  "official_environment_artifacts": ".agentsociety/custom_env_skill/runs/hourly-return-offline",
+  "runtime": {
+    "python": "/Users/easylife/Project/AgentSociety/AgentSociety2/.venv/bin/python",
+    "python_version": "3.13.9",
+    "sdk_version": "2.8.4",
+    "sdk_source": "/Users/easylife/Project/AgentSociety/AgentSociety2/packages/agentsociety2/agentsociety2/__init__.py",
+    "loaded_modules": {
+      "env": "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/tmp/recovered_v2/custom/envs/curation_dynamics_space.py",
+      "agent": "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/tmp/recovered_v2/custom/agents/curation_discourse_agent.py"
+    }
+  },
+  "profiles_created_and_restored": 600,
+  "environment_instances": 60,
+  "representative_environment_restores": [
+    "hourly_return_v1_random_s0",
+    "hourly_return_v1_chronological_s0",
+    "hourly_return_v1_interest_s0",
+    "hourly_return_bdr_v1_interest_no_b_s0",
+    "hourly_return_bdr_v1_interest_no_d_s0",
+    "hourly_return_bdr_v1_interest_no_r_s0"
+  ],
+  "manifest_sha256": {
+    "hypothesis_4/experiment_2/init/hourly_return_v1/manifest.json": "018d3e7005b3b7ecdaea7c2f5e1f19aa21091d7198406c942b64ff601977b323",
+    "hypothesis_4/experiment_3/init/hourly_return_v1/manifest.json": "c697bc5064bf97b3fbd2b96fb9296a76653b7a047a96fd688790b4268fcca231"
+  },
+  "planned_new_runs": 50,
+  "chronological_reuse": "pending_runtime_comparability_review",
+  "scope": "仅配置、模块构造及保存恢复；环境step=0、Agent行动=0，不是仿真或结果验证",
+  "checked_at": "2026-10-28T13:26:17.863230+00:00",
+  "workspace": "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/tmp/recovered_v2",
+  "verifier_sha256": "7c628e4fbba74a3c73642200bfa39f51154b41adfec6a94f2c06506a8132ab18"
+}

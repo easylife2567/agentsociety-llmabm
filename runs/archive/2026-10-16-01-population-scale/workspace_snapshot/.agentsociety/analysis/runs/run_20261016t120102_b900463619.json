@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "run_id": "run_20261016t120102_b900463619",
+  "operation_id": "advance",
+  "operation_contract_version": 1,
+  "execution_key": "eb1cd032606e4bd969c7a0ffc1ab185ca70609c5923becd140728405c87edcae",
+  "attempt": 1,
+  "deduplicated_from_run_id": "",
+  "status": "BLOCKED",
+  "hypothesis_id": "4_cuc",
+  "experiment_id": "4",
+  "input_names": [
+    "experiment_id",
+    "hypothesis_id",
+    "phase",
+    "workspace"
+  ],
+  "input_fingerprint": "b871a63d0f68112ec214a1f0734bd0075bec170dfa417a8889d087ba4a3f2071",
+  "safe_inputs": {
+    "hypothesis_id": "4_cuc",
+    "experiment_id": "4",
+    "phase": "explore"
+  },
+  "preflight": {
+    "operation_id": "advance",
+    "status": "BLOCKED_BY_GATE",
+    "reasons": [
+      "current phase gate has not passed"
+    ],
+    "missing_inputs": [],
+    "missing_gates": [],
+    "checked_capabilities": {}
+  },
+  "result_summary": {},
+  "error": {
+    "type": "BLOCKED_BY_GATE",
+    "message": "current phase gate has not passed",
+    "retryable": true
+  },
+  "declared_artifacts": [
+    "current phase in harness state"
+  ],
+  "artifact_fingerprints": {},
+  "repeatable": true,
+  "retryable": true,
+  "recommended_action": "Fix preflight blockers and rerun the operation.",
+  "pid": 80825,
+  "hostname": "MacBook-Air-2.local",
+  "started_at": "2026-10-16T12:01:02.412667Z",
+  "updated_at": "2026-10-16T12:01:02.412825Z",
+  "completed_at": "2026-10-16T12:01:02.412797Z",
+  "duration_ms": 0
+}

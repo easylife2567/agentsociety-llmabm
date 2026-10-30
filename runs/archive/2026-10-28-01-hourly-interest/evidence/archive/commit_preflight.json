@@ -1,0 +1,102 @@
+{
+  "metadata_files_checked": 551,
+  "credential_field_counts": {
+    "human_authorization_scope": 7
+  },
+  "credential_shape_files_without_values": [],
+  "env_files_present": [],
+  "largest_metadata_files": [
+    [
+      "pilot/agent_supply/inputs/chronological_s0/env/CurationDynamicsSpace/state/ENV_STATE.json",
+      22924456
+    ],
+    [
+      "adoption/formal_files/hypothesis_4/experiment_2/runs/hourly_return_v1/manifest.json",
+      3225948
+    ],
+    [
+      "seed_extension/raw_results_manifest.json",
+      2522598
+    ],
+    [
+      "adoption/manifest_attempt1.json",
+      2262700
+    ],
+    [
+      "adoption/formal_files/hypothesis_4/experiment_2/runs/hourly_return_v1/relocation.json",
+      2145809
+    ]
+  ],
+  "raw_credential_scan": "pilot/results and seed_extension/results scanned separately; zero credential fields or long sk/Bearer shapes",
+  "raw_policy": "pilot/results, seed_extension/results, and frozen chronological_s0 snapshot stay local and Git-ignored",
+  "reviewed_false_positives": [
+    {
+      "path": "seed_extension/runtime_plan.json",
+      "field": "authorization",
+      "classification": "literal_candidate"
+    },
+    {
+      "path": "pilot/runtime_plan.json",
+      "field": "authorization",
+      "classification": "literal_candidate"
+    },
+    {
+      "path": "pilot/selected_revision.json",
+      "field": "authorization",
+      "classification": "literal_candidate"
+    },
+    {
+      "path": "pilot/parallel_revision.json",
+      "field": "authorization",
+      "classification": "literal_candidate"
+    },
+    {
+      "path": "pilot/scope_handoff/withdrawal-request.json",
+      "field": "authorization",
+      "classification": "literal_candidate"
+    },
+    {
+      "path": "pilot/parallel_handoff/serial-runtime-plan.json",
+      "field": "authorization",
+      "classification": "literal_candidate"
+    },
+    {
+      "path": "pilot/agent_supply/three_arm_contract.json",
+      "field": "authorization",
+      "classification": "literal_candidate"
+    }
+  ],
+  "credential_value_candidates_after_review": [],
+  "review": "Seven authorization fields are Chinese human scope instructions, not authentication data; no credential shape or .env found.",
+  "git_visible_paths_at_archive": 456,
+  "git_ignored_raw_directories": [
+    "pilot/results",
+    "seed_extension/results",
+    "pilot/agent_supply/inputs/chronological_s0"
+  ],
+  "largest_git_visible_files_at_archive": [
+    {
+      "path": "adoption/formal_files/hypothesis_4/experiment_2/runs/hourly_return_v1/manifest.json",
+      "bytes": 3225948
+    },
+    {
+      "path": "seed_extension/raw_results_manifest.json",
+      "bytes": 2522598
+    },
+    {
+      "path": "adoption/manifest_attempt1.json",
+      "bytes": 2262700
+    },
+    {
+      "path": "adoption/formal_files/hypothesis_4/experiment_2/runs/hourly_return_v1/relocation.json",
+      "bytes": 2145809
+    },
+    {
+      "path": "adoption/relocation_attempt1.json",
+      "bytes": 2145674
+    }
+  ],
+  "raw_credential_scan_report": "evidence/archive/raw_credential_scan.json",
+  "historical_preparation_tar_credential_scan_report": "evidence/archive/archive_package_credential_scan.json",
+  "metadata_scan_timing": "Original 551-file scan preceded adding the chronological raw snapshot ignore rule; git_visible_paths_at_archive excludes all three raw directories."
+}

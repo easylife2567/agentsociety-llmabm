@@ -1,0 +1,14 @@
+{
+  "authorization": "用户：时序臂好像不用跑，能否只跑随机臂、兴趣臂。",
+  "requested_at": "2026-10-28T14:26:16.360000+00:00",
+  "old_supervisor_pid": 85266,
+  "supervisor_paused_for_scope_change": true,
+  "target_algorithm": "chronological",
+  "child_pid": 85275,
+  "run_dir": "/Users/easylife/Project/AgentSociety/runs/2026-10-28-01-hourly-interest/workspace/hypothesis_4/experiment_2/runs/hourly_return_pilot_s0/hourly_return_pilot_chronological_s0",
+  "signal": "SIGINT to identified chronological process group only",
+  "kept_algorithms": [
+    "random",
+    "interest"
+  ]
+}

@@ -1,0 +1,103 @@
+diff --git a/custom/envs/curation_dynamics_space.py b/custom/envs/curation_dynamics_space.py
+--- a/custom/envs/curation_dynamics_space.py
++++ b/custom/envs/curation_dynamics_space.py
+@@ -339,6 +339,16 @@
+             raise ValueError("arrival_official_policy must be agenda or ordinary")
+         if self._arrival_official_policy == "ordinary" and schedule_mode != "arrival_timing":
+             raise ValueError("ordinary official policy requires arrival_timing")
++        # 生成帖回流独立于排序；legacy 保留原三臂，next_batch 统一批末入池。
++        self._arrival_agent_return_policy = str(kwargs.pop("arrival_agent_return_policy", "legacy"))
++        if self._arrival_agent_return_policy not in ("legacy", "next_batch"):
++            raise ValueError("arrival_agent_return_policy must be legacy or next_batch")
++        if self._arrival_agent_return_policy == "next_batch" and schedule_mode != "arrival_timing":
++            raise ValueError("next_batch agent return policy requires arrival_timing")
++        self._agent_return_next_batch = (
++            self._arrival_agent_return_policy == "next_batch"
++            or self._recommendation_algorithm == "chronological"
++        )
+         # 外生事件信号：高显著性社会事件不是普通 feed 槽位。事件周内，各臂收到同一
+         # 信号；推荐制度仍只决定帖子是否置顶及其余 feed 如何分配。salience_slots 表示
+         # 该事件在意见气候计算中相当于多少个同类普通信息槽位，0 表示关闭。
+@@ -1394,7 +1404,7 @@
+         且返回首次发布的 post_id。正文为空返回 status=fail。
+ 
+         建议每周至多发言一次：先调用 **get_feed(agent_id)** 观察舆论场，再决定是否发言；
+-        您本 tick 发布的帖子将自下一周起进入信息流传播。
++        帖子的推荐资格按本实验冻结的回流规则确定。
+ 
+         参数：**agent_id** 为调用方 Agent 标识；**content** 为帖子正文（非空字符串）。
+         """
+@@ -1462,7 +1472,7 @@
+             mismatch_note = "（判类结果与您的类型不一致，仅供参考）" if assigned != pool_type else ""
+             availability = (
+                 "将在下一小时批次进入信息流传播"
+-                if self._recommendation_algorithm == "chronological"
++                if self._agent_return_next_batch
+                 else "将在下一周进入信息流传播"
+             )
+             return {
+@@ -1751,7 +1761,10 @@
+             "**start_week** 起始 ISO 周（默认 2026-W12）；**num_ticks** 总 tick 数（默认 11）；"
+             "**event_week** 去世周（默认 2026-W13）；**official_pin_extend_weeks** 官方置顶延伸"
+             "周数（默认 1）；**arrival_official_policy** 精确到达模式的官方推荐策略"
+-            "（agenda 默认议程 / ordinary 普通推荐，不进入置顶或保底）；**event_signal_type** 外生事件直接激活的内容类型（空串=关闭）、"
++            "（agenda 默认议程 / ordinary 普通推荐，不进入置顶或保底）；"
++            "**arrival_agent_return_policy** 生成帖回流策略（legacy 默认保留原三臂；"
++            "next_batch 仅限 arrival_timing，统一批末入池、后续小时批次可见）；"
++            "**event_signal_type** 外生事件直接激活的内容类型（空串=关闭）、"
+             "**event_signal_salience_slots** 该事件在意见气候中等效的普通信息槽位数（默认 0）；"
+             "interest 臂权重 **alpha**/**beta**/**gamma**、噪声幅度 "
+             "**interest_noise_eps**、已曝光处理 "
+@@ -1782,6 +1795,7 @@
+         state = {
+             "_arrival_state": self._arrival.state if self._arrival is not None else None,
+             "_arrival_official_policy": self._arrival_official_policy,
++            "_arrival_agent_return_policy": self._arrival_agent_return_policy,
+             "_arrival_action_hour_overrides": self._chronological_action_hour_overrides,
+             "_exposure_age_buckets": self._exposure_age_buckets,
+             "_step_index": self._step_index,
+@@ -1848,6 +1862,9 @@
+         # 官方推荐规则属于冻结配置；历史无此字段的状态按 agenda 解释。
+         if d.get("_arrival_official_policy", "agenda") != self._arrival_official_policy:
+             raise ValueError("checkpoint official policy does not match current config")
++        # 回流规则影响已累积的帖子与曝光；旧状态缺字段时保持 legacy。
++        if d.get("_arrival_agent_return_policy", "legacy") != self._arrival_agent_return_policy:
++            raise ValueError("checkpoint agent return policy does not match current config")
+         # 恢复必须复用同一行动安排；历史无覆盖的 checkpoint 仍兼容空表。
+         if d.get("_arrival_action_hour_overrides", {}) != self._chronological_action_hour_overrides:
+             raise ValueError("checkpoint action overrides do not match current config")
+diff --git a/custom/envs/curation_arrival_schedule.py b/custom/envs/curation_arrival_schedule.py
+--- a/custom/envs/curation_arrival_schedule.py
++++ b/custom/envs/curation_arrival_schedule.py
+@@ -1,4 +1,4 @@
+-"""帖子到达的小时调度：确定性曝光、分臂回流与可恢复的行动审计。
++"""帖子到达的小时调度：确定性曝光、可配置回流与可恢复的行动审计。
+ 
+ 本组件由 CurationDynamicsSpace 显式启用，共享其判类、倾向分和效用输入，
+ 不改变其他调度路径。时钟内部统一为上海当地无时区 datetime，日志附 +08:00。
+@@ -275,20 +275,20 @@
+                 age = (monday(t).date() - datetime.fromisocalendar(int(p['week'][:4]), int(p['week'][-2:]), 1).date()).days // 7
+                 e._exposure_age_buckets['age3plus' if age >= 3 else f'age{age}'] += 1
+             self.state['actions'].append(snap)
+-        # 全批曝光提交后才处理产出：时序臂批末入池，其余两臂次周可见。
++        # 全批曝光提交后才处理产出；统一批末或保留原分臂回流由配置决定。
+         for rec in e._pending_agent_posts:
+             aid = rec['agent_id']
+-            chronological = e._recommendation_algorithm == 'chronological'
+-            available = local_time(t) if chronological else monday(t) + timedelta(days=7)
++            next_batch = e._agent_return_next_batch
++            available = local_time(t) if next_batch else monday(t) + timedelta(days=7)
+             pooled = {
+                 **rec, 'stable_key': f"agent:{aid}:{rec['week']}", 'source': 'agent',
+                 'author_id': aid, 'author_handle': aid, 'type': rec['pool_type'],
+                 'source_week': rec['week'], 'available_week': e._week_for_time(available),
+                 'injected_week': e._week_for_time(available),
+-                'injection_role': 'agent_prior_batch' if chronological else 'agent_previous_week',
++                'injection_role': 'agent_prior_batch' if next_batch else 'agent_previous_week',
+                 'published_at': stamp(t), 'available_at': stamp(available),
+                 'is_official': False, 'life': 1., 'exposure_count': 0}
+-            if chronological:
++            if next_batch:
+                 # 当前批feed是已冻结快照；这条帖子只能出现在后续批的快照中。
+                 e._posts[pooled['post_id']] = pooled
+                 # 当周实际入池供给累积到周度flow；start_week负责清空周计数。

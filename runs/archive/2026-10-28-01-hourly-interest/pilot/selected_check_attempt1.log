@@ -1,0 +1,15 @@
+test_budget_counts_withdrawn_and_rejects_overflow (__main__.SelectedTests.test_budget_counts_withdrawn_and_rejects_overflow) ... ok
+test_completed_selected_in_handoff_is_verified_and_absorbed (__main__.SelectedTests.test_completed_selected_in_handoff_is_verified_and_absorbed) ... ok
+test_foreign_parent_pid_receives_no_signal (__main__.SelectedTests.test_foreign_parent_pid_receives_no_signal) ... ok
+test_only_interest_launches_random_continues_and_original_caps_remain (__main__.SelectedTests.test_only_interest_launches_random_continues_and_original_caps_remain) ... ok
+test_original_deadline_prevents_handoff_before_any_signal (__main__.SelectedTests.test_original_deadline_prevents_handoff_before_any_signal) ... ok
+test_parent_handoff_only_preserves_selected_pid_and_ledger (__main__.SelectedTests.test_parent_handoff_only_preserves_selected_pid_and_ledger) ... ok
+test_random_already_completed_not_restarted (__main__.SelectedTests.test_random_already_completed_not_restarted) ... ok
+test_scope_filters_chronological_from_pending_and_inheritance (__main__.SelectedTests.test_scope_filters_chronological_from_pending_and_inheritance) ... ok
+test_selected_failure_stops_only_current_selected (__main__.SelectedTests.test_selected_failure_stops_only_current_selected) ... Agent行动、最终服务返回或确认发布记录失败
+ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.029s
+
+OK

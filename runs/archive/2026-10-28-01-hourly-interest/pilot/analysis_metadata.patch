@@ -1,0 +1,31 @@
+--- a/pilot/analyze_pilot.py
++++ b/pilot/analyze_pilot.py
+@@ -300,6 +300,8 @@
+         '本次只有一个seed，结果用于观测当前规则的运行表现，不作显著性检验或跨seed稳定性判断。', '',
+         f"主要窗口固定为W19–W22。晚期玩梗型作者发帖数量为{winners(metrics, 'late_meme_posts')}，其供给份额为{winners(metrics, 'late_meme_share')}。数量与份额分别列出，不能只凭份额判断产量。", '',
+         *table, '',
++        '![两臂每周供给与曝光](weekly_comparison.png)',
++        '图：随机与兴趣的玩梗型作者发帖数量、供给份额和实际feed标签曝光；阴影为固定W19–W22窗口，仅单seed观察。', '',
+         '曝光统计直接汇总实际行动feed，分开标记外部真实帖和Agent生成帖；分母为实际曝光条数。', '',
+         *source_table, '',
+         f'{scope_name}小时回流审计均通过：生成帖可用时刻与发布时间一致，同批生成帖曝光为0，未来曝光为0，发布与入池数量守恒。这里的入池不等于每条帖子必定被推荐。', '',
+@@ -315,7 +317,7 @@
+     return {
+         output / 'summary.json': json.dumps(summary, ensure_ascii=False, indent=2) + '\n',
+         output / 'weekly.csv': buffer.getvalue(), output / 'report.md': report,
+-        output / 'README.md': f'# {scope_name}seed0试运行分析\n\n仅在所选制度实际完成并独立核验后生成，不含占位图或预测；排除制度不混入比较。\n\n| 文件 | 用途 |\n|---|---|\n| [report.md](report.md) | 中文描述性观察、口径与限制 |\n| [summary.json](summary.json) | 逐run汇总、回流审计、排除消耗和原始来源SHA256 |\n| [weekly.csv](weekly.csv) | {len(arms)}臂×11周供给与曝光长表，0分母留空 |\n'
++        output / 'README.md': f'# {scope_name}seed0试运行分析\n\n仅在所选制度实际完成并独立核验后生成，不含占位图或预测；排除制度不混入比较。\n\n| 文件 | 用途 |\n|---|---|\n| [report.md](report.md) | 中文描述性观察、口径与限制 |\n| [summary.json](summary.json) | 逐run汇总、回流审计、排除消耗和原始来源SHA256 |\n| [weekly.csv](weekly.csv) | {len(arms)}臂×11周供给与曝光长表，0分母留空 |\n| [weekly_comparison.png](weekly_comparison.png)、[SVG](weekly_comparison.svg) | 由本周表生成的两臂三面板比较图 |\n| [plot_manifest.json](plot_manifest.json) | 图表口径、来源与输出哈希 |\n'
+     }
+ 
+ 
+--- a/pilot/plot_pilot.py
++++ b/pilot/plot_pilot.py
+@@ -146,7 +146,7 @@
+         scope='single-seed descriptive pilot; not a manuscript figure',
+         selected_algorithms=list(grouped), excluded_algorithms=summary.get('excluded_algorithms', []),
+         figure_role='three aligned time trends',
+-        evidence='complete summary.json and 33 actual weekly.csv rows',
++        evidence=f'complete summary.json and {len(grouped) * len(WEEKS)} actual weekly.csv rows',
+         columns=[panel[0] for panel in panels], late_weeks=sorted(LATE),
+         missing_values='empty denominators shown as gaps, never filled with zero',
+         uncertainty='none; one run per arm, no confidence intervals or significance test',

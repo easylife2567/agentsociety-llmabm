@@ -1,0 +1,28 @@
+research_question: 切换到CUC服务后，100人三种策展的生成质量与主要结论是否变化？同输入旧s0为主要配对，旧s1/s2仅作范围参考。
+primary_metrics:
+- weekly agent supply by fixed author type
+- weekly exposure shares
+- W13 mourning participation
+- W19-W22 meme participation/supply/exposure
+- initial response flags and final repair/fallback rates
+- context-grounded paired text review
+target_tables:
+- curation_dynamics_env_state
+- curation_dynamics_agent_state
+- core_agent_profile
+confirmatory_claims:
+- 检验新旧三制度的主要差异方向与量级是否保持，不预设等价；生成质量须同时检查原始与发布文本。
+exploratory_notes: 原始Agent.json决策账本补充正文、提示和修复；助手上下文审读不冒充人工金标。
+simulation_limitations: 新模型每制度一次，环境默认0，无模型seed；别名接近且后台未证实不同；固定类型及词表推荐通道限制外推。
+eda_profile: quick-stats
+eda_profiles: []
+table_checks:
+- table: curation_dynamics_env_state
+  min_rows: 11
+  columns:
+  - week
+  - agent_supply
+  - exposure_share_meme
+  - exposure_share_mourning
+synthesis_scope_hypothesis_ids:
+- 4_cuc

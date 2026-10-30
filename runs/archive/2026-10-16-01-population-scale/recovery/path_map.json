@@ -1,0 +1,14 @@
+{
+  "old_root": "runs/2026-10-16-01-population-scale",
+  "archive_root": "runs/archive/2026-10-16-01-population-scale",
+  "mappings": {
+    "workspace/hypothesis_4/experiment_4/runs/cuc_model_v1": "raw_outputs/cuc_model_v1",
+    "workspace/.agentsociety": "workspace_snapshot/.agentsociety",
+    "workspace/hypothesis_4/experiment_4": "workspace_snapshot/hypothesis_4/experiment_4",
+    "workspace/hypothesis_4_cuc": "workspace_snapshot/hypothesis_4_cuc",
+    "workspace/presentation/hypothesis_4_cuc": "workspace_snapshot/presentation/hypothesis_4_cuc",
+    "workspace/synthesis": "workspace_snapshot/synthesis",
+    "workspace/custom": "recovery/baseline_source/custom"
+  },
+  "frozen_metadata_rule": "Original manifest/config/log/source-index paths remain unchanged historical evidence."
+}

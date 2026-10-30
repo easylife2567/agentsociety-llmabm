@@ -1,0 +1,223 @@
+diff --git a/custom/envs/README.md b/custom/envs/README.md
+index 71700c9..6b67dc1 100644
+--- a/custom/envs/README.md
++++ b/custom/envs/README.md
+@@ -11,3 +11,5 @@
+ 到达诊断仅由 `schedule_mode=arrival_timing` 启用，普通到达方式由 `arrival_mode` 决定。环境快照保存在官方run的 `env/CurationDynamicsSpace/state/ENV_STATE.json`。
+ 
+ experiment_2的arrival_official_policy=ordinary由本级正式环境和ArrivalSchedule执行：官方不置顶、不进悼念保底，保留普通兴趣候选资格。未配置该字段的历史实验继续使用agenda。对应配置在hypothesis_4/experiment_2/init，本级是运行机制的源码位置。
++
++小时回流候选新增`arrival_agent_return_policy`：默认`legacy`保持原分臂规则，`next_batch`仅限arrival调度，令三臂生成帖统一批末入池、后续行动小时具备推荐资格，同小时互不可见。保存状态记录该策略，恢复时拒绝换策略；不改变排序、生命周期或个人行动频次。候选配置入口为experiment_2与experiment_3的`init/hourly_return_v1/`，尚未运行。
+diff --git a/custom/envs/curation_arrival_schedule.py b/custom/envs/curation_arrival_schedule.py
+index 5e7b5e0..d9cf145 100644
+--- a/custom/envs/curation_arrival_schedule.py
++++ b/custom/envs/curation_arrival_schedule.py
+@@ -1,4 +1,4 @@
+-"""帖子到达的小时调度：确定性曝光、分臂回流与可恢复的行动审计。
++"""帖子到达的小时调度：确定性曝光、可配置回流与可恢复的行动审计。
+ 
+ 本组件由 CurationDynamicsSpace 显式启用，共享其判类、倾向分和效用输入，
+ 不改变其他调度路径。时钟内部统一为上海当地无时区 datetime，日志附 +08:00。
+@@ -275,20 +275,20 @@ class ArrivalSchedule:
+                 age = (monday(t).date() - datetime.fromisocalendar(int(p['week'][:4]), int(p['week'][-2:]), 1).date()).days // 7
+                 e._exposure_age_buckets['age3plus' if age >= 3 else f'age{age}'] += 1
+             self.state['actions'].append(snap)
+-        # 全批曝光提交后才处理产出：时序臂批末入池，其余两臂次周可见。
++        # 全批曝光提交后才处理产出；统一批末或保留原分臂回流由配置决定。
+         for rec in e._pending_agent_posts:
+             aid = rec['agent_id']
+-            chronological = e._recommendation_algorithm == 'chronological'
+-            available = local_time(t) if chronological else monday(t) + timedelta(days=7)
++            next_batch = e._agent_return_next_batch
++            available = local_time(t) if next_batch else monday(t) + timedelta(days=7)
+             pooled = {
+                 **rec, 'stable_key': f"agent:{aid}:{rec['week']}", 'source': 'agent',
+                 'author_id': aid, 'author_handle': aid, 'type': rec['pool_type'],
+                 'source_week': rec['week'], 'available_week': e._week_for_time(available),
+                 'injected_week': e._week_for_time(available),
+-                'injection_role': 'agent_prior_batch' if chronological else 'agent_previous_week',
++                'injection_role': 'agent_prior_batch' if next_batch else 'agent_previous_week',
+                 'published_at': stamp(t), 'available_at': stamp(available),
+                 'is_official': False, 'life': 1., 'exposure_count': 0}
+-            if chronological:
++            if next_batch:
+                 # 当前批feed是已冻结快照；这条帖子只能出现在后续批的快照中。
+                 e._posts[pooled['post_id']] = pooled
+                 # 当周实际入池供给累积到周度flow；start_week负责清空周计数。
+diff --git a/custom/envs/curation_dynamics_space.py b/custom/envs/curation_dynamics_space.py
+index 7bd7454..f5b08bc 100644
+--- a/custom/envs/curation_dynamics_space.py
++++ b/custom/envs/curation_dynamics_space.py
+@@ -339,6 +339,16 @@ class CurationDynamicsSpace(EnvBase):
+             raise ValueError("arrival_official_policy must be agenda or ordinary")
+         if self._arrival_official_policy == "ordinary" and schedule_mode != "arrival_timing":
+             raise ValueError("ordinary official policy requires arrival_timing")
++        # 生成帖回流独立于排序；legacy 保留原三臂，next_batch 统一批末入池。
++        self._arrival_agent_return_policy = str(kwargs.pop("arrival_agent_return_policy", "legacy"))
++        if self._arrival_agent_return_policy not in ("legacy", "next_batch"):
++            raise ValueError("arrival_agent_return_policy must be legacy or next_batch")
++        if self._arrival_agent_return_policy == "next_batch" and schedule_mode != "arrival_timing":
++            raise ValueError("next_batch agent return policy requires arrival_timing")
++        self._agent_return_next_batch = (
++            self._arrival_agent_return_policy == "next_batch"
++            or self._recommendation_algorithm == "chronological"
++        )
+         # 外生事件信号：高显著性社会事件不是普通 feed 槽位。事件周内，各臂收到同一
+         # 信号；推荐制度仍只决定帖子是否置顶及其余 feed 如何分配。salience_slots 表示
+         # 该事件在意见气候计算中相当于多少个同类普通信息槽位，0 表示关闭。
+@@ -1394,7 +1404,7 @@ class CurationDynamicsSpace(EnvBase):
+         且返回首次发布的 post_id。正文为空返回 status=fail。
+ 
+         建议每周至多发言一次：先调用 **get_feed(agent_id)** 观察舆论场，再决定是否发言；
+-        您本 tick 发布的帖子将自下一周起进入信息流传播。
++        帖子的推荐资格按本实验冻结的回流规则确定。
+ 
+         参数：**agent_id** 为调用方 Agent 标识；**content** 为帖子正文（非空字符串）。
+         """
+@@ -1462,7 +1472,7 @@ class CurationDynamicsSpace(EnvBase):
+             mismatch_note = "（判类结果与您的类型不一致，仅供参考）" if assigned != pool_type else ""
+             availability = (
+                 "将在下一小时批次进入信息流传播"
+-                if self._recommendation_algorithm == "chronological"
++                if self._agent_return_next_batch
+                 else "将在下一周进入信息流传播"
+             )
+             return {
+@@ -1751,7 +1761,10 @@ class CurationDynamicsSpace(EnvBase):
+             "**start_week** 起始 ISO 周（默认 2026-W12）；**num_ticks** 总 tick 数（默认 11）；"
+             "**event_week** 去世周（默认 2026-W13）；**official_pin_extend_weeks** 官方置顶延伸"
+             "周数（默认 1）；**arrival_official_policy** 精确到达模式的官方推荐策略"
+-            "（agenda 默认议程 / ordinary 普通推荐，不进入置顶或保底）；**event_signal_type** 外生事件直接激活的内容类型（空串=关闭）、"
++            "（agenda 默认议程 / ordinary 普通推荐，不进入置顶或保底）；"
++            "**arrival_agent_return_policy** 生成帖回流策略（legacy 默认保留原三臂；"
++            "next_batch 仅限 arrival_timing，统一批末入池、后续小时批次可见）；"
++            "**event_signal_type** 外生事件直接激活的内容类型（空串=关闭）、"
+             "**event_signal_salience_slots** 该事件在意见气候中等效的普通信息槽位数（默认 0）；"
+             "interest 臂权重 **alpha**/**beta**/**gamma**、噪声幅度 "
+             "**interest_noise_eps**、已曝光处理 "
+@@ -1782,6 +1795,7 @@ class CurationDynamicsSpace(EnvBase):
+         state = {
+             "_arrival_state": self._arrival.state if self._arrival is not None else None,
+             "_arrival_official_policy": self._arrival_official_policy,
++            "_arrival_agent_return_policy": self._arrival_agent_return_policy,
+             "_arrival_action_hour_overrides": self._chronological_action_hour_overrides,
+             "_exposure_age_buckets": self._exposure_age_buckets,
+             "_step_index": self._step_index,
+@@ -1848,6 +1862,9 @@ class CurationDynamicsSpace(EnvBase):
+         # 官方推荐规则属于冻结配置；历史无此字段的状态按 agenda 解释。
+         if d.get("_arrival_official_policy", "agenda") != self._arrival_official_policy:
+             raise ValueError("checkpoint official policy does not match current config")
++        # 回流规则影响已累积的帖子与曝光；旧状态缺字段时保持 legacy。
++        if d.get("_arrival_agent_return_policy", "legacy") != self._arrival_agent_return_policy:
++            raise ValueError("checkpoint agent return policy does not match current config")
+         # 恢复必须复用同一行动安排；历史无覆盖的 checkpoint 仍兼容空表。
+         if d.get("_arrival_action_hour_overrides", {}) != self._chronological_action_hour_overrides:
+             raise ValueError("checkpoint action overrides do not match current config")
+diff --git a/custom/tests/README.md b/custom/tests/README.md
+index 5a669f5..db8ed83 100644
+--- a/custom/tests/README.md
++++ b/custom/tests/README.md
+@@ -11,3 +11,5 @@
+ `test_event_week_schedule.py`验证experiment_2的W13共同顺延：仅5人本周改变、九窗22位悼念均事件后行动、三臂官方无特殊槽且最多10槽、900份正式CLI/profile工作区保留覆盖、实际Agent行动门及恢复不重复、错误覆盖拒绝。联合当前功能禁网验收使用`hypothesis_4/experiment_2/2026-10-09-03-event-week-check.py`，输出路径见实验README。阅读计数为无Agent产出的环境演练，不是闭环LLM结果。
+ 
+ `test_ordinary_official.py`核验官方普通评分/抽样、候选资格和20:00门控、不进入置顶/保底、可选中或漏读、历史agenda兼容、换策略恢复拒绝及真实registry源码位于custom。当前35项联合验收输出为实验目录2026-10-09-06-ordinary-official-verification.json。
++
++`test_hourly_return.py`验证候选`next_batch`三臂批末入池、同小时隔离、旧配置兼容、策略保存恢复与换策略拒绝、跨周和末批供给守恒，以及时序新旧回流声明的逐批等价。固定测试正文只调用环境方法，不运行Agent或模型；使用项目解释器执行`-m unittest discover -s custom/tests -p test_hourly_return.py -v`。
+diff --git a/hypothesis_4/experiment_2/EXPERIMENT.md b/hypothesis_4/experiment_2/EXPERIMENT.md
+index 4f41a0e..3dac2e5 100644
+--- a/hypothesis_4/experiment_2/EXPERIMENT.md
++++ b/hypothesis_4/experiment_2/EXPERIMENT.md
+@@ -1,5 +1,17 @@
+ # Experiment 2：timestamp策展三臂主实验
+ 
++## 本run候选：三臂统一小时批次回流（未运行）
++
++本节是隔离工作区中的实现候选，不改变下方已完成timestamp_v1的证据身份。新版配置见[init/hourly_return_v1](init/hourly_return_v1/README.md)，由新增标准库准备器从现有seed0–9冻结配置派生，旧配置、样本、步骤和结果保持。
++
++- 三臂共同声明`arrival_agent_return_policy=next_batch`：同小时先冻结全部feed，批末提交曝光和产出，生成帖统一入池；从后续行动小时取得候选资格，同批互不可见。真实帖继续按精确发布时间到达。
++- 人口100、W12–W22、每人每周一次、693批/1100机会、10槽、同seed输入与行动表、W13共同顺延、原行为及生命周期保持；不新增连续小时老化。
++- 分析矩阵仍三臂各10seed。随机/兴趣各10次计划新运行；时序10次候选结果须经完成性、行为、输入与模型条件核对后才复用，当前manifest保留`planned_reuse_pending`，不增加其运行预算。
++- 主实验新兴趣Full供新版组件消融同seed复用。原主比较窗口及供给/曝光指标保持，不根据新曲线选取窗口；另核对回流时间、同批隔离与库存/供给守恒。
++- 主实验新批额外外层请求配置准备上界2200，每行动最多一次额外请求，独立新账本尚未创建。实际模型、费用、时限、调度与停止规则尚未冻结，`execution_authorized=false`；本次不启动仿真。
++
++旧状态缺少回流字段时仍按legacy解释；不将旧周回流checkpoint接续成新条件。环境逻辑位于custom，生成器只准备配置。下文为原批次设计及历史记录。
++
+ > 目录整理（2026-10-24）：三臂各10seed的30次完整结果已统一置于runs/timestamp_v1/，两次启动记录存入其execution_records/。本文保留准备、授权和调度时的历史路径与预算表述；不表示两个实验。当前目录与原路径映射见[runs/timestamp_v1/README.md](runs/timestamp_v1/README.md)，科学配置、原始结果与消融均未改变。
+ 
+ 
+diff --git a/hypothesis_4/experiment_2/README.md b/hypothesis_4/experiment_2/README.md
+index 92222e6..0b5e214 100644
+--- a/hypothesis_4/experiment_2/README.md
++++ b/hypothesis_4/experiment_2/README.md
+@@ -1,5 +1,7 @@
+ # Experiment 2：timestamp策展三臂主实验
+ 
++> 本run隔离工作区新增[小时回流候选设计](EXPERIMENT.md)及[版本化配置](init/hourly_return_v1/README.md)：随机/兴趣计划新跑各10次，时序10次待复用条件核对。当前仅实现和离线验收，未启动；下方完成状态仅属于原timestamp_v1批次。
++
+ 本文稿分工已于2026-10-12按作者修订同步：本实验主要回答问题（2）算法与发帖的循环机制，以及问题（3）完整策展制度是否差异化推动悼念向玩梗转变。问题（1）的现实轨迹与平台差异由原始数据分析回答。理论来源与实验对应见[EXPERIMENT.md](EXPERIMENT.md)，作者文稿接入见[paper](../../paper/README.md)。
+ 
+ > 当前状态（北京时间2026-10-23 14:48核验）：seed3–9新增21次三臂主实验于2026-10-23 14:39:57全部完成并逐次核验通过；结合原seed0–2，每臂已补齐10个seed。监督器及全部引擎均已退出，seed-3-9-30定时汇报已暂停。原中断现场保留；已按后续授权完成三臂各10seed的原口径主分析，报告见下；不补或改动消融。
+diff --git a/hypothesis_4/experiment_2/init/README.md b/hypothesis_4/experiment_2/init/README.md
+index e624b67..bf1115d 100644
+--- a/hypothesis_4/experiment_2/init/README.md
++++ b/hypothesis_4/experiment_2/init/README.md
+@@ -4,6 +4,8 @@
+ 
+ | 一级资产 | 职责 |
+ |---|---|
++| [prepare_hourly_return.py](prepare_hourly_return.py) | 新小时回流候选准备器，同时生成主三臂及兴趣组件消融；`--check`只读核对，不执行旧生成器 |
++| [hourly_return_v1/](hourly_return_v1/README.md) | 三臂各10seed候选配置；20次计划新运行、10次时序待复用核对，未授权启动 |
+ | [prepare_seed_extension.py](prepare_seed_extension.py) | 仅准备seed 3–9的新增21配置及样本；`--check`只读复算，拒绝覆盖不一致资产 |
+ | [manifest_seed3_9.json](manifest_seed3_9.json) | 新增主实验批次的冻结清单、原规则复算、历史候选资格修正、独立输出与账本路径；execution_authorized=false |
+ | `steps_s3.yaml`–`steps_s9.yaml` | 新seed各693批，与原steps_s0.yaml逐字节相同 |
+diff --git a/hypothesis_4/experiment_3/EXPERIMENT.md b/hypothesis_4/experiment_3/EXPERIMENT.md
+index bb4d465..8e35719 100644
+--- a/hypothesis_4/experiment_3/EXPERIMENT.md
++++ b/hypothesis_4/experiment_3/EXPERIMENT.md
+@@ -1,5 +1,22 @@
+ # B、D、R的timestamp正式消融方案
+ 
++## 本run候选：小时回流兴趣组件消融（未运行）
++
++新版配置见[init/hourly_return_v1](init/hourly_return_v1/README.md)，从同seed的新小时回流interest Full直接派生，不修改下文旧次周回流实验的配置或结果。
++
++| 条件 | 唯一组件干预 | 效用 |
++|---|---|---|
++| Full | 复用新的兴趣主实验 | `B+R(D−B)` |
++| no_b | 100人`baseline_utility=0` | `RD` |
++| no_d | 100人`spiral_scale=0`，令D=1，仍保留阅读及回流 | `B+R(1−B)` |
++| no_r | 100人`decay=0`，令R=1 | `D` |
++
++四条件各seed0–9，40个比较单元；新增三个消融各10次，共30次，不额外跑Full。四条件统一`arrival_agent_return_policy=next_batch`，同小时冻结、批末入池、后续行动小时具备资格。同seed人口、外部样本、提示、步骤、行动表、W13安排、推荐/生命周期和非指定行为参数与新Full保持一致；独立预算账本属于操作差异。
++
++原B/D/R各自的指标和窗口保持，比较`消融−同seed新Full`，不混用旧周回流消融。新条件从W12独立开始，允许反馈自然分叉，不从旧Full或消融checkpoint中途切换规则。no_r同时令B系数归零的原解释限制保持，不将三项差值相加作贡献率。
++
++新消融批额外请求配置准备上界3300，每行动最多一次额外请求；新账本和引擎输出均未创建。实际模型、费用、时限、调度和停止规则待运行前冻结，所有配置`execution_authorized=false`。下文为原次周回流批次设计与历史记录。
++
+ 
+ > 正式启动授权（2026-10-24）：用户已授权21次兴趣B/D/R消融，两路并行，冻结模型/配置/预算与48小时保护，每30分钟报告，终态暂停，暂不分析。首次正式启动北京时间2026-10-24 16:34:46，固定截止2026-10-26 16:34:46；本批runtime_plan和batch_execution在runs/timestamp_bdr_v1_attempt_02/execution_records/seed3_9。下方准备期未授权表述作为历史记录保持。
+ 
+diff --git a/hypothesis_4/experiment_3/README.md b/hypothesis_4/experiment_3/README.md
+index 5a2202e..0f310ae 100644
+--- a/hypothesis_4/experiment_3/README.md
++++ b/hypothesis_4/experiment_3/README.md
+@@ -1,5 +1,7 @@
+ # Experiment 3：timestamp-interest的B、D、R消融
+ 
++> 本run隔离工作区新增[小时回流候选设计](EXPERIMENT.md)及[版本化配置](init/hourly_return_v1/README.md)：no_b/no_d/no_r各10次计划新运行，Full复用同seed新兴趣主实验；当前仅实现和离线验收，未启动。下方已完成记录仍属于原次周回流批次。
++
+ 
+ ## seed3–9全部完成并通过完整性验收（2026-10-26）
+ 
+diff --git a/hypothesis_4/experiment_3/init/README.md b/hypothesis_4/experiment_3/init/README.md
+index f2462be..030c879 100644
+--- a/hypothesis_4/experiment_3/init/README.md
++++ b/hypothesis_4/experiment_3/init/README.md
+@@ -4,6 +4,7 @@
+ 
+ | 直接资产 | 用途 |
+ |---|---|
++| [hourly_return_v1/](hourly_return_v1/README.md) | 新小时回流兴趣no_b/no_d/no_r各10seed，Full引用新兴趣主实验；未运行 |
+ | [config_params.py](config_params.py) | 标准库生成器；先验来源哈希，后写九配置、默认入口和manifest |
+ | [source_lock.json](source_lock.json) | 精确Git基线、19份冻结来源及7份机制/词表哈希 |
+ | [manifest.json](manifest.json) | 九条件顺序、配对来源、输出哈希、操作差异和execution_authorized=false |
