@@ -1,0 +1,99 @@
+{
+  "run_id": "2026-10-18-01-ica2027-text-verification",
+  "archived_on": "2026-10-28",
+  "timezone": "Asia/Shanghai",
+  "status": "archived",
+  "adoption_status": "本run未执行正式采用；两份文字保留为历史候选",
+  "old_path": "runs/2026-10-18-01-ica2027-text-verification",
+  "archive_path": "runs/archive/2026-10-18-01-ica2027-text-verification",
+  "run_start_commit": "69d243955d341444ae769fae5bf23dc160465cd6",
+  "archive_start_commit": "aad3267fc9929a08a453ba427bdf25919bbffc70",
+  "original_files": {
+    ".gitignore": {
+      "bytes": 16,
+      "sha256": "9dea1d0f9e01578d72cdcd33e018cb43490ea83e8d7f4b6203be350c0b291722"
+    },
+    "README.md": {
+      "bytes": 6845,
+      "sha256": "3284f156fc600d5d7de8fffb4e50bfb5b160dd89168f81a56e385ace29fe62a1"
+    },
+    "initial_git_status.txt": {
+      "bytes": 4983,
+      "sha256": "1c585157aa9ddc76303bddb23a7045aca019f6ef3350a286ea2db3110fbad19a"
+    },
+    "input.sha256": {
+      "bytes": 107,
+      "sha256": "18e83473e9ae3d592db1a74ce67866e3964637024d78baabdc308487ceba3f5d"
+    },
+    "section_4_3.proposed.md": {
+      "bytes": 5041,
+      "sha256": "71ac363bd872c0d4786d7b56dfa9affdb16d34f34c6df3e94b854a91a1656a91"
+    },
+    "section_5_1_to_5_3.proposed.md": {
+      "bytes": 8577,
+      "sha256": "e9d9f59ddd7a5ffb8aa1cb144689c2262e61fcde9c8133269ed60ad766433421"
+    }
+  },
+  "payload_files": {
+    ".gitignore": {
+      "bytes": 16,
+      "sha256": "9dea1d0f9e01578d72cdcd33e018cb43490ea83e8d7f4b6203be350c0b291722"
+    },
+    "ICA2027v1.at_archive.docx": {
+      "bytes": 1022859,
+      "sha256": "8ef90bb65356b405d54e28aa85aeba4342d69cc8e2b3855fc840a2d26338d063"
+    },
+    "README.md": {
+      "bytes": 13648,
+      "sha256": "df2aec689b1daa21a9e1b7d088b17f509fa361503a27086153a72e9b483d00e7"
+    },
+    "initial_git_status.txt": {
+      "bytes": 4983,
+      "sha256": "1c585157aa9ddc76303bddb23a7045aca019f6ef3350a286ea2db3110fbad19a"
+    },
+    "input.sha256": {
+      "bytes": 107,
+      "sha256": "18e83473e9ae3d592db1a74ce67866e3964637024d78baabdc308487ceba3f5d"
+    },
+    "original_materials.zip": {
+      "bytes": 12591,
+      "sha256": "c73d76af5f7a548976c69c9fe178122b5cc492bf82a0daa931b2b7b909bd7ff8"
+    },
+    "section_4_3.proposed.md": {
+      "bytes": 5041,
+      "sha256": "71ac363bd872c0d4786d7b56dfa9affdb16d34f34c6df3e94b854a91a1656a91"
+    },
+    "section_5_1_to_5_3.proposed.md": {
+      "bytes": 8580,
+      "sha256": "f397f9f69f5532ae120bb463e82192e77677ebd0a9c28c74784e3ee57d0d086d"
+    }
+  },
+  "source_word": {
+    "path": "/Users/easylife/Documents/ICA2027v1.docx",
+    "archive_copy": "ICA2027v1.at_archive.docx",
+    "bytes": 1022859,
+    "sha256": "8ef90bb65356b405d54e28aa85aeba4342d69cc8e2b3855fc840a2d26338d063",
+    "initial_version_available": false,
+    "intermediate_version_available": false
+  },
+  "checks": {
+    "original_zip_extraction_file_count": 6,
+    "original_zip_extraction_bytes_match": true,
+    "word_zip_integrity": true,
+    "source_word_unchanged": true,
+    "workspace_present": false,
+    "persistent_tmp_present": false,
+    "symlinks_present": false,
+    "new_experiment_or_llm_calls": 0,
+    "commit_or_push": false,
+    "final_payload_files_verified": 8,
+    "final_local_links_checked": 35,
+    "final_local_links_missing": 0,
+    "active_index_entry_removed": true,
+    "archive_index_entry_present": true,
+    "other_active_run_entries_retained": true,
+    "old_path_absent": true,
+    "target_worktree_registered": false
+  },
+  "restoration_scope": "Saved candidate texts, verification notes and archive-time Word; not overwritten historical Word versions or simulation reruns."
+}

@@ -9,7 +9,6 @@
 | run | 目标与入口 |
 |---|---|
 | [2026-10-19-01-paper-figures](2026-10-19-01-paper-figures/README.md) | 论文图件与项目框架图；十种子图1—5、中文图注、修订Word及框架候选从本run索引进入 |
-| [2026-10-18-01-ica2027-text-verification](2026-10-18-01-ica2027-text-verification/README.md) | 作者修订版ICA2027v1正文核实与润色；已初始化，按用户逐条指示处理，不修改Word，尚未展开正文审查 |
 | [2026-10-16-01-population-scale](2026-10-16-01-population-scale/README.md) | 扩容讨论暂缓；100人cuc/deepseek三制度完成，共603帖；新旧候选对比与独立审查已交付，主要排序保持、兴趣局部变化、质量未证等价；定时汇报已暂停，未正式采用或归档 |
 
 正式写作依据保留于paper目录；历史记录见[归档索引](archive/README.md)。
@@ -20,7 +19,6 @@
 |---|---|
 | [README.md](README.md) | 活跃探索与使用约定 |
 | [2026-10-19-01-paper-figures/](2026-10-19-01-paper-figures/README.md) | 论文图件重制、统一视觉风格与整体项目框架图 |
-| [2026-10-18-01-ica2027-text-verification/](2026-10-18-01-ica2027-text-verification/README.md) | 当前作者版本的正文核实与润色，按用户逐条指示推进 |
 | [2026-10-16-01-population-scale/](2026-10-16-01-population-scale/README.md) | 500／1000人下一轮主实验的规模、随机性与扩容规则讨论 |
 | [archive/](archive/README.md) | 已归档run索引、历史证据和恢复说明 |
 

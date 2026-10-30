@@ -28,7 +28,7 @@
 
 ## 本次核对来源与范围
 
-项目依据为[TOPIC](../../TOPIC.md)、当前作者Word及本run前序核查。六组文献均已在当前Word第一章或第二章出现，本次没有新增书目。
+项目依据为[TOPIC](../../../TOPIC.md)、当前作者Word及本run前序核查。六组文献均已在当前Word第一章或第二章出现，本次没有新增书目。
 
 外部核对范围：West为作者arXiv摘要；Adriaansen与Smit为作者机构书目摘要及机构保存的出版社全文；Bou-Franch与Yus为期刊摘要；Thorson与Wells为出版社检索返回的摘要；Trilling为期刊全文；Metzler与Garcia为出版社全文。West出版社DOI直连和Thorson网页直接打开失败，使用上述可核查的作者或出版社来源，不宣称全部六篇均已全文核验。
 
